@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rm \"c:\\\\Users\\\\LENOVO\\\\Desktop\\\\Jarvis\\\\jarvis-starter-kit\\\\fix_prompts.py\")"
+      "Bash(rm \"c:\\\\Users\\\\LENOVO\\\\Desktop\\\\Jarvis\\\\jarvis-starter-kit\\\\fix_prompts.py\")",
+      "mcp__Canva__generate-design"
     ],
     "additionalDirectories": [
       "c:\\Users\\LENOVO\\Desktop\\Jarvis\\jarvis-starter-kit"
