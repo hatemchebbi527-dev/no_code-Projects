@@ -29,7 +29,7 @@ BOOKING_CONFIRMED:{"service":"...","date":"...","time":"...","name":"...","phone
 IMPORTANT POUR LE JSON :
 - "date" doit TOUJOURS être au format YYYY-MM-DD (ex: 2026-06-03). Jamais "mardi prochain" ou une date relative. Calcule la date exacte.
 - "time" doit être au format HH:MM (ex: 14:00)
-- La date d'aujourd'hui est le {{ new Date().toISOString().split('T')[0] }}
+- La date d'aujourd'hui est le {{TODAY}}
 
 Réponds en français, sois chaleureuse et concise (max 3 phrases par message).`,
 
@@ -58,6 +58,7 @@ BOOKING_CONFIRMED:{"service":"...","date":"...","time":"...","name":"...","phone
 IMPORTANTE PER IL JSON :
 - "date" deve essere SEMPRE nel formato YYYY-MM-DD (es: 2026-06-03). Mai "martedì prossimo" o date relative. Calcola la data esatta.
 - "time" deve essere nel formato HH:MM (es: 14:00)
+- La data di oggi è {{TODAY}}
 
 Rispondi in italiano, sii cordiale e concisa (max 3 frasi per messaggio).`,
 };
@@ -65,7 +66,8 @@ Rispondi in italiano, sii cordiale e concisa (max 3 frasi per messaggio).`,
 export async function POST(req: NextRequest) {
   try {
     const { messages, lang = 'fr' } = await req.json();
-    const systemPrompt = SYSTEM_PROMPTS[lang as 'fr' | 'it'] ?? SYSTEM_PROMPTS.fr;
+    const today = new Date().toISOString().split('T')[0];
+    const systemPrompt = (SYSTEM_PROMPTS[lang as 'fr' | 'it'] ?? SYSTEM_PROMPTS.fr).replace('{{TODAY}}', today);
 
     const response = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
