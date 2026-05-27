@@ -3,32 +3,32 @@
     "xIv_1pwc7RvcB2DKs_o4k": {
       "lastSyncedHash": "f88ae3cff70abdb45b8dda879903ba0f4b316285569a0e8033a024db24431538",
       "lastSyncedAt": "2026-05-25T22:37:15.479Z",
-      "filename": "WhatsApp Assistant IA - V2 avec CRM.workflow.ts"
+      "filename": "CRM Salon de Coiffure/WhatsApp Assistant IA - V2 avec CRM.workflow.ts"
     },
     "fCGLZi6V8b2YFfiB": {
       "lastSyncedHash": "d673313a6fcc925377ba3fb431b40f77d8edc8dd3d773a5e38659d7df758ea14",
       "lastSyncedAt": "2026-05-26T22:09:49.839Z",
-      "filename": "01-rappel-rdv-j1.workflow.ts"
+      "filename": "CRM Salon de Coiffure/01-rappel-rdv-j1.workflow.ts"
     },
     "XEZ5t1tMnmH6Tx2L": {
       "lastSyncedHash": "92512cc54763babb471e50eec3c7a205b5a7602e8f6206cdb8c1621b0da7e8aa",
       "lastSyncedAt": "2026-05-26T22:09:59.955Z",
-      "filename": "02-maj-client-rdv-termine.workflow.ts"
+      "filename": "CRM Salon de Coiffure/02-maj-client-rdv-termine.workflow.ts"
     },
     "TftMKsaFagbJWB5M": {
       "lastSyncedHash": "d885b627c535894659e237b53b31702398d4dfaa92e25b079e26ee84dcecc943",
       "lastSyncedAt": "2026-05-26T22:10:04.547Z",
-      "filename": "03-fidelite-j30.workflow.ts"
+      "filename": "CRM Salon de Coiffure/03-fidelite-j30.workflow.ts"
     },
     "CIjei8BvOci6ef3W": {
       "lastSyncedHash": "560c2d2cc717b8117e92a1b266b6bcc8c5d458cfa6899caf0a0c3fc7fe2d3466",
       "lastSyncedAt": "2026-05-26T22:10:09.942Z",
-      "filename": "04-inactif-60j.workflow.ts"
+      "filename": "CRM Salon de Coiffure/04-inactif-60j.workflow.ts"
     },
     "TsBqYPYSgz53hr2v": {
       "lastSyncedHash": "c7dc9218fab082dc30a9b64d3efc573f87d6dd99eb0de11bacff70c97a00960f",
       "lastSyncedAt": "2026-05-26T22:10:15.470Z",
-      "filename": "05-anniversaire.workflow.ts"
+      "filename": "CRM Salon de Coiffure/05-anniversaire.workflow.ts"
     }
   }
 }
