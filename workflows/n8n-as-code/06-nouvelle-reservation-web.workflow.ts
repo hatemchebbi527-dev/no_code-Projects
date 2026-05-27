@@ -82,8 +82,8 @@ const name    = body.name    || '';
 const phone   = body.phone   || '';
 const price   = body.price   || '';
 
-// Construit le datetime au format ISO pour Airtable
-const datetime = date && time ? date + 'T' + time + ':00.000Z' : '';
+// Construit le datetime sans suffixe UTC pour respecter le fuseau local (Italie)
+const datetime = date && time ? date + 'T' + time + ':00.000+02:00' : '';
 
 return [{ json: { service, date, time, datetime, name, phone, price } }];`,
     };
