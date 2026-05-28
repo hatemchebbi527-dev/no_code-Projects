@@ -31,7 +31,7 @@
       line-height: 1.6;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: sticky;
       top: 0;
@@ -81,7 +81,7 @@
 
     .nav-cta:hover { background: var(--accent-dark); color: #fff !important; }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       max-width: 1100px;
       margin: 0 auto;
@@ -118,8 +118,9 @@
     }
 
     h1 em {
-      font-style: italic;
+      font-style: normal;
       font-family: 'Lora', serif;
+      font-style: italic;
       color: var(--accent-dark);
     }
 
@@ -193,8 +194,17 @@
       margin: 0 auto 1rem;
     }
 
-    .hero-card-name { font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem; }
-    .hero-card-role { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .hero-card-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-card-role {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
 
     .hero-stat {
       display: flex;
@@ -209,7 +219,7 @@
     .hero-stat-label { color: var(--text-muted); }
     .hero-stat-val { font-weight: 700; color: var(--accent-dark); }
 
-    /* SECTION SHARED */
+    /* ── SECTION SHARED ── */
     section { padding: 5rem 6%; }
     .container { max-width: 1100px; margin: 0 auto; }
 
@@ -238,7 +248,9 @@
       line-height: 1.7;
     }
 
-    /* SERVICES */
+    /* ── SERVICES ── */
+    #services { background: var(--bg); }
+
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -271,8 +283,17 @@
       margin-bottom: 1.2rem;
     }
 
-    .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
-    .service-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
 
     .service-tags {
       display: flex;
@@ -291,8 +312,10 @@
       border-radius: 99px;
     }
 
-    /* PROCESS */
-    #process { background: linear-gradient(180deg, #fffbf2 0%, #fff8e8 100%); }
+    /* ── HOW I WORK ── */
+    #process {
+      background: linear-gradient(180deg, #fffbf2 0%, #fff8e8 100%);
+    }
 
     .steps {
       display: grid;
@@ -320,11 +343,26 @@
       margin-bottom: 0.9rem;
     }
 
-    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .step p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
 
-    /* TOOLS */
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .step p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── TOOLS ── */
+    #tools { background: var(--bg); }
+
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
 
     .tool-chip {
       display: flex;
@@ -340,10 +378,13 @@
     }
 
     .tool-chip:hover { border-color: var(--accent); background: var(--accent-light); }
+
     .tool-chip-icon { font-size: 1.1rem; }
 
-    /* ABOUT */
-    #about { background: linear-gradient(135deg, #fff8e8 0%, #fffbf2 100%); }
+    /* ── ABOUT ── */
+    #about {
+      background: linear-gradient(135deg, #fff8e8 0%, #fffbf2 100%);
+    }
 
     .about-grid {
       display: grid;
@@ -353,7 +394,13 @@
     }
 
     .about-text h2 { margin-bottom: 1.2rem; }
-    .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+
+    .about-text p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
     .about-text p strong { color: var(--text); }
 
     .about-visual {
@@ -387,10 +434,18 @@
     }
 
     .fact-list li:last-child { border-bottom: none; }
-    .fact-icon { font-size: 1rem; margin-top: 0.1rem; flex-shrink: 0; }
 
-    /* CTA */
-    #contact { background: var(--text); text-align: center; }
+    .fact-icon {
+      font-size: 1rem;
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── CTA ── */
+    #contact {
+      background: var(--text);
+      text-align: center;
+    }
 
     #contact h2 {
       color: #fff;
@@ -451,7 +506,7 @@
 
     .btn-ghost-white:hover { border-color: var(--accent); background: rgba(245, 158, 11, 0.1); }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       background: #111;
       color: #57534e;
@@ -463,17 +518,27 @@
     footer a { color: #a8a29e; text-decoration: none; }
     footer a:hover { color: var(--accent); }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; padding: 3.5rem 6% 3rem; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3.5rem 6% 3rem;
+      }
+
       .hero-card { display: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
       .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">Hatem<span>.</span></a>
     <ul class="nav-links">
@@ -485,6 +550,7 @@
     </ul>
   </nav>
 
+  <!-- HERO -->
   <header>
     <div class="hero">
       <div class="hero-text">
@@ -524,6 +590,7 @@
     </div>
   </header>
 
+  <!-- SERVICES -->
   <section id="services">
     <div class="container">
       <div class="section-label">What I do</div>
@@ -533,47 +600,79 @@
         without hiring more people.
       </p>
       <div class="services-grid">
+
         <div class="service-card">
           <div class="service-icon">⚙️</div>
           <h3>Process Automation</h3>
-          <p>I map and automate your repetitive operations: lead follow-up, reporting, data entry, notifications, and more. Connected across your existing tools.</p>
+          <p>
+            I map and automate your repetitive operations: lead follow-up,
+            reporting, data entry, notifications, and more. Connected across
+            your existing tools.
+          </p>
           <div class="service-tags">
-            <span class="tag">n8n</span><span class="tag">Zapier</span><span class="tag">Make</span><span class="tag">APIs</span>
+            <span class="tag">n8n</span>
+            <span class="tag">Zapier</span>
+            <span class="tag">Make</span>
+            <span class="tag">APIs</span>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-icon">🤖</div>
           <h3>AI-Powered Tools</h3>
-          <p>Custom chatbots, smart document processors, and AI assistants embedded directly in your website or internal tools.</p>
+          <p>
+            Custom chatbots, smart document processors, and AI assistants
+            embedded directly in your website or internal tools.
+          </p>
           <div class="service-tags">
-            <span class="tag">Claude API</span><span class="tag">OpenAI</span><span class="tag">RAG</span><span class="tag">Custom GPT</span>
+            <span class="tag">Claude API</span>
+            <span class="tag">OpenAI</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Custom GPT</span>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-icon">🌐</div>
           <h3>Web Apps & Websites</h3>
-          <p>Clean, fast websites and mini web applications for local businesses. Integrated with AI features when they add real value.</p>
+          <p>
+            Clean, fast websites and mini web applications for local businesses.
+            Integrated with AI features when they add real value.
+          </p>
           <div class="service-tags">
-            <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">No-code</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">No-code</span>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-icon">🎯</div>
           <h3>Digital Strategy Consulting</h3>
-          <p>Not sure where to start with AI? I audit your current processes and recommend the highest-impact automation opportunities for your budget.</p>
+          <p>
+            Not sure where to start with AI? I audit your current processes
+            and recommend the highest-impact automation opportunities for your budget.
+          </p>
           <div class="service-tags">
-            <span class="tag">Audit</span><span class="tag">Roadmap</span><span class="tag">ROI analysis</span>
+            <span class="tag">Audit</span>
+            <span class="tag">Roadmap</span>
+            <span class="tag">ROI analysis</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- HOW I WORK -->
   <section id="process">
     <div class="container">
       <div class="section-label">How I work</div>
       <h2>Simple, clear, results-first</h2>
-      <p class="section-intro">No buzzwords, no over-engineering. A straightforward process to make sure every project delivers real value.</p>
+      <p class="section-intro">
+        No buzzwords, no over-engineering. I follow a straightforward process
+        to make sure every project delivers real value.
+      </p>
       <div class="steps">
         <div class="step">
           <h3>Discovery call</h3>
@@ -595,11 +694,14 @@
     </div>
   </section>
 
+  <!-- TOOLS -->
   <section id="tools">
     <div class="container">
       <div class="section-label">My toolbox</div>
       <h2>Technologies I use</h2>
-      <p class="section-intro">Practical, proven tools that get the job done efficiently.</p>
+      <p class="section-intro">
+        Practical, proven tools that get the job done efficiently.
+      </p>
       <div class="tools-grid">
         <div class="tool-chip"><span class="tool-chip-icon">🔁</span> n8n</div>
         <div class="tool-chip"><span class="tool-chip-icon">🤖</span> Claude API</div>
@@ -617,44 +719,82 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
           <div class="section-label">About me</div>
           <h2>A human-first approach to AI</h2>
-          <p>I'm Hatem, an AI consultant and automation specialist based in <strong>Rimini, Italy</strong>. I'm in active transition from the hospitality industry into tech, which means I understand the real-world constraints of small businesses intimately.</p>
-          <p>My focus is on <strong>practical automation</strong>: no theoretical frameworks, no unnecessary complexity. I build things that work, that your team can actually use, and that free up time for the work that matters.</p>
-          <p>I work with <strong>Italian businesses</strong> (and international clients) who want to modernize their operations without the overhead of hiring an in-house developer.</p>
+          <p>
+            I'm Hatem, an AI consultant and automation specialist based in
+            <strong>Rimini, Italy</strong>. I'm in active transition from the
+            hospitality industry into tech, which means I understand the
+            real-world constraints of small businesses intimately.
+          </p>
+          <p>
+            My focus is on <strong>practical automation</strong>: no theoretical
+            frameworks, no unnecessary complexity. I build things that work,
+            that your team can actually use, and that free up time for the work
+            that matters.
+          </p>
+          <p>
+            I work with <strong>Italian businesses</strong> (and international clients)
+            who want to modernize their operations without the overhead of hiring
+            an in-house developer.
+          </p>
         </div>
         <div class="about-visual">
           <div class="about-location">
             <span>📍</span> Rimini, Emilia-Romagna, Italy
           </div>
           <ul class="fact-list">
-            <li><span class="fact-icon">🗣️</span><div>Fluent in <strong>French, Italian, Arabic, and English</strong> — I communicate where you are.</div></li>
-            <li><span class="fact-icon">🕐</span><div>Available for <strong>part-time projects and long-term retainers</strong>. Always responsive.</div></li>
-            <li><span class="fact-icon">🎯</span><div>Specializing in <strong>SME automation</strong> — hotels, retail, service businesses.</div></li>
-            <li><span class="fact-icon">✅</span><div>Fixed-price projects with <strong>clear deliverables</strong>. No surprise invoices.</div></li>
+            <li>
+              <span class="fact-icon">🗣️</span>
+              <div>Fluent in <strong>French, Italian, Arabic, and English</strong> — I communicate where you are.</div>
+            </li>
+            <li>
+              <span class="fact-icon">🕐</span>
+              <div>Available for <strong>part-time projects and long-term retainers</strong>. Always responsive.</div>
+            </li>
+            <li>
+              <span class="fact-icon">🎯</span>
+              <div>Specializing in <strong>SME automation</strong> — hotels, retail, service businesses.</div>
+            </li>
+            <li>
+              <span class="fact-icon">✅</span>
+              <div>Fixed-price projects with <strong>clear deliverables</strong>. No surprise invoices.</div>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA -->
   <section id="contact">
     <div class="container">
       <h2>Ready to <em>automate</em><br />your business?</h2>
-      <p>Let's have a quick 30-minute call. No commitment, no pitch deck. Just an honest conversation about what's possible for your business.</p>
+      <p>
+        Let's have a quick 30-minute call. No commitment, no pitch deck.
+        Just an honest conversation about what's possible for your business.
+      </p>
       <div class="contact-buttons">
-        <a href="mailto:hatemchebbi527@gmail.com" class="btn-white">✉️ Send me an email</a>
-        <a href="https://linkedin.com" class="btn-ghost-white">🔗 Connect on LinkedIn</a>
+        <a href="mailto:hatemchebbi527@gmail.com" class="btn-white">
+          ✉️ Send me an email
+        </a>
+        <a href="https://linkedin.com" class="btn-ghost-white">
+          🔗 Connect on LinkedIn
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Hatem Chebbi · Rimini, Italy · <a href="mailto:hatemchebbi527@gmail.com">hatemchebbi527@gmail.com</a></p>
+    <p>© 2026 Hatem Chebbi · Rimini, Italy ·
+      <a href="mailto:hatemchebbi527@gmail.com">hatemchebbi527@gmail.com</a>
+    </p>
   </footer>
 
 </body>
