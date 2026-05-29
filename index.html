@@ -18,13 +18,13 @@
     html{scroll-behavior:smooth}
     body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-    /* RULER */
-    .ruler{width:100%;height:22px;position:relative;overflow:hidden;background:var(--bg)}
-    .ruler::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--border)}
-    .ruler-inner{display:flex;align-items:flex-start;height:100%;padding-top:3px}
-    .ruler-inner span{display:inline-block;width:1px;background:var(--border);margin-right:7px;flex-shrink:0}
-    .ruler-inner span:nth-child(5n){height:11px;background:rgba(0,0,0,0.28)}
-    .ruler-inner span:not(:nth-child(5n)){height:5px}
+    /* RULER — bold black ticks */
+    .ruler{width:100%;height:26px;position:relative;overflow:hidden;background:var(--bg)}
+    .ruler::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#111}
+    .ruler-inner{display:flex;align-items:flex-start;height:100%;padding-top:4px}
+    .ruler-inner span{display:inline-block;width:2px;background:#555;margin-right:6px;flex-shrink:0}
+    .ruler-inner span:nth-child(5n){height:14px;background:#111}
+    .ruler-inner span:not(:nth-child(5n)){height:6px}
 
     /* NAV */
     nav{
@@ -47,7 +47,6 @@
       display:flex;align-items:center;gap:0.55rem;
     }
     .nav-logo .dot{color:var(--accent)}
-    /* Robot SVG logo */
     .robot-logo{width:34px;height:34px;flex-shrink:0}
     .nav-right{display:flex;align-items:center;gap:1.5rem;justify-content:flex-end;list-style:none}
     .nav-right a{
@@ -77,18 +76,21 @@
     .hero-tagline.left{grid-column:1;align-self:start;padding-top:3rem}
     .hero-tagline.right{grid-column:3;text-align:right;align-self:start;padding-top:3rem}
 
-    /* CARDS FAN */
+    /* CARDS FAN — glass, no solid background */
     .hero-cards{grid-column:2;display:flex;align-items:center;justify-content:center;position:relative;height:500px;margin-top:1rem}
     .hcard{
       position:absolute;width:260px;height:370px;border-radius:14px;overflow:hidden;
-      box-shadow:0 14px 50px rgba(0,0,0,0.22);transition:transform 0.4s ease,box-shadow 0.3s;
-      cursor:pointer;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      box-shadow:0 14px 60px rgba(0,0,0,0.45);
+      transition:transform 0.4s ease,box-shadow 0.3s;cursor:pointer;
     }
-    .hcard:nth-child(1){transform:rotate(-9deg) translateX(-130px);z-index:1;background:linear-gradient(145deg,#0f172a,#1e293b)}
-    .hcard:nth-child(2){transform:rotate(0deg);z-index:3;background:linear-gradient(145deg,#0c1a0f,#14532d)}
-    .hcard:nth-child(3){transform:rotate(9deg) translateX(130px);z-index:1;background:linear-gradient(145deg,#1c0a00,#431407)}
-    .hero-cards:hover .hcard:nth-child(1){transform:rotate(-13deg) translateX(-150px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-    .hero-cards:hover .hcard:nth-child(3){transform:rotate(13deg) translateX(150px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+    .hcard:nth-child(1){transform:rotate(-9deg) translateX(-130px);z-index:1}
+    .hcard:nth-child(2){transform:rotate(0deg);z-index:3;background:rgba(255,255,255,0.11)}
+    .hcard:nth-child(3){transform:rotate(9deg) translateX(130px);z-index:1}
+    .hero-cards:hover .hcard:nth-child(1){transform:rotate(-13deg) translateX(-150px);box-shadow:0 20px 70px rgba(0,0,0,0.5)}
+    .hero-cards:hover .hcard:nth-child(3){transform:rotate(13deg) translateX(150px);box-shadow:0 20px 70px rgba(0,0,0,0.5)}
     .hcard:nth-child(2):hover{transform:rotate(0deg) translateY(-8px)}
     .hcard-inner{width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem}
     .hcard-accent-bar{position:absolute;top:0;left:0;right:0;height:4px}
@@ -132,21 +134,18 @@
       background-size:cover;background-position:center;
     }
     .svc:last-child{border-right:none}
-    /* dark overlay via ::before */
     .svc::before{
       content:'';position:absolute;inset:0;
       background:rgba(6,6,6,0.7);
       transition:background 0.4s ease;z-index:0;
     }
     .svc:hover::before{background:rgba(6,6,6,0.48)}
-    /* bottom bar slide via ::after */
     .svc::after{
       content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
       background:var(--accent);transform:scaleX(0);transform-origin:left;
       transition:transform 0.35s ease;z-index:2;
     }
     .svc:hover::after{transform:scaleX(1)}
-    /* All content above overlay */
     .svc>*{position:relative;z-index:1}
     .svc-num{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.1em;margin-bottom:1.5rem}
     .svc-icon{
@@ -163,7 +162,6 @@
       text-transform:uppercase;transition:border-color 0.2s,color 0.2s;
     }
     .svc:hover .svc-tag-item{border-color:var(--accent);color:#fff}
-    /* hover reveal arrow */
     .svc-arrow{
       position:absolute;bottom:1.2rem;right:1.2rem;
       font-size:0.75rem;color:var(--accent);
@@ -230,6 +228,8 @@
     .fact-val{font-size:0.83rem;padding:1rem;line-height:1.5}
     .about-left-text p{font-size:0.9rem;color:var(--muted);line-height:1.8;margin-bottom:1rem}
     .about-left-text p strong{color:var(--text)}
+    .animate-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .animate-in.visible{opacity:1;transform:translateY(0)}
 
     /* CTA */
     #contact{background:var(--text);padding:7rem 2.5rem;text-align:center}
@@ -285,10 +285,6 @@
     .proj-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background 0.2s,transform 0.2s}
     .proj-dot.active{background:var(--accent);transform:scale(1.3)}
 
-    /* animate-in */
-    .animate-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
-    .animate-in.visible{opacity:1;transform:translateY(0)}
-
     /* RESPONSIVE */
     @media(max-width:900px){
       .hero-stage{grid-template-columns:1fr;padding:2rem 1.5rem 1rem}
@@ -325,9 +321,7 @@
       <span class="nav-dot"></span>
       <span id="clock">--:-- --</span>
     </div>
-
     <a href="#" class="nav-logo">
-      <!-- Robot SVG logo -->
       <svg class="robot-logo" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="17" y1="2" x2="17" y2="7" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
         <circle cx="17" cy="1.5" r="1.8" fill="#f59e0b"/>
@@ -345,7 +339,6 @@
       </svg>
       HATEM<span class="dot">.</span>
     </a>
-
     <ul class="nav-right">
       <li><a href="#services">SERVICES<sup>4</sup></a></li>
       <li><a href="#process">PROCESS</a></li>
@@ -359,7 +352,6 @@
   <div class="hero">
     <div class="hero-stage">
       <div class="hero-tagline left">AI AUTOMATION.<br /><strong>SMART SYSTEMS.</strong></div>
-
       <div class="hero-cards">
         <div class="hcard" onclick="openProject(0)">
           <div class="hcard-accent-bar"></div>
@@ -389,11 +381,8 @@
           </div>
         </div>
       </div>
-
       <div class="hero-tagline right">THOUGHTFUL BUILDS.<br /><strong>REAL RESULTS.</strong></div>
     </div>
-
-    <!-- RULER + TICKER + RULER (like Nite Riot) -->
     <div class="ticker-band">
       <div class="ruler"><div class="ruler-inner" id="rulerA"></div></div>
       <div class="ticker-wrap">
@@ -478,90 +467,78 @@
 
   <div class="ruler"><div class="ruler-inner" id="ruler3"></div></div>
 
-  <!-- TOOLS — brand icons with colors -->
+  <!-- TOOLS -->
   <section id="tools">
     <div class="section-wrap">
       <div class="sec-label">MY TOOLBOX // 03</div>
       <h2>TECH I<br /><em>USE</em> DAILY</h2>
       <div class="tools-grid">
-        <!-- N8N -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#EA4B71">
             <svg viewBox="0 0 40 40" fill="none" width="28" height="28"><circle cx="20" cy="20" r="18" fill="white" opacity="0.15"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-weight="900" font-size="14" fill="white">n8n</text></svg>
           </div>
           <span class="tool-name">N8N</span>
         </div>
-        <!-- Claude -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#D97706">
             <svg viewBox="0 0 40 40" fill="none" width="28" height="28"><circle cx="20" cy="20" r="14" fill="white" opacity="0.2"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="11" fill="white">AI</text></svg>
           </div>
           <span class="tool-name">CLAUDE API</span>
         </div>
-        <!-- OpenAI -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#10A37F">
             <svg viewBox="0 0 41 41" fill="white" width="26" height="26"><path d="M37.532 16.87a9.963 9.963 0 00-.856-8.184 10.078 10.078 0 00-10.855-4.835 9.964 9.964 0 00-7.505-3.348 10.079 10.079 0 00-9.617 6.977 9.967 9.967 0 00-6.651 4.834 10.08 10.08 0 001.24 11.817 9.965 9.965 0 00.856 8.185 10.079 10.079 0 0010.855 4.835 9.965 9.965 0 007.504 3.347 10.078 10.078 0 009.617-6.976 9.967 9.967 0 006.651-4.835 10.079 10.079 0 00-1.24-11.817zm-22.089 10.215a7.478 7.478 0 01-4.778-1.694l.236-.134 7.931-4.578a.881.881 0 00.445-.77v-11.18l3.353 1.936a.087.087 0 01.048.065v9.255a7.526 7.526 0 01-7.235 7.1zm-15.854-6.929a7.48 7.48 0 01-.894-5.023l.236.142 7.931 4.578a.88.88 0 00.89 0l9.708-5.604v3.87a.087.087 0 01-.036.073L9.79 27.06a7.528 7.528 0 01-10.202-6.904zm-1.128-16.54A7.477 7.477 0 018.64 1.034l-.001.169v9.154a.88.88 0 00.445.769l9.708 5.604-3.353 1.935a.087.087 0 01-.082.007L7.2 14.816a7.526 7.526 0 01-.739-11.2zm27.707 6.437l-9.708-5.604 3.353-1.935a.087.087 0 01.082-.007l8.157 4.822a7.477 7.477 0 01-1.158 13.528v-9.323a.88.88 0 00-.726-.481zm3.34-5.043l-.236-.142-7.93-4.578a.88.88 0 00-.891 0L11.545 9.83v-3.87a.087.087 0 01.036-.073l8.157-4.82a7.526 7.526 0 0111.117 7.797zm-21.063 6.929l-3.354-1.936a.087.087 0 01-.048-.065V2.704a7.526 7.526 0 0112.341-5.772l-.236.134-7.931 4.578a.88.88 0 00-.445.769l-.327 11.181zm1.82-3.925l4.323-2.494 4.324 2.493v4.985l-4.324 2.494-4.323-2.494V8.034z"/></svg>
           </div>
           <span class="tool-name">OPENAI API</span>
         </div>
-        <!-- Notion -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#000000">
             <svg viewBox="0 0 120 126" fill="white" width="26" height="26"><path d="M20.6927 21.9322C24.5836 25.1269 26.0432 24.8714 33.3492 24.3696L98.0798 20.3218C99.5394 20.3218 98.3353 18.8576 97.8845 18.6021L87.0661 11.046C84.8538 9.33073 81.8647 7.35967 76.1395 7.86147L13.6404 12.6584C11.2269 12.9108 10.7761 14.1252 11.7261 15.0827L20.6927 21.9322ZM25.0007 38.0827V107.384C25.0007 111.185 26.9605 112.654 31.2245 112.399L102.084 108.106C106.348 107.855 106.855 105.351 106.855 102.343V33.5517C106.855 30.5458 105.645 28.9816 103.184 29.231L28.5637 33.7817C25.8523 34.0337 25.0007 35.3495 25.0007 38.0827ZM95.8667 42.1304C96.3164 44.1082 95.8667 46.0826 93.9069 46.3349L90.6652 47.0915V95.3043C87.6748 96.8652 84.9344 97.7261 82.6971 97.7261C79.1527 97.7261 78.2041 96.5157 75.6603 93.2585L55.3071 62.9478V92.5434L61.5309 94.0066C61.5309 94.0066 61.5309 97.7261 56.3149 97.7261L42.8593 98.4826C42.4094 97.477 42.8593 94.7677 44.5666 94.2598L48.5664 93.2585V50.8956L42.8646 50.4937C42.4147 48.5159 43.4769 45.8 46.4628 45.5544L60.9741 44.5478L82.2002 75.3476V47.5957L77.1117 47.0915C76.6618 44.6213 78.3699 42.3826 80.8571 42.1304H95.8667ZM10.2734 5.86016L75.3962 1.05645C83.6003 0.300131 85.5601 0.801957 90.6652 4.60213L111.866 19.7429C115.382 22.2478 116.595 22.9987 116.595 25.7498V107.384C116.595 112.654 114.636 115.913 107.852 116.416L30.6729 121.219C25.601 121.474 23.1857 120.717 20.4434 117.424L4.78218 97.7261C1.76953 93.9294 0.56348 91.1817 0.56348 87.8916V15.3382C0.56348 11.0295 2.52391 7.62337 10.2734 5.86016Z"/></svg>
           </div>
           <span class="tool-name">NOTION</span>
         </div>
-        <!-- Airtable -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#2D7FF9">
             <svg viewBox="0 0 200 171" fill="white" width="26" height="26"><path d="M90.039 7.144L9.55 39.11a9.15 9.15 0 00.051 17.03l80.91 30.168a27.456 27.456 0 0019.007 0l80.91-30.169a9.15 9.15 0 00.051-17.029L109.99 7.144a27.456 27.456 0 00-19.95 0z"/><path d="M105.312 88.46v77.538a7.687 7.687 0 0010.714 7.028l89.5-35.552a7.687 7.687 0 004.661-7.029V52.907a7.687 7.687 0 00-10.713-7.028l-89.5 35.552a7.687 7.687 0 00-4.662 7.029z"/><path d="M80.09 92.24L53.47 104.19l-2.76 1.27L9.5 124.22a7.688 7.688 0 01-11.036-6.937V53.027a7.674 7.674 0 011.04-3.888 7.53 7.53 0 011.334-1.72 7.688 7.688 0 0110.11-.498l68.952 38.408c2.34 1.303 2.478 4.63.19 5.91z"/></svg>
           </div>
           <span class="tool-name">AIRTABLE</span>
         </div>
-        <!-- HTML5 -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#E34F26">
             <svg viewBox="0 0 452 520" fill="white" width="26" height="26"><path d="M41.6 471.7L0 0h452l-41.7 471.6L225.8 512z"/><path d="M226 472.5V39.2H415l-35.7 403.1z" fill="rgba(255,255,255,0.25)"/><path d="M226 390.8l-81.4-22.6-5.5-62.8H99.7l10.8 122 115.5 32z"/><path d="M226 297.7h36.3l-3.9 41.5-32.4 8.7v40.4l115.4-32 .8-9.5 13.2-148.5.8-9H226v40.3h73.8l-4.7 52.9H226z"/><path d="M226 152.8v40.3h-77.6l-2-28.5-2.2-11.8H226zm0 141.3v-40.3h-68.9l5.3 59.3 63.6 17z"/></svg>
           </div>
           <span class="tool-name">HTML / CSS / JS</span>
         </div>
-        <!-- Python -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#3776AB">
             <i class="fa-brands fa-python" style="font-size:1.6rem"></i>
           </div>
           <span class="tool-name">PYTHON</span>
         </div>
-        <!-- REST API -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#2ECC71">
             <i class="fa-solid fa-plug" style="font-size:1.5rem"></i>
           </div>
           <span class="tool-name">REST APIS</span>
         </div>
-        <!-- Gmail -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#EA4335">
             <i class="fa-solid fa-envelope" style="font-size:1.5rem"></i>
           </div>
           <span class="tool-name">GMAIL / SMTP</span>
         </div>
-        <!-- Supabase -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#3ECF8E">
             <svg viewBox="0 0 109 113" fill="white" width="24" height="24"><path d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874l-43.151 54.347z"/><path d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874l-43.151 54.347z" fill="rgba(255,255,255,0.3)"/><path d="M45.317 2.07C48.177-1.53 53.976.443 54.045 5.041l.659 67.251H9.896C1.706 72.292-2.862 62.832 2.231 56.418L45.317 2.07z"/></svg>
           </div>
           <span class="tool-name">SUPABASE</span>
         </div>
-        <!-- Google Sheets -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#0F9D58">
             <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zm0 3.273H7.91v-1.91h3.41v1.91zm4.5-3.273h-3.41v-1.909h3.41v1.91zm0 3.273h-3.41v-1.91h3.41v1.91zM6 5.182v13.636h12V5.182H6zM14.523 2l3.477 3H6.545L10.023 2h4.5zm-8.387.5L3 5.636V20h18V5.636L17.864 2.5h-11.728z"/></svg>
           </div>
           <span class="tool-name">GOOGLE SHEETS</span>
         </div>
-        <!-- E-commerce -->
         <div class="tool-card">
           <div class="tool-brand" style="background:#96BF48">
             <i class="fa-solid fa-cart-shopping" style="font-size:1.5rem"></i>
@@ -574,7 +551,7 @@
 
   <div class="ruler"><div class="ruler-inner" id="ruler4"></div></div>
 
-  <!-- ABOUT — animated -->
+  <!-- ABOUT -->
   <section id="about" style="padding:0">
     <div class="about-grid">
       <div class="about-left-wrap">
@@ -585,22 +562,10 @@
           <p>My focus is on <strong>practical automation</strong>: no theoretical frameworks, no unnecessary complexity. Things that work, that your team can use, that free up time for what matters.</p>
         </div>
         <div class="about-stats">
-          <div class="stat-box">
-            <div class="stat-num" data-target="4">0</div>
-            <div class="stat-label">LANGUAGES SPOKEN</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">&lt;24H</div>
-            <div class="stat-label">RESPONSE TIME</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num" data-target="100">0</div>
-            <div class="stat-label">% FIXED PRICE</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num" style="color:var(--accent)">&#9679;</div>
-            <div class="stat-label">OPEN TO PROJECTS</div>
-          </div>
+          <div class="stat-box"><div class="stat-num" data-target="4">0</div><div class="stat-label">LANGUAGES SPOKEN</div></div>
+          <div class="stat-box"><div class="stat-num">&lt;24H</div><div class="stat-label">RESPONSE TIME</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="100">0</div><div class="stat-label">% FIXED PRICE</div></div>
+          <div class="stat-box"><div class="stat-num" style="color:var(--accent)">&#9679;</div><div class="stat-label">OPEN TO PROJECTS</div></div>
         </div>
       </div>
       <div class="about-text-wrap">
@@ -684,7 +649,6 @@
   </div>
 
   <script>
-    // Clock
     function updateClock(){
       const now=new Date(),ampm=now.getHours()>=12?'PM':'AM';
       let h=now.getHours()%12||12,m=now.getMinutes();
@@ -692,7 +656,6 @@
     }
     updateClock();setInterval(updateClock,10000);
 
-    // Rulers
     function fillRuler(id){
       const el=document.getElementById(id);if(!el)return;
       el.innerHTML=Array(Math.ceil(window.innerWidth/8)+10).fill('<span></span>').join('');
@@ -700,12 +663,10 @@
     ['rulerA','rulerB','ruler2','ruler3','ruler4','ruler5'].forEach(fillRuler);
     window.addEventListener('resize',()=>['rulerA','rulerB','ruler2','ruler3','ruler4','ruler5'].forEach(fillRuler));
 
-    // Scroll animations
     const io=new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
           e.target.classList.add('visible');
-          // counter animation
           const num=e.target.querySelector('[data-target]');
           if(num&&!num.dataset.animated){
             num.dataset.animated='1';
@@ -722,7 +683,6 @@
     },{threshold:0.15});
     document.querySelectorAll('.stat-box,.animate-in,.about-text-wrap').forEach(el=>io.observe(el));
 
-    // Modals
     const slideIdx=[0,0,0];
     function openProject(i){document.getElementById('proj-'+i).classList.add('active');document.body.style.overflow='hidden';}
     function closeProject(){document.querySelectorAll('.proj-modal').forEach(m=>m.classList.remove('active'));document.body.style.overflow='';}
