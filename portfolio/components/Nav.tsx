@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { profile } from "@/app/data";
 
 const links = [
-  { label: "À propos", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projets", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Chi sono", href: "#about" },
+  { label: "Servizi", href: "#services" },
+  { label: "Progetti", href: "#projects" },
+  { label: "Contatti", href: "#contact" },
 ];
 
 export default function Nav() {
@@ -32,7 +32,7 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a href="#" className="font-mono text-sm font-medium tracking-tight">
           {profile.name.split(" ")[0].toLowerCase()}
-          <span className="text-muted">.dev</span>
+          <span className="text-accent">.dev</span>
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -47,9 +47,9 @@ export default function Nav() {
           ))}
           <a
             href="#contact"
-            className="ml-2 rounded-md border border-border bg-surface px-3 py-1.5 font-mono text-sm transition-colors hover:bg-surface-2"
+            className="ml-2 rounded-md border border-border bg-surface px-3 py-1.5 font-mono text-sm transition-colors hover:border-accent/40 hover:bg-surface-2"
           >
-            Me contacter
+            Contattami
           </a>
         </div>
 

@@ -1,15 +1,16 @@
-// Toutes tes infos sont centralisées ici. Modifie ce fichier pour mettre à jour le portfolio.
+// Tutte le tue informazioni sono centralizzate qui. Modifica questo file per aggiornare il portfolio.
 
 export const profile = {
   name: "Hatem Chebbi",
-  role: "Freelance IA & Automatisation",
-  location: "Rimini, Italie",
+  role: "Freelance IA & Automazione",
+  location: "Rimini, Italia",
   available: true,
   email: "hatemchebbi527@gmail.com",
+  greeting: "Ciao, sono",
   tagline:
-    "J'aide les entreprises à automatiser leurs processus et à intégrer l'intelligence artificielle dans leurs opérations.",
+    "Aiuto le aziende ad automatizzare i processi e a integrare l'intelligenza artificiale nelle loro operazioni.",
   intro:
-    "Consultant et développeur indépendant en IA. Je conçois des automatisations sur mesure, des intégrations d'IA et des applications web qui font gagner du temps aux équipes et réduisent les tâches répétitives.",
+    "Consulente e sviluppatore freelance in IA. Progetto automazioni su misura, integrazioni di IA e applicazioni web che fanno risparmiare tempo ai team e riducono le attività ripetitive.",
   socials: [
     { label: "Email", href: "mailto:hatemchebbi527@gmail.com" },
     { label: "GitHub", href: "https://github.com/hatemchebbi527-dev" },
@@ -19,41 +20,52 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "Je suis en reconversion active vers l'indépendance dans le domaine de l'IA. Mon objectif : aider les PME et les entrepreneurs à tirer parti de l'automatisation et de l'intelligence artificielle, sans complexité inutile.",
-    "Je me forme en continu sur les outils les plus récents (automatisation no-code, agents IA, développement web moderne) pour livrer des solutions concrètes qui ont un impact mesurable sur le quotidien des entreprises.",
-    "Mon approche est simple : comprendre le besoin réel, livrer vite, et itérer. Pas de jargon, des résultats.",
+    "Sono in piena transizione verso l'attività indipendente nel campo dell'IA. Il mio obiettivo: aiutare le PMI e gli imprenditori a sfruttare l'automazione e l'intelligenza artificiale, senza complessità inutili.",
+    "Mi formo costantemente sugli strumenti più recenti (automazione no-code, agenti IA, sviluppo web moderno) per offrire soluzioni concrete con un impatto misurabile sul lavoro quotidiano delle aziende.",
+    "Il mio approccio è semplice: capire il bisogno reale, consegnare velocemente e iterare. Niente gergo tecnico, solo risultati.",
   ],
   stats: [
-    { value: "n8n", label: "Automatisation no-code" },
-    { value: "IA", label: "Agents & intégrations" },
-    { value: "Web", label: "Sites & applications" },
+    { value: "n8n", label: "Automazione no-code" },
+    { value: "IA", label: "Agenti e integrazioni" },
+    { value: "Web", label: "Siti e applicazioni" },
   ],
 };
 
-export const services = [
+export type Service = {
+  title: string;
+  description: string;
+  points: string[];
+  icon: "automation" | "ai" | "web" | "consulting";
+};
+
+export const services: Service[] = [
   {
-    title: "Automatisation des processus",
+    title: "Automazione dei processi",
     description:
-      "Workflows n8n sur mesure pour connecter vos outils, éliminer les tâches manuelles et synchroniser vos données automatiquement.",
-    points: ["Workflows n8n", "Intégrations d'API", "Synchronisation de données"],
+      "Workflow n8n su misura per collegare i tuoi strumenti, eliminare le attività manuali e sincronizzare i dati automaticamente.",
+    points: ["Workflow n8n", "Integrazioni API", "Sincronizzazione dati"],
+    icon: "automation",
   },
   {
-    title: "Intégration de l'IA",
+    title: "Integrazione dell'IA",
     description:
-      "Mise en place d'agents et d'assistants IA pour le support client, la rédaction, le traitement de documents et l'analyse.",
-    points: ["Assistants IA", "Traitement de documents", "Chatbots & support"],
+      "Implementazione di agenti e assistenti IA per il supporto clienti, la redazione, l'elaborazione di documenti e l'analisi.",
+    points: ["Assistenti IA", "Elaborazione documenti", "Chatbot e supporto"],
+    icon: "ai",
   },
   {
-    title: "Développement web & apps",
+    title: "Sviluppo web e app",
     description:
-      "Sites vitrines, landing pages et applications web modernes, rapides et orientés conversion.",
-    points: ["Sites & landing pages", "Applications web", "Intégration d'IA produit"],
+      "Siti vetrina, landing page e applicazioni web moderne, veloci e orientate alla conversione.",
+    points: ["Siti e landing page", "Applicazioni web", "Integrazione IA nel prodotto"],
+    icon: "web",
   },
   {
-    title: "Conseil & transformation digitale",
+    title: "Consulenza e trasformazione digitale",
     description:
-      "Audit de vos processus et feuille de route concrète pour intégrer l'IA là où elle a le plus d'impact.",
-    points: ["Audit des processus", "Feuille de route IA", "Accompagnement"],
+      "Analisi dei tuoi processi e roadmap concreta per integrare l'IA dove ha più impatto.",
+    points: ["Analisi dei processi", "Roadmap IA", "Affiancamento"],
+    icon: "consulting",
   },
 ];
 
@@ -65,34 +77,34 @@ export type Project = {
   href?: string;
 };
 
-// Remplace ces exemples par tes vrais projets au fur et à mesure.
+// Sostituisci questi esempi con i tuoi progetti reali man mano.
 export const projects: Project[] = [
   {
-    title: "Automatisation de la prise de RDV",
-    category: "Automatisation",
+    title: "Automazione degli appuntamenti",
+    category: "Automazione",
     description:
-      "Workflow n8n qui synchronise les réservations entre un formulaire, un calendrier et un CRM, avec relances automatiques par email.",
+      "Workflow n8n che sincronizza le prenotazioni tra un modulo, un calendario e un CRM, con promemoria automatici via email.",
     tags: ["n8n", "Google Calendar", "Email"],
   },
   {
-    title: "Assistant IA pour le support client",
+    title: "Assistente IA per il supporto clienti",
     category: "IA",
     description:
-      "Chatbot connecté à une base de connaissances qui répond aux questions fréquentes et escalade vers un humain si besoin.",
+      "Chatbot collegato a una base di conoscenza che risponde alle domande frequenti e passa a un operatore umano quando serve.",
     tags: ["IA", "RAG", "API"],
   },
   {
-    title: "Site vitrine + réservation",
+    title: "Sito vetrina + prenotazioni",
     category: "Web",
     description:
-      "Site moderne et rapide pour une entreprise locale, avec module de réservation intégré et optimisation SEO.",
+      "Sito moderno e veloce per un'azienda locale, con modulo di prenotazione integrato e ottimizzazione SEO.",
     tags: ["Next.js", "Tailwind", "SEO"],
   },
   {
-    title: "Pipeline de traitement de documents",
-    category: "Automatisation",
+    title: "Pipeline di elaborazione documenti",
+    category: "Automazione",
     description:
-      "Extraction automatique des données de factures et de devis, classement et envoi vers un outil comptable.",
+      "Estrazione automatica dei dati da fatture e preventivi, classificazione e invio a uno strumento di contabilità.",
     tags: ["IA", "OCR", "n8n"],
   },
 ];

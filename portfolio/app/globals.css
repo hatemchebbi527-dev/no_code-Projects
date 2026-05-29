@@ -7,7 +7,8 @@
   --color-border: #232328;
   --color-foreground: #ededed;
   --color-muted: #8a8a93;
-  --color-accent: #ededed;
+  --color-accent: #34d399;
+  --color-accent-soft: rgba(52, 211, 153, 0.12);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -49,12 +50,82 @@ body {
   transform: translateY(0);
 }
 
+::selection {
+  background: var(--color-accent);
+  color: #08080a;
+}
+
+/* ============================================================
+   Floating code background — drifting + rotating snippets
+   ============================================================ */
+.code-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+.code-token {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  color: var(--color-accent);
+  opacity: 0.1;
+  will-change: transform;
+}
+@keyframes drift-a {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(28px, -34px) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+@keyframes drift-b {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, 26px) rotate(-200deg); }
+  100% { transform: translate(0, 0) rotate(-360deg); }
+}
+@keyframes drift-c {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(22px, 30px) rotate(140deg); }
+  66% { transform: translate(-24px, -18px) rotate(260deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+.drift-a { animation: drift-a linear infinite; }
+.drift-b { animation: drift-b linear infinite; }
+.drift-c { animation: drift-c linear infinite; }
+
+/* ============================================================
+   3D flip cards (projects)
+   ============================================================ */
+.flip-card {
+  perspective: 1200px;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-inner,
+.flip-card:focus-within .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
-}
-
-::selection {
-  background: #ededed;
-  color: #08080a;
+  .code-token { animation: none !important; }
+  .flip-inner { transition: none; }
 }
