@@ -8,7 +8,7 @@ export default function Contact() {
         <div data-reveal className="mb-12 text-center">
           <div className="mb-3 flex items-center justify-center gap-3 font-mono text-xs text-accent">
             <span className="h-px w-8 bg-border" />
-            <span>04 — Contatti</span>
+            <span>05 — Contatti</span>
             <span className="h-px w-8 bg-border" />
           </div>
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">

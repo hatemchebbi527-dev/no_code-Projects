@@ -46,7 +46,10 @@ export default function Projects() {
                   </span>
                   <GithubIcon className="h-5 w-5 text-muted" />
                 </div>
-                <h3 className="mt-auto text-xl font-medium">{p.title}</h3>
+                <h3 className="mt-4 text-xl font-medium">{p.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+                  {p.summary}
+                </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
                     <li key={t} className="font-mono text-xs text-muted">
