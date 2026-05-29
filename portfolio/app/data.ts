@@ -79,13 +79,44 @@ export type Project = {
 
 // Progetti reali basati sui workflow n8n e sui progetti di Hatem.
 export const projects: Project[] = [
+  // --- CRM Salone di parrucchieri : 5 workflow ---
   {
-    title: "CRM Salone di parrucchieri",
-    category: "Automazione",
+    title: "Promemoria appuntamento J-1",
+    category: "CRM Salone",
     description:
-      "Suite di 5 workflow n8n per un salone: promemoria appuntamenti, aggiornamento clienti post-visita, fidelizzazione, riattivazione clienti inattivi e auguri di compleanno. Integra Airtable, SMS via Twilio ed email via Gmail, con gestione del consenso (opt-in).",
+      "Ogni giorno alle 10:00, recupera gli appuntamenti previsti per l'indomani su Airtable e invia un promemoria via SMS (Twilio) e/o email (Gmail) secondo il consenso del cliente, registrando ogni invio.",
     tags: ["n8n", "Airtable", "Twilio", "Gmail"],
   },
+  {
+    title: "Aggiornamento cliente post-visita",
+    category: "CRM Salone",
+    description:
+      "Ogni sera alle 20:00, individua gli appuntamenti completati nella giornata e aggiorna automaticamente la scheda del cliente su Airtable (data ultima visita, storico).",
+    tags: ["n8n", "Airtable", "Pianificazione"],
+  },
+  {
+    title: "Fidelizzazione J+30",
+    category: "CRM Salone",
+    description:
+      "Ogni giorno alle 11:00, identifica i clienti a 30 giorni dall'ultima visita e invia un messaggio di fidelizzazione via SMS o email, con tracciamento delle relance.",
+    tags: ["n8n", "Twilio", "Gmail"],
+  },
+  {
+    title: "Riattivazione inattivi 60g",
+    category: "CRM Salone",
+    description:
+      "Ogni lunedì alle 14:00, individua i clienti inattivi da 60 giorni, invia un'email o un SMS di riattivazione e contrassegna il cliente come inattivo nel CRM.",
+    tags: ["n8n", "Airtable", "Twilio", "Gmail"],
+  },
+  {
+    title: "Auguri di compleanno",
+    category: "CRM Salone",
+    description:
+      "Ogni giorno alle 9:00, individua i clienti che compiono gli anni e invia automaticamente gli auguri via SMS o email, rafforzando la relazione con il cliente.",
+    tags: ["n8n", "Twilio", "Gmail"],
+  },
+
+  // --- Altri progetti ---
   {
     title: "WhatsApp Assistant IA",
     category: "IA",
