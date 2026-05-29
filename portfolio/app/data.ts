@@ -77,34 +77,34 @@ export type Project = {
   href?: string;
 };
 
-// Sostituisci questi esempi con i tuoi progetti reali man mano.
+// Progetti reali basati sui workflow n8n e sui progetti di Hatem.
 export const projects: Project[] = [
   {
-    title: "Automazione degli appuntamenti",
+    title: "CRM Salone di parrucchieri",
     category: "Automazione",
     description:
-      "Workflow n8n che sincronizza le prenotazioni tra un modulo, un calendario e un CRM, con promemoria automatici via email.",
-    tags: ["n8n", "Google Calendar", "Email"],
+      "Suite di 5 workflow n8n per un salone: promemoria appuntamenti, aggiornamento clienti post-visita, fidelizzazione, riattivazione clienti inattivi e auguri di compleanno. Integra Airtable, SMS via Twilio ed email via Gmail, con gestione del consenso (opt-in).",
+    tags: ["n8n", "Airtable", "Twilio", "Gmail"],
   },
   {
-    title: "Assistente IA per il supporto clienti",
+    title: "WhatsApp Assistant IA",
     category: "IA",
     description:
-      "Chatbot collegato a una base di conoscenza che risponde alle domande frequenti e passa a un operatore umano quando serve.",
-    tags: ["IA", "RAG", "API"],
+      "Assistente conversazionale su WhatsApp con 33 nodi: trascrizione dei messaggi vocali (Whisper), classificazione delle richieste con OpenAI, prenotazione automatica degli appuntamenti su Google Calendar e CRM clienti su Google Sheets.",
+    tags: ["n8n", "OpenAI", "WhatsApp", "Google Calendar"],
   },
   {
-    title: "Sito vetrina + prenotazioni",
+    title: "Business Coach IA",
+    category: "IA",
+    description:
+      "Assistente IA che accompagna gli imprenditori: analizza obiettivi, struttura piani d'azione e fornisce consigli personalizzati. Da completare con i dettagli reali del progetto.",
+    tags: ["n8n", "IA", "Automazione"],
+  },
+  {
+    title: "UIK — Progetto finale",
     category: "Web",
     description:
-      "Sito moderno e veloce per un'azienda locale, con modulo di prenotazione integrato e ottimizzazione SEO.",
-    tags: ["Next.js", "Tailwind", "SEO"],
-  },
-  {
-    title: "Pipeline di elaborazione documenti",
-    category: "Automazione",
-    description:
-      "Estrazione automatica dei dati da fatture e preventivi, classificazione e invio a uno strumento di contabilità.",
-    tags: ["IA", "OCR", "n8n"],
+      "Progetto finale che combina sviluppo web e automazione. Da completare con i dettagli reali del progetto.",
+    tags: ["Web", "Automazione"],
   },
 ];
