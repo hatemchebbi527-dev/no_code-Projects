@@ -61,12 +61,19 @@
     .nav-cta:hover{background:var(--accent-dark)!important}
 
     /* HERO */
-    .hero{min-height:100vh;padding-top:62px;display:flex;flex-direction:column}
+    .hero{
+      min-height:100vh;padding-top:62px;display:flex;flex-direction:column;
+      background-image:
+        linear-gradient(to bottom,rgba(6,6,6,0.55) 0%,rgba(6,6,6,0.38) 50%,rgba(6,6,6,0.72) 100%),
+        url('https://images.pexels.com/photos/2777898/pexels-photo-2777898.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size:cover;background-position:center 15%;
+    }
     .hero-stage{
       flex:1;display:grid;grid-template-columns:1fr 1.2fr 1fr;
       padding:3rem 2.5rem 1.5rem;gap:1rem;
     }
-    .hero-tagline{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1.1;letter-spacing:0.04em}
+    .hero-tagline{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1.1;letter-spacing:0.04em;color:var(--nav-text)}
+    .hero-tagline strong{color:var(--accent)}
     .hero-tagline.left{grid-column:1;align-self:start;padding-top:3rem}
     .hero-tagline.right{grid-column:3;text-align:right;align-self:start;padding-top:3rem}
 
@@ -115,45 +122,54 @@
     h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);letter-spacing:0.04em;line-height:1;margin-bottom:3rem}
     h2 em{font-style:normal;color:var(--accent)}
 
-    /* SERVICES with hover animations */
+    /* SERVICES with hover animations + photo backgrounds */
     #services{border-top:1px solid var(--border)}
     .services-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border)}
     .svc{
-      padding:2.5rem 2rem;border-right:1px solid var(--border);
+      padding:2.5rem 2rem;border-right:1px solid rgba(255,255,255,0.1);
       position:relative;overflow:hidden;
-      transition:background 0.35s;
+      background-image:var(--photo,none);
+      background-size:cover;background-position:center;
     }
     .svc:last-child{border-right:none}
-    /* bottom bar slide */
+    /* dark overlay via ::before */
+    .svc::before{
+      content:'';position:absolute;inset:0;
+      background:rgba(6,6,6,0.7);
+      transition:background 0.4s ease;z-index:0;
+    }
+    .svc:hover::before{background:rgba(6,6,6,0.48)}
+    /* bottom bar slide via ::after */
     .svc::after{
       content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
       background:var(--accent);transform:scaleX(0);transform-origin:left;
-      transition:transform 0.35s ease;
+      transition:transform 0.35s ease;z-index:2;
     }
     .svc:hover::after{transform:scaleX(1)}
-    .svc:hover{background:rgba(245,158,11,0.05)}
+    /* All content above overlay */
+    .svc>*{position:relative;z-index:1}
     .svc-num{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.1em;margin-bottom:1.5rem}
     .svc-icon{
       font-size:2.6rem;margin-bottom:1.2rem;color:var(--accent);display:block;
       transition:transform 0.35s ease;
     }
     .svc:hover .svc-icon{transform:scale(1.18) rotate(-6deg)}
-    .svc h3{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:0.05em;line-height:1.05;margin-bottom:1rem}
-    .svc p{font-size:0.83rem;color:var(--muted);line-height:1.65;margin-bottom:1.5rem}
+    .svc h3{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:0.05em;line-height:1.05;margin-bottom:1rem;color:#fff}
+    .svc p{font-size:0.83rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:1.5rem}
     .svc-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
     .svc-tag-item{
       font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.04em;
-      color:var(--muted);border:1px solid var(--border);padding:0.2rem 0.55rem;
+      color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.2);padding:0.2rem 0.55rem;
       text-transform:uppercase;transition:border-color 0.2s,color 0.2s;
     }
-    .svc:hover .svc-tag-item{border-color:var(--accent);color:var(--text)}
+    .svc:hover .svc-tag-item{border-color:var(--accent);color:#fff}
     /* hover reveal arrow */
     .svc-arrow{
       position:absolute;bottom:1.2rem;right:1.2rem;
       font-size:0.75rem;color:var(--accent);
       font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;
       opacity:0;transform:translateX(-8px);
-      transition:opacity 0.3s,transform 0.3s;
+      transition:opacity 0.3s,transform 0.3s;z-index:1;
     }
     .svc:hover .svc-arrow{opacity:1;transform:translateX(0)}
 
@@ -269,6 +285,10 @@
     .proj-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background 0.2s,transform 0.2s}
     .proj-dot.active{background:var(--accent);transform:scale(1.3)}
 
+    /* animate-in */
+    .animate-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .animate-in.visible{opacity:1;transform:translateY(0)}
+
     /* RESPONSIVE */
     @media(max-width:900px){
       .hero-stage{grid-template-columns:1fr;padding:2rem 1.5rem 1rem}
@@ -278,7 +298,7 @@
       .hcard:nth-child(1){transform:rotate(-9deg) translateX(-95px)}
       .hcard:nth-child(3){transform:rotate(9deg) translateX(95px)}
       .services-grid,.process-row{grid-template-columns:1fr 1fr}
-      .svc,.step{border-right:none;border-bottom:1px solid var(--border)}
+      .svc,.step{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1)}
       .tools-grid{grid-template-columns:repeat(3,1fr)}
       .about-grid{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem}
       .section-wrap{padding:3rem 1.5rem}
@@ -404,7 +424,7 @@
       <div class="sec-label">WHAT I DO // 01</div>
       <h2>SERVICES<br /><em>BUILT</em> FOR<br />BUSINESS</h2>
       <div class="services-grid">
-        <div class="svc">
+        <div class="svc" style="--photo:url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1200')">
           <div class="svc-num">01 // AUTOMATION</div>
           <i class="fa-solid fa-gears svc-icon"></i>
           <h3>PROCESS<br />AUTOMATION</h3>
@@ -412,7 +432,7 @@
           <div class="svc-tags"><span class="svc-tag-item">N8N</span><span class="svc-tag-item">ZAPIER</span><span class="svc-tag-item">MAKE</span><span class="svc-tag-item">APIS</span></div>
           <span class="svc-arrow">EXPLORE →</span>
         </div>
-        <div class="svc">
+        <div class="svc" style="--photo:url('https://images.pexels.com/photos/16380905/pexels-photo-16380905.jpeg?auto=compress&cs=tinysrgb&w=1200')">
           <div class="svc-num">02 // AI TOOLS</div>
           <i class="fa-solid fa-robot svc-icon"></i>
           <h3>AI-POWERED<br />TOOLS</h3>
@@ -420,7 +440,7 @@
           <div class="svc-tags"><span class="svc-tag-item">CLAUDE API</span><span class="svc-tag-item">OPENAI</span><span class="svc-tag-item">RAG</span></div>
           <span class="svc-arrow">EXPLORE →</span>
         </div>
-        <div class="svc">
+        <div class="svc" style="--photo:url('https://images.pexels.com/photos/9822732/pexels-photo-9822732.jpeg?auto=compress&cs=tinysrgb&w=1200')">
           <div class="svc-num">03 // WEB</div>
           <i class="fa-solid fa-globe svc-icon"></i>
           <h3>WEB APPS<br />&amp; WEBSITES</h3>
@@ -428,7 +448,7 @@
           <div class="svc-tags"><span class="svc-tag-item">HTML/CSS</span><span class="svc-tag-item">JAVASCRIPT</span><span class="svc-tag-item">NO-CODE</span></div>
           <span class="svc-arrow">EXPLORE →</span>
         </div>
-        <div class="svc">
+        <div class="svc" style="--photo:url('https://images.pexels.com/photos/6476258/pexels-photo-6476258.jpeg?auto=compress&cs=tinysrgb&w=1200')">
           <div class="svc-num">04 // STRATEGY</div>
           <i class="fa-solid fa-chart-line svc-icon"></i>
           <h3>DIGITAL<br />STRATEGY</h3>
@@ -450,7 +470,7 @@
       <div class="process-row">
         <div class="step"><div class="step-num">01</div><h3>DISCOVERY<br />CALL</h3><p>30 minutes. I listen, ask the right questions, and understand your context before suggesting anything.</p></div>
         <div class="step"><div class="step-num">02</div><h3>CLEAR<br />PROPOSAL</h3><p>Fixed scope, timeline, and price. No hidden costs, no scope creep, no surprises.</p></div>
-        <div class="step"><div class="step-num">03</div><h3>BUILD &amp;<br />ITERATE</h3><p>I build incrementally and share progress. You give feedback and I adjust until it’s right.</p></div>
+        <div class="step"><div class="step-num">03</div><h3>BUILD &amp;<br />ITERATE</h3><p>I build incrementally and share progress. You give feedback and I adjust until it's right.</p></div>
         <div class="step"><div class="step-num">04</div><h3>HANDOVER<br />&amp; SUPPORT</h3><p>Full documentation, a walkthrough session, and 30 days of support included.</p></div>
       </div>
     </div>
@@ -561,7 +581,7 @@
         <div class="sec-label">ABOUT ME // 04</div>
         <h2 class="animate-in">HUMAN-<br /><em>FIRST</em><br />APPROACH</h2>
         <div class="about-left-text animate-in" style="transition-delay:0.1s">
-          <p>I’m Hatem, an AI consultant and automation specialist based in <strong>Rimini, Italy</strong>. I come from the hospitality industry — I understand the real-world constraints of small businesses from the inside.</p>
+          <p>I'm Hatem, an AI consultant and automation specialist based in <strong>Rimini, Italy</strong>. I come from the hospitality industry — I understand the real-world constraints of small businesses from the inside.</p>
           <p>My focus is on <strong>practical automation</strong>: no theoretical frameworks, no unnecessary complexity. Things that work, that your team can use, that free up time for what matters.</p>
         </div>
         <div class="about-stats">
@@ -578,7 +598,7 @@
             <div class="stat-label">% FIXED PRICE</div>
           </div>
           <div class="stat-box">
-            <div class="stat-num" style="color:var(--accent)">●</div>
+            <div class="stat-num" style="color:var(--accent)">&#9679;</div>
             <div class="stat-label">OPEN TO PROJECTS</div>
           </div>
         </div>
@@ -601,7 +621,7 @@
   <!-- CTA -->
   <section id="contact">
     <h2>READY TO<br /><em>AUTOMATE</em><br />YOUR BUSINESS?</h2>
-    <p>A quick 30-minute call. No commitment, no pitch deck. Just an honest conversation about what’s possible.</p>
+    <p>A quick 30-minute call. No commitment, no pitch deck. Just an honest conversation about what's possible.</p>
     <div class="cta-buttons">
       <a href="mailto:hatemchebbi527@gmail.com" class="btn-cream"><i class="fa-solid fa-envelope"></i> SEND AN EMAIL</a>
       <a href="https://linkedin.com" class="btn-outline-cream"><i class="fa-brands fa-linkedin"></i> LINKEDIN</a>
@@ -611,7 +631,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-cta">
-      <div class="footer-cta-text">Prêt à démarrer ? <strong>Parlons de ton projet.</strong></div>
+      <div class="footer-cta-text">Prêt à démarrer ? <strong>Parlons de ton projet.</strong></div>
       <div class="footer-social">
         <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -657,7 +677,7 @@
       <div class="proj-slides" id="slides-2">
         <div class="proj-slide"><div class="proj-slide-label">01 // OVERVIEW</div><h3>AI Freelancer Portfolio</h3><p>Designed and built this portfolio in a single session using Claude Code. Editorial design inspired by top creative agencies, with project modals, scroll animations, brand icons, and live clock.</p><div class="proj-tags"><span class="proj-tag">EDITORIAL</span><span class="proj-tag">NO-FRAMEWORK</span><span class="proj-tag">GITHUB PAGES</span></div></div>
         <div class="proj-slide"><div class="proj-slide-label">02 // TECH STACK</div><h3>Tools &amp; Architecture</h3><p>Pure HTML/CSS/JavaScript, zero build tools. Bebas Neue typography, CSS scroll snap, Font Awesome icons, Intersection Observer for animations. Deployed via GitHub Actions.</p><div class="proj-tags"><span class="proj-tag">HTML</span><span class="proj-tag">CSS</span><span class="proj-tag">JS</span><span class="proj-tag">GITHUB ACTIONS</span></div></div>
-        <div class="proj-slide"><div class="proj-slide-label">03 // RESULTS</div><h3>Built in 1 session</h3><p>A complete, production-ready portfolio built end-to-end with AI assistance. This is the site you’re looking at right now — live on GitHub Pages.</p><div class="proj-tags"><span class="proj-tag">1 SESSION</span><span class="proj-tag">PRODUCTION-READY</span><span class="proj-tag">LIVE</span></div></div>
+        <div class="proj-slide"><div class="proj-slide-label">03 // RESULTS</div><h3>Built in 1 session</h3><p>A complete, production-ready portfolio built end-to-end with AI assistance. This is the site you're looking at right now — live on GitHub Pages.</p><div class="proj-tags"><span class="proj-tag">1 SESSION</span><span class="proj-tag">PRODUCTION-READY</span><span class="proj-tag">LIVE</span></div></div>
       </div>
       <div class="proj-nav"><button class="proj-arrow" id="prev-2" onclick="prevSlide(2)" disabled><i class="fa-solid fa-arrow-left"></i></button><div class="proj-dots" id="dots-2"><span class="proj-dot active" onclick="goSlide(2,0)"></span><span class="proj-dot" onclick="goSlide(2,1)"></span><span class="proj-dot" onclick="goSlide(2,2)"></span></div><button class="proj-arrow" id="next-2" onclick="nextSlide(2)"><i class="fa-solid fa-arrow-right"></i></button></div>
     </div>
