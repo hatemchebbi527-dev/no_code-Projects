@@ -7,6 +7,17 @@
 
 ---
 
+## 2026-05-30
+
+### Démarrage d'un partenariat en tourisme médical esthétique
+- Nouveau projet : médiation en tourisme médical esthétique. Cliniques partenaires en Tunisie, patientes ciblées en France, Italie et Espagne.
+- Rôle de Hatem : partenaire en charge du marketing et de l'automatisation IA (son différenciateur face aux agences classiques).
+- Positionnement retenu : premium « clé en main » (accompagnement, sécurité, confort), pas la guerre des prix.
+- Livrable produit : planification complète des services (parcours patiente en 8 phases, logistique, hébergement, service médical) + stratégie marketing (leads qualifiés, fidélisation, visibilité). Document de référence : `projets/tourisme-medical/00-planification-et-marketing.md`.
+- Prochaine étape : structuration du plan marketing sur un board Miro pour présentation au partenaire.
+
+---
+
 ## 2026-05-23
 
 ### Installation initiale du Jarvis
