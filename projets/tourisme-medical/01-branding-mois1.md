@@ -2,6 +2,7 @@
 
 > Personnalité : **hybride premium-care** (élégance premium + caution médicale + chaleur humaine).
 > Nom : style **descriptif**, compatible France / Italie / Espagne.
+> **Nom retenu : Serena Estetica** (à confirmer une fois la disponibilité domaine/comptes/marque vérifiée).
 > Document de référence pour le site, les réseaux, les pubs et le pitch partenaire.
 
 ---
@@ -154,9 +155,18 @@ Hiérarchie type :
 
 ---
 
-## 7. PROCHAINE ÉTAPE
+## 7. LOGO (concept retenu)
 
-Une fois le **nom validé** avec ton partenaire (et sa disponibilité vérifiée), on génère les **concepts de logo en image** (via Canva), puis les gabarits réseaux et la maquette du site. Le logo n'est volontairement pas produit ici tant que le nom n'est pas figé.
+Concept de logo généré dans Canva et choisi : **lotus stylisé + wordmark serif** « Serena Estetica », dans la palette premium-care. Le lotus porte la sérénité et le soin, le serif apporte l'élégance.
+
+- **Éditer / ajuster :** https://www.canva.com/design/DAG2c81-eMw/edit
+- **Voir :** https://www.canva.com/design/DAG2c81-eMw/view
+
+À faire ensuite sur ce logo : produire les variations (monochrome bleu nuit, version inversée ivoire/or sur bleu nuit, favicon/avatar monogramme), puis figer les fichiers exportés (PNG transparent, SVG).
+
+## 8. PROCHAINE ÉTAPE
+
+Une fois le logo finalisé et le nom confirmé (disponibilité vérifiée), on enchaîne sur les **gabarits réseaux** (avatar, bannière, templates de posts) et la **maquette du site multilingue**.
 
 ---
 
