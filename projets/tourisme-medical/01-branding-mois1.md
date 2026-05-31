@@ -155,19 +155,25 @@ Hiérarchie type :
 
 ---
 
-## 7. LOGO (à produire)
+## 7. LOGO (concept retenu)
 
-Direction validée pour le logo : **lotus stylisé + wordmark serif** « Serena Estetica » dans la palette premium-care (lotus = sérénité/soin, serif = élégance).
+Concept de logo généré dans Canva et retenu : **monogramme « SE » entrelacé + wordmark serif** « Serena Estetica », dans la palette premium-care.
 
-> Statut : la génération via Canva n'a pas pu aboutir (quota Canva atteint au moment de l'essai). À relancer quand le quota est de nouveau disponible.
+- **Éditer / ajuster :** https://www.canva.com/d/BBpiA8kE417A-t1
+- **Voir :** https://www.canva.com/d/v_gGg8Ijjcv1j8N
 
-À produire ensuite : le logo principal, puis ses variations (monochrome bleu nuit, version inversée ivoire/or sur bleu nuit, favicon/avatar monogramme) et les fichiers exportés (PNG transparent, SVG).
+À faire ensuite sur ce logo : produire les variations (monochrome bleu nuit, version inversée ivoire/or sur bleu nuit, favicon/avatar), puis exporter les fichiers (PNG transparent, SVG). Le guide manuel reste dispo dans `02-logo-guide-canva-manuel.md` pour les ajustements.
 
-## 8. PROCHAINE ÉTAPE
+## 8. BUSINESS PLAN
 
-1. Vérifier la disponibilité du nom **Serena Estetica** (domaine, comptes réseaux, marque).
-2. Générer le logo dans Canva (quota), choisir un concept, produire les variations.
-3. Enchaîner sur les **gabarits réseaux** (avatar, bannière, templates de posts) et la **maquette du site multilingue**.
+Business plan complet généré dans Canva (Doc éditable) : « Business Plan Serena Estetica ».
+
+- **Éditer :** https://www.canva.com/d/fDP8OH3TVxK1S9S
+- **Voir :** https://www.canva.com/d/ACcKc_-rffBshps
+
+## 9. PROCHAINE ÉTAPE
+
+Une fois le logo finalisé et le nom confirmé (disponibilité vérifiée), on enchaîne sur les **gabarits réseaux** (avatar, bannière, templates de posts) et la **maquette du site multilingue**.
 
 ---
 
