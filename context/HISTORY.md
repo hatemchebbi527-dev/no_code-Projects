@@ -13,8 +13,14 @@
 - Nouveau projet : médiation en tourisme médical esthétique. Cliniques partenaires en Tunisie, patientes ciblées en France, Italie et Espagne.
 - Rôle de Hatem : partenaire en charge du marketing et de l'automatisation IA (son différenciateur face aux agences classiques).
 - Positionnement retenu : premium « clé en main » (accompagnement, sécurité, confort), pas la guerre des prix.
-- Livrable produit : planification complète des services (parcours patiente en 8 phases, logistique, hébergement, service médical) + stratégie marketing (leads qualifiés, fidélisation, visibilité). Document de référence : `projets/tourisme-medical/00-planification-et-marketing.md`.
-- Prochaine étape : structuration du plan marketing sur un board Miro pour présentation au partenaire.
+- Marque retenue : Serena Estetica (« Votre beauté, en toute sérénité »).
+- Livrables produits dans `projets/tourisme-medical/` :
+  - `00-planification-et-marketing.md` : planification complète des services + stratégie marketing.
+  - `01-branding-mois1.md` : brand book premium-care (nom, palette, typo, logo, ton).
+  - `02-logo-guide-canva-manuel.md` : guide de création du logo.
+  - `03-etude-de-marche.md` : étude de marché exhaustive en 20 sections (sourcée, multi-agents de recherche web), base pour business plan et levée de fonds.
+- Réalisés dans Canva : business plan complet (avec prévisionnel révisé), logo (monogramme SE), gabarits réseaux orientés esthétique. Board Miro : plan marketing + brand board.
+- Prochaine étape possible : CRM des leads (Notion/Airtable), automatisation n8n (chatbot de qualification), ou choix des gabarits réseaux.
 
 ---
 
