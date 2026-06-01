@@ -8,14 +8,18 @@ Montage par code (ffmpeg) d'un short vertical 9:16 (1080×1920, 30 fps, ~10 s)
 
 1. Dépose tes 4 vraies images dans `assets/` avec EXACTEMENT ces noms et cet ordre :
 
-   | Fichier        | Image attendue                                                        |
+   | Fichier        | Image (ordre réel utilisé)                                            |
    |----------------|-----------------------------------------------------------------------|
    | `assets/01.png`| L'homme tête dans les mains — dashboard **0 NEW LEADS**, factures, payroll |
    | `assets/02.png`| Au téléphone — **appels manqués**, post-its FOLLOW UP / INVOICES DUE   |
-   | `assets/03.png`| Écran **PAYROLL DUE 3 DAYS** — compte à découvert -$2,643.18           |
-   | `assets/04.png`| Les **dashboards IA** holographiques — la solution                     |
+   | `assets/03.png`| Les **dashboards IA** holographiques — la solution                     |
+   | `assets/04.png`| Écran **PAYROLL DUE 3 DAYS** — compte à découvert -$2,643.18           |
 
-   > JPG accepté aussi : renomme en `01.jpg`… et adapte le champ `img` dans `build_short.py`.
+   > Note : le montage place l'image **04 (payroll)** en plan 3 (l'enjeu) et
+   > l'image **03 (solution IA)** en plan 4 (l'objectif visible). Le mapping
+   > image→plan est défini dans `SHOTS` (champ `img`) de `build_short.py`.
+   >
+   > JPG accepté aussi : renomme en `01.jpg`… et adapte le champ `img`.
 
 2. Lance le rendu :
 
@@ -40,8 +44,8 @@ que le montage fonctionne.
 |------|-------|------------------|-----------------|
 | 1 | 01 | push avant, centre | « Three months ago… my business stopped existing online. » |
 | 2 | 02 | push + pan droite  | **INVISIBLE BUSINESSES DIE FIRST.** + « Better competitors? No. They were just louder. » |
-| 3 | 03 | push + pan haut    | « I had 30 days to fix my visibility… before payroll hit. » |
-| 4 | 04 | léger recul        | « Get leads fast — without burning more money. » |
+| 3 | 04 | push + pan haut    | « I had 30 days to fix my visibility… before payroll hit. » |
+| 4 | 03 | léger recul        | « Get leads fast — without burning more money. » |
 
 ## Réglages rapides (dans `build_short.py`)
 

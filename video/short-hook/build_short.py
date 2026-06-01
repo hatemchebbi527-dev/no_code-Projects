@@ -46,31 +46,31 @@ SHOTS = [
     {   # PLAN 1 - le desespoir : 0 leads, factures, payroll
         "img": "01.png", "zoom": "in", "pan": "center",
         "captions": [
-            {"text": "Three months ago…\nmy business stopped existing online.",
-             "y": 0.74, "size": 58, "color": "white", "box": True},
+            {"text": "Three months ago…\nmy business stopped\nexisting online.",
+             "y": 0.72, "size": 54, "color": "white", "box": True},
         ],
     },
     {   # PLAN 2 - le chaos : appels manques + punchline
         "img": "02.png", "zoom": "in", "pan": "right",
         "captions": [
             {"text": "INVISIBLE BUSINESSES\nDIE FIRST.",
-             "y": 0.40, "size": 72, "color": "#FF3B30", "box": True, "fadein": 0.35},
+             "y": 0.40, "size": 64, "color": "#FF3B30", "box": True, "fadein": 0.35},
             {"text": "Better competitors? No.\nThey were just louder.",
-             "y": 0.76, "size": 54, "color": "white", "box": True},
+             "y": 0.76, "size": 50, "color": "white", "box": True},
         ],
     },
     {   # PLAN 3 - l'enjeu : payroll due, compte a decouvert
-        "img": "03.png", "zoom": "in", "pan": "up",
+        "img": "04.png", "zoom": "in", "pan": "up",
         "captions": [
-            {"text": "I had 30 days to fix my visibility…\nbefore payroll hit.",
-             "y": 0.74, "size": 56, "color": "white", "box": True},
+            {"text": "I had 30 days\nto fix my visibility…\nbefore payroll hit.",
+             "y": 0.72, "size": 52, "color": "white", "box": True},
         ],
     },
     {   # PLAN 4 - l'objectif visible : la solution IA
-        "img": "04.png", "zoom": "out", "pan": "center",
+        "img": "03.png", "zoom": "out", "pan": "center",
         "captions": [
             {"text": "Get leads fast —\nwithout burning more money.",
-             "y": 0.74, "size": 58, "color": "#34E0A1", "box": True, "fadein": 0.3},
+             "y": 0.73, "size": 50, "color": "#34E0A1", "box": True, "fadein": 0.3},
         ],
     },
 ]
