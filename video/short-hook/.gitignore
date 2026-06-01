@@ -1,0 +1,6 @@
+# Images sources et rendus : restent hors du repo (tu déposes tes vraies images)
+assets/*.png
+assets/*.jpg
+assets/*.jpeg
+out/
+!assets/.gitkeep
