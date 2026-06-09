@@ -53,36 +53,35 @@ export type NavItem = {
 
 /**
  * Navigazione principale.
- * In questa Fase 1 (homepage one-page premium) i link puntano alle ancore
- * di sezione. In Fase 2 verranno create le route dedicate
- * (/chi-siamo, /servizi, /portfolio, /insights, /contatti).
+ * Route dedicate attive (Fase 2). "Progetti" punta ancora alla sezione
+ * della home in attesa della pagina /portfolio (Fase 3).
  */
 export const mainNav: NavItem[] = [
-  { label: "Cosa facciamo", href: "/#servizi" },
+  { label: "Chi siamo", href: "/chi-siamo" },
+  { label: "Servizi", href: "/servizi" },
   { label: "Progetti", href: "/#progetti" },
-  { label: "Perché Step", href: "/#perche" },
-  { label: "Contatti", href: "/#contatti" },
+  { label: "Contatti", href: "/contatti" },
 ];
 
 export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Servizi",
     items: [
-      { label: "Tour & spettacoli", href: "/#servizi" },
-      { label: "Eventi MICE", href: "/#servizi" },
-      { label: "Marketing esperienziale", href: "/#servizi" },
-      { label: "Brand activation", href: "/#servizi" },
-      { label: "Eventi aziendali", href: "/#servizi" },
-      { label: "Campagne strategiche", href: "/#servizi" },
+      { label: "Tour & spettacoli", href: "/servizi/tour-spettacoli" },
+      { label: "Eventi MICE", href: "/servizi/eventi-mice" },
+      { label: "Marketing esperienziale", href: "/servizi/marketing-esperienziale" },
+      { label: "Brand activation", href: "/servizi/brand-activation" },
+      { label: "Eventi aziendali", href: "/servizi/eventi-aziendali" },
+      { label: "Campagne strategiche", href: "/servizi/campagne-strategiche" },
     ],
   },
   {
     title: "Agenzia",
     items: [
-      { label: "Chi siamo", href: "/#perche" },
+      { label: "Chi siamo", href: "/chi-siamo" },
+      { label: "Servizi", href: "/servizi" },
       { label: "Progetti", href: "/#progetti" },
-      { label: "Insights", href: "/#contatti" },
-      { label: "Contatti", href: "/#contatti" },
+      { label: "Contatti", href: "/contatti" },
     ],
   },
 ];

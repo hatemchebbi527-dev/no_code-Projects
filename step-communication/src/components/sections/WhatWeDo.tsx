@@ -27,7 +27,7 @@ export function WhatWeDo() {
             return (
               <Reveal key={service.slug} delay={(i % 3) * 0.08} className="h-full">
                 <Link
-                  href="/#contatti"
+                  href={`/servizi/${service.slug}`}
                   className="group relative flex min-h-[360px] flex-col justify-end overflow-hidden rounded-3xl border border-line p-8"
                 >
                   <CinematicImage

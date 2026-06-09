@@ -86,6 +86,48 @@ export function websiteSchema() {
   };
 }
 
+export function serviceSchema(service: {
+  slug: string;
+  title: string;
+  metaDescription: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    serviceType: service.title,
+    description: service.metaDescription,
+    url: `${siteConfig.url}/servizi/${service.slug}`,
+    provider: { "@id": `${siteConfig.url}/#organization` },
+    areaServed: siteConfig.areaServed,
+  };
+}
+
+export function faqSchema(faq: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: it.url,
+    })),
+  };
+}
+
 /** Renderizza uno o più schemi come stringa JSON-LD sicura. */
 export function jsonLdScript(schema: object | object[]): string {
   return JSON.stringify(schema).replace(/</g, "\\u003c");
