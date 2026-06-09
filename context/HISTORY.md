@@ -9,6 +9,14 @@
 
 ## 2026-06-09
 
+### Token Facebook permanent résolu (page Digital Solutions)
+- Bascule de la page cible : AI Freelancer vers Digital Solutions (`1187679151092484`)
+- Obtention d'un token de page PERMANENT (Expiration "Jamais"), sans App Review : l'accès standard suffit pour publier sur ses propres pages quand on est admin de l'app et de la page
+- Piège résolu : `GET /me/accounts` ne remontait que Vappro (Digital Solutions est détenue par un Business Manager). Solution = interroger directement `GET /{page-id}?fields=access_token`
+- Publication de test validée sur Digital Solutions via Graph API Explorer, permission `pages_manage_posts` confirmée
+- Reste à faire : brancher le token dans n8n (credential Header Auth), puis image Facebook, Imgur, Instagram, TikTok
+- Détails techniques dans `context/import/workflow-n8n-reseaux-sociaux.md`
+
 ### Projet workflow n8n : publication automatique sur les réseaux sociaux
 - Nouveau projet principal du moment : pipeline n8n qui prend un lien d'article (Google Sheets), le scrape, le résume via Claude, génère une image (gpt-image-1) et publie sur Facebook, Instagram et TikTok
 - État : pipeline fonctionnel de bout en bout jusqu'à la publication Facebook (avec token temporaire). Instagram et TikTok pas encore configurés

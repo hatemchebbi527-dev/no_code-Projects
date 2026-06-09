@@ -80,27 +80,31 @@ return [{ json: parsed }];
 - L'image est retournée en base64 dans `$json.data[0].b64_json`
 - Note : `gpt-image-1` ne renvoie QUE du base64 (pas d'URL).
 
-### 7. Facebook (HTTP Request) — FONCTIONNEL avec token temporaire
+### 7. Facebook (HTTP Request) — FONCTIONNEL, token permanent obtenu (page Digital Solutions)
+- Page cible : **Digital Solutions** — ID : `1187679151092484`
 - Method : POST
-- URL : `https://graph.facebook.com/v25.0/876702972204380/feed?access_token=<TOKEN>`
+- URL : `https://graph.facebook.com/v25.0/1187679151092484/feed`
+- Auth : token de page **permanent**. Recommandé = credential n8n **Header Auth** (`Authorization` = `Bearer <PAGE_TOKEN>`) plutôt que le token en clair dans l'URL
 - Body Content Type : Form Urlencoded
-- Body Field : `message` = `{{ $json.facebook }}`
-- Astuce : utiliser `{{ $('Code in JavaScript').item.json.facebook }}` si le nœud n'est pas directement connecté au Code
+- Body Field : `message` = `{{ $('Code in JavaScript').item.json.facebook }}`
+- Test de publication validé via Graph API Explorer (`POST /{page-id}/feed?message=...`)
 
-**Pages Facebook disponibles :**
-- AI Freelancer — ID : `876702972204380` (page utilisée actuellement)
-- Digital Solutions — ID : `1187679151092484` (déconnectée de l'app, à reconnecter)
-- Vappro — ID : `101613472805117`
+**Pages Facebook accessibles (compte Hatem) :**
+- Digital Solutions — ID : `1187679151092484` (PAGE CIBLE, détenue par le Business Manager)
+- AI Freelancer — ID : `876702972204380`
+- Vappro — ID : `101613472805117` (seule page remontée par `/me/accounts`)
+- VAPRO — ID : `220179372620386`
 
-**Problème de token Facebook :**
-- Les tokens de Graph API Explorer expirent en 1-2 heures
-- Le token permanent via utilisateur système retourne "Application does not have permission" (error_subcode 2069007)
-- L'app nécessiterait un accès avancé via App Review pour `pages_manage_posts` (demande non soumise)
-- Solution temporaire : token Graph API Explorer rafraîchi manuellement
-- Piste à creuser (priorité) : pour publier sur SES PROPRES pages, l'App Review n'est probablement pas nécessaire. Le vrai blocage = assignation de la page à l'utilisateur système. Voie rapide = token utilisateur longue durée (60j) puis `GET /me/accounts` pour obtenir un token de page qui n'expire jamais.
+**Token Facebook permanent — RÉSOLU (sans App Review) :**
+- Confirmé : pas besoin d'App Review pour publier sur ses propres pages (l'accès standard suffit car Hatem est admin de l'app ET de la page)
+- Piège rencontré : `GET /me/accounts` ne remontait QUE Vappro. Digital Solutions, détenue par un Business Manager, n'apparaissait pas dans la liste.
+- Solution qui a marché : interroger directement la page → `GET /1187679151092484?fields=name,access_token` avec un user token → renvoie le token de page
+- Vérifié dans le debugger : Type **Page**, Expiration **Jamais**, `pages_manage_posts` présent, Valide = Vrai
+- Note : "L'accès aux données expire dans ~3 mois" (data access expiration). N'empêche PAS la publication. Si un jour ça coince, refaire l'extraction du token (5 min).
+- Procédure pour régénérer (ou pour une autre page) : générer un user token (permissions `pages_*`) → l'étendre en longue durée (Access Token Tool → Extend Access Token) → `GET /{page-id}?fields=access_token` → vérifier "Jamais" dans le debugger
 
 ### 8. Instagram — NON CONFIGURÉ
-- Permissions ajoutées dans Graph API Explorer : `instagram_basic`, `instagram_content_publish`, `instagram_manage_comments`
+- Permissions déjà accordées : `instagram_basic`, `instagram_content_publish`, `instagram_manage_comments`
 - Bloqueur : le compte Instagram n'est pas encore connecté à une page Facebook en tant que compte Business
 - Erreur "something went wrong try later" en connectant depuis l'app Instagram
 - Alternative : connecter depuis les paramètres de la page Facebook ou Meta Business Suite
@@ -123,14 +127,14 @@ return [{ json: parsed }];
 - Nom : "Système IA Création de Contenu"
 - ID : `1049561134074981`
 - Status : Publiée (mode Live)
-- Produits installés : Facebook Login for Business
+- Produits installés : Facebook Login for Business (les permissions/assets passent par des Configurations)
 
 **Business Manager**
 - Nom : Digital Solutions
-- Utilisateur système : `n8n-automation` (ID : 61590737788182, accès Admin)
-- Page Digital Solutions assignée dans Business Manager mais pas dans l'utilisateur système (le type de ressource "Pages" n'apparaissait pas)
+- Utilisateur système : `n8n-automation` (ID : 61590737788182, accès Admin) — piste abandonnée au profit du token de page via le compte perso
+- La page Digital Solutions est reconnectée à l'app (autorisation FLB refaite en cochant la page)
 
-**Permissions Graph API Explorer (état actuel)**
+**Permissions accordées (état actuel)**
 - `pages_show_list`
 - `pages_read_engagement`
 - `pages_manage_posts`
@@ -161,13 +165,14 @@ Réponds UNIQUEMENT en JSON, sans markdown, sans backticks.
 
 ## Prochaines étapes
 
-1. **Token FB permanent** : creuser la piste "pas d'App Review pour ses propres pages" (assignation de la page à l'utilisateur système, ou token de page longue durée via `/me/accounts`).
-2. **Image hosting** : héberger le base64 → URL publique (Imgur API, gratuit). Débloque Instagram et permet aussi de poster l'image sur Facebook via `/{page-id}/photos`.
-3. **Instagram** : connecter le compte Business à une page FB, puis configurer les 2 nœuds HTTP Request (media + media_publish).
-4. **TikTok** : créer un compte développeur, obtenir les credentials, gérer la génération vidéo.
-5. **Reconnecter Digital Solutions** : résoudre le bug de déconnexion de la page de l'app.
+1. ~~Token FB permanent~~ — **FAIT** (token permanent obtenu pour Digital Solutions, voir nœud 7)
+2. **Brancher le token dans n8n** : nœud Facebook → ID `1187679151092484`, token dans une credential Header Auth. Tester la publication d'un vrai article sur le workflow complet (texte seul d'abord).
+3. **Image sur Facebook** : ajouter le visuel via `/{page-id}/photos`.
+4. **Image hosting** : héberger le base64 → URL publique (Imgur API, gratuit). Prérequis pour Instagram.
+5. **Instagram** : connecter le compte Business à une page FB, puis configurer les 2 nœuds HTTP Request (media + media_publish).
+6. **TikTok** : créer un compte développeur, obtenir les credentials, gérer la génération vidéo.
 
-**Ordre conseillé** : Token FB permanent → Imgur → Instagram → TikTok.
+**Reste à faire, ordre conseillé** : brancher token n8n + tester → image Facebook → Imgur → Instagram → TikTok.
 
 ---
 
