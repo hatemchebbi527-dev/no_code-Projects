@@ -7,6 +7,16 @@
 
 ---
 
+## 2026-06-09
+
+### Premier projet client web : Step Communication
+- Démarrage d'un projet de site vitrine premium pour Step Communication, agence d'événementiel et de marketing expérientiel à Rimini (client réel, fondée en 2005, fondateur Alessandro Lo Presti)
+- Stack : Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion. Design cinématographique sombre, typographie serif editorial, SEO intégré dès la base
+- Livré et poussé (branche `claude/elegant-noether-6a82ua`, dossier `step-communication/`) : fondation technique + page d'accueil, refonte de la direction artistique validée par Hatem, pages Chi siamo / Servizi (+ 6 pages détail) / Contatti avec formulaire fonctionnel
+- Site en italien (marché local de Rimini)
+- En pause : Hatem rassemble les vrais contenus (photos d'événements, projets, logos clients, témoignages) avant de reprendre. Étapes suivantes : Portfolio + Blog SEO, puis documents stratégiques et mise en ligne
+- Jalon : concrétise l'objectif court terme de développer des sites web pour signer les premiers clients
+
 ## 2026-05-23
 
 ### Installation initiale du Jarvis

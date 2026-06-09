@@ -52,6 +52,7 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 
 Liste des projets ou chantiers actifs :
 
+- **Step Communication (client réel)** : site web vitrine premium pour une agence d'événementiel et de marketing expérientiel à Rimini. Next.js 15, design cinématographique, SEO intégré. Fondation, page d'accueil et pages principales (Chi siamo, Servizi, Contatti) livrées ; en pause en attendant les vrais contenus.
 - Formation Claude Code en cours (apprentissage de l'outil pour construire des applications IA)
 - Construction d'automatisations sur n8n (workflows et automatisations pour futurs clients)
 - Développement de sites web et applications simples pour signer les premiers clients
@@ -79,4 +80,4 @@ Productivité et organisation au quotidien
 
 > Cette section se remplira au fil du temps avec les éléments de contexte qui émergent naturellement dans mes sessions avec Claude.
 
-[VIDE INITIALEMENT - SE REMPLIRA AU FIL DU TEMPS]
+- **2026-06-09 :** Premier projet de site web pour un client réel, Step Communication (agence d'événementiel, Rimini). Étape concrète vers l'objectif de signer les premiers clients freelance.
