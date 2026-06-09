@@ -2,13 +2,13 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/content/projects";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CinematicImage } from "@/components/ui/CinematicImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { buttonVariants } from "@/components/ui/Button";
 
 /**
- * "Progetti in evidenza" - portfolio premium.
- * ⚠️ I visual sono placeholder generati via CSS. Sostituire i blocchi gradiente
- * con next/image e le immagini reali dei case study (vedi content/projects.ts).
+ * "Progetti in evidenza" - portfolio cinematografico.
+ * ⚠️ Immagini e dati placeholder (vedi content/projects.ts e content/media.ts).
  */
 export function FeaturedProjects() {
   return (
@@ -20,15 +20,12 @@ export function FeaturedProjects() {
             title={
               <>
                 Esperienze che le persone
-                <br className="hidden sm:block" /> non dimenticano.
+                <br className="hidden sm:block" /> non <span className="italic text-gradient-accent">dimenticano.</span>
               </>
             }
           />
           <Reveal>
-            <Link
-              href="/#contatti"
-              className={buttonVariants({ variant: "secondary" })}
-            >
+            <Link href="/#contatti" className={buttonVariants({ variant: "secondary" })}>
               Vedi tutti i progetti
               <ArrowUpRight className="h-4 w-4" />
             </Link>
@@ -40,48 +37,40 @@ export function FeaturedProjects() {
             <Reveal key={project.slug} delay={(i % 3) * 0.08} className="h-full">
               <Link
                 href="/#contatti"
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-bg"
+                className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-3xl border border-line p-7"
               >
-                {/* Visual placeholder */}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <div
-                    className={`absolute inset-0 transition-transform duration-700 ease-premium group-hover:scale-105 ${
-                      project.accent
-                        ? "bg-[radial-gradient(120%_120%_at_20%_0%,rgb(var(--accent)/0.45),transparent_55%),linear-gradient(160deg,rgb(var(--bg-elevated)),rgb(var(--bg)))]"
-                        : "bg-[radial-gradient(120%_120%_at_80%_0%,rgb(var(--accent)/0.18),transparent_50%),linear-gradient(160deg,rgb(var(--bg-elevated)),rgb(var(--bg)))]"
-                    }`}
-                  />
-                  <div className="absolute inset-0 grain" />
-                  {/* Metrica in evidenza */}
-                  <div className="absolute inset-0 flex flex-col justify-between p-7">
-                    <span className="w-fit rounded-full border border-fg/15 bg-bg/30 px-3 py-1 text-xs font-medium text-fg backdrop-blur-sm">
-                      {project.category}
-                    </span>
-                    <div>
-                      <p className="font-display text-5xl font-semibold tracking-tightest text-fg">
-                        {project.metric.value}
-                      </p>
-                      <p className="mt-1 text-sm text-fg-muted">
-                        {project.metric.label}
-                      </p>
-                    </div>
-                  </div>
+                <CinematicImage
+                  src={project.image}
+                  alt={`${project.title} - ${project.category}`}
+                  tone={project.tone}
+                  zoom
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+
+                {/* Top */}
+                <div className="relative z-10 flex items-start justify-between">
+                  <span className="rounded-full border border-fg/15 bg-bg/40 px-3 py-1 text-xs font-medium text-fg backdrop-blur-md">
+                    {project.category}
+                  </span>
+                  <ArrowUpRight className="h-5 w-5 text-fg/70 transition-all duration-300 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
 
-                {/* Testo */}
-                <div className="flex flex-1 flex-col p-7">
-                  <div className="flex items-center gap-3 text-xs text-fg-muted">
+                {/* Bottom */}
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2.5 text-xs text-fg/70">
                     <span>{project.year}</span>
-                    <span className="h-1 w-1 rounded-full bg-fg-muted/50" />
+                    <span className="h-1 w-1 rounded-full bg-fg/40" />
                     <span>{project.location}</span>
                   </div>
-                  <h3 className="mt-3 flex items-start justify-between gap-3 font-display text-xl font-semibold text-fg">
+                  <h3 className="mt-2 font-display text-2xl font-medium leading-tight text-fg">
                     {project.title}
-                    <ArrowUpRight className="h-5 w-5 shrink-0 text-fg-muted transition-all duration-300 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                    {project.summary}
-                  </p>
+                  <div className="mt-4 flex items-baseline gap-2 border-t border-fg/15 pt-4">
+                    <span className="font-display text-3xl font-medium text-accent">
+                      {project.metric.value}
+                    </span>
+                    <span className="text-sm text-fg/70">{project.metric.label}</span>
+                  </div>
                 </div>
               </Link>
             </Reveal>
