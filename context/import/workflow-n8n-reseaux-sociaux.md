@@ -1,7 +1,7 @@
 # Workflow n8n : Publication automatique sur les réseaux sociaux
 
 > État détaillé du projet. Fichier de référence pour reprendre le travail d'une session à l'autre.
-> Dernière mise à jour : 2026-06-09
+> Dernière mise à jour : 2026-06-10
 
 ---
 
@@ -11,107 +11,92 @@ Prendre un lien d'article depuis Google Sheets, le résumer via Claude, génére
 
 ---
 
-## Architecture du workflow
+## Architecture actuelle du workflow
 
 ```
 Google Sheets Trigger
-  → HTTP Request (scrape)
-  → HTML Extract
-  → Claude (Message a model)
-  → Code (JSON Parse)
-  → HTTP Request (Image gpt-image-1)
-  → [en parallèle] Facebook / Instagram / TikTok
+  → Scraping de l'article (HTTP, via Jina Reader)
+  → Message a model (Claude, nœud Anthropic natif)
+  → Code in JavaScript (parse JSON)
+  → Générer l'image (HTTP, gpt-image-1)
+  → Upload ImgBB (HTTP, héberge l'image → URL publique)
+  → Facebook (HTTP, POST /photos)
 ```
+
+Chaîne LINÉAIRE pour l'instant. Instagram et TikTok seront ajoutés en parallèle après Upload ImgBB (ils réutiliseront la même URL d'image).
+
+Note : le nœud HTML Extract du tout début a été SUPPRIMÉ (Jina renvoie déjà du markdown propre, pas du HTML à parser).
 
 ---
 
 ## État de chaque nœud
 
 ### 1. Google Sheets Trigger — FONCTIONNEL
-- Événement : Row Added
-- Colonne surveillée : URL
+- Document : "Système IA réseaux Sociaux" (ID `1HplJPDzdgulmxrrlMlTRFaeAJlc4c76Pv6dPyyYLtuI`), Feuille 1
+- Événement : Row Added, poll toutes les minutes
+- **Colonne surveillée : `Nouveaux Liens`** (contient l'URL de l'article)
 
-### 2. HTTP Request (Scraping) — FONCTIONNEL
+### 2. Scraping de l'article (HTTP Request) — FONCTIONNEL
 - Method : GET
-- URL : `{{ $json.URL }}`
+- URL : `https://r.jina.ai/{{ $json['Nouveaux Liens'] }}`
 - Response Format : Text
-- Le HTML brut est stocké dans le champ `data`
+- **Jina Reader** rend le JavaScript côté serveur et renvoie le markdown propre dans le champ `data`. Contourne les protections type Cloudflare (testé OK sur Sortlist).
 
-### 3. HTML Extract — FONCTIONNEL
-- Operation : Extract HTML Content
-- Source Data : JSON
-- JSON Property : `data` (nom brut, sans accolades)
-- CSS Selector : `article, .post-content, .entry-content, p` (à adapter selon le site)
-- Return Value : Text
+### 3. Message a model (Anthropic) — FONCTIONNEL
+- Nœud natif n8n `@n8n/n8n-nodes-langchain.anthropic`
+- Modèle : `claude-sonnet-4-6`
+- Champ source de l'article : `{{ $json.data }}`
+- Option `maxTokens` : 2000 (évite la troncature du JSON)
+- Prompt renforcé (voir plus bas) : JSON strict, pas de retours à la ligne dans les valeurs
 
-### 4. Claude (Message a model) — FONCTIONNEL
-- Mode : complete: chat
-- Le prompt génère un JSON avec 5 clés : resume, facebook, instagram, tiktok, image_prompt
-- La réponse est dans `$json.content[0].text`
-
-### 5. Code (JSON Parse) — FONCTIONNEL
-- Language : JavaScript
+### 4. Code in JavaScript — FONCTIONNEL
+- Parsing robuste (retire les backticks, isole du premier `{` au dernier `}`) :
 ```javascript
-const response = $input.item.json.content[0].text;
-let parsed;
-try {
-  parsed = JSON.parse(response);
-} catch (e) {
-  const cleaned = response.replace(/```json/g, '').replace(/```/g, '').trim();
-  parsed = JSON.parse(cleaned);
-}
-return [{ json: parsed }];
+let text = $input.item.json.content[0].text.trim();
+text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+const start = text.indexOf('{');
+const end = text.lastIndexOf('}');
+if (start !== -1 && end !== -1) text = text.slice(start, end + 1);
+return [{ json: JSON.parse(text) }];
 ```
 - Output : `{ resume, facebook, instagram, tiktok, image_prompt }`
 
-### 6. HTTP Request (Image gpt-image-1) — FONCTIONNEL
+### 5. Générer l'image (HTTP Request, gpt-image-1) — FONCTIONNEL
 - Method : POST
 - URL : `https://api.openai.com/v1/images/generations`
-- Auth : Header Auth avec `Authorization: Bearer <CLE_OPENAI>`
-- Body JSON :
-```json
-{
-  "model": "gpt-image-1",
-  "prompt": "{{ $json.image_prompt }}",
-  "n": 1,
-  "size": "1024x1024"
-}
-```
-- L'image est retournée en base64 dans `$json.data[0].b64_json`
-- Note : `gpt-image-1` ne renvoie QUE du base64 (pas d'URL).
+- Auth : Header Auth, `Authorization` = `Bearer <CLE_OPENAI>`
+- Body : Content Type JSON, "Using Fields Below" (laisse n8n construire le JSON, pas de souci d'échappement) :
+  - `model` = `gpt-image-1`
+  - `prompt` = `{{ $json.image_prompt }}`
+  - `size` = `1024x1024`
+- Sortie : image en base64 dans `data[0].b64_json`
 
-### 7. Facebook (HTTP Request) — FONCTIONNEL, token permanent obtenu (page Digital Solutions)
-- Page cible : **Digital Solutions** — ID : `1187679151092484`
+### 6. Upload ImgBB (HTTP Request) — FONCTIONNEL
 - Method : POST
-- URL : `https://graph.facebook.com/v25.0/1187679151092484/feed`
-- Auth : token de page **permanent**. Recommandé = credential n8n **Header Auth** (`Authorization` = `Bearer <PAGE_TOKEN>`) plutôt que le token en clair dans l'URL
-- Body Content Type : Form Urlencoded
-- Body Field : `message` = `{{ $('Code in JavaScript').item.json.facebook }}`
-- Test de publication validé via Graph API Explorer (`POST /{page-id}/feed?message=...`)
+- URL : `https://api.imgbb.com/1/upload?key=<CLE_IMGBB>`
+- Auth : None (la clé est dans l'URL)
+- Body : Form-Urlencoded, paramètre `image` = `{{ $json.data[0].b64_json }}`
+- Sortie : URL publique dans `data.url` (type `https://i.ibb.co/xxxx/image.png`)
+- Choix d'ImgBB plutôt qu'Imgur : le formulaire `api.imgur.com/oauth2/addclient` d'Imgur redirige en boucle vers l'accueil (bug connu). ImgBB = clé API en un clic.
 
-**Pages Facebook accessibles (compte Hatem) :**
-- Digital Solutions — ID : `1187679151092484` (PAGE CIBLE, détenue par le Business Manager)
-- AI Freelancer — ID : `876702972204380`
-- Vappro — ID : `101613472805117` (seule page remontée par `/me/accounts`)
-- VAPRO — ID : `220179372620386`
+### 7. Facebook (HTTP Request) — FONCTIONNEL, post avec image validé
+- Page cible : **Digital Solutions** — ID `1187679151092484`
+- Method : POST
+- URL : `https://graph.facebook.com/v25.0/1187679151092484/photos`
+- Auth : **Query Auth** (credential "Facebook Digital Solutions"), paramètre `access_token` = le **token de page permanent**
+- Body : Form-Urlencoded
+  - `url` = `{{ $json.data.url }}` (URL ImgBB de l'image)
+  - `caption` = `{{ $('Code in JavaScript').item.json.facebook }}`
+- Note : sur `/photos`, le texte s'appelle `caption` (PAS `message` comme sur `/feed`)
+- Publication avec image testée et validée sur Digital Solutions
 
-**Token Facebook permanent — RÉSOLU (sans App Review) :**
-- Confirmé : pas besoin d'App Review pour publier sur ses propres pages (l'accès standard suffit car Hatem est admin de l'app ET de la page)
-- Piège rencontré : `GET /me/accounts` ne remontait QUE Vappro. Digital Solutions, détenue par un Business Manager, n'apparaissait pas dans la liste.
-- Solution qui a marché : interroger directement la page → `GET /1187679151092484?fields=name,access_token` avec un user token → renvoie le token de page
-- Vérifié dans le debugger : Type **Page**, Expiration **Jamais**, `pages_manage_posts` présent, Valide = Vrai
-- Note : "L'accès aux données expire dans ~3 mois" (data access expiration). N'empêche PAS la publication. Si un jour ça coince, refaire l'extraction du token (5 min).
-- Procédure pour régénérer (ou pour une autre page) : générer un user token (permissions `pages_*`) → l'étendre en longue durée (Access Token Tool → Extend Access Token) → `GET /{page-id}?fields=access_token` → vérifier "Jamais" dans le debugger
-
-### 8. Instagram — NON CONFIGURÉ
+### 8. Instagram — NON CONFIGURÉ (prochaine étape)
 - Permissions déjà accordées : `instagram_basic`, `instagram_content_publish`, `instagram_manage_comments`
-- Bloqueur : le compte Instagram n'est pas encore connecté à une page Facebook en tant que compte Business
-- Erreur "something went wrong try later" en connectant depuis l'app Instagram
-- Alternative : connecter depuis les paramètres de la page Facebook ou Meta Business Suite
+- Bloqueur : le compte Instagram doit être connecté à une page Facebook en tant que compte Business
 - L'API Instagram nécessite 2 appels :
-  1. POST `/{ig-user-id}/media` (créer le container avec image_url + caption)
-  2. POST `/{ig-user-id}/media_publish` (publier avec creation_id)
-- L'image gpt-image-1 est en base64 : il faut l'héberger (ex : Imgur) pour obtenir l'URL publique exigée par l'API Instagram
+  1. POST `/{ig-user-id}/media` (créer le container avec `image_url` + `caption`)
+  2. POST `/{ig-user-id}/media_publish` (publier avec `creation_id`)
+- Bonne nouvelle : l'URL ImgBB du nœud Upload est exactement ce qu'attend le champ `image_url`. Le gros prérequis (hébergement) est donc déjà résolu.
 
 ### 9. TikTok — NON CONFIGURÉ
 - Nécessite un compte développeur TikTok séparé (developers.tiktok.com)
@@ -121,58 +106,72 @@ return [{ json: parsed }];
 
 ---
 
-## Informations Meta / Facebook
+## Token Facebook permanent (rappel, RÉSOLU)
 
-**App Meta**
-- Nom : "Système IA Création de Contenu"
-- ID : `1049561134074981`
-- Status : Publiée (mode Live)
-- Produits installés : Facebook Login for Business (les permissions/assets passent par des Configurations)
-
-**Business Manager**
-- Nom : Digital Solutions
-- Utilisateur système : `n8n-automation` (ID : 61590737788182, accès Admin) — piste abandonnée au profit du token de page via le compte perso
-- La page Digital Solutions est reconnectée à l'app (autorisation FLB refaite en cochant la page)
-
-**Permissions accordées (état actuel)**
-- `pages_show_list`
-- `pages_read_engagement`
-- `pages_manage_posts`
-- `instagram_basic`
-- `instagram_content_publish`
-- `instagram_manage_comments`
+- Page cible : Digital Solutions `1187679151092484`, token de page **permanent** (Expiration "Jamais"), sans App Review
+- Méthode : générer un user token avec les permissions `pages_*` → l'étendre en longue durée (Access Token Tool → Extend) → `GET /{page-id}?fields=access_token` → vérifier "Jamais" dans le debugger
+- Piège : `GET /me/accounts` ne liste PAS les pages détenues par un Business Manager (seule Vappro remontait). D'où l'appel direct sur l'ID de la page.
+- Piège : bien utiliser le token de **PAGE** (réponse du GET), pas le token **UTILISATEUR** (champ en haut à droite de Graph API Explorer). Sinon erreur `#200`. Le debugger affiche "Type: Page" pour le bon.
 
 ---
 
-## Prompt Claude utilisé
+## Pièges rencontrés et résolus (mémo)
+
+- **Cloudflare** bloque le scraping HTTP simple (403 "Just a moment") → Jina Reader (`r.jina.ai/`) contourne.
+- **HTML Extract vide** → normal avec Jina (markdown, pas de HTML). Nœud supprimé.
+- **JSON Claude invalide** ("Unterminated string") → retours à la ligne dans les valeurs + troncature. Réglé par prompt strict + maxTokens 2000 + Code robuste.
+- **Facebook "Cannot parse access token" (190)** → token vide/mal transmis ou `access_token=` résiduel dans l'URL. Réglé par Query Auth propre.
+- **Facebook "#200 requires page token"** → on utilisait le token user au lieu du token de page.
+- **Imgur addclient** redirige en boucle → basculé sur ImgBB.
+
+---
+
+## Pages Facebook accessibles (compte Hatem)
+
+- Digital Solutions — ID `1187679151092484` (PAGE CIBLE, dans un Business Manager)
+- AI Freelancer — ID `876702972204380`
+- Vappro — ID `101613472805117` (seule remontée par `/me/accounts`)
+- VAPRO — ID `220179372620386`
+
+## Informations Meta / Facebook
+
+- App : "Système IA Création de Contenu", ID `1049561134074981`, mode Live, produit "Facebook Login for Business"
+- Business Manager : "Digital Solutions"
+- Permissions accordées : `pages_show_list`, `pages_read_engagement`, `pages_manage_posts`, `instagram_basic`, `instagram_content_publish`, `instagram_manage_comments`
+
+---
+
+## Prompt Claude utilisé (version renforcée)
 
 ```
 Tu es un expert en marketing digital.
 
-Voici le texte d'un article : {{ $json.content }}
+Voici le texte d'un article : {{ $json.data }}
 
-Génère uniquement un objet JSON valide avec ces 5 clés :
+Génère un objet JSON valide avec EXACTEMENT ces 5 clés :
 - "resume": résumé de 3 phrases
-- "facebook": post 150 mots, 3 hashtags
-- "instagram": légende 80 mots, 10 hashtags
-- "tiktok": script 30s [Hook 3s][Corps 20s][CTA 7s]
-- "image_prompt": description image en anglais
+- "facebook": post de 150 mots avec 3 hashtags
+- "instagram": légende de 80 mots avec 10 hashtags
+- "tiktok": script de 30s au format [Hook 3s] [Corps 20s] [CTA 7s], SUR UNE SEULE LIGNE
+- "image_prompt": description de l'image, en anglais
 
-Réponds UNIQUEMENT en JSON, sans markdown, sans backticks.
+Règles STRICTES :
+- Réponds UNIQUEMENT avec le JSON, rien avant, rien après
+- Pas de markdown, pas de backticks
+- AUCUN retour à la ligne à l'intérieur des valeurs. Pour séparer, utilise " | "
+- Échappe correctement les guillemets presents dans les textes
 ```
 
 ---
 
 ## Prochaines étapes
 
-1. ~~Token FB permanent~~ — **FAIT** (token permanent obtenu pour Digital Solutions, voir nœud 7)
-2. **Brancher le token dans n8n** : nœud Facebook → ID `1187679151092484`, token dans une credential Header Auth. Tester la publication d'un vrai article sur le workflow complet (texte seul d'abord).
-3. **Image sur Facebook** : ajouter le visuel via `/{page-id}/photos`.
-4. **Image hosting** : héberger le base64 → URL publique (Imgur API, gratuit). Prérequis pour Instagram.
-5. **Instagram** : connecter le compte Business à une page FB, puis configurer les 2 nœuds HTTP Request (media + media_publish).
-6. **TikTok** : créer un compte développeur, obtenir les credentials, gérer la génération vidéo.
+1. ~~Token FB permanent~~ — FAIT
+2. ~~Image Facebook~~ — FAIT (gpt-image-1 → ImgBB → /photos, post avec image validé)
+3. **Instagram** : connecter le compte Business à une page FB, puis 2 nœuds HTTP (media + media_publish), en réutilisant l'URL ImgBB pour `image_url`
+4. **TikTok** : compte développeur + génération vidéo (Creatomate / json2video)
 
-**Reste à faire, ordre conseillé** : brancher token n8n + tester → image Facebook → Imgur → Instagram → TikTok.
+**Reste à faire, ordre conseillé** : Instagram → TikTok.
 
 ---
 
@@ -180,7 +179,7 @@ Réponds UNIQUEMENT en JSON, sans markdown, sans backticks.
 
 - n8n : v2.4.4 (Self Hosted)
 - Graph API : v25.0
-- OpenAI : `gpt-image-1` pour les images
-- Claude : nœud natif n8n "Message a model"
-
-> Note : DALL-E 3 existe toujours dans l'API OpenAI et peut renvoyer une URL directe (`response_format: "url"`), alternative possible à l'hébergement Imgur pour Instagram (mais URL temporaire ~1h).
+- OpenAI : `gpt-image-1` (ne renvoie que du base64, d'où l'hébergement ImgBB)
+- Hébergement image : ImgBB (clé API en query)
+- Scraping : Jina Reader (`r.jina.ai`)
+- Claude : nœud natif n8n "Message a model", modèle `claude-sonnet-4-6`

@@ -7,7 +7,17 @@
 
 ---
 
-## 2026-06-09
+## 2026-06-10
+
+### Workflow n8n complet et fonctionnel (publication Facebook avec image)
+- Le workflow tourne de bout en bout : article → scraping → Claude → image → hébergement → publication Facebook AVEC image sur Digital Solutions (validé en vrai)
+- Scraping : adoption de Jina Reader (`r.jina.ai`) pour contourner le Cloudflare des sites protégés. Nœud HTML Extract supprimé (Jina renvoie du markdown)
+- Claude : modèle `claude-sonnet-4-6`, prompt renforcé (JSON strict, pas de retours à la ligne), maxTokens 2000, et Code de parsing robuste pour fiabiliser le JSON
+- Image : nœud gpt-image-1 (body construit via les champs n8n)
+- Hébergement image : bascule d'Imgur vers ImgBB (le formulaire addclient d'Imgur bugue), sortie `data.url`
+- Facebook : passage de `/feed` à `/photos` (texte = `caption`), token de PAGE en Query Auth. Pièges résolus : token page vs user (#200), token mal transmis (#190)
+- Reste à faire : Instagram (l'URL ImgBB servira pour `image_url`), puis TikTok
+- Détails techniques complets dans `context/import/workflow-n8n-reseaux-sociaux.md`
 
 ### Token Facebook permanent résolu (page Digital Solutions)
 - Bascule de la page cible : AI Freelancer vers Digital Solutions (`1187679151092484`)
