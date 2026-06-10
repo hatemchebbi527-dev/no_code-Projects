@@ -4,7 +4,7 @@
 
 /* ==========================================================================
    Design tokens - 7 Sport Agency (direzione cinematografica)
-   Nero caldo profondo, bianco caldo, accento ambra/oro da luci di stadio.
+   Nero caldo profondo, bianco caldo, accento ciano del brand (logo 7 Sport).
    ========================================================================== */
 @layer base {
   :root {
@@ -14,9 +14,9 @@
     --fg: 246 243 238; /* #F6F3EE */
     --fg-muted: 168 162 154; /* #A8A29A */
     --line: 42 39 35; /* #2A2723 */
-    --accent: 224 160 74; /* #E0A04A */
+    --accent: 41 171 226; /* #29ABE2 - ciano del brand (logo 7 Sport) */
     --accent-foreground: 11 10 9;
-    --selection: 224 160 74;
+    --selection: 41 171 226;
   }
 
   * {
@@ -99,7 +99,7 @@
 
   .text-gradient-accent {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(115deg, #e0a04a 0%, #f4d49b 100%);
+    background-image: linear-gradient(115deg, #29abe2 0%, #7fd4f5 100%);
   }
 
   .grain::before {
