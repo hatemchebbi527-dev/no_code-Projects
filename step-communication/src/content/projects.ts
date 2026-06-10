@@ -1,3 +1,5 @@
+import { img, type Tone } from "@/content/media";
+
 export type Project = {
   slug: string;
   title: string;
@@ -7,80 +9,95 @@ export type Project = {
   location: string;
   summary: string;
   metric: { value: string; label: string };
-  accent?: boolean;
+  image: string;
+  tone: Tone;
+  featured?: boolean;
 };
 
 /**
- * ⚠️ CONTENUTO PLACEHOLDER - DA SOSTITUIRE con i progetti reali del portfolio.
- * Struttura pronta per i veri case study (obiettivo, strategia, esecuzione,
- * risultati, gallery, metriche). Non pubblicare con questi dati di esempio.
+ * Progetti / clienti in evidenza.
+ * Basati su partnership pubbliche reali di 7 Sport Agency.
+ * ⚠️ I dettagli e le metriche complete dei case study sono DA COMPLETARE
+ * con il cliente (e da sostituire le immagini placeholder, vedi content/media.ts).
  */
 export const projects: Project[] = [
   {
-    slug: "riviera-sound-tour",
-    title: "Riviera Sound Tour",
-    client: "Brand placeholder",
-    category: "Tour & spettacoli",
-    year: "2025",
-    location: "12 città · Italia",
+    slug: "tour-de-france-italia",
+    title: "Tour de France",
+    client: "Tour de France",
+    category: "Ricerca sponsor",
+    year: "Italia",
+    location: "Sponsorship",
     summary:
-      "Roadshow musicale itinerante lungo la costa adriatica: palco mobile, talent e attivazioni di brand in ogni tappa.",
-    metric: { value: "80k", label: "presenze totali" },
-    accent: true,
+      "Selezionata come una delle due agenzie incaricate delle attività di ricerca sponsor per l'Italia del Tour de France.",
+    metric: { value: "2", label: "agenzie scelte per l'Italia" },
+    image: img("1517649763962-0c623066013b"),
+    tone: "ember",
+    featured: true,
   },
   {
-    slug: "innovation-summit",
-    title: "Innovation Summit",
-    client: "Brand placeholder",
-    category: "Eventi MICE",
-    year: "2025",
-    location: "Rimini · Palacongressi",
-    summary:
-      "Congresso internazionale su due giornate con 40 speaker, regia ibrida e percorso esperienziale tra gli stand.",
-    metric: { value: "1.200", label: "delegati" },
-  },
-  {
-    slug: "city-pop-up",
-    title: "City Pop-Up Experience",
-    client: "Brand placeholder",
-    category: "Brand activation",
-    year: "2024",
-    location: "Milano · Bologna",
-    summary:
-      "Installazione pop-up multisensoriale nel cuore della città, con esperienza interattiva e raccolta lead in tempo reale.",
-    metric: { value: "+34%", label: "lead qualificati" },
-  },
-  {
-    slug: "global-kickoff",
-    title: "Global Kick-Off",
-    client: "Brand placeholder",
-    category: "Eventi aziendali",
-    year: "2024",
-    location: "Riccione",
-    summary:
-      "Convention annuale per la rete vendita: storytelling immersivo, premiazioni e show finale per 900 persone.",
-    metric: { value: "98%", label: "soddisfazione" },
-  },
-  {
-    slug: "launch-experience",
-    title: "Product Launch Experience",
-    client: "Brand placeholder",
-    category: "Lancio prodotti",
-    year: "2024",
-    location: "Rimini",
-    summary:
-      "Lancio di prodotto con anteprima stampa, esperienza phygital e copertura social amplificata dai creator.",
-    metric: { value: "5,2M", label: "impression" },
-  },
-  {
-    slug: "incentive-adriatica",
-    title: "Incentive Adriatica",
-    client: "Brand placeholder",
-    category: "Eventi MICE",
+    slug: "brera-holdings",
+    title: "Brera Holdings",
+    client: "Brera Holdings PLC",
+    category: "Sponsorship internazionali",
     year: "2023",
-    location: "Riviera Romagnola",
+    location: "Internazionale",
     summary:
-      "Viaggio incentive su misura per la forza vendita top performer: esperienze esclusive e team building creativo.",
-    metric: { value: "4 giorni", label: "esperienza full" },
+      "Commercial advisor per le sponsorizzazioni internazionali del portfolio globale di club sportivi emergenti di Brera Holdings.",
+    metric: { value: "Global", label: "portfolio di club" },
+    image: img("1431324155629-1a6deb1dec8d"),
+    tone: "night",
+  },
+  {
+    slug: "mantova-1911",
+    title: "Mantova 1911",
+    client: "Mantova 1911",
+    category: "Commercial Advisor",
+    year: "Calcio",
+    location: "Italia",
+    summary:
+      "Commercial advisor per le attività di ricerca sponsor del club, a supporto della strategia commerciale.",
+    metric: { value: "Serie", label: "calcio professionistico" },
+    image: img("1459865264687-595d652de67e"),
+    tone: "crimson",
+  },
+  {
+    slug: "network-sport-digital",
+    title: "Network Sport Digital",
+    client: "Network proprietario",
+    category: "Media & Partnerships",
+    year: "Sempre attivo",
+    location: "Italia",
+    summary:
+      "Network di siti dedicati ai tifosi delle principali discipline, per attività di digital marketing e visibilità degli sponsor.",
+    metric: { value: "40M", label: "utenti al mese" },
+    image: img("1521412644187-c49fa049e84d"),
+    tone: "slate",
+  },
+  {
+    slug: "ricerca-sponsor-network",
+    title: "Ricerca Sponsor",
+    client: "Aziende & club",
+    category: "Sport Sponsorship",
+    year: "Core business",
+    location: "Italia & Europa",
+    summary:
+      "Un patrimonio di oltre 900 aziende messo a disposizione per connettere brand e società sportive.",
+    metric: { value: "900+", label: "aziende nel network" },
+    image: img("1508098682722-e99c43a406b2"),
+    tone: "gold",
+  },
+  {
+    slug: "progetti-sportivi",
+    title: "100+ progetti sportivi",
+    client: "Club & atleti",
+    category: "Sponsorizzazioni",
+    year: "10+ anni",
+    location: "Multisport",
+    summary:
+      "Oltre cento progetti di sponsorizzazione realizzati nel calcio di Serie A e B, basket, rugby, tennis e motorsport.",
+    metric: { value: "100+", label: "clienti seguiti" },
+    image: img("1543351611-58f69d7c1781"),
+    tone: "ember",
   },
 ];

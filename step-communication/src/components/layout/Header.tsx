@@ -45,11 +45,11 @@ export function Header() {
           onClick={() => setOpen(false)}
         >
           <span className="font-display text-lg font-bold tracking-tightest text-fg">
-            Step
+            7 Sport
           </span>
           <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-300 group-hover:scale-125" />
           <span className="hidden text-[0.7rem] font-medium uppercase tracking-[0.28em] text-fg-muted sm:inline">
-            Communication
+            Agency
           </span>
         </Link>
 
@@ -68,10 +68,10 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/#contatti"
+            href="/contatti"
             className={cn(buttonVariants({ size: "sm" }), "hidden sm:inline-flex")}
           >
-            Richiedi una proposta
+            Richiedi una consulenza
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
 
@@ -117,11 +117,11 @@ export function Header() {
                 </motion.div>
               ))}
               <Link
-                href="/#contatti"
+                href="/contatti"
                 onClick={() => setOpen(false)}
                 className={cn(buttonVariants({ size: "lg" }), "mt-6 w-full")}
               >
-                Richiedi una proposta
+                Richiedi una consulenza
               </Link>
             </nav>
           </motion.div>

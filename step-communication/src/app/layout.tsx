@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import {
@@ -11,11 +11,12 @@ import {
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const display = Space_Grotesk({
+const display = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const sans = Inter({
@@ -27,48 +28,46 @@ const sans = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Agenzia eventi e marketing esperienziale a Rimini`,
+    default: `${siteConfig.name} — Agenzia di marketing sportivo e sponsorizzazioni`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
-    "agenzia eventi",
-    "agenzia marketing esperienziale",
-    "agenzia eventi MICE",
-    "organizzazione eventi Rimini",
-    "agenzia comunicazione Rimini",
-    "brand activation",
+    "agenzia marketing sportivo",
+    "sponsorizzazioni sportive",
+    "ricerca sponsor",
+    "sport sponsorship",
+    "sponsorizzazioni calcio",
     "tour promozionali",
-    "eventi aziendali",
-    "marketing esperienziale",
-    "event management Italia",
+    "eventi sportivi",
+    "marketing sportivo San Marino",
+    "agenzia sport marketing Italia",
+    "sport marketing agency",
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
   applicationName: siteConfig.name,
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — Trasformiamo i brand in esperienze`,
+    title: `${siteConfig.name} — Il tuo brand nel cuore dello sport`,
     description: siteConfig.description,
     images: [
       {
         url: "/og.jpg", // DA AGGIUNGERE: immagine 1200x630 in /public
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} — agenzia eventi e marketing esperienziale`,
+        alt: `${siteConfig.name} — agenzia di marketing sportivo`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — Trasformiamo i brand in esperienze`,
+    title: `${siteConfig.name} — Il tuo brand nel cuore dello sport`,
     description: siteConfig.description,
     images: ["/og.jpg"],
   },
@@ -89,7 +88,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#09090b",
+  themeColor: "#0B0A09",
   colorScheme: "dark",
 };
 
@@ -113,7 +112,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {/* Skip link per accessibilità (WCAG) */}
         <a
           href="#top"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-accent-foreground"

@@ -4,191 +4,162 @@ import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
+import { CinematicImage } from "@/components/ui/CinematicImage";
+import { heroMedia } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.3 } },
 };
 
 const word: Variants = {
-  hidden: { y: "100%" },
-  show: {
-    y: 0,
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-  },
+  hidden: { y: "110%" },
+  show: { y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const fade: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
 };
 
-const titleLine1 = ["Trasformiamo", "i", "brand"];
-const titleLine2 = ["in", "esperienze."];
+const line1 = ["Portiamo", "il", "tuo", "brand"];
+const line2 = ["nel", "cuore", "dello", "sport."];
+
+const stats = [
+  { value: "10+", label: "anni di esperienza" },
+  { value: "100+", label: "clienti sportivi" },
+  { value: "900+", label: "aziende nel network" },
+  { value: "40M", label: "utenti/mese" },
+];
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="grain relative flex min-h-[100svh] items-center overflow-hidden pt-[72px]"
+      className="relative flex min-h-[100svh] items-end overflow-hidden"
     >
-      {/* ====== BACKGROUND IMMERSIVO ======
-          Per un video di sfondo reale, decommentare e inserire un file in /public:
-          <video autoPlay muted loop playsInline poster="/hero-poster.jpg"
-            className="absolute inset-0 h-full w-full object-cover opacity-40">
-            <source src="/hero.mp4" type="video/mp4" />
-          </video>
-      */}
-      <div aria-hidden className="absolute inset-0 -z-10">
-        {/* Base */}
-        <div className="absolute inset-0 bg-bg" />
-        {/* Glow accento */}
-        <div className="absolute -right-[10%] top-[8%] h-[42rem] w-[42rem] rounded-full bg-accent/25 blur-[140px] animate-glow-pulse" />
-        <div className="absolute -left-[12%] bottom-[2%] h-[34rem] w-[34rem] rounded-full bg-accent/10 blur-[130px]" />
-        {/* Griglia sottile */}
-        <div
-          className="absolute inset-0 opacity-[0.18] mask-fade-x"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgb(var(--line)/0.6) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--line)/0.6) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
-          }}
-        />
-        {/* Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_30%,rgb(var(--bg))_92%)]" />
-      </div>
+      {/* Fondo cinematografico
+          Per un video reale: sostituire CinematicImage con un <video> a tutto schermo
+          (poster + sorgente in /public) mantenendo gli overlay sottostanti. */}
+      <CinematicImage
+        src={heroMedia.src}
+        alt={heroMedia.alt}
+        tone={heroMedia.tone}
+        priority
+        sizes="100vw"
+        overlay={false}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-bg via-bg/55 to-bg/20"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-r from-bg/80 via-transparent to-transparent"
+      />
 
-      <div className="container-wide w-full">
-        <div className="max-w-5xl">
-          {/* Occhiello */}
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={fade}
-            className="mb-8 inline-flex items-center gap-3 rounded-full border border-line bg-bg-elevated/50 px-4 py-2 backdrop-blur-sm"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-            </span>
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-fg-muted">
-              Eventi & marketing esperienziale · Rimini, dal 2005
-            </span>
-          </motion.div>
+      <div className="container-wide relative z-10 pb-16 pt-32 sm:pb-20">
+        {/* Occhiello */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fade}
+          className="mb-7 inline-flex items-center gap-3 rounded-full border border-fg/15 bg-bg/30 px-4 py-2 backdrop-blur-md"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          </span>
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-fg/80">
+            Marketing sportivo & sponsorizzazioni · San Marino
+          </span>
+        </motion.div>
 
-          {/* Titolo */}
-          <motion.h1
-            initial="hidden"
-            animate="show"
-            variants={container}
-            className="font-display text-fluid-hero font-semibold leading-[0.95] tracking-tightest"
-          >
-            <span className="block">
-              {titleLine1.map((w, i) => (
-                <span
-                  key={i}
-                  className="mr-[0.25em] inline-flex overflow-hidden align-bottom"
+        {/* Titolo editoriale */}
+        <motion.h1
+          initial="hidden"
+          animate="show"
+          variants={container}
+          className="max-w-5xl text-fluid-hero font-medium leading-[0.98] text-fg"
+        >
+          <span className="block">
+            {line1.map((w, i) => (
+              <span key={i} className="mr-[0.28em] inline-flex overflow-hidden align-bottom">
+                <motion.span variants={word} className="inline-block">
+                  {w}
+                </motion.span>
+              </span>
+            ))}
+          </span>
+          <span className="block">
+            {line2.map((w, i) => (
+              <span key={i} className="mr-[0.28em] inline-flex overflow-hidden align-bottom">
+                <motion.span
+                  variants={word}
+                  className={cn(
+                    "inline-block",
+                    w.startsWith("sport") && "italic text-gradient-accent pr-[0.08em]"
+                  )}
                 >
-                  <motion.span variants={word} className="inline-block">
-                    {w}
-                  </motion.span>
-                </span>
-              ))}
-            </span>
-            <span className="block">
-              {titleLine2.map((w, i) => (
-                <span
-                  key={i}
-                  className="mr-[0.25em] inline-flex overflow-hidden align-bottom"
-                >
-                  <motion.span
-                    variants={word}
-                    className={cn(
-                      "inline-block",
-                      w.startsWith("esperienze") && "text-gradient-accent"
-                    )}
-                  >
-                    {w}
-                  </motion.span>
-                </span>
-              ))}
-            </span>
-          </motion.h1>
+                  {w}
+                </motion.span>
+              </span>
+            ))}
+          </span>
+        </motion.h1>
 
-          {/* Sottotitolo */}
+        {/* Sottotitolo + CTA */}
+        <div className="mt-9 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <motion.p
             initial="hidden"
             animate="show"
             variants={fade}
-            transition={{ delay: 0.5 }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-fg-muted sm:text-xl"
+            transition={{ delay: 0.7 }}
+            className="max-w-xl text-lg leading-relaxed text-fg/85 sm:text-xl"
           >
-            Creiamo tour promozionali, eventi MICE e campagne di marketing
-            esperienziale indimenticabili che fanno crescere le persone e i
-            brand.
+            Da oltre 10 anni progettiamo sponsorizzazioni sportive, tour
+            promozionali ed eventi che connettono le aziende alla passione di
+            milioni di tifosi.
           </motion.p>
 
-          {/* CTA */}
           <motion.div
             initial="hidden"
             animate="show"
             variants={fade}
-            transition={{ delay: 0.65 }}
-            className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
+            transition={{ delay: 0.85 }}
+            className="flex flex-col gap-3 sm:flex-row"
           >
-            <Link href="/#contatti" className={buttonVariants({ size: "lg" })}>
-              Richiedi una proposta
+            <Link href="/contatti" className={buttonVariants({ size: "lg" })}>
+              Richiedi una consulenza
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <Link
-              href="/#progetti"
+              href="/clienti"
               className={buttonVariants({ variant: "secondary", size: "lg" })}
             >
               <Play className="h-4 w-4 fill-current" />
-              Scopri i nostri lavori
+              Scopri i nostri clienti
             </Link>
           </motion.div>
-
-          {/* Prova sociale rapida */}
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={fade}
-            transition={{ delay: 0.8 }}
-            className="mt-14 flex flex-wrap items-center gap-x-10 gap-y-4"
-          >
-            {[
-              { value: "20", label: "anni di esperienza" },
-              { value: "500+", label: "eventi prodotti" },
-              { value: "360°", label: "regia completa" },
-            ].map((stat) => (
-              <div key={stat.label} className="flex items-baseline gap-2.5">
-                <span className="font-display text-2xl font-semibold text-fg">
-                  {stat.value}
-                </span>
-                <span className="text-sm text-fg-muted">{stat.label}</span>
-              </div>
-            ))}
-          </motion.div>
         </div>
+
+        {/* Statistiche */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fade}
+          transition={{ delay: 1 }}
+          className="mt-14 flex flex-wrap items-center gap-x-12 gap-y-5 border-t border-fg/10 pt-8"
+        >
+          {stats.map((s) => (
+            <div key={s.label} className="flex items-baseline gap-2.5">
+              <span className="font-display text-3xl font-medium text-fg">{s.value}</span>
+              <span className="text-sm text-fg/70">{s.label}</span>
+            </div>
+          ))}
+        </motion.div>
       </div>
-
-      {/* Indicatore scroll */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1 }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 lg:block"
-      >
-        <div className="flex h-11 w-7 items-start justify-center rounded-full border border-line p-1.5">
-          <motion.span
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="h-2 w-1 rounded-full bg-accent"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

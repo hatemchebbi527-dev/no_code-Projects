@@ -6,29 +6,29 @@ export type Testimonial = {
 };
 
 /**
- * ⚠️ PLACEHOLDER - DA SOSTITUIRE con testimonianze reali e autorizzate.
- * Raccogliere citazioni verificabili (nome, ruolo, azienda) prima del lancio.
+ * ⚠️ PLACEHOLDER - DA SOSTITUIRE con testimonianze reali e autorizzate
+ * (club, sponsor, atleti). Raccogliere citazioni verificabili prima del lancio.
  */
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Hanno trasformato il nostro lancio in un'esperienza che le persone ancora ricordano. Esecuzione impeccabile dalla strategia all'ultimo dettaglio.",
+      "Hanno trovato lo sponsor giusto leggendo davvero il valore del nostro club. Metodo, costanza e risultati concreti.",
     author: "Nome Cognome",
-    role: "Marketing Director",
-    company: "Brand placeholder",
+    role: "Direttore Marketing",
+    company: "Società sportiva placeholder",
   },
   {
     quote:
-      "Un partner che capisce gli obiettivi di business, non solo l'evento. I numeri parlano da soli: engagement e lead oltre le aspettative.",
+      "Per noi azienda, investire nello sport con 7 Sport Agency ha significato visibilità misurabile e un pubblico davvero in target.",
     author: "Nome Cognome",
-    role: "Head of Communication",
-    company: "Brand placeholder",
+    role: "Brand Manager",
+    company: "Azienda placeholder",
   },
   {
     quote:
-      "Creatività, affidabilità e una macchina organizzativa che non sbaglia un colpo. Il nostro congresso è stato un successo su ogni metrica.",
+      "Un partner che capisce sia il linguaggio dello sport sia quello del business. Affidabili dall'idea all'esecuzione.",
     author: "Nome Cognome",
-    role: "Event Manager",
+    role: "Sponsorship Manager",
     company: "Brand placeholder",
   },
 ];

@@ -15,11 +15,6 @@ export function organizationSchema() {
     legalName: siteConfig.legalName,
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.png`,
-    foundingDate: String(siteConfig.founded),
-    founder: {
-      "@type": "Person",
-      name: siteConfig.founder,
-    },
     description: siteConfig.description,
     email: siteConfig.email,
     telephone: siteConfig.phone,
@@ -83,6 +78,48 @@ export function websiteSchema() {
     description: siteConfig.description,
     inLanguage: siteConfig.lang,
     publisher: { "@id": `${siteConfig.url}/#organization` },
+  };
+}
+
+export function serviceSchema(service: {
+  slug: string;
+  title: string;
+  metaDescription: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    serviceType: service.title,
+    description: service.metaDescription,
+    url: `${siteConfig.url}/servizi/${service.slug}`,
+    provider: { "@id": `${siteConfig.url}/#organization` },
+    areaServed: siteConfig.areaServed,
+  };
+}
+
+export function faqSchema(faq: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: it.url,
+    })),
   };
 }
 

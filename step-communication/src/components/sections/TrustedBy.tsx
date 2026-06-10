@@ -15,7 +15,7 @@ export function TrustedBy() {
     >
       <div className="container-wide">
         <p className="text-center text-xs font-medium uppercase tracking-[0.22em] text-fg-muted">
-          Scelti dai brand che non si accontentano
+          Hanno scelto di lavorare con noi
         </p>
       </div>
 

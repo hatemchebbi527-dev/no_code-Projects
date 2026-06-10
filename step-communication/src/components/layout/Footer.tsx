@@ -25,17 +25,17 @@ export function Footer() {
           <div className="max-w-sm">
             <div className="flex items-center gap-2">
               <span className="font-display text-2xl font-bold tracking-tightest">
-                Step
+                7 Sport
               </span>
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               <span className="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-fg-muted">
-                Communication
+                Agency
               </span>
             </div>
             <p className="mt-5 text-sm leading-relaxed text-fg-muted">
-              {siteConfig.tagline}. Dal {siteConfig.founded} trasformiamo i brand
-              in esperienze indimenticabili. Eventi, MICE e marketing
-              esperienziale da Rimini, per l&apos;Italia e l&apos;Europa.
+              {siteConfig.tagline}. Da {siteConfig.experience} connettiamo i
+              brand alla passione dello sport. Sponsorizzazioni sportive, eventi
+              e tour da San Marino, per l&apos;Italia e l&apos;Europa.
             </p>
 
             {socials.length > 0 && (

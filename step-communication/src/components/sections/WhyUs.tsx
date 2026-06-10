@@ -1,9 +1,9 @@
 import {
-  Lightbulb,
-  Award,
-  Globe2,
+  Target,
+  Users,
+  Radio,
+  Trophy,
   TrendingUp,
-  Gem,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
@@ -17,34 +17,34 @@ type Reason = {
 
 const reasons: Reason[] = [
   {
-    icon: Lightbulb,
-    title: "Creatività senza compromessi",
+    icon: Target,
+    title: "Specializzazione 100% sport",
     description:
-      "Idee non convenzionali che rompono il rumore di fondo e restano impresse nella memoria del pubblico.",
+      "Viviamo di sport ogni giorno: conosciamo dinamiche, pubblico e linguaggio di ogni disciplina.",
   },
   {
-    icon: Award,
-    title: "Eccellenza nell'esecuzione",
+    icon: Users,
+    title: "Un network di 900+ aziende",
     description:
-      "Una macchina organizzativa rodata in vent'anni: ogni dettaglio in scena è progettato e presidiato.",
+      "Un patrimonio di contatti che mettiamo a disposizione per trovare lo sponsor giusto, più in fretta.",
   },
   {
-    icon: Globe2,
-    title: "Copertura nazionale",
+    icon: Radio,
+    title: "40 milioni di utenti al mese",
     description:
-      "Dalla Riviera a tutta Italia: gestiamo eventi multi-tappa con logistica e partner sul territorio.",
+      "Un network di siti dedicati ai tifosi che amplifica la visibilità dei tuoi progetti.",
+  },
+  {
+    icon: Trophy,
+    title: "Esperienza multisport",
+    description:
+      "Oltre 100 progetti nel calcio di Serie A e B, basket, rugby, tennis e motorsport.",
   },
   {
     icon: TrendingUp,
     title: "Risultati misurabili",
     description:
-      "KPI chiari dall'inizio. Engagement, lead e ROI tracciati per dimostrare l'impatto sul business.",
-  },
-  {
-    icon: Gem,
-    title: "Esperienza cliente premium",
-    description:
-      "Un unico partner, una sola regia. Relazione diretta, trasparente e dedicata dall'idea al post-evento.",
+      "Lavoriamo su KPI chiari e monitoriamo costantemente performance e ritorno dell'investimento.",
   },
 ];
 
@@ -53,22 +53,20 @@ export function WhyUs() {
     <section id="perche" className="py-24 sm:py-32 lg:py-40">
       <div className="container-wide">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          {/* Colonna sinistra */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
-              eyebrow="Perché Step Communication"
+              eyebrow="Perché 7 Sport Agency"
               title={
                 <>
-                  Non organizziamo
-                  <br /> eventi. Costruiamo
-                  <br /> <span className="text-gradient-accent">vantaggio competitivo.</span>
+                  Non vendiamo spazi.
+                  <br /> Costruiamo{" "}
+                  <span className="italic text-gradient-accent">valore.</span>
                 </>
               }
-              intro="Dal 2005 aiutiamo i brand a connettersi con le persone attraverso esperienze che generano engagement, visibilità e crescita reale."
+              intro="Da oltre 10 anni colleghiamo le aziende al mondo dello sport con format di sponsorizzazione che generano visibilità, engagement e crescita reale."
             />
           </div>
 
-          {/* Colonna destra */}
           <div className="flex flex-col">
             {reasons.map((reason, i) => {
               const Icon = reason.icon;

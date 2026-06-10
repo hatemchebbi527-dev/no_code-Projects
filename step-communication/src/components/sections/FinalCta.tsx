@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils";
  */
 export function FinalCta() {
   const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
-    "Richiesta di proposta - Step Communication"
+    "Richiesta di consulenza - 7 Sport Agency"
   )}&body=${encodeURIComponent(
-    "Ciao Step Communication,\n\nVorrei ricevere una proposta per il mio progetto.\n\nAzienda:\nTipo di evento:\nDate indicative:\nBudget orientativo:\nObiettivi:\n\nGrazie!"
+    "Ciao 7 Sport Agency,\n\nVorrei ricevere una consulenza per il mio progetto.\n\nAzienda / Club:\nTipo di progetto:\nObiettivi:\nBudget orientativo:\n\nGrazie!"
   )}`;
 
   return (
@@ -43,8 +43,8 @@ export function FinalCta() {
 
         <Reveal delay={0.05}>
           <h2 className="mx-auto mt-6 max-w-4xl text-fluid-h2 font-semibold leading-[1.02] text-gradient">
-            Costruiamo insieme la tua prossima
-            <span className="text-gradient-accent"> esperienza indimenticabile.</span>
+            Il tuo prossimo grande progetto
+            <span className="text-gradient-accent"> sportivo inizia qui.</span>
           </h2>
         </Reveal>
 
@@ -58,7 +58,7 @@ export function FinalCta() {
         <Reveal delay={0.15}>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a href={mailto} className={buttonVariants({ size: "lg" })}>
-              Richiedi una proposta
+              Richiedi una consulenza
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
