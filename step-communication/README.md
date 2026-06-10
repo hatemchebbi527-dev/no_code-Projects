@@ -6,6 +6,8 @@ Site vitrine haut de gamme pour **7 Sport Agency**, agence spécialisée en **ma
 
 > Le dossier s'appelle encore `step-communication/` pour des raisons historiques (7 Sport Agency détient la marque Step Communication). Le contenu et la marque du site sont **7 Sport Agency**.
 
+> 🔧 **À traiter au prochain run (feedback Hatem):** le fond est trop sombre, surtout le **Hero** (effet « noir absolu » avec la photo). Pistes: réduire les overlays sombres du Hero (`src/components/sections/Hero.tsx`, gradients `from-bg via-bg/55` + l'overlay de `CinematicImage`), et/ou éclaircir légèrement `--bg` / le tint des images dans `globals.css` et `CinematicImage.tsx`.
+
 ---
 
 ## Stack technique
