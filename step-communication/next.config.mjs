@@ -5,8 +5,8 @@ const nextConfig = {
   compress: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    // Aggiungere qui i domini esterni delle immagini (es. CDN, Cloudinary).
-    remotePatterns: [],
+    // Foto stock placeholder servite da Unsplash (sostituibili con /public/images).
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
   },
   async headers() {
     return [
