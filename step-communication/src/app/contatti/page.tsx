@@ -63,10 +63,7 @@ export default function ContattiPage() {
           <div className="flex flex-col gap-8">
             <Reveal>
               <div className="space-y-6">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="group flex items-start gap-4"
-                >
+                <div className="flex items-start gap-4">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line text-accent">
                     <Mail className="h-5 w-5" strokeWidth={1.6} />
                   </span>
@@ -74,11 +71,20 @@ export default function ContattiPage() {
                     <span className="block text-xs uppercase tracking-wider text-fg-muted">
                       Email
                     </span>
-                    <span className="text-fg transition-colors group-hover:text-accent">
+                    <a
+                      href={`mailto:${siteConfig.email}`}
+                      className="block text-fg transition-colors hover:text-accent"
+                    >
                       {siteConfig.email}
-                    </span>
+                    </a>
+                    <a
+                      href={`mailto:${siteConfig.emailEvents}`}
+                      className="block text-fg transition-colors hover:text-accent"
+                    >
+                      {siteConfig.emailEvents}
+                    </a>
                   </span>
-                </a>
+                </div>
 
                 <a
                   href={`tel:${siteConfig.phoneHref}`}

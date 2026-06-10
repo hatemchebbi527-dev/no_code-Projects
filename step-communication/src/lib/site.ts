@@ -20,7 +20,8 @@ export const siteConfig = {
   description:
     "7 Sport Agency è l'agenzia specializzata in marketing sportivo e sponsorizzazioni sportive. Da oltre 10 anni progettiamo format di sponsorizzazione, tour promozionali ed eventi che connettono i brand alla passione dello sport.",
   // Contatti
-  email: "info@7sportagency.com", // DA CONFERMARE: email reale
+  email: "commerciale@7sportagency.com", // contatto commerciale (principale)
+  emailEvents: "eventi@7sportagency.com", // contatto eventi
   phone: "+378 0549 904086",
   phoneHref: "+3780549904086",
   address: {

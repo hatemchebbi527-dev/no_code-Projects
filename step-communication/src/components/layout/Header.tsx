@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { mainNav, siteConfig } from "@/lib/site";
 import { buttonVariants } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -41,16 +42,10 @@ export function Header() {
         <Link
           href="/"
           aria-label={`${siteConfig.name} home`}
-          className="group flex items-center gap-2"
+          className="group flex items-center"
           onClick={() => setOpen(false)}
         >
-          <span className="font-display text-lg font-bold tracking-tightest text-fg">
-            7 Sport
-          </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-300 group-hover:scale-125" />
-          <span className="hidden text-[0.7rem] font-medium uppercase tracking-[0.28em] text-fg-muted sm:inline">
-            Agency
-          </span>
+          <Logo className="transition-transform duration-300 group-hover:scale-[1.03]" />
         </Link>
 
         {/* Nav desktop */}

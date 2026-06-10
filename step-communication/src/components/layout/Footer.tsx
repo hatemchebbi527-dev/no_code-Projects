@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, ArrowUpRight } from "lucide-react";
 import { footerNav, siteConfig } from "@/lib/site";
+import { Logo } from "@/components/ui/Logo";
 
 const socials = [
   { icon: Facebook, href: siteConfig.social.facebook, label: "Facebook" },
@@ -23,15 +24,7 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand */}
           <div className="max-w-sm">
-            <div className="flex items-center gap-2">
-              <span className="font-display text-2xl font-bold tracking-tightest">
-                7 Sport
-              </span>
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span className="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-fg-muted">
-                Agency
-              </span>
-            </div>
+            <Logo large />
             <p className="mt-5 text-sm leading-relaxed text-fg-muted">
               {siteConfig.tagline}. Da {siteConfig.experience} connettiamo i
               brand alla passione dello sport. Sponsorizzazioni sportive, eventi
@@ -99,6 +92,12 @@ export function Footer() {
             >
               {siteConfig.email}
               <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+            <a
+              href={`mailto:${siteConfig.emailEvents}`}
+              className="mt-1 block text-sm text-fg-muted transition-colors hover:text-accent"
+            >
+              {siteConfig.emailEvents}
             </a>
           </div>
           <div>
