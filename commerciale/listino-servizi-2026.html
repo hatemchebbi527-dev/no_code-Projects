@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Listino Servizi 2026 — Proposta per 7 Sport Agency</title>
+<style>
+  :root {
+    --ink: #14110d;
+    --muted: #6b6359;
+    --line: #e2dbcf;
+    --cream: #f7f4ef;
+    --brand: #29abe2;
+    --brand-dark: #1c2b33;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: #d9d4cc;
+    line-height: 1.34;
+    font-size: 12px;
+  }
+  .page {
+    width: 210mm;
+    margin: 14px auto;
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,.18);
+    position: relative;
+  }
+  .serif { font-family: Georgia, "Times New Roman", serif; }
+
+  /* Header */
+  header {
+    background: var(--brand-dark);
+    color: #fff;
+    padding: 18px 28px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 4px solid var(--brand);
+  }
+  .logo { display: flex; flex-direction: column; line-height: .9; }
+  .logo .mark { font-weight: 800; font-style: italic; font-size: 26px; letter-spacing: -.5px; }
+  .logo .mark span { color: var(--brand); }
+  .logo .sub { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--brand); margin-top: 4px; }
+  .logo .role { font-size: 10px; color: #b9c4ca; margin-top: 8px; letter-spacing: .5px; }
+  .doc-meta { text-align: right; font-size: 10.5px; color: #b9c4ca; }
+  .doc-meta strong { color: #fff; display: block; font-size: 12px; letter-spacing: 1px; }
+
+  /* Title band */
+  .intro { padding: 15px 28px 6px; }
+  .intro h1 { font-size: 21px; font-weight: 600; letter-spacing: -.4px; }
+  .intro h1 em { color: var(--brand); font-style: italic; }
+  .intro p { color: var(--muted); margin-top: 8px; max-width: 165mm; font-size: 12px; }
+  .prepared {
+    display: inline-block; margin-top: 12px; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--brand); border: 1px solid var(--brand);
+    border-radius: 99px; padding: 4px 12px; font-weight: 600;
+  }
+
+  /* Sections */
+  section { padding: 8px 28px 0; }
+  .sec-title {
+    display: flex; align-items: center; gap: 10px; margin: 10px 0 6px;
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 700;
+  }
+  .sec-title::before { content: ""; width: 22px; height: 2px; background: var(--brand); display: inline-block; }
+
+  table { width: 100%; border-collapse: collapse; }
+  td, th { text-align: left; padding: 5px 0; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { font-size: 9.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+  .svc { font-weight: 600; font-size: 12.5px; }
+  .svc small { display: block; font-weight: 400; color: var(--muted); font-size: 10.5px; margin-top: 1px; line-height: 1.32; }
+  .price { text-align: right; white-space: nowrap; font-weight: 700; font-size: 13px; }
+  .price .mo { display: block; font-weight: 500; color: var(--brand); font-size: 11px; margin-top: 2px; }
+  .col-price { width: 42mm; }
+
+  /* Bundle */
+  .bundle {
+    margin: 12px 28px 0; border: 2px solid var(--brand); border-radius: 14px; overflow: hidden;
+  }
+  .bundle-head { background: var(--brand); color: #06222e; padding: 8px 18px; display:flex; justify-content:space-between; align-items:center; }
+  .bundle-head .tag { font-size: 9.5px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+  .bundle-head .name { font-size: 16px; font-weight: 800; }
+  .bundle-body { padding: 11px 18px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .bundle-body ul { list-style: none; font-size: 12px; }
+  .bundle-body li { padding: 2px 0 2px 18px; position: relative; }
+  .bundle-body li::before { content: "✓"; color: var(--brand); position: absolute; left: 0; font-weight: 700; }
+  .bundle-price { text-align: right; }
+  .bundle-price .old { color: var(--muted); text-decoration: line-through; font-size: 13px; }
+  .bundle-price .new { font-size: 26px; font-weight: 800; color: var(--ink); }
+  .bundle-price .note { font-size: 9.5px; color: var(--muted); }
+
+  /* Two columns */
+  .cols { display: flex; gap: 22px; padding: 0 28px; margin-top: 4px; }
+  .cols > div { flex: 1; }
+  .mini { font-size: 11.5px; }
+  .mini li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; justify-content: space-between; gap: 8px; list-style: none; }
+  .mini li span:last-child { color: var(--muted); white-space: nowrap; }
+
+  .callout {
+    margin: 9px 28px 0; background: var(--cream); border-left: 3px solid var(--brand);
+    padding: 9px 14px; font-size: 10.5px; color: var(--ink); border-radius: 0 8px 8px 0;
+  }
+  .callout strong { color: var(--brand-dark); }
+
+  footer {
+    margin-top: 10px;
+    background: var(--brand-dark); color: #b9c4ca; padding: 10px 28px;
+    display: flex; justify-content: space-between; align-items: center; font-size: 10px;
+  }
+  footer strong { color: #fff; }
+  .notes { padding: 9px 28px 0; font-size: 9.5px; color: var(--muted); }
+  .notes p { margin-top: 2px; }
+
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; width: auto; min-height: auto; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="logo">
+      <span class="mark">Hatem<span>.</span>AI</span>
+      <span class="sub">automation studio</span>
+      <span class="role">Consulenza AI · Automazione n8n · Sviluppo Web</span>
+    </div>
+    <div class="doc-meta">
+      <strong>LISTINO SERVIZI 2026</strong>
+      Proposta commerciale<br />
+      Rimini (IT) · San Marino<br />
+      hatemchebbi527@gmail.com<br />
+      Tel. [il tuo numero]
+    </div>
+  </header>
+
+  <div class="intro">
+    <h1>Portiamo <em>7 Sport Agency</em> nel futuro digitale dello sport.</h1>
+    <p>
+      Una vetrina digitale di alta gamma e un ecosistema di automazioni basate
+      sull'intelligenza artificiale, pensati per far crescere la ricerca sponsor,
+      ridurre il lavoro ripetitivo e moltiplicare i contatti qualificati.
+    </p>
+    <span class="prepared">Preparato per: 7 Sport Agency — Sig. Alessandro Lo Presti</span>
+  </div>
+
+  <section>
+    <div class="sec-title">Presenza digitale</div>
+    <table>
+      <tr>
+        <th>Servizio</th>
+        <th class="col-price" style="text-align:right">Investimento</th>
+      </tr>
+      <tr>
+        <td class="svc">Sito web vetrina premium
+          <small>Design editoriale, doppio tema chiaro/scuro, SEO integrata, multilingua, form intelligente. Già realizzato e navigabile.</small>
+        </td>
+        <td class="price"><span style="color:var(--muted);text-decoration:line-through;font-weight:500;font-size:11px">3.500 €</span><br>1.900 €</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-title">Automazione & Intelligenza Artificiale</div>
+    <table>
+      <tr>
+        <th>Servizio</th>
+        <th class="col-price" style="text-align:right">Investimento</th>
+      </tr>
+      <tr>
+        <td class="svc">Chatbot WhatsApp — qualificazione lead
+          <small>Primo contatto automatico con i prospect, qualificazione, prenotazione appuntamenti e instradamento al commerciale.</small>
+        </td>
+        <td class="price">da 1.500 €<span class="mo">+ 120 €/mese</span></td>
+      </tr>
+      <tr>
+        <td class="svc">Automazione ricerca sponsor (n8n)
+          <small>Individuazione aziende, arricchimento dati, scoring di priorità e primo contatto personalizzato verso il network.</small>
+        </td>
+        <td class="price">da 2.200 €</td>
+      </tr>
+      <tr>
+        <td class="svc">Generazione contenuti con AI
+          <small>Pitch sponsor personalizzati, case study, descrizioni progetto multilingua (IT/EN).</small>
+        </td>
+        <td class="price">da 1.200 €<span class="mo">+ 350 €/mese</span></td>
+      </tr>
+      <tr>
+        <td class="svc">CRM & workflow automatizzati
+          <small>Pipeline prospect → lead → cliente, sincronizzazioni, promemoria scadenze contratti.</small>
+        </td>
+        <td class="price">da 2.800 €</td>
+      </tr>
+      <tr>
+        <td class="svc">Report automatici mensili
+          <small>Reportistica su contatti, partnership e risultati, generata e inviata in automatico.</small>
+        </td>
+        <td class="price">da 900 €</td>
+      </tr>
+      <tr>
+        <td class="svc">Audit AI dei processi <em style="color:var(--brand);font-style:normal">· consigliato per iniziare</em>
+          <small>Analisi dei flussi di lavoro e roadmap di automazione. Interamente scalabile dal primo progetto firmato.</small>
+        </td>
+        <td class="price">700 €</td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="bundle">
+    <div class="bundle-head">
+      <span class="name">Pacchetto Avvio Digitale</span>
+      <span class="tag">Offerta consigliata</span>
+    </div>
+    <div class="bundle-body">
+      <ul>
+        <li>Sito web vetrina premium</li>
+        <li>Chatbot WhatsApp per la qualificazione lead</li>
+        <li>Automazione della ricerca sponsor (n8n)</li>
+      </ul>
+      <div class="bundle-price">
+        <div class="old">valore 5.600 €</div>
+        <div class="new">3.900 €</div>
+        <div class="note">una tantum · + canone mensile servizi attivi</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="sec-title">Canone di gestione</div>
+      <ul class="mini">
+        <li><span>Manutenzione & evoluzione continua</span><span>da 500 €/mese</span></li>
+        <li><span>Monitoraggio workflow & ottimizzazione</span><span>incluso</span></li>
+        <li><span>Supporto prioritario</span><span>incluso</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="sec-title">Costi di terze parti</div>
+      <ul class="mini">
+        <li><span>Hosting n8n (server)</span><span>5–50 €/mese</span></li>
+        <li><span>API AI (Claude/OpenAI)</span><span>a consumo</span></li>
+        <li><span>WhatsApp Business API</span><span>0,03–0,09 €/conv.</span></li>
+        <li><span>Hosting sito web</span><span>0–30 €/mese</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Offerta "Cliente Fondatore".</strong> I prezzi indicati sono riservati a 7 Sport Agency
+    come primo cliente di riferimento, in cambio di una testimonianza e dell'autorizzazione a utilizzare
+    il progetto come case study. <strong>Novità WhatsApp:</strong> da febbraio 2026 Meta applica in Italia
+    un costo dedicato ai chatbot AI (circa 0,0572 €/messaggio): incluso nei costi di terze parti e gestito con trasparenza.
+  </div>
+
+  <div class="notes">
+    <p>· Importi al netto di eventuale IVA/imposte di legge. I costi di terze parti sono a carico del cliente e fatturati a parte/a consumo.</p>
+    <p>· Offerta valida 30 giorni dalla data di emissione. Tempi e modalità di pagamento da concordare (acconto all'avvio, saldo alla consegna).</p>
+  </div>
+
+  <footer>
+    <span>Hatem Chebbi · Consulenza AI &amp; Automazione</span>
+    <span><strong>hatemchebbi527@gmail.com</strong> · Rimini (IT)</span>
+  </footer>
+
+</div>
+</body>
+</html>
