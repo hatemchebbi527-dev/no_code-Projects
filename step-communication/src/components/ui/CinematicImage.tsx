@@ -61,8 +61,10 @@ export function CinematicImage({
       )}
 
       <div className="absolute inset-0 grain" />
+      {/* Velo scuro locale (indipendente dal tema): mantiene le foto come
+          vignette cinematografiche leggibili anche sul sito chiaro. */}
       {overlay && (
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/35 to-bg/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/15" />
       )}
     </div>
   );

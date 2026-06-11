@@ -3,19 +3,20 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   Design tokens - 7 Sport Agency (direzione cinematografica)
-   Nero caldo profondo, bianco caldo, accento ciano del brand (logo 7 Sport).
+   Design tokens - 7 Sport Agency (direzione editoriale chiara)
+   Avorio caldo, antracite caldo, accento ciano del brand (logo 7 Sport).
+   Le immagini restano vignette cinematografiche (overlay scuro locale).
    ========================================================================== */
 @layer base {
   :root {
-    --bg: 11 10 9; /* #0B0A09 */
-    --bg-subtle: 19 18 16; /* #131210 */
-    --bg-elevated: 26 24 21; /* #1A1815 */
-    --fg: 246 243 238; /* #F6F3EE */
-    --fg-muted: 168 162 154; /* #A8A29A */
-    --line: 42 39 35; /* #2A2723 */
+    --bg: 247 244 239; /* #F7F4EF avorio caldo */
+    --bg-subtle: 239 235 227; /* #EFEBE3 superfici morbide */
+    --bg-elevated: 255 255 255; /* #FFFFFF carte in rilievo */
+    --fg: 26 23 18; /* #1A1712 antracite caldo */
+    --fg-muted: 110 102 91; /* #6E665B */
+    --line: 226 219 207; /* #E2DBCF filo caldo */
     --accent: 41 171 226; /* #29ABE2 - ciano del brand (logo 7 Sport) */
-    --accent-foreground: 11 10 9;
+    --accent-foreground: 11 10 9; /* testo scuro sui bottoni ciano (leggibilità) */
     --selection: 41 171 226;
   }
 

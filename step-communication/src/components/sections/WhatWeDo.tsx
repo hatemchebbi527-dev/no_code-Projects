@@ -37,23 +37,23 @@ export function WhatWeDo() {
                     zoom
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-bg/40 transition-colors duration-500 group-hover:bg-bg/20" />
+                  <div className="absolute inset-0 bg-black/30 transition-colors duration-500 group-hover:bg-black/15" />
 
-                  <span className="absolute right-7 top-7 z-10 font-display text-sm text-fg/50">
+                  <span className="absolute right-7 top-7 z-10 font-display text-sm text-white/55">
                     {service.number}
                   </span>
 
                   <div className="relative z-10">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-fg/15 bg-bg/30 text-accent backdrop-blur-sm">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-accent backdrop-blur-sm">
                       <Icon className="h-5 w-5" strokeWidth={1.6} />
                     </div>
-                    <h3 className="mt-5 font-display text-2xl font-medium text-fg">
+                    <h3 className="mt-5 font-display text-2xl font-medium text-white">
                       {service.title}
                     </h3>
-                    <p className="mt-2.5 text-[0.95rem] leading-relaxed text-fg/75">
+                    <p className="mt-2.5 text-[0.95rem] leading-relaxed text-white/75">
                       {service.short}
                     </p>
-                    <div className="mt-5 flex items-center gap-2 text-sm font-medium text-fg/80 transition-colors duration-300 group-hover:text-accent">
+                    <div className="mt-5 flex items-center gap-2 text-sm font-medium text-white/85 transition-colors duration-300 group-hover:text-accent">
                       Scopri di più
                       <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>

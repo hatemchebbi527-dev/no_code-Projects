@@ -98,27 +98,27 @@ export default function ClientiPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="relative z-10">
-                    <span className="rounded-full border border-fg/15 bg-bg/40 px-3 py-1 text-xs font-medium text-fg backdrop-blur-md">
+                    <span className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
                       {project.category}
                     </span>
                   </div>
                   <div className="relative z-10">
-                    <div className="flex items-center gap-2.5 text-xs text-fg/70">
+                    <div className="flex items-center gap-2.5 text-xs text-white/70">
                       <span>{project.year}</span>
-                      <span className="h-1 w-1 rounded-full bg-fg/40" />
+                      <span className="h-1 w-1 rounded-full bg-white/40" />
                       <span>{project.location}</span>
                     </div>
-                    <h3 className="mt-2 font-display text-2xl font-medium leading-tight text-fg">
+                    <h3 className="mt-2 font-display text-2xl font-medium leading-tight text-white">
                       {project.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-fg/75">
+                    <p className="mt-2 text-sm leading-relaxed text-white/75">
                       {project.summary}
                     </p>
-                    <div className="mt-4 flex items-baseline gap-2 border-t border-fg/15 pt-4">
+                    <div className="mt-4 flex items-baseline gap-2 border-t border-white/20 pt-4">
                       <span className="font-display text-3xl font-medium text-accent">
                         {project.metric.value}
                       </span>
-                      <span className="text-sm text-fg/70">
+                      <span className="text-sm text-white/70">
                         {project.metric.label}
                       </span>
                     </div>

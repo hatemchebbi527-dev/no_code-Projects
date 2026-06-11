@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Design system Step Communication
- * Palette dark-first: nero profondo, bianco puro, arancio elettrico come accento.
+ * Design system 7 Sport Agency
+ * Palette editoriale chiara: avorio caldo, antracite caldo, ciano del brand.
  * I colori usano canali RGB in CSS variables (vedi globals.css) per supportare
  * i modificatori di opacità Tailwind (es. bg-accent/50).
  */
