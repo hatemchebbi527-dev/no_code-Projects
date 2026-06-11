@@ -29,9 +29,10 @@ export const img = (id: string, w = 1600) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`;
 
 export const heroMedia = {
-  src: img("1431324155629-1a6deb1dec8d", 2000),
-  alt: "Stadio gremito di tifosi durante un evento sportivo",
-  tone: "ember" as Tone,
+  // Majorettes in arena - sostituire con la foto reale del cliente: src: "/images/hero.jpg"
+  src: img("1546519638-68e109498ffc", 2400),
+  alt: "Animazione di majorettes in arena durante un evento sportivo",
+  tone: "crimson" as Tone,
 };
 
 export const ctaMedia = {
