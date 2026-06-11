@@ -52,11 +52,11 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-bg via-bg/55 to-bg/20"
+        className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/35 to-transparent"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-bg/80 via-transparent to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-bg/40 via-transparent to-transparent"
       />
 
       <div className="container-wide relative z-10 pb-16 pt-32 sm:pb-20">
