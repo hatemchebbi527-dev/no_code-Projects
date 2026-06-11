@@ -88,8 +88,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0B0A09",
-  colorScheme: "dark",
+  themeColor: "#F7F4EF",
 };
 
 export default function RootLayout({
@@ -100,6 +99,12 @@ export default function RootLayout({
   return (
     <html lang={siteConfig.lang} className={`${display.variable} ${sans.variable}`}>
       <head>
+        {/* Anti-flash: ripristina il tema scelto prima del render */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem('7sport-theme');if(t==='dark')document.documentElement.dataset.theme='dark';})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

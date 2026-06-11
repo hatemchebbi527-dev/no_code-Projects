@@ -16,8 +16,18 @@
     --fg-muted: 110 102 91; /* #6E665B */
     --line: 226 219 207; /* #E2DBCF filo caldo */
     --accent: 41 171 226; /* #29ABE2 - ciano del brand (logo 7 Sport) */
-    --accent-foreground: 11 10 9; /* testo scuro sui bottoni ciano (leggibilità) */
+    --accent-foreground: 11 10 9;
     --selection: 41 171 226;
+  }
+
+  /* Tema scuro cinematografico (attivato via data-theme="dark" su <html>) */
+  [data-theme="dark"] {
+    --bg: 11 10 9; /* #0B0A09 nero caldo profondo */
+    --bg-subtle: 19 18 16; /* #131210 */
+    --bg-elevated: 26 24 21; /* #1A1815 */
+    --fg: 246 243 238; /* #F6F3EE bianco caldo */
+    --fg-muted: 168 162 154; /* #A8A29A */
+    --line: 42 39 35; /* #2A2723 */
   }
 
   * {
