@@ -54,7 +54,7 @@ Liste des projets ou chantiers actifs :
 
 - Formation Claude Code en cours (apprentissage de l'outil pour construire des applications IA)
 - Construction d'automatisations sur n8n (workflows et automatisations pour futurs clients)
-- **Workflow n8n de publication automatique sur les réseaux sociaux** : pipeline Google Sheets → scraping → résumé Claude → image gpt-image-1 → publication Facebook / Instagram / TikTok. Pipeline complet et fonctionnel jusqu'à la publication Facebook AVEC image (page Digital Solutions). Instagram et TikTok restent à configurer. État détaillé dans `context/import/workflow-n8n-reseaux-sociaux.md`
+- **Workflow n8n de publication automatique sur les réseaux sociaux** : pipeline Google Sheets → scraping → résumé Claude → image gpt-image-1 → publication Facebook / Instagram / TikTok. Pipeline complet et fonctionnel : publication automatique sur Facebook ET Instagram (image + texte + hashtags) à partir d'un lien d'article. Seul TikTok reste à configurer. État détaillé dans `context/import/workflow-n8n-reseaux-sociaux.md`
 - Développement de sites web et applications simples pour signer les premiers clients
 
 ---

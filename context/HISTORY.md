@@ -7,6 +7,20 @@
 
 ---
 
+## 2026-06-12
+
+### Instagram fonctionnel : le workflow publie sur Facebook ET Instagram
+- Le workflow publie maintenant automatiquement sur Facebook ET Instagram (image + légende + hashtags) à partir d'un simple lien d'article
+- Compte Instagram Business `@digitalsolutions.it` créé et lié à la page Digital Solutions (ID Instagram `17841416594987462`)
+- Liaison faite via Business Settings, DEPUIS la page (pas depuis le compte IG). Ensuite `GET /{page-id}?fields=instagram_business_account` remonte bien l'id
+- Publication Instagram en 2 nœuds : IG Créer média (POST `/media`) puis IG Publier (POST `/media_publish`)
+- Piège majeur résolu : le caption partait vide en body Form-Urlencoded (à cause des emojis, accents et `#`). Solution = passer `image_url` et `caption` en **Query Parameters** (n8n les encode correctement)
+- Autres pièges traités : token de page à recoller proprement (Bad signature #190), bien étendre le user token avant d'extraire le token de page (sinon 1h au lieu de permanent), références `$json` vs `$('Nom').first()`, et toujours tester en exécution complète (pas "Execute step")
+- Reste à faire : TikTok uniquement (compte dev + génération vidéo)
+- Détails techniques complets dans `context/import/workflow-n8n-reseaux-sociaux.md`
+
+---
+
 ## 2026-06-10
 
 ### Workflow n8n complet et fonctionnel (publication Facebook avec image)

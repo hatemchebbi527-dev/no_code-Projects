@@ -1,7 +1,7 @@
 # Workflow n8n : Publication automatique sur les réseaux sociaux
 
 > État détaillé du projet. Fichier de référence pour reprendre le travail d'une session à l'autre.
-> Dernière mise à jour : 2026-06-10
+> Dernière mise à jour : 2026-06-12
 
 ---
 
@@ -20,12 +20,11 @@ Google Sheets Trigger
   → Code in JavaScript (parse JSON)
   → Générer l'image (HTTP, gpt-image-1)
   → Upload ImgBB (HTTP, héberge l'image → URL publique)
-  → Facebook (HTTP, POST /photos)
+  → [Facebook : HTTP POST /photos]
+  → [IG Créer média : HTTP POST /media] → [IG Publier : HTTP POST /media_publish]
 ```
 
-Chaîne LINÉAIRE pour l'instant. Instagram et TikTok seront ajoutés en parallèle après Upload ImgBB (ils réutiliseront la même URL d'image).
-
-Note : le nœud HTML Extract du tout début a été SUPPRIMÉ (Jina renvoie déjà du markdown propre, pas du HTML à parser).
+Facebook et Instagram tournent en parallèle après Upload ImgBB. **TikTok reste à ajouter.**
 
 ---
 
@@ -34,95 +33,77 @@ Note : le nœud HTML Extract du tout début a été SUPPRIMÉ (Jina renvoie déj
 ### 1. Google Sheets Trigger — FONCTIONNEL
 - Document : "Système IA réseaux Sociaux" (ID `1HplJPDzdgulmxrrlMlTRFaeAJlc4c76Pv6dPyyYLtuI`), Feuille 1
 - Événement : Row Added, poll toutes les minutes
-- **Colonne surveillée : `Nouveaux Liens`** (contient l'URL de l'article)
+- Colonne surveillée : `Nouveaux Liens` (contient l'URL de l'article)
 
 ### 2. Scraping de l'article (HTTP Request) — FONCTIONNEL
-- Method : GET
-- URL : `https://r.jina.ai/{{ $json['Nouveaux Liens'] }}`
-- Response Format : Text
-- **Jina Reader** rend le JavaScript côté serveur et renvoie le markdown propre dans le champ `data`. Contourne les protections type Cloudflare (testé OK sur Sortlist).
+- GET `https://r.jina.ai/{{ $json['Nouveaux Liens'] }}`, Response Format Text
+- Jina Reader rend le JS et renvoie le markdown propre dans `data`. Contourne Cloudflare.
 
 ### 3. Message a model (Anthropic) — FONCTIONNEL
-- Nœud natif n8n `@n8n/n8n-nodes-langchain.anthropic`
-- Modèle : `claude-sonnet-4-6`
-- Champ source de l'article : `{{ $json.data }}`
-- Option `maxTokens` : 2000 (évite la troncature du JSON)
-- Prompt renforcé (voir plus bas) : JSON strict, pas de retours à la ligne dans les valeurs
+- Modèle `claude-sonnet-4-6`, champ source `{{ $json.data }}`, maxTokens 2000
+- Prompt renforcé (JSON strict, valeurs sur une ligne) — voir plus bas
 
 ### 4. Code in JavaScript — FONCTIONNEL
-- Parsing robuste (retire les backticks, isole du premier `{` au dernier `}`) :
-```javascript
-let text = $input.item.json.content[0].text.trim();
-text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
-const start = text.indexOf('{');
-const end = text.lastIndexOf('}');
-if (start !== -1 && end !== -1) text = text.slice(start, end + 1);
-return [{ json: JSON.parse(text) }];
-```
+- Parsing robuste (retire backticks, isole du premier `{` au dernier `}`)
 - Output : `{ resume, facebook, instagram, tiktok, image_prompt }`
 
-### 5. Générer l'image (HTTP Request, gpt-image-1) — FONCTIONNEL
-- Method : POST
-- URL : `https://api.openai.com/v1/images/generations`
-- Auth : Header Auth, `Authorization` = `Bearer <CLE_OPENAI>`
-- Body : Content Type JSON, "Using Fields Below" (laisse n8n construire le JSON, pas de souci d'échappement) :
-  - `model` = `gpt-image-1`
-  - `prompt` = `{{ $json.image_prompt }}`
-  - `size` = `1024x1024`
-- Sortie : image en base64 dans `data[0].b64_json`
+### 5. Générer l'image (HTTP, gpt-image-1) — FONCTIONNEL
+- POST `https://api.openai.com/v1/images/generations`, Header Auth `Bearer <CLE_OPENAI>`
+- Body JSON via Fields : `model` = gpt-image-1, `prompt` = `{{ $json.image_prompt }}`, `size` = 1024x1024
+- Sortie : base64 dans `data[0].b64_json`
 
-### 6. Upload ImgBB (HTTP Request) — FONCTIONNEL
-- Method : POST
-- URL : `https://api.imgbb.com/1/upload?key=<CLE_IMGBB>`
-- Auth : None (la clé est dans l'URL)
-- Body : Form-Urlencoded, paramètre `image` = `{{ $json.data[0].b64_json }}`
-- Sortie : URL publique dans `data.url` (type `https://i.ibb.co/xxxx/image.png`)
-- Choix d'ImgBB plutôt qu'Imgur : le formulaire `api.imgur.com/oauth2/addclient` d'Imgur redirige en boucle vers l'accueil (bug connu). ImgBB = clé API en un clic.
+### 6. Upload ImgBB (HTTP) — FONCTIONNEL
+- POST `https://api.imgbb.com/1/upload?key=<CLE_IMGBB>`, Auth None
+- Body Form-Urlencoded : `image` = `{{ $json.data[0].b64_json }}`
+- Sortie : URL publique dans `data.url`
 
-### 7. Facebook (HTTP Request) — FONCTIONNEL, post avec image validé
-- Page cible : **Digital Solutions** — ID `1187679151092484`
-- Method : POST
-- URL : `https://graph.facebook.com/v25.0/1187679151092484/photos`
-- Auth : **Query Auth** (credential "Facebook Digital Solutions"), paramètre `access_token` = le **token de page permanent**
-- Body : Form-Urlencoded
-  - `url` = `{{ $json.data.url }}` (URL ImgBB de l'image)
-  - `caption` = `{{ $('Code in JavaScript').item.json.facebook }}`
-- Note : sur `/photos`, le texte s'appelle `caption` (PAS `message` comme sur `/feed`)
-- Publication avec image testée et validée sur Digital Solutions
+### 7. Facebook (HTTP) — FONCTIONNEL, post avec image
+- Page Digital Solutions, ID `1187679151092484`
+- POST `https://graph.facebook.com/v25.0/1187679151092484/photos`
+- Auth : Query Auth (credential "Facebook Digital Solutions" = token de page permanent)
+- Body Form-Urlencoded : `url` = `{{ $json.data.url }}`, `caption` = `{{ $('Code in JavaScript').first().json.facebook }}`
+- Note : sur `/photos`, le texte s'appelle `caption` (pas `message`)
 
-### 8. Instagram — NON CONFIGURÉ (prochaine étape)
-- Permissions déjà accordées : `instagram_basic`, `instagram_content_publish`, `instagram_manage_comments`
-- Bloqueur : le compte Instagram doit être connecté à une page Facebook en tant que compte Business
-- L'API Instagram nécessite 2 appels :
-  1. POST `/{ig-user-id}/media` (créer le container avec `image_url` + `caption`)
-  2. POST `/{ig-user-id}/media_publish` (publier avec `creation_id`)
-- Bonne nouvelle : l'URL ImgBB du nœud Upload est exactement ce qu'attend le champ `image_url`. Le gros prérequis (hébergement) est donc déjà résolu.
+### 8. Instagram — FONCTIONNEL (2 nœuds)
+- **Compte Instagram Business `@digitalsolutions.it`, ID Instagram : `17841416594987462`**, lié à la page Digital Solutions
+- Token : le MÊME token de page que Facebook (credential Query Auth partagée). Il porte `instagram_content_publish`.
 
-### 9. TikTok — NON CONFIGURÉ
+**8a. IG Créer média (crée le container)**
+- POST `https://graph.facebook.com/v25.0/17841416594987462/media`
+- Auth : Query Auth (credential "Facebook Digital Solutions")
+- **Send Query Parameters : ON** (PAS le body, voir piège ci-dessous) :
+  - `image_url` = `{{ $json.data.url }}`
+  - `caption` = `{{ $('Code in JavaScript').first().json.instagram }}`
+- Send Body : OFF
+- Sortie : `id` = le `creation_id`
+
+**8b. IG Publier (publie le container)**
+- POST `https://graph.facebook.com/v25.0/17841416594987462/media_publish`
+- Auth : Query Auth (même credential)
+- Paramètre `creation_id` = `{{ $json.id }}`
+- Sortie : `id` du post publié
+- Si erreur "media not ready" : insérer un nœud Wait de 5 s entre 8a et 8b
+
+### 9. TikTok — NON CONFIGURÉ (prochaine et dernière étape)
 - Nécessite un compte développeur TikTok séparé (developers.tiktok.com)
 - API : Content Posting API — `https://open.tiktokapis.com/v2/post/publish/video/init/`
 - TikTok exige une vraie vidéo (pas d'image statique)
-- Piste : convertir image + texte en vidéo courte via Creatomate API ou json2video
-
----
-
-## Token Facebook permanent (rappel, RÉSOLU)
-
-- Page cible : Digital Solutions `1187679151092484`, token de page **permanent** (Expiration "Jamais"), sans App Review
-- Méthode : générer un user token avec les permissions `pages_*` → l'étendre en longue durée (Access Token Tool → Extend) → `GET /{page-id}?fields=access_token` → vérifier "Jamais" dans le debugger
-- Piège : `GET /me/accounts` ne liste PAS les pages détenues par un Business Manager (seule Vappro remontait). D'où l'appel direct sur l'ID de la page.
-- Piège : bien utiliser le token de **PAGE** (réponse du GET), pas le token **UTILISATEUR** (champ en haut à droite de Graph API Explorer). Sinon erreur `#200`. Le debugger affiche "Type: Page" pour le bon.
+- Piste : convertir image + texte (champ `tiktok` du Code) en vidéo courte via Creatomate ou json2video
 
 ---
 
 ## Pièges rencontrés et résolus (mémo)
 
-- **Cloudflare** bloque le scraping HTTP simple (403 "Just a moment") → Jina Reader (`r.jina.ai/`) contourne.
-- **HTML Extract vide** → normal avec Jina (markdown, pas de HTML). Nœud supprimé.
-- **JSON Claude invalide** ("Unterminated string") → retours à la ligne dans les valeurs + troncature. Réglé par prompt strict + maxTokens 2000 + Code robuste.
-- **Facebook "Cannot parse access token" (190)** → token vide/mal transmis ou `access_token=` résiduel dans l'URL. Réglé par Query Auth propre.
-- **Facebook "#200 requires page token"** → on utilisait le token user au lieu du token de page.
+- **Cloudflare** bloque le scraping HTTP simple → Jina Reader (`r.jina.ai/`) contourne.
+- **HTML Extract vide** → normal avec Jina (markdown). Nœud supprimé.
+- **JSON Claude invalide** → prompt strict + maxTokens 2000 + Code robuste.
 - **Imgur addclient** redirige en boucle → basculé sur ImgBB.
+- **Token Facebook permanent** : générer user token → l'ÉTENDRE en longue durée (Access Token Tool → Extend) → `GET /{page-id}?fields=access_token` → vérifier "Expire : Jamais" dans le debugger. Si on saute l'extension, le token de page ne dure qu'1h.
+- **FB "Bad signature" (#190)** → token mal recollé dans la credential (espace, `Bearer` en trop, ou troncature). Recoller un token de page frais et propre.
+- **FB "#200 requires page token"** → on utilisait le token user au lieu du token de page.
+- **Liaison Instagram** : `instagram_business_account` reste absent tant que le compte IG n'est pas lié à la PAGE. La liaison se fait DEPUIS la page (Business Settings → Comptes → Pages → Digital Solutions, ou la modale "Ajout de ce profil Instagram"), PAS depuis le compte IG (son "Connecter les éléments" ne propose que les comptes publicitaires).
+- **Caption Instagram vide** → en body Form-Urlencoded, n8n avale les caractères spéciaux du caption (emojis, accents, `#`). SOLUTION : passer `image_url` et `caption` en **Query Parameters** (n8n les encode proprement). Même logique pour `creation_id`.
+- **Références n8n** : `{{ $json.x }}` lit le nœud juste avant (fiable) ; `{{ $('Nom').first().json.x }}` va chercher un nœud lointain (utiliser `.first()`, pas `.item`, pour éviter les soucis d'appariement). Et toujours tester via "Test workflow" (exécution complète), pas "Execute step".
 
 ---
 
@@ -130,13 +111,14 @@ return [{ json: JSON.parse(text) }];
 
 - Digital Solutions — ID `1187679151092484` (PAGE CIBLE, dans un Business Manager)
 - AI Freelancer — ID `876702972204380`
-- Vappro — ID `101613472805117` (seule remontée par `/me/accounts`)
+- Vappro — ID `101613472805117`
 - VAPRO — ID `220179372620386`
 
 ## Informations Meta / Facebook
 
 - App : "Système IA Création de Contenu", ID `1049561134074981`, mode Live, produit "Facebook Login for Business"
 - Business Manager : "Digital Solutions"
+- Compte Instagram : `@digitalsolutions.it`, ID `17841416594987462`
 - Permissions accordées : `pages_show_list`, `pages_read_engagement`, `pages_manage_posts`, `instagram_basic`, `instagram_content_publish`, `instagram_manage_comments`
 
 ---
@@ -167,11 +149,11 @@ Règles STRICTES :
 ## Prochaines étapes
 
 1. ~~Token FB permanent~~ — FAIT
-2. ~~Image Facebook~~ — FAIT (gpt-image-1 → ImgBB → /photos, post avec image validé)
-3. **Instagram** : connecter le compte Business à une page FB, puis 2 nœuds HTTP (media + media_publish), en réutilisant l'URL ImgBB pour `image_url`
-4. **TikTok** : compte développeur + génération vidéo (Creatomate / json2video)
+2. ~~Image Facebook~~ — FAIT
+3. ~~Instagram~~ — FAIT (image + légende + hashtags publiés)
+4. **TikTok** : compte développeur + génération vidéo (Creatomate / json2video) à partir du champ `tiktok` et de l'image
 
-**Reste à faire, ordre conseillé** : Instagram → TikTok.
+**Reste à faire : TikTok uniquement.**
 
 ---
 
@@ -179,7 +161,7 @@ Règles STRICTES :
 
 - n8n : v2.4.4 (Self Hosted)
 - Graph API : v25.0
-- OpenAI : `gpt-image-1` (ne renvoie que du base64, d'où l'hébergement ImgBB)
+- OpenAI : `gpt-image-1` (ne renvoie que du base64, d'où ImgBB)
 - Hébergement image : ImgBB (clé API en query)
 - Scraping : Jina Reader (`r.jina.ai`)
 - Claude : nœud natif n8n "Message a model", modèle `claude-sonnet-4-6`
