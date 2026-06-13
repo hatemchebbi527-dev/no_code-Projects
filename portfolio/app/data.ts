@@ -182,7 +182,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "Direttore delle operazioni · Retail",
     org: "Dubai, EAU",
-    period: "Esperienza precedente",
+    period: "2013 - 2019",
     points: [
       "Gestione delle operazioni quotidiane e delle procedure operative nel settore retail.",
       "Ottimizzazione dei processi e coordinamento dei team: una conoscenza diretta del business che oggi guida le mie automazioni.",
