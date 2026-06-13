@@ -180,6 +180,15 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
+    role: "Sviluppatore web full-stack · Freelance",
+    org: "Formazione full-stack PHP e progetti freelance",
+    period: "2019 - 2024",
+    points: [
+      "Formazione in sviluppo web full-stack (PHP).",
+      "Sviluppo di siti web per clienti in freelance.",
+    ],
+  },
+  {
     role: "Direttore delle operazioni · Retail",
     org: "Dubai, EAU",
     period: "2013 - 2019",
