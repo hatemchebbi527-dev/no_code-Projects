@@ -179,6 +179,15 @@ export const experience: ExperienceItem[] = [
       "Sviluppo di assistenti IA e integrazioni (OpenAI, WhatsApp, Google Workspace).",
     ],
   },
+  {
+    role: "Direttore delle operazioni · Retail",
+    org: "Dubai, EAU",
+    period: "Esperienza precedente",
+    points: [
+      "Gestione delle operazioni quotidiane e delle procedure operative nel settore retail.",
+      "Ottimizzazione dei processi e coordinamento dei team: una conoscenza diretta del business che oggi guida le mie automazioni.",
+    ],
+  },
 ];
 
 export type Achievement = {
