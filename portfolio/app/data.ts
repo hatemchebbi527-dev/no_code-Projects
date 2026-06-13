@@ -179,15 +179,6 @@ export const experience: ExperienceItem[] = [
       "Sviluppo di assistenti IA e integrazioni (OpenAI, WhatsApp, Google Workspace).",
     ],
   },
-  {
-    role: "Receptionist notturno",
-    org: "Hotel · Rimini",
-    period: "Presente",
-    points: [
-      "Gestione dell'accoglienza e delle operazioni notturne.",
-      "Formazione continua in IA e automazione durante i turni.",
-    ],
-  },
 ];
 
 export type Achievement = {

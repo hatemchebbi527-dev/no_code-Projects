@@ -46,12 +46,6 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="ml-2 rounded-md border border-border bg-surface px-3 py-1.5 font-mono text-sm transition-colors hover:border-accent/40 hover:bg-surface-2"
-          >
-            Contattami
-          </a>
         </div>
 
         <button
