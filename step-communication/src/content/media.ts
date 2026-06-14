@@ -29,10 +29,11 @@ export const img = (id: string, w = 1600) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`;
 
 export const heroMedia = {
-  // Majorettes in arena - sostituire con la foto reale del cliente: src: "/images/hero.jpg"
-  src: img("1546519638-68e109498ffc", 2400),
-  alt: "Animazione di majorettes in arena durante un evento sportivo",
-  tone: "crimson" as Tone,
+  // Foto reale: stadio gremito di pubblico durante un grande evento sportivo.
+  // File locale in /public/images/hero.jpg (nessuna dipendenza esterna).
+  src: "/images/hero.jpg",
+  alt: "Stadio gremito di pubblico durante un grande evento sportivo",
+  tone: "night" as Tone,
 };
 
 export const ctaMedia = {
