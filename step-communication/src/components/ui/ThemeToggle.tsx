@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function ThemeToggle({ className }: { className?: string }) {
+export function ThemeToggle({
+  className,
+  onDark = false,
+}: {
+  className?: string;
+  onDark?: boolean;
+}) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -30,7 +36,10 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label={dark ? "Passa al tema chiaro" : "Passa al tema scuro"}
       title={dark ? "Tema chiaro" : "Tema scuro"}
       className={cn(
-        "flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg-muted transition-colors duration-300 hover:border-fg/30 hover:text-fg",
+        "flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-300",
+        onDark
+          ? "border-white/30 text-white/90 hover:border-white/60 hover:text-white"
+          : "border-line text-fg-muted hover:border-fg/30 hover:text-fg",
         className
       )}
     >

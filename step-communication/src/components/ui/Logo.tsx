@@ -10,9 +10,11 @@ const BRAND = "#29ABE2"; // ciano del logo (approssimazione)
 export function Logo({
   className,
   large = false,
+  onDark = false,
 }: {
   className?: string;
   large?: boolean;
+  onDark?: boolean;
 }) {
   return (
     <span
@@ -21,7 +23,8 @@ export function Logo({
     >
       <span
         className={cn(
-          "font-sans font-extrabold italic tracking-tight text-fg",
+          "font-sans font-extrabold italic tracking-tight",
+          onDark ? "text-white" : "text-fg",
           large ? "text-[1.7rem]" : "text-[1.3rem]"
         )}
       >

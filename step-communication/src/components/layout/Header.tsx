@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { mainNav, siteConfig } from "@/lib/site";
@@ -13,6 +14,12 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Sulla home l'header trasparente è sopra l'hero scuro a tutta pagina:
+  // i link devono restare chiari finché non si scrolla. Sulle pagine interne
+  // (sfondo chiaro) e dopo lo scroll si usa il colore adattivo del tema.
+  const onDarkHero = pathname === "/" && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -38,7 +45,16 @@ export function Header() {
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <div className="container-wide flex h-[72px] items-center justify-between">
+      {/* Velo scuro in cima alla home: garantisce la leggibilità degli elementi
+          chiari dell'header sopra le zone chiare della foto (es. tetto bianco
+          dello stadio), in entrambi i temi. */}
+      {onDarkHero && !open && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 via-black/30 to-transparent"
+        />
+      )}
+      <div className="container-wide relative z-10 flex h-[72px] items-center justify-between">
         {/* Wordmark */}
         <Link
           href="/"
@@ -46,7 +62,10 @@ export function Header() {
           className="group flex items-center"
           onClick={() => setOpen(false)}
         >
-          <Logo className="transition-transform duration-300 group-hover:scale-[1.03]" />
+          <Logo
+            onDark={onDarkHero && !open}
+            className="transition-transform duration-300 group-hover:scale-[1.03]"
+          />
         </Link>
 
         {/* Nav desktop */}
@@ -55,7 +74,12 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative rounded-full px-4 py-2 text-sm text-fg-muted transition-colors duration-300 hover:text-fg"
+              className={cn(
+                "relative rounded-full px-4 py-2 text-sm transition-colors duration-300",
+                onDarkHero
+                  ? "text-white/85 hover:text-white"
+                  : "text-fg-muted hover:text-fg"
+              )}
             >
               {item.label}
             </Link>
@@ -63,7 +87,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          <ThemeToggle onDark={onDarkHero && !open} />
           <Link
             href="/contatti"
             className={cn(buttonVariants({ size: "sm" }), "hidden sm:inline-flex")}
@@ -78,7 +102,12 @@ export function Header() {
             aria-label={open ? "Chiudi menu" : "Apri menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-fg transition-colors hover:bg-fg/5 lg:hidden"
+            className={cn(
+              "flex h-11 w-11 items-center justify-center rounded-full border transition-colors lg:hidden",
+              onDarkHero && !open
+                ? "border-white/30 text-white hover:bg-white/10"
+                : "border-line text-fg hover:bg-fg/5"
+            )}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
