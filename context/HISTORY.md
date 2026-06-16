@@ -7,6 +7,14 @@
 
 ---
 
+## 2026-06-16
+
+### Première proposition client + lancement du plan 30 jours
+- Réalisation d'un site web (7sport-agency.vercel.app) pour un client réel avec Claude Code, fini et envoyé pour validation. Première proposition concrète envoyée à un prospect
+- Adoption du plan d'apprentissage "Compagnon 30 jours Claude Code" (sauvegardé dans context/import/) : programme jour par jour couvrant n8n, WordPress/Elementor, API IA, automatisation et prospection
+
+---
+
 ## 2026-05-23
 
 ### Installation initiale du Jarvis

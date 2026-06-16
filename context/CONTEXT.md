@@ -52,6 +52,8 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 
 Liste des projets ou chantiers actifs :
 
+- Site web 7sport-agency (7sport-agency.vercel.app) : proposition réalisée avec Claude Code pour un client réel, finie et envoyée pour validation. En attente de retour client.
+- Suivi du plan "Compagnon 30 jours Claude Code" : programme d'apprentissage structuré (n8n, WordPress, API IA, prospection). Plan complet dans context/import/compagnon-30-jours-claude-code.md
 - Formation Claude Code en cours (apprentissage de l'outil pour construire des applications IA)
 - Construction d'automatisations sur n8n (workflows et automatisations pour futurs clients)
 - Développement de sites web et applications simples pour signer les premiers clients
