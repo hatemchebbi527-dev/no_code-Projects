@@ -2,7 +2,7 @@
 
 > Couleurs, typographies et règles visuelles de ma marque.
 > Sert au site (Jour 10), aux visuels Canva, aux documents et propositions.
-> PROPOSITION INITIALE à valider et ajuster. Dernière mise à jour : 2026-06-16
+> Charte validée (logo et nom d'agence à intégrer plus tard). Dernière mise à jour : 2026-06-16
 
 ---
 
@@ -12,7 +12,7 @@ Cible : avocats, comptables, médecins. Mots-clés visuels : **confiance, série
 
 ---
 
-## Palette de couleurs (proposition)
+## Palette de couleurs (validée)
 
 | Rôle | Couleur | Hex | Usage |
 |---|---|---|---|
@@ -26,14 +26,12 @@ Règle : le bleu nuit domine (sérieux), l'accent vert/teal est utilisé avec pa
 
 ---
 
-## Typographies (proposition)
+## Typographies (validée)
 
 - **Titres :** Montserrat (sans-serif, moderne et solide). Poids 600/700.
 - **Corps de texte :** Inter (sans-serif, très lisible à l'écran). Poids 400/500.
 
 Deux polices maximum. Hiérarchie claire : gros titres, sous-titres, corps. Mobile-first (tout doit rester lisible sur téléphone).
-
-> Alternative si tu veux un côté plus "institutionnel/traditionnel" (rassurant pour avocats/médecins) : un titre en serif élégant (ex : Playfair Display ou Lora) + corps en Inter. À voir selon le ressenti que tu veux donner : moderne (sans-serif) ou classique-premium (serif).
 
 ---
 
@@ -71,8 +69,8 @@ h1, h2, h3 {
 
 ---
 
-## À valider
+## Décisions
 
-- [ ] La palette (bleu nuit + accent vert/teal) te parle ?
-- [ ] Titres en sans-serif moderne (Montserrat) ou en serif classique-premium ?
-- [ ] As-tu déjà un logo ou un nom d'agence figé ? (à intégrer ici une fois décidé)
+- [x] Palette : bleu nuit + accent vert/teal (validée)
+- [x] Titres en Montserrat, corps en Inter (validé)
+- [ ] Logo et nom d'agence : à définir plus tard, à intégrer ici une fois décidés
