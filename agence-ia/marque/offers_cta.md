@@ -11,34 +11,19 @@
 
 | Offre | Problème résolu | Positionnement | Prix |
 |---|---|---|---|
-| 1. Présence en ligne automatisée | Visibilité nulle | Offre d'entrée | À définir |
-| 2. Cabinet automatisé | Admin répétitif chronophage | **Offre coeur (fer de lance)** | À définir |
-| 3. Cabinet 360 | Tout + organisation client | Offre premium | À définir |
+| 1. Cabinet automatisé | Admin répétitif chronophage (douleur immédiate) | **Porte d'entrée / fer de lance** | À définir |
+| 2. Cabinet 360 | Tout + organisation client | Offre premium | À définir |
+| Option. Présence en ligne | Visibilité (besoin secondaire pour cette cible) | Complément à la carte | À définir |
 
-Modèle économique type : un **forfait de mise en place** (one-time) + un **abonnement mensuel** de maintenance et suivi (récurrent). À affiner au Jour 24.
+**Logique :** pour des libéraux, la douleur immédiate est le temps perdu en administratif, pas la vitrine. On mène donc avec l'automatisation. La présence en ligne devient un complément optionnel, pas une porte d'entrée.
 
----
-
-## Offre 1 — Présence en ligne automatisée
-
-**Pour qui :** le cabinet sans site, ou avec un site vieux et des réseaux abandonnés.
-
-**Le problème :** ils dépendent du bouche-à-oreille, n'ont aucune visibilité en ligne, et n'ont pas le temps de publier.
-
-**Ce que je livre :**
-- Un site vitrine professionnel (clair, rassurant, mobile)
-- La publication automatique sur leurs réseaux sociaux (fini la publication manuelle)
-- Un formulaire de contact qui alimente directement leur système
-
-**Résultat pour le client :** une présence en ligne crédible qui tourne toute seule, sans y penser.
-
-**CTA :** "Demandez votre démo de site en 15 minutes."
+**Modèle économique :** un **forfait de mise en place** (one-time) + un **abonnement mensuel** de maintenance, suivi et optimisation (récurrent). Le récurrent est la priorité : il crée un revenu prévisible. Prix à affiner au Jour 24.
 
 ---
 
-## Offre 2 — Cabinet automatisé (OFFRE COEUR)
+## Offre 1 — Cabinet automatisé (PORTE D'ENTRÉE / FER DE LANCE)
 
-**Pour qui :** le cabinet qui perd ses journées dans l'administratif répétitif.
+**Pour qui :** le cabinet qui perd ses journées dans l'administratif répétitif. C'est l'offre par laquelle on entre, car elle répond à la douleur la plus immédiate.
 
 **Le problème :** prise de rendez-vous manuelle, relances clients, rappels, réponses aux mêmes questions en boucle. Du temps non facturable qui s'accumule.
 
@@ -54,20 +39,38 @@ Modèle économique type : un **forfait de mise en place** (one-time) + un **abo
 
 ---
 
-## Offre 3 — Cabinet 360 (PREMIUM)
+## Offre 2 — Cabinet 360 (PREMIUM)
 
-**Pour qui :** le cabinet qui veut tout structurer, de la visibilité à l'organisation client.
+**Pour qui :** le cabinet qui veut tout structurer, de l'automatisation à l'organisation client.
 
-**Le problème :** infos clients éparpillées, aucune vue d'ensemble, support désordonné, en plus de tout ce que résolvent les offres 1 et 2.
+**Le problème :** infos clients éparpillées, aucune vue d'ensemble, support désordonné, en plus du temps perdu en administratif.
 
 **Ce que je livre :**
-- Tout ce que contiennent les offres 1 et 2
+- Tout ce que contient l'offre Cabinet automatisé
 - Un CRM léger sur mesure : clients, dossiers et support au même endroit
+- La présence en ligne automatisée incluse (site + publication réseaux)
 - Un suivi et une optimisation continue des automatisations
 
 **Résultat pour le client :** un cabinet entièrement organisé et automatisé, de la première prise de contact au suivi client.
 
 **CTA :** "Parlons de votre cabinet : un appel pour construire votre plan sur mesure."
+
+---
+
+## Option — Présence en ligne automatisée (complément à la carte)
+
+**Pour qui :** le cabinet qui veut aussi soigner sa visibilité. Besoin secondaire pour cette cible, donc proposé en complément, pas en porte d'entrée.
+
+**Le problème :** site vieux ou absent, réseaux abandonnés, aucune publication faute de temps.
+
+**Ce que je livre :**
+- Un site vitrine professionnel (clair, rassurant, mobile)
+- La publication automatique sur leurs réseaux sociaux
+- Un formulaire de contact qui alimente directement leur système
+
+**Résultat pour le client :** une présence en ligne crédible qui tourne toute seule.
+
+**CTA :** "Ajoutez votre vitrine en ligne à votre cabinet automatisé."
 
 ---
 
