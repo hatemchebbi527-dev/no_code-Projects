@@ -44,7 +44,7 @@ Point commun de ces trois métiers : leur temps vaut cher (ils facturent à l'he
 - **Une présence en ligne qui tourne toute seule** : site vitrine pro + publication automatisée sur les réseaux
 - **Un assistant de réponses automatiques** pour les questions récurrentes (FAQ intelligente, pré-qualification)
 
-**Promesse chiffrée (à valider sur le terrain) :** récupérer 5 à 8 heures par semaine de tâches administratives.
+**Promesse chiffrée :** récupérer jusqu'à 10 heures par semaine de tâches administratives.
 
 ---
 
