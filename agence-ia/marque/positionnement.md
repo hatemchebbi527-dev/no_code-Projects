@@ -63,6 +63,21 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 
 ---
 
+## Stratégie de comptes par plateforme
+
+**Principe :** le contenu reste humain et personnel partout (les clients achètent la personne, pas une marque anonyme), mais le type de compte est choisi pour la crédibilité et surtout pour permettre l'automatisation de publication (Jours 12 et 17).
+
+| Plateforme | Type de compte | Pourquoi |
+|---|---|---|
+| LinkedIn | **Profil personnel** (priorité) | En B2B, le profil perso génère reach et confiance. Page entreprise possible plus tard, mais le perso vend. |
+| Instagram | **Compte Professionnel (Business)** | Gratuit. Débloque stats, bouton contact, et l'accès API pour la publication automatique (lié à une Page Facebook). |
+| Facebook | **Page Business** | Obligatoire pour le business : requise pour l'API, les pubs et la programmation. |
+| TikTok | **Compte Business** | Gratuit. Débloque stats et API. Garder un style de contenu authentique (pas corporate). |
+
+**Priorité d'effort :** ~80% sur LinkedIn (c'est là que les avocats/comptables sont réceptifs en mode pro). Instagram/Facebook/TikTok servent à entretenir la présence et à entraîner les automatisations, pas à closer cette cible.
+
+---
+
 ## Note
 
 - Adapter "avvocati e commercialisti" en ajoutant "studi medici" plus tard, une fois l'offre rodée sur ces deux métiers.
