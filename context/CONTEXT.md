@@ -29,7 +29,7 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 - Développer des applications et sites web intégrant l'IA
 - Proposer des services de conseil en transformation digitale par l'IA
 
-**Clients types visés :** PME locales et entreprises cherchant à automatiser leurs opérations
+**Clients types visés :** cabinets de professionnels libéraux (avocats, comptables, médecins). Niche fer de lance choisie en juin 2026. Médecins abordés en dernier (contraintes données de santé). Cibles secondaires d'expansion : instituts de beauté, agences de com/événementiel, startups.
 
 ---
 
@@ -52,6 +52,7 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 
 Liste des projets ou chantiers actifs :
 
+- Dossier projet `agence-ia/` créé avec ses 4 fichiers de marque fondateurs (audience, brand_voice, offers_cta, graphics_brief). Fondation de l'agence : niche, voix, offres et charte visuelle définies.
 - Site web 7sport-agency (7sport-agency.vercel.app) : proposition réalisée avec Claude Code pour un client réel, finie et envoyée pour validation. En attente de retour client.
 - Suivi du plan "Compagnon 30 jours Claude Code" : programme d'apprentissage structuré (n8n, WordPress, API IA, prospection). Plan complet dans context/import/compagnon-30-jours-claude-code.md
 - Formation Claude Code en cours (apprentissage de l'outil pour construire des applications IA)
