@@ -81,33 +81,32 @@ for cxr, cyr in [(0, 0), (W, H)]:
         draw.ellipse([cxr + dx - rad, cyr + dy - rad, cxr + dx + rad, cyr + dy + rad],
                      fill=(22, 184, 166, random.randint(25, 90)))
 
-# --- centered emblem: icon + wordmark + tagline ---
-draw_mark(draw, W // 2, 270, 92, ring_color=TEAL, hands_color=WHITE)
+# --- centered emblem: icon + wordmark + tagline (compact, shifted up) ---
+draw_mark(draw, W // 2, 248, 78, ring_color=TEAL, hands_color=WHITE)
 
-f_word = font(MONT, 86, "Bold")
-centered(draw, [("Automa", f_word, WHITE), ("IA", f_word, TEAL)], 360)
+f_word = font(MONT, 70, "Bold")
+centered(draw, [("Automa", f_word, WHITE), ("IA", f_word, TEAL)], 322)
 
-f_tag = font(MONT, 26, "SemiBold")
+f_tag = font(MONT, 22, "SemiBold")
 tag = "AUTOMAZIONE & IA"
 # letter-spaced, centered
-spaced = [(c, f_tag, TEAL) for c in tag]
-widths = [draw.textlength(c, font=f_tag) + 6 for c in tag]
-total = sum(widths) - 6
+widths = [draw.textlength(c, font=f_tag) + 5 for c in tag]
+total = sum(widths) - 5
 x = (W - total) / 2
 for c, w in zip(tag, widths, strict=False):
-    draw.text((x, 470), c, font=f_tag, fill=TEAL)
+    draw.text((x, 408), c, font=f_tag, fill=TEAL)
     x += w
 
 # divider accent
-draw.line([(W // 2 - 90, 540), (W // 2 + 90, 540)], fill=TEAL, width=3)
+draw.line([(W // 2 - 80, 458), (W // 2 + 80, 458)], fill=TEAL, width=3)
 
-# --- value proposition (centered) ---
-f_h = font(MONT, 64, "Bold")
-centered(draw, [("Recupera fino a ", f_h, WHITE), ("10 ore", f_h, TEAL)], 580)
-centered(draw, [("a settimana", f_h, WHITE)], 660)
+# --- value proposition (centered, smaller) ---
+f_h = font(MONT, 52, "Bold")
+centered(draw, [("Recupera fino a ", f_h, WHITE), ("10 ore", f_h, TEAL)], 496)
+centered(draw, [("a settimana", f_h, WHITE)], 560)
 
-f_sub = font(INTER, 30, "Medium")
-centered(draw, [("Automazione per studi legali e di commercialisti  ·  Dati protetti", f_sub, GREY)], 748)
+f_sub = font(INTER, 26, "Medium")
+centered(draw, [("Automazione per studi legali e di commercialisti  ·  Dati protetti", f_sub, GREY)], 632)
 
 out = "agence-ia/marque/facebook-banner.png"
 base.save(out, "PNG")
