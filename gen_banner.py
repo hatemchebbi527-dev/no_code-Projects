@@ -72,21 +72,25 @@ for _ in range(16):
 # left accent bar
 draw.rectangle([0, 0, 10, H], fill=TEAL)
 
-# --- LEFT: value proposition ---
+# --- LEFT/CENTER: value proposition (centered in the area left of the logo) ---
 f_h = font(MONT, 56, "Bold")
 f_sub = font(INTER, 26, "Medium")
-x0 = 80
+cxt = 590  # horizontal center of the text area (clear of avatar and logo)
 # line 1 with teal "10 ore"
 a1 = "Recupera fino a "
 a2 = "10 ore"
-draw.text((x0, 118), a1, font=f_h, fill=WHITE)
 w1 = draw.textlength(a1, font=f_h)
-draw.text((x0 + w1, 118), a2, font=f_h, fill=TEAL)
-# line 2
-draw.text((x0, 184), "a settimana", font=f_h, fill=WHITE)
-# subline
-draw.text((x0, 262), "Automazione per studi legali e di commercialisti  ·  Dati protetti",
-          font=f_sub, fill=GREY)
+w2 = draw.textlength(a2, font=f_h)
+lx1 = cxt - (w1 + w2) / 2
+draw.text((lx1, 118), a1, font=f_h, fill=WHITE)
+draw.text((lx1 + w1, 118), a2, font=f_h, fill=TEAL)
+# line 2 (centered)
+wl2 = draw.textlength("a settimana", font=f_h)
+draw.text((cxt - wl2 / 2, 184), "a settimana", font=f_h, fill=WHITE)
+# subline (centered)
+sub = "Automazione per studi legali e di commercialisti  ·  Dati protetti"
+ws = draw.textlength(sub, font=f_sub)
+draw.text((cxt - ws / 2, 262), sub, font=f_sub, fill=GREY)
 
 # --- RIGHT: logo lockup (icon + wordmark), readable, clear of profile photo ---
 lx = 1320  # horizontal center of the logo block
