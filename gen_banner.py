@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1584, 396
@@ -22,8 +23,29 @@ def font(path, size, variation=None):
     return f
 
 
+def draw_mark(draw, cx, cy, R, ring_color, hands_color):
+    bbox = [cx - R, cy - R, cx + R, cy + R]
+    width = max(5, R // 6)
+    end_deg = 318
+    draw.arc(bbox, start=22, end=end_deg, fill=ring_color, width=width)
+    hw = width * 1.35
+    L = width * 2.3
+    a = math.radians(end_deg)
+    dtheta = L / R
+    at = a + dtheta
+
+    def oc(angle, radius):
+        return (cx + radius * math.cos(angle), cy + radius * math.sin(angle))
+
+    draw.polygon([oc(at, R), oc(a, R - hw), oc(a, R + hw)], fill=ring_color)
+    hwid = max(4, R // 9)
+    draw.line([(cx, cy), (cx, cy - R * 0.55)], fill=hands_color, width=hwid)
+    draw.line([(cx, cy), (cx + R * 0.42, cy + R * 0.18)], fill=hands_color, width=hwid)
+    d = R // 7
+    draw.ellipse([cx - d, cy - d, cx + d, cy + d], fill=hands_color)
+
+
 # --- background: diagonal gradient navy ---
-base = Image.new("RGB", (W, H), NAVY)
 grad = Image.new("RGB", (W, H))
 gd = grad.load()
 for y in range(H):
@@ -38,64 +60,54 @@ for y in range(H):
 base = grad
 draw = ImageDraw.Draw(base, "RGBA")
 
-# --- decorative teal dots (far-right + top-left corners, clear of centered text) ---
+# subtle dots top-left only (clear of text and logo)
 import random
 random.seed(7)
-for _ in range(55):
-    cx = random.randint(W - 210, W - 20)
-    cy = random.randint(20, H - 20)
-    rad = random.choice([2, 2, 3, 4])
-    alpha = random.randint(30, 130)
-    draw.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=(22, 184, 166, alpha))
-for _ in range(18):
-    cx = random.randint(40, 200)
-    cy = random.randint(20, 120)
+for _ in range(16):
+    cx = random.randint(40, 220)
+    cy = random.randint(20, 110)
     rad = random.choice([2, 2, 3])
-    alpha = random.randint(25, 90)
-    draw.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=(22, 184, 166, alpha))
-
-# --- accent diagonal line (far right) ---
-draw.line([(W - 240, H), (W - 60, 0)], fill=(22, 184, 166, 60), width=3)
-draw.line([(W - 200, H), (W - 20, 0)], fill=(22, 184, 166, 30), width=2)
+    draw.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=(22, 184, 166, random.randint(25, 80)))
 
 # left accent bar
 draw.rectangle([0, 0, 10, H], fill=TEAL)
 
-# --- text block (CENTERED, clear of profile photo on desktop) ---
-f_h1 = font(MONT, 56, "Bold")
-f_h2 = font(MONT, 56, "Bold")
-f_sub = font(INTER, 25, "Medium")
-f_badge = font(MONT, 24, "SemiBold")
+# --- LEFT: value proposition ---
+f_h = font(MONT, 56, "Bold")
+f_sub = font(INTER, 26, "Medium")
+x0 = 80
+# line 1 with teal "10 ore"
+a1 = "Recupera fino a "
+a2 = "10 ore"
+draw.text((x0, 118), a1, font=f_h, fill=WHITE)
+w1 = draw.textlength(a1, font=f_h)
+draw.text((x0 + w1, 118), a2, font=f_h, fill=TEAL)
+# line 2
+draw.text((x0, 184), "a settimana", font=f_h, fill=WHITE)
+# subline
+draw.text((x0, 262), "Automazione per studi legali e di commercialisti  ·  Dati protetti",
+          font=f_sub, fill=GREY)
 
-cx = W // 2
-line1a = "Automazione "
-line1b = "& IA"
-line2 = "per studi legali e di commercialisti"
-subline = "Recupera fino a 10 ore a settimana  ·  I tuoi dati sempre protetti"
-
-# line 1 (centered, with teal "& IA")
-w1a = draw.textlength(line1a, font=f_h1)
-w1b = draw.textlength(line1b, font=f_h1)
-x1 = cx - (w1a + w1b) / 2
-draw.text((x1, 78), line1a, font=f_h1, fill=WHITE)
-draw.text((x1 + w1a, 78), line1b, font=f_h1, fill=TEAL)
-
-# line 2 (centered)
-w2 = draw.textlength(line2, font=f_h2)
-draw.text((cx - w2 / 2, 144), line2, font=f_h2, fill=WHITE)
-
-# subline (centered)
-ws = draw.textlength(subline, font=f_sub)
-draw.text((cx - ws / 2, 228), subline, font=f_sub, fill=GREY)
-
-# --- badge pill (centered) ---
-badge_txt = "Audit gratuito di 20 min"
-pad_x, pad_y = 20, 12
-tw = draw.textlength(badge_txt, font=f_badge)
-bw = tw + pad_x * 2
-bx, by = cx - bw / 2, 290
-draw.rounded_rectangle([bx, by, bx + bw, by + 44], radius=22, fill=TEAL)
-draw.text((bx + pad_x, by + pad_y - 2), badge_txt, font=f_badge, fill=NAVY)
+# --- RIGHT: logo lockup (icon + wordmark), readable, clear of profile photo ---
+lx = 1320  # horizontal center of the logo block
+# icon
+draw_mark(draw, lx, 150, 64, ring_color=TEAL, hands_color=WHITE)
+# wordmark "AutomaIA" centered under the icon
+f_word = font(MONT, 60, "Bold")
+wa, wb = "Automa", "IA"
+wwa = draw.textlength(wa, font=f_word)
+wwb = draw.textlength(wb, font=f_word)
+wx = lx - (wwa + wwb) / 2
+draw.text((wx, 232), wa, font=f_word, fill=WHITE)
+draw.text((wx + wwa, 232), wb, font=f_word, fill=TEAL)
+# small tagline with letter spacing
+f_tag = font(MONT, 18, "SemiBold")
+tag = "AUTOMAZIONE & IA"
+total = sum(draw.textlength(c, font=f_tag) + 4 for c in tag) - 4
+tx = lx - total / 2
+for c in tag:
+    draw.text((tx, 308), c, font=f_tag, fill=TEAL)
+    tx += draw.textlength(c, font=f_tag) + 4
 
 out = "agence-ia/marque/linkedin-banner.png"
 base.save(out, "PNG")
