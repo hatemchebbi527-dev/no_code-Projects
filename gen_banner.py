@@ -73,9 +73,9 @@ for _ in range(16):
 draw.rectangle([0, 0, 10, H], fill=TEAL)
 
 # --- LEFT/CENTER: value proposition (centered in the area left of the logo) ---
-f_h = font(MONT, 56, "Bold")
-f_sub = font(INTER, 26, "Medium")
-cxt = 590  # horizontal center of the text area (clear of avatar and logo)
+f_h = font(MONT, 52, "Bold")
+f_sub = font(INTER, 25, "Medium")
+cxt = 800  # centered between the profile photo (left) and the logo (right)
 # line 1 with teal "10 ore"
 a1 = "Recupera fino a "
 a2 = "10 ore"
@@ -88,7 +88,7 @@ draw.text((lx1 + w1, 118), a2, font=f_h, fill=TEAL)
 wl2 = draw.textlength("a settimana", font=f_h)
 draw.text((cxt - wl2 / 2, 184), "a settimana", font=f_h, fill=WHITE)
 # subline (centered)
-sub = "Automazione per studi legali e di commercialisti  ·  Dati protetti"
+sub = "Automazione per studi legali e di commercialisti"
 ws = draw.textlength(sub, font=f_sub)
 draw.text((cxt - ws / 2, 262), sub, font=f_sub, fill=GREY)
 
