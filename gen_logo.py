@@ -34,10 +34,11 @@ def draw_mark(draw, cx, cy, R, ring_color=TEAL, hands_color=NAVY):
     ex, ey = cx + R * math.cos(a), cy + R * math.sin(a)   # endpoint on stroke centerline
     m = (-math.sin(a), math.cos(a))                       # clockwise tangent (motion)
     p = (math.cos(a), math.sin(a))                        # radial (perpendicular)
-    L = width * 2.0                                       # arrowhead length
-    hw = width * 1.25                                     # half base width
-    base_x = ex - m[0] * (L * 0.35)                       # base overlaps the arc end
-    base_y = ey - m[1] * (L * 0.35)
+    L = width * 2.2                                       # arrowhead length
+    hw = width * 1.5                                      # half base width (symmetric)
+    # base sits just behind the endpoint so both wings stay fully visible
+    base_x = ex - m[0] * (width * 0.25)
+    base_y = ey - m[1] * (width * 0.25)
     tip = (ex + m[0] * L, ey + m[1] * L)
     left = (base_x + p[0] * hw, base_y + p[1] * hw)
     right = (base_x - p[0] * hw, base_y - p[1] * hw)
