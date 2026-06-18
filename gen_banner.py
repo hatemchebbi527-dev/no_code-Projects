@@ -38,49 +38,63 @@ for y in range(H):
 base = grad
 draw = ImageDraw.Draw(base, "RGBA")
 
-# --- decorative teal dots cluster (right side) ---
+# --- decorative teal dots (far-right + top-left corners, clear of centered text) ---
 import random
 random.seed(7)
-for _ in range(70):
-    cx = random.randint(W - 430, W - 20)
+for _ in range(55):
+    cx = random.randint(W - 210, W - 20)
     cy = random.randint(20, H - 20)
     rad = random.choice([2, 2, 3, 4])
     alpha = random.randint(30, 130)
     draw.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=(22, 184, 166, alpha))
+for _ in range(18):
+    cx = random.randint(40, 200)
+    cy = random.randint(20, 120)
+    rad = random.choice([2, 2, 3])
+    alpha = random.randint(25, 90)
+    draw.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=(22, 184, 166, alpha))
 
-# --- accent diagonal line ---
-draw.line([(W - 470, H), (W - 250, 0)], fill=(22, 184, 166, 60), width=3)
-draw.line([(W - 430, H), (W - 210, 0)], fill=(22, 184, 166, 30), width=2)
+# --- accent diagonal line (far right) ---
+draw.line([(W - 240, H), (W - 60, 0)], fill=(22, 184, 166, 60), width=3)
+draw.line([(W - 200, H), (W - 20, 0)], fill=(22, 184, 166, 30), width=2)
 
 # left accent bar
 draw.rectangle([0, 0, 10, H], fill=TEAL)
 
-# --- text block (left-aligned, vertically centered, clear of avatar) ---
-f_h1 = font(MONT, 58, "Bold")
-f_h2 = font(MONT, 58, "Bold")
-f_sub = font(INTER, 26, "Medium")
+# --- text block (CENTERED, clear of profile photo on desktop) ---
+f_h1 = font(MONT, 56, "Bold")
+f_h2 = font(MONT, 56, "Bold")
+f_sub = font(INTER, 25, "Medium")
 f_badge = font(MONT, 24, "SemiBold")
 
-x0 = 90
-line1 = "Automazione & IA"
+cx = W // 2
+line1a = "Automazione "
+line1b = "& IA"
 line2 = "per studi legali e di commercialisti"
+subline = "Recupera fino a 10 ore a settimana  ·  I tuoi dati sempre protetti"
 
-draw.text((x0, 92), line1, font=f_h1, fill=WHITE)
-# accent on the "& IA" handled simply: redraw "& IA" portion in teal
-w_auto = draw.textlength("Automazione ", font=f_h1)
-draw.text((x0 + w_auto, 92), "& IA", font=f_h1, fill=TEAL)
+# line 1 (centered, with teal "& IA")
+w1a = draw.textlength(line1a, font=f_h1)
+w1b = draw.textlength(line1b, font=f_h1)
+x1 = cx - (w1a + w1b) / 2
+draw.text((x1, 78), line1a, font=f_h1, fill=WHITE)
+draw.text((x1 + w1a, 78), line1b, font=f_h1, fill=TEAL)
 
-draw.text((x0, 160), line2, font=f_h2, fill=WHITE)
+# line 2 (centered)
+w2 = draw.textlength(line2, font=f_h2)
+draw.text((cx - w2 / 2, 144), line2, font=f_h2, fill=WHITE)
 
-draw.text((x0, 244), "Recupera fino a 10 ore a settimana  ·  I tuoi dati sempre protetti",
-          font=f_sub, fill=GREY)
+# subline (centered)
+ws = draw.textlength(subline, font=f_sub)
+draw.text((cx - ws / 2, 228), subline, font=f_sub, fill=GREY)
 
-# --- badge pill ---
+# --- badge pill (centered) ---
 badge_txt = "Audit gratuito di 20 min"
 pad_x, pad_y = 20, 12
 tw = draw.textlength(badge_txt, font=f_badge)
-bx, by = x0, 300
-draw.rounded_rectangle([bx, by, bx + tw + pad_x * 2, by + 44], radius=22, fill=TEAL)
+bw = tw + pad_x * 2
+bx, by = cx - bw / 2, 290
+draw.rounded_rectangle([bx, by, bx + bw, by + 44], radius=22, fill=TEAL)
 draw.text((bx + pad_x, by + pad_y - 2), badge_txt, font=f_badge, fill=NAVY)
 
 out = "agence-ia/marque/linkedin-banner.png"
