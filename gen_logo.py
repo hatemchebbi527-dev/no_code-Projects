@@ -30,19 +30,21 @@ def draw_mark(draw, cx, cy, R, ring_color=TEAL, hands_color=NAVY):
     end_deg = 318
     draw.arc(bbox, start=22, end=end_deg, fill=ring_color, width=width)
     # arrowhead cleanly attached to the arc end, pointing along the motion
+    # arrowhead that hugs the circle: base straddles the ring centerline
+    # equidistantly (inner/outer wings), tip continues along the circle.
+    hw = width * 1.35           # half base width: equidistant inside/outside the ring line
+    L = width * 2.3             # tip extension (as arc length along the circle)
     a = math.radians(end_deg)
-    ex, ey = cx + R * math.cos(a), cy + R * math.sin(a)   # endpoint on stroke centerline
-    m = (-math.sin(a), math.cos(a))                       # clockwise tangent (motion)
-    p = (math.cos(a), math.sin(a))                        # radial (perpendicular)
-    L = width * 2.2                                       # arrowhead length
-    hw = width * 1.5                                      # half base width (symmetric)
-    # base sits just behind the endpoint so both wings stay fully visible
-    base_x = ex - m[0] * (width * 0.25)
-    base_y = ey - m[1] * (width * 0.25)
-    tip = (ex + m[0] * L, ey + m[1] * L)
-    left = (base_x + p[0] * hw, base_y + p[1] * hw)
-    right = (base_x - p[0] * hw, base_y - p[1] * hw)
-    draw.polygon([tip, left, right], fill=ring_color)
+    dtheta = L / R              # angular advance so the tip follows the circle
+    at = a + dtheta
+
+    def on_circle(angle, radius):
+        return (cx + radius * math.cos(angle), cy + radius * math.sin(angle))
+
+    inner = on_circle(a, R - hw)   # wing inside the ring
+    outer = on_circle(a, R + hw)   # wing outside the ring
+    tip = on_circle(at, R)         # tip on the ring centerline, further along
+    draw.polygon([tip, inner, outer], fill=ring_color)
     # clock hands
     hw = max(4, R // 9)
     draw.line([(cx, cy), (cx, cy - R * 0.55)], fill=hands_color, width=hw)        # minute (up)
