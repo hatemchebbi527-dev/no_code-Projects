@@ -75,3 +75,11 @@ for ch in "AUTOMAZIONE & IA":
     xx += d.textlength(ch, font=f_tag) + 6
 wb.save("agence-ia/marque/logo-automaia-white.png", "PNG")
 print("saved white-bg logo")
+
+# 4) ICONE sur fond BLANC (carré), 800x800
+IS = 800
+ic = Image.new("RGBA", (IS, IS), WHITE)
+d = ImageDraw.Draw(ic)
+draw_mark(d, IS // 2, IS // 2, 250, ring_color=TEAL, hands_color=NAVY)
+ic.save("agence-ia/marque/logo-automaia-icon-white.png", "PNG")
+print("saved white-bg icon")
