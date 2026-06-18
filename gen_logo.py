@@ -26,18 +26,22 @@ def draw_mark(draw, cx, cy, R, ring_color=TEAL, hands_color=NAVY):
     """Circular automation arrow + clock hands = automation + time."""
     bbox = [cx - R, cy - R, cx + R, cy + R]
     width = max(6, R // 6)
-    # arc with a gap at top-right (gap ~ -25..25 deg)
-    draw.arc(bbox, start=25, end=315, fill=ring_color, width=width)
-    # arrowhead at the end of the arc (around 315 deg / top-right)
-    a = math.radians(315)
-    ex, ey = cx + R * math.cos(a), cy + R * math.sin(a)
-    # tangential direction (clockwise) for the arrowhead
-    s = R // 2.6
-    ang = a + math.pi / 2  # tangent
-    p1 = (ex + s * math.cos(ang - 0.5), ey + s * math.sin(ang - 0.5))
-    p2 = (ex + s * math.cos(ang + 0.5), ey + s * math.sin(ang + 0.5))
-    tip = (ex + s * 1.15 * math.cos(ang), ey + s * 1.15 * math.sin(ang))
-    draw.polygon([tip, p1, p2], fill=ring_color)
+    # arc with a gap at the top-right
+    end_deg = 318
+    draw.arc(bbox, start=22, end=end_deg, fill=ring_color, width=width)
+    # arrowhead cleanly attached to the arc end, pointing along the motion
+    a = math.radians(end_deg)
+    ex, ey = cx + R * math.cos(a), cy + R * math.sin(a)   # endpoint on stroke centerline
+    m = (-math.sin(a), math.cos(a))                       # clockwise tangent (motion)
+    p = (math.cos(a), math.sin(a))                        # radial (perpendicular)
+    L = width * 2.0                                       # arrowhead length
+    hw = width * 1.25                                     # half base width
+    base_x = ex - m[0] * (L * 0.35)                       # base overlaps the arc end
+    base_y = ey - m[1] * (L * 0.35)
+    tip = (ex + m[0] * L, ey + m[1] * L)
+    left = (base_x + p[0] * hw, base_y + p[1] * hw)
+    right = (base_x - p[0] * hw, base_y - p[1] * hw)
+    draw.polygon([tip, left, right], fill=ring_color)
     # clock hands
     hw = max(4, R // 9)
     draw.line([(cx, cy), (cx, cy - R * 0.55)], fill=hands_color, width=hw)        # minute (up)

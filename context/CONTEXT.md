@@ -24,6 +24,8 @@ Réceptionniste de nuit dans un hôtel à Rimini. Ce poste me laisse du temps po
 
 Je me forme activement pour devenir consultant et développeur IA indépendant. Mon objectif est de créer une agence spécialisée dans l'automatisation des processus opérationnels des entreprises et les services digitaux liés à l'IA.
 
+**Nom de l'agence :** AutomaIA (domaine : automaia.net). Logo et charte visuelle définis dans agence-ia/marque/.
+
 **Ce que je veux faire concrètement :**
 - Créer des automatisations pour aider les entreprises à optimiser leurs processus
 - Développer des applications et sites web intégrant l'IA

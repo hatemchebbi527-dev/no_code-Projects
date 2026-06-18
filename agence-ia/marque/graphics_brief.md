@@ -69,8 +69,19 @@ h1, h2, h3 {
 
 ---
 
+## Identité de marque
+
+- **Nom :** AutomaIA (domaine : automaia.net)
+- **Logo :** horloge intégrée dans une boucle d'automatisation (flèche), symbolisant "automatiser pour gagner du temps". Le "IA" du nom est en teal pour souligner le positionnement IA.
+- **Fichiers logo (dans `marque/`) :**
+  - `logo-automaia.png` : fond transparent (pour fonds clairs / documents)
+  - `logo-automaia-navy.png` : fond bleu nuit (pour fonds sombres)
+  - `logo-automaia-icon.png` : icône seule, carré (avatar, favicon)
+  - Régénérable via `gen_logo.py` à la racine du workspace
+
 ## Décisions
 
+- [x] Nom d'agence : AutomaIA
 - [x] Palette : bleu nuit + accent vert/teal (validée)
 - [x] Titres en Montserrat, corps en Inter (validé)
-- [ ] Logo et nom d'agence : à définir plus tard, à intégrer ici une fois décidés
+- [x] Logo créé (horloge + boucle d'automatisation)
