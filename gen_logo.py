@@ -8,6 +8,7 @@ SLATE = (45, 55, 72, 255)
 MONT = "/tmp/fonts/Montserrat.ttf"
 
 NAME = "Automa"
+SUFFIX = "IA"
 TAGLINE = "AUTOMAZIONE & IA"
 
 
@@ -47,7 +48,7 @@ def draw_mark(draw, cx, cy, R, ring_color=TEAL, hands_color=NAVY):
 
 
 def build(filename, bg, name_color, tag_color, mark_ring=TEAL, mark_hands=NAVY):
-    W, Hh = 1400, 460
+    W, Hh = 1600, 460
     img = Image.new("RGBA", (W, Hh), bg)
     d = ImageDraw.Draw(img)
     # mark
@@ -57,8 +58,9 @@ def build(filename, bg, name_color, tag_color, mark_ring=TEAL, mark_hands=NAVY):
     f_name = font(MONT, 132, "Bold")
     f_tag = font(MONT, 38, "SemiBold")
     tx = 440
-    d.text((tx, 120), name, font=f_name, fill=name_color) if False else None
     d.text((tx, 120), NAME, font=f_name, fill=name_color)
+    w_name = d.textlength(NAME, font=f_name)
+    d.text((tx + w_name, 120), SUFFIX, font=f_name, fill=TEAL)
     # tagline with letter spacing
     yy = 270
     xx = tx + 4
@@ -70,11 +72,11 @@ def build(filename, bg, name_color, tag_color, mark_ring=TEAL, mark_hands=NAVY):
 
 
 # 1) main logo on transparent (for light backgrounds)
-build("agence-ia/marque/logo-automa.png", (0, 0, 0, 0),
+build("agence-ia/marque/logo-automaia.png", (0, 0, 0, 0),
       name_color=NAVY, tag_color=TEAL, mark_ring=TEAL, mark_hands=NAVY)
 
 # 2) version on navy (for dark backgrounds / preview)
-build("agence-ia/marque/logo-automa-navy.png", NAVY,
+build("agence-ia/marque/logo-automaia-navy.png", NAVY,
       name_color=(255, 255, 255, 255), tag_color=TEAL, mark_ring=TEAL,
       mark_hands=(255, 255, 255, 255))
 
@@ -82,5 +84,5 @@ build("agence-ia/marque/logo-automa-navy.png", NAVY,
 icon = Image.new("RGBA", (400, 400), (0, 0, 0, 0))
 di = ImageDraw.Draw(icon)
 draw_mark(di, 200, 200, 150, ring_color=TEAL, hands_color=NAVY)
-icon.save("agence-ia/marque/logo-automa-icon.png", "PNG")
+icon.save("agence-ia/marque/logo-automaia-icon.png", "PNG")
 print("saved icon")
