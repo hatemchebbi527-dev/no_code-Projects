@@ -55,3 +55,19 @@
 
 **Artefact produit :**
 - Workflow n8n "Veille AutomaIA" : flux RSS Google News (ciblé IA + studi professionali) qui ajoute automatiquement les nouvelles actus dans un Google Sheet.
+
+## 2026-06-19 — Jour 3
+
+**Appris :**
+- Un bon prompt repose sur 4 pièces : rôle + contexte + tâche + format attendu. Si une manque, le résultat dérive.
+- La valeur d'un prompt dépend surtout de la qualité de la variable d'entrée (ex : la `{description}` du prompt d'audit). Garbage in, garbage out.
+- Réalisation stratégique : TikTok n'est pas adapté à ma cible (avocats/comptables, pros sérieux). Mieux vaut concentrer mes efforts sur LinkedIn (priorité), puis Facebook et Instagram.
+
+**Erreur :**
+- J'ai lancé le prompt d'audit (n°9) en laissant la variable `{description}` vide, donc sans matière à analyser.
+
+**Correction :**
+- Toujours remplir les variables avec du concret. En vrai audit, la `{description}` vient de ce que le client raconte pendant l'appel.
+
+**Artefact produit :**
+- `marque/prompts.md` : bibliothèque de 10 prompts business (contenu, prospection, vente, services vendus). 3 prompts testés et validés (déclinaison contenu, idées de posts, audit). TikTok retiré de la stratégie marketing.
