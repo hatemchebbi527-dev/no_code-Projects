@@ -37,3 +37,21 @@
 
 **Artefact produit :**
 - `marque/positionnement.md` : synthèse ICP, offre phare (italien + français) et 4 bios italiennes (LinkedIn, Instagram, Facebook, TikTok) + stratégie de comptes par plateforme.
+
+## 2026-06-19 — Jour 2
+
+**Appris :**
+- Un workflow n8n = une suite de nodes, et entre chaque node circule du JSON. Le node suivant pioche dans ce JSON via des expressions (ex : `{{ $json.title }}`).
+- Le trigger (ici RSS Feed Trigger) démarre le workflow et ne se déclenche que sur du nouveau contenu.
+- Le node Google Sheets en mode Append s'exécute une fois par item reçu.
+- Vu en marge (workflow Instagram) : la publication IG se fait en 2 étapes (créer le conteneur, puis publier), et il faut attendre que le conteneur soit FINISHED avant de publier.
+
+**Erreur :**
+- Workflow de veille : aucun blocage, marche du premier coup.
+- Sur le workflow Instagram : erreur "Media ID is not available" (code 9007) car je publiais avant que l'image soit prête côté Instagram.
+
+**Correction :**
+- Instagram : attendre la fin du traitement du conteneur avant de publier (idéalement vérifier le status_code = FINISHED en boucle plutôt qu'un délai fixe).
+
+**Artefact produit :**
+- Workflow n8n "Veille AutomaIA" : flux RSS Google News (ciblé IA + studi professionali) qui ajoute automatiquement les nouvelles actus dans un Google Sheet.
