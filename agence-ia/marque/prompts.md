@@ -16,18 +16,18 @@
 
 ---
 
-## 1. Déclinaison de contenu (1 idée → 4 plateformes)
+## 1. Déclinaison de contenu (1 idée → 3 plateformes)
 
-**Cas d'usage :** transformer une idée en 4 posts. C'est aussi un livrable vendable (offre contenu).
+**Cas d'usage :** transformer une idée en posts. C'est aussi un livrable vendable (offre contenu).
 
 ```
 [RÔLE] Tu es un copywriter spécialisé en contenu B2B pour une agence d'automatisation IA.
 [CONTEXTE] Marque : AutomaIA. Cible : avocats et comptables italiens. Voix : vouvoiement chaleureux, claire, sans jargon technique, concrète (voir brand_voice). Langue de sortie : italien.
-[TÂCHE] À partir de cette idée : "{idée}", crée 4 versions adaptées à LinkedIn, Instagram, Facebook et TikTok.
+[TÂCHE] À partir de cette idée : "{idée}", crée 3 versions adaptées à LinkedIn (priorité), Facebook et Instagram.
 [FORMAT] Pour chaque plateforme : un titre accrocheur, le corps du post adapté aux codes de la plateforme, et 3 hashtags pertinents. Un seul CTA par post.
 ```
 
-**Pourquoi :** le rôle fixe l'expertise copywriting, le contexte impose marque + langue + voix, la tâche est unique, le format garantit 4 sorties exploitables directement.
+**Pourquoi :** le rôle fixe l'expertise copywriting, le contexte impose marque + langue + voix, la tâche est unique, le format garantit 3 sorties exploitables directement. TikTok est exclu : la cible (libéraux sérieux) n'y est pas en posture professionnelle.
 
 ---
 

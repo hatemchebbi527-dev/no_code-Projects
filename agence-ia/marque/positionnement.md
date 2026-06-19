@@ -56,11 +56,6 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 >
 > 📩 Scrivimi per un audit gratuito di 20 minuti.
 
-### TikTok
-
-> ⚙️ Automatizzo studi legali e di commercialisti
-> Meno scartoffie, più tempo 👇
-
 ---
 
 ## Stratégie de comptes par plateforme
@@ -70,11 +65,12 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 | Plateforme | Type de compte | Pourquoi |
 |---|---|---|
 | LinkedIn | **Profil personnel** (priorité) | En B2B, le profil perso génère reach et confiance. Page entreprise possible plus tard, mais le perso vend. |
-| Instagram | **Compte Professionnel (Business)** | Gratuit. Débloque stats, bouton contact, et l'accès API pour la publication automatique (lié à une Page Facebook). |
-| Facebook | **Page Business** | Obligatoire pour le business : requise pour l'API, les pubs et la programmation. |
-| TikTok | **Compte Business** | Gratuit. Débloque stats et API. Garder un style de contenu authentique (pas corporate). |
+| Facebook | **Page Business** | Une partie de la cible (souvent 40+) y est active. Requise pour l'API, les pubs et la programmation. |
+| Instagram | **Compte Professionnel (Business)** | Présence secondaire / vitrine visuelle. Débloque stats et accès API (lié à une Page Facebook). |
 
-**Priorité d'effort :** ~80% sur LinkedIn (c'est là que les avocats/comptables sont réceptifs en mode pro). Instagram/Facebook/TikTok servent à entretenir la présence et à entraîner les automatisations, pas à closer cette cible.
+**TikTok : retiré de la stratégie marketing.** La cible (avocats, comptables) n'y est pas en posture professionnelle ; les codes de la plateforme ne collent pas à des libéraux sérieux. Un compte peut rester ouvert uniquement pour s'entraîner techniquement à l'automatisation (API), sans y investir de contenu.
+
+**Priorité d'effort :** ~80% sur LinkedIn (c'est là que les avocats/comptables sont réceptifs en mode pro). Facebook et Instagram servent à entretenir la présence et à entraîner les automatisations, pas à closer cette cible.
 
 ---
 
