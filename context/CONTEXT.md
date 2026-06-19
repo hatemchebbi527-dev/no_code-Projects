@@ -54,11 +54,10 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 
 Liste des projets ou chantiers actifs :
 
-- Dossier projet `agence-ia/` créé avec ses 4 fichiers de marque fondateurs (audience, brand_voice, offers_cta, graphics_brief). Fondation de l'agence : niche, voix, offres et charte visuelle définies.
+- Dossier projet `agence-ia/` : marque AutomaIA construite. 6 fichiers de marque (audience, brand_voice, offers_cta, graphics_brief, positionnement, prompts) + kit visuel complet (logo en plusieurs versions, bannières LinkedIn et Facebook, avatar, favicon).
+- Suivi du plan "Compagnon 30 jours Claude Code" : Jours 1, 2 et 3 terminés (positionnement + bios, workflow de veille RSS, bibliothèque de 10 prompts). Plan complet dans context/import/compagnon-30-jours-claude-code.md
+- Workflows n8n opérationnels : veille RSS vers Google Sheet, et publication Instagram automatisée (API Meta).
 - Site web 7sport-agency (7sport-agency.vercel.app) : proposition réalisée avec Claude Code pour un client réel, finie et envoyée pour validation. En attente de retour client.
-- Suivi du plan "Compagnon 30 jours Claude Code" : programme d'apprentissage structuré (n8n, WordPress, API IA, prospection). Plan complet dans context/import/compagnon-30-jours-claude-code.md
-- Formation Claude Code en cours (apprentissage de l'outil pour construire des applications IA)
-- Construction d'automatisations sur n8n (workflows et automatisations pour futurs clients)
 - Développement de sites web et applications simples pour signer les premiers clients
 
 ---
@@ -69,6 +68,8 @@ Liste des projets ou chantiers actifs :
 
 - n8n (automatisation et workflows)
 - Notion (organisation et gestion de l'information)
+- Google Sheets (stockage de données pour les workflows)
+- API Meta / Instagram (publication automatisée)
 
 ### Style de communication préféré
 

@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-06-19
+
+### Marque AutomaIA finalisée + Jours 1 à 3 du plan
+- Marque créée : nom AutomaIA (domaine automaia.net), logo (horloge + boucle d'automatisation, couleurs bleu nuit + teal), et kit visuel complet (logo multi-versions, bannières LinkedIn et Facebook, avatar rond, favicon, icône fond blanc)
+- Jour 1 du plan : positionnement.md (offre phare "récupérer jusqu'à 10h/semaine", synthèse ICP, 4 bios italiennes, stratégie de comptes par plateforme)
+- Jour 2 : workflow n8n de veille RSS Google News vers Google Sheet
+- Jour 3 : prompts.md, bibliothèque de 10 prompts business (3 testés et validés)
+- Workflow de publication Instagram automatisée fonctionnel (API Meta, flux de publication en 2 étapes)
+- Décision stratégique : TikTok retiré de la stratégie marketing, la cible (avocats/comptables) n'y est pas en posture professionnelle. Priorité LinkedIn, puis Facebook et Instagram
+
+---
+
 ## 2026-06-16
 
 ### Première proposition client + lancement du plan 30 jours
