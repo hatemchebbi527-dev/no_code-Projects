@@ -71,3 +71,20 @@
 
 **Artefact produit :**
 - `marque/prompts.md` : bibliothèque de 10 prompts business (contenu, prospection, vente, services vendus). 3 prompts testés et validés (déclinaison contenu, idées de posts, audit). TikTok retiré de la stratégie marketing.
+
+## 2026-06-19 — Jour 4
+
+**Appris :**
+- Webhook vs HTTP Request : la question clé est "qui décroche le téléphone en premier ?". Webhook = on m'appelle (je reçois, je suis passif). HTTP Request = j'appelle (je demande). Mon workflow Instagram est un HTTP Request car c'est n8n qui initie l'appel vers Meta.
+- Le modèle commun est HTTP : requête → réponse.
+- Le webhook est la brique qui connectera le formulaire de mon futur site à n8n (Jour 12).
+- On déclenche un webhook depuis l'extérieur avec `curl` (terminal) ou un outil comme Hoppscotch.
+
+**Erreur :**
+- J'ai cru au départ qu'il fallait mettre la commande `curl` dans le node Webhook.
+
+**Correction :**
+- Le `curl` se lance dans un terminal externe (ou via Hoppscotch). Il joue le rôle de l'app extérieure qui appelle le webhook ; le webhook, lui, ne fait qu'écouter.
+
+**Artefact produit :**
+- Workflow n8n avec un node Webhook (testé et déclenché avec succès via curl) et un node HTTP Request (GET vers une API publique de test).
