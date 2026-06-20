@@ -88,3 +88,19 @@
 
 **Artefact produit :**
 - Workflow n8n avec un node Webhook (testé et déclenché avec succès via curl) et un node HTTP Request (GET vers une API publique de test).
+
+## 2026-06-19 — Jour 5
+
+**Appris :**
+- Logique conditionnelle dans n8n : un node Code (JavaScript) qui ne garde que les actus dont le titre contient un mot-clé. Lecture d'un champ JSON via `item.json.title`.
+- `.some()` renvoie vrai si au moins un mot-clé est présent ; `.toLowerCase()` évite les soucis de majuscules.
+- Un filtre ne vaut que par la qualité de ses mots-clés : ils doivent matcher le vocabulaire réel du flux.
+
+**Erreur :**
+- Le node Code ne renvoyait aucun résultat. J'ai d'abord cru à un bug.
+
+**Correction :**
+- Ce n'était pas un bug : le filtre marchait, mais mes mots-clés ne matchaient pas le vocabulaire réel (ex : "commercialista" ne matche pas "commercialisti", "studio legale" ne matche pas "avvocati"). Solution : utiliser des racines de mots ("avvocat", "commercialist") au lieu de mots entiers. Éviter les mots trop courts comme "ai"/"ia" (trop de bruit en italien).
+
+**Artefact produit :**
+- Workflow "Veille AutomaIA" finalisé : RSS → filtre par mots-clés (node Code) → Google Sheet. Seules les actus pertinentes sont enregistrées.
