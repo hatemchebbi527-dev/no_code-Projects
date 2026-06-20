@@ -104,3 +104,20 @@
 
 **Artefact produit :**
 - Workflow "Veille AutomaIA" finalisé : RSS → filtre par mots-clés (node Code) → Google Sheet. Seules les actus pertinentes sont enregistrées.
+
+## 2026-06-19 — Jour 6
+
+**Appris :**
+- Documenter un workflow = pouvoir le revendre, le réutiliser et l'expliquer. Un workflow non documenté s'oublie vite.
+- "Build in public" : partager le parcours de construction crée de la crédibilité et de la proximité avec l'audience.
+- Pour communiquer, traduire le technique en langage client : on ne parle pas de "workflow n8n" mais d'un "petit assistant" qui fait gagner du temps.
+
+**Erreur :**
+- Aucune erreur technique. Point d'attention : un post gagne à être accompagné d'une preuve visuelle (capture avant/après).
+
+**Correction :**
+- Penser systématiquement à capturer l'avant/après pour illustrer le contenu et nourrir le portfolio.
+
+**Artefact produit :**
+- README du workflow : `automations/veille.md` (documentation réutilisable + comment l'adapter à un client).
+- Post LinkedIn "build in public" en italien (selon brand_voice), publié depuis le profil personnel.
