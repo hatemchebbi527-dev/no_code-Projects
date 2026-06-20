@@ -55,7 +55,8 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 Liste des projets ou chantiers actifs :
 
 - Dossier projet `agence-ia/` : marque AutomaIA construite. 6 fichiers de marque (audience, brand_voice, offers_cta, graphics_brief, positionnement, prompts) + kit visuel complet (logo en plusieurs versions, bannières LinkedIn et Facebook, avatar, favicon).
-- Suivi du plan "Compagnon 30 jours Claude Code" : Jours 1 à 5 terminés (Semaine 1 quasi bouclée). Positionnement + bios (J1), workflow de veille RSS (J2), bibliothèque de 10 prompts (J3), webhook + HTTP Request (J4), filtres par mots-clés et veille finalisée (J5). Prochain : Jour 6. Plan complet dans context/import/compagnon-30-jours-claude-code.md
+- Suivi du plan "Compagnon 30 jours Claude Code" : Semaine 1 complète (Jours 1 à 7). Positionnement + bios, workflow de veille RSS, bibliothèque de 10 prompts, webhook/HTTP Request, filtres, documentation + premier post publié, bilan + 3 posts d'avance. Prochain : Semaine 2 (site WordPress). Plan complet dans context/import/compagnon-30-jours-claude-code.md
+- Premier post "build in public" publié sur LinkedIn (profil cohérent : bannière + titre + post). Priorité actuelle : construire le réseau LinkedIn pour la diffusion. Posts d'avance dans agence-ia/contenuti/.
 - Workflows n8n opérationnels : veille RSS vers Google Sheet, et publication Instagram automatisée (API Meta).
 - Site web 7sport-agency (7sport-agency.vercel.app) : proposition réalisée avec Claude Code pour un client réel, finie et envoyée pour validation. En attente de retour client.
 - Développement de sites web et applications simples pour signer les premiers clients
