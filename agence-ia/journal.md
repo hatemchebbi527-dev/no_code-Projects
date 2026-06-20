@@ -121,3 +121,20 @@
 **Artefact produit :**
 - README du workflow : `automations/veille.md` (documentation réutilisable + comment l'adapter à un client).
 - Post LinkedIn "build in public" en italien (selon brand_voice), publié depuis le profil personnel.
+
+## 2026-06-19 — Jour 7 (bilan Semaine 1)
+
+**Appris :**
+- Bilan : Semaine 1 du plan bouclée (Jours 1 à 7) + marque AutomaIA complète en bonus.
+- Quiz n8n : 8/10. Les fondamentaux (trigger, node, JSON, webhook vs HTTP request, filtre, publication IG en 2 étapes) sont acquis.
+- JALON : premier post "build in public" publié sur LinkedIn pour AutomaIA (profil mis à jour : bannière + titre + post cohérents).
+- Prochain enjeu identifié : la diffusion. Avec 0 relation LinkedIn, il faut construire le réseau pour que les posts soient vus.
+
+**Erreur :**
+- Au quiz, confusion entre le trigger RSS et le filtre : j'ai cru que le RSS Feed Trigger triait par mots-clés.
+
+**Correction :**
+- Le RSS Feed Trigger se déclenche seulement sur les NOUVELLES actus. Le tri par mots-clés est une étape séparée (le node Code). Trigger = "il y a du nouveau", filtre = "je ne garde que ce qui m'intéresse".
+
+**Artefact produit :**
+- `contenuti/posts-settimana2.md` : 3 posts d'avance (pilier Pedagogia IA) en italien, prêts à publier.
