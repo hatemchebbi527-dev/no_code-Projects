@@ -1,0 +1,163 @@
+<!--
+  Bloc tarifs AutomaIA - 3 offres
+  À coller dans un widget "HTML" d'Elementor (page Services / Servizi).
+  Auto-contenu (styles inclus). Charte : navy #0F2A4A, teal #16B8A6, Montserrat + Inter.
+  Prix volontairement "su misura" (à fixer au Jour 24).
+-->
+<div class="automaia-tariffe">
+  <div class="at-griglia">
+
+    <!-- Offre 1 : porte d'entrée / fer de lance (mise en avant) -->
+    <div class="at-card at-evidenza">
+      <div class="at-badge">Più richiesto</div>
+      <h3 class="at-nome">Studio Automatizzato</h3>
+      <p class="at-perche">Per lo studio sommerso dalle attività amministrative ripetitive.</p>
+      <ul class="at-lista">
+        <li>Appuntamenti e promemoria automatici</li>
+        <li>Solleciti automatici ai clienti</li>
+        <li>Assistente FAQ attivo 24/7</li>
+        <li>Dati sempre protetti</li>
+      </ul>
+      <p class="at-prezzo">Su misura</p>
+      <p class="at-nota">Setup iniziale + abbonamento mensile</p>
+      <a href="#contatto" class="at-cta">Prenoti un audit gratuito</a>
+    </div>
+
+    <!-- Offre 2 : premium -->
+    <div class="at-card">
+      <h3 class="at-nome">Studio 360</h3>
+      <p class="at-perche">Per chi vuole organizzare tutto, dall'amministrazione ai clienti.</p>
+      <ul class="at-lista">
+        <li>Tutto di Studio Automatizzato</li>
+        <li>CRM su misura per i Suoi clienti</li>
+        <li>Presenza online inclusa</li>
+        <li>Ottimizzazione continua</li>
+      </ul>
+      <p class="at-prezzo">Su misura</p>
+      <p class="at-nota">Setup iniziale + abbonamento mensile</p>
+      <a href="#contatto" class="at-cta">Parliamo del Suo studio</a>
+    </div>
+
+    <!-- Offre 3 : option / complément -->
+    <div class="at-card">
+      <h3 class="at-nome">Presenza Online</h3>
+      <p class="at-perche">Per chi vuole curare anche la propria visibilità.</p>
+      <ul class="at-lista">
+        <li>Sito vetrina professionale</li>
+        <li>Pubblicazione automatica sui social</li>
+        <li>Modulo di contatto collegato</li>
+      </ul>
+      <p class="at-prezzo">Su misura</p>
+      <p class="at-nota">Complemento a la carte</p>
+      <a href="#contatto" class="at-cta">Lo aggiunga al Suo studio</a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.automaia-tariffe {
+  --navy: #0F2A4A;
+  --teal: #16B8A6;
+  --slate: #2D3748;
+  --light: #F4F6F8;
+  font-family: 'Inter', sans-serif;
+  color: var(--slate);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.automaia-tariffe .at-griglia {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.automaia-tariffe .at-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 18px rgba(15,42,74,0.06);
+}
+.automaia-tariffe .at-evidenza {
+  border: 2px solid var(--teal);
+  box-shadow: 0 10px 28px rgba(22,184,166,0.18);
+}
+.automaia-tariffe .at-badge {
+  position: absolute;
+  top: -14px;
+  left: 26px;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+.automaia-tariffe .at-nome {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--navy);
+  font-size: 1.5rem;
+  margin: 6px 0 10px;
+}
+.automaia-tariffe .at-perche {
+  color: var(--slate);
+  font-size: 0.98rem;
+  margin-bottom: 18px;
+}
+.automaia-tariffe .at-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  flex-grow: 1;
+}
+.automaia-tariffe .at-lista li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+}
+.automaia-tariffe .at-lista li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+.automaia-tariffe .at-prezzo {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--navy);
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin: 0;
+}
+.automaia-tariffe .at-nota {
+  font-size: 0.85rem;
+  color: #718096;
+  margin: 2px 0 20px;
+}
+.automaia-tariffe .at-cta {
+  display: block;
+  text-align: center;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.automaia-tariffe .at-cta:hover {
+  opacity: .92;
+  transform: translateY(-1px);
+}
+
+/* Mobile : les cartes se mettent les unes sous les autres */
+@media (max-width: 900px) {
+  .automaia-tariffe .at-griglia { grid-template-columns: 1fr; }
+}
+</style>
