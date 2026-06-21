@@ -161,3 +161,19 @@
 - J12 (côté n8n) : workflow "Lead AutomaIA" (webhook POST → Google Sheet "Leads"), testé avec succès.
 
 **À finaliser sur machine (LocalWP) :** installer/activer le child theme (J8), coller le copy et le bloc tarifs dans Elementor (J9/J11), régler les couleurs/polices globales (J10), créer le formulaire Elementor et le brancher au webhook (J12).
+
+## 2026-06-19 — Jour 14 (bilan + portfolio)
+
+**Appris :**
+- Documenter un projet réalisé = se constituer une preuve de compétence pour convaincre les prospects.
+- Distinction stratégique : le fil LinkedIn public gagne à rester focalisé sur la niche (cabinets) ; le portfolio peut être diversifié et se montre directement en entretien/proposition.
+- Quiz WordPress/Elementor : concepts child theme et mobile-first acquis ; rôle d'Elementor, widget HTML et functions.php à consolider en construisant pour de vrai.
+
+**Erreur :**
+- Au quiz : imprécisions (j'ai dit que le widget HTML sert à mettre "le texte", et que functions.php sert à "maîtriser les fonctions").
+
+**Correction :**
+- Widget HTML = insérer du code sur mesure quand le drag-and-drop ne suffit pas. functions.php = charge les styles (parent puis enfant) et ajoute des fonctionnalités. Elementor = éditeur visuel (pas un simple accessoire).
+
+**Artefact produit :**
+- `site/portfolio.md` : fiche portfolio du projet 7sport-agency (site vitrine 4 pages, Next.js, Vercel) + modèle réutilisable. Décision : projet gardé pour le portfolio, pas publié sur le fil (hors niche).
