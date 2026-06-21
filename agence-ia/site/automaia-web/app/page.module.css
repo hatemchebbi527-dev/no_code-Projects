@@ -1,0 +1,26 @@
+.hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(22, 184, 166, 0.18), transparent 45%),
+    linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: var(--white);
+  padding: 120px 0;
+  text-align: center;
+}
+
+.heroTitle {
+  color: var(--white);
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.heroSub {
+  color: #cbd6e4;
+  font-size: 1.2rem;
+  max-width: 720px;
+  margin: 24px auto 36px;
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 80px 0; }
+  .heroSub { font-size: 1.05rem; }
+}

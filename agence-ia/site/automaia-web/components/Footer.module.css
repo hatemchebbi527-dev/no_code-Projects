@@ -1,0 +1,36 @@
+.footer {
+  background: var(--navy);
+  color: #cbd6e4;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 32px;
+  padding: 56px 24px;
+}
+
+.name {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.tagline { margin-top: 10px; max-width: 320px; font-size: 0.95rem; }
+
+.links { display: flex; flex-direction: column; gap: 10px; }
+.links a:hover { color: var(--teal); }
+
+.contact a:hover { color: var(--teal); }
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px 0;
+  font-size: 0.85rem;
+  color: #8ea3bd;
+}
+
+@media (max-width: 768px) {
+  .inner { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
+}

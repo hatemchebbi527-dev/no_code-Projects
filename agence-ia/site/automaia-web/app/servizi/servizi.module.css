@@ -1,0 +1,49 @@
+.griglia { align-items: stretch; }
+
+.card { position: relative; }
+
+.evidenza {
+  border: 2px solid var(--teal);
+  box-shadow: 0 12px 30px rgba(22, 184, 166, 0.18);
+}
+
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 26px;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.perche { color: var(--slate); margin-bottom: 18px; }
+
+.lista {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  flex-grow: 1;
+}
+.lista li {
+  position: relative;
+  padding: 8px 0 8px 28px;
+}
+.lista li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.prezzo {
+  font-family: var(--font-montserrat), sans-serif;
+  color: var(--navy);
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+.nota { font-size: 0.85rem; color: var(--muted); margin: 2px 0 20px; }
