@@ -4,20 +4,99 @@ Theme URI:    https://automaia.net
 Description:  Thème enfant de Hello Elementor pour le site AutomaIA. Contient les personnalisations (couleurs, typographies, CSS) sans toucher au thème parent.
 Author:       AutomaIA
 Template:     hello-elementor
-Version:      1.0.0
+Version:      1.1.0
 Text Domain:  hello-elementor-child-automaia
 */
 
 /* =========================================================
-   Charte AutomaIA (voir agence-ia/marque/graphics_brief.md)
+   0. Polices (charte : Montserrat pour les titres, Inter pour le texte)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap');
+
+/* =========================================================
+   1. Couleurs de la charte AutomaIA (variables réutilisables)
    ========================================================= */
 :root {
-  --automaia-navy:        #0F2A4A; /* primaire : titres, fond */
-  --automaia-teal:        #16B8A6; /* accent : boutons, liens */
-  --automaia-slate:       #2D3748; /* texte courant */
-  --automaia-light:       #F4F6F8; /* fonds de section */
-  --automaia-white:       #FFFFFF;
+  --automaia-navy:   #0F2A4A; /* primaire : titres, fond foncé */
+  --automaia-teal:   #16B8A6; /* accent : boutons, liens */
+  --automaia-slate:  #2D3748; /* texte courant */
+  --automaia-light:  #F4F6F8; /* fonds de section clairs */
+  --automaia-white:  #FFFFFF;
 }
 
-/* Les vraies règles de style (couleurs, typo, boutons) seront ajoutées au Jour 10.
-   Ce fichier est pour l'instant la base propre du child theme. */
+/* =========================================================
+   2. Typographie (mobile-first : la taille s'adapte à l'écran)
+   clamp(min, idéal, max) => petit sur mobile, plus grand sur desktop
+   ========================================================= */
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--automaia-slate);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--automaia-navy);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
+
+/* =========================================================
+   3. Liens et accents
+   ========================================================= */
+a {
+  color: var(--automaia-teal);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   4. Boutons (CTA) : fond teal, texte navy, coins arrondis
+   Cible les boutons Elementor et les boutons standards
+   ========================================================= */
+.elementor-button,
+.wp-block-button__link,
+button,
+input[type="submit"] {
+  background-color: var(--automaia-teal) !important;
+  color: var(--automaia-navy) !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.elementor-button:hover,
+.wp-block-button__link:hover,
+button:hover,
+input[type="submit"]:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   5. Sections claires (respiration) et conteneur foncé
+   ========================================================= */
+.sezione-chiara { background-color: var(--automaia-light); }
+.sezione-scura  { background-color: var(--automaia-navy); color: var(--automaia-white); }
+.sezione-scura h1, .sezione-scura h2, .sezione-scura h3 { color: var(--automaia-white); }
+
+/* texte accent teal réutilisable (ex : un mot clé dans un titre) */
+.accento { color: var(--automaia-teal); }
+
+/* =========================================================
+   6. Petits ajustements mobile (lisibilité sur petit écran)
+   ========================================================= */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .elementor-button,
+  .wp-block-button__link { width: 100%; text-align: center; } /* boutons pleine largeur sur mobile */
+}
