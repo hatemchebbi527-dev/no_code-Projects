@@ -1,0 +1,23 @@
+/*
+Theme Name:   Hello Elementor Child AutomaIA
+Theme URI:    https://automaia.net
+Description:  Thème enfant de Hello Elementor pour le site AutomaIA. Contient les personnalisations (couleurs, typographies, CSS) sans toucher au thème parent.
+Author:       AutomaIA
+Template:     hello-elementor
+Version:      1.0.0
+Text Domain:  hello-elementor-child-automaia
+*/
+
+/* =========================================================
+   Charte AutomaIA (voir agence-ia/marque/graphics_brief.md)
+   ========================================================= */
+:root {
+  --automaia-navy:        #0F2A4A; /* primaire : titres, fond */
+  --automaia-teal:        #16B8A6; /* accent : boutons, liens */
+  --automaia-slate:       #2D3748; /* texte courant */
+  --automaia-light:       #F4F6F8; /* fonds de section */
+  --automaia-white:       #FFFFFF;
+}
+
+/* Les vraies règles de style (couleurs, typo, boutons) seront ajoutées au Jour 10.
+   Ce fichier est pour l'instant la base propre du child theme. */
