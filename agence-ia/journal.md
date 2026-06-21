@@ -138,3 +138,26 @@
 
 **Artefact produit :**
 - `contenuti/posts-settimana2.md` : 3 posts d'avance (pilier Pedagogia IA) en italien, prêts à publier.
+
+## 2026-06-19 — Jours 8 à 12 (Semaine 2, préparation à distance)
+
+**Appris :**
+- Architecture WordPress : thème, child theme, plugins, Elementor. Un child theme protège mes personnalisations des mises à jour du thème parent.
+- CSS : variables de couleur, hiérarchie typographique, mobile-first (clamp() adapte les tailles à l'écran).
+- Le widget HTML d'Elementor = liberté quand le drag-and-drop ne suffit pas (cartes de prix sur mesure).
+- Webhook n8n : les données d'un POST arrivent sous `body` (ex : `{{ $json.body.nome }}`).
+
+**Erreur :**
+- Pas d'erreur bloquante. Points à vérifier sur machine : rendu mobile du site, et noms des champs envoyés par Elementor Forms (peuvent différer de nome/email).
+
+**Correction :**
+- Quand je brancherai le formulaire Elementor, régler les ID des champs sur nome/email/studio/messaggio OU réadapter le mapping n8n.
+
+**Artefact produit :**
+- J8 : child theme `hello-elementor-child` (style.css + functions.php) dans `site/wordpress/`.
+- J9 : `site/home-copy.md`, copy de la page d'accueil en italien (hero, problème, offre, preuve, CTA).
+- J10 : CSS complet de la charte dans le child theme (couleurs, Montserrat/Inter, boutons, mobile-first).
+- J11 : `site/blocco-tariffe.html`, bloc 3 offres en HTML/CSS pour widget Elementor.
+- J12 (côté n8n) : workflow "Lead AutomaIA" (webhook POST → Google Sheet "Leads"), testé avec succès.
+
+**À finaliser sur machine (LocalWP) :** installer/activer le child theme (J8), coller le copy et le bloc tarifs dans Elementor (J9/J11), régler les couleurs/polices globales (J10), créer le formulaire Elementor et le brancher au webhook (J12).
