@@ -2,7 +2,7 @@ import Link from "next/link";
 import { home, brand } from "@/lib/content";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
-import HeroVisual from "@/components/HeroVisual";
+import HeroVisual from "@/components/HeroVisualFlow";
 import styles from "./page.module.css";
 
 export default function HomePage() {
