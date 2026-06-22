@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { chiSono } from "@/lib/content";
+import Reveal from "@/components/Reveal";
 import styles from "./chi-sono.module.css";
 
 export const metadata = {
@@ -13,25 +14,32 @@ export default function ChiSonoPage() {
     <>
       <section className="section">
         <div className="container title-block center">
-          <h1>{chiSono.title}</h1>
-          <p className="lead mt-24" style={{ margin: "24px auto 0" }}>
-            {chiSono.intro}
-          </p>
+          <Reveal>
+            <span className="eyebrow">Chi sono</span>
+            <h1>{chiSono.title}</h1>
+            <p className="lead mt-24" style={{ margin: "24px auto 0" }}>
+              {chiSono.intro}
+            </p>
+          </Reveal>
         </div>
       </section>
 
       <section className="section section--light">
         <div className="container">
           <div className="title-block center">
-            <h2>{chiSono.metodoTitle}</h2>
+            <Reveal>
+              <h2>{chiSono.metodoTitle}</h2>
+            </Reveal>
           </div>
           <div className="grid-3">
             {chiSono.metodo.map((m, i) => (
-              <div className="card" key={i}>
-                <span className={styles.step}>{m.step}</span>
-                <h3>{m.title}</h3>
-                <p>{m.text}</p>
-              </div>
+              <Reveal key={i} delay={i * 120}>
+                <div className="card" style={{ height: "100%" }}>
+                  <span className={styles.step}>{m.step}</span>
+                  <h3>{m.title}</h3>
+                  <p>{m.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -40,16 +48,20 @@ export default function ChiSonoPage() {
       <section className="section">
         <div className="container">
           <div className="title-block center">
-            <h2>{chiSono.fiduciaTitle}</h2>
+            <Reveal>
+              <h2>{chiSono.fiduciaTitle}</h2>
+            </Reveal>
           </div>
-          <ul className={styles.fiducia}>
-            {chiSono.fiducia.map((f, i) => (
-              <li key={i}>{f}</li>
-            ))}
-          </ul>
-          <div className="center mt-32">
-            <Link href="/contatti" className="btn">Prenoti un audit gratuito</Link>
-          </div>
+          <Reveal>
+            <ul className={styles.fiducia}>
+              {chiSono.fiducia.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
+            </ul>
+            <div className="center mt-32">
+              <Link href="/contatti" className="btn">Prenoti un audit gratuito</Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>
