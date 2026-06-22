@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
  */
 export default function CountUp({
   end,
-  duration = 1800,
+  duration = 2800,
   prefix = "",
   suffix = "",
   decimals = 0,
