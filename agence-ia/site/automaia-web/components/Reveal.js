@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./Reveal.module.css";
 
 /**
- * Enveloppe un bloc et le fait apparaître (fondu + léger glissement)
- * quand il entre dans l'écran au scroll.
+ * Enveloppe un bloc et le fait apparaître quand il entre dans l'écran.
+ * variant : "up" (défaut), "scale", "left" ou "right" pour varier l'entrée.
  */
-export default function Reveal({ children, delay = 0, className = "" }) {
+export default function Reveal({ children, delay = 0, className = "", variant = "up" }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -38,7 +38,7 @@ export default function Reveal({ children, delay = 0, className = "" }) {
   return (
     <div
       ref={ref}
-      className={`${styles.reveal} ${visible ? styles.visible : ""} ${className}`}
+      className={`${styles.reveal} ${styles[variant] || ""} ${visible ? styles.visible : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

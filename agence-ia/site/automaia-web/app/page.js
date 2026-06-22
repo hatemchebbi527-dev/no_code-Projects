@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { home, brand } from "@/lib/content";
 import Reveal from "@/components/Reveal";
+import CountUp from "@/components/CountUp";
+import HeroVisual from "@/components/HeroVisual";
 import styles from "./page.module.css";
 
 export default function HomePage() {
@@ -8,19 +10,40 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className={styles.hero}>
+        <div className={`container ${styles.heroInner}`}>
+          <div className={styles.heroText}>
+            <Reveal>
+              <span className={styles.eyebrowLight}>{brand.tagline}</span>
+              <h1 className={styles.heroTitle}>{home.hero.title}</h1>
+            </Reveal>
+            <Reveal delay={120}>
+              <p className={styles.heroSub}>{home.hero.subtitle}</p>
+            </Reveal>
+            <Reveal delay={220}>
+              <Link href={home.hero.cta.href} className="btn">
+                {home.hero.cta.label}
+              </Link>
+            </Reveal>
+          </div>
+          <Reveal delay={160} variant="scale" className={styles.heroVisual}>
+            <HeroVisual />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <section className={styles.statsSection}>
         <div className="container">
-          <Reveal>
-            <span className={styles.eyebrowLight}>{brand.tagline}</span>
-            <h1 className={styles.heroTitle}>{home.hero.title}</h1>
-          </Reveal>
-          <Reveal delay={120}>
-            <p className={styles.heroSub}>{home.hero.subtitle}</p>
-          </Reveal>
-          <Reveal delay={220}>
-            <Link href={home.hero.cta.href} className="btn">
-              {home.hero.cta.label}
-            </Link>
-          </Reveal>
+          <div className={styles.statsGrid}>
+            {home.stats.map((s, i) => (
+              <Reveal key={i} delay={i * 110} variant="scale" className={styles.statCard}>
+                <div className={styles.statNum}>
+                  <CountUp end={s.value} suffix={s.suffix} />
+                </div>
+                <p className={styles.statLabel}>{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -50,7 +73,7 @@ export default function HomePage() {
           </div>
           <div className="grid-3">
             {home.offerteTeaser.items.map((item, i) => (
-              <Reveal key={i} delay={i * 120}>
+              <Reveal key={i} delay={i * 120} variant="scale">
                 <div className="card" style={{ height: "100%" }}>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>

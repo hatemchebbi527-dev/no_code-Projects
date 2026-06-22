@@ -1,12 +1,21 @@
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
+/* Variantes d'entrée */
+.up { transform: translateY(28px); }
+.scale { transform: scale(0.92); }
+.left { transform: translateX(-42px); }
+.right { transform: translateX(42px); }
+
 .visible {
   opacity: 1;
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; }
 }

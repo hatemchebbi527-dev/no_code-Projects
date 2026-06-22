@@ -24,6 +24,12 @@ export const home = {
       "Automatizzo le attività ripetitive di avvocati e commercialisti. Meno burocrazia, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.",
     cta: { label: "Prenoti un audit gratuito", href: "/contatti" },
   },
+  stats: [
+    { value: 10, suffix: "", label: "ore a settimana che può recuperare" },
+    { value: 24, suffix: "/7", label: "assistente sempre attivo" },
+    { value: 20, suffix: " min", label: "audit gratuito, senza impegno" },
+    { value: 100, suffix: "%", label: "dati protetti e sotto il Suo controllo" },
+  ],
   problema: {
     title: "Quante ore perde ogni settimana in attività che non richiedono la Sua competenza?",
     text:
