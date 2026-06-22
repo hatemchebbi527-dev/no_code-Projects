@@ -1,15 +1,15 @@
 .reveal {
   opacity: 0;
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-/* Variantes d'entrée */
-.up { transform: translateY(28px); }
-.scale { transform: scale(0.92); }
-.left { transform: translateX(-42px); }
-.right { transform: translateX(42px); }
+/* Variantes d'entrée (mouvement marqué pour bien voir l'apparition) */
+.up { transform: translateY(56px); }
+.scale { transform: scale(0.84) translateY(30px); }
+.left { transform: translateX(-70px); }
+.right { transform: translateX(70px); }
 
 .visible {
   opacity: 1;
