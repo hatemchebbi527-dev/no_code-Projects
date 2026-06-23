@@ -3,7 +3,7 @@
 > Mes projets réalisés, présentés comme études de cas. Sert de preuve de compétence pour convaincre les prospects.
 > Le plus récent en haut.
 
----
+
 
 ## Modèle de fiche (à dupliquer pour chaque projet)
 
@@ -17,7 +17,15 @@
 - **Lien :**
 - **Visuel :** (capture ou lien)
 ```
-
+---
+## Assistant emails
+- **Client / secteur :** interne AutomaIA (démonstrateur), cible cabinets libéraux
+- **Le besoin :** trop de temps passé à lire et répondre aux mails clients récurrents
+- **Ce que j'ai livré :** un assistant qui lit chaque mail, filtre les vrais clients, rédige un brouillon de réponse threadé dans Gmail, et envoie une alerte Telegram (expéditeur, urgence, résumé)
+- **Technologies :** n8n, API Claude (Haiku), Gmail API, Telegram Bot API
+- **Résultat / statut :** workflow complet, testé et validé de bout en bout
+- **Pitch :** "un client vous écrit, vous recevez une alerte, une réponse vous attend, vous validez en un clic"
+- **Visuel :** (capture ou lien)
 ---
 
 ## 7sport-agency
