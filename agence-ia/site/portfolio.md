@@ -3,7 +3,7 @@
 > Mes projets réalisés, présentés comme études de cas. Sert de preuve de compétence pour convaincre les prospects.
 > Le plus récent en haut.
 
-
+```
 
 ## Modèle de fiche (à dupliquer pour chaque projet)
 
@@ -17,7 +17,7 @@
 - **Lien :**
 - **Visuel :** (capture ou lien)
 ```
----
+
 ## Assistant emails
 - **Client / secteur :** interne AutomaIA (démonstrateur), cible cabinets libéraux
 - **Le besoin :** trop de temps passé à lire et répondre aux mails clients récurrents
@@ -26,6 +26,8 @@
 - **Résultat / statut :** workflow complet, testé et validé de bout en bout
 - **Pitch :** "un client vous écrit, vous recevez une alerte, une réponse vous attend, vous validez en un clic"
 - **Visuel :** (capture ou lien)
+
+**Compétences démontrées :** intégration d'API IA (Claude), automatisation multi-services (Gmail + Telegram), conception d'un produit fiable et orienté résultat client (filtrage, gestion d'erreurs, validation humaine).
 ---
 
 ## 7sport-agency
