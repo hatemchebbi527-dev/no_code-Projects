@@ -13,9 +13,9 @@
 - Le workflow assistant emails est désormais testé et fonctionnel intégralement : Gmail Trigger → API Claude → parsing → node IF (filtrage est_client) → brouillon Gmail. Un vrai mail client part dans la branche true et génère un brouillon, les newsletters/notifications sont filtrées dans la branche false
 - Débogage clé résolu : le body du node HTTP Request renvoyait `[object Object]` (JSON invalide). Solution = envelopper l'objet dans `JSON.stringify(...)` dans l'expression n8n, pour produire une vraie chaîne JSON et laisser n8n échapper proprement les sauts de ligne et guillemets du mail
 - **Piste 1 (Threading) : FAITE et validée.** Thread ID branché sur `$('Gmail Trigger').item.json.threadId`, sujet gardé EXACT (sans "Re:", indispensable pour le rattachement au fil), et destinataire corrigé en `$('Gmail Trigger').item.json.from.value[0].address` (le champ `from` est un objet, pas une chaîne ; `headers.from` renvoyait "From: ..." invalide). Testé depuis une adresse externe (Yahoo) : le brouillon apparaît dans la bonne conversation, adressé au bon destinataire, réponse personnalisée au prénom de l'expéditeur
-- **RAPPEL : 2 améliorations restantes à ajouter plus tard (priorité confirmée par Hatem) :**
-  1. **Robustesse** : gérer le cas où Claude renvoie un JSON imparfait, pour que le workflow ne plante pas (node de sécurité / fallback sur le parsing)
-  2. **Extension** : envoyer le résumé + l'urgence vers un canal externe (Telegram ou Google Sheet) pour suivre ses mails sans ouvrir Gmail
+- **Piste 2 (Robustesse) : FAITE.** Node Code blindé avec try/catch, isolation du bloc JSON (entre 1ère { et dernière }), optional chaining et valeurs par défaut. Si JSON illisible : pas de crash, pas de brouillon foireux, champ `erreur_parsing: true`
+- **Piste 3 (Extension) : FAITE.** Notification Telegram en temps réel. Choix du canal après analyse : Telegram retenu plutôt que WhatsApp (WhatsApp impose un modèle de message pré-approuvé par Meta pour les notifs proactives, trop de friction). Bot créé via BotFather, chat ID récupéré via @userinfobot, node Telegram branché en parallèle sur la sortie `true` du node IF. Message reçu et validé : expéditeur + urgence + résumé à chaque vrai mail client
+- **Bilan : assistant emails 100% terminé** (filtrage + threading + robustesse + notif Telegram). Actif complet et démontrable en prospection
 
 ---
 
