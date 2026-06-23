@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-06-23
+
+### Assistant emails validé de bout en bout + 3 améliorations à ajouter
+- Le workflow assistant emails est désormais testé et fonctionnel intégralement : Gmail Trigger → API Claude → parsing → node IF (filtrage est_client) → brouillon Gmail. Un vrai mail client part dans la branche true et génère un brouillon, les newsletters/notifications sont filtrées dans la branche false
+- Débogage clé résolu : le body du node HTTP Request renvoyait `[object Object]` (JSON invalide). Solution = envelopper l'objet dans `JSON.stringify(...)` dans l'expression n8n, pour produire une vraie chaîne JSON et laisser n8n échapper proprement les sauts de ligne et guillemets du mail
+- **RAPPEL : 3 améliorations importantes à ajouter au workflow (priorité confirmée par Hatem) :**
+  1. **Threading** : faire apparaître le brouillon dans la bonne conversation Gmail via l'option Thread ID (`threadId` du Gmail Trigger), pour que ce soit une vraie réponse et non un mail isolé
+  2. **Robustesse** : gérer le cas où Claude renvoie un JSON imparfait, pour que le workflow ne plante pas (node de sécurité / fallback sur le parsing)
+  3. **Extension** : envoyer le résumé + l'urgence vers un canal externe (Telegram ou Google Sheet) pour suivre ses mails sans ouvrir Gmail
+
+---
+
 ## 2026-06-22
 
 ### Premier actif démontrable : assistant de réponse aux emails (n8n + API Claude)
