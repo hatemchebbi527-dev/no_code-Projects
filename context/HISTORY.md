@@ -9,6 +9,12 @@
 
 ## 2026-06-24
 
+### Jour 25 (proposition 1 page) : FAIT
+- Modèle de proposition commerciale d'une page créé dans agence-ia/offres/modello-proposta.md, en italien (vouvoiement "Lei"), aligné sur brand_voice.md et grille-tarifaire.md.
+- 6 sections à champs `{{ }}` à dupliquer par prospect : situation actuelle (mots du client), ce que je propose (en résultat), livrables concrets, délais, investissement (tableau forfait + mensuel), prochain pas (une seule action datée).
+- Inclut l'explication de la logique de chaque section + règles transverses (une page max, une seule offre recommandée à l'écrit, date de validité, toujours partir de l'audit du Jour 23) et le mode d'emploi par prospect.
+- Ne demandait pas la machine locale (rédaction). Fait en session.
+
 ### Point d'avancement plan 30 jours + J18 (Make.com) écarté
 - Revue de l'état réel des Semaines 1 à 3, croisée avec le compagnon 30 jours :
   - **Semaine 1 (J1 à J7) : 100% faite.**
