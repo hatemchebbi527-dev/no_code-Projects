@@ -9,10 +9,16 @@
 
 ## 2026-06-24
 
+### Site AutomaIA déployé en ligne sur Vercel
+- Le site Next.js (agence-ia/site/automaia-web) est désormais déployé sur Vercel et public. Le formulaire de contact en production crée bien une fiche dans le CRM Airtable (testé : lead réel arrivé dans la table Prospects). Chaîne d'acquisition complète et publique : visiteur → formulaire site en ligne → webhook n8n → CRM Airtable.
+- Décision git : branche claude/magical-mendel-enfcp3 fusionnée dans main (fast-forward, 85 commits, autorisé explicitement par Hatem) car le site n'existait que sur la branche et Vercel lit la branche par défaut. main est maintenant le code de référence ; Vercel déploie main. Suite du dev sur branche, à refusionner dans main pour publier.
+- Config Vercel : Root Directory = agence-ia/site/automaia-web (monorepo), variable NEXT_PUBLIC_N8N_WEBHOOK_URL reportée dans les env vars Vercel (sinon le formulaire en prod enverrait dans le vide).
+- Build vérifié OK avant déploiement (next build, 6 pages statiques).
+
 ### Jour 16 (Airtable comme CRM) : FAIT ET BRANCHÉ DE BOUT EN BOUT
 - Flux complet fonctionnel : formulaire du site AutomaIA → webhook n8n (nouveau workflow "Sito - Nuovo Lead", path /webhook/nuovo-lead) → node Airtable Create → ligne dans la table Prospects. CRM qui se remplit tout seul, validé par soumissions réelles.
 - Base CRM créée : `AutomaIA - CRM Prospect` (app2s4sQDVTe8ESGZ), table `Prospects` (tbl2D8SoJfW5RbbX9), 9 champs niche libéraux italiens. 2 fiches d'exemple conservées (Studio Bianchi, Studio Verdi), tests nettoyés.
-- Côté site : variable NEXT_PUBLIC_N8N_WEBHOOK_URL configurée dans .env.local (automaia-web) pointant vers le webhook n8n. Site en local pour l'instant (penser à reporter la variable sur l'hébergeur le jour du déploiement).
+- Côté site : variable NEXT_PUBLIC_N8N_WEBHOOK_URL configurée dans .env.local (automaia-web) pointant vers le webhook n8n. (Site désormais déployé sur Vercel, voir entrée dédiée plus haut, variable reportée sur Vercel.)
 - Débogage de bout en bout (vrai entraînement) : 1) variable NEXT_PUBLIC lue au démarrage uniquement (redémarrer npm run dev) ; 2) piège Notepad .env.local.txt ; 3) workflow actif = exécutions visibles dans l'onglet Executions, pas sur le canvas ; 4) token Airtable 403 résolu en RÉGÉNÉRANT le token (la credential n8n gardait une ancienne valeur ; modifier les permissions ne suffit pas, il faut resynchroniser la valeur dans n8n). Scopes requis : data.records:write (+ read/schema par sécurité) + accès explicite à la base.
 - Doc : agence-ia/automations/jour16-crm-airtable/README.md.
 
