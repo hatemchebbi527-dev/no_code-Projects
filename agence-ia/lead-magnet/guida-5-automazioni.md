@@ -1,9 +1,10 @@
-# Cinque automazioni per guadagnare 5 ore a settimana
+# Cinque automazioni per guadagnare fino a 10 ore a settimana
 
-### Una guida pratica per avvocati e commercialisti che vogliono meno burocrazia e più tempo per i clienti
+### Una guida pratica per meno burocrazia e più tempo per i clienti
 
 > Contenuto del lead magnet AutomaIA. Da impaginare in Canva.
 > Voce: brand_voice.md (chiara, concreta, rassicurante, zero gergo). Lingua: italiano, "Lei".
+> Promessa allineata al sito e all'offerta: "fino a 10 ore a settimana".
 
 ---
 
@@ -11,7 +12,7 @@
 
 Il Suo lavoro è la consulenza, non l'amministrazione. Eppure, ogni settimana, ore intere se ne vanno in attività ripetitive: promemoria, solleciti, le stesse risposte alle stesse domande.
 
-Sono attività necessarie, ma non richiedono la Sua competenza. E sommate, valgono diverse ore preziose, ore che potrebbe dedicare ai Suoi clienti o, semplicemente, a Lei.
+Sono attività necessarie, ma non richiedono la Sua competenza. E sommate, valgono fino a dieci ore preziose ogni settimana, ore che potrebbe dedicare ai Suoi clienti o, semplicemente, a Lei.
 
 In questa guida trova cinque automazioni concrete, già applicate negli studi professionali. Per ognuna: il problema quotidiano, cosa cambia, e il tempo che recupera. Nessun gergo tecnico, solo risultati.
 
@@ -25,7 +26,7 @@ Un principio guida tutto: **Lei resta sempre al comando**, e i Suoi dati restano
 
 **Cosa cambia:** il cliente prenota da solo negli orari che Lei decide. I promemoria partono in automatico, prima dell'appuntamento. Le disdette liberano lo slot senza che Lei tocchi nulla.
 
-**Tempo recuperato:** circa 1 ora e mezza a settimana.
+**Tempo recuperato:** circa 2 ore a settimana.
 
 ---
 
@@ -35,7 +36,7 @@ Un principio guida tutto: **Lei resta sempre al comando**, e i Suoi dati restano
 
 **Cosa cambia:** i solleciti partono da soli, con il tono giusto, finché il documento non arriva. Lei viene avvisato solo quando serve il Suo intervento.
 
-**Tempo recuperato:** circa 1 ora a settimana.
+**Tempo recuperato:** circa 1 ora e mezza a settimana.
 
 ---
 
@@ -45,7 +46,7 @@ Un principio guida tutto: **Lei resta sempre al comando**, e i Suoi dati restano
 
 **Cosa cambia:** per ogni email di un vero cliente, una bozza di risposta La aspetta già pronta, scritta nel Suo stile. Lei rilegge e invia con un clic. Nulla parte senza la Sua conferma.
 
-**Tempo recuperato:** circa 1 ora e mezza a settimana.
+**Tempo recuperato:** circa 3 ore a settimana.
 
 ---
 
@@ -55,7 +56,7 @@ Un principio guida tutto: **Lei resta sempre al comando**, e i Suoi dati restano
 
 **Cosa cambia:** ogni documento ricevuto viene raccolto e archiviato nel posto giusto, collegato al cliente corretto. Quando Le serve, è lì.
 
-**Tempo recuperato:** circa 45 minuti a settimana.
+**Tempo recuperato:** circa 1 ora e mezza a settimana.
 
 ---
 
@@ -65,7 +66,7 @@ Un principio guida tutto: **Lei resta sempre al comando**, e i Suoi dati restano
 
 **Cosa cambia:** ogni lunedì mattina riceve un riepilogo chiaro: cosa scade, cosa è in attesa, cosa richiede la Sua attenzione. La settimana parte già organizzata.
 
-**Tempo recuperato:** circa 30 minuti a settimana, e molta meno tensione.
+**Tempo recuperato:** circa 1 ora a settimana, e molta meno tensione.
 
 ---
 
@@ -73,14 +74,14 @@ Un principio guida tutto: **Lei resta sempre al comando**, e i Suoi dati restano
 
 | Automazione | Tempo recuperato |
 |---|---|
-| Appuntamenti e promemoria | ~1h 30 |
-| Solleciti automatici | ~1h |
-| Risposte email pronte | ~1h 30 |
-| Documenti ordinati | ~45 min |
-| Riepilogo settimanale | ~30 min |
-| **Totale** | **oltre 5 ore a settimana** |
+| Appuntamenti e promemoria | ~2h |
+| Solleciti automatici | ~1h 30 |
+| Risposte email pronte | ~3h |
+| Documenti ordinati | ~1h 30 |
+| Riepilogo settimanale | ~1h |
+| **Totale** | **fino a 10 ore a settimana** |
 
-Cinque ore a settimana sono più di venti ore al mese. Quasi una settimana di lavoro recuperata ogni due mesi.
+Fino a dieci ore a settimana: più di un'intera giornata di lavoro recuperata, ogni settimana.
 
 ---
 
