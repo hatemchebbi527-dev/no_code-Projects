@@ -12,8 +12,8 @@
 |---|---|---|---|
 | **Pour qui** | Le cabinet qui veut un premier résultat rapide, sans gros engagement | Le cabinet noyé sous l'administratif répétitif | Le cabinet qui veut tout structurer et déléguer |
 | **Ce qui est inclus** | Réponses email pré-rédigées + alertes | Rendez-vous, rappels, relances, assistant FAQ/email, données protégées | Tout Studio Automatizzato + CRM léger + présence en ligne + optimisation continue |
-| **Forfait de mise en place** | 600 € | 1 490 € | 2 900 € |
-| **Abonnement mensuel** | 79 €/mois | 179 €/mois | 349 €/mois |
+| **Forfait de mise en place** | 600 € | 1 490 € | 2 490 € |
+| **Abonnement mensuel** | 79 €/mois | 149 €/mois | 249 €/mois |
 | **Délai** | 5 à 7 jours | 2 à 3 semaines | 4 à 6 semaines |
 
 **Option à la carte — Presenza Online** (site vitrine + publication réseaux) : 900 € + 49 €/mois. Incluse dans Studio 360.
@@ -24,7 +24,7 @@
 
 L'ancrage, c'est utiliser un prix de référence pour rendre les autres plus faciles à accepter. Trois ressorts ici :
 
-1. **Le palier premium (Studio 360) ancre vers le haut.** En voyant 2 900 €, le client trouve les 1 490 € du Studio Automatizzato raisonnables. Sans le premium, l'offre du milieu paraîtrait chère. Le premium n'est pas là que pour être vendu, il est là pour cadrer la perception.
+1. **Le palier premium (Studio 360) ancre vers le haut.** En voyant 2 490 €, le client trouve les 1 490 € du Studio Automatizzato raisonnables. Sans le premium, l'offre du milieu paraîtrait chère. Le premium n'est pas là que pour être vendu, il est là pour cadrer la perception.
 
 2. **Le palier du milieu est ta cible.** La plupart des clients évitent les extrêmes et choisissent le milieu. C'est pour ça que Studio Automatizzato porte le label "più richiesto" : on guide doucement vers lui.
 
@@ -38,7 +38,7 @@ L'ancrage, c'est utiliser un prix de référence pour rendre les autres plus fac
 
 - **Annonce le prix, puis tais-toi.** Tu dis le chiffre, point. Le premier qui parle après "négocie" contre lui-même. Laisse le silence.
 - **Prix lié au résultat, jamais au temps passé.** "La mise en place est de 1 490 €, et vous récupérez jusqu'à 10 heures par semaine." Pas "ça me prend X jours".
-- **Mensuel = tranquillité, pas coût.** "L'abonnement à 179 € par mois, c'est moi qui veille à ce que tout tourne et qui optimise au fil du temps."
+- **Mensuel = tranquillité, pas coût.** "L'abonnement à 149 € par mois, c'est moi qui veille à ce que tout tourne et qui optimise au fil du temps."
 - **Si "c'est cher" :** ramène à la valeur. "Combien vaut une heure de votre temps ? Sur un mois, ces heures récupérées valent bien plus que l'abonnement." (Le calculateur sert exactement à ça.)
 - **Ne baisse pas le prix, réduis le périmètre.** Si le budget coince, on retire une automatisation, on ne brade pas.
 
