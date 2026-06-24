@@ -9,6 +9,11 @@
 
 ## 2026-06-24
 
+### Jour 26 (closing + objections) : doc FAIT, entraînement à faire
+- Doc "5 objections → réponses" créé dans agence-ia/offres/obiezioni-risposte.md, en italien (Lei), aligné brand_voice.md et grille-tarifaire.md.
+- Couvre les 5 objections clés : prix, temps, "l'IA me dépasse", "pas pour mon secteur", confiance/données. Chaque réponse en méthode 3 temps (accueillir, recadrer, rendre la main), + variante "pas maintenant" + rappels closing (réponse courte puis silence, ne jamais baisser le prix mais réduire le périmètre, honnêteté > enthousiasme).
+- Reste l'entraînement (jeu de rôle prospect) pour cocher le Jour 26 à 100%.
+
 ### Jour 25 (proposition 1 page) : FAIT
 - Modèle de proposition commerciale d'une page créé dans agence-ia/offres/modello-proposta.md, en italien (vouvoiement "Lei"), aligné sur brand_voice.md et grille-tarifaire.md.
 - 6 sections à champs `{{ }}` à dupliquer par prospect : situation actuelle (mots du client), ce que je propose (en résultat), livrables concrets, délais, investissement (tableau forfait + mensuel), prochain pas (une seule action datée).
