@@ -30,6 +30,7 @@
 - **Pitch :** "un client vous écrit, vous recevez une alerte, une réponse vous attend, vous validez en un clic"
 - **Visuel :** (à ajouter : courte vidéo ou GIF montrant l'arrivée du mail, la notif Telegram et le brouillon Gmail)
 - **Vidéo démo :** https://drive.google.com/file/d/1lIZvtaDH75QjGHcsWjv3SKbK7jR0_KTm/edit
+  
 **Compétences démontrées :** intégration d'API IA (Claude), automatisation multi-services (Gmail + Telegram), conception d'un produit fiable et orienté résultat client (filtrage des mails, gestion des erreurs, validation humaine avant envoi).
 
 ---
