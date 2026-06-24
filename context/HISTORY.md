@@ -9,6 +9,11 @@
 
 ## 2026-06-24
 
+### Jour 15 (première API IA) : FAIT ET EXÉCUTÉ
+- Script resume.py exécuté avec succès sur la machine de Hatem : premier appel réel à l'API Claude depuis son propre code Python, résumé du texte italien obtenu en 2 phrases. Jalon du Jour 15 atteint.
+- Débogage mené en autonomie guidée sur sa machine Windows : module dotenv manquant (résolu avec `python -m pip install`, piège des deux Python), puis 401 invalid x-api-key causé par le placeholder non remplacé dans .env (longueur lue = 24 = faux texte). Vérification faite qu'aucune variable système n'écrasait le .env, puis recréation propre du .env avec Set-Content. Réflexe de débogage acquis (lire la valeur réellement chargée, isoler la cause).
+- Compétence clé acquise : clé API + .env + structure client/messages/réponse/tokens. Brique fondatrice de toutes les futures offres IA.
+
 ### Jour 15 (première API IA) : script écrit et câblé, reste l'exécution avec clé perso
 - Script resume.py écrit et commenté dans agence-ia/automations/jour15-api-claude/ : appel API Claude (modèle Haiku) pour résumer un texte italien, avec affichage des tokens (input/output) pour visualiser la facturation.
 - Pédagogie : les 5 briques commentées dans le code (clé API, fichier .env, client, messages, tokens). README mis à jour avec les étapes de lancement et un rappel des 5 briques + pistes pour aller plus loin.
