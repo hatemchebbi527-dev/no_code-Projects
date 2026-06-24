@@ -9,11 +9,12 @@
 
 ## 2026-06-24
 
-### Jour 16 (Airtable comme CRM) : base créée, reste la connexion n8n
-- Base CRM de prospection créée dans Airtable : `AutomaIA - CRM Prospect` (app2s4sQDVTe8ESGZ), table `Prospects` (tbl2D8SoJfW5RbbX9), 9 champs adaptés à la niche libéraux italiens (Nome, Contatto, Settore, Email, Telefono, Stato, Fonte, Note, Data contatto), avec listes de choix Stato (Nuovo→Cliente/Perso) et Fonte. 2 fiches d'exemple créées via l'API pour valider l'écriture.
-- Concept Airtable vu : base/table/champ/enregistrement + API ; passage des IDs techniques (appXXX/tblXXX/fldXXX/recXXX) vs noms lisibles.
-- Doc créée : agence-ia/automations/jour16-crm-airtable/README.md (structure + procédure de connexion n8n pas à pas).
-- RESTE À FAIRE côté Hatem (machine + n8n) : créer un Personal Access Token Airtable (scopes read/write), l'ajouter en credential n8n, brancher un node Airtable Create en bout du workflow qui reçoit le webhook du formulaire du site (Fonte="Sito web", Stato="Nuovo"), puis tester une soumission. C'est le critère "fait" du J16.
+### Jour 16 (Airtable comme CRM) : FAIT ET BRANCHÉ DE BOUT EN BOUT
+- Flux complet fonctionnel : formulaire du site AutomaIA → webhook n8n (nouveau workflow "Sito - Nuovo Lead", path /webhook/nuovo-lead) → node Airtable Create → ligne dans la table Prospects. CRM qui se remplit tout seul, validé par soumissions réelles.
+- Base CRM créée : `AutomaIA - CRM Prospect` (app2s4sQDVTe8ESGZ), table `Prospects` (tbl2D8SoJfW5RbbX9), 9 champs niche libéraux italiens. 2 fiches d'exemple conservées (Studio Bianchi, Studio Verdi), tests nettoyés.
+- Côté site : variable NEXT_PUBLIC_N8N_WEBHOOK_URL configurée dans .env.local (automaia-web) pointant vers le webhook n8n. Site en local pour l'instant (penser à reporter la variable sur l'hébergeur le jour du déploiement).
+- Débogage de bout en bout (vrai entraînement) : 1) variable NEXT_PUBLIC lue au démarrage uniquement (redémarrer npm run dev) ; 2) piège Notepad .env.local.txt ; 3) workflow actif = exécutions visibles dans l'onglet Executions, pas sur le canvas ; 4) token Airtable 403 résolu en RÉGÉNÉRANT le token (la credential n8n gardait une ancienne valeur ; modifier les permissions ne suffit pas, il faut resynchroniser la valeur dans n8n). Scopes requis : data.records:write (+ read/schema par sécurité) + accès explicite à la base.
+- Doc : agence-ia/automations/jour16-crm-airtable/README.md.
 
 ### Jour 15 (première API IA) : FAIT ET EXÉCUTÉ
 - Script resume.py exécuté avec succès sur la machine de Hatem : premier appel réel à l'API Claude depuis son propre code Python, résumé du texte italien obtenu en 2 phrases. Jalon du Jour 15 atteint.
