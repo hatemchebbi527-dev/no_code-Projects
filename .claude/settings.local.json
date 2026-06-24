@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rm \"c:\\\\Users\\\\LENOVO\\\\Desktop\\\\Jarvis\\\\jarvis-starter-kit\\\\fix_prompts.py\")"
+      "Bash(rm \"c:\\\\Users\\\\LENOVO\\\\Desktop\\\\Jarvis\\\\jarvis-starter-kit\\\\fix_prompts.py\")",
+      "mcp__Airtable__ping",
+      "mcp__Airtable__list_bases",
+      "mcp__Airtable__list_workspaces",
+      "mcp__Airtable__create_base",
+      "mcp__Airtable__create_records_for_table"
     ],
     "additionalDirectories": [
       "c:\\Users\\LENOVO\\Desktop\\Jarvis\\jarvis-starter-kit"
