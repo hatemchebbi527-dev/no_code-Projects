@@ -9,6 +9,12 @@
 
 ## 2026-06-24
 
+### Jour 16 (Airtable comme CRM) : base créée, reste la connexion n8n
+- Base CRM de prospection créée dans Airtable : `AutomaIA - CRM Prospect` (app2s4sQDVTe8ESGZ), table `Prospects` (tbl2D8SoJfW5RbbX9), 9 champs adaptés à la niche libéraux italiens (Nome, Contatto, Settore, Email, Telefono, Stato, Fonte, Note, Data contatto), avec listes de choix Stato (Nuovo→Cliente/Perso) et Fonte. 2 fiches d'exemple créées via l'API pour valider l'écriture.
+- Concept Airtable vu : base/table/champ/enregistrement + API ; passage des IDs techniques (appXXX/tblXXX/fldXXX/recXXX) vs noms lisibles.
+- Doc créée : agence-ia/automations/jour16-crm-airtable/README.md (structure + procédure de connexion n8n pas à pas).
+- RESTE À FAIRE côté Hatem (machine + n8n) : créer un Personal Access Token Airtable (scopes read/write), l'ajouter en credential n8n, brancher un node Airtable Create en bout du workflow qui reçoit le webhook du formulaire du site (Fonte="Sito web", Stato="Nuovo"), puis tester une soumission. C'est le critère "fait" du J16.
+
 ### Jour 15 (première API IA) : FAIT ET EXÉCUTÉ
 - Script resume.py exécuté avec succès sur la machine de Hatem : premier appel réel à l'API Claude depuis son propre code Python, résumé du texte italien obtenu en 2 phrases. Jalon du Jour 15 atteint.
 - Débogage mené en autonomie guidée sur sa machine Windows : module dotenv manquant (résolu avec `python -m pip install`, piège des deux Python), puis 401 invalid x-api-key causé par le placeholder non remplacé dans .env (longueur lue = 24 = faux texte). Vérification faite qu'aucune variable système n'écrasait le .env, puis recréation propre du .env avec Set-Content. Réflexe de débogage acquis (lire la valeur réellement chargée, isoler la cause).
