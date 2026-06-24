@@ -9,6 +9,18 @@
 
 ## 2026-06-24
 
+### Point d'avancement plan 30 jours + J18 (Make.com) écarté
+- Revue de l'état réel des Semaines 1 à 3, croisée avec le compagnon 30 jours :
+  - **Semaine 1 (J1 à J7) : 100% faite.**
+  - **Semaine 2 (J8 à J14) : sautée volontairement** (site WordPress redondant avec le site Next.js existant).
+  - **Semaine 3 (J15 à J21) :** J19 couvert dans les faits par l'assistant emails (try/catch + branche erreur + notif Telegram du 23/06), J20 et J21 faits.
+- **Décision stratégique : Jour 18 (comparaison Make.com) ÉCARTÉ.** n8n est déjà l'outil par défaut et maîtrisé ; comparer Make maintenant ne rapproche pas d'un client. Gardé en réserve si un prospect impose Make.
+- **Jours restant en attente sur la Semaine 3 : J15, J16, J17** (volontairement gardés dans la liste à reprendre).
+  - J15 : 1ère API IA en script Python (scaffold créé, exécution à faire sur la machine locale : clé API + Python).
+  - J16 : Airtable comme CRM (pas commencé).
+  - J17 : automatisation de contenu, 1 idée → 4 déclinaisons plateformes (pas fait ; distinct de l'assistant emails).
+- Note : l'assistant emails (22-23/06), hors numérotation du plan, a fait pratiquer en réel les compétences de J15 (API IA), J17 (prompt + automatisation vendable) et J19 (fiabilité). L'avancement de fond dépasse le compteur du plan.
+
 ### Plan 30 jours : WordPress sauté, passage Semaine 3, Jour 20 (offre packagée)
 - Décision stratégique : Semaine 2 (site WordPress + Elementor) SAUTÉE, car le site AutomaIA existe déjà en Next.js. Refaire un site WordPress serait redondant. WordPress reste une compétence vendable à apprendre plus tard sur un site démo si besoin. Passage direct à la Semaine 3
 - Jour 15 (première API IA en script Python) : dossier scaffold créé (agence-ia/automations/jour15-api-claude/ avec README + requirements.txt), mais EXÉCUTION REPORTÉE car Hatem n'était pas sur sa machine (clé API + Python requis en local). À reprendre sur sa machine : créer clé API console.anthropic.com, .env, puis écrire et lancer le script
