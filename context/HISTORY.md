@@ -9,6 +9,14 @@
 
 ## 2026-06-24
 
+### Jour 15 (première API IA) : script écrit et câblé, reste l'exécution avec clé perso
+- Script resume.py écrit et commenté dans agence-ia/automations/jour15-api-claude/ : appel API Claude (modèle Haiku) pour résumer un texte italien, avec affichage des tokens (input/output) pour visualiser la facturation.
+- Pédagogie : les 5 briques commentées dans le code (clé API, fichier .env, client, messages, tokens). README mis à jour avec les étapes de lancement et un rappel des 5 briques + pistes pour aller plus loin.
+- Robustesse : si la clé manque, le script s'arrête proprement avec un message d'aide (testé en session, code de sortie 1, pas de crash).
+- SDK anthropic 0.111.0 + python-dotenv validés (import OK). .env.example (modèle sans secret) ajouté ; exception ajoutée dans agence-ia/.gitignore pour versionner les .env.example tout en continuant de bloquer les vrais .env.
+- BLOCAGE RESTANT (inchangé) : pas de clé API Anthropic dans l'environnement web et je ne peux pas en créer une. Geste final côté Hatem sur sa machine : créer la clé sur console.anthropic.com, `cp .env.example .env`, y coller la clé, `pip install -r requirements.txt`, `python3 resume.py`. ~2 min.
+- ALERTE SÉCURITÉ repérée : le fichier .env à la RACINE du repo (token JWT n8n) est TRACKÉ par git (pas couvert par agence-ia/.gitignore qui ne protège que le sous-dossier). À traiter : retirer du suivi git et faire tourner/régénérer le token n8n.
+
 ### Jour 26 (closing + objections) : doc FAIT, entraînement à faire
 - Doc "5 objections → réponses" créé dans agence-ia/offres/obiezioni-risposte.md, en italien (Lei), aligné brand_voice.md et grille-tarifaire.md.
 - Couvre les 5 objections clés : prix, temps, "l'IA me dépasse", "pas pour mon secteur", confiance/données. Chaque réponse en méthode 3 temps (accueillir, recadrer, rendre la main), + variante "pas maintenant" + rappels closing (réponse courte puis silence, ne jamais baisser le prix mais réduire le périmètre, honnêteté > enthousiasme).

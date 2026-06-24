@@ -2,6 +2,9 @@
 .env
 .env.*
 *.env
+# Exception : les modeles .env.example (sans secret) sont versionnes
+!.env.example
+!*.env.example
 
 # Clés et identifiants
 *.key
