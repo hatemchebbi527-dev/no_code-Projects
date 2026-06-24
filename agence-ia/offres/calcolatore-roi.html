@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quanto vale il Suo tempo — AutomaIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0F2A4A;
+      --navy-2: #163a63;
+      --teal: #16B8A6;
+      --light: #F4F6F8;
+      --muted: #718096;
+      --border: #e8edf3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      color: #2D3748;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 22px;
+      max-width: 540px;
+      width: 100%;
+      padding: 40px 36px;
+      box-shadow: 0 30px 60px rgba(15, 42, 74, 0.35);
+    }
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      color: var(--navy);
+      font-size: 1.6rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .sub { color: var(--muted); font-size: 0.98rem; margin-bottom: 28px; }
+    label { display: block; font-weight: 600; color: var(--navy); margin-bottom: 8px; font-size: 0.95rem; }
+    .field { margin-bottom: 22px; }
+    input[type="number"], select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--navy);
+    }
+    input:focus, select:focus { outline: none; border-color: var(--teal); }
+    .range-row { display: flex; align-items: center; gap: 14px; }
+    input[type="range"] { flex: 1; accent-color: var(--teal); }
+    .range-val {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: var(--teal);
+      min-width: 56px;
+      text-align: right;
+      font-size: 1.1rem;
+    }
+    .result {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 8px;
+    }
+    .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; }
+    .result-row .lbl { color: var(--muted); font-size: 0.95rem; }
+    .result-row .val { font-family: "Montserrat", sans-serif; font-weight: 600; color: var(--navy); font-size: 1.05rem; }
+    .highlight {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .highlight .val { color: var(--teal); font-size: 1.5rem; }
+    .verdict {
+      margin-top: 18px;
+      background: rgba(22, 184, 166, 0.10);
+      border-radius: 12px;
+      padding: 16px 18px;
+      color: var(--navy);
+      font-size: 0.98rem;
+      line-height: 1.5;
+    }
+    .verdict strong { color: var(--teal); }
+    .footer { margin-top: 24px; text-align: center; font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Quanto vale il tempo che recupera?</h1>
+    <p class="sub">Scopra in pochi secondi cosa significano, per il Suo studio, le ore che smette di perdere ogni settimana.</p>
+
+    <div class="field">
+      <label for="tariffa">Quanto vale un'ora del Suo tempo? (€)</label>
+      <input type="number" id="tariffa" value="50" min="1" step="5" />
+    </div>
+
+    <div class="field">
+      <label for="ore">Ore che recupera a settimana</label>
+      <div class="range-row">
+        <input type="range" id="ore" value="10" min="1" max="10" step="1" />
+        <span class="range-val" id="oreVal">10 h</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="offerta">Il Suo abbonamento</label>
+      <select id="offerta">
+        <option value="79">Assistente Email — 79 €/mese</option>
+        <option value="179" selected>Studio Automatizzato — 179 €/mese</option>
+        <option value="349">Studio 360 — 349 €/mese</option>
+      </select>
+    </div>
+
+    <div class="result">
+      <div class="result-row"><span class="lbl">Valore recuperato a settimana</span><span class="val" id="settimana">—</span></div>
+      <div class="result-row"><span class="lbl">Al mese</span><span class="val" id="mese">—</span></div>
+      <div class="result-row highlight"><span class="lbl">All'anno</span><span class="val" id="anno">—</span></div>
+    </div>
+
+    <div class="verdict" id="verdict"></div>
+
+    <p class="footer">AutomaIA — Meno burocrazia, più tempo per i Suoi clienti.</p>
+  </div>
+
+  <script>
+    // Tarifs modifiables ici si la grille change
+    const SEMAINES_PAR_MOIS = 4.33;
+
+    const tariffa = document.getElementById("tariffa");
+    const ore = document.getElementById("ore");
+    const oreVal = document.getElementById("oreVal");
+    const offerta = document.getElementById("offerta");
+    const elSettimana = document.getElementById("settimana");
+    const elMese = document.getElementById("mese");
+    const elAnno = document.getElementById("anno");
+    const elVerdict = document.getElementById("verdict");
+
+    const euro = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+
+    function calcola() {
+      const t = parseFloat(tariffa.value) || 0;
+      const h = parseInt(ore.value) || 0;
+      const abbonamento = parseFloat(offerta.value) || 0;
+
+      const settimana = t * h;
+      const mese = settimana * SEMAINES_PAR_MOIS;
+      const anno = mese * 12;
+
+      oreVal.textContent = h + " h";
+      elSettimana.textContent = euro(settimana);
+      elMese.textContent = euro(mese);
+      elAnno.textContent = euro(anno);
+
+      const ratio = abbonamento > 0 ? Math.round(mese / abbonamento) : 0;
+      elVerdict.innerHTML =
+        "Ogni mese, recupera <strong>" + euro(mese) + "</strong> di tempo. " +
+        "È circa <strong>" + ratio + " volte</strong> il costo del Suo abbonamento. " +
+        "Il tempo che riguadagna vale molto più di quanto investe.";
+    }
+
+    [tariffa, ore, offerta].forEach((el) => {
+      el.addEventListener("input", calcola);
+      el.addEventListener("change", calcola);
+    });
+    calcola();
+  </script>
+</body>
+</html>
