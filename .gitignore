@@ -1,0 +1,27 @@
+# Variables d'environnement et secrets (jamais sur GitHub)
+.env
+.env.*
+*.env
+# Exception : les modeles .env.example (sans secret) restent versionnes
+!.env.example
+!*.env.example
+
+# Cles et identifiants
+*.key
+*.pem
+*.crt
+*.p12
+*credentials*
+*secret*
+*.token
+
+# Dependances et caches
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Systeme
+.DS_Store
+Thumbs.db
