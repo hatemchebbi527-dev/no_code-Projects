@@ -40,10 +40,12 @@ Plusieurs heures récupérées chaque semaine sur la gestion des emails, et des 
 
 Mise en place et tests sur vos vrais emails en **5 à 7 jours ouvrés** après l'audit.
 
-## Le prix (modèle forfait + abonnement) — PROVISOIRE, à valider au Jour 24
+## Le prix (modèle forfait + abonnement) — PROVISOIRE, à confirmer au Jour 24
 
-- **Forfait de mise en place** (une fois) : à définir (proposition de départ : 600 €)
-- **Abonnement mensuel** (maintenance, ajustements, support) : à définir (proposition de départ : 79 €/mois)
+Niveau retenu : moyen (crédible, sans faire peur, marge correcte pour un premier client).
+
+- **Forfait de mise en place** (une fois) : **600 €**
+- **Abonnement mensuel** (maintenance, ajustements, support) : **79 €/mois**
 
 Logique : le forfait couvre l'installation sur mesure, l'abonnement crée le revenu récurrent et garde l'outil fiable dans le temps.
 
