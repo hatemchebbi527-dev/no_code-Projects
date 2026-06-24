@@ -13,6 +13,8 @@
 - Décision stratégique : Semaine 2 (site WordPress + Elementor) SAUTÉE, car le site AutomaIA existe déjà en Next.js. Refaire un site WordPress serait redondant. WordPress reste une compétence vendable à apprendre plus tard sur un site démo si besoin. Passage direct à la Semaine 3
 - Jour 15 (première API IA en script Python) : dossier scaffold créé (agence-ia/automations/jour15-api-claude/ avec README + requirements.txt), mais EXÉCUTION REPORTÉE car Hatem n'était pas sur sa machine (clé API + Python requis en local). À reprendre sur sa machine : créer clé API console.anthropic.com, .env, puis écrire et lancer le script
 - **Jour 20 (packager une offre) : FAIT.** Fiche offre "Assistant Email Intelligent" créée dans agence-ia/offres/assistant-email.md. Positionnée en porte d'entrée / quick win, basée sur l'actif réel (assistant emails). Contient périmètre, limites assumées, délai (5 à 7 jours), processus client, et script de démo Loom de 60s. Prix provisoires retenus (niveau moyen) : forfait de mise en place 600 € + abonnement 79 €/mois, à confirmer au Jour 24
+- **Jour 21 (lead magnet) : FAIT.** Guide "Cinque automazioni per guadagnare 5 ore a settimana" rédigé en italien dans agence-ia/lead-magnet/guida-5-automazioni.md (5 automazioni avec problème, bénéfice, temps recuperato + tableau total >5h + CTA audit gratuito). À mettre en forme dans Canva
+- Script de démo Loom de l'offre traduit en italien (versione "Lei") dans la fiche offre
 - Portfolio : fiche Assistant emails finalisée avec lien vidéo démo Google Drive (penser à vérifier le partage public en navigation privée)
 
 ---
