@@ -78,3 +78,21 @@ Logique : le forfait couvre l'installation sur mesure, l'abonnement crée le rev
 
 **[50-60s — L'appel à l'action]**
 "Si vous voulez voir, sur vos propres emails, le temps que vous pouvez récupérer, réservez un audit gratuit de 20 minutes. Le lien est juste en dessous."
+
+---
+
+## Script démo Loom (60 secondi) — versione italiana
+
+> Versione per il mercato italiano. Tono "Lei", caldo e concreto, zero gergo tecnico.
+
+**[0-10s — Il problema]**
+"Buongiorno. Quante ore alla settimana passa a rispondere alle stesse email dei Suoi clienti? Per molti studi sono diverse ore perse, tempo non fatturabile. Le mostro come recuperarle."
+
+**[10-35s — La demo]**
+"Guardi. Un cliente Le scrive. Subito riceve un avviso: chi scrive, il livello di urgenza e un riassunto in una frase. E nella Sua casella, una risposta è già pronta, scritta nel Suo stile, pronta da inviare. Non deve più scrivere da zero, deve solo rileggere."
+
+**[35-50s — La rassicurazione]**
+"Un punto importante: nulla viene inviato senza di Lei. Mantiene il controllo, conferma con un clic. E i Suoi dati restano da Lei, protetti."
+
+**[50-60s — La chiamata all'azione]**
+"Se vuole vedere, sulle Sue email, quanto tempo può recuperare, prenoti un audit gratuito di 20 minuti. Il link è qui sotto."
