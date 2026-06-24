@@ -15,7 +15,9 @@
 - Robustesse : si la clé manque, le script s'arrête proprement avec un message d'aide (testé en session, code de sortie 1, pas de crash).
 - SDK anthropic 0.111.0 + python-dotenv validés (import OK). .env.example (modèle sans secret) ajouté ; exception ajoutée dans agence-ia/.gitignore pour versionner les .env.example tout en continuant de bloquer les vrais .env.
 - BLOCAGE RESTANT (inchangé) : pas de clé API Anthropic dans l'environnement web et je ne peux pas en créer une. Geste final côté Hatem sur sa machine : créer la clé sur console.anthropic.com, `cp .env.example .env`, y coller la clé, `pip install -r requirements.txt`, `python3 resume.py`. ~2 min.
-- ALERTE SÉCURITÉ repérée : le fichier .env à la RACINE du repo (token JWT n8n) est TRACKÉ par git (pas couvert par agence-ia/.gitignore qui ne protège que le sous-dossier). À traiter : retirer du suivi git et faire tourner/régénérer le token n8n.
+- ALERTE SÉCURITÉ repérée : le fichier .env à la RACINE du repo (token JWT n8n) était TRACKÉ par git (pas couvert par agence-ia/.gitignore qui ne protège que le sous-dossier).
+- CORRECTION FAITE : .env racine retiré du suivi git (git rm --cached, fichier local conservé) + création d'un .gitignore racine qui bloque .env / *.env / clés / secrets et garde l'exception .env.example.
+- ACTION RESTANTE CÔTÉ HATEM (importante) : le token reste présent dans l'HISTORIQUE git des commits précédents (toujours sur GitHub). Le retrait du suivi ne purge pas l'historique. Remède : RÉGÉNÉRER le token dans n8n (révoquer l'ancien, créer un nouveau). Une fois l'ancien révoqué, sa présence dans l'historique est sans danger. Option 1 retenue (régénérer, sans réécrire l'historique) plutôt que filter-repo/BFG.
 
 ### Jour 26 (closing + objections) : doc FAIT, entraînement à faire
 - Doc "5 objections → réponses" créé dans agence-ia/offres/obiezioni-risposte.md, en italien (Lei), aligné brand_voice.md et grille-tarifaire.md.
