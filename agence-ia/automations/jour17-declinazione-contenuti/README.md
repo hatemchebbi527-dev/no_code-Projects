@@ -15,7 +15,7 @@ Clé technique : on demande une **sortie en JSON** pour que n8n puisse séparer 
 3 nodes :
 
 1. **Trigger** : au choix, un node Manuel (pour tester) ou un Webhook (pour appeler depuis ailleurs). Il porte une variable `idea` = l'idée de départ.
-2. **Node Claude (API)** : HTTP Request vers l'API Claude (modèle Haiku ou Sonnet), avec le prompt ci-dessous. Tu as déjà la credential/clé depuis l'assistant emails.
+2. **Node Claude (API)** : HTTP Request vers l'API Claude, avec le prompt ci-dessous. Tu as déjà la credential/clé depuis l'assistant emails. **Modèle recommandé : Sonnet (claude-sonnet-4-6)** pour la qualité rédactionnelle et la cohérence de langue ; Haiku dérape sur le mélange de langues pour du contenu marketing.
 3. **Node Code (parsing)** : isole le bloc JSON de la réponse et le transforme en champs exploitables (même logique que l'assistant emails : nettoyer les ``` éventuels, JSON.parse dans un try/catch).
 
 Sortie attendue : 3 textes utilisables (`linkedin`, `instagram`, `facebook`).
@@ -26,6 +26,8 @@ Sortie attendue : 3 textes utilisables (`linkedin`, `instagram`, `facebook`).
 
 ```
 Tu es le rédacteur de contenu de AutomaIA, une agence qui aide les cabinets de professionnels libéraux italiens (avocats, comptables, notaires) à automatiser leurs tâches répétitives.
+
+LANGUE : écris en ITALIEN CORRECT UNIQUEMENT. Aucun mot en anglais ni en français. Aucune faute.
 
 VOIX DE MARQUE (à respecter strictement) :
 - Italien, vouvoiement "Lei" SINGULIER OBLIGATOIRE (jamais "voi", jamais "tu") : "la Sua settimana", "i Suoi clienti", "Scopra", "Ci scriva".
@@ -38,7 +40,7 @@ VOIX DE MARQUE (à respecter strictement) :
 TÂCHE :
 À partir de l'idée ci-dessous, écris 3 versions d'un même message, adaptées à chaque plateforme :
 - linkedin : ton professionnel, un peu plus développé (4 à 6 phrases), angle valeur/expertise, une seule invitation douce à la fin.
-- instagram : court et percutant, une accroche forte en première ligne, quelques emojis avec parcimonie, finir par un appel à l'action et 4 à 6 hashtags pertinents en italien.
+- instagram : court et percutant, une accroche forte en première ligne, quelques emojis avec parcimonie, finir par un appel à l'action et 4 à 6 hashtags en italien correct, SANS accents et SANS fautes (ex : #StudioLegale #Commercialista #Notaio #EfficienzaStudio #RisparmioDiTempo #ProfessionistiItaliani). N'invente jamais de mots.
 - facebook : ton local et conversationnel, proche, orienté communauté, finir par une invitation simple à écrire en privé.
 
 IDÉE : {{IDEA}}
