@@ -9,12 +9,11 @@
 
 ## 2026-06-24
 
-### Jour 17 (déclinaison de contenu) : prompt + workflow conçus, reste l'exécution n8n
-- Offre vendable "1 idée → 3 posts plateformes" préparée dans agence-ia/automations/jour17-declinazione-contenuti/README.md.
-- Prompt de déclinaison rédigé, aligné brand_voice.md (italien Lei, zéro jargon, sortie JSON imposée pour parsing n8n). 3 plateformes : LinkedIn, Instagram, Facebook (TikTok écarté conformément à la décision du 19/06).
-- Workflow n8n à construire documenté : Trigger (manuel/webhook, variable idea) → node Claude API (réutilise la clé de l'assistant emails) → node Code parsing JSON (try/catch, même logique que l'assistant emails).
-- Exemple de sortie réelle inclus (1 idée → 3 posts) comme repère qualité.
-- RESTE À FAIRE côté Hatem (n8n) : construire les 3 nodes et tester 1 idée réelle = critère "fait" du J17.
+### Jour 17 (déclinaison de contenu) : FAIT, workflow n8n construit et testé
+- Workflow "Declinazione Contenuti" construit dans n8n et testé de bout en bout : Manual Trigger → Set (variable idea) → HTTP Request Claude (node copié de l'assistant emails pour réutiliser l'auth) → Code parsing JSON. 1 idée produit bien 3 posts LinkedIn/Instagram/Facebook en italien. Critère "fait" atteint.
+- Offre vendable documentée dans agence-ia/automations/jour17-declinazione-contenuti/README.md (prompt + workflow + exemple). TikTok écarté (décision 19/06).
+- 2 ajustements qualité après 1er test : 1) Instagram sortait les "\n" en toutes lettres → fonction clean() ajoutée dans le node Code (replace des \n littéraux par de vrais retours à la ligne) + règle dans le prompt ; 2) Claude écrivait en "voi", or la marque est en "Lei" → décision Hatem : "Lei" partout (réseaux compris), règle "Lei singulier obligatoire" ajoutée au prompt.
+- Réflexe métier : un livrable IA = prompt (le savoir-faire) + automatisation (le moteur). Service facturable à un cabinet.
 
 ### Site AutomaIA déployé en ligne sur Vercel
 - Le site Next.js (agence-ia/site/automaia-web) est désormais déployé sur Vercel et public. Le formulaire de contact en production crée bien une fiche dans le CRM Airtable (testé : lead réel arrivé dans la table Prospects). Chaîne d'acquisition complète et publique : visiteur → formulaire site en ligne → webhook n8n → CRM Airtable.
