@@ -55,12 +55,16 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 Liste des projets ou chantiers actifs :
 
 - Dossier projet `agence-ia/` : marque AutomaIA construite. 6 fichiers de marque (audience, brand_voice, offers_cta, graphics_brief, positionnement, prompts) + kit visuel complet (logo en plusieurs versions, bannières LinkedIn et Facebook, avatar, favicon).
-- Suivi du plan "Compagnon 30 jours Claude Code" : Semaine 1 complète (Jours 1 à 7). Semaine 2 (site WordPress) SAUTÉE volontairement (site AutomaIA déjà fait en Next.js). En Semaine 3 : Jour 15 (script API Python) scaffoldé mais à finir sur sa machine, Jour 20 (offre packagée) FAIT, Jour 21 (lead magnet) FAIT, Jour 24 (pricing) FAIT. Prochain logique : Semaine 4 (prospection : Jour 22 outbound, Jour 25 proposition, Jour 26 objections). Plan complet dans context/import/compagnon-30-jours-claude-code.md
-- Grille tarifaire validée (agence-ia/offres/grille-tarifaire.md) : Assistente Email 600 € + 79 €/mois, Studio Automatizzato 1 490 € + 149 €/mois (cible), Studio 360 2 490 € + 249 €/mois (premium), option Presenza Online 900 € + 49 €/mois. Calculateur ROI HTML dispo (calcolatore-roi.html).
-- Offre packagée "Assistant Email Intelligent" (agence-ia/offres/assistant-email.md) : porte d'entrée, forfait 600 € + 79 €/mois (provisoire), script de démo Loom (FR + IT). Prête à présenter.
+- Suivi du plan "Compagnon 30 jours Claude Code" : **Semaines 1 à 3 TERMINÉES.** Semaine 1 (Jours 1 à 7) complète. Semaine 2 (site WordPress) SAUTÉE volontairement (site AutomaIA déjà fait en Next.js). Semaine 3 : Jour 15 (1er appel API Claude en Python) EXÉCUTÉ, Jour 16 (CRM Airtable) FAIT, Jour 17 (moteur de contenu) FAIT, Jour 18 (Make) ÉCARTÉ, Jours 19/20/21 FAITS. Semaine 4 entamée : Jour 24 (pricing) FAIT, Jour 25 (proposition) FAIT, Jour 26 (objections, doc) FAIT. Restent : entraînement objections (J26), Jour 22 (outbound), Jour 23 (audit), Jour 27 (onboarding), Jour 28 (bilan), Jours 29-30 (relances). Plan complet dans context/import/compagnon-30-jours-claude-code.md
+- **Site AutomaIA déployé sur Vercel (public).** Site Next.js dans agence-ia/site/automaia-web, déployé depuis la branche main. Le formulaire de contact alimente automatiquement le CRM. Domaine cible automaia.net à brancher quand voulu.
+- **CRM de prospection Airtable "AutomaIA - CRM Prospect"** : se remplit tout seul depuis le formulaire du site (via webhook n8n). Table Prospects (Nome, Contatto, Settore, Email, Telefono, Stato, Fonte, Note, Data contatto). Chaîne d'acquisition de leads complète et en production.
+- **Moteur de contenu "Declinazione Contenuti" (n8n)** : à partir d'une idée, génère 3 posts adaptés (LinkedIn, Instagram, Facebook) en italien avec le modèle Claude Sonnet, et publie automatiquement sur les 3 plateformes (LinkedIn en texte via contournement HTTP, FB + IG avec image générée). Offre vendable + outil de présence en ligne. Doc : agence-ia/automations/jour17-declinazione-contenuti/.
+- Grille tarifaire VALIDÉE ET FIGÉE (agence-ia/offres/grille-tarifaire.md) : Assistente Email 600 € + 79 €/mois, Studio Automatizzato 1 490 € + 149 €/mois (cible), Studio 360 2 490 € + 249 €/mois (premium), option Presenza Online 900 € + 49 €/mois. Calculateur ROI HTML dispo (calcolatore-roi.html).
+- Offre packagée "Assistant Email Intelligent" (agence-ia/offres/assistant-email.md) : porte d'entrée, forfait 600 € + 79 €/mois (prix figés), script de démo Loom (FR + IT). Prête à présenter.
+- Modèle de proposition 1 page (agence-ia/offres/modello-proposta.md) et doc objections/réponses (agence-ia/offres/obiezioni-risposte.md) : outils de vente prêts à dupliquer par prospect (italien, Lei).
 - Lead magnet "Cinque automazioni per guadagnare fino a 10 ore a settimana" (agence-ia/lead-magnet/guida-5-automazioni.md) : guide italien, mis en forme dans Canva (https://www.canva.com/d/XzCioKXQlcC-P1y). Reste à ajouter le lien d'audit et exporter en PDF. Aimant à prospects. Promesse alignée sur le site (10h).
-- Premier post "build in public" publié sur LinkedIn (profil cohérent : bannière + titre + post). Priorité actuelle : construire le réseau LinkedIn pour la diffusion. Posts d'avance dans agence-ia/contenuti/.
-- Workflows n8n opérationnels : veille RSS vers Google Sheet, publication Instagram automatisée (API Meta), et assistant de réponse aux emails (Gmail Trigger vers API Claude vers brouillon Gmail, filtrage des vrais mails clients via node IF, threading du brouillon dans la conversation d'origine, parsing JSON robuste avec try/catch, et notification Telegram en temps réel à chaque mail client). **Workflow complet, testé et validé de bout en bout. Premier actif démontrable en prospection.**
+- Présence LinkedIn : profil perso cohérent (bannière + titre + premier post "build in public"). Page entreprise "Automa IA" créée (publication auto sur la Page reportée, profil perso pour l'instant). Priorité : construire le réseau LinkedIn pour la diffusion. Posts d'avance dans agence-ia/contenuti/.
+- Workflows n8n opérationnels : (1) veille RSS vers Google Sheet ; (2) assistant de réponse aux emails (Gmail Trigger vers API Claude vers brouillon Gmail, filtrage des vrais mails clients via node IF, threading, parsing JSON robuste, notification Telegram) **complet et validé, premier actif démontrable** ; (3) formulaire du site vers CRM Airtable ; (4) moteur de contenu multi-plateformes (idée vers 3 posts vers LinkedIn + Facebook + Instagram). Instance n8n auto-hébergée sur n8n.freelancerai.eu (gérée aussi en workflows-as-code via n8nac).
 - Site web 7sport-agency (7sport-agency.vercel.app) : proposition réalisée avec Claude Code pour un client réel, finie et envoyée pour validation. En attente de retour client.
 - Développement de sites web et applications simples pour signer les premiers clients
 
@@ -70,10 +74,16 @@ Liste des projets ou chantiers actifs :
 
 ### Outils que j'utilise au quotidien
 
-- n8n (automatisation et workflows)
+- n8n (automatisation et workflows, instance auto-hébergée n8n.freelancerai.eu)
+- API Claude / Anthropic (cœur des automatisations IA : assistant emails, moteur de contenu)
+- Airtable (CRM de prospection)
+- Vercel (hébergement du site AutomaIA en Next.js)
+- Canva (visuels et mise en forme on-brand)
+- OpenAI (génération d'images pour les posts)
 - Notion (organisation et gestion de l'information)
 - Google Sheets (stockage de données pour les workflows)
-- API Meta / Instagram (publication automatisée)
+- API Meta / Instagram + Facebook (publication automatisée)
+- LinkedIn (API pour publication, profil perso ; Page entreprise Automa IA)
 
 ### Style de communication préféré
 

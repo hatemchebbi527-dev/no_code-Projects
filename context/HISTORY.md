@@ -7,6 +7,15 @@
 
 ---
 
+## 2026-06-28
+
+### Jalon : Semaines 1-3 du plan bouclées + 3 actifs en production
+- Synthèse de la session (travaux détaillés dans les entrées du 24/06 ci-dessous) : les Semaines 1 à 3 du plan 30 jours sont terminées (J15 exécuté, J16 CRM, J17 moteur de contenu ; J18 écarté ; J19/20/21 faits). Semaine 4 entamée (J24/25/26 faits).
+- Trois actifs concrets désormais EN PRODUCTION : (1) site AutomaIA déployé sur Vercel et public, (2) CRM Airtable qui se remplit seul depuis le formulaire du site, (3) moteur de contenu n8n qui publie automatiquement sur LinkedIn + Facebook + Instagram à partir d'une idée.
+- Contexte mis à jour : CONTEXT.md (projets en cours, prix figés, nouveaux livrables proposition + objections, Page LinkedIn Automa IA, liste d'outils enrichie : Airtable, API Claude, Vercel, Canva, OpenAI).
+- Reste sur le plan : Semaine 4 (entraînement objections J26, J22 outbound, J23 audit, J27 onboarding, J28 bilan, J29-30 relances). Aucun jour en attente sur les Semaines 1 à 3.
+- Tâches techniques en suspens : mettre à jour n8n (débloquera l'image sur LinkedIn et évitera les décalages de version d'API) ; régénération du token n8n déjà faite (sécurité close).
+
 ## 2026-06-24
 
 ### Jour 17 (déclinaison de contenu) : FAIT, workflow n8n construit et testé
