@@ -6,8 +6,8 @@
 export const brand = {
   name: "AutomaIA",
   tagline: "Automazione e IA per studi legali e di commercialisti",
-  email: "ciao@automaia.net",
-  domain: "automaia.net",
+  email: "info@automa-ia.net",
+  domain: "automa-ia.net",
 };
 
 export const nav = [
