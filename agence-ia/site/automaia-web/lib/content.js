@@ -154,5 +154,5 @@ export const contatti = {
   text:
     "In 20 minuti individuiamo la prima automazione utile per il Suo studio. Compili il modulo, La ricontatto io.",
   successo: "Grazie! Ho ricevuto la Sua richiesta, La ricontatto a breve.",
-  errore: "Qualcosa è andato storto. Riprovi o scriva direttamente a ciao@automaia.net.",
+  errore: "Qualcosa è andato storto. Riprovi o scriva direttamente a info@automa-ia.net.",
 };
