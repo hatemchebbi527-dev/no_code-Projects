@@ -9,6 +9,13 @@
 
 ## 2026-06-28
 
+### Prospezione Automatica : workflow de sourcing + qualification de leads conçu
+- Spécification complète créée dans agence-ia/automations/prospezione-automatica/README.md : workflow n8n (14 nodes) qui cherche des studios via l'API Google Places (annuaire d'entreprises public), les qualifie avec Claude (punteggio Alto/Medio/Basso + accroche italienne "Lei" générée), vérifie les doublons dans le CRM Airtable avant création, et boucle sur toute la liste.
+- Décision de conception assumée : PAS de scraping LinkedIn automatique (viole les CGU, risque de bannissement de compte). Le contact humain sur LinkedIn reste manuel, comme pour les 7 premiers prospects. L'automatisation couvre uniquement la découverte + qualification (données professionnelles publiques Google), pas le contact.
+- Qualification basée sur les avis Google (texte des reviews) plutôt que sur du scraping de site web : plus robuste, pas de dépendance à la structure de chaque site.
+- Réutilisable pour d'autres secteurs (avvocato, notaio) en changeant un seul node de config.
+- Reste à faire côté Hatem : créer une clé Google Places API (Google Cloud), créer la credential Query Auth dans n8n, construire les 14 nodes, tester sur "commercialista Rimini".
+
 ### Jalon : Semaines 1-3 du plan bouclées + 3 actifs en production
 - Synthèse de la session (travaux détaillés dans les entrées du 24/06 ci-dessous) : les Semaines 1 à 3 du plan 30 jours sont terminées (J15 exécuté, J16 CRM, J17 moteur de contenu ; J18 écarté ; J19/20/21 faits). Semaine 4 entamée (J24/25/26 faits).
 - Trois actifs concrets désormais EN PRODUCTION : (1) site AutomaIA déployé sur Vercel et public, (2) CRM Airtable qui se remplit seul depuis le formulaire du site, (3) moteur de contenu n8n qui publie automatiquement sur LinkedIn + Facebook + Instagram à partir d'une idée.
