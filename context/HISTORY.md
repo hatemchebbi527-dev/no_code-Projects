@@ -7,7 +7,17 @@
 
 ---
 
-## 2026-06-28
+## 2026-07-09
+
+### Prospezione Automatica : workflow construit, testé, FONCTIONNEL
+- Workflow n8n complet construit et validé en conditions réelles sur "commercialista, Rimini" : 20 studios trouvés (Google Places), 3 déjà dans le CRM correctement filtrés, 18 nouveaux qualifiés et créés dans Airtable (mix Alto/Medio, aucun Basso ce lot, expliqué par le fait que les 2 candidats évidents à un score bas - Deloitte, STUCOMAS 5 associés - étaient déjà dans le CRM donc filtrés avant qualification).
+- Décision de conception importante (demandée par Hatem en cours de build) : la qualification IA n'utilise PLUS le contenu/sentiment des avis clients (feedback sur le commercialiste ne prédit rien sur le fit prospect). Recentré sur des critères structurels : nombre de professionnels nommés dans le nom du studio, marque nationale/multinationale à exclure, nombre d'avis comme simple indice de visibilité. Node "Prepara testo recensioni" simplifié en "Prepara dati qualifica" (reviews retirées du pipeline).
+- 3 bugs réels rencontrés et résolus en direct :
+  1. 403 Airtable sur l'opération Search : le token PAT avait write mais pas data.records:read (write seul suffisait jusque-là car jamais de lecture demandée). Scope ajouté.
+  2. Dédoublonnage à 100% faux positif : 8 fiches du CRM avaient un champ Nome vide (seul Contatto rempli) ; la fonction Airtable FIND("", X) renvoie toujours 1, donc ces fiches vides matchaient systématiquement. Formule corrigée avec un garde AND({Nome} != "", ...).
+  3. Erreur "Sito expects a array" : champ Airtable créé par erreur en type Multiple select au lieu de URL. Type corrigé dans Airtable, puis cache de schéma n8n à rafraîchir côté node (bug classique de resource mapper n8n qui ne revalide pas le type automatiquement).
+- Nettoyage post-run : 12 fiches sur 18 avaient le champ Sito dédié vide (créées avant la prise d'effet du rafraîchissement de schéma, alors que l'URL était déjà présente dans le texte de Note) ; backfill fait directement via l'accès Airtable, à partir des URLs déjà présentes dans Note.
+- Réutilisable sur d'autres secteurs (avvocato, notaio) en changeant un seul node de config (Settore).
 
 ### Prospezione Automatica : workflow de sourcing + qualification de leads conçu
 - Spécification complète créée dans agence-ia/automations/prospezione-automatica/README.md : workflow n8n (14 nodes) qui cherche des studios via l'API Google Places (annuaire d'entreprises public), les qualifie avec Claude (punteggio Alto/Medio/Basso + accroche italienne "Lei" générée), vérifie les doublons dans le CRM Airtable avant création, et boucle sur toute la liste.

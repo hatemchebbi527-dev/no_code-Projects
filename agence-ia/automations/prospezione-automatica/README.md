@@ -1,5 +1,8 @@
 # Prospezione Automatica — recherche et qualification de leads (Commercialisti)
 
+**STATO : FUNZIONANTE, testé en conditions réelles le 09/07/2026.** 20 studios cherchés, 3 déjà
+connus filtrés automatiquement, 18 nouveaux qualifiés et ajoutés au CRM.
+
 Workflow n8n qui cherche des studios (Commercialisti pour commencer), les qualifie avec l'IA,
 génère une accroche personnalisée, et crée les leads pertinents directement dans le CRM Airtable,
 sans doublons.
@@ -9,9 +12,15 @@ sans doublons.
 ## Ce que ce workflow fait, et ne fait pas
 
 **Fait** : cherche des studios via l'**API Google Places** (annuaire d'entreprises public, données
-professionnelles publiques : nom, adresse, téléphone, site, note, avis). Fait qualifier chaque
-studio par Claude (taille probable, pertinence pour l'offre AutomaIA) et générer une accroche
-italienne prête à l'emploi. Vérifie s'il existe déjà dans le CRM avant de créer une fiche.
+professionnelles publiques : nom, adresse, téléphone, site, note). Fait qualifier chaque
+studio par Claude sur des critères **structurels uniquement** (taille probable, indépendance,
+absence de marque nationale/multinationale) et générer une accroche italienne prête à l'emploi
+basée sur des faits concrets. Vérifie s'il existe déjà dans le CRM avant de créer une fiche.
+
+**Important : la qualification n'utilise JAMAIS le contenu ou le ton des avis clients.** Le
+sentiment des avis (satisfaction envers le commercialiste) ne dit rien sur si c'est un bon
+prospect pour AutomaIA. Seul le nombre d'avis est utilisé, comme indice léger de visibilité/taille,
+jamais leur contenu.
 
 **Ne fait pas** : chercher ou extraire des profils LinkedIn automatiquement. Le scraping LinkedIn
 viole ses conditions d'utilisation et expose le compte à un bannissement. Retrouver le titulaire
