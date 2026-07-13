@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Fond principal (bleu marine très foncé) + accent turquoise — cahier des charges AutomaIA §7 */
+    --background: 211.5 64.5% 12.2%;
+    --foreground: 210 40% 98%;
+
+    --card: 212.5 66.3% 17.5%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 212.5 66.3% 17.5%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 167.6 72.1% 43.5%;
+    --primary-foreground: 211.5 64.5% 10%;
+
+    --secondary: 212.5 40% 24%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 212.5 40% 22%;
+    --muted-foreground: 210 20% 70%;
+
+    --accent: 167.6 72.1% 43.5%;
+    --accent-foreground: 211.5 64.5% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 212.5 40% 24%;
+    --input: 212.5 40% 24%;
+    --ring: 167.6 72.1% 43.5%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
