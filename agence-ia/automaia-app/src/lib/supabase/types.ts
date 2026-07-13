@@ -37,6 +37,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["studios"]["Insert"]>;
+        Relationships: [];
       };
       users: {
         Row: {
@@ -54,6 +55,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["users"]["Insert"]>;
+        Relationships: [];
       };
       contacts: {
         Row: {
@@ -79,6 +81,7 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["contacts"]["Insert"]>;
+        Relationships: [];
       };
       tasks: {
         Row: {
@@ -102,6 +105,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["tasks"]["Insert"]>;
+        Relationships: [];
       };
       task_templates: {
         Row: {
@@ -119,6 +123,7 @@ export interface Database {
           default_status?: TaskStatus;
         };
         Update: Partial<Database["public"]["Tables"]["task_templates"]["Insert"]>;
+        Relationships: [];
       };
       content_items: {
         Row: {
@@ -140,6 +145,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["content_items"]["Insert"]>;
+        Relationships: [];
       };
       email_drafts: {
         Row: {
@@ -163,6 +169,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["email_drafts"]["Insert"]>;
+        Relationships: [];
       };
       automations: {
         Row: {
@@ -184,6 +191,7 @@ export interface Database {
           last_run_status?: string | null;
         };
         Update: Partial<Database["public"]["Tables"]["automations"]["Insert"]>;
+        Relationships: [];
       };
       webhook_tokens: {
         Row: {
@@ -199,7 +207,12 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["webhook_tokens"]["Insert"]>;
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }
