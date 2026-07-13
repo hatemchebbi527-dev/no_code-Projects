@@ -8,7 +8,7 @@ Stack : Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Supabase (Postgres,
 
 - [x] **Phase 1 — Setup** : scaffold Next.js/Tailwind/shadcn, schéma SQL + RLS
 - [x] **Phase 2 — Auth** : signup/login + création automatique du studio + middleware `/dashboard/*`
-- [ ] Phase 3 — Layout app (sidebar/topbar)
+- [x] **Phase 3 — Layout app** : sidebar (7 sections) + topbar (studio/user/déconnexion)
 - [ ] Phase 4 — Panoramica (stats)
 - [ ] Phase 5 — Workflow + Acquisizione (Kanban)
 - [ ] Phase 6 — Visibilità + Bozze email (Claude API)
