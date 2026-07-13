@@ -216,3 +216,7 @@ export interface Database {
     CompositeTypes: Record<string, never>;
   };
 }
+
+export type Task = Database["public"]["Tables"]["tasks"]["Row"];
+export type TaskTemplate = Database["public"]["Tables"]["task_templates"]["Row"];
+export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
