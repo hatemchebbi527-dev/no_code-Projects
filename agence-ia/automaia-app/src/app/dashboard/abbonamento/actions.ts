@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import { CHECKOUT_PRICING, stripe, type CheckoutKind } from "@/lib/stripe";
+import { CHECKOUT_PRICING, getStripe, type CheckoutKind } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 import type { Studio } from "@/lib/supabase/types";
 
@@ -33,7 +33,7 @@ async function currentStudio(): Promise<Studio | null> {
 async function getOrCreateStripeCustomer(studio: Studio, email: string | undefined): Promise<string> {
   if (studio.stripe_customer_id) return studio.stripe_customer_id;
 
-  const customer = await stripe.customers.create({
+  const customer = await getStripe().customers.create({
     email,
     metadata: { studio_id: studio.id },
   });
@@ -65,7 +65,7 @@ export async function createCheckoutSession(kind: CheckoutKind) {
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     mode: "subscription",
     customer: customerId,
     line_items: lineItems,
@@ -88,7 +88,7 @@ export async function createPortalSession() {
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 
-  const session = await stripe.billingPortal.sessions.create({
+  const session = await getStripe().billingPortal.sessions.create({
     customer: studio.stripe_customer_id,
     return_url: `${appUrl}/dashboard/abbonamento`,
   });

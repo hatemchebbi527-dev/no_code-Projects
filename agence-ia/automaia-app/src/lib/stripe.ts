@@ -1,6 +1,20 @@
 import Stripe from "stripe";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "");
+// Construction paresseuse : le SDK Stripe lève une erreur dès le constructeur
+// si la clé est vide, ce qui fait planter `next build` (le module est évalué
+// pendant "Collecting page data") tant que STRIPE_SECRET_KEY n'est pas encore
+// configurée. On ne construit le client qu'au moment où on en a réellement besoin.
+let stripeClient: Stripe | null = null;
+
+export function getStripe(): Stripe {
+  if (!stripeClient) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error("STRIPE_SECRET_KEY non configurata.");
+    }
+    stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY);
+  }
+  return stripeClient;
+}
 
 export type CheckoutKind = "studio_automatizzato" | "studio_360" | "addon_presenza_online";
 

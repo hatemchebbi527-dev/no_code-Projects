@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { StudioPlan, StudioPlanStatus } from "@/lib/supabase/types";
 
@@ -30,7 +30,11 @@ export async function POST(request: Request) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET ?? "");
+    event = getStripe().webhooks.constructEvent(
+      body,
+      signature,
+      process.env.STRIPE_WEBHOOK_SECRET ?? ""
+    );
   } catch (error) {
     const message = error instanceof Error ? error.message : "Firma non valida";
     return NextResponse.json({ error: message }, { status: 400 });
