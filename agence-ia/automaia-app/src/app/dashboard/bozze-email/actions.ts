@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 import { revalidatePath } from "next/cache";
 
-import { anthropic, CLAUDE_MODEL, emailDraftSystemPrompt } from "@/lib/anthropic";
+import { anthropic, assertApiKeyIsClean, CLAUDE_MODEL, emailDraftSystemPrompt } from "@/lib/anthropic";
 import { createClient } from "@/lib/supabase/server";
 import type { EmailDraftStatus } from "@/lib/supabase/types";
 
@@ -64,30 +64,37 @@ export async function regenerateWebhookToken() {
   revalidatePath("/dashboard/bozze-email");
 }
 
-export async function generateEmailDraftTest(formData: FormData) {
+export async function generateEmailDraftTest(formData: FormData): Promise<{ error?: string }> {
   const studioId = await currentStudioId();
-  if (!studioId) return;
+  if (!studioId) return { error: "Sessione non valida. Effettui di nuovo l'accesso." };
 
   const receivedEmail = formData.get("receivedEmail") as string;
 
-  const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
-    max_tokens: 1024,
-    system: emailDraftSystemPrompt(),
-    messages: [{ role: "user", content: receivedEmail }],
-  });
+  try {
+    assertApiKeyIsClean();
 
-  const generatedDraft = response.content.find((block) => block.type === "text")?.text ?? "";
+    const response = await anthropic.messages.create({
+      model: CLAUDE_MODEL,
+      max_tokens: 1024,
+      system: emailDraftSystemPrompt(),
+      messages: [{ role: "user", content: receivedEmail }],
+    });
 
-  const supabase = createClient();
-  await supabase.from("email_drafts").insert({
-    studio_id: studioId,
-    received_email: receivedEmail,
-    generated_draft: generatedDraft,
-    status: "pending",
-  });
+    const generatedDraft = response.content.find((block) => block.type === "text")?.text ?? "";
 
-  revalidatePath("/dashboard/bozze-email");
+    const supabase = createClient();
+    await supabase.from("email_drafts").insert({
+      studio_id: studioId,
+      received_email: receivedEmail,
+      generated_draft: generatedDraft,
+      status: "pending",
+    });
+
+    revalidatePath("/dashboard/bozze-email");
+    return {};
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Errore sconosciuto." };
+  }
 }
 
 export async function updateDraftStatus(draftId: string, status: EmailDraftStatus) {

@@ -18,15 +18,21 @@ const PLATFORMS = [
 
 export function ContentForm() {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsGenerating(true);
+    setError(null);
     const formData = new FormData(e.currentTarget);
     try {
-      await generateContent(formData);
-      formRef.current?.reset();
+      const result = await generateContent(formData);
+      if (result.error) {
+        setError(result.error);
+      } else {
+        formRef.current?.reset();
+      }
     } finally {
       setIsGenerating(false);
     }
@@ -63,6 +69,7 @@ export function ContentForm() {
               ))}
             </select>
           </div>
+          {error && <p className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={isGenerating}>
             {isGenerating ? "Generazione in corso..." : "Genera contenuto"}
           </Button>

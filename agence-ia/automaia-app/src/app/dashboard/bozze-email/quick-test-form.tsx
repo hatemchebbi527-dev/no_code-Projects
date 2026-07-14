@@ -11,15 +11,21 @@ import { generateEmailDraftTest } from "./actions";
 
 export function QuickTestForm() {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsGenerating(true);
+    setError(null);
     const formData = new FormData(e.currentTarget);
     try {
-      await generateEmailDraftTest(formData);
-      formRef.current?.reset();
+      const result = await generateEmailDraftTest(formData);
+      if (result.error) {
+        setError(result.error);
+      } else {
+        formRef.current?.reset();
+      }
     } finally {
       setIsGenerating(false);
     }
@@ -46,6 +52,7 @@ export function QuickTestForm() {
               placeholder="Incolli qui il testo dell'email del cliente..."
             />
           </div>
+          {error && <p className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={isGenerating}>
             {isGenerating ? "Generazione in corso..." : "Genera bozza"}
           </Button>

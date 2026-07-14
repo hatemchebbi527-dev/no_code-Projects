@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { anthropic, CLAUDE_MODEL, emailDraftSystemPrompt } from "@/lib/anthropic";
+import { anthropic, assertApiKeyIsClean, CLAUDE_MODEL, emailDraftSystemPrompt } from "@/lib/anthropic";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export async function POST(request: Request) {
@@ -33,14 +33,20 @@ export async function POST(request: Request) {
   const senderEmail = body?.sender_email as string | undefined;
   const subject = body?.subject as string | undefined;
 
-  const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
-    max_tokens: 1024,
-    system: emailDraftSystemPrompt(),
-    messages: [{ role: "user", content: receivedEmail }],
-  });
-
-  const generatedDraft = response.content.find((block) => block.type === "text")?.text ?? "";
+  let generatedDraft: string;
+  try {
+    assertApiKeyIsClean();
+    const response = await anthropic.messages.create({
+      model: CLAUDE_MODEL,
+      max_tokens: 1024,
+      system: emailDraftSystemPrompt(),
+      messages: [{ role: "user", content: receivedEmail }],
+    });
+    generatedDraft = response.content.find((block) => block.type === "text")?.text ?? "";
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Errore sconosciuto";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 
   const { data: draft, error } = await supabase
     .from("email_drafts")

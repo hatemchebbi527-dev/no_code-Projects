@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { anthropic, CLAUDE_MODEL, contentGenerationSystemPrompt } from "@/lib/anthropic";
+import { anthropic, assertApiKeyIsClean, CLAUDE_MODEL, contentGenerationSystemPrompt } from "@/lib/anthropic";
 import { createClient } from "@/lib/supabase/server";
 import type { ContentPlatform, ContentStatus } from "@/lib/supabase/types";
 
@@ -22,32 +22,39 @@ async function currentStudioId() {
   return profile?.studio_id ?? null;
 }
 
-export async function generateContent(formData: FormData) {
+export async function generateContent(formData: FormData): Promise<{ error?: string }> {
   const studioId = await currentStudioId();
-  if (!studioId) return;
+  if (!studioId) return { error: "Sessione non valida. Effettui di nuovo l'accesso." };
 
   const topic = formData.get("topic") as string;
   const platform = formData.get("platform") as ContentPlatform;
 
-  const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
-    max_tokens: 1024,
-    system: contentGenerationSystemPrompt(platform),
-    messages: [{ role: "user", content: `Argomento del post: ${topic}` }],
-  });
+  try {
+    assertApiKeyIsClean();
 
-  const body = response.content.find((block) => block.type === "text")?.text ?? "";
+    const response = await anthropic.messages.create({
+      model: CLAUDE_MODEL,
+      max_tokens: 1024,
+      system: contentGenerationSystemPrompt(platform),
+      messages: [{ role: "user", content: `Argomento del post: ${topic}` }],
+    });
 
-  const supabase = createClient();
-  await supabase.from("content_items").insert({
-    studio_id: studioId,
-    topic,
-    platform,
-    body,
-    status: "draft",
-  });
+    const body = response.content.find((block) => block.type === "text")?.text ?? "";
 
-  revalidatePath("/dashboard/visibilita");
+    const supabase = createClient();
+    await supabase.from("content_items").insert({
+      studio_id: studioId,
+      topic,
+      platform,
+      body,
+      status: "draft",
+    });
+
+    revalidatePath("/dashboard/visibilita");
+    return {};
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Errore sconosciuto." };
+  }
 }
 
 export async function updateContentStatus(contentId: string, status: ContentStatus) {

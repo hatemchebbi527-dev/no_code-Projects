@@ -1,8 +1,32 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-export const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+export const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY?.trim() });
 
 export const CLAUDE_MODEL = "claude-opus-4-8";
+
+// Un header HTTP n'accepte que des caractères Latin-1 (code <= 255). Un
+// copier-coller depuis un clavier mobile peut substituer un trait d'union par
+// un tiret Unicode et casser l'appel API avec une erreur ByteString peu
+// explicite — appelée juste avant chaque appel Claude pour un diagnostic clair.
+export function assertApiKeyIsClean() {
+  const raw = process.env.ANTHROPIC_API_KEY;
+  if (!raw) {
+    throw new Error("ANTHROPIC_API_KEY non configurata.");
+  }
+
+  const trimmed = raw.trim();
+  for (let i = 0; i < trimmed.length; i++) {
+    const code = trimmed.charCodeAt(i);
+    if (code > 255) {
+      throw new Error(
+        `ANTHROPIC_API_KEY contient un caractère invalide à la position ${i} ` +
+          `(code Unicode ${code}). La clé a probablement été corrompue lors du ` +
+          `copier-coller (ex. tiret transformé par l'auto-correction du clavier). ` +
+          `Longueur de la clé reçue : ${trimmed.length} caractères.`
+      );
+    }
+  }
+}
 
 // Ton adapté de agence-ia/marque/brand_voice.md : ici la voix n'est pas celle
 // d'AutomaIA mais celle du professionnel (commercialista/avvocato) qui utilise
