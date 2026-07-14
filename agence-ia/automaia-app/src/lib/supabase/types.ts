@@ -220,3 +220,7 @@ export interface Database {
 export type Task = Database["public"]["Tables"]["tasks"]["Row"];
 export type TaskTemplate = Database["public"]["Tables"]["task_templates"]["Row"];
 export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
+export type ContentItem = Database["public"]["Tables"]["content_items"]["Row"];
+export type EmailDraft = Database["public"]["Tables"]["email_drafts"]["Row"];
+export type Automation = Database["public"]["Tables"]["automations"]["Row"];
+export type WebhookToken = Database["public"]["Tables"]["webhook_tokens"]["Row"];
