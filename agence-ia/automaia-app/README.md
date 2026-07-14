@@ -12,7 +12,7 @@ Stack : Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Supabase (Postgres,
 - [x] **Phase 4 — Panoramica** : 7 stat cards en live depuis la DB
 - [x] **Phase 5 — Workflow + Acquisizione** : CRUD + Kanban drag & drop (dnd-kit)
 - [x] **Phase 6 — Visibilità + Bozze email** : génération de contenu et brouillons via Claude API
-- [ ] Phase 7 — Automazioni (webhooks n8n)
+- [x] **Phase 7 — Automazioni** : 5 flux n8n (toggle, URL, test connexion, historique)
 - [ ] Phase 8 — Abbonamento (Stripe)
 - [ ] Phase 9 — Déploiement Vercel + domaine `automa-ia.net`
 
