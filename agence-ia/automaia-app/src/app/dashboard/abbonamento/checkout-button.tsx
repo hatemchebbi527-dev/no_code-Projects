@@ -17,19 +17,27 @@ export function CheckoutButton({
   disabled?: boolean;
 }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleClick() {
     setIsLoading(true);
+    setError(null);
     try {
-      await createCheckoutSession(kind);
+      const result = await createCheckoutSession(kind);
+      if (result?.error) {
+        setError(result.error);
+      }
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <Button onClick={handleClick} disabled={disabled || isLoading} className="w-full">
-      {isLoading ? "Reindirizzamento..." : label}
-    </Button>
+    <div className="space-y-2">
+      <Button onClick={handleClick} disabled={disabled || isLoading} className="w-full">
+        {isLoading ? "Reindirizzamento..." : label}
+      </Button>
+      {error && <p className="text-sm text-destructive">{error}</p>}
+    </div>
   );
 }

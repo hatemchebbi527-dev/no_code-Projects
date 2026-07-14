@@ -47,51 +47,73 @@ async function getOrCreateStripeCustomer(studio: Studio, email: string | undefin
   return customer.id;
 }
 
-export async function createCheckoutSession(kind: CheckoutKind) {
+export async function createCheckoutSession(kind: CheckoutKind): Promise<{ error?: string }> {
   const studio = await currentStudio();
-  if (!studio) return;
+  if (!studio) return { error: "Sessione non valida. Effettui di nuovo l'accesso." };
 
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let checkoutUrl: string | null = null;
 
-  const customerId = await getOrCreateStripeCustomer(studio, user?.email);
-  const pricing = CHECKOUT_PRICING[kind];
+  try {
+    const supabase = createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  const lineItems = [pricing.setupPriceId, pricing.recurringPriceId]
-    .filter((priceId): priceId is string => Boolean(priceId))
-    .map((priceId) => ({ price: priceId, quantity: 1 }));
+    const customerId = await getOrCreateStripeCustomer(studio, user?.email);
+    const pricing = CHECKOUT_PRICING[kind];
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const lineItems = [pricing.setupPriceId, pricing.recurringPriceId]
+      .filter((priceId): priceId is string => Boolean(priceId))
+      .map((priceId) => ({ price: priceId, quantity: 1 }));
 
-  const session = await getStripe().checkout.sessions.create({
-    mode: "subscription",
-    customer: customerId,
-    line_items: lineItems,
-    success_url: `${appUrl}/dashboard/abbonamento?success=1`,
-    cancel_url: `${appUrl}/dashboard/abbonamento?canceled=1`,
-    metadata: { studio_id: studio.id, kind },
-    subscription_data: {
+    if (lineItems.length === 0) {
+      return { error: `Nessun prezzo Stripe configurato per "${kind}".` };
+    }
+
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+
+    const session = await getStripe().checkout.sessions.create({
+      mode: "subscription",
+      customer: customerId,
+      line_items: lineItems,
+      success_url: `${appUrl}/dashboard/abbonamento?success=1`,
+      cancel_url: `${appUrl}/dashboard/abbonamento?canceled=1`,
       metadata: { studio_id: studio.id, kind },
-    },
-  });
+      subscription_data: {
+        metadata: { studio_id: studio.id, kind },
+      },
+    });
 
-  if (session.url) {
-    redirect(session.url);
+    checkoutUrl = session.url;
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Errore sconosciuto." };
   }
+
+  if (!checkoutUrl) {
+    return { error: "Impossibile creare la sessione di pagamento." };
+  }
+
+  redirect(checkoutUrl);
 }
 
-export async function createPortalSession() {
+export async function createPortalSession(): Promise<{ error?: string }> {
   const studio = await currentStudio();
-  if (!studio?.stripe_customer_id) return;
+  if (!studio?.stripe_customer_id) {
+    return { error: "Nessun cliente Stripe associato a questo studio." };
+  }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+  let portalUrl: string | null = null;
 
-  const session = await getStripe().billingPortal.sessions.create({
-    customer: studio.stripe_customer_id,
-    return_url: `${appUrl}/dashboard/abbonamento`,
-  });
+  try {
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const session = await getStripe().billingPortal.sessions.create({
+      customer: studio.stripe_customer_id,
+      return_url: `${appUrl}/dashboard/abbonamento`,
+    });
+    portalUrl = session.url;
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Errore sconosciuto." };
+  }
 
-  redirect(session.url);
+  redirect(portalUrl);
 }
