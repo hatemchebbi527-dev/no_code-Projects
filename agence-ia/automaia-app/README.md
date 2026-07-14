@@ -13,7 +13,7 @@ Stack : Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Supabase (Postgres,
 - [x] **Phase 5 — Workflow + Acquisizione** : CRUD + Kanban drag & drop (dnd-kit)
 - [x] **Phase 6 — Visibilità + Bozze email** : génération de contenu et brouillons via Claude API
 - [x] **Phase 7 — Automazioni** : 5 flux n8n (toggle, URL, test connexion, historique)
-- [ ] Phase 8 — Abbonamento (Stripe)
+- [x] **Phase 8 — Abbonamento** : Stripe Checkout (2 plans + add-on) + Customer Portal + webhook
 - [ ] Phase 9 — Déploiement Vercel + domaine `automa-ia.net`
 
 ## Setup local
@@ -38,6 +38,18 @@ npm run dev
    npx supabase gen types typescript --project-id <ref> > src/lib/supabase/types.ts
    ```
 
+### Connecter Stripe
+
+1. Créer un compte sur [stripe.com](https://stripe.com), rester en **mode Test**.
+2. **Developers > API keys** → copier la `Secret key` → `STRIPE_SECRET_KEY`.
+3. **Product catalogue** → créer 3 produits avec un prix récurrent mensuel :
+   Studio Automatizzato (149 €), Studio 360 (249 €), Presenza Online (49 €) → copier chaque `price_...` dans `STRIPE_PRICE_*`.
+4. Optionnel : ajouter un second prix **one-time** sur chaque produit pour le forfait de mise en place
+   (1 490 € / 2 490 € / 900 € selon `agence-ia/offres/grille-tarifaire.md`) → `STRIPE_PRICE_*_SETUP`.
+5. Une fois déployé, **Developers > Webhooks > Add endpoint** → URL `<NEXT_PUBLIC_APP_URL>/api/webhooks/stripe`,
+   événements `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`
+   → copier le `Signing secret` → `STRIPE_WEBHOOK_SECRET`.
+
 ## Structure
 
 ```
@@ -54,6 +66,7 @@ supabase/
     0001_schema.sql          # tables + enums + index
     0002_rls.sql             # Row Level Security (isolation par studio_id)
     0003_signup_trigger.sql  # création automatique studio + owner à l'inscription
+    0004_stripe_addon.sql    # colonne studios.addon_presenza_online
 ```
 
 ## Design tokens
@@ -73,3 +86,7 @@ Isolation stricte par `studio_id` via Row Level Security Postgres. La fonction `
 ## Auth
 
 Signup (`/signup`) collecte `studioName` + `fullName` et les passe en métadonnées à `supabase.auth.signUp()`. Le trigger `on_auth_user_created` (`0003_signup_trigger.sql`, SECURITY DEFINER sur `auth.users`) crée alors le `studio` et le `user` owner correspondants — indépendamment de l'état de confirmation de l'email. `src/middleware.ts` protège `/dashboard/*` (redirige vers `/login` si non connecté) et redirige les utilisateurs déjà connectés hors de `/login`/`/signup`.
+
+## Abbonamento (Stripe)
+
+`/dashboard/abbonamento` propose 2 plans (Studio Automatizzato, Studio 360) + l'add-on Presenza Online, chacun via une Stripe Checkout Session (`mode: "subscription"`), avec `metadata: { studio_id, kind }` propagée sur la session **et** sur la subscription (`subscription_data.metadata`) pour que le webhook puisse identifier le studio sur les événements ultérieurs. Le webhook `/api/webhooks/stripe` gère `checkout.session.completed` (active le plan/l'add-on), `customer.subscription.updated`/`.deleted` (synchronise `plan_status`/`addon_presenza_online` selon le statut Stripe). Le bouton "Gestisci abbonamento" ouvre le Customer Portal Stripe.

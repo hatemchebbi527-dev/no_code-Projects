@@ -26,6 +26,7 @@ export interface Database {
           plan: StudioPlan;
           plan_status: StudioPlanStatus;
           stripe_customer_id: string | null;
+          addon_presenza_online: boolean;
           created_at: string;
         };
         Insert: {
@@ -34,6 +35,7 @@ export interface Database {
           plan?: StudioPlan;
           plan_status?: StudioPlanStatus;
           stripe_customer_id?: string | null;
+          addon_presenza_online?: boolean;
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["studios"]["Insert"]>;
@@ -224,3 +226,4 @@ export type ContentItem = Database["public"]["Tables"]["content_items"]["Row"];
 export type EmailDraft = Database["public"]["Tables"]["email_drafts"]["Row"];
 export type Automation = Database["public"]["Tables"]["automations"]["Row"];
 export type WebhookToken = Database["public"]["Tables"]["webhook_tokens"]["Row"];
+export type Studio = Database["public"]["Tables"]["studios"]["Row"];
