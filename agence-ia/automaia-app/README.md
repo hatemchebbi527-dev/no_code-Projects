@@ -13,8 +13,9 @@ Stack : Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Supabase (Postgres,
 - [x] **Phase 5 — Workflow + Acquisizione** : CRUD + Kanban drag & drop (dnd-kit)
 - [x] **Phase 6 — Visibilità + Bozze email** : génération de contenu et brouillons via Claude API
 - [x] **Phase 7 — Automazioni** : 5 flux n8n (toggle, URL, test connexion, historique)
-- [x] **Phase 8 — Abbonamento** : Stripe Checkout (2 plans + add-on) + Customer Portal + webhook
+- [x] **Phase 8 — Abbonamento** : Stripe Checkout (2 plans + add-on) + Customer Portal + webhook — testé de bout en bout (paiement + mise à jour du plan via webhook)
   - ⚠️ Vercel fige les variables d'environnement au moment du build : après avoir modifié une variable, il faut un **nouveau** déploiement (pas un simple "Redeploy" d'un ancien build) pour qu'il en tienne compte.
+  - ⚠️ L'URL d'alias de branche (`*-git-<branche>-....vercel.app`) peut rester bloquée par "Vercel Authentication" en cache même après avoir désactivé la protection dans Project Settings > Deployment Protection. Si un service externe (Stripe, n8n...) reçoit un 401 "Protected deployment" malgré la protection désactivée, utiliser l'URL unique du déploiement (`<projet>-<hash>-....vercel.app`, visible sur la page du déploiement) à la place — ce problème disparaît une fois un vrai domaine personnalisé branché (phase 9).
 - [ ] Phase 9 — Déploiement Vercel + domaine `automa-ia.net`
 
 ## Setup local
