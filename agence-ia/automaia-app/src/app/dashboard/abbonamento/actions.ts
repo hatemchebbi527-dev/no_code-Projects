@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import { CHECKOUT_PRICING, getStripe, type CheckoutKind } from "@/lib/stripe";
+import { getCheckoutPricing, getStripe, type CheckoutKind } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 import type { Studio } from "@/lib/supabase/types";
 
@@ -60,7 +60,7 @@ export async function createCheckoutSession(kind: CheckoutKind): Promise<{ error
     } = await supabase.auth.getUser();
 
     const customerId = await getOrCreateStripeCustomer(studio, user?.email);
-    const pricing = CHECKOUT_PRICING[kind];
+    const pricing = getCheckoutPricing(kind);
 
     const lineItems = [pricing.setupPriceId, pricing.recurringPriceId]
       .filter((priceId): priceId is string => Boolean(priceId))

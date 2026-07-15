@@ -23,17 +23,25 @@ interface PlanPricing {
   setupPriceId: string | undefined;
 }
 
-export const CHECKOUT_PRICING: Record<CheckoutKind, PlanPricing> = {
-  studio_automatizzato: {
-    recurringPriceId: process.env.STRIPE_PRICE_STUDIO_AUTOMATIZZATO,
-    setupPriceId: process.env.STRIPE_PRICE_STUDIO_AUTOMATIZZATO_SETUP,
-  },
-  studio_360: {
-    recurringPriceId: process.env.STRIPE_PRICE_STUDIO_360,
-    setupPriceId: process.env.STRIPE_PRICE_STUDIO_360_SETUP,
-  },
-  addon_presenza_online: {
-    recurringPriceId: process.env.STRIPE_PRICE_PRESENZA_ONLINE,
-    setupPriceId: process.env.STRIPE_PRICE_PRESENZA_ONLINE_SETUP,
-  },
-};
+// Lu à l'appel (pas un objet figé au chargement du module) — même raison
+// que getStripe() : éviter de capter des variables d'environnement pas
+// encore disponibles au moment où le module a été évalué.
+export function getCheckoutPricing(kind: CheckoutKind): PlanPricing {
+  switch (kind) {
+    case "studio_automatizzato":
+      return {
+        recurringPriceId: process.env.STRIPE_PRICE_STUDIO_AUTOMATIZZATO,
+        setupPriceId: process.env.STRIPE_PRICE_STUDIO_AUTOMATIZZATO_SETUP,
+      };
+    case "studio_360":
+      return {
+        recurringPriceId: process.env.STRIPE_PRICE_STUDIO_360,
+        setupPriceId: process.env.STRIPE_PRICE_STUDIO_360_SETUP,
+      };
+    case "addon_presenza_online":
+      return {
+        recurringPriceId: process.env.STRIPE_PRICE_PRESENZA_ONLINE,
+        setupPriceId: process.env.STRIPE_PRICE_PRESENZA_ONLINE_SETUP,
+      };
+  }
+}
