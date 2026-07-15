@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/recurring-tasks",
-      "schedule": "20 19 * * *"
+      "schedule": "0 6 * * *"
     }
   ]
 }
