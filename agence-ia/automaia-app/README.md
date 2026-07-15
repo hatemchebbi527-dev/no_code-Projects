@@ -38,6 +38,8 @@ npm run dev
    - `supabase/migrations/0001_schema.sql`
    - `supabase/migrations/0002_rls.sql`
    - `supabase/migrations/0003_signup_trigger.sql`
+   - `supabase/migrations/0004_stripe_addon.sql`
+   - `supabase/migrations/0005_task_recurrence.sql`
    (ou via la CLI Supabase : `supabase db push` si le projet local est lié).
 4. Une fois le schéma appliqué, régénérer les types TypeScript (remplace le fichier écrit à la main) :
    ```bash
@@ -73,6 +75,7 @@ supabase/
     0002_rls.sql             # Row Level Security (isolation par studio_id)
     0003_signup_trigger.sql  # création automatique studio + owner à l'inscription
     0004_stripe_addon.sql    # colonne studios.addon_presenza_online
+    0005_task_recurrence.sql # récurrence automatique des modèles de tâches (Modelli)
 ```
 
 ## Design tokens
@@ -92,6 +95,10 @@ Isolation stricte par `studio_id` via Row Level Security Postgres. La fonction `
 ## Auth
 
 Signup (`/signup`) collecte `studioName` + `fullName` et les passe en métadonnées à `supabase.auth.signUp()`. Le trigger `on_auth_user_created` (`0003_signup_trigger.sql`, SECURITY DEFINER sur `auth.users`) crée alors le `studio` et le `user` owner correspondants — indépendamment de l'état de confirmation de l'email. `src/middleware.ts` protège `/dashboard/*` (redirige vers `/login` si non connecté) et redirige les utilisateurs déjà connectés hors de `/login`/`/signup`.
+
+## Récurrence des tâches (Workflow > Modelli)
+
+Un modèle peut avoir une récurrence (`monthly`/`quarterly`/`yearly`) et une prochaine échéance (`next_due_date`). Une tâche planifiée Vercel (`vercel.json`, tous les jours à 6h UTC) appelle `/api/cron/recurring-tasks`, qui crée automatiquement une tâche pour chaque modèle arrivé à échéance et recalcule sa prochaine date (en clampant au dernier jour du mois si nécessaire, ex: 31 janvier + 1 mois → 28 février). La route est protégée par l'en-tête `Authorization: Bearer <CRON_SECRET>` que Vercel envoie automatiquement si la variable d'environnement `CRON_SECRET` est configurée sur le projet — à définir en Production après le déploiement.
 
 ## Passage en mode Live (Stripe)
 

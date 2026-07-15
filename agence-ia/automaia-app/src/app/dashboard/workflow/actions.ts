@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
-import type { TaskStatus } from "@/lib/supabase/types";
+import type { TaskRecurrence, TaskStatus } from "@/lib/supabase/types";
 
 async function currentStudioId() {
   const supabase = createClient();
@@ -58,12 +58,16 @@ export async function createTaskTemplate(formData: FormData) {
 
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
+  const recurrence = formData.get("recurrence") as TaskRecurrence;
+  const nextDueDate = formData.get("nextDueDate") as string;
 
   const supabase = createClient();
   await supabase.from("task_templates").insert({
     studio_id: studioId,
     title,
     description: description || null,
+    recurrence,
+    next_due_date: recurrence !== "none" && nextDueDate ? nextDueDate : null,
   });
 
   revalidatePath("/dashboard/workflow");

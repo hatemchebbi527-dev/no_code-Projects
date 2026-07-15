@@ -14,18 +14,27 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import type { TaskTemplate } from "@/lib/supabase/types";
+import type { TaskRecurrence, TaskTemplate } from "@/lib/supabase/types";
 
 import { createTaskFromTemplate, createTaskTemplate, deleteTaskTemplate } from "./actions";
 
+const RECURRENCE_LABELS: Record<TaskRecurrence, string> = {
+  none: "Nessuna",
+  monthly: "Mensile",
+  quarterly: "Trimestrale",
+  yearly: "Annuale",
+};
+
 export function TemplatesPanel({ templates }: { templates: TaskTemplate[] }) {
   const [open, setOpen] = useState(false);
+  const [recurrence, setRecurrence] = useState<TaskRecurrence>("none");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     await createTaskTemplate(formData);
     setOpen(false);
+    setRecurrence("none");
   }
 
   return (
@@ -47,6 +56,28 @@ export function TemplatesPanel({ templates }: { templates: TaskTemplate[] }) {
               <Label htmlFor="description">Descrizione</Label>
               <Textarea id="description" name="description" />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="recurrence">Ricorrenza</Label>
+              <select
+                id="recurrence"
+                name="recurrence"
+                value={recurrence}
+                onChange={(e) => setRecurrence(e.target.value as TaskRecurrence)}
+                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
+              >
+                {Object.entries(RECURRENCE_LABELS).map(([value, label]) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {recurrence !== "none" && (
+              <div className="space-y-2">
+                <Label htmlFor="nextDueDate">Prima scadenza</Label>
+                <Input id="nextDueDate" name="nextDueDate" type="date" required />
+              </div>
+            )}
             <Button type="submit" className="w-full">
               Crea modello
             </Button>
@@ -63,6 +94,14 @@ export function TemplatesPanel({ templates }: { templates: TaskTemplate[] }) {
             <CardContent className="space-y-3">
               {template.description && (
                 <p className="text-sm text-muted-foreground">{template.description}</p>
+              )}
+              {template.recurrence !== "none" && (
+                <p className="text-xs text-muted-foreground">
+                  Ricorrenza: {RECURRENCE_LABELS[template.recurrence]} — prossima:{" "}
+                  {template.next_due_date
+                    ? new Date(template.next_due_date).toLocaleDateString("it-IT")
+                    : "—"}
+                </p>
               )}
               <div className="flex gap-2">
                 <Button size="sm" onClick={() => createTaskFromTemplate(template.id)}>

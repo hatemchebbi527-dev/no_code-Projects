@@ -6,6 +6,7 @@ export type StudioPlanStatus = "trial" | "active" | "past_due" | "canceled";
 export type UserRole = "owner" | "member";
 export type ContactStage = "contatto" | "contattato" | "proposta" | "cliente";
 export type TaskStatus = "da_fare" | "in_corso" | "completata";
+export type TaskRecurrence = "none" | "monthly" | "quarterly" | "yearly";
 export type ContentPlatform = "linkedin" | "instagram" | "facebook" | "tiktok";
 export type ContentStatus = "draft" | "approved" | "published";
 export type EmailDraftStatus = "pending" | "validated" | "sent";
@@ -116,6 +117,8 @@ export interface Database {
           title: string;
           description: string | null;
           default_status: TaskStatus;
+          recurrence: TaskRecurrence;
+          next_due_date: string | null;
         };
         Insert: {
           id?: string;
@@ -123,6 +126,8 @@ export interface Database {
           title: string;
           description?: string | null;
           default_status?: TaskStatus;
+          recurrence?: TaskRecurrence;
+          next_due_date?: string | null;
         };
         Update: Partial<Database["public"]["Tables"]["task_templates"]["Insert"]>;
         Relationships: [];
