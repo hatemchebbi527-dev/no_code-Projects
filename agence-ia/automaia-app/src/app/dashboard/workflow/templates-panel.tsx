@@ -28,11 +28,17 @@ const RECURRENCE_LABELS: Record<TaskRecurrence, string> = {
 export function TemplatesPanel({ templates }: { templates: TaskTemplate[] }) {
   const [open, setOpen] = useState(false);
   const [recurrence, setRecurrence] = useState<TaskRecurrence>("none");
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError(null);
     const formData = new FormData(e.currentTarget);
-    await createTaskTemplate(formData);
+    const result = await createTaskTemplate(formData);
+    if (result?.error) {
+      setError(result.error);
+      return;
+    }
     setOpen(false);
     setRecurrence("none");
   }
@@ -78,6 +84,7 @@ export function TemplatesPanel({ templates }: { templates: TaskTemplate[] }) {
                 <Input id="nextDueDate" name="nextDueDate" type="date" required />
               </div>
             )}
+            {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full">
               Crea modello
             </Button>

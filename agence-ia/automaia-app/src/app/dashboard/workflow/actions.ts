@@ -52,9 +52,9 @@ export async function deleteTask(taskId: string) {
   revalidatePath("/dashboard/workflow");
 }
 
-export async function createTaskTemplate(formData: FormData) {
+export async function createTaskTemplate(formData: FormData): Promise<{ error?: string }> {
   const studioId = await currentStudioId();
-  if (!studioId) return;
+  if (!studioId) return { error: "Sessione non valida. Effettui di nuovo l'accesso." };
 
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
@@ -62,7 +62,7 @@ export async function createTaskTemplate(formData: FormData) {
   const nextDueDate = formData.get("nextDueDate") as string;
 
   const supabase = createClient();
-  await supabase.from("task_templates").insert({
+  const { error } = await supabase.from("task_templates").insert({
     studio_id: studioId,
     title,
     description: description || null,
@@ -70,7 +70,10 @@ export async function createTaskTemplate(formData: FormData) {
     next_due_date: recurrence !== "none" && nextDueDate ? nextDueDate : null,
   });
 
+  if (error) return { error: error.message };
+
   revalidatePath("/dashboard/workflow");
+  return {};
 }
 
 export async function createTaskFromTemplate(templateId: string) {
