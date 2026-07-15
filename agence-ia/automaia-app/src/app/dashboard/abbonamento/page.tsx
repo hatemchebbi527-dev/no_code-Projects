@@ -72,7 +72,9 @@ export default async function AbbonamentoPage({
         <Card>
           <CardHeader>
             <CardTitle>Studio Automatizzato</CardTitle>
-            <CardDescription>149 €/mese — appuntamenti, solleciti, assistente email</CardDescription>
+            <CardDescription>
+              1 490 € una tantum + 149 €/mese — appuntamenti, solleciti, assistente email
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <CheckoutButton
@@ -87,7 +89,8 @@ export default async function AbbonamentoPage({
           <CardHeader>
             <CardTitle>Studio 360</CardTitle>
             <CardDescription>
-              249 €/mese — tutto Studio Automatizzato + CRM leggero + ottimizzazione continua
+              2 490 € una tantum + 249 €/mese — tutto Studio Automatizzato + CRM leggero +
+              ottimizzazione continua
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -104,7 +107,8 @@ export default async function AbbonamentoPage({
         <CardHeader>
           <CardTitle>Add-on: Presenza Online</CardTitle>
           <CardDescription>
-            49 €/mese — sito vetrina e pubblicazione sui social. Incluso in Studio 360.
+            900 € una tantum + 49 €/mese — sito vetrina e pubblicazione sui social. Incluso in
+            Studio 360.
           </CardDescription>
         </CardHeader>
         <CardContent>
