@@ -67,13 +67,14 @@ export async function createCheckoutSession(kind: CheckoutKind): Promise<{ error
       .map((priceId) => ({ price: priceId, quantity: 1 }));
 
     if (lineItems.length === 0) {
-      const detectedKeys = Object.keys(process.env)
+      const lengths = Object.keys(process.env)
         .filter((key) => key.startsWith("STRIPE_PRICE"))
+        .map((key) => `${key}=${process.env[key]?.length ?? 0} caratteri`)
         .join(", ");
       return {
         error:
           `Nessun prezzo Stripe configurato per "${kind}". ` +
-          `[diagnostica temporanea] Variabili STRIPE_PRICE_* rilevate sul server: ${detectedKeys || "nessuna"}.`,
+          `[diagnostica temporanea] Lunghezza dei valori rilevati: ${lengths || "nessuna variabile"}.`,
       };
     }
 
