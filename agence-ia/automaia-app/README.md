@@ -14,6 +14,7 @@ Stack : Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Supabase (Postgres,
 - [x] **Phase 6 — Visibilità + Bozze email** : génération de contenu et brouillons via Claude API
 - [x] **Phase 7 — Automazioni** : 5 flux n8n (toggle, URL, test connexion, historique)
 - [x] **Phase 8 — Abbonamento** : Stripe Checkout (2 plans + add-on) + Customer Portal + webhook
+  - ⚠️ Vercel fige les variables d'environnement au moment du build : après avoir modifié une variable, il faut un **nouveau** déploiement (pas un simple "Redeploy" d'un ancien build) pour qu'il en tienne compte.
 - [ ] Phase 9 — Déploiement Vercel + domaine `automa-ia.net`
 
 ## Setup local
