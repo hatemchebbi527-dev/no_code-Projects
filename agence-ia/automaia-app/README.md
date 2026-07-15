@@ -16,7 +16,11 @@ Stack : Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Supabase (Postgres,
 - [x] **Phase 8 — Abbonamento** : Stripe Checkout (2 plans + add-on) + Customer Portal + webhook — testé de bout en bout (paiement + mise à jour du plan via webhook)
   - ⚠️ Vercel fige les variables d'environnement au moment du build : après avoir modifié une variable, il faut un **nouveau** déploiement (pas un simple "Redeploy" d'un ancien build) pour qu'il en tienne compte.
   - ⚠️ L'URL d'alias de branche (`*-git-<branche>-....vercel.app`) peut rester bloquée par "Vercel Authentication" en cache même après avoir désactivé la protection dans Project Settings > Deployment Protection. Si un service externe (Stripe, n8n...) reçoit un 401 "Protected deployment" malgré la protection désactivée, utiliser l'URL unique du déploiement (`<projet>-<hash>-....vercel.app`, visible sur la page du déploiement) à la place — ce problème disparaît une fois un vrai domaine personnalisé branché (phase 9).
-- [ ] Phase 9 — Déploiement Vercel + domaine `automa-ia.net`
+- [x] **Phase 9 — Déploiement** : app en production sur `https://app.automa-ia.net` (sous-domaine dédié ; le domaine racine `automa-ia.net` reste le site vitrine existant)
+  - Variables d'environnement Production configurées séparément de Preview pour `STRIPE_SECRET_KEY`, `ANTHROPIC_API_KEY`, `NEXT_PUBLIC_APP_URL` et `STRIPE_WEBHOOK_SECRET` (valeurs différentes par environnement).
+  - Endpoint webhook Stripe dédié à la production (`https://app.automa-ia.net/api/webhooks/stripe`, mode Test pour l'instant — voir "Passage en mode Live" ci-dessous).
+  - Supabase Auth : Site URL et Redirect URLs mis à jour pour inclure `https://app.automa-ia.net/auth/callback` (en plus de l'URL de preview et de `localhost:3000` pour le dev local).
+  - `/` redirige vers `/login` (pas de landing page marketing sur ce sous-domaine).
 
 ## Setup local
 
@@ -88,6 +92,10 @@ Isolation stricte par `studio_id` via Row Level Security Postgres. La fonction `
 ## Auth
 
 Signup (`/signup`) collecte `studioName` + `fullName` et les passe en métadonnées à `supabase.auth.signUp()`. Le trigger `on_auth_user_created` (`0003_signup_trigger.sql`, SECURITY DEFINER sur `auth.users`) crée alors le `studio` et le `user` owner correspondants — indépendamment de l'état de confirmation de l'email. `src/middleware.ts` protège `/dashboard/*` (redirige vers `/login` si non connecté) et redirige les utilisateurs déjà connectés hors de `/login`/`/signup`.
+
+## Passage en mode Live (Stripe)
+
+La production tourne pour l'instant avec des clés et Price ID **Test** (aucun vrai paiement possible). Pour basculer en Live : recréer les 3 produits + prix (récurrents et setup) sur le dashboard Stripe en mode Live, remplacer `STRIPE_SECRET_KEY` et les 6 `STRIPE_PRICE_*` (scope Production) par leurs équivalents Live, et créer un nouvel endpoint webhook Live pointant vers `https://app.automa-ia.net/api/webhooks/stripe` pour obtenir un `STRIPE_WEBHOOK_SECRET` Live.
 
 ## Abbonamento (Stripe)
 
