@@ -51,10 +51,12 @@ export function TaskBoard({ tasks }: { tasks: Task[] }) {
               .map((task) => (
                 <DraggableCard key={task.id} id={task.id}>
                   <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <p className="font-medium">{task.title}</p>
+                    <div className="min-w-0">
+                      <p className="break-words font-medium">{task.title}</p>
                       {task.description && (
-                        <p className="mt-1 text-xs text-muted-foreground">{task.description}</p>
+                        <p className="mt-1 break-words text-xs text-muted-foreground">
+                          {task.description}
+                        </p>
                       )}
                       {task.due_date && (
                         <p className="mt-1 text-xs text-muted-foreground">
