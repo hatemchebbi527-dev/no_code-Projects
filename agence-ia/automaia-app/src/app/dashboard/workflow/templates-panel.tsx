@@ -16,7 +16,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { TaskRecurrence, TaskTemplate } from "@/lib/supabase/types";
 
-import { createTaskFromTemplate, createTaskTemplate, deleteTaskTemplate } from "./actions";
+import {
+  createTaskFromTemplate,
+  createTaskTemplate,
+  deleteTaskTemplate,
+  runDueTemplatesNow,
+} from "./actions";
 
 const RECURRENCE_LABELS: Record<TaskRecurrence, string> = {
   none: "Nessuna",
@@ -29,6 +34,22 @@ export function TemplatesPanel({ templates }: { templates: TaskTemplate[] }) {
   const [open, setOpen] = useState(false);
   const [recurrence, setRecurrence] = useState<TaskRecurrence>("none");
   const [error, setError] = useState<string | null>(null);
+  const [runningNow, setRunningNow] = useState(false);
+  const [runNowMessage, setRunNowMessage] = useState<string | null>(null);
+
+  async function handleRunNow() {
+    setRunningNow(true);
+    setRunNowMessage(null);
+    const result = await runDueTemplatesNow();
+    setRunNowMessage(
+      result.error
+        ? result.error
+        : result.created > 0
+          ? `${result.created} attività creata/e.`
+          : "Nessuna ricorrenza in scadenza."
+    );
+    setRunningNow(false);
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,52 +66,59 @@ export function TemplatesPanel({ templates }: { templates: TaskTemplate[] }) {
 
   return (
     <div className="space-y-4">
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button>+ Nuovo modello</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Nuovo modello</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="title">Titolo</Label>
-              <Input id="title" name="title" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="description">Descrizione</Label>
-              <Textarea id="description" name="description" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="recurrence">Ricorrenza</Label>
-              <select
-                id="recurrence"
-                name="recurrence"
-                value={recurrence}
-                onChange={(e) => setRecurrence(e.target.value as TaskRecurrence)}
-                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
-              >
-                {Object.entries(RECURRENCE_LABELS).map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {recurrence !== "none" && (
+      <div className="flex flex-wrap items-center gap-3">
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button>+ Nuovo modello</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Nuovo modello</DialogTitle>
+            </DialogHeader>
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="nextDueDate">Prima scadenza</Label>
-                <Input id="nextDueDate" name="nextDueDate" type="date" required />
+                <Label htmlFor="title">Titolo</Label>
+                <Input id="title" name="title" required />
               </div>
-            )}
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <Button type="submit" className="w-full">
-              Crea modello
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
+              <div className="space-y-2">
+                <Label htmlFor="description">Descrizione</Label>
+                <Textarea id="description" name="description" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="recurrence">Ricorrenza</Label>
+                <select
+                  id="recurrence"
+                  name="recurrence"
+                  value={recurrence}
+                  onChange={(e) => setRecurrence(e.target.value as TaskRecurrence)}
+                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
+                >
+                  {Object.entries(RECURRENCE_LABELS).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {recurrence !== "none" && (
+                <div className="space-y-2">
+                  <Label htmlFor="nextDueDate">Prima scadenza</Label>
+                  <Input id="nextDueDate" name="nextDueDate" type="date" required />
+                </div>
+              )}
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              <Button type="submit" className="w-full">
+                Crea modello
+              </Button>
+            </form>
+          </DialogContent>
+        </Dialog>
+
+        <Button type="button" variant="outline" onClick={handleRunNow} disabled={runningNow}>
+          {runningNow ? "Verifica in corso..." : "Esegui ora le ricorrenze scadute"}
+        </Button>
+      </div>
+      {runNowMessage && <p className="text-sm text-muted-foreground">{runNowMessage}</p>}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {templates.map((template) => (

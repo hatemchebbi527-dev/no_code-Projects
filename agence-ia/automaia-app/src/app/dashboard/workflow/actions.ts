@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
+import { generateDueRecurringTasks } from "@/lib/recurring-tasks";
 import { createClient } from "@/lib/supabase/server";
 import type { TaskRecurrence, TaskStatus } from "@/lib/supabase/types";
 
@@ -80,7 +81,7 @@ export async function createTaskFromTemplate(templateId: string) {
   const supabase = createClient();
   const { data: template } = await supabase
     .from("task_templates")
-    .select("studio_id, title, description, default_status")
+    .select("studio_id, title, description, default_status, next_due_date")
     .eq("id", templateId)
     .single();
 
@@ -91,6 +92,7 @@ export async function createTaskFromTemplate(templateId: string) {
     title: template.title,
     description: template.description,
     status: template.default_status,
+    due_date: template.next_due_date,
   });
 
   revalidatePath("/dashboard/workflow");
@@ -100,4 +102,13 @@ export async function deleteTaskTemplate(templateId: string) {
   const supabase = createClient();
   await supabase.from("task_templates").delete().eq("id", templateId);
   revalidatePath("/dashboard/workflow");
+}
+
+// Force la génération immédiate des tâches dont l'échéance est passée, sans
+// attendre le cron quotidien (utile pour tester une récurrence tout de suite).
+export async function runDueTemplatesNow(): Promise<{ created: number; error?: string }> {
+  const supabase = createClient();
+  const result = await generateDueRecurringTasks(supabase);
+  if (!result.error) revalidatePath("/dashboard/workflow");
+  return result;
 }
