@@ -4,16 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { href: "/dashboard", label: "Panoramica" },
-  { href: "/dashboard/workflow", label: "Workflow" },
-  { href: "/dashboard/acquisizione", label: "Acquisizione" },
-  { href: "/dashboard/visibilita", label: "Visibilità" },
-  { href: "/dashboard/bozze-email", label: "Bozze email" },
-  { href: "/dashboard/automazioni", label: "Automazioni" },
-  { href: "/dashboard/abbonamento", label: "Abbonamento" },
-];
+import { navItems } from "./nav-items";
 
 export function Sidebar() {
   const pathname = usePathname();
