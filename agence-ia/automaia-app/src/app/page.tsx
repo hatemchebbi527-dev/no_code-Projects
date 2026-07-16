@@ -1,4 +1,5 @@
 import { Clock, Megaphone, ShieldCheck, Users, Workflow } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -85,7 +86,16 @@ export default function Home() {
             </p>
           </div>
           <div className="rounded-3xl bg-gradient-to-br from-[#1FBF9E]/20 to-transparent p-3">
-            <div className="aspect-[4/3] rounded-2xl bg-[#0F2A4A]/5" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+              <Image
+                src="/images/hero-office.jpg"
+                alt="Professionisti di uno studio al lavoro"
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
