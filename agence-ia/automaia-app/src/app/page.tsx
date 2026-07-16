@@ -24,7 +24,7 @@ const PILLARS = [
     iconBg: "bg-[#0B1E33]",
     title: "Posizionamento e visibilità",
     description:
-      "Genera post e contenuti professionali, pianificali e mantieni una presenza online che gira da sola.",
+      "Riceva una redazione pronta per un post professionale su LinkedIn, generata dall'IA in pochi secondi.",
   },
 ];
 
