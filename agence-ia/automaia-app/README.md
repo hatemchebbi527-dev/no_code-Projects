@@ -115,6 +115,8 @@ Fonctionnement :
 
 L'URL webhook n8n reste disponible en option avancée pour qui préfère cette voie plutôt que l'inoltro automatico.
 
+**Filtre newsletters/commerciale** : `/api/webhooks/inbound-email` ignore silencieusement (aucune bozza créée, aucun appel Claude) tout email portant un en-tête MIME `List-Unsubscribe` (fourni par Mailgun dans `message-headers`), quasi systématique sur les newsletters et emails commerciaux légitimes, absent d'un vrai email de client.
+
 ## Passage en mode Live (Stripe)
 
 La production tourne pour l'instant avec des clés et Price ID **Test** (aucun vrai paiement possible). Pour basculer en Live : recréer les 3 produits + prix (récurrents et setup) sur le dashboard Stripe en mode Live, remplacer `STRIPE_SECRET_KEY` et les 6 `STRIPE_PRICE_*` (scope Production) par leurs équivalents Live, et créer un nouvel endpoint webhook Live pointant vers `https://app.automa-ia.net/api/webhooks/stripe` pour obtenir un `STRIPE_WEBHOOK_SECRET` Live.

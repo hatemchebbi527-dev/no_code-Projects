@@ -15,6 +15,21 @@ function isValidMailgunSignature(timestamp: string, token: string, signature: st
   return expected === signature;
 }
 
+// Les newsletter/emails commerciaux légitimes portent quasi systématiquement un en-tête
+// List-Unsubscribe (obligatoire par les réglementations anti-spam) ; un vrai email de client
+// n'en a jamais. Mailgun fournit tous les en-têtes MIME dans "message-headers" (JSON).
+function hasListUnsubscribeHeader(formData: FormData): boolean {
+  const raw = formData.get("message-headers")?.toString();
+  if (!raw) return false;
+
+  try {
+    const headers = JSON.parse(raw) as [string, string][];
+    return headers.some(([name]) => name.toLowerCase() === "list-unsubscribe");
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: Request) {
   const formData = await request.formData();
 
@@ -38,6 +53,10 @@ export async function POST(request: Request) {
 
   if (!webhookToken) {
     return NextResponse.json({ error: "Nessuno studio corrisponde a questo indirizzo" }, { status: 404 });
+  }
+
+  if (hasListUnsubscribeHeader(formData)) {
+    return NextResponse.json({ skipped: "newsletter o email commerciale rilevata" }, { status: 200 });
   }
 
   const receivedEmail =
