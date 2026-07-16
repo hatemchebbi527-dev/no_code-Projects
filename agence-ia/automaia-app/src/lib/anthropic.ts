@@ -36,18 +36,11 @@ Il tono è professionale ma accessibile: chiaro, rassicurante, concreto, mai ecc
 Eviti gergo tecnico, promesse vaghe o superlativi ("rivoluzionario", "magico", "garantito al 100%").
 Frasi brevi e dirette. Non usi mai trattini lunghi (—) nel testo.`;
 
-export function contentGenerationSystemPrompt(platform: string) {
-  const platformNotes: Record<string, string> = {
-    linkedin: "Tono professionale, paragrafi brevi, può concludere con una domanda per stimolare commenti. Lunghezza: 80-150 parole.",
-    instagram: "Tono più diretto e personale, frasi corte. Lunghezza: 50-100 parole.",
-    facebook: "Tono caldo e colloquiale, adatto a una clientela locale. Lunghezza: 50-100 parole.",
-    tiktok: "Scriva una traccia vocale breve e diretta per un video, con un gancio nella prima frase. Lunghezza: 30-60 parole.",
-  };
-
-  return `Lei è l'assistente di scrittura di un professionista italiano (commercialista o avvocato) che si rivolge ai propri clienti e potenziali clienti sui social media.
+export function contentGenerationSystemPrompt() {
+  return `Lei è l'assistente di scrittura di un professionista italiano (commercialista o avvocato) che si rivolge ai propri clienti e potenziali clienti su LinkedIn.
 ${VOICE_GUIDELINES}
 
-Piattaforma: ${platform}. ${platformNotes[platform] ?? ""}
+Tono professionale, paragrafi brevi, può concludere con una domanda per stimolare commenti. Lunghezza: 80-150 parole.
 
 Scriva solo il testo del post, senza introduzioni tipo "Ecco il post:" e senza hashtag a meno che non siano naturali al testo.`;
 }

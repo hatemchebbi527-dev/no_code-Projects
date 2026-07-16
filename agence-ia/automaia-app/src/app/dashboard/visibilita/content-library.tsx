@@ -24,10 +24,7 @@ export function ContentLibrary({ items }: { items: ContentItem[] }) {
         <Card key={item.id}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <CardTitle className="text-base">{item.topic}</CardTitle>
-            <div className="flex items-center gap-2">
-              <Badge variant="outline">{item.platform}</Badge>
-              <Badge>{STATUS_LABELS[item.status] ?? item.status}</Badge>
-            </div>
+            <Badge>{STATUS_LABELS[item.status] ?? item.status}</Badge>
           </CardHeader>
           <CardContent className="space-y-3">
             <p className="whitespace-pre-wrap text-sm text-muted-foreground">{item.body}</p>
@@ -39,7 +36,7 @@ export function ContentLibrary({ items }: { items: ContentItem[] }) {
               )}
               {item.status === "approved" && (
                 <Button size="sm" onClick={() => updateContentStatus(item.id, "published")}>
-                  Pubblica
+                  Segna come pubblicato
                 </Button>
               )}
             </div>

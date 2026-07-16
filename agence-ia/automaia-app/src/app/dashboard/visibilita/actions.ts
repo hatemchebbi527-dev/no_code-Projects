@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { anthropic, assertApiKeyIsClean, CLAUDE_MODEL, contentGenerationSystemPrompt } from "@/lib/anthropic";
 import { createClient } from "@/lib/supabase/server";
-import type { ContentPlatform, ContentStatus } from "@/lib/supabase/types";
+import type { ContentStatus } from "@/lib/supabase/types";
 
 async function currentStudioId() {
   const supabase = createClient();
@@ -27,7 +27,6 @@ export async function generateContent(formData: FormData): Promise<{ error?: str
   if (!studioId) return { error: "Sessione non valida. Effettui di nuovo l'accesso." };
 
   const topic = formData.get("topic") as string;
-  const platform = formData.get("platform") as ContentPlatform;
 
   try {
     assertApiKeyIsClean();
@@ -35,7 +34,7 @@ export async function generateContent(formData: FormData): Promise<{ error?: str
     const response = await anthropic.messages.create({
       model: CLAUDE_MODEL,
       max_tokens: 1024,
-      system: contentGenerationSystemPrompt(platform),
+      system: contentGenerationSystemPrompt(),
       messages: [{ role: "user", content: `Argomento del post: ${topic}` }],
     });
 
@@ -45,7 +44,7 @@ export async function generateContent(formData: FormData): Promise<{ error?: str
     await supabase.from("content_items").insert({
       studio_id: studioId,
       topic,
-      platform,
+      platform: "linkedin",
       body,
       status: "draft",
     });
