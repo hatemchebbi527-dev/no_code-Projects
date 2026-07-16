@@ -115,6 +115,8 @@ Fonctionnement :
 
 L'URL webhook n8n reste disponible en option avancée pour qui préfère cette voie plutôt que l'inoltro automatico.
 
+Route Mailgun configurée : `match_recipient(".*@in.freelancerai.eu")` → forward vers `/api/webhooks/inbound-email`.
+
 **Filtre newsletters/commerciale** : `/api/webhooks/inbound-email` ignore silencieusement (aucune bozza créée, aucun appel Claude) tout email portant un en-tête MIME `List-Unsubscribe` (fourni par Mailgun dans `message-headers`), quasi systématique sur les newsletters et emails commerciaux légitimes, absent d'un vrai email de client.
 
 ## Passage en mode Live (Stripe)
