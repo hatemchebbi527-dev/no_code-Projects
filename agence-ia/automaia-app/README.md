@@ -106,11 +106,11 @@ Chaque tâche générée reprend l'échéance du modèle (`due_date`), tout comm
 
 ## Bozze email (inoltro automatico)
 
-Chaque studio a un jeton unique (`webhook_tokens`) qui sert à la fois d'identifiant d'URL webhook n8n **et** de local-part d'une adresse email dédiée : `<token>@INBOUND_EMAIL_DOMAIN` (ex: `in.automa-ia.net`). Le professionnel configure un simple transfert automatique dans sa propre boîte mail (Gmail/Outlook) vers cette adresse — aucune autorisation OAuth sur son compte n'est nécessaire, seulement un réglage qu'il gère et peut annuler lui-même.
+Chaque studio a un jeton unique (`webhook_tokens`) qui sert à la fois d'identifiant d'URL webhook n8n **et** de local-part d'une adresse email dédiée : `<token>@INBOUND_EMAIL_DOMAIN` (ex: `in.freelancerai.eu`). Le professionnel configure un simple transfert automatique dans sa propre boîte mail (Gmail/Outlook) vers cette adresse — aucune autorisation OAuth sur son compte n'est nécessaire, seulement un réglage qu'il gère et peut annuler lui-même.
 
 Fonctionnement :
 1. **Mailgun** (compte + sous-domaine `INBOUND_EMAIL_DOMAIN` avec ses enregistrements MX/DNS) reçoit l'email transféré.
-2. Une **Route** Mailgun (`match_recipient(".*@in.automa-ia.net")`) le transmet en `POST` vers `/api/webhooks/inbound-email`.
+2. Une **Route** Mailgun (`match_recipient(".*@in.freelancerai.eu")`) le transmet en `POST` vers `/api/webhooks/inbound-email`.
 3. La route vérifie la signature HMAC de Mailgun (`MAILGUN_WEBHOOK_SIGNING_KEY`, cf. Account > Security sur Mailgun), retrouve le studio via le local-part du destinataire, puis appelle `createEmailDraft()` (`src/lib/email-draft.ts`) — la même logique partagée par le webhook n8n et le formulaire "Prova rapida".
 
 L'URL webhook n8n reste disponible en option avancée pour qui préfère cette voie plutôt que l'inoltro automatico.

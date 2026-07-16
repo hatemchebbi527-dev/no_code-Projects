@@ -15,7 +15,7 @@ export default async function BozzeEmailPage() {
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "";
   const webhookUrl = `${appUrl}/api/webhooks/n8n/email-draft?token=${token ?? ""}`;
-  const inboundDomain = process.env.INBOUND_EMAIL_DOMAIN ?? "in.automa-ia.net";
+  const inboundDomain = process.env.INBOUND_EMAIL_DOMAIN ?? "in.freelancerai.eu";
   const inboundEmailAddress = `${token ?? ""}@${inboundDomain}`;
 
   return (
