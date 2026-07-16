@@ -104,6 +104,17 @@ Un modèle peut avoir une récurrence (`monthly`/`quarterly`/`yearly`) et une pr
 
 Chaque tâche générée reprend l'échéance du modèle (`due_date`), tout comme "Usa questo modello" (création manuelle). La prochaine date est recalculée en clampant au dernier jour du mois si nécessaire (ex: 31 janvier + 1 mois → 28 février).
 
+## Bozze email (inoltro automatico)
+
+Chaque studio a un jeton unique (`webhook_tokens`) qui sert à la fois d'identifiant d'URL webhook n8n **et** de local-part d'une adresse email dédiée : `<token>@INBOUND_EMAIL_DOMAIN` (ex: `in.automa-ia.net`). Le professionnel configure un simple transfert automatique dans sa propre boîte mail (Gmail/Outlook) vers cette adresse — aucune autorisation OAuth sur son compte n'est nécessaire, seulement un réglage qu'il gère et peut annuler lui-même.
+
+Fonctionnement :
+1. **Mailgun** (compte + sous-domaine `INBOUND_EMAIL_DOMAIN` avec ses enregistrements MX/DNS) reçoit l'email transféré.
+2. Une **Route** Mailgun (`match_recipient(".*@in.automa-ia.net")`) le transmet en `POST` vers `/api/webhooks/inbound-email`.
+3. La route vérifie la signature HMAC de Mailgun (`MAILGUN_WEBHOOK_SIGNING_KEY`, cf. Account > Security sur Mailgun), retrouve le studio via le local-part du destinataire, puis appelle `createEmailDraft()` (`src/lib/email-draft.ts`) — la même logique partagée par le webhook n8n et le formulaire "Prova rapida".
+
+L'URL webhook n8n reste disponible en option avancée pour qui préfère cette voie plutôt que l'inoltro automatico.
+
 ## Passage en mode Live (Stripe)
 
 La production tourne pour l'instant avec des clés et Price ID **Test** (aucun vrai paiement possible). Pour basculer en Live : recréer les 3 produits + prix (récurrents et setup) sur le dashboard Stripe en mode Live, remplacer `STRIPE_SECRET_KEY` et les 6 `STRIPE_PRICE_*` (scope Production) par leurs équivalents Live, et créer un nouvel endpoint webhook Live pointant vers `https://app.automa-ia.net/api/webhooks/stripe` pour obtenir un `STRIPE_WEBHOOK_SECRET` Live.

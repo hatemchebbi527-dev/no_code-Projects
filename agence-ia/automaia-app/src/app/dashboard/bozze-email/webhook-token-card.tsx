@@ -9,10 +9,10 @@ export function WebhookTokenCard({ webhookUrl }: { webhookUrl: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>URL webhook n8n</CardTitle>
+        <CardTitle>URL webhook n8n (avanzato)</CardTitle>
         <CardDescription>
-          Configuri questo indirizzo come destinazione del suo flusso n8n per creare
-          automaticamente le bozze email in arrivo.
+          In alternativa all&apos;inoltro automatico, può collegare un flusso n8n che sorveglia la
+          Sua casella e invia ogni email a questo indirizzo.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
