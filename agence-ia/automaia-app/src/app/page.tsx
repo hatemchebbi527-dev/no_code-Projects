@@ -66,7 +66,9 @@ export default function Home() {
                 size="lg"
                 className="bg-[#1FBF9E] text-[#0B1E33] hover:bg-[#1FBF9E]/90"
               >
-                <Link href="/signup">Prenota un audit gratuito →</Link>
+                <a href="https://automa-ia.net/contatti" target="_blank" rel="noopener noreferrer">
+                  Prenota un audit gratuito →
+                </a>
               </Button>
               <Button
                 asChild
