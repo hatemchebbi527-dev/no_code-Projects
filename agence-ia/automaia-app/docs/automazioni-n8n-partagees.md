@@ -32,9 +32,9 @@ Contraste avec l'existant :
 | `solleciti` | Studio Automatizzato, Studio 360 | **pull** (temporel) |
 | `pubblicazione_social` | Presenza Online (add-on), inclus dans Studio 360 | **push** (à la demande) |
 | `modulo_contatto` | Presenza Online (add-on), inclus dans Studio 360 | **push** (soumission formulaire) |
-| `faq` | **? à définir** — quel(s) plan(s) ? | **push** (question entrante) |
+| `faq` | **proposé : Presenza Online + Studio 360** (à confirmer) | **push** (question entrante) |
 
-Question ouverte : `faq` n'apparaît dans aucune description d'offre Stripe. À rattacher à un plan (probablement Presenza Online ou Studio 360) ou à retirer.
+`faq` = bot de réponse aux **clients du studio**, alimenté par un **PDF que le studio téléverse** (base de connaissance propre à chaque studio). Comme il s'adresse aux visiteurs/clients du studio, il a sa place avec la présence en ligne (site vetrina). D'où le rattachement proposé à **Presenza Online** (donc inclus aussi dans Studio 360). À confirmer.
 
 ---
 
@@ -93,19 +93,48 @@ Sécurité :
 
 ---
 
-## 5. Sources de données par automatisation [À TRANCHER — le vrai point dur]
+## 5. Sources de données par automatisation [DÉCIDÉ — sous-questions restantes]
 
-Rien ne se construit tant que la provenance des données n'est pas fixée. Table des besoins :
+Provenance fixée pour chaque automatisation (décisions Hatem). Restent des sous-questions techniques marquées **[SOUS-Q]**.
 
-| Automatisation | Donnée nécessaire | Piste app existante | Décision requise |
-|---|---|---|---|
-| `solleciti` | factures impayées + contact débiteur | table `contacts` existe ; **pas** de table `invoices` | Créer une table `invoices` saisie dans l'app ? Import CSV ? Compta externe ? |
-| `appuntamenti` | RDV à venir + contact | table `contacts` existe ; pas de table `appointments` | Google Calendar du client (connecteur) ou table `appointments` dans l'app ? |
-| `pubblicazione_social` | comptes sociaux + contenu | contenu déjà généré (`content_items`) ; Metricool connecté | Publier via l'API Metricool ? Quels réseaux (LinkedIn décidé) ? |
-| `faq` | questions entrantes + base de connaissance par studio | — | Canal des questions (email ? widget site ?) et où vit la base FAQ ? |
-| `modulo_contatto` | soumissions du formulaire | formulaire actuel → Airtable externe | Rapatrier dans l'app, ou garder Airtable et n8n lit Airtable ? |
+| Automatisation | Source décidée | Ce que ça implique |
+|---|---|---|
+| `solleciti` | **Compta externe du studio** | Intégration à un logiciel de compta tiers (API ou export). **[SOUS-Q]** lequel ? |
+| `appuntamenti` | **Google Calendar du studio** | Connexion OAuth Google par studio. **[SOUS-Q]** flux de connexion. |
+| `pubblicazione_social` | Contenu `content_items` + **Metricool** | Publication via API Metricool, LinkedIn (décidé). |
+| `faq` | **PDF téléversé par le studio** | Stockage PDF + RAG par studio. **[SOUS-Q]** canal des questions. |
+| `modulo_contatto` | **Rapatrié dans l'app** | Nouvelle table + endpoint form, plus d'Airtable. |
 
-Recommandation de départ : **Solleciti** est la plus vendeuse et la plus autonome. Décider en premier d'où viennent les factures (le plus simple pour un MVP : une table `invoices` saisie/importée dans l'app).
+### 5.1 Solleciti — compta externe [SOUS-Q bloquante]
+
+Le déclencheur pull a besoin des factures échues + contact débiteur, tirées de la compta du studio. Il faut trancher **quel(s) logiciel(s)** on supporte, car ça conditionne l'intégration :
+- Beaucoup de commercialisti italiens utilisent **Fatture in Cloud**, **Aruba Fatturazione**, **TeamSystem/Danea**, etc.
+- Deux modes possibles selon le logiciel :
+  - **API** (idéal, ex. Fatture in Cloud a une API OAuth) → n8n lit les factures en direct, temps réel.
+  - **Export CSV** que le studio dépose dans l'app → plus simple, moins « magique », dépend d'un geste manuel.
+- Décision requise : **on commence par quel logiciel**, et **API ou CSV** ? Sans ça, Solleciti n'est pas constructible.
+
+### 5.2 Appuntamenti — Google Calendar par studio [SOUS-Q]
+
+- Chaque studio autorise l'accès à **son** Google Calendar (OAuth). À décider : OAuth intégré dans l'app (l'app stocke le refresh token, le passe à n8n scopé par studio) **ou** connexion gérée directement dans n8n.
+- Reco : OAuth côté app (cohérent avec le principe « n8n ne parle qu'à l'app »), l'app expose les RDV à venir via `/api/n8n/pending/appuntamenti`.
+- Les rappels partent vers l'email/téléphone de l'invité (depuis l'évènement calendrier, ou rapproché de la table `contacts`).
+
+### 5.3 FAQ — RAG sur PDF du studio [SOUS-Q]
+
+- Le studio téléverse un/des **PDF** → stockage (Supabase Storage), extraction texte, indexation (embeddings) par `studio_id`.
+- À la question entrante, on récupère les passages pertinents et on répond via Claude API (déjà utilisée dans le projet).
+- **[SOUS-Q]** canal des questions : widget de chat sur le site vetrina ? email dédié ? Détermine le déclencheur push.
+- C'est l'automatisation la plus lourde (pipeline RAG). À garder pour une phase ultérieure.
+
+### 5.4 Modulo contatto — rapatrié dans l'app [DÉCIDÉ]
+
+- Nouvelle table `contact_submissions` (studio_id, nom, email, message, created_at).
+- Le formulaire du site vetrina poste vers un endpoint app `/api/public/contact/<studio_token>`.
+- À la soumission : enregistrement + push vers n8n (notification au studio, création de lead dans `contacts`, etc.).
+- L'Airtable actuel est abandonné pour ce flux.
+
+Recommandation de démarrage inchangée : **Solleciti** reste la Phase B, mais elle dépend de la sous-question 5.1 (logiciel de compta). Si cette intégration s'avère lourde, **Appuntamenti** (Google Calendar, API standard bien documentée) est un meilleur premier chantier concret.
 
 ---
 
@@ -157,10 +186,12 @@ Nouvelle carte par automatisation :
 
 ---
 
-## 9. Impacts base de données [À TRANCHER selon §5]
+## 9. Impacts base de données [DÉCIDÉ]
 
-- **Aucune table d'exécutions dédiée aujourd'hui** : le suivi se fait via `automations.last_run_at` / `last_run_status`. Si on veut un vrai historique multi-lignes, créer `automation_executions` (studio_id, type, status, detail, created_at). Sinon on garde le « dernier run » seulement.
-- Tables données éventuelles selon décisions §5 : `invoices`, `appointments`.
+- **`automation_executions`** (DÉCIDÉ — historique multi-lignes) : `id, studio_id, type, status, detail, created_at`. La vue « Ultime esecuzioni » liste l'historique réel au lieu du seul dernier run. `automations.last_run_at`/`last_run_status` peut rester comme raccourci « dernier état ».
+- **`contact_submissions`** (§5.4) : soumissions du formulaire vetrina rapatriées.
+- **FAQ** (§5.3) : stockage PDF (Supabase Storage) + table d'index/embeddings par studio (phase ultérieure).
+- **Appuntamenti / Solleciti** : pas de table de données propre — les données restent dans les systèmes sources (Google Calendar, compta externe), l'app ne fait que relayer scopé par studio. Éventuellement stocker les **tokens OAuth Google** par studio (`studio_integrations`).
 - `automations.n8n_webhook_url` : dépréciée, non supprimée dans un premier temps.
 
 ---
@@ -185,11 +216,16 @@ Nouvelle carte par automatisation :
 
 ---
 
-## 12. Décisions à prendre avant de coder (récap)
+## 12. Décisions — état
 
-1. **§2** : à quel(s) plan(s) rattacher `faq` ?
-2. **§5 Solleciti** : d'où viennent les factures (table app à saisir / import CSV / compta externe) ?
-3. **§5 Appuntamenti** : Google Calendar du client ou saisie dans l'app ?
-4. **§5 Modulo contatto** : rapatrier dans l'app ou n8n lit l'Airtable existante ?
-5. **§9** : historique d'exécutions multi-lignes (`automation_executions`) ou on garde juste le dernier run ?
-6. Confirmer l'URL réelle du n8n agence pour `N8N_BASE_URL`.
+**Tranché :**
+- Sources de données par automatisation (§5) : Solleciti = compta externe ; Appuntamenti = Google Calendar ; FAQ = PDF téléversé par le studio ; Modulo contatto = rapatrié dans l'app.
+- Historique d'exécutions multi-lignes `automation_executions` (§9).
+- Déclenchement mixte pull/push (§3).
+
+**Sous-questions restantes avant de coder la Phase B :**
+1. **§5.1 (bloquante pour Solleciti)** : quel logiciel de compta on supporte en premier, et via **API** ou **export CSV** ? (ex. Fatture in Cloud a une API OAuth.)
+2. **§2** : confirmer que `faq` va bien dans **Presenza Online** (donc Studio 360).
+3. **§5.3** : canal des questions FAQ (widget site vetrina ? email dédié ?).
+4. **§8** : URL exacte du n8n agence pour `N8N_BASE_URL` (le VPS existe, il me faut l'URL précise).
+5. **Ordre de la Phase B** : commencer par **Solleciti** (dépend de #1) ou par **Appuntamenti** (Google Calendar, plus autonome) ?
