@@ -119,6 +119,16 @@ Route Mailgun configurée : `match_recipient(".*@in.freelancerai.eu")` → forwa
 
 **Filtre newsletters/commerciale** : `/api/webhooks/inbound-email` ignore silencieusement (aucune bozza créée, aucun appel Claude) tout email portant un en-tête MIME `List-Unsubscribe` (fourni par Mailgun dans `message-headers`), quasi systématique sur les newsletters et emails commerciaux légitimes, absent d'un vrai email de client.
 
+### Dépannage — vérification du domaine Mailgun (DNS)
+
+Si Mailgun rejette les emails entrants avec `550 5.7.1 Relaying denied` (visible dans le bounce Gmail côté expéditeur, logs Mailgun vides côté réception), c'est que le domaine n'est pas passé à l'état `active`. Points de contrôle, dans l'ordre :
+
+1. **Région.** Le domaine et ses logs vivent dans une région Mailgun précise (ici **EU**, MX `mxa/mxb.eu.mailgun.org`, API `api.eu.mailgun.net`). Le sélecteur de région (drapeau en haut de l'interface) doit être sur EU, sinon domaine et logs semblent absents alors qu'ils existent dans l'autre région.
+2. **DKIM tronqué.** Piège rencontré : le champ TXT DKIM (`mta._domainkey.<domaine>`) publié chez le registrar était **coupé** (168 caractères au lieu des 216 d'une clé 1024 bits), fin `...SPoVop8` au lieu de `...IDAQAB`. Une clé RSA DKIM se termine **toujours** par `IDAQAB` : vérifier la fin de la valeur réellement servie, pas seulement son début. Contrôle direct sur le serveur autoritaire : `Resolve-DnsName -Name mta._domainkey.<domaine> -Type TXT -Server <ns-du-domaine>` (PowerShell) ou `dig TXT mta._domainkey.<domaine> @<ns>`. Re-coller la valeur **complète** copiée depuis Mailgun corrige le blocage.
+3. **Forcer la vérification.** Après correction DNS : `PUT https://api.eu.mailgun.net/v4/domains/<domaine>/verify` (auth Basic `api:<PRIVATE_API_KEY>`). Le champ `domain.state` doit passer `active` et le DKIM `valid`. Compter jusqu'à ~1 h de cache DNS côté Mailgun (TTL) avant que la nouvelle valeur soit prise en compte.
+
+Côté client, activer le transfert Gmail nécessite de **confirmer l'adresse** (`<token>@in.freelancerai.eu`) : l'email de confirmation Google arrive comme une bozza (il n'a pas de `List-Unsubscribe`, donc pas filtré), il faut ouvrir son lien de confirmation **en étant connecté au bon compte Google**. Tant que l'adresse reste marquée "Verify" dans les réglages Gmail, aucun message n'est transféré.
+
 ## Passage en mode Live (Stripe)
 
 La production tourne pour l'instant avec des clés et Price ID **Test** (aucun vrai paiement possible). Pour basculer en Live : recréer les 3 produits + prix (récurrents et setup) sur le dashboard Stripe en mode Live, remplacer `STRIPE_SECRET_KEY` et les 6 `STRIPE_PRICE_*` (scope Production) par leurs équivalents Live, et créer un nouvel endpoint webhook Live pointant vers `https://app.automa-ia.net/api/webhooks/stripe` pour obtenir un `STRIPE_WEBHOOK_SECRET` Live.
