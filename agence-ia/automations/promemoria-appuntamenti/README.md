@@ -40,10 +40,11 @@ Nom du workflow : `AutomaIA - Promemoria Appuntamenti`
 - Options à ajouter :
   - **After (timeMin)** : `={{ $now.plus({ days: 1 }).startOf('day').toISO() }}`
   - **Before (timeMax)** : `={{ $now.plus({ days: 1 }).endOf('day').toISO() }}`
-  - **Single Events** : true
+  - **Recurring Event Handling** : `All occurrences` (déplie les RDV récurrents en instances datées, équivalent de "Single Events". Nécessaire pour que "Order By: start time" fonctionne)
   - **Order By** : start time
 
-> Astuce : ces deux expressions donnent la fenêtre "demain 00:00 → demain 23:59". Vérifie le fuseau (Europe/Rome) dans les réglages n8n.
+> Astuce : ces deux expressions After/Before donnent la fenêtre "demain 00:00 → demain 23:59". Vérifie le fuseau (Europe/Rome) dans les réglages n8n.
+> Selon la version du nœud, "Single Events" peut s'appeler "Recurring Event Handling" avec la valeur `All occurrences`.
 
 ### Nœud 3 — IF : l'évènement a un participant avec email
 
