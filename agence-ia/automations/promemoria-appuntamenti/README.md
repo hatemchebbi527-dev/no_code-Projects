@@ -10,7 +10,7 @@
 
 Chaque soir, le système regarde les rendez-vous du lendemain dans l'agenda du cabinet et envoie automatiquement un email de rappel aux clients concernés. Résultat : moins de no-shows, moins de trous en agenda, et le cabinet ne fait rien à la main.
 
-Bénéfice client (pitch) : "Le Suo appuntamento di domani, ricordato in automatico ai Suoi clienti. Meno buchi in agenda, zero lavoro in più."
+Bénéfice client (pitch) : "I Suoi appuntamenti di domani, ricordati in automatico ai Suoi clienti. Meno buchi in agenda, zero lavoro in più."
 
 ---
 
