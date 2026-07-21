@@ -7,6 +7,25 @@
 
 ---
 
+## 2026-07-21
+
+### Bozze email par transfert (inbound Mailgun) débloqué et validé de bout en bout
+- Chaîne complète validée en prod : email externe → inbox Gmail du cabinet → transfert automatique → adresse dédiée `<token>@in.freelancerai.eu` → MX Mailgun → Route → webhook `/api/webhooks/inbound-email` → bozza créée dans l'app.
+- **Cause racine du blocage (plusieurs jours) : clé DKIM tronquée dans OVH** (168 caractères au lieu de 216, fin `SPoVop8` au lieu de `IDAQAB`). Le domaine restait "unverified", donc Mailgun refusait tout inbound avec `550 Relaying denied`. Symptômes en cascade repérés au passage : logs Mailgun à lire en région EU (pas US), et confirmation du transfert Gmail à valider en étant connecté au bon compte Google.
+- Note de dépannage DNS/Mailgun ajoutée au README de l'app. Correctif = re-coller la valeur DKIM complète copiée depuis Mailgun, puis `PUT /v4/domains/.../verify` → `state: active`.
+
+### Recentrage stratégique : livrer via n8n central d'abord, app en Phase 2
+- Constat d'audit : les 5 "Automazioni" de l'app (appuntamenti, solleciti, faq, pubblicazione_social, modulo_contatto) n'étaient qu'un registre d'URL n8n + un toggle décoratif (aucun code ne déclenche ni ne lit `is_active`). Seul l'assistant email est réellement branché.
+- Doc d'architecture rédigé pour une plateforme n8n partagée multi-tenant (déclenchement mixte pull/push, API sécurisée app↔n8n, gating par plan) : `agence-ia/automaia-app/docs/automazioni-n8n-partagees.md`. Puis **parqué** volontairement.
+- **Décision :** ne pas finir la plateforme self-service en spéculatif. Pour le premier client, livrer les automatisations à la main dans le n8n central de l'agence (Hatem contrôle tout, le client ne touche à rien). L'app self-service devient une Phase 2. Débloque la démotivation liée à la complexité perçue.
+
+### Pack Automatisation Commercialista défini
+- Cible affinée : **commercialisti en premier**.
+- Pack de 5 automatisations centrées douleurs réelles : relance de collecte de documents, rappels d'échéances fiscales (scadenzario), assistant email (déjà en prod), rappels de rendez-vous, solleciti. Livraison par vagues (du moins au plus sensible), source de données MVP = tableur partagé.
+- Insight confidentialité : les plus grosses douleurs ne demandent que des métadonnées, pas le contenu confidentiel. Confidentialité = argument de vente (minimisation, contrat RGPD, périmètre opérationnel). Doc : `agence-ia/offre-pack-commercialista.md`.
+
+---
+
 ## 2026-06-24
 
 ### Jour 16 (Airtable comme CRM) : FAIT ET BRANCHÉ DE BOUT EN BOUT

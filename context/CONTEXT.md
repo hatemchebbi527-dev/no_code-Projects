@@ -31,7 +31,7 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 - Développer des applications et sites web intégrant l'IA
 - Proposer des services de conseil en transformation digitale par l'IA
 
-**Clients types visés :** cabinets de professionnels libéraux (avocats, comptables, médecins). Niche fer de lance choisie en juin 2026. Médecins abordés en dernier (contraintes données de santé). Cibles secondaires d'expansion : instituts de beauté, agences de com/événementiel, startups.
+**Clients types visés :** cabinets de professionnels libéraux italiens (commercialisti/comptables, avvocati/avocats, médecins). Niche fer de lance choisie en juin 2026. **Priorité affinée en juillet 2026 : les commercialisti en premier**, puis les avvocati, médecins en dernier (contraintes données de santé). Cibles secondaires d'expansion : instituts de beauté, agences de com/événementiel, startups.
 
 ---
 
@@ -54,6 +54,9 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 
 Liste des projets ou chantiers actifs :
 
+- **Plateforme SaaS multi-tenant AutomaIA** (https://app.automa-ia.net) : application Next.js 14 + Supabase + Stripe + API Claude, déployée sur Vercel. Espace client par cabinet : dashboard, tâches/kanban, modèles de tâches récurrentes, contacts (CRM léger), génération de contenu et bozze email, abonnement Stripe (3 offres), landing page publique. Phases 1-9 du cahier des charges terminées. **Assistant email par transfert automatique (inbound Mailgun sur le domaine in.freelancerai.eu) validé de bout en bout en juillet 2026.**
+- **Décision stratégique (juillet 2026) :** pour décrocher le premier client, livrer les automatisations via le **n8n central de l'agence** (géré par Hatem, le client ne touche à rien de technique et ne gère aucun crédit) plutôt que d'attendre que la plateforme SaaS soit entièrement self-service. La couche self-service des automatisations dans l'app devient une **Phase 2**, à construire quand le volume de clients le justifiera. Doc d'architecture : `agence-ia/automaia-app/docs/automazioni-n8n-partagees.md`.
+- **Pack Automatisation Commercialista défini (juillet 2026)** — offre centrée sur les vraies douleurs des commercialisti : relance de collecte de documents, rappels d'échéances fiscales (scadenzario), assistant email (déjà en prod), rappels de rendez-vous, solleciti (relances de paiement). Livraison par vagues (du moins au plus sensible), source de données MVP = tableur partagé (pas d'intégration compta lourde au début). Confidentialité gérée par minimisation + contrat RGPD. Doc : `agence-ia/offre-pack-commercialista.md`.
 - Dossier projet `agence-ia/` : marque AutomaIA construite. 6 fichiers de marque (audience, brand_voice, offers_cta, graphics_brief, positionnement, prompts) + kit visuel complet (logo en plusieurs versions, bannières LinkedIn et Facebook, avatar, favicon).
 - Suivi du plan "Compagnon 30 jours Claude Code" : Semaine 1 complète (Jours 1 à 7). Semaine 2 (site WordPress) SAUTÉE volontairement (site AutomaIA déjà fait en Next.js). En Semaine 3 : Jour 15 (script API Python) scaffoldé mais à finir sur sa machine, Jour 20 (offre packagée) FAIT, Jour 21 (lead magnet) FAIT, Jour 24 (pricing) FAIT. Prochain logique : Semaine 4 (prospection : Jour 22 outbound, Jour 25 proposition, Jour 26 objections). Plan complet dans context/import/compagnon-30-jours-claude-code.md
 - Grille tarifaire validée (agence-ia/offres/grille-tarifaire.md) : Assistente Email 600 € + 79 €/mois, Studio Automatizzato 1 490 € + 149 €/mois (cible), Studio 360 2 490 € + 249 €/mois (premium), option Presenza Online 900 € + 49 €/mois. Calculateur ROI HTML dispo (calcolatore-roi.html).
@@ -70,10 +73,12 @@ Liste des projets ou chantiers actifs :
 
 ### Outils que j'utilise au quotidien
 
-- n8n (automatisation et workflows)
+- n8n (automatisation et workflows, instance centrale sur le VPS de l'agence)
 - Notion (organisation et gestion de l'information)
 - Google Sheets (stockage de données pour les workflows)
 - API Meta / Instagram (publication automatisée)
+- Stack de la plateforme SaaS : Next.js 14, Supabase (Postgres/Auth/RLS), Stripe, API Claude, Vercel, Mailgun (email entrant)
+- Metricool (gestion et publication réseaux sociaux, LinkedIn en priorité)
 
 ### Style de communication préféré
 
@@ -89,4 +94,6 @@ Productivité et organisation au quotidien
 
 > Cette section se remplira au fil du temps avec les éléments de contexte qui émergent naturellement dans mes sessions avec Claude.
 
-[VIDE INITIALEMENT - SE REMPLIRA AU FIL DU TEMPS]
+- **Principe de livraison (juillet 2026) :** un seul n8n central géré par l'agence sert tous les clients. Le client fournit une matière première simple (un accès, un fichier, une autorisation révocable), l'agence construit et fait tourner, le client reçoit le résultat. Modèle "fatto per te", le client ne touche jamais à la technique.
+- **Séquencer avant de tout construire :** ne pas bâtir toutes les automatisations en spéculatif avant d'avoir un client. Vendre le pack, livrer par vagues, commencer par le moins sensible pour installer la confiance.
+- **Angle confidentialité :** les plus grosses douleurs (relances, rappels) ne demandent que des métadonnées (qui/quoi/quand), pas le contenu confidentiel. La confidentialité bien traitée (minimisation, accès révocables, contrat RGPD art. 28, périmètre limité à l'opérationnel du cabinet) devient un argument de vente, pas un obstacle.
