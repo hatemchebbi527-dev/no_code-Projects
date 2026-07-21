@@ -37,14 +37,13 @@ Nom du workflow : `AutomaIA - Promemoria Appuntamenti`
 - Resource : **Event**, Operation : **Get Many**
 - Calendar : l'agenda du cabinet
 - Return All : activé
-- Options à ajouter :
-  - **After (timeMin)** : `={{ $now.plus({ days: 1 }).startOf('day').toISO() }}`
-  - **Before (timeMax)** : `={{ $now.plus({ days: 1 }).endOf('day').toISO() }}`
-  - **Recurring Event Handling** : `All occurrences` (déplie les RDV récurrents en instances datées, équivalent de "Single Events". Nécessaire pour que "Order By: start time" fonctionne)
-  - **Order By** : start time
+- Champs **After** et **Before** (ce sont des champs du nœud, pas des "Options", selon la version). En **mode expression** (`fx`), saisis SANS le `=` de tête : n8n ajoute lui-même le marqueur d'expression. Mettre un `=` devant produit un résultat invalide `=2026-...` → erreur 400.
+  - **After (timeMin)** : `{{ $now.plus({ days: 1 }).startOf('day').toISO() }}`
+  - **Before (timeMax)** : `{{ $now.plus({ days: 1 }).endOf('day').toISO() }}`
+- Vérifie l'aperçu sous chaque champ : il doit afficher une date propre `2026-07-22T...Z`, **sans `=` devant**.
 
 > Astuce : ces deux expressions After/Before donnent la fenêtre "demain 00:00 → demain 23:59". Vérifie le fuseau (Europe/Rome) dans les réglages n8n.
-> Selon la version du nœud, "Single Events" peut s'appeler "Recurring Event Handling" avec la valeur `All occurrences`.
+> **Order By** et **Recurring Event Handling** : NE PAS les ajouter pour la démo. "Order By: start time" exige `singleEvents=true` et provoque un 400 s'il n'est pas satisfait. Non nécessaire ici.
 
 ### Nœud 3 — IF : l'évènement a un participant avec email
 
