@@ -7,7 +7,20 @@
 
 ---
 
-## 2026-07-21
+## 2026-07-22
+
+### Pack Commercialista : les 4 automatisations restantes construites et testées dans n8n
+- Après un moment de démotivation (envie d'abandonner la partie automatisations face à la complexité), recadrage : livrer via le n8n central de l'agence pour les premiers clients, l'app self-service en Phase 2. Le client ne construit rien, l'agence monte le workflow, le client reçoit le résultat ("fatto per te").
+- **5 automatisations du Pack Commercialista désormais opérationnelles** sur le n8n central :
+  - Assistant email (bozze) : déjà en prod
+  - Promemoria appuntamenti (Google Calendar → rappel email + notif Telegram)
+  - Solleciti documenti (Google Sheet → relance des pièces manquantes)
+  - Scadenzario (Google Sheet → rappel des échéances fiscales, déclenchement automatique par date)
+  - Solleciti di pagamento (Google Sheet → relance des factures impayées)
+- Chaque automatisation a son guide de construction n8n + setup démo + script Loom italien dans `agence-ia/automations/<nom>/README.md`.
+- Source de données MVP = Google Sheet partagé (Calendar pour les RDV), pas d'intégration compta lourde. Confidentialité gérée par minimisation (métadonnées) + contrat RGPD à prévoir.
+- Pièges n8n rencontrés et documentés : `=` en trop en mode expression, référence de nœud par nom exact, colonnes à crochets, Filter date (Value 1 doit matcher le type de l'opérateur), Recurring Event Handling "All occurrences".
+- Reste à faire : enregistrer les Loom, puis lancer la prospection commercialisti (Rimini).
 
 ### Bozze email par transfert (inbound Mailgun) débloqué et validé de bout en bout
 - Chaîne complète validée en prod : email externe → inbox Gmail du cabinet → transfert automatique → adresse dédiée `<token>@in.freelancerai.eu` → MX Mailgun → Route → webhook `/api/webhooks/inbound-email` → bozza créée dans l'app.
