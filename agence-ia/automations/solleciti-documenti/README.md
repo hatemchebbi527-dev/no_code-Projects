@@ -95,10 +95,19 @@ Lo studio
 Flux linéaire, un item par ligne à relancer. Pour un premier test, tu peux t'arrêter au nœud 4 puis ajouter 5 et 6.
 
 ### Nœud 3 — Solo In Attesa (Filter)
-Une seule condition, type **booléen**, opérateur "is true". Relance seulement si document en attente ET pas déjà relancé il y a moins de 3 jours :
+
+**Version simple (recommandée, une seule condition) :**
+- Value 1 : `{{ $json.Stato }}`
+- Operator : String → is equal to
+- Value 2 : `In attesa`
+
+Seules les lignes "In attesa" passent. Suffisant pour la démo et un premier client.
+
+**Option anti-spam (plus tard, pas pour la démo) :** pour éviter de relancer la même ligne chaque jour, remplace la condition ci-dessus par UNE condition de type **booléen**, opérateur "is true", avec cette expression (le ET/OU est à l'intérieur de l'expression, ce n'est pas deux lignes séparées) :
 ```
 {{ $json.Stato === 'In attesa' && ( !$json['Ultimo sollecito'] || DateTime.fromFormat(String($json['Ultimo sollecito']), 'dd/MM/yyyy') < $now.minus({ days: 3 }) ) }}
 ```
+Cette option nécessite le nœud 5 (Aggiorna Sheet) qui écrit la date de dernière relance.
 
 ### Nœud 5 — Aggiorna Sheet (Google Sheets · Update Row)
 Anti-spam : trace la date de la dernière relance.
