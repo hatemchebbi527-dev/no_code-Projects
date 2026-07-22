@@ -78,7 +78,9 @@ Schedule 08:00 → Leggi Scadenze → Scadenze da Ricordare (Stato = Da ricordar
 
 ## Option (recommandée en production) — déclenchement par DATE
 
-Au lieu que le cabinet marque "Da ricordare" à la main, le système rappelle tout seul quand l'échéance approche (ex : dans les 5 jours). Ici on utilise VRAIMENT **deux conditions** dans le Filter, combinées en **AND** (pas d'expression compliquée, juste deux lignes) :
+Au lieu que le cabinet marque "Da ricordare" à la main, le système rappelle tout seul quand l'échéance approche (ex : dans les 5 jours). Ici on utilise VRAIMENT **deux conditions** dans le Filter, combinées en **AND** (pas d'expression compliquée, juste deux lignes).
+
+> IMPORTANT : en passant de la version simple à celle-ci, remplace **Value 1 aussi**, pas seulement l'opérateur. Les deux conditions comparent la **Data**, plus jamais `$json.Stato`. Sinon erreur "Wrong type: 'Da ricordare' is a string but was expecting a dateTime".
 
 - **Condition A**
   - Value 1 : `{{ DateTime.fromFormat(String($json.Data), 'dd/MM/yyyy').toISO() }}`
