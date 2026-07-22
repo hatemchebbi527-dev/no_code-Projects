@@ -80,7 +80,9 @@ Lo studio
 Comme sur l'assistant email, un fil de tranquillité pour le cabinet.
 
 - Type : Telegram, branché sur la sortie du Nœud 4
-- Message : `Promemoria inviato a {{ $json.attendees[0].displayName || 'un cliente' }} per domani alle {{ $('Google Calendar').item.json.start.dateTime.substring(11,16) }}.`
+- Message : `Promemoria inviato a {{ $('NOM_DU_NOEUD_CALENDRIER').item.json.attendees[0].displayName || 'un cliente' }} per domani alle {{ $('NOM_DU_NOEUD_CALENDRIER').item.json.start.dateTime.substring(11,16) }}.`
+
+> Piège : remplace `NOM_DU_NOEUD_CALENDRIER` par le nom EXACT de ton nœud Google Calendar (ex. "Appuntamento di domani1"). Au niveau du nœud Telegram, `$json` = la sortie du nœud Gmail précédent, qui n'a pas les données du calendrier. Il faut donc référencer le nœud calendrier par son nom via `$('...')`. Le plus sûr : clique le nœud dans la liste de gauche de l'éditeur d'expression, n8n insère le bon nom.
 
 ---
 
