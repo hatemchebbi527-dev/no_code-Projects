@@ -81,29 +81,36 @@ Lo studio
 
 ---
 
-## Routage (cœur)
+## Schéma final complet (6 nœuds)
 
 ```
-Schedule 09:00
-  → Google Sheets (lire les lignes)
-    → Filter (Stato = In attesa)
-      → Gmail relance
+[1] Ogni Giorno 09:00  (Schedule Trigger)
+      → [2] Leggi Sheet  (Google Sheets: Get Many Rows)
+          → [3] Solo In Attesa  (Filter: à relancer ?)
+              → [4] Invia Sollecito  (Gmail: Send)
+                  → [5] Aggiorna Sheet  (Google Sheets: Update Row)
+                      → [6] Notifica Studio  (Telegram)
 ```
 
----
+Flux linéaire, un item par ligne à relancer. Pour un premier test, tu peux t'arrêter au nœud 4 puis ajouter 5 et 6.
 
-## Enhancements (optionnels, après que le cœur marche)
+### Nœud 3 — Solo In Attesa (Filter)
+Une seule condition, type **booléen**, opérateur "is true". Relance seulement si document en attente ET pas déjà relancé il y a moins de 3 jours :
+```
+{{ $json.Stato === 'In attesa' && ( !$json['Ultimo sollecito'] || DateTime.fromFormat(String($json['Ultimo sollecito']), 'dd/MM/yyyy') < $now.minus({ days: 3 }) ) }}
+```
 
-### A — Notification Telegram au cabinet
-- Nœud Telegram après Gmail.
-- Message : `Sollecito inviato a {{ $('NOM_DU_NOEUD_SHEETS').item.json.Cliente }} per: {{ $('NOM_DU_NOEUD_SHEETS').item.json.Documento }}.`
-- Remplace `NOM_DU_NOEUD_SHEETS` par le nom exact du nœud de lecture (au niveau Telegram, `$json` = sortie Gmail, d'où le `$('...')`).
+### Nœud 5 — Aggiorna Sheet (Google Sheets · Update Row)
+Anti-spam : trace la date de la dernière relance.
+- Matching column : `row_number`, valeur `{{ $('Leggi Sheet').item.json.row_number }}`
+- Colonne à écrire : `Ultimo sollecito` = `{{ $now.toFormat('dd/MM/yyyy') }}`
 
-### B — Anti-spam (ne pas relancer tous les jours la même ligne)
-- Ajoute une colonne **Ultimo sollecito** et, après l'envoi, un nœud **Google Sheets : Update Row** qui écrit la date du jour.
-  - Matching column : `row_number`, valeur `{{ $('NOM_DU_NOEUD_SHEETS').item.json.row_number }}`
-  - Colonne à écrire : `Ultimo sollecito` = `{{ $now.toFormat('dd/MM/yyyy') }}`
-- Puis, dans le Filter, ajoute une 2e condition : relancer seulement si `Ultimo sollecito` est vide OU date de plus de 3 jours. (À affiner selon la cadence voulue.)
+### Nœud 6 — Notifica Studio (Telegram)
+```
+Sollecito inviato a {{ $('Leggi Sheet').item.json.Cliente }} per: {{ $('Leggi Sheet').item.json.Documento }} (scadenza {{ $('Leggi Sheet').item.json.Scadenza }}).
+```
+
+> Aux nœuds 5 et 6, `$json` n'est plus la ligne du Sheet (c'est la sortie du nœud précédent), d'où le `$('Leggi Sheet')`. Nomme bien ton nœud de lecture **"Leggi Sheet"**, ou adapte le nom dans les expressions.
 
 ---
 
