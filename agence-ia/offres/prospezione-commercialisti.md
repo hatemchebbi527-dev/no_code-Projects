@@ -62,7 +62,7 @@ Variante B (angle bénéfice) :
 >
 > Posso mostrarLe in pochi minuti come funziona, con esempi concreti per uno studio come il Suo.
 >
-> Se le fa piacere, prenoti un audit gratuito di 20 minuti: [lien].
+> Se le fa piacere, prenoti un audit gratuito di 20 minuti: https://automa-ia.net/contatti
 >
 > Un caro saluto,
 > [Nome] — AutomaIA
@@ -77,6 +77,8 @@ Variante B (angle bénéfice) :
 - **La confidentialité** dans chaque message (secret professionnel, RGPD) : c'est un argument, pas une contrainte.
 - **La démo** (Loom) est l'arme de conviction : montrer, pas décrire.
 - **Un seul CTA** : l'audit gratuit de 20 minutes.
+
+**Lien du CTA (cold email) :** `https://automa-ia.net/contatti` (page existante, alimente le CRM). Option meilleure conversion : créer une page de réservation directe via les "Plages de rendez-vous" de Google Calendar (Workspace, gratuit) et coller ce lien à la place. Sur LinkedIn, pas de lien : on enchaîne la conversation.
 
 ---
 
