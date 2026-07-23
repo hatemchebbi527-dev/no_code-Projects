@@ -131,6 +131,8 @@ Ajoute une colonne `Ultimo sollecito` et un nœud **Google Sheets · Update Row*
 >
 > Ecco: il cliente riceve un promemoria educato, con il numero della fattura, l'importo e la scadenza.
 >
+> E Lei riceve subito una notifica sul telefono: sa sempre quali solleciti di pagamento sono partiti, in tempo reale.
+>
 > Chi ha già pagato non viene disturbato. Lei viene pagato prima, senza dover rincorrere nessuno e senza imbarazzo.
 >
 > Se vuole attivarlo sul Suo studio, prenoti un audit gratuito di 20 minuti."

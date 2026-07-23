@@ -124,6 +124,8 @@ Promemoria scadenza inviato a {{ $('Leggi Scadenze').item.json.Cliente }}: {{ $(
 >
 > Ecco: il cliente riceve un promemoria chiaro, con la scadenza e la data.
 >
+> E Lei riceve una notifica sul telefono nello stesso momento: tiene tutto sotto controllo, in tempo reale, senza controllare nulla.
+>
 > Niente più dimenticanze, niente corse dell'ultimo minuto. Lei ha tutto sotto controllo, senza pensarci.
 >
 > Se vuole attivarlo sul Suo studio, prenoti un audit gratuito di 20 minuti."

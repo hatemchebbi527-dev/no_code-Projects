@@ -121,6 +121,8 @@ Narration suggérée (voix de marque, un seul CTA à la fin) :
 >
 > Ecco: il cliente riceve un promemoria gentile, con l'orario del suo appuntamento.
 >
+> E nello stesso momento Lei riceve una notifica sul telefono: sa sempre quali promemoria sono partiti, in tempo reale, senza controllare nulla.
+>
 > Meno dimenticanze, meno buchi in agenda. Lei non tocca nulla, i Suoi dati restano nel Suo agenda.
 >
 > Se vuole attivarlo sul Suo studio, prenoti un audit gratuito di 20 minuti."

@@ -144,6 +144,8 @@ Sollecito inviato a {{ $('Leggi Sheet').item.json.Cliente }} per: {{ $('Leggi Sh
 >
 > Ecco: il cliente riceve un promemoria cortese, con il documento che manca e la scadenza.
 >
+> E Lei riceve subito una notifica sul telefono: sa in tempo reale quali solleciti sono partiti, senza controllare nulla.
+>
 > Chi ha già inviato non viene disturbato. Lei non rincorre più nessuno, e i documenti arrivano in tempo.
 >
 > Se vuole attivarlo sul Suo studio, prenoti un audit gratuito di 20 minuti."
