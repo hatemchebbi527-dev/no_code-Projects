@@ -136,6 +136,42 @@
 
 ---
 
+## 5. Assistente Email (assistant de réponse, offre porte d'entrée)
+
+**Accroche (première ligne) :** Quante email dei clienti riceve ogni giorno, con le stesse domande di sempre?
+
+**Post :**
+
+> Quante email dei clienti riceve ogni giorno, con le stesse domande di sempre?
+>
+> Documenti da inviare, tempi, tariffe, chiarimenti. Rispondere a tutto, uno per uno, porta via ore.
+>
+> Nel video Le mostro un assistente che prepara le risposte al posto Suo.
+>
+> Quando arriva l'email di un cliente, l'assistente la legge, la capisce e prepara una bozza di risposta, già pronta nella Sua casella. Lei la rilegge e invia con un clic.
+>
+> Nulla parte in automatico: la risposta la controlla e la approva sempre Lei. E le newsletter o le email pubblicitarie vengono ignorate.
+>
+> E nello stesso momento riceve una notifica sul telefono, così sa subito quando arriva un'email che conta.
+>
+> Meno tempo sulla casella, zero risposte dimenticate, e Lei resta sempre al comando.
+>
+> I Suoi dati restano protetti e sotto il Suo controllo.
+>
+> Quante ore alla settimana passa a rispondere alle email, nel Suo studio? Me lo dica nei commenti.
+>
+> #Commercialisti #StudiLegali #Automazione
+
+**Variante fin CTA :** Se vuole vedere come funziona nel Suo studio, prenoti un audit gratuito di 20 minuti. Senza impegno.
+
+**Accroches alternatives :**
+- E se le risposte alle email dei clienti fossero già pronte, da rileggere e inviare in un clic?
+- La Sua casella di posta Le ruba più tempo di quanto pensi.
+
+**Angle clé :** rien ne part automatiquement, le cabinet relit et valide (zéro risque). C'est l'argument le plus rassurant, cohérent avec l'offre porte d'entrée (`agence-ia/offres/assistant-email.md`).
+
+---
+
 ## Conseils de publication
 
 - Un post à la fois, espacés (ne pas publier les 4 le même jour).
