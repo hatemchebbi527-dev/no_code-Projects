@@ -13,6 +13,7 @@ export const brand = {
 export const nav = [
   { label: "Home", href: "/" },
   { label: "Servizi", href: "/servizi" },
+  { label: "Cliniche", href: "/cliniche" },
   { label: "Chi sono", href: "/chi-sono" },
   { label: "Contatti", href: "/contatti" },
 ];
@@ -155,4 +156,40 @@ export const contatti = {
     "In 20 minuti individuiamo la prima automazione utile per il Suo studio. Compili il modulo, La ricontatto io.",
   successo: "Grazie! Ho ricevuto la Sua richiesta, La ricontatto a breve.",
   errore: "Qualcosa è andato storto. Riprovi o scriva direttamente a info@automa-ia.net.",
+};
+
+export const cliniche = {
+  hero: {
+    eyebrow: "Cliniche",
+    title: "La Sua clinica lavora anche quando è chiusa",
+    subtitle:
+      "Prenotazioni, promemoria e prime risposte ai clienti, in automatico. Lei si concentra sugli animali e sui pazienti, non sul telefono. I Suoi dati restano sempre protetti.",
+    cta: { label: "Prenoti un audit gratuito", href: "/contatti" },
+  },
+  problema: {
+    title: "Ogni giorno la Sua clinica perde richieste e appuntamenti, senza accorgersene",
+    items: [
+      { title: "Richieste fuori orario", text: "Circa 4 richieste su 10 arrivano quando la clinica è chiusa. Senza prenotazione online, molte si perdono o vanno alla clinica vicina." },
+      { title: "Visite mancate", text: "Nel settore circa il 10% degli appuntamenti salta. Ogni assenza è tempo e incasso persi." },
+      { title: "Clienti stranieri", text: "In zona turistica arrivano proprietari e pazienti stranieri. Senza un'accoglienza in inglese, la comunicazione si blocca." },
+    ],
+  },
+  soluzione: {
+    title: "AutomaIA se ne occupa al posto Suo",
+    intro: "Creo automazioni su misura per la Sua clinica. Lei non tocca nulla di tecnico: usa solo il risultato.",
+    items: [
+      { title: "Prenotazione sempre attiva", text: "I clienti fissano la visita da soli, a qualsiasi ora. Lei ritrova l'agenda già compilata." },
+      { title: "Promemoria automatici", text: "Un promemoria via SMS ed email prima di ogni appuntamento. Le assenze scendono quasi a zero." },
+      { title: "Accoglienza anche in inglese", text: "Un assistente risponde alle domande ricorrenti in italiano e in inglese, 24 ore su 24." },
+    ],
+  },
+  esempio: {
+    title: "Un esempio concreto",
+    text: "Un ambulatorio veterinario aperto solo il pomeriggio perdeva tutte le richieste del mattino. Con la prenotazione online, quelle richieste ora diventano appuntamenti reali, senza aggiungere lavoro alla reception.",
+  },
+  ctaFinale: {
+    title: "Scopra quanti appuntamenti può recuperare",
+    text: "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per la Sua clinica.",
+    cta: { label: "Prenoti il Suo audit gratuito", href: "/contatti" },
+  },
 };

@@ -1,0 +1,10 @@
+.esempio {
+  max-width: 760px;
+  margin: 0 auto;
+  border-left: 4px solid var(--teal);
+}
+.esempioText {
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin-top: 12px;
+}
