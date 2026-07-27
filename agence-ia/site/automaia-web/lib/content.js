@@ -5,7 +5,7 @@
 
 export const brand = {
   name: "AutomaIA",
-  tagline: "Automazione e IA per studi legali e di commercialisti",
+  tagline: "Automazione e IA per studi professionali e cliniche",
   email: "info@automa-ia.net",
   domain: "automa-ia.net",
 };
@@ -21,7 +21,7 @@ export const home = {
   hero: {
     title: "Lo studio che recupera fino a 10 ore a settimana",
     subtitle:
-      "Automatizzo le attività ripetitive di avvocati e commercialisti. Meno burocrazia, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.",
+      "Automatizzo le attività ripetitive di avvocati, commercialisti e cliniche. Meno burocrazia, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.",
     cta: { label: "Prenoti un audit gratuito", href: "/contatti" },
   },
   stats: [
@@ -71,7 +71,7 @@ export const servizi = {
   intro: {
     title: "I servizi di AutomaIA",
     text:
-      "Soluzioni su misura per avvocati e commercialisti. Si parte dall'attività che Le ruba più tempo, in totale sicurezza.",
+      "Soluzioni su misura per avvocati, commercialisti e cliniche. Si parte dall'attività che Le ruba più tempo, in totale sicurezza.",
   },
   offerte: [
     {

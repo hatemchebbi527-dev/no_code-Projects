@@ -12,7 +12,7 @@
 Lo studio che recupera fino a 10 ore a settimana
 
 **Sottotitolo :**
-Automatizzo le attività ripetitive di avvocati e commercialisti. Meno burocrazia, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.
+Automatizzo le attività ripetitive di avvocati, commercialisti e cliniche. Meno burocrazia, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.
 
 **Bottone (CTA) :**
 Prenoti un audit gratuito di 20 minuti

@@ -3,13 +3,13 @@
 > Mon ICP en une synthèse, mon offre phare en une phrase, et mes 4 bios prêtes à coller.
 > Produit au Jour 1 du plan, à partir de audience.md et offers_cta.md.
 > Voix : vouvoiement chaleureux, zéro jargon (voir brand_voice.md).
-> Dernière mise à jour : 2026-06-16
+> Dernière mise à jour : 2026-07-27
 
 ---
 
 ## Mon ICP (client idéal) en une synthèse
 
-Les petits cabinets de professionnels libéraux (avocats et comptables en priorité, médecins plus tard), 1 à 5 personnes, qui perdent un temps précieux dans l'administratif répétitif et tiennent à la confidentialité de leurs données. Mon entrée se fait par l'automatisation de leur quotidien.
+Les petits cabinets de professionnels libéraux (avocats et comptables en priorité, plus le vertical cliniche/santé en ouverture, entrée par les vétérinaires), 1 à 5 personnes, qui perdent un temps précieux dans l'administratif répétitif et tiennent à la confidentialité de leurs données. Mon entrée se fait par l'automatisation de leur quotidien.
 
 ---
 
@@ -58,6 +58,20 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 
 ---
 
+## Variante cliniche (vertical santé)
+
+**LinkedIn — Titolo :**
+> Automazione e IA per cliniche e studi veterinari | Meno appuntamenti persi | Dati protetti
+
+**About (estratto) :**
+> Aiuto cliniche e ambulatori (veterinari, dentisti, fisioterapisti) a non perdere più richieste e appuntamenti.
+>
+> Prenotazione online sempre attiva, promemoria automatici, accoglienza anche in inglese: meno telefono, agenda sempre piena. I dati dei pazienti restano protetti.
+>
+> 📩 Prenoti un audit gratuito di 20 minuti.
+
+---
+
 ## Stratégie de comptes par plateforme
 
 **Principe :** le contenu reste humain et personnel partout (les clients achètent la personne, pas une marque anonyme), mais le type de compte est choisi pour la crédibilité et surtout pour permettre l'automatisation de publication (Jours 12 et 17).
@@ -76,6 +90,6 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 
 ## Note
 
-- Adapter "avvocati e commercialisti" en ajoutant "studi medici" plus tard, une fois l'offre rodée sur ces deux métiers.
+- Vertical cliniche (santé) ajouté : entrée par les vétérinaires, puis dentistes/kinés, médecins en dernier. Une variante de bios « cliniche » est disponible ci-dessus.
 - Versions français/anglais à produire pour l'expansion multilingue.
 - Un seul CTA par bio (l'audit gratuit), conformément à offers_cta.md.

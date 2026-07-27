@@ -22,7 +22,7 @@
 
 ```
 [RÔLE] Tu es un copywriter spécialisé en contenu B2B pour une agence d'automatisation IA.
-[CONTEXTE] Marque : AutomaIA. Cible : avocats et comptables italiens. Voix : vouvoiement chaleureux, claire, sans jargon technique, concrète (voir brand_voice). Langue de sortie : italien.
+[CONTEXTE] Marque : AutomaIA. Cible : avocats, comptables et cliniques (santé, entrée par les vétérinaires) italiens. Voix : vouvoiement chaleureux, claire, sans jargon technique, concrète (voir brand_voice). Langue de sortie : italien.
 [TÂCHE] À partir de cette idée : "{idée}", crée 3 versions adaptées à LinkedIn (priorité), Facebook et Instagram.
 [FORMAT] Pour chaque plateforme : un titre accrocheur, le corps du post adapté aux codes de la plateforme, et 3 hashtags pertinents. Un seul CTA par post.
 ```
@@ -37,7 +37,7 @@
 
 ```
 [RÔLE] Tu es un stratège de contenu B2B.
-[CONTEXTE] Marque AutomaIA, cible avocats et comptables italiens. Piliers : pédagogie IA, gain de temps, confidentialité, preuves/coulisses. Langue : italien.
+[CONTEXTE] Marque AutomaIA, cible avocats, comptables et cliniques italiens. Piliers : pédagogie IA, gain de temps, confidentialité, preuves/coulisses. Langue : italien.
 [TÂCHE] Propose 10 idées de posts réparties sur ces piliers, adaptées à des professionnels sceptiques mais curieux.
 [FORMAT] Tableau : | Pilier | Idée de post | Angle/accroche | Plateforme conseillée |
 ```

@@ -6,7 +6,7 @@ import styles from "./servizi.module.css";
 export const metadata = {
   title: "Servizi — AutomaIA",
   description:
-    "Automazione su misura per avvocati e commercialisti: appuntamenti, solleciti, assistente FAQ, CRM e presenza online.",
+    "Automazione su misura per avvocati, commercialisti e cliniche: appuntamenti, solleciti, assistente FAQ, CRM e presenza online.",
 };
 
 export default function ServiziPage() {
