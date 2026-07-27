@@ -20,9 +20,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "AutomaIA — Automazione e IA per studi legali e di commercialisti",
+  title: "AutomaIA — Automazione e IA per studi professionali e cliniche",
   description:
-    "Automatizzo le attività ripetitive di avvocati e commercialisti per far recuperare fino a 10 ore a settimana. Dati sempre protetti.",
+    "Automatizzo le attività ripetitive di avvocati, commercialisti e cliniche per far recuperare fino a 10 ore a settimana. Dati sempre protetti.",
   metadataBase: new URL("https://automaia.net"),
   openGraph: {
     title: "AutomaIA — Automazione per studi professionali",
