@@ -1,0 +1,38 @@
+import { contatti, brand } from "@/lib/content";
+import ContactForm from "./ContactForm";
+import styles from "./contatti.module.css";
+
+export const metadata = {
+  title: "Contatti — Prenoti un audit gratuito",
+  description:
+    "Prenoti un audit gratuito di 20 minuti: individuiamo insieme la prima automazione utile per il Suo studio o la Sua clinica.",
+  alternates: { canonical: "/contatti" },
+  openGraph: {
+    title: "Prenoti un audit gratuito",
+    description:
+      "In 20 minuti individuiamo la prima automazione utile per il Suo studio.",
+    url: "/contatti",
+  },
+};
+
+export default function ContattiPage() {
+  return (
+    <section className="section">
+      <div className="container">
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
+            <h1>{contatti.title}</h1>
+            <p className="lead mt-24">{contatti.text}</p>
+            <p className="mt-24">
+              Oppure scriva a{" "}
+              <a className="accent" href={`mailto:${brand.email}`}>
+                {brand.email}
+              </a>
+            </p>
+          </div>
+          <ContactForm />
+        </div>
+      </div>
+    </section>
+  );
+}

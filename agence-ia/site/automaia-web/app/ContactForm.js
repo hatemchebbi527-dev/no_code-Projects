@@ -1,0 +1,55 @@
+/* INTRO con foto */
+.intro {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 56px;
+  align-items: center;
+}
+.foto {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 380px;
+  box-shadow: 0 20px 50px rgba(15, 42, 74, 0.14);
+}
+.foto :global(img) { object-fit: cover; }
+
+/* Step number badge */
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+/* Trust cards */
+.fiduciaCard {
+  text-align: center;
+  align-items: center;
+}
+.check {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(22, 184, 166, 0.14);
+  color: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin: 0 auto 16px;
+}
+.fiduciaCard p { color: var(--ink); font-size: 1.02rem; }
+
+@media (max-width: 960px) {
+  .intro { grid-template-columns: 1fr; }
+  .foto { height: 300px; order: -1; }
+}
