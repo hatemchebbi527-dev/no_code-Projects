@@ -19,6 +19,29 @@
 
 .tagline { margin-top: 10px; max-width: 320px; font-size: 0.95rem; }
 
+.socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: #9FB1C4;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color .18s ease, background .18s ease, transform .18s ease;
+}
+.socialLink:hover {
+  color: var(--navy);
+  background: var(--teal);
+  transform: translateY(-2px);
+}
+
 .links { display: flex; flex-direction: column; gap: 10px; }
 .links a:hover { color: var(--teal-light); }
 
