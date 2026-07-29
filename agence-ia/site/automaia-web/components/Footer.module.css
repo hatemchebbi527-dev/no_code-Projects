@@ -19,10 +19,15 @@
 
 .tagline { margin-top: 10px; max-width: 320px; font-size: 0.95rem; }
 
+.links { display: flex; flex-direction: column; gap: 10px; }
+.links a:hover { color: var(--teal-light); }
+
+.contact { display: flex; flex-direction: column; gap: 16px; }
+.contact a:hover { color: var(--teal-light); }
+
 .socials {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
 }
 .socialLink {
   display: flex;
@@ -41,11 +46,7 @@
   background: var(--teal);
   transform: translateY(-2px);
 }
-
-.links { display: flex; flex-direction: column; gap: 10px; }
-.links a:hover { color: var(--teal-light); }
-
-.contact a:hover { color: var(--teal-light); }
+.socialLink:hover a { color: var(--navy); }
 
 .bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
