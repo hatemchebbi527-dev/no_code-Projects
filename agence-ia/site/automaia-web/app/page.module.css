@@ -1,119 +1,165 @@
+/* ================= HERO (cinematic photo) ================= */
 .hero {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 78% 18%, rgba(22, 184, 166, 0.22), transparent 42%),
-    radial-gradient(circle at 10% 90%, rgba(22, 184, 166, 0.10), transparent 40%),
-    linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
-  color: var(--white);
-  padding: 130px 0 120px;
+  padding: 120px 0 160px;
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-2) 100%);
 }
 
-/* Hero en deux colonnes : texte + visuel */
+/* right-side cinematic photo */
+.heroPhoto {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 52%;
+  z-index: 0;
+}
+.heroPhoto :global(img) { object-fit: cover; }
+.heroPhotoFade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--navy-deep) 0%, rgba(8,27,48,0.25) 30%, transparent 55%);
+}
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(900px 500px at 85% 0%, rgba(22,184,166,0.18), transparent 60%);
+}
+
 .heroInner {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
-  gap: 56px;
+  position: relative;
+  z-index: 2;
 }
-
 .heroText {
+  max-width: 640px;
   text-align: left;
 }
 
-.heroVisual {
-  display: flex;
-  justify-content: center;
-}
-
 .eyebrowLight {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-montserrat), sans-serif;
-  font-weight: 600;
-  font-size: 0.82rem;
+  font-weight: 700;
+  font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 20px;
+  color: var(--teal-light);
+  background: rgba(22, 184, 166, 0.14);
+  border: 1px solid rgba(22, 184, 166, 0.3);
+  padding: 8px 16px;
+  border-radius: 999px;
+  margin-bottom: 26px;
 }
 
 .heroTitle {
-  color: var(--white);
-  max-width: 620px;
+  color: #fff;
+  font-size: clamp(2.5rem, 4.6vw, 3.6rem);
+  line-height: 1.08;
+  max-width: 600px;
 }
+.heroTitle .hl { color: var(--teal-light); }
 
 .heroSub {
-  color: #cbd6e4;
-  font-size: 1.22rem;
-  max-width: 600px;
+  color: #DCE6EF;
+  font-size: 1.2rem;
+  max-width: 540px;
   margin: 26px 0 38px;
   line-height: 1.7;
 }
 
-/* ---------- Bande de statistiques animées ---------- */
-.statsSection {
-  background: var(--white);
-  padding: 0;
+.heroCtas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
+/* ================= STATS BENTO (overlaps hero) ================= */
+.statsSection {
+  max-width: var(--maxw);
+  margin: -64px auto 0;
+  padding: 0 28px;
+  position: relative;
+  z-index: 3;
+}
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  /* On remonte la bande pour qu'elle chevauche le bas du hero */
-  margin-top: -56px;
-  position: relative;
-  z-index: 2;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 20px;
 }
-
 .statCard {
-  background: var(--white);
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 32px 24px;
-  text-align: center;
-  box-shadow: 0 14px 40px rgba(15, 42, 74, 0.10);
-  transition: transform .25s ease, box-shadow .25s ease;
+  border-radius: 18px;
+  padding: 30px 26px;
+  box-shadow: 0 20px 50px rgba(8, 27, 48, 0.12);
 }
-.statCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 22px 50px rgba(15, 42, 74, 0.14);
-}
-
 .statNum {
   font-family: var(--font-montserrat), sans-serif;
-  font-weight: 700;
-  font-size: clamp(2.2rem, 4vw, 3rem);
-  color: var(--teal);
-  line-height: 1;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  color: var(--teal-dark);
   letter-spacing: -0.02em;
+  line-height: 1;
 }
-
 .statLabel {
-  margin-top: 12px;
-  font-size: 0.96rem;
+  margin-top: 10px;
+  font-size: 0.95rem;
   color: var(--muted);
   line-height: 1.5;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .heroInner {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    text-align: center;
-  }
-  .heroText { text-align: center; }
-  .heroTitle, .heroSub { margin-left: auto; margin-right: auto; }
-  .heroVisual { order: -1; max-width: 340px; margin: 0 auto 8px; }
+/* ================= PROBLEMA (photo + text) ================= */
+.problema {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 56px;
+  align-items: center;
+}
+.problemaPhoto {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 20px 50px rgba(15, 42, 74, 0.14);
+}
+.problemaPhoto :global(img) { object-fit: cover; }
+
+/* ================= OFFERTE cards (with elevated center) ================= */
+.offCard { height: 100%; }
+.offCardFeatured {
+  background: var(--navy);
+  border: none;
+  transform: translateY(-12px);
+  box-shadow: 0 20px 50px rgba(15, 42, 74, 0.25);
+}
+.offCardFeatured h3 { color: #fff; }
+.offCardFeatured p { color: #B9C6D9; }
+.offCardFeatured .iconChip { background: rgba(22, 184, 166, 0.18); }
+
+/* ================= CTA FINALE (gradient card) ================= */
+.ctaCard {
+  background: linear-gradient(120deg, var(--navy) 0%, var(--teal-dark) 130%);
+  border-radius: 28px;
+  padding: 72px 48px;
+  text-align: center;
+}
+.ctaCard h2 { color: #fff; }
+.ctaCard p { color: #DCE6EF; max-width: 520px; margin: 16px auto 0; }
+
+/* ================= Responsive ================= */
+@media (max-width: 960px) {
+  .heroPhoto { display: none; }
   .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .problema { grid-template-columns: 1fr; }
+  .problemaPhoto { aspect-ratio: 16 / 10; }
 }
-
 @media (max-width: 768px) {
-  .hero { padding: 88px 0 96px; }
-  .heroSub { font-size: 1.05rem; }
-}
-
-@media (max-width: 460px) {
-  .statsGrid { grid-template-columns: 1fr; margin-top: -40px; }
+  .hero { padding: 96px 0 130px; }
+  .statsSection { margin-top: -48px; }
+  .statsGrid { grid-template-columns: 1fr; }
+  .heroCtas .btn { width: 100%; }
+  .ctaCard { padding: 52px 28px; }
 }

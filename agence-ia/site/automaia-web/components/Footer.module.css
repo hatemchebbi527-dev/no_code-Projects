@@ -1,6 +1,6 @@
 .footer {
-  background: var(--navy);
-  color: #cbd6e4;
+  background: var(--navy-deep);
+  color: #9FB1C4;
 }
 
 .inner {
@@ -20,9 +20,9 @@
 .tagline { margin-top: 10px; max-width: 320px; font-size: 0.95rem; }
 
 .links { display: flex; flex-direction: column; gap: 10px; }
-.links a:hover { color: var(--teal); }
+.links a:hover { color: var(--teal-light); }
 
-.contact a:hover { color: var(--teal); }
+.contact a:hover { color: var(--teal-light); }
 
 .bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
