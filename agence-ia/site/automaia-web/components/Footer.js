@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { brand, nav } from "@/lib/content";
+import { brand, nav } from "@/lib/content"; 
 import styles from "./Footer.module.css";
 
 const socials = [
