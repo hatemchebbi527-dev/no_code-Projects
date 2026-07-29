@@ -13,7 +13,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} onClick={() => setOpen(false)}>
-          <Image src="/logo.png" alt="AutomaIA" width={150} height={43} priority />
+          <Image src="/logo.png" alt="AutomaIA" width={140} height={40} priority />
         </Link>
 
         <button
