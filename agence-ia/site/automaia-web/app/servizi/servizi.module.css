@@ -1,49 +1,52 @@
-.griglia { align-items: stretch; }
+.griglia {
+  align-items: stretch;
+  gap: 26px;
+}
 
-.card { position: relative; }
+.card {
+  position: relative;
+  padding: 38px 32px;
+}
 
+/* Featured card: teal border accent + subtle lift */
 .evidenza {
-  border: 2px solid var(--teal);
-  box-shadow: 0 12px 30px rgba(22, 184, 166, 0.18);
+  border: 1.5px solid var(--teal);
+  box-shadow: 0 20px 50px rgba(15, 42, 74, 0.12);
 }
 
 .badge {
   position: absolute;
-  top: -14px;
-  left: 26px;
+  top: -15px;
+  left: 28px;
   background: var(--teal);
   color: var(--navy);
   font-family: var(--font-montserrat), sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 6px 16px;
   border-radius: 20px;
 }
 
-.perche { color: var(--slate); margin-bottom: 18px; }
+.perche {
+  color: var(--muted);
+  margin: 6px 0 20px;
+}
 
 .lista {
   list-style: none;
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   padding: 0;
   flex-grow: 1;
 }
 .lista li {
   position: relative;
   padding: 8px 0 8px 28px;
+  font-size: 0.98rem;
+  color: var(--ink);
 }
 .lista li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--teal);
-  font-weight: 700;
-}
-
-.prezzo {
-  font-family: var(--font-montserrat), sans-serif;
-  color: var(--navy);
-  font-size: 1.7rem;
-  font-weight: 700;
-}
-.nota { font-size: 0.85rem; color: var(--muted); margin: 2px 0 20px; }
+  color: var(--teal-dark);
+  font-weight:
