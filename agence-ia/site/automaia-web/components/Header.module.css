@@ -1,9 +1,9 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 100;
   border-bottom: 1px solid var(--border);
 }
 
@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 76px;
 }
 
 .logo { display: flex; align-items: center; }
@@ -23,11 +23,14 @@
 }
 
 .link {
-  font-weight: 500;
-  color: var(--slate);
-  transition: color .15s ease;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: color .15s ease, background .15s ease;
 }
-.link:hover { color: var(--teal); }
+.link:hover { color: var(--teal-dark); background: rgba(22,184,166,0.08); }
 
 .burger {
   display: none;
@@ -49,7 +52,7 @@
   .burger { display: flex; }
   .nav {
     position: absolute;
-    top: 72px;
+    top: 76px;
     left: 0;
     right: 0;
     background: var(--white);
