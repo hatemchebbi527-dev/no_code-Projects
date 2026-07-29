@@ -49,4 +49,20 @@
   position: absolute;
   left: 0;
   color: var(--teal-dark);
-  font-weight:
+  font-weight: 700;
+}
+
+.prezzo {
+  font-family: var(--font-montserrat), sans-serif;
+  color: var(--navy);
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+}
+.nota {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 4px 0 22px;
+}
+
+.card .btn { width: 100%; }
