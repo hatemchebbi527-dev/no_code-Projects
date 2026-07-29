@@ -9,10 +9,10 @@
   position: relative;
   border-radius: 24px;
   overflow: hidden;
-  height: 380px;
+  height: 440px;
   box-shadow: 0 20px 50px rgba(15, 42, 74, 0.14);
 }
-.foto :global(img) { object-fit: cover; }
+.foto :global(img) { object-fit: cover; object-position: top center; }
 
 /* Step number badge */
 .step {
@@ -51,5 +51,5 @@
 
 @media (max-width: 960px) {
   .intro { grid-template-columns: 1fr; }
-  .foto { height: 300px; order: -1; }
+  .foto { height: 380px; order: -1; }
 }
