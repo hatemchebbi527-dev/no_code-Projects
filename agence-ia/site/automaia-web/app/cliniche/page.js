@@ -1,79 +1,34 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cliniche } from "@/lib/content";
 import Reveal from "@/components/Reveal";
 import styles from "./cliniche.module.css";
 
 export const metadata = {
-  title: "Cliniche — AutomaIA",
+  title: "Automazione per cliniche veterinarie e mediche",
   description:
-    "Automazione per cliniche e studi veterinari: prenotazione online 24/7, promemoria automatici, accoglienza multilingue. Meno appuntamenti persi, dati protetti.",
+    "Prenotazioni online, promemoria automatici e accoglienza anche in inglese per la Sua clinica, attivi 24/7. Riduca le assenze e non perda più richieste fuori orario.",
+  alternates: { canonical: "/cliniche" },
+  openGraph: {
+    title: "Automazione per cliniche veterinarie e mediche",
+    description:
+      "Prenotazioni online, promemoria automatici e assistenza 24/7 per la Sua clinica.",
+    url: "/cliniche",
+  },
 };
 
 export default function ClinichePage() {
   return (
     <>
-      <section className="section">
-        <div className="container title-block center">
+      {/* HERO scuro con foto */}
+      <section className={styles.hero}>
+        <div className={`container ${styles.heroInner}`}>
           <Reveal>
             <span className="eyebrow">{cliniche.hero.eyebrow}</span>
             <h1>{cliniche.hero.title}</h1>
-            <p className="lead mt-24" style={{ margin: "24px auto 0" }}>{cliniche.hero.subtitle}</p>
-            <div className="mt-32"><Link href={cliniche.hero.cta.href} className="btn">{cliniche.hero.cta.label}</Link></div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section section--light">
-        <div className="container">
-          <div className="title-block center"><Reveal><h2>{cliniche.problema.title}</h2></Reveal></div>
-          <div className="grid-3">
-            {cliniche.problema.items.map((it, i) => (
-              <Reveal key={i} delay={i * 120}>
-                <div className="card" style={{ height: "100%" }}><h3>{it.title}</h3><p>{it.text}</p></div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="title-block center">
-            <Reveal>
-              <h2>{cliniche.soluzione.title}</h2>
-              <p className="lead mt-16" style={{ margin: "16px auto 0" }}>{cliniche.soluzione.intro}</p>
-            </Reveal>
-          </div>
-          <div className="grid-3">
-            {cliniche.soluzione.items.map((it, i) => (
-              <Reveal key={i} delay={i * 120}>
-                <div className="card" style={{ height: "100%" }}><h3>{it.title}</h3><p>{it.text}</p></div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--light">
-        <div className="container">
-          <Reveal>
-            <div className={`card ${styles.esempio}`}>
-              <span className="eyebrow">{cliniche.esempio.title}</span>
-              <p className={styles.esempioText}>{cliniche.esempio.text}</p>
+            <p className="lead mt-24">{cliniche.hero.subtitle}</p>
+            <div className="mt-32">
+              <Link href={cliniche.hero.cta.href} className="btn">
+                {cliniche.hero.cta.label}
+              </Link>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container title-block center">
-          <Reveal>
-            <h2>{cliniche.ctaFinale.title}</h2>
-            <p className="lead mt-16" style={{ margin: "16px auto 0" }}>{cliniche.ctaFinale.text}</p>
-            <div className="mt-32"><Link href={cliniche.ctaFinale.cta.href} className="btn">{cliniche.ctaFinale.cta.label}</Link></div>
-          </Reveal>
-        </div>
-      </section>
-    </>
-  );
-}
