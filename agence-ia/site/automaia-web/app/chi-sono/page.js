@@ -43,3 +43,43 @@ export default function ChiSonoPage() {
       <section className="section section--light">
         <div className="container">
           <div className="title-block center">
+            <Reveal><h2>{chiSono.metodoTitle}</h2></Reveal>
+          </div>
+          <div className="grid-3">
+            {chiSono.metodo.map((m, i) => (
+              <Reveal key={i} delay={i * 120}>
+                <div className="card" style={{ height: "100%" }}>
+                  <span className={styles.step}>{m.step}</span>
+                  <h3>{m.title}</h3>
+                  <p>{m.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PERCHÉ FIDARSI */}
+      <section className="section">
+        <div className="container">
+          <div className="title-block center">
+            <Reveal><h2>{chiSono.fiduciaTitle}</h2></Reveal>
+          </div>
+          <div className="grid-3">
+            {chiSono.fiducia.map((f, i) => (
+              <Reveal key={i} delay={i * 120}>
+                <div className={`card ${styles.fiduciaCard}`} style={{ height: "100%" }}>
+                  <div className={styles.check}>✓</div>
+                  <p>{f}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="center mt-48">
+            <Link href="/contatti" className="btn">Prenoti un audit gratuito</Link>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}
