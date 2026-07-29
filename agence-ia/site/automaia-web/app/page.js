@@ -157,4 +157,16 @@ export default function HomePage() {
       <section className="section">
         <div className="container">
           <Reveal variant="scale" className={styles.ctaCard}>
-            <h2>{home.ctaFinale.title}
+            <h2>{home.ctaFinale.title}</h2>
+            <p>{home.ctaFinale.text}</p>
+            <div className="mt-32">
+              <Link href={home.ctaFinale.cta.href} className="btn btn--white">
+                {home.ctaFinale.cta.label}
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}
