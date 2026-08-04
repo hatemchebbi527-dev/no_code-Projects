@@ -58,8 +58,24 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Colonne droite : bloc de code */}
-        <div data-reveal className="md:justify-self-end">
+        {/* Colonne droite : portrait + bloc de code */}
+        <div data-reveal className="flex flex-col items-center gap-8 md:items-end md:justify-self-end">
+          {/* Portrait */}
+          <div className="relative">
+            <div
+              className="absolute -inset-3 rounded-full opacity-40 blur-2xl"
+              style={{ background: "radial-gradient(circle, #34d399 0%, transparent 70%)" }}
+              aria-hidden
+            />
+            <img
+              src="/hatem.jpg"
+              alt="Hatem Chebbi"
+              width={176}
+              height={176}
+              className="relative h-40 w-40 rounded-full border-2 border-accent/50 object-cover shadow-[0_0_40px_-8px_rgba(52,211,153,0.5)] md:h-44 md:w-44"
+            />
+          </div>
+
           <div className="relative w-full max-w-md rounded-xl border border-border bg-surface/80 shadow-[0_0_60px_-20px_rgba(52,211,153,0.4)] backdrop-blur">
             {/* Barre de fenêtre */}
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
