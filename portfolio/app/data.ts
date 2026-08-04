@@ -5,14 +5,14 @@ export const profile = {
   role: "Freelance IA & Automazione",
   location: "Rimini, Italia",
   available: true,
-  email: "hatemchebbi527@gmail.com",
+  email: "hatem@automa-ia.net",
   greeting: "Ciao, sono",
   tagline:
     "Aiuto le aziende ad automatizzare i processi e a integrare l'intelligenza artificiale nelle loro operazioni.",
   intro:
     "Consulente e sviluppatore freelance in IA. Progetto automazioni su misura, integrazioni di IA e applicazioni web che fanno risparmiare tempo ai team e riducono le attività ripetitive.",
   socials: [
-    { label: "Email", href: "mailto:hatemchebbi527@gmail.com" },
+    { label: "Email", href: "mailto:hatem@automa-ia.net" },
     { label: "GitHub", href: "https://github.com/hatemchebbi527-dev" },
     { label: "LinkedIn", href: "#" },
   ],
