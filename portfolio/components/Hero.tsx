@@ -59,7 +59,7 @@ export default function Hero() {
         </div>
 
         {/* Colonne droite : portrait + bloc de code */}
-        <div data-reveal className="flex flex-col items-center gap-8 md:items-end md:justify-self-end">
+        <div data-reveal className="flex w-full max-w-md flex-col items-center gap-8 md:justify-self-end">
           {/* Portrait */}
           <div className="relative">
             <div
