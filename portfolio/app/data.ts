@@ -14,7 +14,7 @@ export const profile = {
   socials: [
     { label: "Email", href: "mailto:hatem@automa-ia.net" },
     { label: "GitHub", href: "https://github.com/hatemchebbi527-dev" },
-    { label: "LinkedIn", href: "#" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/hatem-chebbi-a28301294/" },
   ],
 };
 
