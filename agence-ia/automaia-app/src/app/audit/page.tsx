@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Link from "next/link";
 import { ArrowLeft, Clock, ShieldCheck } from "lucide-react";
 
@@ -86,15 +85,13 @@ export default function AuditPage() {
           ))}
         </div>
 
-        {/* Calendly widget */}
-        <div
-          className="calendly-inline-widget overflow-hidden rounded-2xl border border-slate-100 shadow-sm"
-          data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=1FBF9E`}
-          style={{ minWidth: "320px", height: "700px" }}
-        />
-        <Script
-          src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="lazyOnload"
+        {/* Calendly iframe */}
+        <iframe
+          src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=1FBF9E`}
+          className="w-full overflow-hidden rounded-2xl border border-slate-100 shadow-sm"
+          style={{ height: "700px", minWidth: "320px" }}
+          title="Prenota un audit gratuito AutomaIA"
+          loading="lazy"
         />
 
       </main>
