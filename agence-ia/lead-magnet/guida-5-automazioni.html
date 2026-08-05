@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Automazioni per Guadagnare fino a 10 Ore a Settimana — AutomaIA</title>
+
+  <!-- Google Fonts — Montserrat (titres) + Inter (corps) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+  /* ── TOKENS ─────────────────────────────────────────────── */
+  :root {
+    --font-head: 'Montserrat', 'Trebuchet MS', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    /* Static palette (charte AutomaIA) */
+    --blu:      #0F2A4A;
+    --teal:     #16B8A6;
+    --teal-dim: #0EA898;
+
+    /* Theme — light */
+    --bg-page:    #EEF1F5;
+    --bg-card:    #FFFFFF;
+    --bg-wash:    rgba(22,184,166,0.07);
+    --bg-wash-b:  rgba(22,184,166,0.12);
+    --text-body:  #2D3748;
+    --text-muted: #718096;
+    --text-strong:#0F2A4A;
+    --text-head:  #0F2A4A;
+    --border:     #DDE3EC;
+    --footer-col: #0F2A4A;
+  }
+
+  /* ── RESET ──────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img { max-width: 100%; display: block; }
+
+  /* ── BASE ───────────────────────────────────────────────── */
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-body);
+    background: var(--bg-page);
+    padding: 2.5rem 1rem 5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── DOCUMENT WRAPPER ───────────────────────────────────── */
+  .doc {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(15,42,74,0.07), 0 8px 40px rgba(15,42,74,0.11);
+    overflow: hidden;
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .doc-header {
+    background: var(--blu);
+    padding: 2.25rem 2.5rem 1.875rem;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--font-head);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(22,184,166,0.22);
+  }
+
+  .doc-header h1 {
+    font-family: var(--font-head);
+    font-size: clamp(19px, 3.8vw, 27px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin-bottom: 0.45rem;
+  }
+
+  .doc-header .subtitle {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .header-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+  }
+
+  /* ── BODY ───────────────────────────────────────────────── */
+  .doc-body { padding: 2rem 2.5rem 2.5rem; }
+
+  /* ── INTRO ──────────────────────────────────────────────── */
+  .intro {
+    margin-bottom: 2rem;
+    padding-bottom: 1.875rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .intro p {
+    font-size: 15px;
+    color: var(--text-body);
+    margin-bottom: 0.75rem;
+  }
+  .intro p:last-child { margin-bottom: 0; }
+
+  .intro strong {
+    color: var(--text-strong);
+    font-weight: 600;
+  }
+
+  /* ── SECTION LABEL ──────────────────────────────────────── */
+  .s-label {
+    font-family: var(--font-head);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  /* ── AUTOMATION CARDS ───────────────────────────────────── */
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1.25rem 0.75rem;
+    background: var(--bg-wash);
+  }
+
+  .card-title {
+    font-family: var(--font-head);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-head);
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+
+  .card-time-box { flex-shrink: 0; text-align: right; }
+
+  .card-time {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .card-time-sub {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-dim);
+    margin-top: 3px;
+  }
+
+  .card-body {
+    padding: 0.8rem 1.25rem 0.9rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1.25rem;
+  }
+
+  .block-label {
+    font-family: var(--font-head);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.18rem;
+  }
+
+  .block-text {
+    font-size: 13px;
+    line-height: 1.58;
+    color: var(--text-body);
+  }
+
+  /* ── SUMMARY TABLE ──────────────────────────────────────── */
+  .summary { margin-bottom: 1.875rem; }
+
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  thead th {
+    font-family: var(--font-head);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.4rem 1rem;
+    border-bottom: 2px solid var(--border);
+    text-align: left;
+  }
+  thead th:last-child { text-align: right; }
+
+  tbody td {
+    padding: 0.58rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-body);
+  }
+  tbody td:last-child { text-align: right; }
+
+  tbody tr:nth-child(odd) td { background: var(--bg-wash); }
+
+  tr.total td {
+    background: var(--blu) !important;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  tr.total td:last-child {
+    color: var(--teal);
+    font-family: var(--font-head);
+    font-size: 13.5px;
+    font-weight: 700;
+  }
+
+  .table-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 0.55rem;
+    font-style: italic;
+  }
+
+  /* ── TRUST ──────────────────────────────────────────────── */
+  .trust {
+    background: var(--bg-wash-b);
+    border: 1px solid rgba(22,184,166,0.18);
+    border-radius: 3px;
+    padding: 1rem 1.375rem;
+    margin-bottom: 1.875rem;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-body);
+  }
+
+  .trust-head {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-dim);
+    margin-bottom: 0.3rem;
+  }
+
+  /* ── CTA ────────────────────────────────────────────────── */
+  .cta {
+    background: var(--blu);
+    border-radius: 3px;
+    padding: 1.875rem 2rem;
+    text-align: center;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cta-title {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.45rem;
+    text-wrap: balance;
+    line-height: 1.3;
+  }
+
+  .cta-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.55;
+    margin-bottom: 1.375rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1.625rem;
+    border-radius: 2px;
+    text-decoration: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cta-note {
+    margin-top: 0.875rem;
+    font-size: 11px;
+    color: rgba(255,255,255,0.32);
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  .doc-footer {
+    padding: 1rem 2.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: var(--font-head);
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--footer-col);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-url {
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+
+  /* ── MOBILE ─────────────────────────────────────────────── */
+  @media (max-width: 500px) {
+    body        { padding: 1rem 0.5rem 3rem; }
+    .doc-header { padding: 1.625rem 1.25rem 1.375rem; }
+    .doc-body   { padding: 1.5rem 1.25rem 2rem; }
+    .doc-footer { padding: 0.875rem 1.25rem; }
+    .card-body  { grid-template-columns: 1fr; }
+    .cta        { padding: 1.5rem 1.25rem; }
+  }
+
+  /* ── PRINT ──────────────────────────────────────────────── */
+  @media print {
+    body        { background: #fff; padding: 0; }
+    .doc        { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .doc-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    tr.total td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cta        { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cta-btn    { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  </style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="eyebrow">AutomaIA</div>
+    <h1>Cinque automazioni per guadagnare fino a 10&nbsp;ore a settimana</h1>
+    <p class="subtitle">Una guida pratica per meno burocrazia e più tempo per i clienti</p>
+    <div class="header-bar"></div>
+  </header>
+
+  <div class="doc-body">
+
+    <!-- INTRO -->
+    <div class="intro">
+      <p>Il Suo lavoro è la consulenza, non l'amministrazione. Eppure, ogni settimana, ore intere se ne vanno in attività ripetitive: promemoria, solleciti, le stesse risposte alle stesse domande.</p>
+      <p>Sono attività necessarie, ma non richiedono la Sua competenza. Sommate, valgono fino a dieci ore preziose ogni settimana, ore che potrebbe dedicare ai Suoi clienti o, semplicemente, a sé stesso.</p>
+      <p>Qui trova cinque automazioni concrete, già applicate negli studi professionali. Per ognuna: il problema quotidiano, cosa cambia, e il tempo che recupera. Nessun gergo tecnico, solo risultati. <strong>Lei resta sempre al comando</strong>, e i Suoi dati restano protetti.</p>
+    </div>
+
+    <!-- AUTOMATION CARDS -->
+    <p class="s-label">Le cinque automazioni</p>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-top">
+          <h2 class="card-title">Appuntamenti e promemoria che si gestiscono da soli</h2>
+          <div class="card-time-box">
+            <span class="card-time">~2h</span>
+            <span class="card-time-sub">a settimana</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="block-label">Il problema</div>
+            <p class="block-text">Fissare appuntamenti a mano, ricordarli, gestire le disdette. Telefonate ed email che interrompono la giornata.</p>
+          </div>
+          <div>
+            <div class="block-label">Cosa cambia</div>
+            <p class="block-text">Il cliente prenota da solo negli orari che Lei decide. I promemoria partono in automatico. Le disdette liberano lo slot senza che Lei tocchi nulla.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h2 class="card-title">Solleciti automatici per documenti e scadenze</h2>
+          <div class="card-time-box">
+            <span class="card-time">~1h&nbsp;30</span>
+            <span class="card-time-sub">a settimana</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="block-label">Il problema</div>
+            <p class="block-text">Rincorrere i clienti per i documenti mancanti, ricordare le scadenze, inviare lo stesso sollecito dieci volte.</p>
+          </div>
+          <div>
+            <div class="block-label">Cosa cambia</div>
+            <p class="block-text">I solleciti partono da soli, con il tono giusto, finché il documento non arriva. Lei viene avvisato solo quando serve il Suo intervento.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h2 class="card-title">Risposte alle email dei clienti già pronte</h2>
+          <div class="card-time-box">
+            <span class="card-time">~3h</span>
+            <span class="card-time-sub">a settimana</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="block-label">Il problema</div>
+            <p class="block-text">Le stesse domande ogni giorno, a cui rispondere una per una. Tempo non fatturabile che si accumula, e risposte che tardano.</p>
+          </div>
+          <div>
+            <div class="block-label">Cosa cambia</div>
+            <p class="block-text">Per ogni email di un vero cliente, una bozza di risposta La aspetta già pronta, scritta nel Suo stile. Lei rilegge e invia con un clic. Nulla parte senza la Sua conferma.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h2 class="card-title">Documenti dei clienti raccolti e ordinati in automatico</h2>
+          <div class="card-time-box">
+            <span class="card-time">~1h&nbsp;30</span>
+            <span class="card-time-sub">a settimana</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="block-label">Il problema</div>
+            <p class="block-text">Documenti sparsi tra email, messaggi e cartelle. Tempo perso a cercare il file giusto al momento giusto.</p>
+          </div>
+          <div>
+            <div class="block-label">Cosa cambia</div>
+            <p class="block-text">Ogni documento ricevuto viene raccolto e archiviato nel posto giusto, collegato al cliente corretto. Quando Le serve, è lì.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h2 class="card-title">Il riepilogo della settimana, pronto ogni lunedì</h2>
+          <div class="card-time-box">
+            <span class="card-time">~1h</span>
+            <span class="card-time-sub">a settimana</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="block-label">Il problema</div>
+            <p class="block-text">Nessuna vista d'insieme. Scadenze, pratiche aperte e priorità sparse, da ricostruire a mano ogni volta.</p>
+          </div>
+          <div>
+            <div class="block-label">Cosa cambia</div>
+            <p class="block-text">Ogni lunedì mattina riceve un riepilogo chiaro: cosa scade, cosa è in attesa, cosa richiede la Sua attenzione. La settimana parte già organizzata.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cards -->
+
+    <!-- SUMMARY TABLE -->
+    <div class="summary">
+      <p class="s-label">Il conto delle ore</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Automazione</th>
+              <th>Tempo recuperato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Appuntamenti e promemoria</td><td>circa 2h</td></tr>
+            <tr><td>Solleciti automatici</td><td>circa 1h 30</td></tr>
+            <tr><td>Risposte email pronte</td><td>circa 3h</td></tr>
+            <tr><td>Documenti ordinati</td><td>circa 1h 30</td></tr>
+            <tr><td>Riepilogo settimanale</td><td>circa 1h</td></tr>
+            <tr class="total">
+              <td>Totale</td>
+              <td>fino a 10 ore a settimana</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Più di un'intera giornata di lavoro recuperata, ogni settimana.</p>
+    </div>
+
+    <!-- TRUST -->
+    <div class="trust">
+      <span class="trust-head">Un'ultima cosa, sulla fiducia</span>
+      So che lavora con dati sensibili. Nessuna di queste automazioni Le toglie il controllo: Lei decide cosa parte e cosa no, e i Suoi dati restano protetti e nelle Sue mani. Niente promesse magiche, solo strumenti affidabili che fanno il lavoro ripetitivo al posto Suo.
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div class="cta-title">Vuole sapere da dove iniziare?</div>
+      <p class="cta-sub">Non serve fare tutto insieme. Di solito basta partire dall'attività che Le ruba più tempo. Parliamone in 20 minuti, senza impegno.</p>
+      <a class="cta-btn" href="https://calendly.com/hatemchebbi527/audit-gratuito-automaia">Prenoti un audit gratuito di 20 minuti</a>
+      <p class="cta-note">Nessun impegno. Solo 20 minuti per scoprire il Suo primo guadagno di tempo.</p>
+    </div>
+
+  </div><!-- /doc-body -->
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-brand">AutomaIA</span>
+    <span class="footer-url">automa-ia.net</span>
+  </footer>
+
+</div><!-- /doc -->
+
+</body>
+</html>
