@@ -15,7 +15,6 @@ export const nav = [
   { label: "Servizi", href: "/servizi" },
   { label: "Cliniche", href: "/cliniche" },
   { label: "Chi sono", href: "/chi-sono" },
-  { label: "Contatti", href: "/contatti" },
 ];
 
 export const home = {
@@ -102,7 +101,7 @@ export const servizi = {
       ],
       prezzo: "Su misura",
       nota: "Setup iniziale + abbonamento mensile",
-      cta: { label: "Parliamo del Suo studio", href: "/contatti" },
+      cta: { label: "Parliamo del Suo studio", href: "/audit" },
     },
     {
       nome: "Presenza Online",
@@ -115,7 +114,7 @@ export const servizi = {
       ],
       prezzo: "Su misura",
       nota: "Complemento a la carte",
-      cta: { label: "Lo aggiunga al Suo studio", href: "/contatti" },
+      cta: { label: "Lo aggiunga al Suo studio", href: "/audit" },
     },
   ],
 };
