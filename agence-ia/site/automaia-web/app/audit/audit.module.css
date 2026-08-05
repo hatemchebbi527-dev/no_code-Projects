@@ -1,0 +1,71 @@
+.intro {
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.trust {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.stepCard {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+}
+
+.stepNum {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+
+.stepTitle {
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.stepDesc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.iframeWrap {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(15, 42, 74, 0.06);
+}
+
+.iframe {
+  display: block;
+  width: 100%;
+  min-height: 700px;
+  border: none;
+}
+
+@media (max-width: 720px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .iframe {
+    min-height: 900px;
+  }
+}
