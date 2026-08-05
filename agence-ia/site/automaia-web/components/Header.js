@@ -35,7 +35,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/contatti" className="btn" onClick={() => setOpen(false)}>
+          <Link href="/audit" className="btn" onClick={() => setOpen(false)}>
             Audit gratuito
           </Link>
         </nav>
