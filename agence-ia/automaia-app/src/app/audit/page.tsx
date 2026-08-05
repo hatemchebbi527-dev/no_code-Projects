@@ -5,7 +5,7 @@ import { ArrowLeft, Clock, ShieldCheck } from "lucide-react";
 
 // Remplacer par ton URL Calendly quand disponible
 // Exemple : https://calendly.com/automaia/audit
-const CALENDLY_URL = "https://calendly.com/INSERIRE-LINK-CALENDLY";
+const CALENDLY_URL = "https://calendly.com/hatemchebbi527/audit-gratuito-automaia";
 
 export const metadata: Metadata = {
   title: "Audit gratuito · AutomaIA",
