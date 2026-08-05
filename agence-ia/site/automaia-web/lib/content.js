@@ -23,7 +23,7 @@ export const home = {
     title: "Lo studio che recupera fino a 10 ore a settimana",
     subtitle:
       "Automatizzo le attività ripetitive di avvocati, commercialisti e cliniche. Meno burocrazia, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.",
-    cta: { label: "Prenoti un audit gratuito", href: "/contatti" },
+    cta: { label: "Prenoti un audit gratuito", href: "/audit" },
   },
   stats: [
     { value: 10, suffix: "", label: "ore a settimana che può recuperare" },
@@ -64,7 +64,7 @@ export const home = {
   ctaFinale: {
     title: "Scopra quante ore può recuperare",
     text: "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per il Suo studio.",
-    cta: { label: "Prenoti il Suo audit gratuito", href: "/contatti" },
+    cta: { label: "Prenoti il Suo audit gratuito", href: "/audit" },
   },
 };
 
@@ -88,7 +88,7 @@ export const servizi = {
       ],
       prezzo: "Su misura",
       nota: "Setup iniziale + abbonamento mensile",
-      cta: { label: "Prenoti un audit gratuito", href: "/contatti" },
+      cta: { label: "Prenoti un audit gratuito", href: "/audit" },
     },
     {
       nome: "Studio 360",
@@ -164,7 +164,7 @@ export const cliniche = {
     title: "La Sua clinica lavora anche quando è chiusa",
     subtitle:
       "Prenotazioni, promemoria e prime risposte ai clienti, in automatico. Lei si concentra sugli animali e sui pazienti, non sul telefono. I Suoi dati restano sempre protetti.",
-    cta: { label: "Prenoti un audit gratuito", href: "/contatti" },
+    cta: { label: "Prenoti un audit gratuito", href: "/audit" },
   },
   problema: {
     title: "Ogni giorno la Sua clinica perde richieste e appuntamenti, senza accorgersene",
@@ -190,6 +190,6 @@ export const cliniche = {
   ctaFinale: {
     title: "Scopra quanti appuntamenti può recuperare",
     text: "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per la Sua clinica.",
-    cta: { label: "Prenoti il Suo audit gratuito", href: "/contatti" },
+    cta: { label: "Prenoti il Suo audit gratuito", href: "/audit" },
   },
 };
