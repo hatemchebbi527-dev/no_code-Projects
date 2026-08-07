@@ -87,8 +87,19 @@ draw.text((lx1 + w1, 118), a2, font=f_h, fill=TEAL)
 # line 2 (centered)
 wl2 = draw.textlength("a settimana", font=f_h)
 draw.text((cxt - wl2 / 2, 184), "a settimana", font=f_h, fill=WHITE)
-# subline (centered)
-sub = "Automazione per studi legali e di commercialisti"
+# subline (centered, auto-fit width to stay clear of photo + logo)
+def fit_font(path, text, max_w, start, variation=None, min_size=14):
+    s = start
+    while s > min_size:
+        ff = font(path, s, variation)
+        if draw.textlength(text, font=ff) <= max_w:
+            return ff
+        s -= 1
+    return font(path, min_size, variation)
+
+
+sub = "Studi legali · Commercialisti · Cliniche (veterinari, dentisti, medici)"
+f_sub = fit_font(INTER, sub, 720, 25, "Medium")
 ws = draw.textlength(sub, font=f_sub)
 draw.text((cxt - ws / 2, 262), sub, font=f_sub, fill=GREY)
 
