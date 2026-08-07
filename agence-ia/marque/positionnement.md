@@ -51,6 +51,12 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 
 ### Facebook
 
+> ⚠️ Le champ bio Facebook est limité à 255 caractères. Version courte prête à coller (~209 car.) :
+
+> Automatizzo studi legali, commercialisti e cliniche (veterinari, dentisti, medici): fino a 10 ore a settimana recuperate, meno burocrazia, dati sempre protetti. 📩 Mi scriva per un audit gratuito di 20 minuti.
+
+> Version longue (pour un post, une page "Infos" détaillée ou un autre support sans limite) :
+
 > Automatizzo studi legali, commercialisti e cliniche (veterinari, dentisti, medici) per far recuperare fino a 10 ore a settimana.
 >
 > Meno burocrazia e telefonate ripetitive, più tempo per clienti e pazienti. Prenotazioni e promemoria in automatico, dati sempre protetti.
