@@ -43,11 +43,12 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 
 ### Instagram
 
-> ⚙️ Automazione & IA per studi e cliniche
-> 🩺 Avvocati • Commercialisti • Veterinari • Dentisti • Medici
-> ⏱️ Recupera fino a 10 ore a settimana
-> 🔒 I tuoi dati sempre protetti
-> 👇 Audit gratuito di 20 min
+> ⚠️ La bio Instagram est limitée à 150 caractères. Version prête à coller (143 car., marge sûre même si les emojis comptent double) :
+
+> ⚙️ IA per studi legali, commercialisti e cliniche (veterinari, dentisti, medici)
+> ⏱️ +10 ore a settimana
+> 🔒 Dati protetti
+> 📩 Audit gratuito 20 min
 
 ### Facebook
 
