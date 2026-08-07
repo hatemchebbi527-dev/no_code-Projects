@@ -3,13 +3,13 @@
 > Mon ICP en une synthèse, mon offre phare en une phrase, et mes 4 bios prêtes à coller.
 > Produit au Jour 1 du plan, à partir de audience.md et offers_cta.md.
 > Voix : vouvoiement chaleureux, zéro jargon (voir brand_voice.md).
-> Dernière mise à jour : 2026-07-27
+> Dernière mise à jour : 2026-08-07
 
 ---
 
 ## Mon ICP (client idéal) en une synthèse
 
-Les petits cabinets de professionnels libéraux (avocats et comptables en priorité, plus le vertical cliniche/santé en ouverture, entrée par les vétérinaires), 1 à 5 personnes, qui perdent un temps précieux dans l'administratif répétitif et tiennent à la confidentialité de leurs données. Mon entrée se fait par l'automatisation de leur quotidien.
+Les petits cabinets de professionnels libéraux (avocats et comptables en priorité, plus le vertical cliniche/santé désormais pleinement intégré : vétérinaires, dentistes et médecins), 1 à 5 personnes, qui perdent un temps précieux dans l'administratif répétitif et tiennent à la confidentialité de leurs données. Mon entrée se fait par l'automatisation de leur quotidien. Ordre d'approche du vertical santé : vétérinaires (vente rapide), puis dentistes, puis médecins (données de santé, offre rodée).
 
 ---
 
@@ -30,31 +30,32 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 ### LinkedIn
 
 **Titolo (headline) :**
-> Automazione e IA per studi legali e di commercialisti | Recupera fino a 10 ore a settimana | Dati protetti
+> Automazione e IA per studi professionali e cliniche | Avvocati, commercialisti, veterinari, dentisti, medici | Fino a 10 ore a settimana | Dati protetti
 
 **Informazioni (about) :**
-> Aiuto avvocati e commercialisti a liberarsi dalle attività amministrative ripetitive che rubano tempo prezioso.
+> Aiuto avvocati, commercialisti e cliniche (veterinari, dentisti, medici) a liberarsi dalle attività amministrative ripetitive che rubano tempo prezioso.
 >
-> Appuntamenti, promemoria, solleciti e richieste dei clienti: automatizzo lo studio così Lei recupera fino a 10 ore a settimana, da dedicare al suo vero lavoro.
+> Appuntamenti, promemoria, solleciti, prenotazioni online e richieste dei clienti: automatizzo il Suo studio o il Suo ambulatorio così Lei recupera fino a 10 ore a settimana, da dedicare al Suo vero lavoro.
 >
-> I suoi dati restano protetti e sotto il suo controllo, sempre.
+> I Suoi dati, e quelli dei Suoi clienti e pazienti, restano protetti e sotto il Suo controllo, sempre.
 >
 > 📩 Prenoti un audit gratuito di 20 minuti: individuiamo insieme dove sta perdendo più tempo.
 
 ### Instagram
 
-> ⚙️ Automazione & IA per studi legali e di commercialisti
+> ⚙️ Automazione & IA per studi e cliniche
+> 🩺 Avvocati • Commercialisti • Veterinari • Dentisti • Medici
 > ⏱️ Recupera fino a 10 ore a settimana
 > 🔒 I tuoi dati sempre protetti
 > 👇 Audit gratuito di 20 min
 
 ### Facebook
 
-> Automatizzo gli studi di avvocati e commercialisti per far recuperare fino a 10 ore a settimana.
+> Automatizzo studi legali, commercialisti e cliniche (veterinari, dentisti, medici) per far recuperare fino a 10 ore a settimana.
 >
-> Meno burocrazia ripetitiva, più tempo per i clienti e per il lavoro che conta. Dati sempre protetti.
+> Meno burocrazia e telefonate ripetitive, più tempo per clienti e pazienti. Prenotazioni e promemoria in automatico, dati sempre protetti.
 >
-> 📩 Scrivimi per un audit gratuito di 20 minuti.
+> 📩 Mi scriva per un audit gratuito di 20 minuti.
 
 ---
 
@@ -64,7 +65,7 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 > Automazione e IA per cliniche e studi veterinari | Meno appuntamenti persi | Dati protetti
 
 **About (estratto) :**
-> Aiuto cliniche e ambulatori (veterinari, dentisti, fisioterapisti) a non perdere più richieste e appuntamenti.
+> Aiuto cliniche e ambulatori (veterinari, dentisti, medici, fisioterapisti) a non perdere più richieste e appuntamenti.
 >
 > Prenotazione online sempre attiva, promemoria automatici, accoglienza anche in inglese: meno telefono, agenda sempre piena. I dati dei pazienti restano protetti.
 >
@@ -90,6 +91,6 @@ Les 3 pièces : public précis (avocats et comptables) + problème précis (admi
 
 ## Note
 
-- Vertical cliniche (santé) ajouté : entrée par les vétérinaires, puis dentistes/kinés, médecins en dernier. Une variante de bios « cliniche » est disponible ci-dessus.
+- Vertical cliniche (santé) désormais pleinement intégré dans les bios principales (vétérinaires, dentistes, médecins). Ordre d'approche commercial : vétérinaires, puis dentistes/kinés, médecins en dernier. Une variante de bios « cliniche » (santé uniquement) reste disponible ci-dessus si tu veux un profil 100% orienté santé.
 - Versions français/anglais à produire pour l'expansion multilingue.
 - Un seul CTA par bio (l'audit gratuit), conformément à offers_cta.md.
