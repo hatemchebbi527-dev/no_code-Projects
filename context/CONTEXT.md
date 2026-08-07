@@ -31,7 +31,7 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 - Développer des applications et sites web intégrant l'IA
 - Proposer des services de conseil en transformation digitale par l'IA
 
-**Clients types visés :** cabinets de professionnels libéraux (avocats, comptables, médecins). Niche fer de lance choisie en juin 2026. Médecins abordés en dernier (contraintes données de santé). Cibles secondaires d'expansion : instituts de beauté, agences de com/événementiel, startups.
+**Clients types visés :** cabinets de professionnels libéraux (avocats, comptables, notaires, dentistes, vétérinaires, médecins). Niche fer de lance choisie en juin 2026, élargie en août 2026 aux dentistes et vétérinaires. Médecins et professions de santé abordés avec soin (contraintes données de santé). Cibles secondaires d'expansion : instituts de beauté, agences de com/événementiel, startups.
 
 ---
 

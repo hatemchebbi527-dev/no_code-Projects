@@ -7,6 +7,23 @@
 
 ---
 
+## 2026-08-07
+
+### Élargissement de la niche : dentistes et vétérinaires ajoutés
+- Cible étendue au-delà d'avocats/comptables/médecins : ajout des **dentistes et vétérinaires** (cabinets libéraux avec agenda de RDV et données sensibles, cohérents avec l'ICP existant). CONTEXT.md mis à jour en conséquence.
+
+### Workflow n8n "1 idée → 3 plateformes + image" (Jour 17) : débogué et validé de bout en bout
+- Workflow d'automatisation de contenu opérationnel : 1 idée → Claude (API) génère 3 textes adaptés (LinkedIn, Instagram, Facebook) + un prompt d'image, puis image générée (OpenAI gpt-image-1) → upload ImgBB → publication auto sur Facebook (Page /photos), Instagram (Graph API, container + publish avec Wait 30s) et LinkedIn (ugcPosts).
+- Débogage clé mené en session :
+  - **Facebook** : mauvais endpoint (/feed + link) → corrigé en /photos + url + message. Passage en form-urlencoded, token sorti du body (repose sur la credential Query Auth).
+  - **Instagram** : erreur "Only photo or video" causée par le PNG → ajout de `output_format: jpeg` sur le node image (l'API IG n'accepte que le JPEG). Wait porté à 30s avant media_publish.
+  - **Doublons de nodes** nettoyés (coller un node créait des copies suffixées "1"). Import propre du workflow complet.
+  - **Textes vides** : `$('Code ').item` cassait entre branches → remplacé par `.first()` sur Facebook, Instagram et LinkedIn (JSON.stringify supprimait une clé `text` undefined côté LinkedIn = post vide).
+  - **Hashtags** ajoutés aux prompts LinkedIn et Facebook (avant : Instagram uniquement).
+  - **Erreur "JSON parameter needs to be valid JSON"** sur le node Claude : `=` en double au collage dans un champ déjà en mode Expression.
+  - **Prompt image amélioré** : décor adapté au métier de l'idée, variété de cadrage/sujet, fin du cliché "homme assis au bureau" par défaut.
+- SÉCURITÉ : token Facebook qui avait été exposé en clair → régénéré (token de Page longue durée), à conserver uniquement dans la credential n8n.
+
 ## 2026-06-24
 
 ### Jour 16 (Airtable comme CRM) : FAIT ET BRANCHÉ DE BOUT EN BOUT
