@@ -59,7 +59,7 @@ export default function AuditPage() {
         {/* Calendly iframe */}
         <div className={styles.iframeWrap}>
           <iframe
-            src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=16B8A6`}
+            src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=16B8A6&timezone=Europe%2FRome`}
             title="Prenota un audit gratuito AutomaIA"
             loading="lazy"
             className={styles.iframe}
