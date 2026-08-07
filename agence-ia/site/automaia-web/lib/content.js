@@ -8,6 +8,8 @@ export const brand = {
   tagline: "Automazione e IA per studi professionali e cliniche",
   email: "info@automa-ia.net",
   domain: "automa-ia.net",
+  // Lien de réservation externe (Calendly) pour l'audit gratuit.
+  bookingUrl: "https://calendly.com/hatemchebbi527/audit-gratuito-automaia",
 };
 
 export const nav = [

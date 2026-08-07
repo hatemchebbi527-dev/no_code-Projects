@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { nav } from "@/lib/content";
+import { nav, brand } from "@/lib/content";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -35,9 +35,15 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/contatti" className="btn" onClick={() => setOpen(false)}>
+          <a
+            href={brand.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+            onClick={() => setOpen(false)}
+          >
             Audit gratuito
-          </Link>
+          </a>
         </nav>
       </div>
     </header>
