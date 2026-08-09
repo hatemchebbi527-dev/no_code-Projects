@@ -54,7 +54,7 @@ export default function ContactForm() {
       </label>
 
       <button type="submit" className="btn" disabled={status === "sending"}>
-        {status === "sending" ? "Invio in corso..." : "Prenoti il Suo audit gratuito"}
+        {status === "sending" ? "Invio in corso..." : "Invia messaggio"}
       </button>
 
       {status === "error" && <p className={styles.error}>{contatti.errore}</p>}
