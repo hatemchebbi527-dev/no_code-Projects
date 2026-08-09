@@ -15,6 +15,7 @@ export const nav = [
   { label: "Servizi", href: "/servizi" },
   { label: "Cliniche", href: "/cliniche" },
   { label: "Chi sono", href: "/chi-sono" },
+  { label: "Contatti", href: "/contatti" },
 ];
 
 export const home = {
@@ -150,10 +151,10 @@ export const chiSono = {
 };
 
 export const contatti = {
-  title: "Prenoti il Suo audit gratuito",
+  title: "Ha una domanda?",
   text:
-    "In 20 minuti individuiamo la prima automazione utile per il Suo studio. Compili il modulo, La ricontatto io.",
-  successo: "Grazie! Ho ricevuto la Sua richiesta, La ricontatto a breve.",
+    "Compili il modulo oppure scriva direttamente a info@automa-ia.net. La rispondo entro 24 ore. Per prenotare un audit gratuito usi invece la pagina dedicata.",
+  successo: "Grazie! Ho ricevuto il Suo messaggio, La rispondo a breve.",
   errore: "Qualcosa è andato storto. Riprovi o scriva direttamente a info@automa-ia.net.",
 };
 
