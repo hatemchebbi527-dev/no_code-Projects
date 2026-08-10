@@ -57,7 +57,13 @@ le titre et la meta description SEO changent aussi selon la langue.
 
 ## À remplacer avant mise en ligne (placeholders)
 
-Les visuels dans `assets/img/*.svg` sont des **placeholders générés sur-mesure**
+**Logo :** le logo (mandala or + pousse + "KEIBIDO Benessere Divino") a été
+**recréé en vectoriel** (`assets/img/emblem.svg`, `mandala.svg`, `sprout.svg`,
+`favicon.svg`, via `assets/gen_logo.py`) à partir de l'image fournie par le client.
+C'est une interprétation propre et fidèle à l'esprit, à **remplacer par le fichier
+officiel** (SVG/AI/PDF) du client pour une fidélité au pixel.
+
+Les photos dans `assets/img/*.svg` (hero/rituels/espace/founder) sont des **placeholders générés sur-mesure**
 (dégradés washi, motif enso au pinceau, teintes de la marque). Ils rendent la page
 crédible tout de suite, mais doivent être remplacés par le **vrai shooting photo**
 du client (peau lumineuse, mains, l'espace du centre, gros plans texture).

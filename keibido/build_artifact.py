@@ -17,11 +17,12 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
 
 # Kanji / kana reellement utilises (subset Shippori Mincho -> fichier minuscule)
-JP = "慶美堂鏡の中静けさ水光時清診断浄化施術余韻儀式和・"
+JP = "慶美堂鏡の中静けさ水光時清診断浄化施術余韻儀式和・”“"
 
 FONTS = [
     ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap", None, True),
     ("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap", None, True),
+    ("https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap", None, True),
     ("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700", JP, False),
 ]
 
@@ -59,7 +60,7 @@ def main():
     mcss = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
     body = re.search(r"<body>(.*?)</body>", html, re.S).group(1)
 
-    for n in ["hero", "mizu", "hikari", "jikan", "sei", "experience", "founder"]:
+    for n in ["emblem", "mandala", "mizu", "hikari", "jikan", "sei", "experience", "founder"]:
         body = body.replace(f"assets/img/{n}.svg", datauri(f"{HERE}/assets/img/{n}.svg"))
 
     m = re.search(r"(<script>)(.*?)(</script>)", body, re.S)

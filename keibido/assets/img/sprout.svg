@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="260" viewBox="0 0 240 260">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E9D08C"/>
+      <stop offset="38%" stop-color="#C9A85A"/>
+      <stop offset="70%" stop-color="#B08D3E"/>
+      <stop offset="100%" stop-color="#8A6D2E"/>
+    </linearGradient>
+    <linearGradient id="goldv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EBD595"/>
+      <stop offset="50%" stop-color="#C4A150"/>
+      <stop offset="100%" stop-color="#9A7A34"/>
+    </linearGradient>
+  </defs>
+<g>
+<g transform="rotate(0 120 200)"><path d="M120.0,200.0 C87.0,147.2 103.5,107.1 120.0,94.4 C136.5,107.1 153.0,147.2 120.0,200.0 Z" fill="none" stroke="url(#goldv)" stroke-width="2"/><line x1="120.0" y1="198.0" x2="120.0" y2="100.4" stroke="url(#goldv)" stroke-width="1.4"/><line x1="120.0" y1="163.0" x2="109.3" y2="156.7" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="163.0" x2="130.7" y2="156.7" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="141.9" x2="112.6" y2="135.6" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="141.9" x2="127.4" y2="135.6" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="124.0" x2="115.4" y2="117.6" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="124.0" x2="124.6" y2="117.6" stroke="url(#goldv)" stroke-width="1"/></g>
+<g transform="rotate(-34 120 200)"><path d="M120.0,200.0 C91.4,159.3 105.7,128.4 120.0,118.6 C134.3,128.4 148.6,159.3 120.0,200.0 Z" fill="none" stroke="url(#goldv)" stroke-width="2"/><line x1="120.0" y1="198.0" x2="120.0" y2="124.6" stroke="url(#goldv)" stroke-width="1.4"/><line x1="120.0" y1="171.5" x2="110.7" y2="166.6" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="171.5" x2="129.3" y2="166.6" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="155.2" x2="113.6" y2="150.3" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="155.2" x2="126.4" y2="150.3" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="141.4" x2="116.0" y2="136.5" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="141.4" x2="124.0" y2="136.5" stroke="url(#goldv)" stroke-width="1"/></g>
+<g transform="rotate(34 120 200)"><path d="M120.0,200.0 C91.4,159.3 105.7,128.4 120.0,118.6 C134.3,128.4 148.6,159.3 120.0,200.0 Z" fill="none" stroke="url(#goldv)" stroke-width="2"/><line x1="120.0" y1="198.0" x2="120.0" y2="124.6" stroke="url(#goldv)" stroke-width="1.4"/><line x1="120.0" y1="171.5" x2="110.7" y2="166.6" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="171.5" x2="129.3" y2="166.6" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="155.2" x2="113.6" y2="150.3" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="155.2" x2="126.4" y2="150.3" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="141.4" x2="116.0" y2="136.5" stroke="url(#goldv)" stroke-width="1"/><line x1="120.0" y1="141.4" x2="124.0" y2="136.5" stroke="url(#goldv)" stroke-width="1"/></g>
+<circle cx="120" cy="204.4" r="3.3" fill="url(#gold)"/>
+</g></svg>

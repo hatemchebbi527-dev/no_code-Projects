@@ -18,7 +18,8 @@
 <meta name="keywords" content="centro estetico Rimini, trattamenti viso Rimini, massaggio kobido, estetista Rimini, skincare giapponese, anti-età viso, pulizia viso Rimini, Keibido" />
 <meta name="author" content="Keibido" />
 <meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#F5F1EA" />
+<meta name="theme-color" content="#F6F1E3" />
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
 <link rel="canonical" href="https://www.keibido.it/" />
 <link rel="alternate" hreflang="it" href="https://www.keibido.it/" />
 <link rel="alternate" hreflang="en" href="https://www.keibido.it/en/" />
@@ -43,7 +44,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <!-- Structured data: BeautySalon -->
 <script type="application/ld+json">
@@ -83,20 +84,21 @@
 
 <style>
   :root{
-    --washi:#F5F1EA;        /* fond papier washi */
-    --washi-2:#EFE9DE;
-    --surface:#FBF9F5;
-    --sumi:#1B1915;         /* encre noire chaude */
-    --ink:#2A2620;
-    --text:#4A443B;
-    --muted:#8E8677;
-    --line:#D9D1C2;
-    --gold:#B08D57;         /* or kintsugi */
-    --gold-soft:#C7A876;
-    --gold-deep:#8A6D3E;
+    --washi:#F6F1E3;        /* creme washi (fond du logo) */
+    --washi-2:#EFE7D4;
+    --surface:#FCFAF3;
+    --sumi:#241F17;         /* encre chaude profonde */
+    --ink:#3A3225;
+    --text:#5A5140;
+    --muted:#96896F;
+    --line:#E0D6BF;
+    --gold:#BF9E4E;         /* or foil du logo */
+    --gold-soft:#D8BE7E;
+    --gold-deep:#9A7A34;
 
     --font-display:'Cormorant Garamond', Georgia, serif;
     --font-jp:'Shippori Mincho', serif;
+    --font-script:'Pinyon Script', 'Cormorant Garamond', cursive;
     --font-body:'Jost', system-ui, sans-serif;
 
     --ease:cubic-bezier(.22,.61,.36,1);
@@ -162,70 +164,55 @@
     transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s var(--ease);
   }
   header.nav.scrolled{background:rgba(245,241,234,.86);backdrop-filter:blur(14px);padding:14px clamp(20px,5vw,64px);box-shadow:0 1px 0 var(--line)}
-  .brand{display:flex;align-items:baseline;gap:.6em}
-  .brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.5rem;letter-spacing:.22em;color:var(--washi);transition:color .5s var(--ease)}
-  .brand .kanji{font-family:var(--font-jp);font-size:1rem;color:var(--gold-soft);letter-spacing:.1em}
+  .brand{display:flex;align-items:center;gap:.7em}
+  .brand-emblem{width:40px;height:40px;flex:none}
+  .brand-word{display:flex;flex-direction:column;line-height:1.02}
+  .brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.35rem;letter-spacing:.26em;color:var(--sumi)}
+  .brand .tag{font-family:var(--font-script);font-size:1rem;color:var(--gold-deep);margin-top:1px}
   nav.links{display:flex;align-items:center;gap:2.4rem}
-  nav.links a{position:relative;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,241,234,.9);padding:4px 0;transition:color .5s var(--ease)}
-  nav.links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold-soft);transition:width .45s var(--ease)}
+  nav.links a{position:relative;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);padding:4px 0}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width .45s var(--ease)}
   nav.links a:hover::after{width:100%}
   .nav-right{display:flex;align-items:center;gap:1.6rem}
   .lang{display:flex;gap:.1rem;font-size:.72rem;letter-spacing:.12em}
-  .lang button{background:none;border:none;cursor:pointer;color:rgba(245,241,234,.55);font-family:var(--font-body);letter-spacing:.12em;padding:2px 5px;transition:color .3s}
-  .lang button.active{color:var(--washi);font-weight:500}
-  .lang .sep{color:rgba(245,241,234,.35)}
+  .lang button{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--font-body);letter-spacing:.12em;padding:2px 5px;transition:color .3s}
+  .lang button.active{color:var(--sumi);font-weight:500}
+  .lang .sep{color:var(--line)}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
-  .burger span{width:24px;height:1.5px;background:var(--washi);transition:.3s}
+  .burger span{width:24px;height:1.5px;background:var(--sumi);transition:.3s}
+  header.nav .btn--gold{--c:var(--gold-deep)}
 
-  /* nav — etat scrolled : texte sombre sur fond clair */
-  header.nav.scrolled .brand .mark{color:var(--sumi)}
-  header.nav.scrolled .brand .kanji{color:var(--gold)}
-  header.nav.scrolled nav.links a{color:var(--ink)}
-  header.nav.scrolled .lang button{color:var(--muted)}
-  header.nav.scrolled .lang button.active{color:var(--sumi)}
-  header.nav.scrolled .lang .sep{color:var(--line)}
-  header.nav.scrolled .burger span{background:var(--sumi)}
-  header.nav .btn--gold{--c:var(--gold-soft)}
-  header.nav.scrolled .btn--gold{--c:var(--gold-deep)}
+  /* ============ HERO (clair & aerien) ============ */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
+    background:radial-gradient(120% 95% at 16% 10%,#FFFDF6 0%,var(--washi) 44%,var(--washi-2) 100%)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(38% 42% at 20% 24%,rgba(216,190,126,.30),transparent 70%),
+              radial-gradient(46% 56% at 90% 82%,rgba(191,158,78,.15),transparent 72%)}
+  .hero__mandala{position:absolute;z-index:0;right:-9%;top:50%;width:min(80vh,880px);aspect-ratio:1;
+    transform:translateY(-50%);opacity:.18;pointer-events:none;animation:spin 100s linear infinite}
+  .hero__mandala img{width:100%;height:100%;display:block}
+  @keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
 
-  /* ============ HERO ============ */
-  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--washi-2)}
-  .hero__media{position:absolute;inset:0;z-index:0}
-  .hero__media::after{content:"";position:absolute;inset:0;
-    background:
-      linear-gradient(to top,rgba(20,18,14,.72) 0%,rgba(20,18,14,.25) 42%,rgba(20,18,14,.10) 100%),
-      linear-gradient(to right,rgba(20,18,14,.45) 0%,rgba(20,18,14,0) 55%);
-  }
-  .hero__media img{width:100%;height:100%;object-fit:cover;
-    animation:kenburns 20s ease-out forwards;
-    background:radial-gradient(120% 120% at 30% 20%,#e7ddca,#cdbfa6);
-  }
-  @keyframes kenburns{from{transform:scale(1.12) translate(1%, 1%)}to{transform:scale(1) translate(0,0)}}
+  .hero__vert{position:absolute;right:clamp(14px,3.5vw,46px);top:0;bottom:0;z-index:2;display:flex;align-items:center}
+  .hero__vert span{writing-mode:vertical-rl;font-family:var(--font-body);text-transform:uppercase;
+    color:var(--gold-deep);letter-spacing:.5em;font-size:.64rem;opacity:.85}
 
-  .hero__vert{position:absolute;right:clamp(16px,4vw,54px);top:0;bottom:0;z-index:2;display:flex;align-items:center}
-  .hero__vert span{writing-mode:vertical-rl;font-family:var(--font-jp);color:rgba(245,241,234,.72);letter-spacing:.5em;font-size:.9rem}
+  .hero__inner{position:relative;z-index:3;width:100%;padding-top:118px;padding-bottom:84px}
+  .hero__lock{display:flex;align-items:center;gap:1rem;margin-bottom:1.7rem}
+  .hero__lock img{width:66px;height:66px;flex:none}
+  .hero__lock .lw{display:flex;flex-direction:column;line-height:1.02}
+  .hero__lock .mark{font-family:var(--font-display);font-weight:600;font-size:1.85rem;letter-spacing:.32em;color:var(--sumi)}
+  .hero__lock .tag{font-family:var(--font-script);font-size:1.5rem;color:var(--gold-deep);margin-top:2px}
+  .hero .kicker{color:var(--gold-deep)}
+  .hero .kicker::before{background:var(--gold)}
+  .hero h1{color:var(--sumi);font-size:clamp(2.8rem,7.6vw,6.6rem);font-weight:500;margin:.15em 0 .32em;max-width:15ch;text-wrap:balance}
+  .hero h1 em{font-style:italic;color:var(--gold-deep)}
+  .hero p.lead{color:var(--text);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:300;max-width:50ch;line-height:1.75}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem}
 
-  .hero__inner{position:relative;z-index:3;width:100%;padding-bottom:clamp(48px,8vw,110px)}
-  .hero .kicker{color:var(--gold-soft)}
-  .hero .kicker::before{background:var(--gold-soft)}
-  .hero h1{
-    color:var(--washi);
-    font-size:clamp(2.9rem,8.5vw,7.2rem);
-    font-weight:500;margin:.28em 0 .35em;max-width:14ch;
-  }
-  .hero h1 em{font-style:italic;color:var(--gold-soft)}
-  .hero p.lead{color:rgba(245,241,234,.9);font-size:clamp(1rem,1.5vw,1.22rem);font-weight:300;max-width:52ch;line-height:1.75}
-  .hero .cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.4rem}
-  .hero .btn{--c:var(--washi);color:var(--washi)}
-  .hero .btn:hover{color:var(--sumi)}
-  .hero .btn::before{background:var(--washi)}
-  .hero .btn--solid{background:var(--washi);color:var(--sumi);border-color:var(--washi)}
-  .hero .btn--solid::before{background:var(--gold-soft)}
-  .hero .btn--solid:hover{color:var(--sumi)}
-
-  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(245,241,234,.7)}
-  .scrollcue .bar{width:1px;height:46px;background:rgba(245,241,234,.4);position:relative;overflow:hidden}
-  .scrollcue .bar::after{content:"";position:absolute;top:-46px;left:0;width:1px;height:46px;background:var(--gold-soft);animation:cue 2.2s var(--ease) infinite}
+  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted)}
+  .scrollcue .bar{width:1px;height:46px;background:rgba(90,81,64,.28);position:relative;overflow:hidden}
+  .scrollcue .bar::after{content:"";position:absolute;top:-46px;left:0;width:1px;height:46px;background:var(--gold);animation:cue 2.2s var(--ease) infinite}
   @keyframes cue{0%{top:-46px}60%,100%{top:46px}}
   .scrollcue span{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase}
 
@@ -234,13 +221,19 @@
   .reveal.in{opacity:1;transform:none}
   .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
 
+  /* mandala en filigrane (langage du logo) */
+  .mandala-wm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0;pointer-events:none}
+  .mandala-wm img{width:min(560px,74vw);opacity:.10}
+  .mandala-wm.faint img{opacity:.06}
+  .mandala-wm.dark img{opacity:.12}
+
   /* ============ MANIFESTO ============ */
   .manifesto{position:relative;padding:clamp(90px,14vw,170px) 0;text-align:center;overflow:hidden}
   .manifesto .kanji-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-jp);font-size:clamp(16rem,42vw,40rem);color:var(--washi-2);z-index:0;user-select:none;line-height:1}
   .manifesto .inner{position:relative;z-index:1;max-width:min(680px,82vw);margin:0 auto}
   .manifesto p{font-family:var(--font-display);font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.28;color:var(--ink);font-weight:400}
   .manifesto p em{font-style:italic;color:var(--gold-deep)}
-  .manifesto .sig{margin-top:2rem;font-family:var(--font-jp);color:var(--gold);letter-spacing:.3em;font-size:.9rem}
+  .manifesto .sig{margin-top:1.6rem;font-family:var(--font-script);color:var(--gold-deep);font-size:1.7rem}
 
   /* section head */
   .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,72px)}
@@ -321,9 +314,11 @@
   /* ============ FOOTER ============ */
   footer{background:var(--washi-2);padding:clamp(60px,8vw,90px) 0 40px;border-top:1px solid var(--line)}
   .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:clamp(30px,4vw,60px)}
-  .f-brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.8rem;letter-spacing:.2em;color:var(--sumi)}
-  .f-brand .kanji{font-family:var(--font-jp);color:var(--gold);margin-left:.4em}
-  .f-brand p{margin-top:1rem;max-width:34ch;font-size:.95rem}
+  .f-lock{display:flex;align-items:center;gap:.6em}
+  .f-lock img{width:42px;height:42px}
+  .f-brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.7rem;letter-spacing:.24em;color:var(--sumi)}
+  .f-tag{font-family:var(--font-script);color:var(--gold-deep);font-size:1.5rem;margin-top:.2rem}
+  .f-brand p{margin-top:.9rem;max-width:34ch;font-size:.95rem}
   .f-col h4{font-family:var(--font-body);font-weight:500;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.2rem}
   .f-col a,.f-col p{display:block;font-size:.92rem;color:var(--text);margin-bottom:.6rem}
   .f-col a{transition:color .3s}.f-col a:hover{color:var(--gold-deep)}
@@ -359,8 +354,11 @@
 <!-- ========== NAV ========== -->
 <header class="nav" id="nav">
   <a class="brand" href="#top" aria-label="Keibido home">
-    <span class="mark">KEIBIDO</span>
-    <span class="kanji">慶美堂</span>
+    <img class="brand-emblem" src="assets/img/emblem.svg" alt="" aria-hidden="true" />
+    <span class="brand-word">
+      <span class="mark">KEIBIDO</span>
+      <span class="tag">Benessere Divino</span>
+    </span>
   </a>
   <nav class="links" id="navlinks">
     <a href="#trattamenti" data-i18n="nav.treatments">Trattamenti</a>
@@ -381,17 +379,18 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="top">
-  <div class="hero__media">
-    <!-- data-swap: photo cinématique hero (peau lumineuse / soin visage) -->
-    <img src="assets/img/hero.svg" alt="Trattamento viso rilassante al centro estetico Keibido di Rimini" fetchpriority="high" />
-  </div>
-  <div class="hero__vert"><span>慶 美 堂 · 鏡 の 中 の 静 け さ</span></div>
+  <div class="hero__mandala" aria-hidden="true"><img src="assets/img/mandala.svg" alt="" /></div>
+  <div class="hero__vert"><span>Benessere Divino · Rimini</span></div>
 
   <div class="hero__inner wrap">
-    <span class="kicker reveal in" data-i18n="hero.kicker">Centro Estetico · Rimini</span>
-    <h1 class="reveal in d1" data-i18n="hero.title">La bellezza<br>è un <em>rituale</em>.</h1>
-    <p class="lead reveal in d2" data-i18n="hero.lead">Trattamenti viso d'ispirazione giapponese, dove la scienza della pelle incontra la calma del gesto. Ogni seduta è un ritorno a sé.</p>
-    <div class="cta-row reveal in d3">
+    <div class="hero__lock reveal in">
+      <img src="assets/img/emblem.svg" alt="Logo Keibido" />
+      <span class="lw"><span class="mark">KEIBIDO</span><span class="tag">Benessere Divino</span></span>
+    </div>
+    <span class="kicker reveal in d1" data-i18n="hero.kicker">Centro Estetico · Rimini</span>
+    <h1 class="reveal in d2" data-i18n="hero.title">La bellezza<br>è un <em>rituale</em>.</h1>
+    <p class="lead reveal in d3" data-i18n="hero.lead">Trattamenti viso d'ispirazione giapponese, dove la scienza della pelle incontra la calma del gesto. Ogni seduta è un ritorno a sé.</p>
+    <div class="cta-row reveal in d4">
       <a href="#contatti" class="btn btn--solid"><span data-i18n="hero.cta1">Prenota il tuo rituale</span></a>
       <a href="#trattamenti" class="btn"><span data-i18n="hero.cta2">Scopri i trattamenti</span></a>
     </div>
@@ -402,10 +401,10 @@
 
 <!-- ========== MANIFESTO ========== -->
 <section class="manifesto" id="filosofia">
-  <div class="kanji-bg" aria-hidden="true">美</div>
+  <div class="mandala-wm faint" aria-hidden="true"><img src="assets/img/mandala.svg" alt="" /></div>
   <div class="inner wrap">
     <p class="reveal" data-i18n="manifesto.text">Nella filosofia giapponese, la bellezza non si impone: <em>si coltiva</em>. Crediamo che una pelle luminosa nasca dal tempo, dal rispetto e da un gesto preciso, ripetuto come un rito.</p>
-    <div class="sig reveal d1">慶美堂 · Keibidō</div>
+    <div class="sig reveal d1">Keibido · Benessere Divino</div>
   </div>
 </section>
 
@@ -525,7 +524,7 @@
     <img loading="lazy" src="assets/img/experience.svg" alt="Lo spazio zen del centro estetico Keibido" />
   </div>
   <div class="exp__inner wrap">
-    <span class="kicker reveal">慶美堂</span>
+    <span class="kicker reveal" data-i18n="exp.kicker">L'esperienza</span>
     <h2 class="reveal d1" data-i18n="exp.title">Uno spazio pensato come un respiro</h2>
     <p class="reveal d2" data-i18n="exp.text">Legni chiari, luce morbida, silenzio. Dal momento in cui varchi la soglia, il mondo resta fuori. Rimane solo la tua pelle e il tempo per prendertene cura.</p>
   </div>
@@ -580,9 +579,9 @@
 
 <!-- ========== FINAL CTA ========== -->
 <section class="final" id="contatti">
-  <div class="kanji-bg" aria-hidden="true">和</div>
+  <div class="mandala-wm dark" aria-hidden="true"><img src="assets/img/mandala.svg" alt="" /></div>
   <div class="inner">
-    <span class="kicker reveal">慶美堂 · Rimini</span>
+    <span class="kicker reveal">Keibido · Rimini</span>
     <h2 class="reveal d1" data-i18n="final.title">Il tuo rituale ti aspetta</h2>
     <p class="reveal d2" data-i18n="final.text">Prenota la tua prima consulenza viso. Ti aspettiamo nel cuore di Rimini, per disegnare insieme il rituale perfetto per la tua pelle.</p>
     <div class="cta-row reveal d3">
@@ -597,7 +596,8 @@
   <div class="wrap">
     <div class="f-grid">
       <div class="f-brand">
-        <div><span class="mark">KEIBIDO</span><span class="kanji">慶美堂</span></div>
+        <div class="f-lock"><img src="assets/img/emblem.svg" alt="" aria-hidden="true" /><span class="mark">KEIBIDO</span></div>
+        <div class="f-tag">Benessere Divino</div>
         <p data-i18n="footer.tag">Centro estetico d'ispirazione giapponese. L'arte del gesto lento, nel cuore di Rimini.</p>
       </div>
       <div class="f-col">
@@ -645,7 +645,7 @@ const I18N = {
     "method.s2.t":"Purificazione","method.s2.d":"Doppia detersione e preparazione della pelle. Il gesto che apre il rituale.",
     "method.s3.t":"Trattamento","method.s3.d":"Attivi selezionati e massaggio kobido. Mani esperte, ritmo lento, risultati visibili.",
     "method.s4.t":"Rituale finale","method.s4.d":"Protezione, tè e un momento tutto per te. Esci rinnovata, dentro e fuori.",
-    "exp.title":"Uno spazio pensato come un respiro","exp.text":"Legni chiari, luce morbida, silenzio. Dal momento in cui varchi la soglia, il mondo resta fuori. Rimane solo la tua pelle e il tempo per prendertene cura.",
+    "exp.kicker":"L'esperienza","exp.title":"Uno spazio pensato come un respiro","exp.text":"Legni chiari, luce morbida, silenzio. Dal momento in cui varchi la soglia, il mondo resta fuori. Rimane solo la tua pelle e il tempo per prendertene cura.",
     "voices.title":"La parola a chi ci sceglie",
     "voices.q1":"Non è un trattamento, è una pausa dal mondo. La mia pelle non è mai stata così luminosa.",
     "voices.q2":"Il massaggio kobido è pura magia. Esco ogni volta rigenerata e distesa.",
@@ -677,7 +677,7 @@ const I18N = {
     "method.s2.t":"Purification","method.s2.d":"Double cleanse and skin preparation. The gesture that opens the ritual.",
     "method.s3.t":"Treatment","method.s3.d":"Selected actives and kobido massage. Expert hands, slow rhythm, visible results.",
     "method.s4.t":"Closing ritual","method.s4.d":"Protection, tea and a moment just for you. You leave renewed, inside and out.",
-    "exp.title":"A space designed like a breath","exp.text":"Light woods, soft light, silence. From the moment you cross the threshold, the world stays outside. Only your skin remains, and the time to care for it.",
+    "exp.kicker":"The experience","exp.title":"A space designed like a breath","exp.text":"Light woods, soft light, silence. From the moment you cross the threshold, the world stays outside. Only your skin remains, and the time to care for it.",
     "voices.title":"The word to those who choose us",
     "voices.q1":"It's not a treatment, it's a pause from the world. My skin has never been this radiant.",
     "voices.q2":"The kobido massage is pure magic. I leave regenerated every single time.",
