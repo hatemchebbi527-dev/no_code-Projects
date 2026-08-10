@@ -7,11 +7,16 @@ Centro estetico d'inspiration japonaise à Rimini. Cette landing page est la
 
 ## Comment la voir
 
-Ouvre simplement `index.html` dans un navigateur (double-clic).
-Aucune installation, aucun serveur requis. La page est autonome.
+**En local :** ouvre `index.html` dans un navigateur (double-clic). Aucune install.
 
-Pour la mettre en ligne : dépose le dossier `keibido/` sur n'importe quel
-hébergement statique (Netlify, Vercel, GitHub Pages, OVH...). C'est prêt.
+**En ligne (site final) :** dépose le dossier `keibido/` sur n'importe quel
+hébergement statique (Netlify, Vercel, GitHub Pages, OVH...). C'est prêt. Cette
+version utilise `index.html` + `assets/` (plus légère, meilleure pour le SEO).
+
+**Lien partageable (pour envoyer au client) :** `keibido-artifact.html` est une
+version **100% autonome dans un seul fichier** (polices et images embarquées).
+C'est cette version qui est publiée en lien claude.ai. Pour la régénérer après
+avoir modifié les textes ou les visuels : `python3 build_artifact.py`.
 
 ---
 
