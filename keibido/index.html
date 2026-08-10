@@ -167,52 +167,63 @@
   .brand{display:flex;align-items:center;gap:.7em}
   .brand-emblem{width:40px;height:40px;flex:none}
   .brand-word{display:flex;flex-direction:column;line-height:1.02}
-  .brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.35rem;letter-spacing:.26em;color:var(--sumi)}
-  .brand .tag{font-family:var(--font-script);font-size:1rem;color:var(--gold-deep);margin-top:1px}
+  .brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.35rem;letter-spacing:.26em;color:var(--washi);transition:color .5s var(--ease)}
+  .brand .tag{font-family:var(--font-script);font-size:1rem;color:var(--gold-soft);margin-top:1px;transition:color .5s var(--ease)}
   nav.links{display:flex;align-items:center;gap:2.4rem}
-  nav.links a{position:relative;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);padding:4px 0}
-  nav.links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width .45s var(--ease)}
+  nav.links a{position:relative;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,241,234,.9);padding:4px 0;transition:color .5s var(--ease)}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold-soft);transition:width .45s var(--ease)}
   nav.links a:hover::after{width:100%}
   .nav-right{display:flex;align-items:center;gap:1.6rem}
   .lang{display:flex;gap:.1rem;font-size:.72rem;letter-spacing:.12em}
-  .lang button{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--font-body);letter-spacing:.12em;padding:2px 5px;transition:color .3s}
-  .lang button.active{color:var(--sumi);font-weight:500}
-  .lang .sep{color:var(--line)}
+  .lang button{background:none;border:none;cursor:pointer;color:rgba(245,241,234,.6);font-family:var(--font-body);letter-spacing:.12em;padding:2px 5px;transition:color .3s}
+  .lang button.active{color:var(--washi);font-weight:500}
+  .lang .sep{color:rgba(245,241,234,.35)}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
-  .burger span{width:24px;height:1.5px;background:var(--sumi);transition:.3s}
-  header.nav .btn--gold{--c:var(--gold-deep)}
+  .burger span{width:24px;height:1.5px;background:var(--washi);transition:.3s}
 
-  /* ============ HERO (clair & aerien) ============ */
-  .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
-    background:radial-gradient(120% 95% at 16% 10%,#FFFDF6 0%,var(--washi) 44%,var(--washi-2) 100%)}
-  .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-    background:radial-gradient(38% 42% at 20% 24%,rgba(216,190,126,.30),transparent 70%),
-              radial-gradient(46% 56% at 90% 82%,rgba(191,158,78,.15),transparent 72%)}
-  .hero__mandala{position:absolute;z-index:0;right:-9%;top:50%;width:min(80vh,880px);aspect-ratio:1;
-    transform:translateY(-50%);opacity:.18;pointer-events:none;animation:spin 100s linear infinite}
-  .hero__mandala img{width:100%;height:100%;display:block}
-  @keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+  /* nav — etat scrolled : texte sombre sur fond clair */
+  header.nav.scrolled .brand .mark{color:var(--sumi)}
+  header.nav.scrolled .brand .tag{color:var(--gold-deep)}
+  header.nav.scrolled nav.links a{color:var(--ink)}
+  header.nav.scrolled .lang button{color:var(--muted)}
+  header.nav.scrolled .lang button.active{color:var(--sumi)}
+  header.nav.scrolled .lang .sep{color:var(--line)}
+  header.nav.scrolled .burger span{background:var(--sumi)}
+  header.nav .btn--gold{--c:var(--gold-soft)}
+  header.nav.scrolled .btn--gold{--c:var(--gold-deep)}
+
+  /* ============ HERO (photo cinematique) ============ */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:#0d0b08}
+  .hero__media{position:absolute;inset:0;z-index:0}
+  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;
+    animation:kenburns 24s ease-out forwards}
+  .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(to top,rgba(9,7,4,.90) 0%,rgba(9,7,4,.42) 34%,rgba(9,7,4,.12) 62%,rgba(9,7,4,.40) 100%),
+      linear-gradient(to right,rgba(9,7,4,.55) 0%,rgba(9,7,4,0) 58%)}
+  @keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
 
   .hero__vert{position:absolute;right:clamp(14px,3.5vw,46px);top:0;bottom:0;z-index:2;display:flex;align-items:center}
   .hero__vert span{writing-mode:vertical-rl;font-family:var(--font-body);text-transform:uppercase;
-    color:var(--gold-deep);letter-spacing:.5em;font-size:.64rem;opacity:.85}
+    color:rgba(245,241,234,.6);letter-spacing:.5em;font-size:.64rem}
 
-  .hero__inner{position:relative;z-index:3;width:100%;padding-top:118px;padding-bottom:84px}
-  .hero__lock{display:flex;align-items:center;gap:1rem;margin-bottom:1.7rem}
-  .hero__lock img{width:66px;height:66px;flex:none}
-  .hero__lock .lw{display:flex;flex-direction:column;line-height:1.02}
-  .hero__lock .mark{font-family:var(--font-display);font-weight:600;font-size:1.85rem;letter-spacing:.32em;color:var(--sumi)}
-  .hero__lock .tag{font-family:var(--font-script);font-size:1.5rem;color:var(--gold-deep);margin-top:2px}
-  .hero .kicker{color:var(--gold-deep)}
-  .hero .kicker::before{background:var(--gold)}
-  .hero h1{color:var(--sumi);font-size:clamp(2.8rem,7.6vw,6.6rem);font-weight:500;margin:.15em 0 .32em;max-width:15ch;text-wrap:balance}
-  .hero h1 em{font-style:italic;color:var(--gold-deep)}
-  .hero p.lead{color:var(--text);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:300;max-width:50ch;line-height:1.75}
+  .hero__inner{position:relative;z-index:3;width:100%;padding-bottom:clamp(54px,8vw,112px)}
+  .hero .kicker{color:var(--gold-soft)}
+  .hero .kicker::before{background:var(--gold-soft)}
+  .hero h1{color:var(--washi);font-size:clamp(2.8rem,7.8vw,6.8rem);font-weight:500;margin:.2em 0 .34em;max-width:15ch;text-wrap:balance;text-shadow:0 2px 34px rgba(0,0,0,.5)}
+  .hero h1 em{font-style:italic;color:var(--gold-soft)}
+  .hero p.lead{color:rgba(245,241,234,.9);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:300;max-width:50ch;line-height:1.75;text-shadow:0 1px 22px rgba(0,0,0,.45)}
   .hero .cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem}
+  .hero .btn{--c:var(--washi);color:var(--washi)}
+  .hero .btn:hover{color:var(--sumi)}
+  .hero .btn::before{background:var(--washi)}
+  .hero .btn--solid{background:var(--washi);color:var(--sumi);border-color:var(--washi)}
+  .hero .btn--solid::before{background:var(--gold-soft)}
+  .hero .btn--solid:hover{color:var(--sumi)}
 
-  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted)}
-  .scrollcue .bar{width:1px;height:46px;background:rgba(90,81,64,.28);position:relative;overflow:hidden}
-  .scrollcue .bar::after{content:"";position:absolute;top:-46px;left:0;width:1px;height:46px;background:var(--gold);animation:cue 2.2s var(--ease) infinite}
+  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(245,241,234,.7)}
+  .scrollcue .bar{width:1px;height:46px;background:rgba(245,241,234,.4);position:relative;overflow:hidden}
+  .scrollcue .bar::after{content:"";position:absolute;top:-46px;left:0;width:1px;height:46px;background:var(--gold-soft);animation:cue 2.2s var(--ease) infinite}
   @keyframes cue{0%{top:-46px}60%,100%{top:46px}}
   .scrollcue span{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase}
 
@@ -314,11 +325,8 @@
   /* ============ FOOTER ============ */
   footer{background:var(--washi-2);padding:clamp(60px,8vw,90px) 0 40px;border-top:1px solid var(--line)}
   .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:clamp(30px,4vw,60px)}
-  .f-lock{display:flex;align-items:center;gap:.6em}
-  .f-lock img{width:42px;height:42px}
-  .f-brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.7rem;letter-spacing:.24em;color:var(--sumi)}
-  .f-tag{font-family:var(--font-script);color:var(--gold-deep);font-size:1.5rem;margin-top:.2rem}
-  .f-brand p{margin-top:.9rem;max-width:34ch;font-size:.95rem}
+  .f-logo{width:150px;height:150px;display:block;border-radius:50%;box-shadow:0 8px 30px rgba(40,30,10,.14)}
+  .f-brand p{margin-top:1.3rem;max-width:34ch;font-size:.95rem}
   .f-col h4{font-family:var(--font-body);font-weight:500;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.2rem}
   .f-col a,.f-col p{display:block;font-size:.92rem;color:var(--text);margin-bottom:.6rem}
   .f-col a{transition:color .3s}.f-col a:hover{color:var(--gold-deep)}
@@ -379,18 +387,16 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="top">
-  <div class="hero__mandala" aria-hidden="true"><img src="assets/img/mandala.svg" alt="" /></div>
+  <div class="hero__media">
+    <img src="assets/img/hero.jpg" alt="Rituale viso Keibido sotto il loto dorato, centro estetico a Rimini" fetchpriority="high" />
+  </div>
   <div class="hero__vert"><span>Benessere Divino · Rimini</span></div>
 
   <div class="hero__inner wrap">
-    <div class="hero__lock reveal in">
-      <img src="assets/img/emblem.svg" alt="Logo Keibido" />
-      <span class="lw"><span class="mark">KEIBIDO</span><span class="tag">Benessere Divino</span></span>
-    </div>
-    <span class="kicker reveal in d1" data-i18n="hero.kicker">Centro Estetico · Rimini</span>
-    <h1 class="reveal in d2" data-i18n="hero.title">La bellezza<br>è un <em>rituale</em>.</h1>
-    <p class="lead reveal in d3" data-i18n="hero.lead">Trattamenti viso d'ispirazione giapponese, dove la scienza della pelle incontra la calma del gesto. Ogni seduta è un ritorno a sé.</p>
-    <div class="cta-row reveal in d4">
+    <span class="kicker reveal in" data-i18n="hero.kicker">Centro Estetico · Rimini</span>
+    <h1 class="reveal in d1" data-i18n="hero.title">La bellezza<br>è un <em>rituale</em>.</h1>
+    <p class="lead reveal in d2" data-i18n="hero.lead">Trattamenti viso d'ispirazione giapponese, dove la scienza della pelle incontra la calma del gesto. Ogni seduta è un ritorno a sé.</p>
+    <div class="cta-row reveal in d3">
       <a href="#contatti" class="btn btn--solid"><span data-i18n="hero.cta1">Prenota il tuo rituale</span></a>
       <a href="#trattamenti" class="btn"><span data-i18n="hero.cta2">Scopri i trattamenti</span></a>
     </div>
@@ -596,8 +602,7 @@
   <div class="wrap">
     <div class="f-grid">
       <div class="f-brand">
-        <div class="f-lock"><img src="assets/img/emblem.svg" alt="" aria-hidden="true" /><span class="mark">KEIBIDO</span></div>
-        <div class="f-tag">Benessere Divino</div>
+        <img class="f-logo" src="assets/img/logo-round.png" alt="Keibido — Benessere Divino" />
         <p data-i18n="footer.tag">Centro estetico d'ispirazione giapponese. L'arte del gesto lento, nel cuore di Rimini.</p>
       </div>
       <div class="f-col">

@@ -52,7 +52,10 @@ def embed_fonts():
     return "\n".join(out)
 
 def datauri(path):
-    return "data:image/svg+xml;base64," + base64.b64encode(open(path, "rb").read()).decode()
+    ext = path.rsplit(".", 1)[-1].lower()
+    mime = {"svg": "image/svg+xml", "png": "image/png",
+            "jpg": "image/jpeg", "jpeg": "image/jpeg"}.get(ext, "application/octet-stream")
+    return f"data:{mime};base64," + base64.b64encode(open(path, "rb").read()).decode()
 
 def main():
     html = open(f"{HERE}/index.html").read()
@@ -60,8 +63,9 @@ def main():
     mcss = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
     body = re.search(r"<body>(.*?)</body>", html, re.S).group(1)
 
-    for n in ["emblem", "mandala", "mizu", "hikari", "jikan", "sei", "experience", "founder"]:
-        body = body.replace(f"assets/img/{n}.svg", datauri(f"{HERE}/assets/img/{n}.svg"))
+    for fn in ["emblem.svg", "mandala.svg", "mizu.svg", "hikari.svg", "jikan.svg",
+               "sei.svg", "experience.svg", "founder.svg", "hero.jpg", "logo-round.png"]:
+        body = body.replace(f"assets/img/{fn}", datauri(f"{HERE}/assets/img/{fn}"))
 
     m = re.search(r"(<script>)(.*?)(</script>)", body, re.S)
     pre, scr, post = body[:m.start()], m.group(2), body[m.end():]
