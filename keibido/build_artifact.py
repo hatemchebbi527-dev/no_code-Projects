@@ -74,7 +74,8 @@ def main():
     jse = lambda s: "".join(c if ord(c) < 128 else f"\\u{ord(c):04x}" for c in s)      # JS
     css = "".join(c if ord(c) < 128 else f"\\{ord(c):04X}" for c in mcss)              # CSS
 
-    art = ("<style>\n" + fonts + "\n" + css + "\n</style>\n"
+    art = ('<meta name="viewport" content="width=device-width, initial-scale=1" />\n'
+           + "<style>\n" + fonts + "\n" + css + "\n</style>\n"
            + ent(pre) + "<script>" + jse(scr) + "</script>" + ent(post))
     assert all(ord(c) < 128 for c in art), "des octets non-ASCII subsistent"
 

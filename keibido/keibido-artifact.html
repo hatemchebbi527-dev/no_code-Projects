@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 @font-face {
   font-family: 'Cormorant Garamond';
@@ -261,9 +262,13 @@
   .lang button{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--font-body);letter-spacing:.12em;padding:2px 5px;transition:color .3s}
   .lang button.active{color:var(--sumi);font-weight:500}
   .lang .sep{color:var(--line)}
-  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
-  .burger span{width:24px;height:1.5px;background:var(--sumi);transition:.3s}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:60}
+  .burger span{width:24px;height:1.5px;background:var(--sumi);transition:transform .3s var(--ease),opacity .3s var(--ease)}
+  header.nav.open .burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  header.nav.open .burger span:nth-child(2){opacity:0}
+  header.nav.open .burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
   header.nav .btn--gold{--c:var(--gold-deep)}
+  .nav-book{padding:.8em 1.6em}
 
   /* ============ HERO (split : texte + photo) ============ */
   .hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.02fr .98fr;background:var(--washi)}
@@ -271,7 +276,7 @@
     padding:clamp(104px,11vw,130px) clamp(26px,4.5vw,72px) clamp(48px,6vw,80px)}
   .hero__text .inner{max-width:36rem}
   .hero__media{position:relative;overflow:hidden;background:#0d0b08}
-  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 28%;animation:kenburns 24s ease-out forwards}
+  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 48%;animation:kenburns 24s ease-out forwards}
   .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 130px rgba(9,7,4,.55)}
   .hero__media::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;z-index:3;
     background:linear-gradient(var(--gold-soft),var(--gold-deep));opacity:.55}
@@ -402,9 +407,10 @@
   /* ============ RESPONSIVE ============ */
   @media(max-width:900px){
     .hero{grid-template-columns:1fr;min-height:auto}
-    .hero__media{order:-1;height:52svh;min-height:340px}
+    .hero__media{order:-1;height:auto;min-height:0}
+    .hero__media img{height:auto;display:block}
     .hero__media::before{display:none}
-    .hero__text{padding:clamp(38px,9vw,60px) clamp(22px,6vw,40px) clamp(46px,9vw,64px)}
+    .hero__text{padding:clamp(34px,8vw,56px) clamp(22px,6vw,40px) clamp(46px,9vw,64px)}
     .hero__text .inner{max-width:100%}
     .scrollcue{display:none}
     .t-grid{grid-template-columns:1fr}
@@ -422,6 +428,14 @@
     .f-grid{grid-template-columns:1fr}
     .steps{grid-template-columns:1fr}
     .hero__vert{display:none}
+    /* nav compacte : evite tout debordement, burger accessible */
+    header.nav,header.nav.scrolled{padding-left:16px;padding-right:16px}
+    .brand{gap:.5em}
+    .brand-emblem{width:32px;height:32px}
+    .brand .mark{font-size:1.05rem;letter-spacing:.16em}
+    .brand .tag{display:none}
+    .nav-right{gap:.7rem}
+    .nav-book{padding:.62em 1.05em;font-size:.72rem}
   }
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -453,7 +467,7 @@
       <span class="sep">/</span>
       <button data-lang="en">EN</button>
     </div>
-    <a href="#contatti" class="btn btn--gold" style="padding:.8em 1.6em"><span data-i18n="nav.book">Prenota</span></a>
+    <a href="#contatti" class="btn btn--gold nav-book"><span data-i18n="nav.book">Prenota</span></a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -791,9 +805,16 @@ document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",
 
 /* ===== nav scroll + burger ===== */
 const nav=document.getElementById("nav");
+const burger=document.getElementById("burger");
 addEventListener("scroll",()=>{nav.classList.toggle("scrolled",scrollY>40);},{passive:true});
-document.getElementById("burger").addEventListener("click",()=>nav.classList.toggle("open"));
-document.querySelectorAll("#navlinks a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+function setMenu(open){nav.classList.toggle("open",open);burger.setAttribute("aria-expanded",open?"true":"false");}
+burger.setAttribute("aria-expanded","false");
+burger.addEventListener("click",(e)=>{e.stopPropagation();setMenu(!nav.classList.contains("open"));});
+document.querySelectorAll("#navlinks a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+/* fermer : clic hors du menu, touche Echap, redimensionnement */
+document.addEventListener("click",(e)=>{if(nav.classList.contains("open")&&!nav.contains(e.target))setMenu(false);});
+document.addEventListener("keydown",(e)=>{if(e.key==="Escape")setMenu(false);});
+addEventListener("resize",()=>{if(innerWidth>900)setMenu(false);});
 
 /* ===== reveal on scroll ===== */
 const io=new IntersectionObserver((entries)=>{
