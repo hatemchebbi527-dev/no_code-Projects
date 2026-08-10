@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1100" viewBox="0 0 2000 1100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="26%" r="95%">
+      <stop offset="0%" stop-color="#3a3225"/>
+      <stop offset="52%" stop-color="#241d13"/>
+      <stop offset="100%" stop-color="#16110a"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="30%" cy="26%" r="45%">
+      <stop offset="0%" stop-color="#C7A876" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#C7A876" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig" cx="50%" cy="46%" r="75%">
+      <stop offset="55%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.6"/>
+    </radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter>
+  </defs>
+
+  <rect width="2000" height="1100" fill="url(#bg)"/>
+  <rect width="2000" height="1100" fill="url(#glow)"/>
+  <text x="1000" y="693" font-family="Shippori Mincho, serif" font-size="990" fill="#F5F1EA" fill-opacity="0.05" text-anchor="middle" font-weight="600">静</text>
+  <g filter="url(#soft)" opacity="0.1">
+    <path d="M 372.2 535.8 L 346.6 520.6 L 324.4 501.0 L 305.8 477.9 L 305.0 445.6 L 295.4 418.9 L 276.9 394.6 L 276.2 365.1 L 272.6 336.6 L 273.5 308.0 L 264.8 278.7 L 282.5 252.0 L 273.6 220.5 L 299.1 198.5 L 307.0 171.4 L 314.8 143.3 L 333.9 121.6 L 349.9 98.2 L 365.7 73.7 L 385.6 52.5 L 416.0 45.3 L 432.2 17.3 L 460.1 8.1 L 485.8 -5.9 L 514.4 -11.3 L 542.7 -16.9 L 570.9 -25.2 L 600.0 -28.6 L 629.4 -27.9 L 658.6 -24.6 L 684.8 -8.4 L 712.5 -1.0 L 735.4 17.7 L 762.5 26.6 L 785.0 43.9 L 816.6 49.9 L 835.6 72.4 L 852.8 95.9 L 870.6 118.5 L 879.7 146.5 L 898.2 168.9 L 911.0 194.8 L 913.4 224.0 L 915.3 252.4 L 933.9 278.8 L 928.3 308.0 L 937.5 337.5 L 916.0 363.7 L 921.2 394.1 L 902.3 418.0 L 896.2 446.1 L 879.8 469.6 L 873.1 499.2 L 847.9 516.0 L 831.7 539.7 L 808.3 556.3 L 794.1 585.2 L 761.8 588.3 L 741.8 612.1 L 709.8 609.5 L 685.4 626.9" fill="none" stroke="#C7A876" stroke-width="29.7" stroke-linecap="round"/>
+    <path d="M 369.4 538.6 L 340.9 525.4 L 324.7 500.7 L 306.9 477.2 L 307.9 444.2 L 290.0 420.8 L 278.5 394.2 L 268.0 366.5 L 268.0 337.1 L 273.7 308.0 L 275.3 279.6 L 282.1 252.0 L 274.6 220.8 L 293.9 196.6 L 305.3 170.6 L 313.0 142.3 L 331.4 119.9 L 351.9 99.8 L 373.1 81.1 L 382.7 49.1 L 406.0 31.0 L 433.4 19.4 L 457.2 1.7 L 487.8 -0.2 L 516.0 -5.6 L 542.9 -16.0 L 571.0 -23.0 L 600.0 -21.7 L 628.0 -12.2 L 656.8 -14.0 L 683.9 -5.1 L 710.3 4.9 L 738.2 11.7 L 767.6 17.7 L 787.0 41.0 L 807.9 60.3 L 831.0 77.0 L 860.1 89.7 L 869.1 119.5 L 879.0 146.9 L 903.4 166.5 L 903.2 197.6 L 915.7 223.4 L 930.2 249.8 L 927.3 279.4 L 938.8 308.0 L 919.6 336.0 L 929.7 366.1 L 926.1 395.4 L 919.1 424.1 L 894.4 445.3 L 884.3 472.1 L 871.5 498.1 L 846.3 514.7 L 828.9 536.9 L 810.9 559.3 L 785.9 573.5 L 768.0 598.9 L 739.6 607.5 L 714.3 622.2 L 687.6 634.9" fill="none" stroke="#C7A876" stroke-width="13.2" stroke-linecap="round"/>
+  </g>
+  <line x1="160" y1="946" x2="680" y2="946" stroke="#C7A876" stroke-opacity="0.35" stroke-width="1"/>
+  <rect width="2000" height="1100" fill="url(#vig)"/>
+  <rect width="2000" height="1100" filter="url(#grain)" opacity="0.5"/>
+</svg>

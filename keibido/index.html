@@ -1,0 +1,729 @@
+<!--
+  KEIBIDO 慶美堂 — Centro Estetico Giapponese · Rimini
+  Landing page — proposta iniziale / proposition initiale
+  Direzione creativa: "Ma (間)" — luxe zen wabi-sabi, washi + sumi + oro kintsugi.
+  NOTE (Hatem): les visuels (assets/img/*.svg) sont des PLACEHOLDERS generes
+  sur-mesure. A remplacer par les VRAIES photos cinematiques du shooting client.
+  Meme emplacement, meme ratio -> il suffit de remplacer le fichier ou le src.
+-->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Keibido · Centro Estetico Giapponese a Rimini | Trattamenti Viso</title>
+
+<!-- SEO -->
+<meta name="description" content="Keibido, centro estetico d'ispirazione giapponese nel cuore di Rimini. Trattamenti viso su misura, massaggio kobido, idratazione, luminosità e anti-età. Prenota il tuo rituale di bellezza." />
+<meta name="keywords" content="centro estetico Rimini, trattamenti viso Rimini, massaggio kobido, estetista Rimini, skincare giapponese, anti-età viso, pulizia viso Rimini, Keibido" />
+<meta name="author" content="Keibido" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#F5F1EA" />
+<link rel="canonical" href="https://www.keibido.it/" />
+<link rel="alternate" hreflang="it" href="https://www.keibido.it/" />
+<link rel="alternate" hreflang="en" href="https://www.keibido.it/en/" />
+<link rel="alternate" hreflang="x-default" href="https://www.keibido.it/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Keibido" />
+<meta property="og:title" content="Keibido · L'arte giapponese della bellezza — Rimini" />
+<meta property="og:description" content="Trattamenti viso d'ispirazione giapponese a Rimini. Dove la scienza della pelle incontra la calma del gesto." />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:url" content="https://www.keibido.it/" />
+<meta property="og:image" content="assets/img/hero.svg" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Keibido · L'arte giapponese della bellezza — Rimini" />
+<meta name="twitter:description" content="Trattamenti viso d'ispirazione giapponese a Rimini." />
+<meta name="twitter:image" content="assets/img/hero.svg" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Structured data: BeautySalon -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Keibido",
+  "alternateName": "慶美堂",
+  "description": "Centro estetico d'ispirazione giapponese a Rimini. Trattamenti viso su misura, massaggio kobido, idratazione, luminosità e anti-età.",
+  "image": "assets/img/hero.svg",
+  "url": "https://www.keibido.it/",
+  "telephone": "+39 000 000 0000",
+  "priceRange": "€€€",
+  "currenciesAccepted": "EUR",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Esempio 12",
+    "addressLocality": "Rimini",
+    "postalCode": "47921",
+    "addressRegion": "RN",
+    "addressCountry": "IT"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": "44.0678", "longitude": "12.5695" },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "09:30", "closes": "19:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "18:00" }
+  ],
+  "sameAs": ["https://www.instagram.com/keibido"],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rituale Mizu — Idratazione viso" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rituale Hikari — Luminosità viso" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rituale Jikan — Anti-età viso" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rituale Sei — Purificazione viso" } }
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --washi:#F5F1EA;        /* fond papier washi */
+    --washi-2:#EFE9DE;
+    --surface:#FBF9F5;
+    --sumi:#1B1915;         /* encre noire chaude */
+    --ink:#2A2620;
+    --text:#4A443B;
+    --muted:#8E8677;
+    --line:#D9D1C2;
+    --gold:#B08D57;         /* or kintsugi */
+    --gold-soft:#C7A876;
+    --gold-deep:#8A6D3E;
+
+    --font-display:'Cormorant Garamond', Georgia, serif;
+    --font-jp:'Shippori Mincho', serif;
+    --font-body:'Jost', system-ui, sans-serif;
+
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --maxw:1240px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--washi);
+    color:var(--text);
+    font-family:var(--font-body);
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* grain texture overlay */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:#fff}
+
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;color:var(--sumi);line-height:1.06;letter-spacing:-.01em}
+  .jp{font-family:var(--font-jp)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+
+  /* eyebrow / kicker */
+  .kicker{
+    font-family:var(--font-body);font-weight:500;font-size:.72rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--gold-deep);
+    display:inline-flex;align-items:center;gap:.9em;
+  }
+  .kicker::before{content:"";width:34px;height:1px;background:var(--gold);display:inline-block}
+
+  /* buttons */
+  .btn{
+    --c:var(--sumi);
+    position:relative;display:inline-flex;align-items:center;gap:.7em;
+    font-family:var(--font-body);font-weight:400;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;
+    padding:1.15em 2.2em;border:1px solid var(--c);color:var(--c);background:transparent;
+    cursor:pointer;overflow:hidden;transition:color .5s var(--ease);border-radius:1px;
+  }
+  .btn span{position:relative;z-index:1}
+  .btn::before{content:"";position:absolute;inset:0;background:var(--c);transform:translateY(101%);transition:transform .5s var(--ease);z-index:0}
+  .btn:hover{color:var(--washi)}
+  .btn:hover::before{transform:translateY(0)}
+  .btn--gold{--c:var(--gold-deep)}
+  .btn--solid{background:var(--sumi);color:var(--washi)}
+  .btn--solid::before{background:var(--gold-deep)}
+  .btn--solid:hover{color:#fff}
+
+  /* ============ NAV ============ */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px clamp(20px,5vw,64px);
+    transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s var(--ease);
+  }
+  header.nav.scrolled{background:rgba(245,241,234,.86);backdrop-filter:blur(14px);padding:14px clamp(20px,5vw,64px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:baseline;gap:.6em}
+  .brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.5rem;letter-spacing:.22em;color:var(--washi);transition:color .5s var(--ease)}
+  .brand .kanji{font-family:var(--font-jp);font-size:1rem;color:var(--gold-soft);letter-spacing:.1em}
+  nav.links{display:flex;align-items:center;gap:2.4rem}
+  nav.links a{position:relative;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,241,234,.9);padding:4px 0;transition:color .5s var(--ease)}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold-soft);transition:width .45s var(--ease)}
+  nav.links a:hover::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:1.6rem}
+  .lang{display:flex;gap:.1rem;font-size:.72rem;letter-spacing:.12em}
+  .lang button{background:none;border:none;cursor:pointer;color:rgba(245,241,234,.55);font-family:var(--font-body);letter-spacing:.12em;padding:2px 5px;transition:color .3s}
+  .lang button.active{color:var(--washi);font-weight:500}
+  .lang .sep{color:rgba(245,241,234,.35)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:1.5px;background:var(--washi);transition:.3s}
+
+  /* nav — etat scrolled : texte sombre sur fond clair */
+  header.nav.scrolled .brand .mark{color:var(--sumi)}
+  header.nav.scrolled .brand .kanji{color:var(--gold)}
+  header.nav.scrolled nav.links a{color:var(--ink)}
+  header.nav.scrolled .lang button{color:var(--muted)}
+  header.nav.scrolled .lang button.active{color:var(--sumi)}
+  header.nav.scrolled .lang .sep{color:var(--line)}
+  header.nav.scrolled .burger span{background:var(--sumi)}
+  header.nav .btn--gold{--c:var(--gold-soft)}
+  header.nav.scrolled .btn--gold{--c:var(--gold-deep)}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--washi-2)}
+  .hero__media{position:absolute;inset:0;z-index:0}
+  .hero__media::after{content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(to top,rgba(20,18,14,.72) 0%,rgba(20,18,14,.25) 42%,rgba(20,18,14,.10) 100%),
+      linear-gradient(to right,rgba(20,18,14,.45) 0%,rgba(20,18,14,0) 55%);
+  }
+  .hero__media img{width:100%;height:100%;object-fit:cover;
+    animation:kenburns 20s ease-out forwards;
+    background:radial-gradient(120% 120% at 30% 20%,#e7ddca,#cdbfa6);
+  }
+  @keyframes kenburns{from{transform:scale(1.12) translate(1%, 1%)}to{transform:scale(1) translate(0,0)}}
+
+  .hero__vert{position:absolute;right:clamp(16px,4vw,54px);top:0;bottom:0;z-index:2;display:flex;align-items:center}
+  .hero__vert span{writing-mode:vertical-rl;font-family:var(--font-jp);color:rgba(245,241,234,.72);letter-spacing:.5em;font-size:.9rem}
+
+  .hero__inner{position:relative;z-index:3;width:100%;padding-bottom:clamp(48px,8vw,110px)}
+  .hero .kicker{color:var(--gold-soft)}
+  .hero .kicker::before{background:var(--gold-soft)}
+  .hero h1{
+    color:var(--washi);
+    font-size:clamp(2.9rem,8.5vw,7.2rem);
+    font-weight:500;margin:.28em 0 .35em;max-width:14ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold-soft)}
+  .hero p.lead{color:rgba(245,241,234,.9);font-size:clamp(1rem,1.5vw,1.22rem);font-weight:300;max-width:52ch;line-height:1.75}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.4rem}
+  .hero .btn{--c:var(--washi);color:var(--washi)}
+  .hero .btn:hover{color:var(--sumi)}
+  .hero .btn::before{background:var(--washi)}
+  .hero .btn--solid{background:var(--washi);color:var(--sumi);border-color:var(--washi)}
+  .hero .btn--solid::before{background:var(--gold-soft)}
+  .hero .btn--solid:hover{color:var(--sumi)}
+
+  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(245,241,234,.7)}
+  .scrollcue .bar{width:1px;height:46px;background:rgba(245,241,234,.4);position:relative;overflow:hidden}
+  .scrollcue .bar::after{content:"";position:absolute;top:-46px;left:0;width:1px;height:46px;background:var(--gold-soft);animation:cue 2.2s var(--ease) infinite}
+  @keyframes cue{0%{top:-46px}60%,100%{top:46px}}
+  .scrollcue span{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase}
+
+  /* reveal utility */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+
+  /* ============ MANIFESTO ============ */
+  .manifesto{position:relative;padding:clamp(90px,14vw,170px) 0;text-align:center;overflow:hidden}
+  .manifesto .kanji-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-jp);font-size:clamp(16rem,42vw,40rem);color:var(--washi-2);z-index:0;user-select:none;line-height:1}
+  .manifesto .inner{position:relative;z-index:1;max-width:min(680px,82vw);margin:0 auto}
+  .manifesto p{font-family:var(--font-display);font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.28;color:var(--ink);font-weight:400}
+  .manifesto p em{font-style:italic;color:var(--gold-deep)}
+  .manifesto .sig{margin-top:2rem;font-family:var(--font-jp);color:var(--gold);letter-spacing:.3em;font-size:.9rem}
+
+  /* section head */
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,72px)}
+  .sec-head h2{font-size:clamp(2.2rem,5vw,4rem);max-width:16ch}
+  .sec-head .side{max-width:38ch;color:var(--text);font-size:1rem}
+  .num{font-family:var(--font-jp);color:var(--gold);font-size:.85rem;letter-spacing:.2em}
+
+  /* ============ TREATMENTS ============ */
+  .treatments{padding:clamp(70px,10vw,130px) 0;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,40px)}
+  .t-card{position:relative;background:var(--washi);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+  .t-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(27,25,21,.35)}
+  .t-card__img{position:relative;aspect-ratio:16/11;overflow:hidden;background:radial-gradient(120% 120% at 30% 20%,#e7ddca,#cdbfa6)}
+  .t-card__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+  .t-card:hover .t-card__img img{transform:scale(1.06)}
+  .t-card__kanji{position:absolute;top:16px;left:18px;font-family:var(--font-jp);font-size:2.4rem;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.4);z-index:2;line-height:1}
+  .t-card__body{padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:.7rem;flex:1}
+  .t-card__body h3{font-size:1.9rem}
+  .t-card .romaji{font-family:var(--font-body);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-deep)}
+  .t-card__body p{font-size:.98rem;color:var(--text);flex:1}
+  .t-card__meta{display:flex;align-items:center;justify-content:space-between;margin-top:.6rem;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.8rem;letter-spacing:.05em;color:var(--muted)}
+  .t-card__meta .price{color:var(--sumi);font-size:1.05rem;font-family:var(--font-display)}
+
+  /* ============ METHOD ============ */
+  .method{padding:clamp(80px,12vw,150px) 0}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,44px);counter-reset:step}
+  .step{position:relative}
+  .step .idx{font-family:var(--font-display);font-size:3.4rem;color:var(--washi-2);line-height:1;-webkit-text-stroke:1px var(--gold-soft);color:transparent}
+  .step h3{font-size:1.5rem;margin:.4rem 0 .6rem}
+  .step p{font-size:.95rem;color:var(--text)}
+  .step .jp{display:block;color:var(--gold);font-size:.8rem;letter-spacing:.3em;margin-bottom:.9rem;font-family:var(--font-jp)}
+
+  /* ============ EXPERIENCE BAND ============ */
+  .exp{position:relative;min-height:66vh;display:flex;align-items:center;overflow:hidden;background:var(--sumi)}
+  .exp__media{position:absolute;inset:0;z-index:0}
+  .exp__media img{width:100%;height:100%;object-fit:cover;opacity:.55;background:radial-gradient(120% 120% at 30% 20%,#3a352c,#1b1915)}
+  .exp__media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,18,14,.7),rgba(20,18,14,.15))}
+  .exp__inner{position:relative;z-index:1;max-width:min(540px,80vw)}
+  .exp h2{color:var(--washi);font-size:clamp(2rem,4.6vw,3.6rem)}
+  .exp p{color:rgba(245,241,234,.85);margin-top:1.2rem;font-size:1.05rem}
+  .exp .kicker{color:var(--gold-soft)}.exp .kicker::before{background:var(--gold-soft)}
+
+  /* ============ TESTIMONIALS ============ */
+  .voices{padding:clamp(80px,12vw,150px) 0;text-align:center}
+  .v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);margin-top:clamp(40px,5vw,64px)}
+  .v-card{padding:clamp(24px,3vw,40px);border:1px solid var(--line);background:var(--surface);text-align:left;position:relative}
+  .v-card .q{font-family:var(--font-jp);color:var(--gold);font-size:2.6rem;line-height:.6;position:absolute;top:22px;right:24px;opacity:.4}
+  .v-card p{font-family:var(--font-display);font-size:1.28rem;line-height:1.45;color:var(--ink);font-style:italic}
+  .v-card .who{margin-top:1.4rem;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .stars{color:var(--gold);letter-spacing:.2em;margin-bottom:1rem;font-size:.8rem}
+
+  /* ============ FOUNDER / TRUST ============ */
+  .founder{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:clamp(30px,5vw,80px);padding:clamp(70px,10vw,130px) 0}
+  .founder__img{position:relative;aspect-ratio:4/5;overflow:hidden;background:radial-gradient(120% 120% at 30% 20%,#e7ddca,#cdbfa6)}
+  .founder__img img{width:100%;height:100%;object-fit:cover}
+  .founder__img .frame{position:absolute;inset:14px;border:1px solid rgba(245,241,234,.5);pointer-events:none}
+  .founder h2{font-size:clamp(2rem,4vw,3.2rem);margin:.4rem 0 1rem}
+  .founder p{margin-bottom:1rem;max-width:46ch}
+  .badges{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.8rem}
+  .badge{display:flex;flex-direction:column}
+  .badge b{font-family:var(--font-display);font-size:2.2rem;color:var(--gold-deep);line-height:1}
+  .badge small{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+
+  /* ============ FINAL CTA ============ */
+  .final{position:relative;text-align:center;padding:clamp(90px,14vw,180px) 0;background:var(--sumi);overflow:hidden}
+  .final .kanji-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-jp);font-size:clamp(18rem,45vw,44rem);color:rgba(245,241,234,.03);z-index:0;line-height:1}
+  .final .inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+  .final .kicker{color:var(--gold-soft)}.final .kicker::before{background:var(--gold-soft)}
+  .final h2{color:var(--washi);font-size:clamp(2.4rem,6vw,4.6rem);margin:.4em 0 .5em}
+  .final p{color:rgba(245,241,234,.82);font-size:1.1rem;max-width:44ch;margin:0 auto 2.4rem}
+  .final .cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .final .btn{--c:var(--washi);color:var(--washi)}
+  .final .btn:hover{color:var(--sumi)}.final .btn::before{background:var(--washi)}
+  .final .btn--solid{background:var(--gold-deep);border-color:var(--gold-deep);color:#fff}
+  .final .btn--solid::before{background:var(--washi)}
+  .final .btn--solid:hover{color:var(--sumi)}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--washi-2);padding:clamp(60px,8vw,90px) 0 40px;border-top:1px solid var(--line)}
+  .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:clamp(30px,4vw,60px)}
+  .f-brand .mark{font-family:var(--font-display);font-weight:600;font-size:1.8rem;letter-spacing:.2em;color:var(--sumi)}
+  .f-brand .kanji{font-family:var(--font-jp);color:var(--gold);margin-left:.4em}
+  .f-brand p{margin-top:1rem;max-width:34ch;font-size:.95rem}
+  .f-col h4{font-family:var(--font-body);font-weight:500;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.2rem}
+  .f-col a,.f-col p{display:block;font-size:.92rem;color:var(--text);margin-bottom:.6rem}
+  .f-col a{transition:color .3s}.f-col a:hover{color:var(--gold-deep)}
+  .f-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:clamp(40px,6vw,70px);padding-top:2rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--muted);letter-spacing:.05em}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:900px){
+    .t-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:repeat(2,1fr);gap:40px}
+    .v-grid{grid-template-columns:1fr}
+    .founder{grid-template-columns:1fr}
+    .founder__img{max-width:440px;margin:0 auto}
+    .f-grid{grid-template-columns:1fr 1fr}
+    nav.links,.nav-right .lang{display:none}
+    .burger{display:flex}
+    header.nav.open nav.links{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:1.4rem;padding:28px clamp(20px,5vw,64px);background:rgba(245,241,234,.97);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+    header.nav.open .nav-right .lang{display:flex}
+  }
+  @media(max-width:560px){
+    .f-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .hero__vert{display:none}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+    .reveal{opacity:1;transform:none}
+    .hero__media img{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Keibido home">
+    <span class="mark">KEIBIDO</span>
+    <span class="kanji">慶美堂</span>
+  </a>
+  <nav class="links" id="navlinks">
+    <a href="#trattamenti" data-i18n="nav.treatments">Trattamenti</a>
+    <a href="#filosofia" data-i18n="nav.philosophy">Filosofia</a>
+    <a href="#metodo" data-i18n="nav.method">Il Rituale</a>
+    <a href="#contatti" data-i18n="nav.contact">Contatti</a>
+  </nav>
+  <div class="nav-right">
+    <div class="lang" role="group" aria-label="Lingua">
+      <button data-lang="it" class="active">IT</button>
+      <span class="sep">/</span>
+      <button data-lang="en">EN</button>
+    </div>
+    <a href="#contatti" class="btn btn--gold" style="padding:.8em 1.6em"><span data-i18n="nav.book">Prenota</span></a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="hero__media">
+    <!-- data-swap: photo cinématique hero (peau lumineuse / soin visage) -->
+    <img src="assets/img/hero.svg" alt="Trattamento viso rilassante al centro estetico Keibido di Rimini" fetchpriority="high" />
+  </div>
+  <div class="hero__vert"><span>慶 美 堂 · 鏡 の 中 の 静 け さ</span></div>
+
+  <div class="hero__inner wrap">
+    <span class="kicker reveal in" data-i18n="hero.kicker">Centro Estetico · Rimini</span>
+    <h1 class="reveal in d1" data-i18n="hero.title">La bellezza<br>è un <em>rituale</em>.</h1>
+    <p class="lead reveal in d2" data-i18n="hero.lead">Trattamenti viso d'ispirazione giapponese, dove la scienza della pelle incontra la calma del gesto. Ogni seduta è un ritorno a sé.</p>
+    <div class="cta-row reveal in d3">
+      <a href="#contatti" class="btn btn--solid"><span data-i18n="hero.cta1">Prenota il tuo rituale</span></a>
+      <a href="#trattamenti" class="btn"><span data-i18n="hero.cta2">Scopri i trattamenti</span></a>
+    </div>
+  </div>
+
+  <div class="scrollcue"><span data-i18n="hero.scroll">Scorri</span><div class="bar"></div></div>
+</section>
+
+<!-- ========== MANIFESTO ========== -->
+<section class="manifesto" id="filosofia">
+  <div class="kanji-bg" aria-hidden="true">美</div>
+  <div class="inner wrap">
+    <p class="reveal" data-i18n="manifesto.text">Nella filosofia giapponese, la bellezza non si impone: <em>si coltiva</em>. Crediamo che una pelle luminosa nasca dal tempo, dal rispetto e da un gesto preciso, ripetuto come un rito.</p>
+    <div class="sig reveal d1">慶美堂 · Keibidō</div>
+  </div>
+</section>
+
+<!-- ========== TREATMENTS ========== -->
+<section class="treatments" id="trattamenti">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="num reveal">01 — 施術</span>
+        <h2 class="reveal d1" data-i18n="treat.title">Rituali viso firma</h2>
+      </div>
+      <p class="side reveal d2" data-i18n="treat.side">Quattro protocolli viso su misura, ispirati agli elementi. Ogni rituale integra il massaggio kobido, l'antico lifting manuale giapponese.</p>
+    </div>
+
+    <div class="t-grid">
+      <!-- Mizu -->
+      <article class="t-card reveal">
+        <div class="t-card__img">
+          <span class="t-card__kanji">水</span>
+          <img loading="lazy" src="assets/img/mizu.svg" alt="Rituale idratante viso Mizu" />
+        </div>
+        <div class="t-card__body">
+          <span class="romaji">Mizu · Acqua</span>
+          <h3 data-i18n="treat.mizu.name">Rituale Mizu — Idratazione</h3>
+          <p data-i18n="treat.mizu.desc">Un'onda di idratazione per pelli assetate. La barriera cutanea si ripara, la pelle ritrova morbidezza e luce.</p>
+          <div class="t-card__meta"><span data-i18n="treat.mizu.dur">60 minuti</span><span class="price">da 75 €</span></div>
+        </div>
+      </article>
+
+      <!-- Hikari -->
+      <article class="t-card reveal d1">
+        <div class="t-card__img">
+          <span class="t-card__kanji">光</span>
+          <img loading="lazy" src="assets/img/hikari.svg" alt="Rituale luminosità viso Hikari" />
+        </div>
+        <div class="t-card__body">
+          <span class="romaji">Hikari · Luce</span>
+          <h3 data-i18n="treat.hikari.name">Rituale Hikari — Luminosità</h3>
+          <p data-i18n="treat.hikari.desc">Vitamina C, massaggio kobido e attivi illuminanti per un incarnato che riflette la luce.</p>
+          <div class="t-card__meta"><span data-i18n="treat.hikari.dur">75 minuti</span><span class="price">da 90 €</span></div>
+        </div>
+      </article>
+
+      <!-- Jikan -->
+      <article class="t-card reveal">
+        <div class="t-card__img">
+          <span class="t-card__kanji">時</span>
+          <img loading="lazy" src="assets/img/jikan.svg" alt="Rituale anti-età viso Jikan" />
+        </div>
+        <div class="t-card__body">
+          <span class="romaji">Jikan · Tempo</span>
+          <h3 data-i18n="treat.jikan.name">Rituale Jikan — Anti-età</h3>
+          <p data-i18n="treat.jikan.desc">Il tempo, gentilmente sospeso. Lifting manuale kobido e attivi rimpolpanti per ridisegnare i contorni.</p>
+          <div class="t-card__meta"><span data-i18n="treat.jikan.dur">90 minuti</span><span class="price">da 120 €</span></div>
+        </div>
+      </article>
+
+      <!-- Sei -->
+      <article class="t-card reveal d1">
+        <div class="t-card__img">
+          <span class="t-card__kanji">清</span>
+          <img loading="lazy" src="assets/img/sei.svg" alt="Rituale purificante viso Sei" />
+        </div>
+        <div class="t-card__body">
+          <span class="romaji">Sei · Purezza</span>
+          <h3 data-i18n="treat.sei.name">Rituale Sei — Purezza</h3>
+          <p data-i18n="treat.sei.desc">Detossina e riequilibra le pelli miste e impure, senza aggredire. Pori affinati, pelle fresca.</p>
+          <div class="t-card__meta"><span data-i18n="treat.sei.dur">60 minuti</span><span class="price">da 80 €</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== METHOD ========== -->
+<section class="method" id="metodo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="num reveal">02 — 儀式</span>
+        <h2 class="reveal d1" data-i18n="method.title">Il metodo Keibido</h2>
+      </div>
+      <p class="side reveal d2" data-i18n="method.side">Ogni rituale segue quattro tempi. Nulla è lasciato al caso, tutto è pensato per la tua pelle e per il tuo respiro.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="idx">01</div>
+        <span class="jp">診断</span>
+        <h3 data-i18n="method.s1.t">Diagnosi</h3>
+        <p data-i18n="method.s1.d">Ascoltiamo la tua pelle con uno skin-check approfondito, per un protocollo davvero su misura.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="idx">02</div>
+        <span class="jp">浄化</span>
+        <h3 data-i18n="method.s2.t">Purificazione</h3>
+        <p data-i18n="method.s2.d">Doppia detersione e preparazione della pelle. Il gesto che apre il rituale.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="idx">03</div>
+        <span class="jp">施術</span>
+        <h3 data-i18n="method.s3.t">Trattamento</h3>
+        <p data-i18n="method.s3.d">Attivi selezionati e massaggio kobido. Mani esperte, ritmo lento, risultati visibili.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="idx">04</div>
+        <span class="jp">余韻</span>
+        <h3 data-i18n="method.s4.t">Rituale finale</h3>
+        <p data-i18n="method.s4.d">Protezione, tè e un momento tutto per te. Esci rinnovata, dentro e fuori.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EXPERIENCE BAND ========== -->
+<section class="exp">
+  <div class="exp__media">
+    <img loading="lazy" src="assets/img/experience.svg" alt="Lo spazio zen del centro estetico Keibido" />
+  </div>
+  <div class="exp__inner wrap">
+    <span class="kicker reveal">慶美堂</span>
+    <h2 class="reveal d1" data-i18n="exp.title">Uno spazio pensato come un respiro</h2>
+    <p class="reveal d2" data-i18n="exp.text">Legni chiari, luce morbida, silenzio. Dal momento in cui varchi la soglia, il mondo resta fuori. Rimane solo la tua pelle e il tempo per prendertene cura.</p>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="voices">
+  <div class="wrap">
+    <span class="kicker reveal" style="justify-content:center;display:flex">Testimonianze</span>
+    <h2 class="reveal d1" style="margin-top:1rem" data-i18n="voices.title">La parola a chi ci sceglie</h2>
+    <div class="v-grid">
+      <div class="v-card reveal">
+        <span class="q">”</span>
+        <div class="stars">★★★★★</div>
+        <p data-i18n="voices.q1">Non è un trattamento, è una pausa dal mondo. La mia pelle non è mai stata così luminosa.</p>
+        <div class="who">Giulia M. — Rimini</div>
+      </div>
+      <div class="v-card reveal d1">
+        <span class="q">”</span>
+        <div class="stars">★★★★★</div>
+        <p data-i18n="voices.q2">Il massaggio kobido è pura magia. Esco ogni volta rigenerata e distesa.</p>
+        <div class="who">Sara F. — Riccione</div>
+      </div>
+      <div class="v-card reveal d2">
+        <span class="q">”</span>
+        <div class="stars">★★★★★</div>
+        <p data-i18n="voices.q3">Eleganza, competenza, calma. Il Keibido ha cambiato la mia idea di cura di sé.</p>
+        <div class="who">Chiara V. — Cesena</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOUNDER / TRUST ========== -->
+<section class="founder wrap">
+  <div class="founder__img reveal">
+    <img loading="lazy" src="assets/img/founder.svg" alt="Estetista esperta Keibido" />
+    <div class="frame"></div>
+  </div>
+  <div>
+    <span class="kicker reveal" data-i18n="founder.kicker">Mani esperte</span>
+    <h2 class="reveal d1" data-i18n="founder.title">Sguardo giapponese, cura italiana</h2>
+    <p class="reveal d2" data-i18n="founder.p1">Ogni rituale è guidato da estetiste formate alle tecniche viso giapponesi, dal kobido alla cura della barriera cutanea. Prodotti d'eccellenza, gesti su misura, nessuna fretta.</p>
+    <p class="reveal d2" data-i18n="founder.p2">Perché la vera bellezza non è un risultato: è una relazione, coltivata nel tempo.</p>
+    <div class="badges reveal d3">
+      <div class="badge"><b>+1.200</b><small data-i18n="founder.b1">Rituali all'anno</small></div>
+      <div class="badge"><b>4.9</b><small data-i18n="founder.b2">Media recensioni</small></div>
+      <div class="badge"><b>100%</b><small data-i18n="founder.b3">Su misura</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final" id="contatti">
+  <div class="kanji-bg" aria-hidden="true">和</div>
+  <div class="inner">
+    <span class="kicker reveal">慶美堂 · Rimini</span>
+    <h2 class="reveal d1" data-i18n="final.title">Il tuo rituale ti aspetta</h2>
+    <p class="reveal d2" data-i18n="final.text">Prenota la tua prima consulenza viso. Ti aspettiamo nel cuore di Rimini, per disegnare insieme il rituale perfetto per la tua pelle.</p>
+    <div class="cta-row reveal d3">
+      <a href="tel:+390000000000" class="btn btn--solid"><span data-i18n="final.cta1">Prenota ora</span></a>
+      <a href="https://wa.me/390000000000" class="btn"><span data-i18n="final.cta2">Scrivici su WhatsApp</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <div><span class="mark">KEIBIDO</span><span class="kanji">慶美堂</span></div>
+        <p data-i18n="footer.tag">Centro estetico d'ispirazione giapponese. L'arte del gesto lento, nel cuore di Rimini.</p>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer.visit">Vieni a trovarci</h4>
+        <p>Via Esempio 12</p>
+        <p>47921 Rimini (RN)</p>
+        <a href="https://maps.google.com/?q=Rimini" data-i18n="footer.map">Apri in mappa</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer.hours">Orari</h4>
+        <p data-i18n="footer.h1">Mar – Ven · 9:30 – 19:30</p>
+        <p data-i18n="footer.h2">Sabato · 9:00 – 18:00</p>
+        <p data-i18n="footer.h3">Dom – Lun · Chiuso</p>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer.contact">Contatti</h4>
+        <a href="tel:+390000000000">+39 000 000 0000</a>
+        <a href="mailto:ciao@keibido.it">ciao@keibido.it</a>
+        <a href="https://www.instagram.com/keibido">Instagram</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Keibido · <span data-i18n="footer.rights">Tutti i diritti riservati</span></span>
+      <span>Rimini · Italia</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== i18n ===== */
+const I18N = {
+  it:{
+    "nav.treatments":"Trattamenti","nav.philosophy":"Filosofia","nav.method":"Il Rituale","nav.contact":"Contatti","nav.book":"Prenota",
+    "hero.kicker":"Centro Estetico · Rimini","hero.title":"La bellezza<br>è un <em>rituale</em>.",
+    "hero.lead":"Trattamenti viso d'ispirazione giapponese, dove la scienza della pelle incontra la calma del gesto. Ogni seduta è un ritorno a sé.",
+    "hero.cta1":"Prenota il tuo rituale","hero.cta2":"Scopri i trattamenti","hero.scroll":"Scorri",
+    "manifesto.text":"Nella filosofia giapponese, la bellezza non si impone: <em>si coltiva</em>. Crediamo che una pelle luminosa nasca dal tempo, dal rispetto e da un gesto preciso, ripetuto come un rito.",
+    "treat.title":"Rituali viso firma","treat.side":"Quattro protocolli viso su misura, ispirati agli elementi. Ogni rituale integra il massaggio kobido, l'antico lifting manuale giapponese.",
+    "treat.mizu.name":"Rituale Mizu — Idratazione","treat.mizu.desc":"Un'onda di idratazione per pelli assetate. La barriera cutanea si ripara, la pelle ritrova morbidezza e luce.","treat.mizu.dur":"60 minuti",
+    "treat.hikari.name":"Rituale Hikari — Luminosità","treat.hikari.desc":"Vitamina C, massaggio kobido e attivi illuminanti per un incarnato che riflette la luce.","treat.hikari.dur":"75 minuti",
+    "treat.jikan.name":"Rituale Jikan — Anti-età","treat.jikan.desc":"Il tempo, gentilmente sospeso. Lifting manuale kobido e attivi rimpolpanti per ridisegnare i contorni.","treat.jikan.dur":"90 minuti",
+    "treat.sei.name":"Rituale Sei — Purezza","treat.sei.desc":"Detossina e riequilibra le pelli miste e impure, senza aggredire. Pori affinati, pelle fresca.","treat.sei.dur":"60 minuti",
+    "method.title":"Il metodo Keibido","method.side":"Ogni rituale segue quattro tempi. Nulla è lasciato al caso, tutto è pensato per la tua pelle e per il tuo respiro.",
+    "method.s1.t":"Diagnosi","method.s1.d":"Ascoltiamo la tua pelle con uno skin-check approfondito, per un protocollo davvero su misura.",
+    "method.s2.t":"Purificazione","method.s2.d":"Doppia detersione e preparazione della pelle. Il gesto che apre il rituale.",
+    "method.s3.t":"Trattamento","method.s3.d":"Attivi selezionati e massaggio kobido. Mani esperte, ritmo lento, risultati visibili.",
+    "method.s4.t":"Rituale finale","method.s4.d":"Protezione, tè e un momento tutto per te. Esci rinnovata, dentro e fuori.",
+    "exp.title":"Uno spazio pensato come un respiro","exp.text":"Legni chiari, luce morbida, silenzio. Dal momento in cui varchi la soglia, il mondo resta fuori. Rimane solo la tua pelle e il tempo per prendertene cura.",
+    "voices.title":"La parola a chi ci sceglie",
+    "voices.q1":"Non è un trattamento, è una pausa dal mondo. La mia pelle non è mai stata così luminosa.",
+    "voices.q2":"Il massaggio kobido è pura magia. Esco ogni volta rigenerata e distesa.",
+    "voices.q3":"Eleganza, competenza, calma. Il Keibido ha cambiato la mia idea di cura di sé.",
+    "founder.kicker":"Mani esperte","founder.title":"Sguardo giapponese, cura italiana",
+    "founder.p1":"Ogni rituale è guidato da estetiste formate alle tecniche viso giapponesi, dal kobido alla cura della barriera cutanea. Prodotti d'eccellenza, gesti su misura, nessuna fretta.",
+    "founder.p2":"Perché la vera bellezza non è un risultato: è una relazione, coltivata nel tempo.",
+    "founder.b1":"Rituali all'anno","founder.b2":"Media recensioni","founder.b3":"Su misura",
+    "final.title":"Il tuo rituale ti aspetta","final.text":"Prenota la tua prima consulenza viso. Ti aspettiamo nel cuore di Rimini, per disegnare insieme il rituale perfetto per la tua pelle.",
+    "final.cta1":"Prenota ora","final.cta2":"Scrivici su WhatsApp",
+    "footer.tag":"Centro estetico d'ispirazione giapponese. L'arte del gesto lento, nel cuore di Rimini.",
+    "footer.visit":"Vieni a trovarci","footer.map":"Apri in mappa","footer.hours":"Orari",
+    "footer.h1":"Mar – Ven · 9:30 – 19:30","footer.h2":"Sabato · 9:00 – 18:00","footer.h3":"Dom – Lun · Chiuso",
+    "footer.contact":"Contatti","footer.rights":"Tutti i diritti riservati"
+  },
+  en:{
+    "nav.treatments":"Treatments","nav.philosophy":"Philosophy","nav.method":"The Ritual","nav.contact":"Contact","nav.book":"Book",
+    "hero.kicker":"Beauty Studio · Rimini","hero.title":"Beauty<br>is a <em>ritual</em>.",
+    "hero.lead":"Japanese-inspired facial treatments, where skin science meets the calm of the gesture. Every session is a return to yourself.",
+    "hero.cta1":"Book your ritual","hero.cta2":"Explore treatments","hero.scroll":"Scroll",
+    "manifesto.text":"In Japanese philosophy, beauty is not imposed: <em>it is cultivated</em>. We believe radiant skin is born of time, respect, and a precise gesture, repeated like a rite.",
+    "treat.title":"Signature facial rituals","treat.side":"Four bespoke facial protocols, inspired by the elements. Each ritual includes kobido, the ancient Japanese manual lifting massage.",
+    "treat.mizu.name":"Mizu Ritual — Hydration","treat.mizu.desc":"A wave of hydration for thirsty skin. The barrier repairs, the skin recovers softness and light.","treat.mizu.dur":"60 minutes",
+    "treat.hikari.name":"Hikari Ritual — Radiance","treat.hikari.desc":"Vitamin C, kobido massage and brightening actives for a complexion that reflects the light.","treat.hikari.dur":"75 minutes",
+    "treat.jikan.name":"Jikan Ritual — Anti-age","treat.jikan.desc":"Time, gently suspended. Manual kobido lifting and plumping actives to redraw the contours.","treat.jikan.dur":"90 minutes",
+    "treat.sei.name":"Sei Ritual — Purity","treat.sei.desc":"Detoxifies and rebalances combination and blemish-prone skin, without aggression. Refined pores, fresh skin.","treat.sei.dur":"60 minutes",
+    "method.title":"The Keibido method","method.side":"Every ritual follows four movements. Nothing is left to chance, everything is designed for your skin and your breath.",
+    "method.s1.t":"Diagnosis","method.s1.d":"We listen to your skin with an in-depth skin-check, for a truly bespoke protocol.",
+    "method.s2.t":"Purification","method.s2.d":"Double cleanse and skin preparation. The gesture that opens the ritual.",
+    "method.s3.t":"Treatment","method.s3.d":"Selected actives and kobido massage. Expert hands, slow rhythm, visible results.",
+    "method.s4.t":"Closing ritual","method.s4.d":"Protection, tea and a moment just for you. You leave renewed, inside and out.",
+    "exp.title":"A space designed like a breath","exp.text":"Light woods, soft light, silence. From the moment you cross the threshold, the world stays outside. Only your skin remains, and the time to care for it.",
+    "voices.title":"The word to those who choose us",
+    "voices.q1":"It's not a treatment, it's a pause from the world. My skin has never been this radiant.",
+    "voices.q2":"The kobido massage is pure magic. I leave regenerated every single time.",
+    "voices.q3":"Elegance, expertise, calm. Keibido changed my whole idea of self-care.",
+    "founder.kicker":"Expert hands","founder.title":"Japanese eye, Italian care",
+    "founder.p1":"Every ritual is led by therapists trained in Japanese facial techniques, from kobido to skin-barrier care. Excellent products, bespoke gestures, no rush.",
+    "founder.p2":"Because true beauty is not a result: it's a relationship, cultivated over time.",
+    "founder.b1":"Rituals a year","founder.b2":"Average rating","founder.b3":"Bespoke",
+    "final.title":"Your ritual awaits","final.text":"Book your first facial consultation. We'll be waiting in the heart of Rimini, to design the perfect ritual for your skin together.",
+    "final.cta1":"Book now","final.cta2":"Message us on WhatsApp",
+    "footer.tag":"Japanese-inspired beauty studio. The art of the slow gesture, in the heart of Rimini.",
+    "footer.visit":"Come and see us","footer.map":"Open in maps","footer.hours":"Hours",
+    "footer.h1":"Tue – Fri · 9:30 – 19:30","footer.h2":"Saturday · 9:00 – 18:00","footer.h3":"Sun – Mon · Closed",
+    "footer.contact":"Contact","footer.rights":"All rights reserved"
+  }
+};
+const META = {
+  it:{title:"Keibido · Centro Estetico Giapponese a Rimini | Trattamenti Viso",desc:"Keibido, centro estetico d'ispirazione giapponese nel cuore di Rimini. Trattamenti viso su misura, massaggio kobido, idratazione, luminosità e anti-età."},
+  en:{title:"Keibido · Japanese Beauty Studio in Rimini | Facial Treatments",desc:"Keibido, a Japanese-inspired beauty studio in the heart of Rimini. Bespoke facial treatments, kobido massage, hydration, radiance and anti-age."}
+};
+function setLang(lang){
+  const dict=I18N[lang];if(!dict)return;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(dict[k]!=null)el.innerHTML=dict[k];});
+  document.documentElement.lang=lang;
+  document.title=META[lang].title;
+  const md=document.querySelector('meta[name="description"]');if(md)md.setAttribute("content",META[lang].desc);
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  try{localStorage.setItem("keibido_lang",lang);}catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+(function(){let saved="it";try{saved=localStorage.getItem("keibido_lang")||"it";}catch(e){}if(saved!=="it")setLang(saved);})();
+
+/* ===== nav scroll + burger ===== */
+const nav=document.getElementById("nav");
+addEventListener("scroll",()=>{nav.classList.toggle("scrolled",scrollY>40);},{passive:true});
+document.getElementById("burger").addEventListener("click",()=>nav.classList.toggle("open"));
+document.querySelectorAll("#navlinks a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+
+/* ===== reveal on scroll ===== */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+},{threshold:.14,rootMargin:"0px 0px -8% 0px"});
+document.querySelectorAll(".reveal:not(.in)").forEach(el=>io.observe(el));
+
+/* ===== graceful image fallback (keeps gradient if photo fails) ===== */
+document.querySelectorAll("img").forEach(img=>img.addEventListener("error",function(){this.style.opacity="0";}));
+</script>
+</body>
+</html>
