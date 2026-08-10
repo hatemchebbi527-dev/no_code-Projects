@@ -64,10 +64,10 @@ le titre et la meta description SEO changent aussi selon la langue.
 l'identité. Un emblème vectoriel dérivé (`assets/img/emblem.svg`, `mandala.svg`,
 via `assets/gen_logo.py`) sert d'accent dans la nav et de filigrane dans les sections.
 
-**Photo hero :** la vraie photo du client (loto doré + rituel) est en fond du hero
-(`assets/img/hero.jpg`). Elle a été **recadrée depuis une capture d'écran** pour
-retirer l'interface du téléphone. Pour une netteté maximale sur grands écrans,
-fournir la **photo originale** (non compressée) et relancer `python3 build_artifact.py`.
+**Photo hero :** la vraie photo du client (loto doré + rituel, `assets/img/hero.jpg`)
+est affichée **à côté du texte** dans un hero en deux colonnes (texte crème à gauche,
+photo à droite ; empilées sur mobile avec la photo en haut). Pour changer la photo,
+remplacer `assets/img/hero.jpg` et relancer `python3 build_artifact.py`.
 
 Les autres visuels dans `assets/img/*.svg` (rituels/espace/founder) sont des **placeholders générés sur-mesure**
 (dégradés washi, motif enso au pinceau, teintes de la marque). Ils rendent la page
