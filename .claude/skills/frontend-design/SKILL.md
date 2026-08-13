@@ -66,11 +66,19 @@ accent hue, and stay consistent across the whole site.
 | Accent       | pick ONE (e.g. `indigo-500`) | same accent |
 | Border       | `border-slate-200`   | `border-white/10`              |
 
+Named token roles (define once, reuse everywhere — **no random hex in components**):
+- `--primary` — main brand action color (buttons, links, active states).
+- `--primary-fg` — text/icon color that sits on `--primary`.
+- `--neutral-*` — the slate ramp for text, borders, surfaces.
+- `--accent` — a single secondary highlight, used sparingly (badges, highlights).
+
 Rules:
-- **One accent hue** for the whole site. Don't scatter blue + green + pink.
+- **One primary + one accent** for the whole site. Don't scatter blue + green + pink.
 - Body text must hit **WCAG AA contrast** (4.5:1). `slate-300` on `slate-900` is fine;
   `slate-500` on `slate-800` is only OK for non-essential subtle text.
 - Never use pure black (`#000`) on pure white. Use `slate-900`/`slate-50`.
+- Tokens live in `globals.css` under `@theme`. Components reference them via Tailwind
+  classes (e.g. `bg-primary text-primary-fg`) — never inline hex.
 
 ---
 
@@ -112,7 +120,75 @@ Rules:
 
 ---
 
-## 7. Quick checklist before shipping any UI
+## 7. Component patterns
+
+Reusable structures. Keep them identical everywhere they appear.
+
+**Buttons** — always define all states:
+- Primary: `bg-primary text-primary-fg rounded-full px-6 py-3 font-medium`
+  - hover: `hover:bg-primary/90` + Framer `whileHover={{ scale: 1.05 }}`
+  - active: `whileTap={{ scale: 0.95 }}`
+  - focus: `focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary`
+  - disabled: `disabled:opacity-50 disabled:pointer-events-none`
+- Secondary: `border border-neutral-300 bg-transparent hover:bg-neutral-100`
+- Ghost/text: no border, `hover:underline`. Never more than 2 button weights on one screen.
+
+**Cards** — consistent structure:
+```
+container: rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur h-full
+  ├─ optional icon/media (top)
+  ├─ title      → text-2xl / h4, font-semibold
+  ├─ body       → text-base text-neutral-300, mt-2
+  └─ optional action (bottom)
+hover: whileHover={{ y: -6, scale: 1.02 }} + transition={smoothHover}
+```
+All sibling cards share identical padding, radius, and height.
+
+**Forms** — predictable layout:
+- One column, labels above inputs, `space-y-4` between fields.
+- Input: `w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-base`
+  focus: `focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none`
+- Always a visible `<label>` (accessibility) — placeholder is not a label.
+- Error state: red border + a short message below, `text-sm text-red-500`.
+- Submit button full-width on mobile (`w-full sm:w-auto`).
+
+---
+
+## 8. Avoid the generic "AI aesthetic"
+
+Do NOT ship the default look every AI generates. Specifically avoid:
+- ❌ Purple→blue diagonal gradients everywhere. Pick an intentional palette.
+- ❌ Centering *everything*. Use asymmetry, real layout, editorial alignment.
+- ❌ Three identical cards with a generic icon + "Lorem" heading + one grey line.
+- ❌ Emoji as feature icons. Use a real icon set (`lucide-react`, already installed).
+- ❌ Vague copy ("Empower your workflow", "Seamless experience"). Write concrete, human copy.
+- ❌ Glassmorphism on everything, floating orbs, and fake dashboard mockups.
+
+Instead:
+- ✅ A clear point of view: one strong headline, real product language.
+- ✅ Deliberate whitespace and a strong type hierarchy (§1) doing the work.
+- ✅ One memorable accent, restrained motion, generous spacing.
+- ✅ Real content and specifics over decorative filler.
+
+---
+
+## 9. Integrating 21st.dev (or any external) components
+
+When told to integrate a 21st.dev component:
+1. **Match design tokens** — strip the component's own colors/sizes and re-map them
+   to this system: fonts → §1 scale, spacing → §2 grid, colors → §3 tokens,
+   radii → §4. The component must look like it was born in this site.
+2. **Replace placeholder content** with the real project copy provided. No "Lorem",
+   no demo labels left behind.
+3. **Add Framer Motion entrance animations** using the project components:
+   wrap in `<Reveal>` for scroll fade, `<Stagger>`/`<Stagger.Item>` for lists,
+   `whileHover` + `smoothHover` for interactive parts.
+4. Add `"use client";` if it uses motion/state/hooks.
+5. Verify responsiveness (§5) and re-run the §10 checklist.
+
+---
+
+## 10. Quick checklist before shipping any UI
 
 - [ ] Every font size is a token from §1 (no random px).
 - [ ] Every spacing value is on the 8pt grid (§2).
