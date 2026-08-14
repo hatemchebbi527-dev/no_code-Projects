@@ -1,26 +1,45 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Route, BadgePercent, Headset } from "lucide-react";
+import { Route, BadgePercent, Headset, type LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { smoothHover } from "@/components/motion/variants";
 
-const features = [
+type Feature = {
+  icon: LucideIcon;
+  title: string;
+  text: string;
+  /** Photo optionnelle : dépose le fichier dans public/features/ et mets
+   *  son chemin ici (ex: "/features/itineraire.jpg"). Laisse "" pour le
+   *  placeholder dégradé. */
+  img: string;
+  /** Dégradé du placeholder quand img est vide. */
+  gradient: string;
+};
+
+const features: Feature[] = [
   {
     icon: Route,
     title: "Itinéraires 100% sur mesure",
     text: "On dessine chaque étape selon vos envies, votre rythme et votre budget. Aucun package standard, uniquement votre voyage.",
+    img: "",
+    gradient: "from-primary to-teal-800",
   },
   {
     icon: BadgePercent,
     title: "Les meilleurs prix, négociés",
     text: "Vols, hôtels, activités : on compare et on négocie à votre place. En moyenne 18 % moins cher qu'en réservant seul.",
+    img: "",
+    gradient: "from-accent to-orange-700",
   },
   {
     icon: Headset,
     title: "Un conseiller dédié 7j/7",
     text: "Une vraie personne joignable avant et pendant le voyage. Un vol annulé à 3 h du matin ? On s'en occupe.",
+    img: "",
+    gradient: "from-teal-700 to-slate-900",
   },
 ];
 
@@ -41,18 +60,37 @@ export function Features() {
         </Reveal>
 
         <Stagger className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map(({ icon: Icon, title, text }) => (
+          {features.map(({ icon: Icon, title, text, img, gradient }) => (
             <Stagger.Item key={title}>
               <motion.article
-                whileHover={{ y: -6, scale: 1.02 }}
+                whileHover={{ y: -6 }}
                 transition={smoothHover}
-                className="h-full rounded-2xl border border-border bg-surface-alt p-8"
+                className="group h-full overflow-hidden rounded-2xl border border-border bg-white shadow-sm"
               >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h3 className="mt-6 text-2xl font-semibold text-ink">{title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-muted">{text}</p>
+                {/* Zone image */}
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  {img ? (
+                    <Image
+                      src={img}
+                      alt={title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div
+                      className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${gradient}`}
+                    >
+                      <Icon className="h-14 w-14 text-white/90" strokeWidth={1.5} />
+                    </div>
+                  )}
+                </div>
+
+                {/* Contenu */}
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-ink">{title}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-muted">{text}</p>
+                </div>
               </motion.article>
             </Stagger.Item>
           ))}
