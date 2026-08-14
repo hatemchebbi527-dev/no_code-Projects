@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Star, ShieldCheck } from "lucide-react";
 import { staggerContainer, staggerItem, smoothHover } from "@/components/motion/variants";
 import { HERO_VIDEO_URL, HERO_POSTER } from "@/lib/hero-media";
+import { HeroScenery } from "./HeroScenery";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -14,7 +15,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[88vh] items-center overflow-hidden"
+      className="relative flex min-h-screen items-center overflow-hidden"
     >
       {/* ── Fond ─────────────────────────────────────────────── */}
       {showVideo ? (
@@ -37,12 +38,13 @@ export function Hero() {
           className="absolute inset-0 h-full w-full object-cover"
         />
       ) : (
-        // Repli dégradé (aucune vidéo/poster fournis)
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-teal-800 to-slate-900" />
+        // Repli : paysage animé (aucune vidéo/poster fournis)
+        <HeroScenery />
       )}
 
-      {/* Overlay pour la lisibilité du texte blanc */}
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/60 to-slate-950/25" />
+      {/* Voile léger : lisibilité à gauche, couleurs préservées à droite */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/55 via-slate-950/20 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-950/40 to-transparent" />
 
       {/* ── Contenu ──────────────────────────────────────────── */}
       <div className="relative mx-auto w-full max-w-7xl px-6 py-20 sm:py-28">
