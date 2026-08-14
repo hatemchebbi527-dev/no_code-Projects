@@ -1,33 +1,60 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Star, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, Star, ShieldCheck } from "lucide-react";
 import { staggerContainer, staggerItem, smoothHover } from "@/components/motion/variants";
+import { HERO_VIDEO_URL, HERO_POSTER } from "@/lib/hero-media";
 
 export function Hero() {
   const reduce = useReducedMotion();
+  // On ne joue la vidéo que si une URL est fournie ET que l'utilisateur
+  // n'a pas désactivé les animations (accessibilité + perf).
+  const showVideo = Boolean(HERO_VIDEO_URL) && !reduce;
 
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-surface-alt"
+      className="relative flex min-h-[88vh] items-center overflow-hidden"
     >
-      {/* Décor: dégradé maîtrisé teal→ambre, discret (pas de blob violet générique) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-32 -top-32 h-[520px] w-[520px] rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl"
-      />
+      {/* ── Fond ─────────────────────────────────────────────── */}
+      {showVideo ? (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={HERO_POSTER || undefined}
+        >
+          <source src={HERO_VIDEO_URL} type="video/mp4" />
+        </video>
+      ) : HERO_POSTER ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={HERO_POSTER}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : (
+        // Repli dégradé (aucune vidéo/poster fournis)
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-teal-800 to-slate-900" />
+      )}
 
-      <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 py-20 sm:py-28 lg:grid-cols-[1.1fr_0.9fr]">
-        {/* Colonne texte */}
+      {/* Overlay pour la lisibilité du texte blanc */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/60 to-slate-950/25" />
+
+      {/* ── Contenu ──────────────────────────────────────────── */}
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-20 sm:py-28">
         <motion.div
           variants={reduce ? undefined : staggerContainer}
           initial={reduce ? false : "hidden"}
           animate="visible"
+          className="max-w-2xl"
         >
           <motion.span
             variants={reduce ? undefined : staggerItem}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-1.5 text-sm font-medium text-muted"
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur"
           >
             <span className="h-2 w-2 rounded-full bg-accent" />
             Agence de voyage en ligne
@@ -35,15 +62,15 @@ export function Hero() {
 
           <motion.h1
             variants={reduce ? undefined : staggerItem}
-            className="mt-6 text-5xl font-bold leading-[1.1] tracking-tight text-ink sm:text-6xl"
+            className="mt-6 text-5xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl"
           >
             Votre prochain voyage,{" "}
-            <span className="text-primary">pensé à la main.</span>
+            <span className="text-accent">pensé à la main.</span>
           </motion.h1>
 
           <motion.p
             variants={reduce ? undefined : staggerItem}
-            className="mt-6 max-w-xl text-xl leading-relaxed text-muted"
+            className="mt-6 max-w-xl text-xl leading-relaxed text-white/80"
           >
             On construit des itinéraires sur mesure, on négocie les prix, et on
             gère la logistique. Vous n&apos;avez plus qu&apos;à faire vos valises.
@@ -58,79 +85,31 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={smoothHover}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 font-medium text-primary-foreground hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 font-medium text-primary-foreground hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Planifier mon voyage
               <ArrowRight className="h-4 w-4" />
             </motion.a>
             <a
               href="#destinations"
-              className="inline-flex items-center justify-center rounded-full border border-border bg-white px-8 py-3.5 font-medium text-ink transition-colors hover:bg-surface-alt"
+              className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/5 px-8 py-3.5 font-medium text-white backdrop-blur transition-colors hover:bg-white/15"
             >
               Voir les destinations
             </a>
           </motion.div>
 
-          {/* Micro social proof */}
           <motion.div
             variants={reduce ? undefined : staggerItem}
-            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-muted"
+            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-white/80"
           >
             <span className="flex items-center gap-2">
               <Star className="h-4 w-4 fill-accent text-accent" />
-              <strong className="text-ink">4,9/5</strong> sur 1 200 avis
+              <strong className="text-white">4,9/5</strong> sur 1 200 avis
             </span>
             <span className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-primary" />
+              <ShieldCheck className="h-4 w-4 text-accent" />
               Paiement sécurisé &amp; annulation flexible
             </span>
-          </motion.div>
-        </motion.div>
-
-        {/* Colonne visuelle: carte produit "destination" (design intentionnel) */}
-        <motion.div
-          initial={reduce ? false : { opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-          className="relative"
-        >
-          <div className="relative rounded-3xl bg-gradient-to-br from-primary to-teal-800 p-8 text-white shadow-2xl shadow-primary/20">
-            <div className="flex items-center justify-between text-sm text-white/80">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" /> Santorin, Grèce
-              </span>
-              <span className="rounded-full bg-white/15 px-3 py-1 font-medium">
-                7 jours
-              </span>
-            </div>
-            <p className="mt-24 text-sm text-white/70">À partir de</p>
-            <p className="text-4xl font-bold">
-              890&nbsp;€ <span className="text-base font-normal text-white/70">/ pers.</span>
-            </p>
-            <div className="mt-4 flex items-center gap-1 text-sm">
-              <Star className="h-4 w-4 fill-accent text-accent" />
-              <Star className="h-4 w-4 fill-accent text-accent" />
-              <Star className="h-4 w-4 fill-accent text-accent" />
-              <Star className="h-4 w-4 fill-accent text-accent" />
-              <Star className="h-4 w-4 fill-accent text-accent" />
-              <span className="ml-1 text-white/70">Vols + hôtel inclus</span>
-            </div>
-          </div>
-
-          {/* Carte flottante secondaire */}
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="absolute -bottom-6 right-4 flex items-center gap-3 rounded-2xl border border-border bg-white p-4 shadow-xl"
-          >
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-accent/15 text-accent">
-              <ShieldCheck className="h-5 w-5" />
-            </span>
-            <div className="text-sm">
-              <p className="font-semibold text-ink">Réservé en 2 min</p>
-              <p className="text-muted">Sans frais cachés</p>
-            </div>
           </motion.div>
         </motion.div>
       </div>
