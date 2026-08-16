@@ -76,12 +76,12 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0, 0, 0.2, 1] as [number, number, number, number] } },
 }
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 px-4 bg-white">
+    <section id="pricing" className="py-28 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

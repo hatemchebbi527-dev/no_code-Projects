@@ -44,12 +44,12 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0, 0, 0.2, 1] as [number, number, number, number] } },
 }
 
 export default function SocialProof() {
   return (
-    <section id="social-proof" className="py-24 px-4 bg-neutral-50">
+    <section id="social-proof" className="py-28 px-4 bg-neutral-50">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

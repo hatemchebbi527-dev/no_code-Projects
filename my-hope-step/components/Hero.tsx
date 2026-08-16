@@ -58,13 +58,13 @@ export default function Hero() {
         </motion.div>
 
         {/* Headline */}
-        <h1 className="max-w-2xl text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg leading-tight">
+        <h1 className="mx-auto max-w-2xl text-4xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-tight">
           Votre prochaine aventure{" "}
-          <span className="text-amber-400">commence ici</span>
+          <span className="text-amber-500">commence ici</span>
         </h1>
 
         {/* Subheadline */}
-        <p className="mt-6 max-w-lg text-sm md:text-base text-white/90 drop-shadow mx-auto">
+        <p className="mt-6 max-w-lg text-sm md:text-base text-neutral-600 mx-auto">
           My Hope Step conçoit des voyages sur-mesure pour vous offrir des expériences inoubliables.
           Destinations exclusives, prix transparents, accompagnement 24h/24.
         </p>
@@ -86,27 +86,14 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
           >
             <Button
+              variant="outline"
               size="lg"
-              className="bg-white/20 backdrop-blur-sm text-white border border-white/40 hover:bg-white/30 gap-2"
+              className="bg-white/80 backdrop-blur-sm text-neutral-800 border-neutral-300 hover:bg-white gap-2"
             >
               Découvrir
             </Button>
           </motion.a>
         </div>
-
-        {/* Trust bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-8 flex items-center justify-center gap-6 text-white/80 text-xs"
-        >
-          <span>✈️ 50+ destinations</span>
-          <span className="w-px h-4 bg-white/30" />
-          <span>🏨 Hôtels sélectionnés</span>
-          <span className="w-px h-4 bg-white/30" />
-          <span>🛡️ Paiement sécurisé</span>
-        </motion.div>
       </ContainerScale>
     </ContainerScroll>
   )

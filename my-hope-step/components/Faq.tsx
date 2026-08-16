@@ -45,7 +45,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.4, ease: [0, 0, 0.2, 1] as [number, number, number, number] }}
       className="border-b border-neutral-100 last:border-0"
     >
       <button
@@ -71,7 +71,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] }}
             className="overflow-hidden"
           >
             <p className="pb-5 text-sm text-neutral-600 leading-relaxed pr-8">
@@ -86,7 +86,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 export default function Faq() {
   return (
-    <section id="faq" className="py-24 px-4 bg-neutral-50">
+    <section id="faq" className="py-28 px-4 bg-neutral-50">
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
