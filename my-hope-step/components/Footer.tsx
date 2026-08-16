@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Plane, Instagram, Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react"
+import { Plane, Camera, Users, Video, Mail, Phone, MapPin } from "lucide-react"
 
 const links = {
   Destinations: ["Maldives", "Japon", "Bali", "Santorin", "Maroc", "Islande"],
@@ -11,9 +11,9 @@ const links = {
 }
 
 const socials = [
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Facebook, label: "Facebook", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
+  { icon: Camera, label: "Instagram", href: "#" },
+  { icon: Users, label: "Facebook", href: "#" },
+  { icon: Video, label: "YouTube", href: "#" },
 ]
 
 export default function Footer() {
