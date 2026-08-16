@@ -81,7 +81,7 @@ const cardVariants = {
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 px-4 bg-white">
+    <section id="pricing" className="py-28 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
