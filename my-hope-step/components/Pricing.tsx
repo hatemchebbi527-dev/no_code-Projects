@@ -91,7 +91,7 @@ export default function Pricing() {
               <div className="mb-6">
                 <h3 className="text-lg font-bold text-neutral-900 mb-1">{plan.name}</h3>
                 <p className="text-xs text-neutral-500 mb-4">{plan.description}</p>
-                <div className="flex items-baseline gap-1">
+                <div className="flex items-baseline gap-1" dir="ltr">
                   <span className="text-4xl font-bold text-neutral-900">{plan.price}€</span>
                   <span className="text-sm text-neutral-500">{t.pricing.period}</span>
                 </div>
