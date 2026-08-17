@@ -4,6 +4,7 @@ import { motion } from "motion/react"
 import { BentoCell, BentoGrid, ContainerScale, ContainerScroll } from "@/components/blocks/hero-gallery-scroll-animation"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Star } from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
 const TRAVEL_IMAGES = [
   {
@@ -29,6 +30,7 @@ const TRAVEL_IMAGES = [
 ]
 
 export default function Hero() {
+  const { t } = useI18n()
   return (
     <ContainerScroll className="h-[350vh]">
       {/* Background image grid */}
@@ -54,19 +56,18 @@ export default function Hero() {
           className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6"
         >
           <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-          +2 000 voyageurs satisfaits
+          {t.hero.badge}
         </motion.div>
 
         {/* Headline */}
         <h1 className="mx-auto max-w-2xl text-4xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-tight">
-          Votre prochaine aventure{" "}
-          <span className="text-amber-500">commence ici</span>
+          {t.hero.title1}{" "}
+          <span className="text-amber-500">{t.hero.title2}</span>
         </h1>
 
         {/* Subheadline */}
         <p className="mt-6 max-w-lg text-sm md:text-base text-neutral-600 mx-auto">
-          My Hope Step conçoit des voyages sur-mesure pour vous offrir des expériences inoubliables.
-          Destinations exclusives, prix transparents, accompagnement 24h/24.
+          {t.hero.subtitle}
         </p>
 
         {/* CTAs */}
@@ -77,7 +78,7 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
           >
             <Button variant="accent" size="lg" className="gap-2 shadow-lg">
-              Voir nos offres <ArrowRight className="w-4 h-4" />
+              {t.hero.cta1} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
             </Button>
           </motion.a>
           <motion.a
@@ -90,7 +91,7 @@ export default function Hero() {
               size="lg"
               className="bg-white/80 backdrop-blur-sm text-neutral-800 border-neutral-300 hover:bg-white gap-2"
             >
-              Découvrir
+              {t.hero.cta2}
             </Button>
           </motion.a>
         </div>

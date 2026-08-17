@@ -3,39 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Plus, Minus } from "lucide-react"
-
-const faqs = [
-  {
-    question: "Comment fonctionne la réservation ?",
-    answer:
-      "Choisissez votre forfait, remplissez le formulaire de réservation en ligne, et un conseiller vous contacte sous 24h pour finaliser les détails. Le paiement s'effectue en ligne de façon sécurisée, avec possibilité de payer en 3 fois sans frais.",
-  },
-  {
-    question: "Puis-je personnaliser mon voyage ?",
-    answer:
-      "Absolument. Tous nos forfaits sont adaptables : dates, hôtel, activités, extensions de séjour. Contactez notre équipe et nous concevons un itinéraire sur-mesure selon vos envies et votre budget.",
-  },
-  {
-    question: "Quelle est votre politique d'annulation ?",
-    answer:
-      "Annulation gratuite jusqu'à 30 jours avant le départ. Entre 30 et 15 jours : 50% remboursé. Moins de 15 jours : non remboursable, mais nous proposons un report de voyage. L'assurance annulation incluse dans nos forfaits Découverte et Prestige couvre les imprévus.",
-  },
-  {
-    question: "Les vols sont-ils inclus dans tous les forfaits ?",
-    answer:
-      "Oui, tous nos forfaits incluent les vols aller-retour depuis Paris. Départ depuis d'autres villes françaises possible avec un supplément. Le forfait Prestige inclut des vols en classe Business.",
-  },
-  {
-    question: "Est-ce que vous proposez des voyages en groupe ?",
-    answer:
-      "Oui, nous organisons des voyages de groupe à partir de 8 personnes (famille, amis, team building). Des tarifs préférentiels s'appliquent et nous pouvons gérer l'ensemble de la logistique, y compris les repas de groupe et les animations.",
-  },
-  {
-    question: "Comment me joindre à votre équipe en cas d'urgence pendant le voyage ?",
-    answer:
-      "Tous nos clients reçoivent un numéro d'urgence dédié, joignable 24h/24 pendant la durée du séjour. Un conseiller local est également disponible dans la plupart de nos destinations.",
-  },
-]
+import { useI18n } from "@/lib/i18n"
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = React.useState(false)
@@ -85,6 +53,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function Faq() {
+  const { t } = useI18n()
   return (
     <section id="faq" className="py-28 px-4 bg-neutral-50">
       <div className="max-w-3xl mx-auto">
@@ -98,13 +67,13 @@ export default function Faq() {
           className="text-center mb-12"
         >
           <span className="inline-block text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">
-            FAQ
+            {t.faq.eyebrow}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">
-            Questions fréquentes
+            {t.faq.title}
           </h2>
           <p className="mt-4 text-neutral-600 text-sm md:text-base">
-            Tout ce que vous devez savoir avant de partir.
+            {t.faq.subtitle}
           </p>
         </motion.div>
 
@@ -116,7 +85,7 @@ export default function Faq() {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="bg-white rounded-2xl border border-neutral-100 shadow-sm px-6 divide-y divide-neutral-100"
         >
-          {faqs.map((faq) => (
+          {t.faq.items.map((faq) => (
             <FaqItem key={faq.question} {...faq} />
           ))}
         </motion.div>
@@ -130,9 +99,14 @@ export default function Faq() {
           className="mt-10 text-center"
         >
           <p className="text-sm text-neutral-500">
-            Vous n'avez pas trouvé votre réponse ?{" "}
-            <a href="mailto:contact@myhopestep.com" className="text-cyan-600 font-medium hover:underline">
-              Contactez-nous
+            {t.faq.stillQuestions}{" "}
+            <a
+              href="https://wa.me/32471927970"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-600 font-medium hover:underline"
+            >
+              {t.faq.contactUs}
             </a>
           </p>
         </motion.div>
