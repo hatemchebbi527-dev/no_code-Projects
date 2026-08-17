@@ -2,13 +2,7 @@
 
 import { motion } from "motion/react"
 import { Plane, Mail, Phone, MapPin } from "lucide-react"
-
-const links = {
-  Destinations: ["Maldives", "Japon", "Bali", "Santorin", "Maroc", "Islande"],
-  Offres: ["Forfait Essentiel", "Forfait Découverte", "Forfait Prestige", "Voyages en groupe", "Sur-mesure"],
-  Agence: ["À propos", "Notre équipe", "Témoignages", "Blog voyage", "FAQ"],
-  Légal: ["Mentions légales", "CGV", "Politique de confidentialité", "Cookies"],
-}
+import { useI18n } from "@/lib/i18n"
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -41,6 +35,7 @@ const socials = [
 ]
 
 export default function Footer() {
+  const { t } = useI18n()
   return (
     <footer className="bg-neutral-900 text-neutral-400">
       {/* CTA banner */}
@@ -53,10 +48,10 @@ export default function Footer() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-3">
-            Prêt à vivre l'aventure de votre vie ?
+            {t.footer.ctaTitle}
           </h2>
           <p className="text-cyan-100 text-sm mb-6">
-            Parlez à un conseiller dès aujourd'hui. Consultation gratuite, sans engagement.
+            {t.footer.ctaSubtitle}
           </p>
           <motion.a
             href="#pricing"
@@ -64,7 +59,7 @@ export default function Footer() {
             whileTap={{ scale: 0.97 }}
             className="inline-block bg-white text-cyan-700 font-semibold px-8 py-3 rounded-lg text-sm hover:bg-cyan-50 transition-colors shadow-md"
           >
-            Voir nos offres
+            {t.footer.ctaButton}
           </motion.a>
         </motion.div>
       </div>
@@ -80,7 +75,7 @@ export default function Footer() {
               My Hope Step
             </a>
             <p className="text-sm leading-relaxed mb-6">
-              Agence de voyage en ligne spécialisée dans les séjours sur-mesure. Nous faisons du rêve une réalité depuis 2019.
+              {t.footer.brandDesc}
             </p>
             {/* Contact */}
             <ul className="space-y-2 text-sm">
@@ -94,7 +89,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
-                Belgique, Liège
+                {t.footer.location}
               </li>
             </ul>
             {/* Socials */}
@@ -116,11 +111,11 @@ export default function Footer() {
           </div>
 
           {/* Links cols */}
-          {Object.entries(links).map(([category, items]) => (
-            <div key={category}>
-              <h4 className="text-white text-sm font-semibold mb-4">{category}</h4>
+          {t.footer.columns.map((col) => (
+            <div key={col.title}>
+              <h4 className="text-white text-sm font-semibold mb-4">{col.title}</h4>
               <ul className="space-y-2">
-                {items.map((item) => (
+                {col.items.map((item) => (
                   <li key={item}>
                     <a
                       href="#"
@@ -137,8 +132,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <span>© {new Date().getFullYear()} My Hope Step. Tous droits réservés.</span>
-          <span className="text-neutral-600">Fait avec ❤️ pour les voyageurs du monde entier</span>
+          <span>© {new Date().getFullYear()} My Hope Step. {t.footer.rights}</span>
+          <span className="text-neutral-600">{t.footer.madeWith}</span>
         </div>
       </div>
     </footer>

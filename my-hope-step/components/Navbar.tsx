@@ -4,15 +4,11 @@ import * as React from "react"
 import { motion, useScroll, useMotionValueEvent } from "motion/react"
 import { Plane, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-const navLinks = [
-  { label: "Destinations", href: "#features" },
-  { label: "Nos offres", href: "#pricing" },
-  { label: "Témoignages", href: "#social-proof" },
-  { label: "FAQ", href: "#faq" },
-]
+import { useI18n } from "@/lib/i18n"
+import LanguageToggle from "@/components/LanguageToggle"
 
 export default function Navbar() {
+  const { t } = useI18n()
   const [scrolled, setScrolled] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const { scrollY } = useScroll()
@@ -20,6 +16,13 @@ export default function Navbar() {
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 20)
   })
+
+  const navLinks = [
+    { label: t.nav.destinations, href: "#features" },
+    { label: t.nav.offers, href: "#pricing" },
+    { label: t.nav.testimonials, href: "#social-proof" },
+    { label: t.nav.faq, href: "#faq" },
+  ]
 
   return (
     <motion.header
@@ -41,7 +44,7 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.href}
               href={link.href}
               className="text-sm font-medium text-neutral-600 hover:text-cyan-600 transition-colors"
             >
@@ -50,10 +53,11 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden md:block">
+        {/* CTA + language */}
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageToggle />
           <Button variant="default" size="sm">
-            Réserver maintenant
+            {t.nav.book}
           </Button>
         </div>
 
@@ -77,7 +81,7 @@ export default function Navbar() {
         >
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
               className="text-sm font-medium text-neutral-700 hover:text-cyan-600 transition-colors"
@@ -85,8 +89,11 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button variant="default" size="sm" className="w-full mt-2">
-            Réserver maintenant
+          <div className="pt-1">
+            <LanguageToggle compact />
+          </div>
+          <Button variant="default" size="sm" className="w-full mt-1">
+            {t.nav.book}
           </Button>
         </motion.div>
       )}

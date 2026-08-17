@@ -3,70 +3,12 @@
 import { motion } from "motion/react"
 import { Check, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useI18n } from "@/lib/i18n"
 
-const plans = [
-  {
-    name: "Essentiel",
-    price: "799",
-    period: "/ personne",
-    description: "Idéal pour un premier voyage organisé, sans prise de tête.",
-    color: "border-neutral-200",
-    badge: null,
-    cta: "Choisir Essentiel",
-    ctaVariant: "outline" as const,
-    features: [
-      "Vol aller-retour inclus",
-      "Hôtel 3 étoiles sélectionné",
-      "Transferts aéroport",
-      "Assistance email 9h-18h",
-      "Guide de destination PDF",
-    ],
-    missing: [
-      "Conseiller dédié",
-      "Activités incluses",
-    ],
-  },
-  {
-    name: "Découverte",
-    price: "1 490",
-    period: "/ personne",
-    description: "Notre offre la plus populaire. Expérience complète, zéro stress.",
-    color: "border-cyan-500",
-    badge: "Le plus populaire",
-    cta: "Choisir Découverte",
-    ctaVariant: "default" as const,
-    features: [
-      "Vol aller-retour inclus",
-      "Hôtel 4 étoiles sélectionné",
-      "Transferts aéroport",
-      "Conseiller dédié 7j/7",
-      "2 activités incluses",
-      "Assurance voyage complète",
-      "Itinéraire personnalisé",
-    ],
-    missing: [],
-  },
-  {
-    name: "Prestige",
-    price: "2 990",
-    period: "/ personne",
-    description: "Le voyage d'exception. Sur-mesure de A à Z, service 5 étoiles.",
-    color: "border-amber-400",
-    badge: "Luxe",
-    cta: "Choisir Prestige",
-    ctaVariant: "accent" as const,
-    features: [
-      "Vol business class inclus",
-      "Hôtel 5 étoiles ou villa privée",
-      "Transferts limousine",
-      "Conseiller dédié 24h/24",
-      "Activités illimitées",
-      "Assurance tous risques",
-      "Itinéraire 100% sur-mesure",
-      "Conciergerie privée sur place",
-    ],
-    missing: [],
-  },
+const planStyles = [
+  { price: "799", color: "border-neutral-200", badgeType: null as null | "popular" | "luxe", ctaVariant: "outline" as const, highlighted: false },
+  { price: "1 490", color: "border-cyan-500", badgeType: "popular" as const, ctaVariant: "default" as const, highlighted: true },
+  { price: "2 990", color: "border-amber-400", badgeType: "luxe" as const, ctaVariant: "accent" as const, highlighted: false },
 ]
 
 const containerVariants = {
@@ -80,6 +22,18 @@ const cardVariants = {
 }
 
 export default function Pricing() {
+  const { t } = useI18n()
+  const plans = planStyles.map((style, i) => ({
+    ...style,
+    ...t.pricing.plans[i],
+    badgeLabel:
+      style.badgeType === "popular"
+        ? t.pricing.popularBadge
+        : style.badgeType === "luxe"
+        ? t.pricing.luxeBadge
+        : null,
+  }))
+
   return (
     <section id="pricing" className="py-28 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
@@ -93,14 +47,14 @@ export default function Pricing() {
           className="text-center mb-16"
         >
           <span className="inline-block text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">
-            Nos offres
+            {t.pricing.eyebrow}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">
-            Des forfaits clairs,{" "}
-            <span className="text-cyan-600">pour chaque budget</span>
+            {t.pricing.title1}{" "}
+            <span className="text-cyan-600">{t.pricing.title2}</span>
           </h2>
           <p className="mt-4 text-neutral-600 max-w-xl mx-auto text-sm md:text-base">
-            Prix par personne, tout inclus. Aucun frais caché. Choisissez votre niveau d'expérience.
+            {t.pricing.subtitle}
           </p>
         </motion.div>
 
@@ -118,18 +72,18 @@ export default function Pricing() {
               variants={cardVariants}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className={`relative rounded-2xl border-2 ${plan.color} p-8 shadow-sm hover:shadow-md transition-shadow bg-white ${
-                plan.badge === "Le plus populaire" ? "ring-2 ring-cyan-500 ring-offset-2" : ""
+                plan.highlighted ? "ring-2 ring-cyan-500 ring-offset-2" : ""
               }`}
             >
               {/* Badge */}
-              {plan.badge && (
+              {plan.badgeLabel && (
                 <div className={`absolute -top-3.5 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
-                  plan.badge === "Le plus populaire"
+                  plan.badgeType === "popular"
                     ? "bg-cyan-600 text-white"
                     : "bg-amber-400 text-white"
                 }`}>
                   <Zap className="w-3 h-3" />
-                  {plan.badge}
+                  {plan.badgeLabel}
                 </div>
               )}
 
@@ -139,7 +93,7 @@ export default function Pricing() {
                 <p className="text-xs text-neutral-500 mb-4">{plan.description}</p>
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-bold text-neutral-900">{plan.price}€</span>
-                  <span className="text-sm text-neutral-500">{plan.period}</span>
+                  <span className="text-sm text-neutral-500">{t.pricing.period}</span>
                 </div>
               </div>
 
@@ -177,7 +131,7 @@ export default function Pricing() {
           transition={{ delay: 0.4 }}
           className="text-center text-xs text-neutral-400 mt-10"
         >
-          Prix indicatifs pour des départs en basse saison. Contactez-nous pour un devis personnalisé.
+          {t.pricing.footerNote}
         </motion.p>
       </div>
     </section>
