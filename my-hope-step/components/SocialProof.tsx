@@ -6,7 +6,7 @@ import { Star, Quote } from "lucide-react"
 const testimonials = [
   {
     name: "Sophie M.",
-    location: "Paris, France",
+    location: "Liège, Belgique",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&h=100&auto=format&fit=crop",
     destination: "Maldives",
     rating: 5,
@@ -14,9 +14,9 @@ const testimonials = [
   },
   {
     name: "Karim B.",
-    location: "Lyon, France",
+    location: "Bruxelles, Belgique",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&h=100&auto=format&fit=crop",
-    destination: "Japon",
+    destination: "Dubai",
     rating: 5,
     text: "Mon voyage au Japon était un rêve de longue date. L'équipe a créé un itinéraire sur-mesure incroyable. Prix clair, aucune mauvaise surprise. 10/10.",
   },
