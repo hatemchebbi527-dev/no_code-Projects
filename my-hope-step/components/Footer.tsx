@@ -62,15 +62,15 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-cyan-500 shrink-0" />
-                contact@myhopestep.com
+                contact@myhope-step.com
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-cyan-500 shrink-0" />
-                +33 1 23 45 67 89
+                +32 471 92 79 70
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
-                Paris, France
+                Belgique, Liège
               </li>
             </ul>
             {/* Socials */}
