@@ -100,7 +100,12 @@ export default function Faq() {
         >
           <p className="text-sm text-neutral-500">
             {t.faq.stillQuestions}{" "}
-            <a href="mailto:contact@myhopestep.com" className="text-cyan-600 font-medium hover:underline">
+            <a
+              href="https://wa.me/32471927970"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-600 font-medium hover:underline"
+            >
               {t.faq.contactUs}
             </a>
           </p>
