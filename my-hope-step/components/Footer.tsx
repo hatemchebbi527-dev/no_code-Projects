@@ -39,7 +39,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 const socials = [
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/myhopestep.be" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61584486091134" },
-  { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.by.n" },
+  { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.step.by.n" },
   { icon: WhatsAppIcon, label: "WhatsApp", href: "https://wa.me/32471927970" },
 ]
 
