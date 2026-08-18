@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Mail, MapPin } from "lucide-react"
+import { Mail } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -63,7 +63,7 @@ function FlagBelgium() {
 }
 
 const contacts = [
-  { Flag: FlagItaly, location: null, number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
+  { Flag: FlagItaly, location: "Italie, Bologne", number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
   { Flag: FlagBelgium, location: "Belgique, Liège", number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
 ]
 
@@ -119,10 +119,6 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-cyan-500 shrink-0" />
                 contact@myhope-step.com
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
-                {t.footer.location}
               </li>
               {contacts.map(({ Flag, location, number, href }) => (
                 <li key={number} className="pt-2">
