@@ -42,9 +42,29 @@ const socials = [
   { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.step.by.n" },
 ]
 
+function FlagItaly() {
+  return (
+    <svg viewBox="0 0 3 2" width="24" height="16" className="rounded-sm shrink-0">
+      <rect width="1" height="2" fill="#009246" />
+      <rect x="1" width="1" height="2" fill="#ffffff" />
+      <rect x="2" width="1" height="2" fill="#ce2b37" />
+    </svg>
+  )
+}
+
+function FlagBelgium() {
+  return (
+    <svg viewBox="0 0 3 2" width="24" height="16" className="rounded-sm shrink-0">
+      <rect width="1" height="2" fill="#000000" />
+      <rect x="1" width="1" height="2" fill="#FAE042" />
+      <rect x="2" width="1" height="2" fill="#ED2939" />
+    </svg>
+  )
+}
+
 const contacts = [
-  { flag: "🇮🇹", location: "Italie, Bologne", number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
-  { flag: "🇧🇪", location: "Belgique, Liège", number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
+  { Flag: FlagItaly, location: null, number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
+  { Flag: FlagBelgium, location: "Belgique, Liège", number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
 ]
 
 export default function Footer() {
@@ -104,11 +124,11 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
                 {t.footer.location}
               </li>
-              {contacts.map(({ flag, location, number, href }) => (
+              {contacts.map(({ Flag, location, number, href }) => (
                 <li key={number} className="pt-2">
                   <div className="flex items-center gap-2 text-neutral-300 mb-1">
-                    <span className="text-base leading-none">{flag}</span>
-                    <span className="text-xs font-medium">{location}</span>
+                    <Flag />
+                    {location && <span className="text-xs font-medium">{location}</span>}
                   </div>
                   <a
                     href={href}
