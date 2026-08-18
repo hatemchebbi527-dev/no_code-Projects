@@ -79,12 +79,13 @@ export default function Footer() {
 
           {/* Brand col */}
           <div className="md:col-span-2">
-            <a href="/" className="inline-block mb-4">
+            <a href="/" className="flex items-center gap-3 mb-4">
               <img
                 src="/logo.png"
-                alt="My Hope Step"
-                className="h-20 w-auto rounded-xl bg-white p-2"
+                alt=""
+                className="h-12 w-12 rounded-full object-contain bg-white p-1 shrink-0"
               />
+              <span className="text-white font-bold text-lg">My Hope Step</span>
             </a>
             <p className="text-sm leading-relaxed mb-6">
               {t.footer.brandDesc}
