@@ -40,8 +40,11 @@ const socials = [
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/myhopestep.be" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61584486091134" },
   { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.step.by.n" },
-  { icon: WhatsAppIcon, label: "WhatsApp BE", href: "https://wa.me/32471927970" },
-  { icon: WhatsAppIcon, label: "WhatsApp IT", href: "https://wa.me/393522723625" },
+]
+
+const whatsapps = [
+  { number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
+  { number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
 ]
 
 export default function Footer() {
@@ -101,6 +104,19 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
                 {t.footer.location}
               </li>
+              {whatsapps.map(({ number, href }) => (
+                <li key={number}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 text-green-400 shrink-0" />
+                    <span dir="ltr">{number}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
             {/* Socials */}
             <div className="flex gap-3 mt-6">
