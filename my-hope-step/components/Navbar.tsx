@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, useScroll, useMotionValueEvent } from "motion/react"
-import { Plane, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useI18n } from "@/lib/i18n"
 import LanguageToggle from "@/components/LanguageToggle"
@@ -35,9 +35,13 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 font-bold text-lg text-cyan-600">
-          <Plane className="w-5 h-5" />
-          <span>My Hope Step</span>
+        <a href="/" className="flex items-center gap-3">
+          <img
+            src="/logo.png"
+            alt=""
+            className="h-12 w-12 rounded-full object-contain bg-white p-1 shrink-0"
+          />
+          <span className="font-bold text-lg text-cyan-600">My Hope Step</span>
         </a>
 
         {/* Desktop nav */}

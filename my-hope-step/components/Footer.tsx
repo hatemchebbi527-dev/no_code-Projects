@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Plane, Mail, Phone, MapPin } from "lucide-react"
+import { Mail } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -39,8 +39,32 @@ function WhatsAppIcon({ className }: { className?: string }) {
 const socials = [
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/myhopestep.be" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61584486091134" },
-  { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.by.n" },
-  { icon: WhatsAppIcon, label: "WhatsApp", href: "https://wa.me/32471927970" },
+  { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.step.by.n" },
+]
+
+function FlagItaly() {
+  return (
+    <svg viewBox="0 0 3 2" width="24" height="16" className="rounded-sm shrink-0">
+      <rect width="1" height="2" fill="#009246" />
+      <rect x="1" width="1" height="2" fill="#ffffff" />
+      <rect x="2" width="1" height="2" fill="#ce2b37" />
+    </svg>
+  )
+}
+
+function FlagBelgium() {
+  return (
+    <svg viewBox="0 0 3 2" width="24" height="16" className="rounded-sm shrink-0">
+      <rect width="1" height="2" fill="#000000" />
+      <rect x="1" width="1" height="2" fill="#FAE042" />
+      <rect x="2" width="1" height="2" fill="#ED2939" />
+    </svg>
+  )
+}
+
+const contacts = [
+  { Flag: FlagItaly, location: "Italie, Bologne", number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
+  { Flag: FlagBelgium, location: "Belgique, Liège", number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
 ]
 
 export default function Footer() {
@@ -79,9 +103,13 @@ export default function Footer() {
 
           {/* Brand col */}
           <div className="md:col-span-2">
-            <a href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-4">
-              <Plane className="w-5 h-5 text-cyan-400" />
-              My Hope Step
+            <a href="/" className="flex items-center gap-3 mb-4">
+              <img
+                src="/logo.png"
+                alt=""
+                className="h-12 w-12 rounded-full object-contain bg-white p-1 shrink-0"
+              />
+              <span className="text-white font-bold text-lg">My Hope Step</span>
             </a>
             <p className="text-sm leading-relaxed mb-6">
               {t.footer.brandDesc}
@@ -92,14 +120,23 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-cyan-500 shrink-0" />
                 contact@myhope-step.com
               </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-cyan-500 shrink-0" />
-                <span dir="ltr">+32 471 92 79 70</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
-                {t.footer.location}
-              </li>
+              {contacts.map(({ Flag, location, number, href }) => (
+                <li key={number} className="pt-2">
+                  <div className="flex items-center gap-2 text-neutral-300 mb-1">
+                    <Flag />
+                    {location && <span className="text-xs font-medium">{location}</span>}
+                  </div>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-cyan-400 transition-colors ms-6"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 text-green-400 shrink-0" />
+                    <span className="text-xs" dir="ltr">WhatsApp {number}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
             {/* Socials */}
             <div className="flex gap-3 mt-6">

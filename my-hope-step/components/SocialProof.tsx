@@ -10,7 +10,7 @@ const testimonialMeta = [
   { name: "Amina T.", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop", rating: 5 },
 ]
 
-const statValues = ["2000+", "4.9/5", "98%"]
+const statValues = ["2 000+", "4.75/5", "95%"]
 
 const containerVariants = {
   hidden: {},
