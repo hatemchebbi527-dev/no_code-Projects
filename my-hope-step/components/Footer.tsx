@@ -42,9 +42,9 @@ const socials = [
   { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.step.by.n" },
 ]
 
-const whatsapps = [
-  { number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
-  { number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
+const contacts = [
+  { flag: "🇮🇹", location: "Italie, Bologne", number: "+39 352 272 3625", href: "https://wa.me/393522723625" },
+  { flag: "🇧🇪", location: "Belgique, Liège", number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
 ]
 
 export default function Footer() {
@@ -104,16 +104,20 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
                 {t.footer.location}
               </li>
-              {whatsapps.map(({ number, href }) => (
-                <li key={number}>
+              {contacts.map(({ flag, location, number, href }) => (
+                <li key={number} className="pt-2">
+                  <div className="flex items-center gap-2 text-neutral-300 mb-1">
+                    <span className="text-base leading-none">{flag}</span>
+                    <span className="text-xs font-medium">{location}</span>
+                  </div>
                   <a
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
+                    className="flex items-center gap-2 hover:text-cyan-400 transition-colors ms-6"
                   >
                     <WhatsAppIcon className="w-4 h-4 text-green-400 shrink-0" />
-                    <span dir="ltr">{number}</span>
+                    <span className="text-xs" dir="ltr">WhatsApp {number}</span>
                   </a>
                 </li>
               ))}
