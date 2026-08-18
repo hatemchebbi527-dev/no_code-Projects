@@ -39,7 +39,7 @@ export default function Navbar() {
           <img
             src="/logo.png"
             alt="My Hope Step"
-            className="h-16 w-auto bg-white rounded-xl px-2 py-1"
+            className="h-16 w-auto"
           />
         </a>
 
