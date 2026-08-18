@@ -39,7 +39,8 @@ export default function Navbar() {
           <img
             src="/logo.png"
             alt="My Hope Step"
-            className="h-16 w-auto"
+            className="h-20 w-auto"
+            style={{ mixBlendMode: "multiply" }}
           />
         </a>
 

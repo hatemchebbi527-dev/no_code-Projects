@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Plane, Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -79,9 +79,12 @@ export default function Footer() {
 
           {/* Brand col */}
           <div className="md:col-span-2">
-            <a href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-4">
-              <Plane className="w-5 h-5 text-cyan-400" />
-              My Hope Step
+            <a href="/" className="inline-block mb-4">
+              <img
+                src="/logo.png"
+                alt="My Hope Step"
+                className="h-20 w-auto rounded-xl bg-white p-2"
+              />
             </a>
             <p className="text-sm leading-relaxed mb-6">
               {t.footer.brandDesc}
