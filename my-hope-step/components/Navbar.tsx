@@ -35,13 +35,13 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex items-center gap-3">
           <img
             src="/logo.png"
-            alt="My Hope Step"
-            className="h-20 w-auto"
-            style={{ mixBlendMode: "multiply" }}
+            alt=""
+            className="h-12 w-12 rounded-full object-contain bg-white p-1 shrink-0"
           />
+          <span className="font-bold text-lg text-cyan-600">My Hope Step</span>
         </a>
 
         {/* Desktop nav */}
