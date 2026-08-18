@@ -59,7 +59,7 @@ export const dictionaries = {
       title1: "Ils ont voyagé avec nous.",
       title2: "Ils en parlent.",
       statLabels: ["voyageurs satisfaits", "note moyenne", "recommandent", "d'expérience"],
-      expYears: "5 ans",
+      expYears: "25 ans",
       testimonials: [
         {
           location: "Liège, Belgique",
@@ -179,7 +179,7 @@ export const dictionaries = {
       ctaButton: "Voir nos offres",
       brandDesc:
         "Agence de voyage en ligne spécialisée dans les séjours sur-mesure. Nous faisons du rêve une réalité depuis 2019.",
-      location: "Belgique, Liège",
+      location: "Italie, Bologne",
       columns: [
         { title: "Destinations", items: ["Maldives", "Japon", "Bali", "Santorin", "Maroc", "Islande"] },
         { title: "Offres", items: ["Forfait Essentiel", "Forfait Découverte", "Forfait Prestige", "Voyages en groupe", "Sur-mesure"] },
@@ -239,7 +239,7 @@ export const dictionaries = {
       title1: "Hanno viaggiato con noi.",
       title2: "Ne parlano.",
       statLabels: ["viaggiatori soddisfatti", "voto medio", "consigliano", "di esperienza"],
-      expYears: "5 anni",
+      expYears: "25 anni",
       testimonials: [
         {
           location: "Liegi, Belgio",
@@ -359,7 +359,7 @@ export const dictionaries = {
       ctaButton: "Scopri le offerte",
       brandDesc:
         "Agenzia di viaggi online specializzata in soggiorni su misura. Trasformiamo i sogni in realtà dal 2019.",
-      location: "Belgio, Liegi",
+      location: "Italia, Bologna",
       columns: [
         { title: "Destinazioni", items: ["Maldive", "Giappone", "Bali", "Santorini", "Marocco", "Islanda"] },
         { title: "Offerte", items: ["Pacchetto Essential", "Pacchetto Scoperta", "Pacchetto Prestige", "Viaggi di gruppo", "Su misura"] },
@@ -419,7 +419,7 @@ export const dictionaries = {
       title1: "سافروا معنا.",
       title2: "وهذا رأيهم.",
       statLabels: ["مسافر سعيد", "متوسط التقييم", "يوصون بنا", "خبرة"],
-      expYears: "5 سنوات",
+      expYears: "25 سنة",
       testimonials: [
         {
           location: "لييج، بلجيكا",
@@ -539,7 +539,7 @@ export const dictionaries = {
       ctaButton: "شاهد عروضنا",
       brandDesc:
         "وكالة سفر إلكترونية متخصصة في الرحلات المخصصة. نحوّل الحلم إلى حقيقة منذ 2019.",
-      location: "بلجيكا، لييج",
+      location: "إيطاليا، بولونيا",
       columns: [
         { title: "الوجهات", items: ["المالديف", "اليابان", "بالي", "سانتوريني", "المغرب", "آيسلندا"] },
         { title: "العروض", items: ["باقة الأساسية", "باقة الاكتشاف", "باقة البريستيج", "رحلات جماعية", "حسب الطلب"] },

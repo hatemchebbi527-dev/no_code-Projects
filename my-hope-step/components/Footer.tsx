@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -40,7 +40,8 @@ const socials = [
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/myhopestep.be" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61584486091134" },
   { icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@my.hope.step.by.n" },
-  { icon: WhatsAppIcon, label: "WhatsApp", href: "https://wa.me/32471927970" },
+  { icon: WhatsAppIcon, label: "WhatsApp BE", href: "https://wa.me/32471927970" },
+  { icon: WhatsAppIcon, label: "WhatsApp IT", href: "https://wa.me/393522723625" },
 ]
 
 export default function Footer() {
@@ -95,10 +96,6 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-cyan-500 shrink-0" />
                 contact@myhope-step.com
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-cyan-500 shrink-0" />
-                <span dir="ltr">+32 471 92 79 70</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cyan-500 shrink-0" />
