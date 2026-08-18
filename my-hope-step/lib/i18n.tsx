@@ -178,7 +178,7 @@ export const dictionaries = {
       ctaSubtitle: "Parlez à un conseiller dès aujourd'hui. Consultation gratuite, sans engagement.",
       ctaButton: "Voir nos offres",
       brandDesc:
-        "Agence de voyage en ligne spécialisée dans les séjours sur-mesure. Nous faisons du rêve une réalité depuis 2019.",
+        "Agence de voyage en ligne spécialisée dans les séjours sur-mesure. Nous faisons du rêve une réalité depuis plus de 25 ans.",
       location: "Italie, Bologne",
       columns: [
         { title: "Destinations", items: ["Maldives", "Japon", "Bali", "Santorin", "Maroc", "Islande"] },
@@ -358,7 +358,7 @@ export const dictionaries = {
       ctaSubtitle: "Parla con un consulente oggi stesso. Consulenza gratuita, senza impegno.",
       ctaButton: "Scopri le offerte",
       brandDesc:
-        "Agenzia di viaggi online specializzata in soggiorni su misura. Trasformiamo i sogni in realtà dal 2019.",
+        "Agenzia di viaggi online specializzata in soggiorni su misura. Trasformiamo i sogni in realtà da oltre 25 anni.",
       location: "Italia, Bologna",
       columns: [
         { title: "Destinazioni", items: ["Maldive", "Giappone", "Bali", "Santorini", "Marocco", "Islanda"] },
@@ -538,7 +538,7 @@ export const dictionaries = {
       ctaSubtitle: "تحدث مع مستشار اليوم. استشارة مجانية دون التزام.",
       ctaButton: "شاهد عروضنا",
       brandDesc:
-        "وكالة سفر إلكترونية متخصصة في الرحلات المخصصة. نحوّل الحلم إلى حقيقة منذ 2019.",
+        "وكالة سفر إلكترونية متخصصة في الرحلات المخصصة. نحوّل الحلم إلى حقيقة منذ أكثر من 25 عامًا.",
       location: "إيطاليا، بولونيا",
       columns: [
         { title: "الوجهات", items: ["المالديف", "اليابان", "بالي", "سانتوريني", "المغرب", "آيسلندا"] },
