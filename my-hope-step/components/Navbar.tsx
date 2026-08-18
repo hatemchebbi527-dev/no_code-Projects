@@ -35,8 +35,12 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/">
-          <img src="/logo.png" alt="My Hope Step" className="h-12 w-auto" />
+        <a href="/" className="flex items-center">
+          <img
+            src="/logo.png"
+            alt="My Hope Step"
+            className="h-16 w-auto bg-white rounded-xl px-2 py-1"
+          />
         </a>
 
         {/* Desktop nav */}
