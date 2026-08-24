@@ -9,7 +9,7 @@
         -760,
         300
       ],
-      "id": "371ef96a-9c54-4732-8a66-7f583db2a59a",
+      "id": "a5661153-884d-46c2-a5d9-7c6ce76a6b90",
       "name": "Avvia prospezione"
     },
     {
@@ -29,7 +29,7 @@
         -528,
         -240
       ],
-      "id": "4de52fe6-afe7-4528-9b86-b4f79e77b100",
+      "id": "2b79f8ab-86f0-4466-be11-4ecdb9c3c11b",
       "name": "Apify · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -51,7 +51,7 @@
         -304,
         -240
       ],
-      "id": "150d2489-e82c-4ad5-98ba-17ff8d1b0376",
+      "id": "720bc3ed-b9d5-43d8-af9c-8059118c8b8a",
       "name": "Dataset · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -70,7 +70,7 @@
         -80,
         -240
       ],
-      "id": "72134d0c-1777-491d-bad4-4e221267e2db",
+      "id": "5cc4c6b8-3db3-4b4a-a95e-5c96a8208090",
       "name": "Mappa · Immobiliari"
     },
     {
@@ -83,7 +83,7 @@
         144,
         -240
       ],
-      "id": "6ba9d9c6-a6b4-4210-9ea4-47b2450a049e",
+      "id": "51f32391-175e-49e1-9e55-88beed3fc918",
       "name": "Loop · Immobiliari"
     },
     {
@@ -112,7 +112,7 @@
         368,
         -360
       ],
-      "id": "1a8b1ae4-c1d2-4ac8-a5ea-47aa7e9d54cd",
+      "id": "cdea3efe-75b6-491d-a67d-7b2fa5746e5e",
       "name": "Dédoublonnage · Immobiliari",
       "alwaysOutputData": true,
       "credentials": {
@@ -133,7 +133,7 @@
           },
           "conditions": [
             {
-              "id": "7df53101-940c-48c9-86ab-0cbcc7266ec7",
+              "id": "a6edefda-2645-4bc1-a453-bb65381c48c5",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -154,7 +154,7 @@
         592,
         -360
       ],
-      "id": "c5c6a2ff-8a35-4a3b-929f-4a949394a105",
+      "id": "4cd916a7-ebe6-4c3d-a030-42ae3a6b08a8",
       "name": "Già nel CRM? · Immobiliari"
     },
     {
@@ -187,7 +187,7 @@
         592,
         -144
       ],
-      "id": "e8c549ee-5115-4fa1-a04f-4eb383e0f5b5",
+      "id": "9042f4c4-44f1-45d9-a6df-db99160a24f2",
       "name": "Claude · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -206,7 +206,7 @@
         816,
         -144
       ],
-      "id": "8996b640-a5a0-4012-9fa8-1389e3e187ba",
+      "id": "2ff31e4e-efa6-4261-bc89-feef3044ec65",
       "name": "Estrai qualifica · Immobiliari"
     },
     {
@@ -246,6 +246,7 @@
             "Rating Google": "={{ $json['Rating Google'] }}",
             "Recensioni Google": "={{ $json['Recensioni Google'] }}",
             "Email trovate": "={{ $json['Email trovate'] }}",
+            "Data contatto": "={{ $now.toFormat('yyyy-MM-dd') }}",
             "Accroche": "={{ $json.prima_riga }}",
             "Motivo qualifica": "={{ $json.motivo }}"
           },
@@ -646,7 +647,7 @@
         816,
         36
       ],
-      "id": "11e9d87f-6779-497b-92b1-06660ca2c608",
+      "id": "914a7fa5-5a39-48c0-8b8d-234d5a277aec",
       "name": "Create · Immobiliari",
       "credentials": {
         "airtableTokenApi": {
@@ -672,7 +673,7 @@
         -528,
         300
       ],
-      "id": "11e08391-c781-4ab8-8ae9-990812994726",
+      "id": "6b1304b3-4483-4818-9344-1d4607ef3a22",
       "name": "Apify · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -694,7 +695,7 @@
         -304,
         300
       ],
-      "id": "1aa676c5-270c-410c-aba2-89b8a159a056",
+      "id": "8de4cf88-e1ac-477c-a428-5b3475084d3c",
       "name": "Dataset · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -713,7 +714,7 @@
         -80,
         300
       ],
-      "id": "1934b00e-a9ad-4291-a9b8-76747a08eab0",
+      "id": "a91982ad-0fd4-4c21-8ab6-3e6eacd432e4",
       "name": "Mappa · Estetico"
     },
     {
@@ -726,7 +727,7 @@
         144,
         300
       ],
-      "id": "60345524-2afe-4245-b833-792bebd04284",
+      "id": "36a5ddb0-613d-4fd4-8edc-3a86e1292d41",
       "name": "Loop · Estetico"
     },
     {
@@ -755,7 +756,7 @@
         368,
         180
       ],
-      "id": "c6fc811e-f68f-4c2e-96f4-9604ea4b82dc",
+      "id": "679abbf5-69f3-4899-b2ac-f813c9a0102b",
       "name": "Dédoublonnage · Estetico",
       "alwaysOutputData": true,
       "credentials": {
@@ -776,7 +777,7 @@
           },
           "conditions": [
             {
-              "id": "b0c85299-c136-4e06-8eeb-730bbce9be05",
+              "id": "3bc62060-03a3-42c7-844b-2319b064dab5",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -797,7 +798,7 @@
         592,
         180
       ],
-      "id": "b3f7f383-2ca3-47c7-b9ae-19145d0204dd",
+      "id": "345875aa-df37-4584-b37c-2700b69c3bda",
       "name": "Già nel CRM? · Estetico"
     },
     {
@@ -830,7 +831,7 @@
         592,
         396
       ],
-      "id": "a1a7241f-4333-44f6-87e7-517a1dbde6f9",
+      "id": "12705967-207a-4667-9eb7-bb73620599d3",
       "name": "Claude · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -849,7 +850,7 @@
         816,
         396
       ],
-      "id": "1e73bfba-4ae8-464e-9349-d9b1f3b9b02c",
+      "id": "d910bd20-7a3e-4023-aa5b-6bf714894069",
       "name": "Estrai qualifica · Estetico"
     },
     {
@@ -889,6 +890,7 @@
             "Rating Google": "={{ $json['Rating Google'] }}",
             "Recensioni Google": "={{ $json['Recensioni Google'] }}",
             "Email trovate": "={{ $json['Email trovate'] }}",
+            "Data contatto": "={{ $now.toFormat('yyyy-MM-dd') }}",
             "Accroche": "={{ $json.prima_riga }}",
             "Motivo qualifica": "={{ $json.motivo }}"
           },
@@ -1289,7 +1291,7 @@
         816,
         576
       ],
-      "id": "f868ed16-a1f0-4d6a-bd82-387c00ef5108",
+      "id": "5fc2b287-549d-461c-8428-3c7c1655cfd4",
       "name": "Create · Estetico",
       "credentials": {
         "airtableTokenApi": {
@@ -1315,7 +1317,7 @@
         -528,
         840
       ],
-      "id": "17007186-1adb-49cb-ae5e-6947942211a4",
+      "id": "6c749476-6996-458c-8af4-31038b301e91",
       "name": "Apify · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1337,7 +1339,7 @@
         -304,
         840
       ],
-      "id": "f07246d2-6e31-471f-ae84-62326d80d69f",
+      "id": "a433bbfa-3bea-40f2-a04d-24eae797ba21",
       "name": "Dataset · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1356,7 +1358,7 @@
         -80,
         840
       ],
-      "id": "68a5558d-2b3d-4a01-9a52-e5819345fc5f",
+      "id": "eac0d41f-535b-4c64-a5c0-08983e99289e",
       "name": "Mappa · Palestre"
     },
     {
@@ -1369,7 +1371,7 @@
         144,
         840
       ],
-      "id": "b48d4f72-337c-4279-a991-70da39f60b54",
+      "id": "80ca8917-7fc2-4e06-b134-2859e6c20558",
       "name": "Loop · Palestre"
     },
     {
@@ -1398,7 +1400,7 @@
         368,
         720
       ],
-      "id": "a288adc7-8ade-46ad-a8b3-3dd01c26726c",
+      "id": "998d80c4-5d9e-4421-9168-aac34f05c400",
       "name": "Dédoublonnage · Palestre",
       "alwaysOutputData": true,
       "credentials": {
@@ -1419,7 +1421,7 @@
           },
           "conditions": [
             {
-              "id": "db19bb6d-e228-42a8-9810-87bc01e11495",
+              "id": "1dec0139-144d-4a6b-b4f5-1366034dff73",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -1440,7 +1442,7 @@
         592,
         720
       ],
-      "id": "3930eab4-56ff-4d21-afce-bfd2745d4f6b",
+      "id": "a9df20c3-dbca-4f38-8769-49c1d1436d01",
       "name": "Già nel CRM? · Palestre"
     },
     {
@@ -1473,7 +1475,7 @@
         592,
         936
       ],
-      "id": "ff592188-4283-4589-9913-46cbd0406da1",
+      "id": "a91f8b63-cdc0-448f-90ce-12267371312f",
       "name": "Claude · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1492,7 +1494,7 @@
         816,
         936
       ],
-      "id": "68b518c7-4001-4503-962e-d3746ebd1df7",
+      "id": "9908e79b-cc97-4144-bfe4-0f863f381a55",
       "name": "Estrai qualifica · Palestre"
     },
     {
@@ -1532,6 +1534,7 @@
             "Rating Google": "={{ $json['Rating Google'] }}",
             "Recensioni Google": "={{ $json['Recensioni Google'] }}",
             "Email trovate": "={{ $json['Email trovate'] }}",
+            "Data contatto": "={{ $now.toFormat('yyyy-MM-dd') }}",
             "Accroche": "={{ $json.prima_riga }}",
             "Motivo qualifica": "={{ $json.motivo }}"
           },
@@ -1932,7 +1935,7 @@
         816,
         1116
       ],
-      "id": "463c5939-8acd-4725-9dde-177432b1765e",
+      "id": "4980d99e-e412-4692-9d17-16ed3af36750",
       "name": "Create · Palestre",
       "credentials": {
         "airtableTokenApi": {
