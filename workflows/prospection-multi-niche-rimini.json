@@ -1,0 +1,2255 @@
+{
+  "name": "Prospection Rimini - Multi-niche (Immobiliari / Estetico / Palestre)",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        300
+      ],
+      "id": "7cb426d0-d671-40fa-86b7-7855e8ca4109",
+      "name": "Avvia prospezione"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/WnMxbsRLNbPeYL6ge/runs?waitForFinish=300",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"countryCode\": \"it\",\n  \"language\": \"it\",\n  \"locationQuery\": \"Rimini, Italy\",\n  \"maxCrawledPlacesPerSearch\": 15,\n  \"scrapePlaceDetailPage\": true,\n  \"searchStringsArray\": [\n    \"agenzia immobiliare Rimini\",\n    \"agenzie immobiliari Rimini\",\n    \"immobiliare Rimini\",\n    \"compravendita immobiliare Rimini\"\n  ],\n  \"skipClosedPlaces\": false,\n  \"searchMatching\": \"all\",\n  \"placeMinimumStars\": \"\",\n  \"website\": \"allPlaces\",\n  \"scrapeTableReservationProvider\": false,\n  \"scrapeOrderOnline\": false,\n  \"includeWebResults\": false,\n  \"scrapeDirectories\": false,\n  \"maxQuestions\": 0,\n  \"scrapeSocialMediaProfiles\": {\n    \"facebooks\": false,\n    \"instagrams\": false,\n    \"youtubes\": false,\n    \"tiktoks\": false,\n    \"twitters\": false\n  },\n  \"maximumLeadsEnrichmentRecords\": 0,\n  \"verifyLeadsEnrichmentEmails\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -528,
+        -240
+      ],
+      "id": "d5a0bdaf-36dd-4b1d-a45f-f92cee235d95",
+      "name": "Apify · Immobiliari",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "r3wLfyh6FxcXtZVx",
+          "name": "Apify"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://api.apify.com/v2/datasets/' + $json.data.defaultDatasetId + '/items' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -304,
+        -240
+      ],
+      "id": "4afe5a91-0269-40a0-a97c-2f8742bf257e",
+      "name": "Dataset · Immobiliari",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "r3wLfyh6FxcXtZVx",
+          "name": "Apify"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nreturn items.map(i => {\n  const item = i.json;\n  return {\n    json: {\n      Nome: item.title || '',\n      Email: (item.emails && item.emails[0]) || '',\n      'Email trovate': (item.emails || []).join(', '),\n      Telefono: item.phone || '',\n      Sito: item.website || '',\n      Indirizzo: item.address || item.street || '',\n      'Città': item.city || 'Rimini',\n      'Rating Google': item.totalScore ?? null,\n      'Recensioni Google': item.reviewsCount ?? 0,\n      Settore: 'Agenzia immobiliare',\n      Stato: 'Nuovo',\n      Fonte: 'Google Maps'\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        -240
+      ],
+      "id": "cb2e6de8-c80f-4938-9d3b-aa79cab430b5",
+      "name": "Mappa · Immobiliari"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        144,
+        -240
+      ],
+      "id": "4b844e46-a571-4de3-bc3f-05e8971e8bca",
+      "name": "Loop · Immobiliari"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appSaFpivfZljmGAL",
+          "mode": "list",
+          "cachedResultName": "AutomaIA - CRM Prospect v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbllDC0aYJHUSnFMT",
+          "mode": "list",
+          "cachedResultName": "Prospects v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
+        },
+        "filterByFormula": "=AND(\n  {Nome} != \"\",\n  OR(\n    FIND(LOWER({Nome}), LOWER(\"{{ $json.Nome }}\")) > 0,\n    FIND(LOWER(\"{{ $json.Nome }}\"), LOWER({Nome})) > 0\n  )\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        -360
+      ],
+      "id": "d04af2cd-dc16-45b8-aa29-fd8b5c1afc8b",
+      "name": "Dédoublonnage · Immobiliari",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "QHg8uqm9JZgbHF1J",
+          "name": "Machine codeur"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b1a07e4a-d894-4da0-b2f2-8d1f73a91cff",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        592,
+        -360
+      ],
+      "id": "1fa46f5b-3a84-477a-b7c4-63e3dee9ab6a",
+      "name": "Già nel CRM? · Immobiliari"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: \"claude-sonnet-4-6\",\n  max_tokens: 600,\n  messages: [\n    {\n      role: \"user\",\n      content: `Sei l'assistente di prospezione di AutomaIA, agenzia che aiuta le agenzie immobiliari locali italiane a recuperare fino a 10 ore a settimana automatizzando la gestione degli appuntamenti per le visite, i promemoria e le risposte ricorrenti alle richieste sugli annunci.\n\nCRITERI DI QUALIFICA:\n\nALTO POTENZIALE:\n- Agenzia indipendente e locale\\n- Ha un sito web\\n- 5+ recensioni Google\\n- 1-3 agenti nel nome\n\nBASSO POTENZIALE:\n- Catena o franchising nazionale (Tecnocasa, Gabetti, RE/MAX, Grimaldi, Toscano, Professionecasa, Coldwell Banker, Engel & Völkers, Solo Affitti, Fondocasa, Frimm)\\n- Nessun sito web\n\nMEDIO: segnali insufficienti.\n\nDATI:\nNome: ${$('Loop · Immobiliari').item.json.Nome}\nSettore: Agenzia immobiliare\nCittà: ${$('Loop · Immobiliari').item.json['Città']}\nSito: ${$('Loop · Immobiliari').item.json.Sito || 'non disponibile'}\nEmail: ${$('Loop · Immobiliari').item.json.Email || 'non trovata'}\nRecensioni: ${$('Loop · Immobiliari').item.json['Recensioni Google']} | Rating: ${$('Loop · Immobiliari').item.json['Rating Google'] || 'n/d'}\nHa sito: ${$('Loop · Immobiliari').item.json.Sito ? 'sì' : 'no'}\n\nCOMPITO:\n1. Punteggio (Alto/Medio/Basso)\n2. Motivo in una frase\n3. Stima collaboratori (1-2 / 3-5 / 5+ / incerto)\n4. Prima riga cold email in italiano, vouvoiement Lei, evoca un problema quotidiano concreto (gestione delle visite in agenda, richieste continue sugli annunci, follow-up con acquirenti e venditori), vietati: IA, API, automazione, software, bot. Max 2 frasi.\n\n`+`JSON ONLY: {\\\"punteggio\\\":\\\"Alto|Medio|Basso\\\",\\\"motivo\\\":\\\"...\\\",\\\"stimaCollaboratori\\\":\\\"...\\\",\\\"prima_riga\\\":\\\"...\\\"}`\n    }\n  ]\n}) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        592,
+        -144
+      ],
+      "id": "0dfa7048-fef1-4bf4-85f3-f63f4c975578",
+      "name": "Claude · Immobiliari",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "FdONJDewYUhUPDHJ",
+          "name": "API IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.content?.[0]?.text ?? '';\nlet jsonStr = raw.trim();\nconst start = jsonStr.indexOf('{');\nconst end = jsonStr.lastIndexOf('}');\nif (start !== -1 && end !== -1) jsonStr = jsonStr.slice(start, end + 1);\n\nlet data;\ntry { data = JSON.parse(jsonStr); }\ncatch (e) { data = { punteggio: 'Medio', motivo: '', stimaCollaboratori: 'incerto', prima_riga: '' }; }\n\nconst src = $('Loop · Immobiliari').item.json;\nconst haSito = !!(src.Sito && src.Sito.length > 5);\nconst attivo = (src['Recensioni Google'] || 0) >= 3;\n\nreturn [{\n  json: {\n    ...src,\n    punteggio: data.punteggio || 'Medio',\n    motivo: data.motivo || '',\n    stimaCollaboratori: data.stimaCollaboratori || 'incerto',\n    prima_riga: data.prima_riga || '',\n    priorita: (haSito && attivo) ? 'alta' : (haSito || attivo) ? 'media' : 'bassa'\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        -144
+      ],
+      "id": "7b947efe-54cd-4e6a-b7c4-79c2671cc61b",
+      "name": "Estrai qualifica · Immobiliari"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appSaFpivfZljmGAL",
+          "mode": "list",
+          "cachedResultName": "AutomaIA - CRM Prospect v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbllDC0aYJHUSnFMT",
+          "mode": "list",
+          "cachedResultName": "Prospects v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Contattato": false,
+            "Relance J+4 inviata": false,
+            "Nome": "={{ $json.Nome }}",
+            "Email": "={{ $json.Email }}",
+            "Telefono": "={{ $json.Telefono }}",
+            "Sito": "={{ $json.Sito }}",
+            "Indirizzo": "={{ $json.Indirizzo }}",
+            "Città": "={{ $json['Città'] }}",
+            "Settore": "Agenzia immobiliare",
+            "Stato": "Nuovo",
+            "Fonte": "Google Maps",
+            "Punteggio IA": "={{ $json.punteggio }}",
+            "Priorità": "={{ $json.priorita }}",
+            "Stima Collaboratori": "={{ $json.stimaCollaboratori }}",
+            "Rating Google": "={{ $json['Rating Google'] }}",
+            "Recensioni Google": "={{ $json['Recensioni Google'] }}",
+            "Email trovate": "={{ $json['Email trovate'] }}",
+            "Accroche": "={{ $json.prima_riga }}",
+            "Motivo qualifica": "={{ $json.motivo }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Sito",
+              "displayName": "Sito",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Indirizzo",
+              "displayName": "Indirizzo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Città",
+              "displayName": "Città",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Settore",
+              "displayName": "Settore",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Commercialista",
+                  "value": "Commercialista"
+                },
+                {
+                  "name": "Avvocato",
+                  "value": "Avvocato"
+                },
+                {
+                  "name": "Medico",
+                  "value": "Medico"
+                },
+                {
+                  "name": "Notaio",
+                  "value": "Notaio"
+                },
+                {
+                  "name": "Veterinario",
+                  "value": "Veterinario"
+                },
+                {
+                  "name": "Altro",
+                  "value": "Altro"
+                },
+                {
+                  "name": "Dentista",
+                  "value": "Dentista"
+                },
+                {
+                  "name": "Clinica dentale",
+                  "value": "Clinica dentale"
+                },
+                {
+                  "name": "Agenzia immobiliare",
+                  "value": "Agenzia immobiliare"
+                },
+                {
+                  "name": "Centro estetico",
+                  "value": "Centro estetico"
+                },
+                {
+                  "name": "Palestra",
+                  "value": "Palestra"
+                }
+              ]
+            },
+            {
+              "id": "Stato",
+              "displayName": "Stato",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Nuovo",
+                  "value": "Nuovo"
+                },
+                {
+                  "name": "Contattato",
+                  "value": "Contattato"
+                },
+                {
+                  "name": "Audit fissato",
+                  "value": "Audit fissato"
+                },
+                {
+                  "name": "Proposta inviata",
+                  "value": "Proposta inviata"
+                },
+                {
+                  "name": "Cliente",
+                  "value": "Cliente"
+                },
+                {
+                  "name": "Perso",
+                  "value": "Perso"
+                },
+                {
+                  "name": "Da contattare",
+                  "value": "Da contattare"
+                }
+              ]
+            },
+            {
+              "id": "Punteggio IA",
+              "displayName": "Punteggio IA",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Alto",
+                  "value": "Alto"
+                },
+                {
+                  "name": "Medio",
+                  "value": "Medio"
+                },
+                {
+                  "name": "Basso",
+                  "value": "Basso"
+                }
+              ]
+            },
+            {
+              "id": "Priorità",
+              "displayName": "Priorità",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "alta",
+                  "value": "alta"
+                },
+                {
+                  "name": "media",
+                  "value": "media"
+                },
+                {
+                  "name": "bassa",
+                  "value": "bassa"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "id": "Stima Collaboratori",
+              "displayName": "Stima Collaboratori",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "1-2",
+                  "value": "1-2"
+                },
+                {
+                  "name": "3-5",
+                  "value": "3-5"
+                },
+                {
+                  "name": "5+",
+                  "value": "5+"
+                },
+                {
+                  "name": "incerto",
+                  "value": "incerto"
+                }
+              ]
+            },
+            {
+              "id": "Rating Google",
+              "displayName": "Rating Google",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Recensioni Google",
+              "displayName": "Recensioni Google",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fonte",
+              "displayName": "Fonte",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Google Maps",
+                  "value": "Google Maps"
+                },
+                {
+                  "name": "LinkedIn",
+                  "value": "LinkedIn"
+                },
+                {
+                  "name": "Referral",
+                  "value": "Referral"
+                },
+                {
+                  "name": "Sito web",
+                  "value": "Sito web"
+                },
+                {
+                  "name": "Lead magnet",
+                  "value": "Lead magnet"
+                },
+                {
+                  "name": "Altro",
+                  "value": "Altro"
+                }
+              ]
+            },
+            {
+              "id": "Accroche",
+              "displayName": "Accroche",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Motivo qualifica",
+              "displayName": "Motivo qualifica",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email trovate",
+              "displayName": "Email trovate",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Data contatto",
+              "displayName": "Data contatto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Contattato",
+              "displayName": "Contattato",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Relance J+4 inviata",
+              "displayName": "Relance J+4 inviata",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        816,
+        36
+      ],
+      "id": "001db9fb-7eec-4ca2-ac87-f05ed5068ebb",
+      "name": "Create · Immobiliari",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "jTr0K18hUPlmiok5",
+          "name": "CRM Prospects"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/WnMxbsRLNbPeYL6ge/runs?waitForFinish=300",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"countryCode\": \"it\",\n  \"language\": \"it\",\n  \"locationQuery\": \"Rimini, Italy\",\n  \"maxCrawledPlacesPerSearch\": 15,\n  \"scrapePlaceDetailPage\": true,\n  \"searchStringsArray\": [\n    \"centro estetico Rimini\",\n    \"estetista Rimini\",\n    \"istituto di bellezza Rimini\",\n    \"beauty center Rimini\"\n  ],\n  \"skipClosedPlaces\": false,\n  \"searchMatching\": \"all\",\n  \"placeMinimumStars\": \"\",\n  \"website\": \"allPlaces\",\n  \"scrapeTableReservationProvider\": false,\n  \"scrapeOrderOnline\": false,\n  \"includeWebResults\": false,\n  \"scrapeDirectories\": false,\n  \"maxQuestions\": 0,\n  \"scrapeSocialMediaProfiles\": {\n    \"facebooks\": false,\n    \"instagrams\": false,\n    \"youtubes\": false,\n    \"tiktoks\": false,\n    \"twitters\": false\n  },\n  \"maximumLeadsEnrichmentRecords\": 0,\n  \"verifyLeadsEnrichmentEmails\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -528,
+        300
+      ],
+      "id": "9cd5ac4e-075a-4333-bcaa-7130fcba8098",
+      "name": "Apify · Estetico",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "r3wLfyh6FxcXtZVx",
+          "name": "Apify"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://api.apify.com/v2/datasets/' + $json.data.defaultDatasetId + '/items' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -304,
+        300
+      ],
+      "id": "0aabf36a-d2be-4dca-a32a-7c7bdf8ea2c2",
+      "name": "Dataset · Estetico",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "r3wLfyh6FxcXtZVx",
+          "name": "Apify"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nreturn items.map(i => {\n  const item = i.json;\n  return {\n    json: {\n      Nome: item.title || '',\n      Email: (item.emails && item.emails[0]) || '',\n      'Email trovate': (item.emails || []).join(', '),\n      Telefono: item.phone || '',\n      Sito: item.website || '',\n      Indirizzo: item.address || item.street || '',\n      'Città': item.city || 'Rimini',\n      'Rating Google': item.totalScore ?? null,\n      'Recensioni Google': item.reviewsCount ?? 0,\n      Settore: 'Centro estetico',\n      Stato: 'Nuovo',\n      Fonte: 'Google Maps'\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        300
+      ],
+      "id": "d3949e29-b31b-4b0d-a088-3984a5480182",
+      "name": "Mappa · Estetico"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        144,
+        300
+      ],
+      "id": "758e3676-ddbb-47a1-9b49-25802ba31e28",
+      "name": "Loop · Estetico"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appSaFpivfZljmGAL",
+          "mode": "list",
+          "cachedResultName": "AutomaIA - CRM Prospect v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbllDC0aYJHUSnFMT",
+          "mode": "list",
+          "cachedResultName": "Prospects v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
+        },
+        "filterByFormula": "=AND(\n  {Nome} != \"\",\n  OR(\n    FIND(LOWER({Nome}), LOWER(\"{{ $json.Nome }}\")) > 0,\n    FIND(LOWER(\"{{ $json.Nome }}\"), LOWER({Nome})) > 0\n  )\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        180
+      ],
+      "id": "e8cd9168-f830-4fe6-80df-c8598a2916ce",
+      "name": "Dédoublonnage · Estetico",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "QHg8uqm9JZgbHF1J",
+          "name": "Machine codeur"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b497cbd0-6706-4eed-b67e-b3d525899c98",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        592,
+        180
+      ],
+      "id": "70466b1c-1487-4e3b-bb9a-d21f569839dc",
+      "name": "Già nel CRM? · Estetico"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: \"claude-sonnet-4-6\",\n  max_tokens: 600,\n  messages: [\n    {\n      role: \"user\",\n      content: `Sei l'assistente di prospezione di AutomaIA, agenzia che aiuta i centri estetici locali italiani a recuperare fino a 10 ore a settimana automatizzando le prenotazioni, i promemoria degli appuntamenti e le risposte ricorrenti su listino e orari.\n\nCRITERI DI QUALIFICA:\n\nALTO POTENZIALE:\n- Centro estetico indipendente e locale\\n- Ha un sito web\\n- 5+ recensioni Google\\n- Attivo e ben recensito\n\nBASSO POTENZIALE:\n- Catena o franchising nazionale\\n- Grande insegna con più sedi\\n- Nessun sito web\n\nMEDIO: segnali insufficienti.\n\nDATI:\nNome: ${$('Loop · Estetico').item.json.Nome}\nSettore: Centro estetico\nCittà: ${$('Loop · Estetico').item.json['Città']}\nSito: ${$('Loop · Estetico').item.json.Sito || 'non disponibile'}\nEmail: ${$('Loop · Estetico').item.json.Email || 'non trovata'}\nRecensioni: ${$('Loop · Estetico').item.json['Recensioni Google']} | Rating: ${$('Loop · Estetico').item.json['Rating Google'] || 'n/d'}\nHa sito: ${$('Loop · Estetico').item.json.Sito ? 'sì' : 'no'}\n\nCOMPITO:\n1. Punteggio (Alto/Medio/Basso)\n2. Motivo in una frase\n3. Stima collaboratori (1-2 / 3-5 / 5+ / incerto)\n4. Prima riga cold email in italiano, vouvoiement Lei, evoca un problema quotidiano concreto (prenotazioni gestite a mano, appuntamenti mancati, promemoria da inviare, domande ripetitive su trattamenti e orari), vietati: IA, API, automazione, software, bot. Max 2 frasi.\n\n`+`JSON ONLY: {\\\"punteggio\\\":\\\"Alto|Medio|Basso\\\",\\\"motivo\\\":\\\"...\\\",\\\"stimaCollaboratori\\\":\\\"...\\\",\\\"prima_riga\\\":\\\"...\\\"}`\n    }\n  ]\n}) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        592,
+        396
+      ],
+      "id": "be5888ad-6b37-40d9-b02c-1eb82c42ba5d",
+      "name": "Claude · Estetico",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "FdONJDewYUhUPDHJ",
+          "name": "API IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.content?.[0]?.text ?? '';\nlet jsonStr = raw.trim();\nconst start = jsonStr.indexOf('{');\nconst end = jsonStr.lastIndexOf('}');\nif (start !== -1 && end !== -1) jsonStr = jsonStr.slice(start, end + 1);\n\nlet data;\ntry { data = JSON.parse(jsonStr); }\ncatch (e) { data = { punteggio: 'Medio', motivo: '', stimaCollaboratori: 'incerto', prima_riga: '' }; }\n\nconst src = $('Loop · Estetico').item.json;\nconst haSito = !!(src.Sito && src.Sito.length > 5);\nconst attivo = (src['Recensioni Google'] || 0) >= 3;\n\nreturn [{\n  json: {\n    ...src,\n    punteggio: data.punteggio || 'Medio',\n    motivo: data.motivo || '',\n    stimaCollaboratori: data.stimaCollaboratori || 'incerto',\n    prima_riga: data.prima_riga || '',\n    priorita: (haSito && attivo) ? 'alta' : (haSito || attivo) ? 'media' : 'bassa'\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        396
+      ],
+      "id": "405df540-ef80-4b15-9e63-072757b07f71",
+      "name": "Estrai qualifica · Estetico"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appSaFpivfZljmGAL",
+          "mode": "list",
+          "cachedResultName": "AutomaIA - CRM Prospect v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbllDC0aYJHUSnFMT",
+          "mode": "list",
+          "cachedResultName": "Prospects v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Contattato": false,
+            "Relance J+4 inviata": false,
+            "Nome": "={{ $json.Nome }}",
+            "Email": "={{ $json.Email }}",
+            "Telefono": "={{ $json.Telefono }}",
+            "Sito": "={{ $json.Sito }}",
+            "Indirizzo": "={{ $json.Indirizzo }}",
+            "Città": "={{ $json['Città'] }}",
+            "Settore": "Centro estetico",
+            "Stato": "Nuovo",
+            "Fonte": "Google Maps",
+            "Punteggio IA": "={{ $json.punteggio }}",
+            "Priorità": "={{ $json.priorita }}",
+            "Stima Collaboratori": "={{ $json.stimaCollaboratori }}",
+            "Rating Google": "={{ $json['Rating Google'] }}",
+            "Recensioni Google": "={{ $json['Recensioni Google'] }}",
+            "Email trovate": "={{ $json['Email trovate'] }}",
+            "Accroche": "={{ $json.prima_riga }}",
+            "Motivo qualifica": "={{ $json.motivo }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Sito",
+              "displayName": "Sito",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Indirizzo",
+              "displayName": "Indirizzo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Città",
+              "displayName": "Città",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Settore",
+              "displayName": "Settore",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Commercialista",
+                  "value": "Commercialista"
+                },
+                {
+                  "name": "Avvocato",
+                  "value": "Avvocato"
+                },
+                {
+                  "name": "Medico",
+                  "value": "Medico"
+                },
+                {
+                  "name": "Notaio",
+                  "value": "Notaio"
+                },
+                {
+                  "name": "Veterinario",
+                  "value": "Veterinario"
+                },
+                {
+                  "name": "Altro",
+                  "value": "Altro"
+                },
+                {
+                  "name": "Dentista",
+                  "value": "Dentista"
+                },
+                {
+                  "name": "Clinica dentale",
+                  "value": "Clinica dentale"
+                },
+                {
+                  "name": "Agenzia immobiliare",
+                  "value": "Agenzia immobiliare"
+                },
+                {
+                  "name": "Centro estetico",
+                  "value": "Centro estetico"
+                },
+                {
+                  "name": "Palestra",
+                  "value": "Palestra"
+                }
+              ]
+            },
+            {
+              "id": "Stato",
+              "displayName": "Stato",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Nuovo",
+                  "value": "Nuovo"
+                },
+                {
+                  "name": "Contattato",
+                  "value": "Contattato"
+                },
+                {
+                  "name": "Audit fissato",
+                  "value": "Audit fissato"
+                },
+                {
+                  "name": "Proposta inviata",
+                  "value": "Proposta inviata"
+                },
+                {
+                  "name": "Cliente",
+                  "value": "Cliente"
+                },
+                {
+                  "name": "Perso",
+                  "value": "Perso"
+                },
+                {
+                  "name": "Da contattare",
+                  "value": "Da contattare"
+                }
+              ]
+            },
+            {
+              "id": "Punteggio IA",
+              "displayName": "Punteggio IA",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Alto",
+                  "value": "Alto"
+                },
+                {
+                  "name": "Medio",
+                  "value": "Medio"
+                },
+                {
+                  "name": "Basso",
+                  "value": "Basso"
+                }
+              ]
+            },
+            {
+              "id": "Priorità",
+              "displayName": "Priorità",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "alta",
+                  "value": "alta"
+                },
+                {
+                  "name": "media",
+                  "value": "media"
+                },
+                {
+                  "name": "bassa",
+                  "value": "bassa"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "id": "Stima Collaboratori",
+              "displayName": "Stima Collaboratori",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "1-2",
+                  "value": "1-2"
+                },
+                {
+                  "name": "3-5",
+                  "value": "3-5"
+                },
+                {
+                  "name": "5+",
+                  "value": "5+"
+                },
+                {
+                  "name": "incerto",
+                  "value": "incerto"
+                }
+              ]
+            },
+            {
+              "id": "Rating Google",
+              "displayName": "Rating Google",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Recensioni Google",
+              "displayName": "Recensioni Google",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fonte",
+              "displayName": "Fonte",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Google Maps",
+                  "value": "Google Maps"
+                },
+                {
+                  "name": "LinkedIn",
+                  "value": "LinkedIn"
+                },
+                {
+                  "name": "Referral",
+                  "value": "Referral"
+                },
+                {
+                  "name": "Sito web",
+                  "value": "Sito web"
+                },
+                {
+                  "name": "Lead magnet",
+                  "value": "Lead magnet"
+                },
+                {
+                  "name": "Altro",
+                  "value": "Altro"
+                }
+              ]
+            },
+            {
+              "id": "Accroche",
+              "displayName": "Accroche",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Motivo qualifica",
+              "displayName": "Motivo qualifica",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email trovate",
+              "displayName": "Email trovate",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Data contatto",
+              "displayName": "Data contatto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Contattato",
+              "displayName": "Contattato",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Relance J+4 inviata",
+              "displayName": "Relance J+4 inviata",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        816,
+        576
+      ],
+      "id": "9744a32e-d642-4808-a8c2-39d0163355d7",
+      "name": "Create · Estetico",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "jTr0K18hUPlmiok5",
+          "name": "CRM Prospects"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/WnMxbsRLNbPeYL6ge/runs?waitForFinish=300",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"countryCode\": \"it\",\n  \"language\": \"it\",\n  \"locationQuery\": \"Rimini, Italy\",\n  \"maxCrawledPlacesPerSearch\": 15,\n  \"scrapePlaceDetailPage\": true,\n  \"searchStringsArray\": [\n    \"palestra Rimini\",\n    \"centro sportivo Rimini\",\n    \"fitness club Rimini\",\n    \"palestre Rimini\"\n  ],\n  \"skipClosedPlaces\": false,\n  \"searchMatching\": \"all\",\n  \"placeMinimumStars\": \"\",\n  \"website\": \"allPlaces\",\n  \"scrapeTableReservationProvider\": false,\n  \"scrapeOrderOnline\": false,\n  \"includeWebResults\": false,\n  \"scrapeDirectories\": false,\n  \"maxQuestions\": 0,\n  \"scrapeSocialMediaProfiles\": {\n    \"facebooks\": false,\n    \"instagrams\": false,\n    \"youtubes\": false,\n    \"tiktoks\": false,\n    \"twitters\": false\n  },\n  \"maximumLeadsEnrichmentRecords\": 0,\n  \"verifyLeadsEnrichmentEmails\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -528,
+        840
+      ],
+      "id": "1c242809-5338-48d5-bd4e-073fe73990c9",
+      "name": "Apify · Palestre",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "r3wLfyh6FxcXtZVx",
+          "name": "Apify"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://api.apify.com/v2/datasets/' + $json.data.defaultDatasetId + '/items' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -304,
+        840
+      ],
+      "id": "3228af24-3ab1-4152-8a73-de51899586c4",
+      "name": "Dataset · Palestre",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "r3wLfyh6FxcXtZVx",
+          "name": "Apify"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nreturn items.map(i => {\n  const item = i.json;\n  return {\n    json: {\n      Nome: item.title || '',\n      Email: (item.emails && item.emails[0]) || '',\n      'Email trovate': (item.emails || []).join(', '),\n      Telefono: item.phone || '',\n      Sito: item.website || '',\n      Indirizzo: item.address || item.street || '',\n      'Città': item.city || 'Rimini',\n      'Rating Google': item.totalScore ?? null,\n      'Recensioni Google': item.reviewsCount ?? 0,\n      Settore: 'Palestra',\n      Stato: 'Nuovo',\n      Fonte: 'Google Maps'\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        840
+      ],
+      "id": "6dec3556-d89c-4254-8c0d-f39456a7eb8f",
+      "name": "Mappa · Palestre"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        144,
+        840
+      ],
+      "id": "a667b61c-f9c2-496f-bf1c-47116175f961",
+      "name": "Loop · Palestre"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appSaFpivfZljmGAL",
+          "mode": "list",
+          "cachedResultName": "AutomaIA - CRM Prospect v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbllDC0aYJHUSnFMT",
+          "mode": "list",
+          "cachedResultName": "Prospects v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
+        },
+        "filterByFormula": "=AND(\n  {Nome} != \"\",\n  OR(\n    FIND(LOWER({Nome}), LOWER(\"{{ $json.Nome }}\")) > 0,\n    FIND(LOWER(\"{{ $json.Nome }}\"), LOWER({Nome})) > 0\n  )\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        720
+      ],
+      "id": "eec3e550-140c-47c6-afdc-56d17ca3bffb",
+      "name": "Dédoublonnage · Palestre",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "QHg8uqm9JZgbHF1J",
+          "name": "Machine codeur"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a08570a1-9e7d-4146-9b73-66d274ef7ac0",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        592,
+        720
+      ],
+      "id": "d8393b3d-da2c-4bfa-a798-642d5b026102",
+      "name": "Già nel CRM? · Palestre"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: \"claude-sonnet-4-6\",\n  max_tokens: 600,\n  messages: [\n    {\n      role: \"user\",\n      content: `Sei l'assistente di prospezione di AutomaIA, agenzia che aiuta le palestre e i centri sportivi locali italiani a recuperare fino a 10 ore a settimana automatizzando la gestione degli abbonamenti, le prenotazioni dei corsi e i promemoria di scadenza.\n\nCRITERI DI QUALIFICA:\n\nALTO POTENZIALE:\n- Palestra o centro sportivo indipendente e locale\\n- Ha un sito web\\n- 5+ recensioni Google\\n- Attivo e ben recensito\n\nBASSO POTENZIALE:\n- Catena nazionale (Virgin Active, McFit, Anytime Fitness, Get Fit, Fitactive, Fit Express)\\n- Nessun sito web\n\nMEDIO: segnali insufficienti.\n\nDATI:\nNome: ${$('Loop · Palestre').item.json.Nome}\nSettore: Palestra\nCittà: ${$('Loop · Palestre').item.json['Città']}\nSito: ${$('Loop · Palestre').item.json.Sito || 'non disponibile'}\nEmail: ${$('Loop · Palestre').item.json.Email || 'non trovata'}\nRecensioni: ${$('Loop · Palestre').item.json['Recensioni Google']} | Rating: ${$('Loop · Palestre').item.json['Rating Google'] || 'n/d'}\nHa sito: ${$('Loop · Palestre').item.json.Sito ? 'sì' : 'no'}\n\nCOMPITO:\n1. Punteggio (Alto/Medio/Basso)\n2. Motivo in una frase\n3. Stima collaboratori (1-2 / 3-5 / 5+ / incerto)\n4. Prima riga cold email in italiano, vouvoiement Lei, evoca un problema quotidiano concreto (rinnovi di abbonamento in scadenza, prenotazioni dei corsi, promemoria da inviare, domande ripetitive su orari e corsi), vietati: IA, API, automazione, software, bot. Max 2 frasi.\n\n`+`JSON ONLY: {\\\"punteggio\\\":\\\"Alto|Medio|Basso\\\",\\\"motivo\\\":\\\"...\\\",\\\"stimaCollaboratori\\\":\\\"...\\\",\\\"prima_riga\\\":\\\"...\\\"}`\n    }\n  ]\n}) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        592,
+        936
+      ],
+      "id": "f2a2ae7a-7d3a-4cb0-aee7-eb8f474d946f",
+      "name": "Claude · Palestre",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "FdONJDewYUhUPDHJ",
+          "name": "API IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.content?.[0]?.text ?? '';\nlet jsonStr = raw.trim();\nconst start = jsonStr.indexOf('{');\nconst end = jsonStr.lastIndexOf('}');\nif (start !== -1 && end !== -1) jsonStr = jsonStr.slice(start, end + 1);\n\nlet data;\ntry { data = JSON.parse(jsonStr); }\ncatch (e) { data = { punteggio: 'Medio', motivo: '', stimaCollaboratori: 'incerto', prima_riga: '' }; }\n\nconst src = $('Loop · Palestre').item.json;\nconst haSito = !!(src.Sito && src.Sito.length > 5);\nconst attivo = (src['Recensioni Google'] || 0) >= 3;\n\nreturn [{\n  json: {\n    ...src,\n    punteggio: data.punteggio || 'Medio',\n    motivo: data.motivo || '',\n    stimaCollaboratori: data.stimaCollaboratori || 'incerto',\n    prima_riga: data.prima_riga || '',\n    priorita: (haSito && attivo) ? 'alta' : (haSito || attivo) ? 'media' : 'bassa'\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        936
+      ],
+      "id": "85c9a88e-47cd-4c74-aefd-6c31f4f71800",
+      "name": "Estrai qualifica · Palestre"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appSaFpivfZljmGAL",
+          "mode": "list",
+          "cachedResultName": "AutomaIA - CRM Prospect v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbllDC0aYJHUSnFMT",
+          "mode": "list",
+          "cachedResultName": "Prospects v2",
+          "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Contattato": false,
+            "Relance J+4 inviata": false,
+            "Nome": "={{ $json.Nome }}",
+            "Email": "={{ $json.Email }}",
+            "Telefono": "={{ $json.Telefono }}",
+            "Sito": "={{ $json.Sito }}",
+            "Indirizzo": "={{ $json.Indirizzo }}",
+            "Città": "={{ $json['Città'] }}",
+            "Settore": "Palestra",
+            "Stato": "Nuovo",
+            "Fonte": "Google Maps",
+            "Punteggio IA": "={{ $json.punteggio }}",
+            "Priorità": "={{ $json.priorita }}",
+            "Stima Collaboratori": "={{ $json.stimaCollaboratori }}",
+            "Rating Google": "={{ $json['Rating Google'] }}",
+            "Recensioni Google": "={{ $json['Recensioni Google'] }}",
+            "Email trovate": "={{ $json['Email trovate'] }}",
+            "Accroche": "={{ $json.prima_riga }}",
+            "Motivo qualifica": "={{ $json.motivo }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Sito",
+              "displayName": "Sito",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Indirizzo",
+              "displayName": "Indirizzo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Città",
+              "displayName": "Città",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Settore",
+              "displayName": "Settore",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Commercialista",
+                  "value": "Commercialista"
+                },
+                {
+                  "name": "Avvocato",
+                  "value": "Avvocato"
+                },
+                {
+                  "name": "Medico",
+                  "value": "Medico"
+                },
+                {
+                  "name": "Notaio",
+                  "value": "Notaio"
+                },
+                {
+                  "name": "Veterinario",
+                  "value": "Veterinario"
+                },
+                {
+                  "name": "Altro",
+                  "value": "Altro"
+                },
+                {
+                  "name": "Dentista",
+                  "value": "Dentista"
+                },
+                {
+                  "name": "Clinica dentale",
+                  "value": "Clinica dentale"
+                },
+                {
+                  "name": "Agenzia immobiliare",
+                  "value": "Agenzia immobiliare"
+                },
+                {
+                  "name": "Centro estetico",
+                  "value": "Centro estetico"
+                },
+                {
+                  "name": "Palestra",
+                  "value": "Palestra"
+                }
+              ]
+            },
+            {
+              "id": "Stato",
+              "displayName": "Stato",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Nuovo",
+                  "value": "Nuovo"
+                },
+                {
+                  "name": "Contattato",
+                  "value": "Contattato"
+                },
+                {
+                  "name": "Audit fissato",
+                  "value": "Audit fissato"
+                },
+                {
+                  "name": "Proposta inviata",
+                  "value": "Proposta inviata"
+                },
+                {
+                  "name": "Cliente",
+                  "value": "Cliente"
+                },
+                {
+                  "name": "Perso",
+                  "value": "Perso"
+                },
+                {
+                  "name": "Da contattare",
+                  "value": "Da contattare"
+                }
+              ]
+            },
+            {
+              "id": "Punteggio IA",
+              "displayName": "Punteggio IA",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Alto",
+                  "value": "Alto"
+                },
+                {
+                  "name": "Medio",
+                  "value": "Medio"
+                },
+                {
+                  "name": "Basso",
+                  "value": "Basso"
+                }
+              ]
+            },
+            {
+              "id": "Priorità",
+              "displayName": "Priorità",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "alta",
+                  "value": "alta"
+                },
+                {
+                  "name": "media",
+                  "value": "media"
+                },
+                {
+                  "name": "bassa",
+                  "value": "bassa"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "id": "Stima Collaboratori",
+              "displayName": "Stima Collaboratori",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "1-2",
+                  "value": "1-2"
+                },
+                {
+                  "name": "3-5",
+                  "value": "3-5"
+                },
+                {
+                  "name": "5+",
+                  "value": "5+"
+                },
+                {
+                  "name": "incerto",
+                  "value": "incerto"
+                }
+              ]
+            },
+            {
+              "id": "Rating Google",
+              "displayName": "Rating Google",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Recensioni Google",
+              "displayName": "Recensioni Google",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fonte",
+              "displayName": "Fonte",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "readOnly": false,
+              "removed": false,
+              "options": [
+                {
+                  "name": "Google Maps",
+                  "value": "Google Maps"
+                },
+                {
+                  "name": "LinkedIn",
+                  "value": "LinkedIn"
+                },
+                {
+                  "name": "Referral",
+                  "value": "Referral"
+                },
+                {
+                  "name": "Sito web",
+                  "value": "Sito web"
+                },
+                {
+                  "name": "Lead magnet",
+                  "value": "Lead magnet"
+                },
+                {
+                  "name": "Altro",
+                  "value": "Altro"
+                }
+              ]
+            },
+            {
+              "id": "Accroche",
+              "displayName": "Accroche",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Motivo qualifica",
+              "displayName": "Motivo qualifica",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email trovate",
+              "displayName": "Email trovate",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Data contatto",
+              "displayName": "Data contatto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Contattato",
+              "displayName": "Contattato",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Relance J+4 inviata",
+              "displayName": "Relance J+4 inviata",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        816,
+        1116
+      ],
+      "id": "ac3aeaee-c3c5-48f4-a70e-1668cd8332e7",
+      "name": "Create · Palestre",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "jTr0K18hUPlmiok5",
+          "name": "CRM Prospects"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Apify · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Dataset · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dataset · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Mappa · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mappa · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Loop · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop · Immobiliari": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Dédoublonnage · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dédoublonnage · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Già nel CRM? · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Già nel CRM? · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Loop · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Claude · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Estrai qualifica · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai qualifica · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Create · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create · Immobiliari": {
+      "main": [
+        [
+          {
+            "node": "Loop · Immobiliari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Dataset · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dataset · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Mappa · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mappa · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Loop · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop · Estetico": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Dédoublonnage · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dédoublonnage · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Già nel CRM? · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Già nel CRM? · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Loop · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Claude · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Estrai qualifica · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai qualifica · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Create · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create · Estetico": {
+      "main": [
+        [
+          {
+            "node": "Loop · Estetico",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Dataset · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dataset · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Mappa · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mappa · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Loop · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop · Palestre": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Dédoublonnage · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dédoublonnage · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Già nel CRM? · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Già nel CRM? · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Loop · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Claude · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Estrai qualifica · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai qualifica · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Create · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create · Palestre": {
+      "main": [
+        [
+          {
+            "node": "Loop · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Avvia prospezione": {
+      "main": [
+        [
+          {
+            "node": "Apify · Immobiliari",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Apify · Estetico",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Apify · Palestre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "792a7e5f7ecc84953d0cdcd8f731195497a0fac92bbb671cb4a78acdf2435f68"
+  }
+}
