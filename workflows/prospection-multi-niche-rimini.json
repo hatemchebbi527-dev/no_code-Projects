@@ -9,7 +9,7 @@
         -760,
         300
       ],
-      "id": "7cb426d0-d671-40fa-86b7-7855e8ca4109",
+      "id": "371ef96a-9c54-4732-8a66-7f583db2a59a",
       "name": "Avvia prospezione"
     },
     {
@@ -29,7 +29,7 @@
         -528,
         -240
       ],
-      "id": "d5a0bdaf-36dd-4b1d-a45f-f92cee235d95",
+      "id": "4de52fe6-afe7-4528-9b86-b4f79e77b100",
       "name": "Apify · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -51,7 +51,7 @@
         -304,
         -240
       ],
-      "id": "4afe5a91-0269-40a0-a97c-2f8742bf257e",
+      "id": "150d2489-e82c-4ad5-98ba-17ff8d1b0376",
       "name": "Dataset · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -70,7 +70,7 @@
         -80,
         -240
       ],
-      "id": "cb2e6de8-c80f-4938-9d3b-aa79cab430b5",
+      "id": "72134d0c-1777-491d-bad4-4e221267e2db",
       "name": "Mappa · Immobiliari"
     },
     {
@@ -83,7 +83,7 @@
         144,
         -240
       ],
-      "id": "4b844e46-a571-4de3-bc3f-05e8971e8bca",
+      "id": "6ba9d9c6-a6b4-4210-9ea4-47b2450a049e",
       "name": "Loop · Immobiliari"
     },
     {
@@ -112,7 +112,7 @@
         368,
         -360
       ],
-      "id": "d04af2cd-dc16-45b8-aa29-fd8b5c1afc8b",
+      "id": "1a8b1ae4-c1d2-4ac8-a5ea-47aa7e9d54cd",
       "name": "Dédoublonnage · Immobiliari",
       "alwaysOutputData": true,
       "credentials": {
@@ -133,7 +133,7 @@
           },
           "conditions": [
             {
-              "id": "b1a07e4a-d894-4da0-b2f2-8d1f73a91cff",
+              "id": "7df53101-940c-48c9-86ab-0cbcc7266ec7",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -154,7 +154,7 @@
         592,
         -360
       ],
-      "id": "1fa46f5b-3a84-477a-b7c4-63e3dee9ab6a",
+      "id": "c5c6a2ff-8a35-4a3b-929f-4a949394a105",
       "name": "Già nel CRM? · Immobiliari"
     },
     {
@@ -163,6 +163,19 @@
         "url": "https://api.anthropic.com/v1/messages",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify({\n  model: \"claude-sonnet-4-6\",\n  max_tokens: 600,\n  messages: [\n    {\n      role: \"user\",\n      content: `Sei l'assistente di prospezione di AutomaIA, agenzia che aiuta le agenzie immobiliari locali italiane a recuperare fino a 10 ore a settimana automatizzando la gestione degli appuntamenti per le visite, i promemoria e le risposte ricorrenti alle richieste sugli annunci.\n\nCRITERI DI QUALIFICA:\n\nALTO POTENZIALE:\n- Agenzia indipendente e locale\\n- Ha un sito web\\n- 5+ recensioni Google\\n- 1-3 agenti nel nome\n\nBASSO POTENZIALE:\n- Catena o franchising nazionale (Tecnocasa, Gabetti, RE/MAX, Grimaldi, Toscano, Professionecasa, Coldwell Banker, Engel & Völkers, Solo Affitti, Fondocasa, Frimm)\\n- Nessun sito web\n\nMEDIO: segnali insufficienti.\n\nDATI:\nNome: ${$('Loop · Immobiliari').item.json.Nome}\nSettore: Agenzia immobiliare\nCittà: ${$('Loop · Immobiliari').item.json['Città']}\nSito: ${$('Loop · Immobiliari').item.json.Sito || 'non disponibile'}\nEmail: ${$('Loop · Immobiliari').item.json.Email || 'non trovata'}\nRecensioni: ${$('Loop · Immobiliari').item.json['Recensioni Google']} | Rating: ${$('Loop · Immobiliari').item.json['Rating Google'] || 'n/d'}\nHa sito: ${$('Loop · Immobiliari').item.json.Sito ? 'sì' : 'no'}\n\nCOMPITO:\n1. Punteggio (Alto/Medio/Basso)\n2. Motivo in una frase\n3. Stima collaboratori (1-2 / 3-5 / 5+ / incerto)\n4. Prima riga cold email in italiano, vouvoiement Lei, evoca un problema quotidiano concreto (gestione delle visite in agenda, richieste continue sugli annunci, follow-up con acquirenti e venditori), vietati: IA, API, automazione, software, bot. Max 2 frasi.\n\n`+`JSON ONLY: {\\\"punteggio\\\":\\\"Alto|Medio|Basso\\\",\\\"motivo\\\":\\\"...\\\",\\\"stimaCollaboratori\\\":\\\"...\\\",\\\"prima_riga\\\":\\\"...\\\"}`\n    }\n  ]\n}) }}",
@@ -174,7 +187,7 @@
         592,
         -144
       ],
-      "id": "0dfa7048-fef1-4bf4-85f3-f63f4c975578",
+      "id": "e8c549ee-5115-4fa1-a04f-4eb383e0f5b5",
       "name": "Claude · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -193,7 +206,7 @@
         816,
         -144
       ],
-      "id": "7b947efe-54cd-4e6a-b7c4-79c2671cc61b",
+      "id": "8996b640-a5a0-4012-9fa8-1389e3e187ba",
       "name": "Estrai qualifica · Immobiliari"
     },
     {
@@ -633,7 +646,7 @@
         816,
         36
       ],
-      "id": "001db9fb-7eec-4ca2-ac87-f05ed5068ebb",
+      "id": "11e9d87f-6779-497b-92b1-06660ca2c608",
       "name": "Create · Immobiliari",
       "credentials": {
         "airtableTokenApi": {
@@ -659,7 +672,7 @@
         -528,
         300
       ],
-      "id": "9cd5ac4e-075a-4333-bcaa-7130fcba8098",
+      "id": "11e08391-c781-4ab8-8ae9-990812994726",
       "name": "Apify · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -681,7 +694,7 @@
         -304,
         300
       ],
-      "id": "0aabf36a-d2be-4dca-a32a-7c7bdf8ea2c2",
+      "id": "1aa676c5-270c-410c-aba2-89b8a159a056",
       "name": "Dataset · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -700,7 +713,7 @@
         -80,
         300
       ],
-      "id": "d3949e29-b31b-4b0d-a088-3984a5480182",
+      "id": "1934b00e-a9ad-4291-a9b8-76747a08eab0",
       "name": "Mappa · Estetico"
     },
     {
@@ -713,7 +726,7 @@
         144,
         300
       ],
-      "id": "758e3676-ddbb-47a1-9b49-25802ba31e28",
+      "id": "60345524-2afe-4245-b833-792bebd04284",
       "name": "Loop · Estetico"
     },
     {
@@ -742,7 +755,7 @@
         368,
         180
       ],
-      "id": "e8cd9168-f830-4fe6-80df-c8598a2916ce",
+      "id": "c6fc811e-f68f-4c2e-96f4-9604ea4b82dc",
       "name": "Dédoublonnage · Estetico",
       "alwaysOutputData": true,
       "credentials": {
@@ -763,7 +776,7 @@
           },
           "conditions": [
             {
-              "id": "b497cbd0-6706-4eed-b67e-b3d525899c98",
+              "id": "b0c85299-c136-4e06-8eeb-730bbce9be05",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -784,7 +797,7 @@
         592,
         180
       ],
-      "id": "70466b1c-1487-4e3b-bb9a-d21f569839dc",
+      "id": "b3f7f383-2ca3-47c7-b9ae-19145d0204dd",
       "name": "Già nel CRM? · Estetico"
     },
     {
@@ -793,6 +806,19 @@
         "url": "https://api.anthropic.com/v1/messages",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify({\n  model: \"claude-sonnet-4-6\",\n  max_tokens: 600,\n  messages: [\n    {\n      role: \"user\",\n      content: `Sei l'assistente di prospezione di AutomaIA, agenzia che aiuta i centri estetici locali italiani a recuperare fino a 10 ore a settimana automatizzando le prenotazioni, i promemoria degli appuntamenti e le risposte ricorrenti su listino e orari.\n\nCRITERI DI QUALIFICA:\n\nALTO POTENZIALE:\n- Centro estetico indipendente e locale\\n- Ha un sito web\\n- 5+ recensioni Google\\n- Attivo e ben recensito\n\nBASSO POTENZIALE:\n- Catena o franchising nazionale\\n- Grande insegna con più sedi\\n- Nessun sito web\n\nMEDIO: segnali insufficienti.\n\nDATI:\nNome: ${$('Loop · Estetico').item.json.Nome}\nSettore: Centro estetico\nCittà: ${$('Loop · Estetico').item.json['Città']}\nSito: ${$('Loop · Estetico').item.json.Sito || 'non disponibile'}\nEmail: ${$('Loop · Estetico').item.json.Email || 'non trovata'}\nRecensioni: ${$('Loop · Estetico').item.json['Recensioni Google']} | Rating: ${$('Loop · Estetico').item.json['Rating Google'] || 'n/d'}\nHa sito: ${$('Loop · Estetico').item.json.Sito ? 'sì' : 'no'}\n\nCOMPITO:\n1. Punteggio (Alto/Medio/Basso)\n2. Motivo in una frase\n3. Stima collaboratori (1-2 / 3-5 / 5+ / incerto)\n4. Prima riga cold email in italiano, vouvoiement Lei, evoca un problema quotidiano concreto (prenotazioni gestite a mano, appuntamenti mancati, promemoria da inviare, domande ripetitive su trattamenti e orari), vietati: IA, API, automazione, software, bot. Max 2 frasi.\n\n`+`JSON ONLY: {\\\"punteggio\\\":\\\"Alto|Medio|Basso\\\",\\\"motivo\\\":\\\"...\\\",\\\"stimaCollaboratori\\\":\\\"...\\\",\\\"prima_riga\\\":\\\"...\\\"}`\n    }\n  ]\n}) }}",
@@ -804,7 +830,7 @@
         592,
         396
       ],
-      "id": "be5888ad-6b37-40d9-b02c-1eb82c42ba5d",
+      "id": "a1a7241f-4333-44f6-87e7-517a1dbde6f9",
       "name": "Claude · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -823,7 +849,7 @@
         816,
         396
       ],
-      "id": "405df540-ef80-4b15-9e63-072757b07f71",
+      "id": "1e73bfba-4ae8-464e-9349-d9b1f3b9b02c",
       "name": "Estrai qualifica · Estetico"
     },
     {
@@ -1263,7 +1289,7 @@
         816,
         576
       ],
-      "id": "9744a32e-d642-4808-a8c2-39d0163355d7",
+      "id": "f868ed16-a1f0-4d6a-bd82-387c00ef5108",
       "name": "Create · Estetico",
       "credentials": {
         "airtableTokenApi": {
@@ -1289,7 +1315,7 @@
         -528,
         840
       ],
-      "id": "1c242809-5338-48d5-bd4e-073fe73990c9",
+      "id": "17007186-1adb-49cb-ae5e-6947942211a4",
       "name": "Apify · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1311,7 +1337,7 @@
         -304,
         840
       ],
-      "id": "3228af24-3ab1-4152-8a73-de51899586c4",
+      "id": "f07246d2-6e31-471f-ae84-62326d80d69f",
       "name": "Dataset · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1330,7 +1356,7 @@
         -80,
         840
       ],
-      "id": "6dec3556-d89c-4254-8c0d-f39456a7eb8f",
+      "id": "68a5558d-2b3d-4a01-9a52-e5819345fc5f",
       "name": "Mappa · Palestre"
     },
     {
@@ -1343,7 +1369,7 @@
         144,
         840
       ],
-      "id": "a667b61c-f9c2-496f-bf1c-47116175f961",
+      "id": "b48d4f72-337c-4279-a991-70da39f60b54",
       "name": "Loop · Palestre"
     },
     {
@@ -1372,7 +1398,7 @@
         368,
         720
       ],
-      "id": "eec3e550-140c-47c6-afdc-56d17ca3bffb",
+      "id": "a288adc7-8ade-46ad-a8b3-3dd01c26726c",
       "name": "Dédoublonnage · Palestre",
       "alwaysOutputData": true,
       "credentials": {
@@ -1393,7 +1419,7 @@
           },
           "conditions": [
             {
-              "id": "a08570a1-9e7d-4146-9b73-66d274ef7ac0",
+              "id": "db19bb6d-e228-42a8-9810-87bc01e11495",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -1414,7 +1440,7 @@
         592,
         720
       ],
-      "id": "d8393b3d-da2c-4bfa-a798-642d5b026102",
+      "id": "3930eab4-56ff-4d21-afce-bfd2745d4f6b",
       "name": "Già nel CRM? · Palestre"
     },
     {
@@ -1423,6 +1449,19 @@
         "url": "https://api.anthropic.com/v1/messages",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify({\n  model: \"claude-sonnet-4-6\",\n  max_tokens: 600,\n  messages: [\n    {\n      role: \"user\",\n      content: `Sei l'assistente di prospezione di AutomaIA, agenzia che aiuta le palestre e i centri sportivi locali italiani a recuperare fino a 10 ore a settimana automatizzando la gestione degli abbonamenti, le prenotazioni dei corsi e i promemoria di scadenza.\n\nCRITERI DI QUALIFICA:\n\nALTO POTENZIALE:\n- Palestra o centro sportivo indipendente e locale\\n- Ha un sito web\\n- 5+ recensioni Google\\n- Attivo e ben recensito\n\nBASSO POTENZIALE:\n- Catena nazionale (Virgin Active, McFit, Anytime Fitness, Get Fit, Fitactive, Fit Express)\\n- Nessun sito web\n\nMEDIO: segnali insufficienti.\n\nDATI:\nNome: ${$('Loop · Palestre').item.json.Nome}\nSettore: Palestra\nCittà: ${$('Loop · Palestre').item.json['Città']}\nSito: ${$('Loop · Palestre').item.json.Sito || 'non disponibile'}\nEmail: ${$('Loop · Palestre').item.json.Email || 'non trovata'}\nRecensioni: ${$('Loop · Palestre').item.json['Recensioni Google']} | Rating: ${$('Loop · Palestre').item.json['Rating Google'] || 'n/d'}\nHa sito: ${$('Loop · Palestre').item.json.Sito ? 'sì' : 'no'}\n\nCOMPITO:\n1. Punteggio (Alto/Medio/Basso)\n2. Motivo in una frase\n3. Stima collaboratori (1-2 / 3-5 / 5+ / incerto)\n4. Prima riga cold email in italiano, vouvoiement Lei, evoca un problema quotidiano concreto (rinnovi di abbonamento in scadenza, prenotazioni dei corsi, promemoria da inviare, domande ripetitive su orari e corsi), vietati: IA, API, automazione, software, bot. Max 2 frasi.\n\n`+`JSON ONLY: {\\\"punteggio\\\":\\\"Alto|Medio|Basso\\\",\\\"motivo\\\":\\\"...\\\",\\\"stimaCollaboratori\\\":\\\"...\\\",\\\"prima_riga\\\":\\\"...\\\"}`\n    }\n  ]\n}) }}",
@@ -1434,7 +1473,7 @@
         592,
         936
       ],
-      "id": "f2a2ae7a-7d3a-4cb0-aee7-eb8f474d946f",
+      "id": "ff592188-4283-4589-9913-46cbd0406da1",
       "name": "Claude · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1453,7 +1492,7 @@
         816,
         936
       ],
-      "id": "85c9a88e-47cd-4c74-aefd-6c31f4f71800",
+      "id": "68b518c7-4001-4503-962e-d3746ebd1df7",
       "name": "Estrai qualifica · Palestre"
     },
     {
@@ -1893,7 +1932,7 @@
         816,
         1116
       ],
-      "id": "ac3aeaee-c3c5-48f4-a70e-1668cd8332e7",
+      "id": "463c5939-8acd-4725-9dde-177432b1765e",
       "name": "Create · Palestre",
       "credentials": {
         "airtableTokenApi": {
