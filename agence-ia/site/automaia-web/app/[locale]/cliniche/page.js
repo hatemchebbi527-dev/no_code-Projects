@@ -1,42 +1,60 @@
-import Link from "next/link";
 import Image from "next/image";
-import { cliniche } from "@/lib/content";
+import { Link } from "@/i18n/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Reveal from "@/components/Reveal";
 import styles from "./cliniche.module.css";
+import { SITE_URL } from "@/lib/brand";
 
-export const metadata = {
-  title: "Automazione per centri estetici e palestre",
-  description:
-    "Prenotazioni online, promemoria automatici e assistente FAQ 24/7 per il Suo centro estetico o palestra. Riduca le assenze e non perda più richieste fuori orario.",
-  alternates: { canonical: "/cliniche" },
-  openGraph: {
-    title: "Automazione per centri estetici e palestre",
-    description:
-      "Prenotazioni online, promemoria automatici e assistente FAQ 24/7 per il Suo centro estetico o palestra.",
-    url: "/cliniche",
-  },
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.cliniche" });
+  const path = "/cliniche";
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: locale === "fr" ? `/fr${path}` : path,
+      languages: {
+        it: `${SITE_URL}${path}`,
+        fr: `${SITE_URL}/fr${path}`,
+        "x-default": `${SITE_URL}${path}`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("ogDescription"),
+      url: locale === "fr" ? `${SITE_URL}/fr${path}` : `${SITE_URL}${path}`,
+    },
+  };
+}
 
-export default function ClinichePage() {
+export default async function ClinichePage({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("cliniche");
+  const problemaItems = t.raw("problema.items");
+  const soluzioneItems = t.raw("soluzione.items");
+
   return (
     <>
       {/* HERO scuro con foto */}
       <section className={styles.hero}>
         <div className={`container ${styles.heroInner}`}>
           <Reveal>
-            <span className="eyebrow">{cliniche.hero.eyebrow}</span>
-            <h1>{cliniche.hero.title}</h1>
-            <p className="lead mt-24">{cliniche.hero.subtitle}</p>
+            <span className="eyebrow">{t("hero.eyebrow")}</span>
+            <h1>{t("hero.title")}</h1>
+            <p className="lead mt-24">{t("hero.subtitle")}</p>
             <div className="mt-32">
-              <Link href={cliniche.hero.cta.href} className="btn">
-                {cliniche.hero.cta.label}
+              <Link href={t("hero.cta.href")} className="btn">
+                {t("hero.cta.label")}
               </Link>
             </div>
           </Reveal>
           <Reveal delay={140} variant="scale" className={styles.heroPhoto}>
             <Image
               src="/cliniche-reception.jpg"
-              alt="Reception di un centro estetico"
+              alt={t("hero.eyebrow")}
               fill
               sizes="(max-width: 960px) 100vw, 45vw"
             />
@@ -48,10 +66,10 @@ export default function ClinichePage() {
       <section className="section section--light">
         <div className="container">
           <div className="title-block center">
-            <Reveal><h2>{cliniche.problema.title}</h2></Reveal>
+            <Reveal><h2>{t("problema.title")}</h2></Reveal>
           </div>
           <div className="grid-3">
-            {cliniche.problema.items.map((it, i) => (
+            {problemaItems.map((it, i) => (
               <Reveal key={i} delay={i * 120}>
                 <div className="card" style={{ height: "100%" }}>
                   <h3>{it.title}</h3>
@@ -68,14 +86,14 @@ export default function ClinichePage() {
         <div className="container">
           <div className="title-block center">
             <Reveal>
-              <h2>{cliniche.soluzione.title}</h2>
+              <h2>{t("soluzione.title")}</h2>
               <p className="lead mt-16" style={{ margin: "16px auto 0" }}>
-                {cliniche.soluzione.intro}
+                {t("soluzione.intro")}
               </p>
             </Reveal>
           </div>
           <div className="grid-3">
-            {cliniche.soluzione.items.map((it, i) => (
+            {soluzioneItems.map((it, i) => (
               <Reveal key={i} delay={i * 120}>
                 <div className="card" style={{ height: "100%" }}>
                   <div className="iconChip" style={{ color: "var(--teal)" }}>
@@ -97,8 +115,8 @@ export default function ClinichePage() {
         <div className="container" style={{ maxWidth: 900 }}>
           <Reveal>
             <div className={styles.esempio}>
-              <span className="eyebrow">{cliniche.esempio.title}</span>
-              <p className={styles.esempioText}>{cliniche.esempio.text}</p>
+              <span className="eyebrow">{t("esempio.title")}</span>
+              <p className={styles.esempioText}>{t("esempio.text")}</p>
             </div>
           </Reveal>
         </div>
@@ -108,13 +126,13 @@ export default function ClinichePage() {
       <section className="section">
         <div className="container title-block center" style={{ maxWidth: 700 }}>
           <Reveal>
-            <h2>{cliniche.ctaFinale.title}</h2>
+            <h2>{t("ctaFinale.title")}</h2>
             <p className="lead mt-16" style={{ margin: "16px auto 0" }}>
-              {cliniche.ctaFinale.text}
+              {t("ctaFinale.text")}
             </p>
             <div className="mt-32">
-              <Link href={cliniche.ctaFinale.cta.href} className="btn">
-                {cliniche.ctaFinale.cta.label}
+              <Link href={t("ctaFinale.cta.href")} className="btn">
+                {t("ctaFinale.cta.label")}
               </Link>
             </div>
           </Reveal>

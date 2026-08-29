@@ -1,0 +1,245 @@
+{
+  "brand": {
+    "tagline": "Automatisation et IA pour agences immobilières, instituts de beauté et salles de sport",
+    "rightsReserved": "Tous droits réservés."
+  },
+  "nav": {
+    "home": "Accueil",
+    "servizi": "Services",
+    "cliniche": "Instituts & Salles de sport",
+    "chiSono": "Qui suis-je",
+    "contatti": "Contact"
+  },
+  "common": {
+    "auditCta": "Audit gratuit",
+    "scopriServizi": "Découvrir les services",
+    "eyebrowServizi": "Services",
+    "eyebrowMetodo": "La méthode",
+    "oppureScriva": "Ou écrivez à"
+  },
+  "languageSwitcher": {
+    "label": "Langue",
+    "it": "Italien",
+    "fr": "Français"
+  },
+  "home": {
+    "hero": {
+      "titlePrefix": "Votre activité récupère jusqu'à",
+      "titleHighlight": "10 heures",
+      "titleSuffix": "par semaine",
+      "subtitle": "J'automatise les tâches répétitives des agences immobilières, instituts de beauté et salles de sport. Moins de gestion manuelle, plus de temps pour vos clients et pour le travail qui compte vraiment. Vos données restent toujours protégées.",
+      "cta": { "label": "Réservez un audit gratuit", "href": "/audit" }
+    },
+    "stats": [
+      { "value": 10, "suffix": "", "label": "heures par semaine que vous pouvez récupérer" },
+      { "value": 24, "suffix": "/7", "label": "assistant toujours actif" },
+      { "value": 20, "suffix": " min", "label": "audit gratuit, sans engagement" },
+      { "value": 100, "suffix": "%", "label": "données protégées et sous votre contrôle" }
+    ],
+    "problema": {
+      "title": "Combien d'heures perdez-vous chaque semaine dans des tâches qui ne requièrent pas votre expertise ?",
+      "text": "Demandes d'informations. Rendez-vous à confirmer à la main. Les mêmes questions des clients, chaque jour. Des rappels que personne n'envoie. Ce sont des tâches nécessaires, mais répétitives. Et cumulées, elles représentent des heures précieuses chaque semaine, qui prennent du temps sur ce qui compte : vos clients et votre activité."
+    },
+    "offerteTeaser": {
+      "title": "Votre activité gère seule les tâches répétitives",
+      "intro": "Je crée des automatisations sur mesure. Vous ne touchez à rien de technique : vous n'utilisez que le résultat.",
+      "items": [
+        {
+          "title": "Rendez-vous et rappels automatiques",
+          "text": "Réservations, rappels et relances partent tout seuls. Fini les oublis."
+        },
+        {
+          "title": "Réponses automatiques aux questions récurrentes",
+          "text": "Un assistant répond 24/7 aux demandes habituelles, avec les informations que vous décidez."
+        },
+        {
+          "title": "Organisation et données en sécurité",
+          "text": "Tout est réuni au même endroit. Vos données restent protégées et sous votre contrôle."
+        }
+      ],
+      "cta": { "label": "Découvrir les services", "href": "/servizi" }
+    },
+    "metodoTeaser": {
+      "title": "Une méthode simple, sans risque",
+      "text": "On part toujours d'un audit gratuit de 20 minutes : ensemble, nous repérons où vous perdez le plus de temps, avant tout engagement. Ensuite, je mets en place l'automatisation, je la teste et je vous montre comment elle fonctionne. Vous restez toujours aux commandes.",
+      "cta": { "label": "Comment je travaille", "href": "/chi-sono" }
+    },
+    "ctaFinale": {
+      "title": "Découvrez combien d'heures vous pouvez récupérer",
+      "text": "En 20 minutes, gratuitement, nous identifions la première automatisation utile pour votre activité.",
+      "cta": { "label": "Réservez votre audit gratuit", "href": "/audit" }
+    }
+  },
+  "servizi": {
+    "intro": {
+      "title": "Les services d'AutomaIA",
+      "text": "Des solutions sur mesure pour agences immobilières, instituts de beauté et salles de sport. On commence par la tâche qui vous prend le plus de temps, en toute sécurité."
+    },
+    "offerte": [
+      {
+        "nome": "Activité Automatisée",
+        "evidenza": true,
+        "badge": "Le plus demandé",
+        "perche": "Pour l'activité submergée par la gestion manuelle et les demandes répétitives.",
+        "include": [
+          "Rendez-vous et rappels automatiques",
+          "Relances automatiques aux clients",
+          "Assistant FAQ actif 24/7",
+          "Données toujours protégées"
+        ],
+        "prezzo": "Sur mesure",
+        "nota": "Installation initiale + abonnement mensuel",
+        "cta": { "label": "Réservez un audit gratuit", "href": "/audit" }
+      },
+      {
+        "nome": "Activité 360",
+        "evidenza": false,
+        "badge": "",
+        "perche": "Pour qui veut tout organiser, de la gestion clients à la présence en ligne.",
+        "include": [
+          "Tout d'Activité Automatisée",
+          "CRM sur mesure pour vos clients",
+          "Présence en ligne incluse",
+          "Optimisation continue"
+        ],
+        "prezzo": "Sur mesure",
+        "nota": "Installation initiale + abonnement mensuel",
+        "cta": { "label": "Parlons de votre activité", "href": "/audit" }
+      },
+      {
+        "nome": "Présence en ligne",
+        "evidenza": false,
+        "badge": "",
+        "perche": "Pour qui veut aussi soigner sa visibilité.",
+        "include": [
+          "Site vitrine professionnel",
+          "Publication automatique sur les réseaux sociaux",
+          "Formulaire de contact connecté"
+        ],
+        "prezzo": "Sur mesure",
+        "nota": "Complément à la carte",
+        "cta": { "label": "Ajoutez-le à votre activité", "href": "/audit" }
+      }
+    ]
+  },
+  "chiSono": {
+    "title": "Qui suis-je et comment je travaille",
+    "intro": "Je suis le fondateur d'AutomaIA. J'aide les agences immobilières, instituts de beauté et salles de sport à se libérer des tâches répétitives qui volent du temps, pour qu'ils puissent se concentrer sur leur vrai métier. Pas de jargon technique, pas de promesses magiques : des solutions concrètes et sur mesure.",
+    "metodoTitle": "La méthode, en 3 étapes",
+    "metodo": [
+      {
+        "step": "1",
+        "title": "Audit gratuit (20 minutes)",
+        "text": "Nous repérons ensemble où vous perdez le plus de temps. Sans engagement."
+      },
+      {
+        "step": "2",
+        "title": "Automatisation sur mesure",
+        "text": "Je mets en place la solution, je la teste et je vous montre comment elle fonctionne."
+      },
+      {
+        "step": "3",
+        "title": "Vous restez aux commandes",
+        "text": "Vous n'utilisez que le résultat. Vos données restent protégées et sous votre contrôle."
+      }
+    ],
+    "fiduciaTitle": "Pourquoi me faire confiance",
+    "fiducia": [
+      "La confidentialité avant tout : vos données restent les vôtres.",
+      "Des solutions sur mesure pour votre activité, pas des offres génériques.",
+      "Aucun engagement tant que vous n'en voyez pas la valeur de vos propres yeux."
+    ],
+    "cta": { "label": "Réservez un audit gratuit", "href": "/contatti" }
+  },
+  "contatti": {
+    "title": "Vous avez une question ?",
+    "text": "Remplissez le formulaire ou écrivez directement à info@automa-ia.net. Je réponds sous 24 heures. Pour réserver un audit gratuit, utilisez plutôt la page dédiée.",
+    "successo": "Merci ! J'ai bien reçu votre message, je vous réponds sous peu.",
+    "errore": "Une erreur est survenue. Réessayez ou écrivez directement à info@automa-ia.net."
+  },
+  "contactForm": {
+    "nome": "Nom et prénom",
+    "email": "Email",
+    "studio": "Nom de l'activité",
+    "messaggio": "Message",
+    "invia": "Envoyer le message",
+    "invioInCorso": "Envoi en cours..."
+  },
+  "cliniche": {
+    "hero": {
+      "eyebrow": "Instituts de beauté et salles de sport",
+      "title": "Votre activité travaille aussi en dehors des horaires",
+      "subtitle": "Réservations, rappels et premières réponses aux clients, en automatique. Vous vous concentrez sur les soins et les entraînements, pas sur le téléphone. Vos données restent toujours protégées.",
+      "cta": { "label": "Réservez un audit gratuit", "href": "/audit" }
+    },
+    "problema": {
+      "title": "Chaque jour, votre établissement perd des demandes et des rendez-vous, sans s'en rendre compte",
+      "items": [
+        { "title": "Demandes hors horaires", "text": "Beaucoup de demandes arrivent le soir ou le week-end, quand l'établissement est fermé. Sans réponse automatique, le client réserve ailleurs." },
+        { "title": "Rendez-vous manqués", "text": "Dans le secteur, environ 15 % des rendez-vous sautent sans prévenir. Chaque absence, c'est du temps et du chiffre d'affaires perdus." },
+        { "title": "Les mêmes questions chaque jour", "text": "Tarifs, disponibilités, durée des soins : les mêmes questions répétées qui volent des heures à l'accueil." }
+      ]
+    },
+    "soluzione": {
+      "title": "AutomaIA s'en occupe à votre place",
+      "intro": "Je crée des automatisations sur mesure pour votre établissement. Vous ne touchez à rien de technique : vous n'utilisez que le résultat.",
+      "items": [
+        { "title": "Réservation toujours active", "text": "Les clients prennent rendez-vous seuls, à toute heure. Vous retrouvez l'agenda déjà rempli." },
+        { "title": "Rappels automatiques", "text": "Un rappel par SMS et email avant chaque rendez-vous. Les absences chutent presque à zéro." },
+        { "title": "Assistant FAQ 24/7", "text": "Un assistant répond aux questions récurrentes sur les tarifs, les disponibilités et les services, 24 heures sur 24." }
+      ]
+    },
+    "esempio": {
+      "title": "Un exemple concret",
+      "text": "Un institut de beauté dont l'accueil n'était actif que le matin perdait toutes les demandes de l'après-midi et du week-end. Avec la réservation en ligne et les rappels automatiques, les absences ont baissé de 60 % et l'accueil gère deux fois plus de clients."
+    },
+    "ctaFinale": {
+      "title": "Découvrez combien de rendez-vous vous pouvez récupérer",
+      "text": "En 20 minutes, gratuitement, nous identifions la première automatisation utile pour votre établissement.",
+      "cta": { "label": "Réservez votre audit gratuit", "href": "/audit" }
+    }
+  },
+  "audit": {
+    "eyebrow": "Audit gratuit · 20 minutes",
+    "title": "Découvrez par où commencer",
+    "lead": "En 20 minutes, nous analysons ensemble les tâches de votre agence, institut de beauté ou salle de sport qui prennent le plus de temps. Sans engagement, sans vente. Juste une analyse concrète de votre premier gain de temps.",
+    "trust": "Données protégées · Sans engagement · RGPD",
+    "steps": [
+      { "step": "01", "title": "Récit", "desc": "Vous me racontez une journée type de votre activité." },
+      { "step": "02", "title": "Analyse", "desc": "Nous identifions ensemble les tâches qui prennent le plus de temps." },
+      { "step": "03", "title": "Plan", "desc": "Je vous présente votre premier gain de temps concret." }
+    ],
+    "iframeTitle": "Réservez un audit gratuit AutomaIA"
+  },
+  "metadata": {
+    "home": {
+      "title": "AutomaIA — Automatisation et IA pour agences immobilières, instituts de beauté et salles de sport",
+      "description": "J'automatise les tâches répétitives des agences immobilières, instituts de beauté et salles de sport : rendez-vous, rappels et réponses automatiques. Jusqu'à 10 heures récupérées par semaine. Audit gratuit.",
+      "ogTitle": "AutomaIA — Automatisation et IA pour agences immobilières, instituts de beauté et salles de sport",
+      "ogDescription": "Récupérez jusqu'à 10 heures par semaine en automatisant les tâches répétitives de votre activité. Audit gratuit de 20 minutes."
+    },
+    "servizi": {
+      "title": "Services d'automatisation pour agences immobilières, instituts de beauté et salles de sport",
+      "description": "Automatisations sur mesure pour agences immobilières, instituts de beauté et salles de sport : rendez-vous automatiques, relances, assistant FAQ 24/7, CRM et présence en ligne.",
+      "ogDescription": "Rendez-vous automatiques, relances, assistant FAQ 24/7 et présence en ligne — sur mesure pour votre activité."
+    },
+    "cliniche": {
+      "title": "Automatisation pour instituts de beauté et salles de sport",
+      "description": "Réservations en ligne, rappels automatiques et assistant FAQ 24/7 pour votre institut de beauté ou salle de sport. Réduisez les absences et ne perdez plus de demandes hors horaires.",
+      "ogDescription": "Réservations en ligne, rappels automatiques et assistant FAQ 24/7 pour votre institut de beauté ou salle de sport."
+    },
+    "chiSono": {
+      "title": "Qui suis-je et comment je travaille",
+      "description": "La méthode AutomaIA en 3 étapes : audit gratuit, automatisation sur mesure, contrôle toujours entre vos mains. Pas de jargon technique, des solutions concrètes.",
+      "ogDescription": "La méthode AutomaIA en 3 étapes : audit gratuit, automatisation sur mesure, vous restez aux commandes."
+    },
+    "contatti": {
+      "title": "Contact — AutomaIA",
+      "description": "Vous avez une question sur AutomaIA ? Écrivez-nous directement ou réservez un audit gratuit de 20 minutes pour votre activité."
+    },
+    "audit": {
+      "title": "Audit gratuit · AutomaIA",
+      "description": "Réservez un audit gratuit de 20 minutes pour découvrir comment automatiser votre activité. Sans engagement, juste une analyse concrète."
+    }
+  }
+}

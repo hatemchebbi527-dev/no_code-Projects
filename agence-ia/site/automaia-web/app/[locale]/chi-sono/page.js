@@ -1,23 +1,42 @@
-import Link from "next/link";
 import Image from "next/image";
-import { chiSono } from "@/lib/content";
+import { Link } from "@/i18n/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Reveal from "@/components/Reveal";
 import styles from "./chi-sono.module.css";
+import { SITE_URL } from "@/lib/brand";
 
-export const metadata = {
-  title: "Chi sono e come lavoro",
-  description:
-    "Il metodo AutomaIA in 3 passi: audit gratuito, automazione su misura, controllo sempre nelle Sue mani. Nessun gergo tecnico, soluzioni concrete.",
-  alternates: { canonical: "/chi-sono" },
-  openGraph: {
-    title: "Chi sono e come lavoro",
-    description:
-      "Il metodo AutomaIA in 3 passi: audit gratuito, automazione su misura, Lei resta al comando.",
-    url: "/chi-sono",
-  },
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.chiSono" });
+  const path = "/chi-sono";
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: locale === "fr" ? `/fr${path}` : path,
+      languages: {
+        it: `${SITE_URL}${path}`,
+        fr: `${SITE_URL}/fr${path}`,
+        "x-default": `${SITE_URL}${path}`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("ogDescription"),
+      url: locale === "fr" ? `${SITE_URL}/fr${path}` : `${SITE_URL}${path}`,
+    },
+  };
+}
 
-export default function ChiSonoPage() {
+export default async function ChiSonoPage({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("chiSono");
+  const tn = await getTranslations("nav");
+  const metodo = t.raw("metodo");
+  const fiducia = t.raw("fiducia");
+
   return (
     <>
       {/* INTRO con foto fondatore */}
@@ -26,15 +45,15 @@ export default function ChiSonoPage() {
           <Reveal variant="scale" className={styles.foto}>
             <Image
               src="/fondatore.jpg"
-              alt="Il fondatore di AutomaIA"
+              alt={t("title")}
               fill
               sizes="(max-width: 960px) 100vw, 40vw"
             />
           </Reveal>
           <Reveal delay={120}>
-            <span className="eyebrow">Chi sono</span>
-            <h1>{chiSono.title}</h1>
-            <p className="lead mt-24">{chiSono.intro}</p>
+            <span className="eyebrow">{tn("chiSono")}</span>
+            <h1>{t("title")}</h1>
+            <p className="lead mt-24">{t("intro")}</p>
           </Reveal>
         </div>
       </section>
@@ -43,10 +62,10 @@ export default function ChiSonoPage() {
       <section className="section section--light">
         <div className="container">
           <div className="title-block center">
-            <Reveal><h2>{chiSono.metodoTitle}</h2></Reveal>
+            <Reveal><h2>{t("metodoTitle")}</h2></Reveal>
           </div>
           <div className="grid-3">
-            {chiSono.metodo.map((m, i) => (
+            {metodo.map((m, i) => (
               <Reveal key={i} delay={i * 120}>
                 <div className="card" style={{ height: "100%" }}>
                   <span className={styles.step}>{m.step}</span>
@@ -63,10 +82,10 @@ export default function ChiSonoPage() {
       <section className="section">
         <div className="container">
           <div className="title-block center">
-            <Reveal><h2>{chiSono.fiduciaTitle}</h2></Reveal>
+            <Reveal><h2>{t("fiduciaTitle")}</h2></Reveal>
           </div>
           <div className="grid-3">
-            {chiSono.fiducia.map((f, i) => (
+            {fiducia.map((f, i) => (
               <Reveal key={i} delay={i * 120}>
                 <div className={`card ${styles.fiduciaCard}`} style={{ height: "100%" }}>
                   <div className={styles.check}>✓</div>
@@ -76,7 +95,7 @@ export default function ChiSonoPage() {
             ))}
           </div>
           <Reveal className="center mt-48">
-            <Link href="/contatti" className="btn">Prenoti un audit gratuito</Link>
+            <Link href={t("cta.href")} className="btn">{t("cta.label")}</Link>
           </Reveal>
         </div>
       </section>
