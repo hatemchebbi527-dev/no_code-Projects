@@ -10,8 +10,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const CALENDLY_URL =
-  "https://calendly.com/hatemchebbi527/audit-gratuito-automaia";
+// URL du type d'événement Calendly par langue.
+// Pour un rendu 100% français (titre + description du RDV), crée un type
+// d'événement français dans Calendly et remplace l'URL de la clé "fr".
+// Tant qu'elle pointe sur l'événement italien, seule l'interface du widget
+// est traduite (via le paramètre locale), pas le titre/description du RDV.
+const CALENDLY_URLS = {
+  it: "https://calendly.com/hatemchebbi527/audit-gratuito-automaia",
+  fr: "https://calendly.com/hatemchebbi527/audit-gratuito-automaia",
+};
 
 export default async function AuditPage({ params }) {
   const { locale } = await params;
@@ -19,6 +26,7 @@ export default async function AuditPage({ params }) {
 
   const t = await getTranslations("audit");
   const steps = t.raw("steps");
+  const calendlyUrl = CALENDLY_URLS[locale] || CALENDLY_URLS.it;
 
   return (
     <section className="section">
@@ -45,7 +53,7 @@ export default async function AuditPage({ params }) {
         {/* Calendly iframe — locale force la langue de l'interface du widget */}
         <div className={styles.iframeWrap}>
           <iframe
-            src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=16B8A6&timezone=Europe%2FRome&locale=${locale}`}
+            src={`${calendlyUrl}?hide_gdpr_banner=1&primary_color=16B8A6&timezone=Europe%2FRome&locale=${locale}`}
             title={t("iframeTitle")}
             loading="lazy"
             className={styles.iframe}
