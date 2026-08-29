@@ -34,7 +34,7 @@ export default function HomePage() {
         <div className={styles.heroPhoto}>
           <Image
             src="/hero-team.jpg"
-            alt="Intelligenza artificiale in uno studio professionale"
+            alt="Intelligenza artificiale per agenzie immobiliari, centri estetici e palestre"
             fill
             priority
             sizes="52vw"
@@ -47,7 +47,7 @@ export default function HomePage() {
             <Reveal>
               <span className={styles.eyebrowLight}>{brand.tagline}</span>
               <h1 className={styles.heroTitle}>
-                Lo studio che recupera fino a{" "}
+                La Sua attività recupera fino a{" "}
                 <span className="hl">10 ore</span> a settimana
               </h1>
             </Reveal>

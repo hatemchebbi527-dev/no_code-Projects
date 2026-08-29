@@ -45,7 +45,7 @@ export default function ContactForm() {
         <input type="email" name="email" value={form.email} onChange={update} required />
       </label>
       <label>
-        Nome dello studio
+        Nome dell&apos;attività
         <input name="studio" value={form.studio} onChange={update} />
       </label>
       <label>
