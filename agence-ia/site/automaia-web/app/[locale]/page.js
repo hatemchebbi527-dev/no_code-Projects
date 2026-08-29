@@ -1,6 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
-import { home, brand } from "@/lib/content";
+import { Link } from "@/i18n/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import styles from "./page.module.css";
@@ -26,7 +26,17 @@ const icons = [
   ),
 ];
 
-export default function HomePage() {
+export default async function HomePage({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("home");
+  const tc = await getTranslations("common");
+  const tb = await getTranslations("brand");
+
+  const stats = t.raw("stats");
+  const offerteItems = t.raw("offerteTeaser.items");
+
   return (
     <>
       {/* HERO */}
@@ -34,7 +44,7 @@ export default function HomePage() {
         <div className={styles.heroPhoto}>
           <Image
             src="/hero-team.jpg"
-            alt="Intelligenza artificiale per agenzie immobiliari, centri estetici e palestre"
+            alt={tb("tagline")}
             fill
             priority
             sizes="52vw"
@@ -45,22 +55,22 @@ export default function HomePage() {
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.heroText}>
             <Reveal>
-              <span className={styles.eyebrowLight}>{brand.tagline}</span>
+              <span className={styles.eyebrowLight}>{tb("tagline")}</span>
               <h1 className={styles.heroTitle}>
-                La Sua attività recupera fino a{" "}
-                <span className="hl">10 ore</span> a settimana
+                {t("hero.titlePrefix")}{" "}
+                <span className="hl">{t("hero.titleHighlight")}</span> {t("hero.titleSuffix")}
               </h1>
             </Reveal>
             <Reveal delay={120}>
-              <p className={styles.heroSub}>{home.hero.subtitle}</p>
+              <p className={styles.heroSub}>{t("hero.subtitle")}</p>
             </Reveal>
             <Reveal delay={220}>
               <div className={styles.heroCtas}>
-                <Link href={home.hero.cta.href} className="btn">
-                  {home.hero.cta.label}
+                <Link href={t("hero.cta.href")} className="btn">
+                  {t("hero.cta.label")}
                 </Link>
                 <Link href="/servizi" className="btn btn--light">
-                  Scopri i servizi
+                  {tc("scopriServizi")}
                 </Link>
               </div>
             </Reveal>
@@ -71,7 +81,7 @@ export default function HomePage() {
       {/* STATS BENTO */}
       <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
-          {home.stats.map((s, i) => (
+          {stats.map((s, i) => (
             <Reveal key={i} delay={i * 110} variant="scale" className={styles.statCard}>
               <div className={styles.statNum}>
                 <CountUp end={s.value} suffix={s.suffix} />
@@ -88,14 +98,14 @@ export default function HomePage() {
           <Reveal variant="scale" className={styles.problemaPhoto}>
             <Image
               src="/problema-scrivania.jpg"
-              alt="Scrivania di uno studio sommersa da scadenze e documenti"
+              alt={t("problema.title")}
               fill
               sizes="(max-width: 960px) 100vw, 40vw"
             />
           </Reveal>
           <Reveal delay={120}>
-            <h2>{home.problema.title}</h2>
-            <p className="lead mt-24">{home.problema.text}</p>
+            <h2>{t("problema.title")}</h2>
+            <p className="lead mt-24">{t("problema.text")}</p>
           </Reveal>
         </div>
       </section>
@@ -105,15 +115,15 @@ export default function HomePage() {
         <div className="container">
           <div className="title-block center">
             <Reveal>
-              <span className="eyebrow">Servizi</span>
-              <h2>{home.offerteTeaser.title}</h2>
+              <span className="eyebrow">{tc("eyebrowServizi")}</span>
+              <h2>{t("offerteTeaser.title")}</h2>
               <p className="lead mt-16" style={{ margin: "16px auto 0" }}>
-                {home.offerteTeaser.intro}
+                {t("offerteTeaser.intro")}
               </p>
             </Reveal>
           </div>
           <div className="grid-3">
-            {home.offerteTeaser.items.map((item, i) => (
+            {offerteItems.map((item, i) => (
               <Reveal key={i} delay={i * 120} variant="scale">
                 <div
                   className={`card ${styles.offCard} ${i === 1 ? styles.offCardFeatured : ""}`}
@@ -128,8 +138,8 @@ export default function HomePage() {
             ))}
           </div>
           <Reveal className="center mt-48">
-            <Link href={home.offerteTeaser.cta.href} className="btn btn--ghost">
-              {home.offerteTeaser.cta.label}
+            <Link href={t("offerteTeaser.cta.href")} className="btn btn--ghost">
+              {t("offerteTeaser.cta.label")}
             </Link>
           </Reveal>
         </div>
@@ -139,14 +149,14 @@ export default function HomePage() {
       <section className="section section--deep">
         <div className="container title-block center">
           <Reveal>
-            <span className="eyebrow">Il metodo</span>
-            <h2>{home.metodoTeaser.title}</h2>
+            <span className="eyebrow">{tc("eyebrowMetodo")}</span>
+            <h2>{t("metodoTeaser.title")}</h2>
             <p className="lead mt-24" style={{ margin: "24px auto 0" }}>
-              {home.metodoTeaser.text}
+              {t("metodoTeaser.text")}
             </p>
             <div className="mt-32">
-              <Link href={home.metodoTeaser.cta.href} className="btn">
-                {home.metodoTeaser.cta.label}
+              <Link href={t("metodoTeaser.cta.href")} className="btn">
+                {t("metodoTeaser.cta.label")}
               </Link>
             </div>
           </Reveal>
@@ -157,11 +167,11 @@ export default function HomePage() {
       <section className="section">
         <div className="container">
           <Reveal variant="scale" className={styles.ctaCard}>
-            <h2>{home.ctaFinale.title}</h2>
-            <p>{home.ctaFinale.text}</p>
+            <h2>{t("ctaFinale.title")}</h2>
+            <p>{t("ctaFinale.text")}</p>
             <div className="mt-32">
-              <Link href={home.ctaFinale.cta.href} className="btn btn--white">
-                {home.ctaFinale.cta.label}
+              <Link href={t("ctaFinale.cta.href")} className="btn btn--white">
+                {t("ctaFinale.cta.label")}
               </Link>
             </div>
           </Reveal>

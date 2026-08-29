@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { contatti } from "@/lib/content";
+import { useTranslations } from "next-intl";
 import styles from "./contatti.module.css";
 
 const WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || "";
 
 export default function ContactForm() {
+  const t = useTranslations("contactForm");
+  const tc = useTranslations("contatti");
   const [form, setForm] = useState({ nome: "", email: "", studio: "", messaggio: "" });
   const [status, setStatus] = useState("idle"); // idle | sending | ok | error
 
@@ -31,33 +33,33 @@ export default function ContactForm() {
   };
 
   if (status === "ok") {
-    return <div className={styles.success}>{contatti.successo}</div>;
+    return <div className={styles.success}>{tc("successo")}</div>;
   }
 
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <label>
-        Nome e cognome
+        {t("nome")}
         <input name="nome" value={form.nome} onChange={update} required />
       </label>
       <label>
-        Email
+        {t("email")}
         <input type="email" name="email" value={form.email} onChange={update} required />
       </label>
       <label>
-        Nome dell&apos;attività
+        {t("studio")}
         <input name="studio" value={form.studio} onChange={update} />
       </label>
       <label>
-        Messaggio
+        {t("messaggio")}
         <textarea name="messaggio" rows={4} value={form.messaggio} onChange={update} required />
       </label>
 
       <button type="submit" className="btn" disabled={status === "sending"}>
-        {status === "sending" ? "Invio in corso..." : "Invia messaggio"}
+        {status === "sending" ? t("invioInCorso") : t("invia")}
       </button>
 
-      {status === "error" && <p className={styles.error}>{contatti.errore}</p>}
+      {status === "error" && <p className={styles.error}>{tc("errore")}</p>}
     </form>
   );
 }

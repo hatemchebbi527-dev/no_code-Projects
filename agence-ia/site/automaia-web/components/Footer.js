@@ -1,6 +1,15 @@
-import Link from "next/link";
-import { brand, nav } from "@/lib/content";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { brand } from "@/lib/brand";
 import styles from "./Footer.module.css";
+
+const navItems = [
+  { key: "home", href: "/" },
+  { key: "servizi", href: "/servizi" },
+  { key: "cliniche", href: "/cliniche" },
+  { key: "chiSono", href: "/chi-sono" },
+  { key: "contatti", href: "/contatti" },
+];
 
 const socials = [
   { label: "Instagram", href: "https://www.instagram.com/automa_ia.it/", icon: (
@@ -14,18 +23,21 @@ const socials = [
   ) },
 ];
 
-export default function Footer() {
+export default async function Footer() {
+  const t = await getTranslations("nav");
+  const tb = await getTranslations("brand");
+
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brand}>
           <span className={styles.name}>Automa<span className="accent">IA</span></span>
-          <p className={styles.tagline}>{brand.tagline}</p>
+          <p className={styles.tagline}>{tb("tagline")}</p>
         </div>
 
         <nav className={styles.links}>
-          {nav.map((item) => (
-            <Link key={item.href} href={item.href}>{item.label}</Link>
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href}>{t(item.key)}</Link>
           ))}
         </nav>
 
@@ -40,9 +52,8 @@ export default function Footer() {
       </div>
 
       <div className={styles.bottom}>
-        <div className="container">© {new Date().getFullYear()} {brand.name}. Tutti i diritti riservati.</div>
+        <div className="container">© {new Date().getFullYear()} {brand.name}. {tb("rightsReserved")}</div>
       </div>
     </footer>
   );
 }
-

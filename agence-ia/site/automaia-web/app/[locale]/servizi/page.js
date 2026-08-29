@@ -1,32 +1,50 @@
-import Link from "next/link";
-import { servizi } from "@/lib/content";
+import { Link } from "@/i18n/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Reveal from "@/components/Reveal";
 import styles from "./servizi.module.css";
+import { SITE_URL } from "@/lib/brand";
 
-export const metadata = {
-  title: "Servizi di automazione per agenzie immobiliari, centri estetici e palestre",
-  description:
-    "Automazioni su misura per agenzie immobiliari, centri estetici e palestre: appuntamenti automatici, solleciti, assistente FAQ 24/7, CRM e presenza online.",
-  alternates: { canonical: "/servizi" },
-  openGraph: {
-    title: "Servizi di automazione per agenzie immobiliari, centri estetici e palestre",
-    description:
-      "Appuntamenti automatici, solleciti, assistente FAQ 24/7 e presenza online — su misura per la Sua attività.",
-    url: "/servizi",
-  },
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.servizi" });
+  const path = "/servizi";
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: locale === "fr" ? `/fr${path}` : path,
+      languages: {
+        it: `${SITE_URL}${path}`,
+        fr: `${SITE_URL}/fr${path}`,
+        "x-default": `${SITE_URL}${path}`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("ogDescription"),
+      url: locale === "fr" ? `${SITE_URL}/fr${path}` : `${SITE_URL}${path}`,
+    },
+  };
+}
 
-export default function ServiziPage() {
+export default async function ServiziPage({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("servizi");
+  const tc = await getTranslations("common");
+  const offerte = t.raw("offerte");
+
   return (
     <>
       {/* HERO scuro */}
       <section className="section--dark" style={{ padding: "96px 0 64px" }}>
         <div className="container center" style={{ maxWidth: 820 }}>
           <Reveal>
-            <span className="eyebrow">Servizi</span>
-            <h1>{servizi.intro.title}</h1>
+            <span className="eyebrow">{tc("eyebrowServizi")}</span>
+            <h1>{t("intro.title")}</h1>
             <p className="lead mt-24" style={{ margin: "18px auto 0" }}>
-              {servizi.intro.text}
+              {t("intro.text")}
             </p>
           </Reveal>
         </div>
@@ -36,7 +54,7 @@ export default function ServiziPage() {
       <section className="section">
         <div className="container">
           <div className={`grid-3 ${styles.griglia}`}>
-            {servizi.offerte.map((o, i) => (
+            {offerte.map((o, i) => (
               <Reveal key={i} delay={i * 120}>
                 <div
                   className={`card ${styles.card} ${o.evidenza ? styles.evidenza : ""}`}

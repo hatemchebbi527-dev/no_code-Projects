@@ -1,12 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { nav } from "@/lib/content";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import LanguageSwitcher from "./LanguageSwitcher";
 import styles from "./Header.module.css";
 
+const navItems = [
+  { key: "home", href: "/" },
+  { key: "servizi", href: "/servizi" },
+  { key: "cliniche", href: "/cliniche" },
+  { key: "chiSono", href: "/chi-sono" },
+  { key: "contatti", href: "/contatti" },
+];
+
 export default function Header() {
+  const t = useTranslations("nav");
+  const tc = useTranslations("common");
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,19 +36,20 @@ export default function Header() {
         </button>
 
         <nav className={`${styles.nav} ${open ? styles.navOpen : ""}`}>
-          {nav.map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={styles.link}
               onClick={() => setOpen(false)}
             >
-              {item.label}
+              {t(item.key)}
             </Link>
           ))}
           <Link href="/audit" className="btn" onClick={() => setOpen(false)}>
-            Audit gratuito
+            {tc("auditCta")}
           </Link>
+          <LanguageSwitcher onNavigate={() => setOpen(false)} />
         </nav>
       </div>
     </header>

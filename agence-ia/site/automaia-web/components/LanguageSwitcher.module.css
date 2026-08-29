@@ -1,0 +1,30 @@
+.switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.option {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: color .15s ease, background .15s ease;
+}
+.option:hover { color: var(--teal-dark); }
+
+.active {
+  color: var(--white);
+  background: var(--teal);
+}
+.active:hover { color: var(--white); }
