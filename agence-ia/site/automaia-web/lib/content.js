@@ -5,7 +5,7 @@
 
 export const brand = {
   name: "AutomaIA",
-  tagline: "Automazione e IA per studi professionali e cliniche",
+  tagline: "Automazione e IA per agenzie immobiliari, centri estetici e palestre",
   email: "info@automa-ia.net",
   domain: "automa-ia.net",
 };
@@ -13,16 +13,16 @@ export const brand = {
 export const nav = [
   { label: "Home", href: "/" },
   { label: "Servizi", href: "/servizi" },
-  { label: "Cliniche", href: "/cliniche" },
+  { label: "Centri & Palestre", href: "/cliniche" },
   { label: "Chi sono", href: "/chi-sono" },
   { label: "Contatti", href: "/contatti" },
 ];
 
 export const home = {
   hero: {
-    title: "Lo studio che recupera fino a 10 ore a settimana",
+    title: "La Sua attività recupera fino a 10 ore a settimana",
     subtitle:
-      "Automatizzo le attività ripetitive di avvocati, commercialisti e cliniche. Meno burocrazia, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.",
+      "Automatizzo le attività ripetitive di agenzie immobiliari, centri estetici e palestre. Meno gestione manuale, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.",
     cta: { label: "Prenoti un audit gratuito", href: "/audit" },
   },
   stats: [
@@ -34,10 +34,10 @@ export const home = {
   problema: {
     title: "Quante ore perde ogni settimana in attività che non richiedono la Sua competenza?",
     text:
-      "Promemoria delle scadenze. Solleciti per i documenti mancanti. Le stesse domande dei clienti, ogni giorno. Appuntamenti da fissare a mano. Sono attività necessarie, ma ripetitive. E sommate, valgono ore preziose ogni settimana, che tolgono tempo a ciò che conta: i Suoi clienti e le Sue pratiche.",
+      "Richieste di informazioni. Appuntamenti da confermare a mano. Le stesse domande dei clienti, ogni giorno. Promemoria che nessuno invia. Sono attività necessarie, ma ripetitive. E sommate, valgono ore preziose ogni settimana, che tolgono tempo a ciò che conta: i Suoi clienti e la Sua attività.",
   },
   offerteTeaser: {
-    title: "Il Suo studio si occupa da solo delle attività ripetitive",
+    title: "La Sua attività si occupa da sola delle attività ripetitive",
     intro: "Creo automazioni su misura. Lei non tocca nulla di tecnico: usa solo il risultato.",
     items: [
       {
@@ -63,7 +63,7 @@ export const home = {
   },
   ctaFinale: {
     title: "Scopra quante ore può recuperare",
-    text: "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per il Suo studio.",
+    text: "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per la Sua attività.",
     cta: { label: "Prenoti il Suo audit gratuito", href: "/audit" },
   },
 };
@@ -72,14 +72,14 @@ export const servizi = {
   intro: {
     title: "I servizi di AutomaIA",
     text:
-      "Soluzioni su misura per avvocati, commercialisti e cliniche. Si parte dall'attività che Le ruba più tempo, in totale sicurezza.",
+      "Soluzioni su misura per agenzie immobiliari, centri estetici e palestre. Si parte dall'attività che Le ruba più tempo, in totale sicurezza.",
   },
   offerte: [
     {
-      nome: "Studio Automatizzato",
+      nome: "Attività Automatizzata",
       evidenza: true,
       badge: "Più richiesto",
-      perche: "Per lo studio sommerso dalle attività amministrative ripetitive.",
+      perche: "Per l'attività sommersa dalla gestione manuale e dalle richieste ripetitive.",
       include: [
         "Appuntamenti e promemoria automatici",
         "Solleciti automatici ai clienti",
@@ -91,11 +91,11 @@ export const servizi = {
       cta: { label: "Prenoti un audit gratuito", href: "/audit" },
     },
     {
-      nome: "Studio 360",
+      nome: "Attività 360",
       evidenza: false,
-      perche: "Per chi vuole organizzare tutto, dall'amministrazione ai clienti.",
+      perche: "Per chi vuole organizzare tutto, dalla gestione clienti alla presenza online.",
       include: [
-        "Tutto di Studio Automatizzato",
+        "Tutto di Attività Automatizzata",
         "CRM su misura per i Suoi clienti",
         "Presenza online inclusa",
         "Ottimizzazione continua",
@@ -123,7 +123,7 @@ export const servizi = {
 export const chiSono = {
   title: "Chi sono e come lavoro",
   intro:
-    "Sono il fondatore di AutomaIA. Aiuto gli studi professionali a liberarsi dalle attività ripetitive che rubano tempo, così possono concentrarsi sul loro vero lavoro. Niente gergo tecnico, niente promesse magiche: soluzioni concrete e su misura.",
+    "Sono il fondatore di AutomaIA. Aiuto agenzie immobiliari, centri estetici e palestre a liberarsi dalle attività ripetitive che rubano tempo, così possono concentrarsi sul loro vero lavoro. Niente gergo tecnico, niente promesse magiche: soluzioni concrete e su misura.",
   metodoTitle: "Il metodo, in 3 passi",
   metodo: [
     {
@@ -145,7 +145,7 @@ export const chiSono = {
   fiduciaTitle: "Perché fidarsi",
   fiducia: [
     "Riservatezza al primo posto: i Suoi dati restano Suoi.",
-    "Soluzioni su misura per gli studi professionali, non pacchetti generici.",
+    "Soluzioni su misura per la Sua attività, non pacchetti generici.",
     "Nessun impegno fino a quando non vede il valore con i Suoi occhi.",
   ],
 };
@@ -160,36 +160,36 @@ export const contatti = {
 
 export const cliniche = {
   hero: {
-    eyebrow: "Cliniche",
-    title: "La Sua clinica lavora anche quando è chiusa",
+    eyebrow: "Centri estetici e palestre",
+    title: "La Sua attività lavora anche fuori orario",
     subtitle:
-      "Prenotazioni, promemoria e prime risposte ai clienti, in automatico. Lei si concentra sugli animali e sui pazienti, non sul telefono. I Suoi dati restano sempre protetti.",
+      "Prenotazioni, promemoria e prime risposte ai clienti, in automatico. Lei si concentra sui trattamenti e sugli allenamenti, non sul telefono. I Suoi dati restano sempre protetti.",
     cta: { label: "Prenoti un audit gratuito", href: "/audit" },
   },
   problema: {
-    title: "Ogni giorno la Sua clinica perde richieste e appuntamenti, senza accorgersene",
+    title: "Ogni giorno il Suo centro perde richieste e appuntamenti, senza accorgersene",
     items: [
-      { title: "Richieste fuori orario", text: "Circa 4 richieste su 10 arrivano quando la clinica è chiusa. Senza prenotazione online, molte si perdono o vanno alla clinica vicina." },
-      { title: "Visite mancate", text: "Nel settore circa il 10% degli appuntamenti salta. Ogni assenza è tempo e incasso persi." },
-      { title: "Clienti stranieri", text: "In zona turistica arrivano proprietari e pazienti stranieri. Senza un'accoglienza in inglese, la comunicazione si blocca." },
+      { title: "Richieste fuori orario", text: "Molte richieste arrivano la sera o nel weekend, quando il centro è chiuso. Senza risposta automatica, il cliente prenota altrove." },
+      { title: "Appuntamenti mancati", text: "Nel settore circa il 15% degli appuntamenti salta senza preavviso. Ogni assenza è tempo e incasso persi." },
+      { title: "Le stesse domande ogni giorno", text: "Prezzi, disponibilità, durata dei trattamenti: le stesse domande ripetute che rubano ore alla reception." },
     ],
   },
   soluzione: {
     title: "AutomaIA se ne occupa al posto Suo",
-    intro: "Creo automazioni su misura per la Sua clinica. Lei non tocca nulla di tecnico: usa solo il risultato.",
+    intro: "Creo automazioni su misura per il Suo centro. Lei non tocca nulla di tecnico: usa solo il risultato.",
     items: [
-      { title: "Prenotazione sempre attiva", text: "I clienti fissano la visita da soli, a qualsiasi ora. Lei ritrova l'agenda già compilata." },
+      { title: "Prenotazione sempre attiva", text: "I clienti fissano l'appuntamento da soli, a qualsiasi ora. Lei ritrova l'agenda già compilata." },
       { title: "Promemoria automatici", text: "Un promemoria via SMS ed email prima di ogni appuntamento. Le assenze scendono quasi a zero." },
-      { title: "Accoglienza anche in inglese", text: "Un assistente risponde alle domande ricorrenti in italiano e in inglese, 24 ore su 24." },
+      { title: "Assistente FAQ 24/7", text: "Un assistente risponde alle domande ricorrenti su prezzi, disponibilità e servizi, 24 ore su 24." },
     ],
   },
   esempio: {
     title: "Un esempio concreto",
-    text: "Un ambulatorio veterinario aperto solo il pomeriggio perdeva tutte le richieste del mattino. Con la prenotazione online, quelle richieste ora diventano appuntamenti reali, senza aggiungere lavoro alla reception.",
+    text: "Un centro estetico con reception attiva solo di mattina perdeva tutte le richieste del pomeriggio e del weekend. Con la prenotazione online e i promemoria automatici, le assenze sono scese del 60% e la reception gestisce il doppio dei clienti.",
   },
   ctaFinale: {
     title: "Scopra quanti appuntamenti può recuperare",
-    text: "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per la Sua clinica.",
+    text: "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per il Suo centro.",
     cta: { label: "Prenoti il Suo audit gratuito", href: "/audit" },
   },
 };

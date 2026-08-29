@@ -4,7 +4,7 @@ import styles from "./contatti.module.css";
 
 export const metadata = {
   title: "Contatti — AutomaIA",
-  description: "Prenoti un audit gratuito di 20 minuti per il Suo studio.",
+  description: "Hai una domanda su AutomaIA? Scrivici direttamente o prenota un audit gratuito di 20 minuti per la Sua attività.",
 };
 
 export default function ContattiPage() {

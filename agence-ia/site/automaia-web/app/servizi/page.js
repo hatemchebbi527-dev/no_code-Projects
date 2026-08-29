@@ -4,14 +4,14 @@ import Reveal from "@/components/Reveal";
 import styles from "./servizi.module.css";
 
 export const metadata = {
-  title: "Servizi di automazione per studi professionali",
+  title: "Servizi di automazione per agenzie immobiliari, centri estetici e palestre",
   description:
-    "Automazioni su misura per avvocati, commercialisti e cliniche: appuntamenti automatici, solleciti, assistente FAQ 24/7, CRM e presenza online.",
+    "Automazioni su misura per agenzie immobiliari, centri estetici e palestre: appuntamenti automatici, solleciti, assistente FAQ 24/7, CRM e presenza online.",
   alternates: { canonical: "/servizi" },
   openGraph: {
-    title: "Servizi di automazione per studi professionali",
+    title: "Servizi di automazione per agenzie immobiliari, centri estetici e palestre",
     description:
-      "Appuntamenti automatici, solleciti, assistente FAQ 24/7 e presenza online — su misura per il Suo studio.",
+      "Appuntamenti automatici, solleciti, assistente FAQ 24/7 e presenza online — su misura per la Sua attività.",
     url: "/servizi",
   },
 };

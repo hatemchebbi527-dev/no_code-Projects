@@ -5,14 +5,14 @@ import Reveal from "@/components/Reveal";
 import styles from "./cliniche.module.css";
 
 export const metadata = {
-  title: "Automazione per cliniche veterinarie e mediche",
+  title: "Automazione per centri estetici e palestre",
   description:
-    "Prenotazioni online, promemoria automatici e accoglienza anche in inglese per la Sua clinica, attivi 24/7. Riduca le assenze e non perda più richieste fuori orario.",
+    "Prenotazioni online, promemoria automatici e assistente FAQ 24/7 per il Suo centro estetico o palestra. Riduca le assenze e non perda più richieste fuori orario.",
   alternates: { canonical: "/cliniche" },
   openGraph: {
-    title: "Automazione per cliniche veterinarie e mediche",
+    title: "Automazione per centri estetici e palestre",
     description:
-      "Prenotazioni online, promemoria automatici e assistenza 24/7 per la Sua clinica.",
+      "Prenotazioni online, promemoria automatici e assistente FAQ 24/7 per il Suo centro estetico o palestra.",
     url: "/cliniche",
   },
 };
@@ -36,7 +36,7 @@ export default function ClinichePage() {
           <Reveal delay={140} variant="scale" className={styles.heroPhoto}>
             <Image
               src="/cliniche-reception.jpg"
-              alt="Reception di una clinica veterinaria"
+              alt="Reception di un centro estetico"
               fill
               sizes="(max-width: 960px) 100vw, 45vw"
             />

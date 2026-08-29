@@ -3,7 +3,7 @@ import styles from "./audit.module.css";
 export const metadata = {
   title: "Audit gratuito · AutomaIA",
   description:
-    "Prenoti un audit gratuito di 20 minuti per scoprire come automatizzare il Suo studio professionale. Nessun impegno, solo un'analisi concreta.",
+    "Prenoti un audit gratuito di 20 minuti per scoprire come automatizzare la Sua attività. Nessun impegno, solo un'analisi concreta.",
 };
 
 const CALENDLY_URL =
@@ -13,7 +13,7 @@ const steps = [
   {
     step: "01",
     title: "Racconto",
-    desc: "Mi racconta una giornata tipo del Suo studio.",
+    desc: "Mi racconta una giornata tipo della Sua attività.",
   },
   {
     step: "02",
@@ -36,9 +36,9 @@ export default function AuditPage() {
           <span className="eyebrow">Audit gratuito · 20 minuti</span>
           <h1>Scopra da dove iniziare</h1>
           <p className="lead mt-24">
-            In 20 minuti analizziamo insieme le attività del Suo studio che
-            rubano più tempo. Nessun impegno, nessuna vendita. Solo
-            un&apos;analisi concreta del Suo primo guadagno di tempo.
+            In 20 minuti analizziamo insieme le attività della Sua agenzia,
+            centro estetico o palestra che rubano più tempo. Nessun impegno,
+            nessuna vendita. Solo un&apos;analisi concreta del Suo primo guadagno di tempo.
           </p>
           <p className={styles.trust}>
             Dati protetti · Nessun impegno · RGPD
