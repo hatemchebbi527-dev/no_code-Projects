@@ -42,10 +42,10 @@ export default async function AuditPage({ params }) {
           ))}
         </div>
 
-        {/* Calendly iframe */}
+        {/* Calendly iframe — locale force la langue de l'interface du widget */}
         <div className={styles.iframeWrap}>
           <iframe
-            src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=16B8A6&timezone=Europe%2FRome`}
+            src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=16B8A6&timezone=Europe%2FRome&locale=${locale}`}
             title={t("iframeTitle")}
             loading="lazy"
             className={styles.iframe}
