@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import styles from "./LanguageSwitcher.module.css";
 
-const LABELS = { it: "IT", fr: "FR" };
+const LABELS = { it: "IT", fr: "FR", en: "EN" };
 
 export default function LanguageSwitcher({ onNavigate }) {
   const locale = useLocale();

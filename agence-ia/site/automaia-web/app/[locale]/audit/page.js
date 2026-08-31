@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import styles from "./audit.module.css";
+import { buildAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -7,17 +8,19 @@ export async function generateMetadata({ params }) {
   return {
     title: t("title"),
     description: t("description"),
+    alternates: buildAlternates("/audit", locale),
   };
 }
 
 // URL du type d'événement Calendly par langue.
-// Pour un rendu 100% français (titre + description du RDV), crée un type
-// d'événement français dans Calendly et remplace l'URL de la clé "fr".
-// Tant qu'elle pointe sur l'événement italien, seule l'interface du widget
+// Pour un rendu 100% traduit (titre + description du RDV), crée un type
+// d'événement dédié dans Calendly et remplace l'URL de la clé concernée.
+// Tant qu'une clé pointe sur l'événement italien, seule l'interface du widget
 // est traduite (via le paramètre locale), pas le titre/description du RDV.
 const CALENDLY_URLS = {
   it: "https://calendly.com/hatemchebbi527/audit-gratuito-automaia",
   fr: "https://calendly.com/hatemchebbi527/audit-gratuito-automaia",
+  en: "https://calendly.com/hatemchebbi527/audit-gratuito-automaia",
 };
 
 export default async function AuditPage({ params }) {

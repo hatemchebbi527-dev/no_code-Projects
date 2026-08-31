@@ -3,7 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Reveal from "@/components/Reveal";
 import styles from "./cliniche.module.css";
-import { SITE_URL } from "@/lib/brand";
+import { buildAlternates, localizedUrl } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -12,18 +12,11 @@ export async function generateMetadata({ params }) {
   return {
     title: t("title"),
     description: t("description"),
-    alternates: {
-      canonical: locale === "fr" ? `/fr${path}` : path,
-      languages: {
-        it: `${SITE_URL}${path}`,
-        fr: `${SITE_URL}/fr${path}`,
-        "x-default": `${SITE_URL}${path}`,
-      },
-    },
+    alternates: buildAlternates(path, locale),
     openGraph: {
       title: t("title"),
       description: t("ogDescription"),
-      url: locale === "fr" ? `${SITE_URL}/fr${path}` : `${SITE_URL}${path}`,
+      url: localizedUrl(path, locale),
     },
   };
 }
