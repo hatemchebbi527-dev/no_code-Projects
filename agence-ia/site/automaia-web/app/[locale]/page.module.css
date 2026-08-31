@@ -151,7 +151,17 @@
 
 /* ================= Responsive ================= */
 @media (max-width: 960px) {
-  .heroPhoto { display: none; }
+  /* La photo passe en fond plein cadre derrière le texte, avec un voile
+     sombre renforcé pour garder le texte lisible. */
+  .heroPhoto { width: 100%; }
+  .heroPhotoFade {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 27, 48, 0.5) 0%,
+      rgba(8, 27, 48, 0.32) 45%,
+      rgba(8, 27, 48, 0.62) 100%
+    );
+  }
   .statsGrid { grid-template-columns: repeat(2, 1fr); }
   .problema { grid-template-columns: 1fr; }
   .problemaPhoto { aspect-ratio: 16 / 10; }
