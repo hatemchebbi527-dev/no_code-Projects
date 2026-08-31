@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import CodeBackground from "@/components/CodeBackground";
 import { brand, SITE_URL } from "@/lib/brand";
 import { routing } from "@/i18n/routing";
+import { buildAlternates, ogLocale, localizedUrl } from "@/lib/seo";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -23,29 +24,14 @@ const inter = Inter({
   display: "swap",
 });
 
-// Pré-génère les deux langues au build.
+// Pré-génère toutes les langues au build.
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
-}
-
-// Chemin canonical et alternates hreflang selon la langue.
-function alternatesFor(path, locale) {
-  const itUrl = `${SITE_URL}${path}`;
-  const frUrl = `${SITE_URL}/fr${path}`;
-  return {
-    canonical: locale === "fr" ? `/fr${path}` : path || "/",
-    languages: {
-      it: itUrl || `${SITE_URL}/`,
-      fr: frUrl,
-      "x-default": itUrl || `${SITE_URL}/`,
-    },
-  };
 }
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata.home" });
-  const ogLocale = locale === "fr" ? "fr_FR" : "it_IT";
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -54,12 +40,12 @@ export async function generateMetadata({ params }) {
       template: "%s | AutomaIA",
     },
     description: t("description"),
-    alternates: alternatesFor("", locale),
+    alternates: buildAlternates("", locale),
     robots: { index: true, follow: true },
     openGraph: {
       type: "website",
-      locale: ogLocale,
-      url: locale === "fr" ? `${SITE_URL}/fr` : SITE_URL,
+      locale: ogLocale(locale),
+      url: localizedUrl("", locale),
       siteName: "AutomaIA",
       title: t("ogTitle"),
       description: t("ogDescription"),
@@ -93,7 +79,7 @@ export default async function LocaleLayout({ children, params }) {
     "@type": "ProfessionalService",
     name: brand.name,
     description: t("tagline"),
-    url: locale === "fr" ? `${SITE_URL}/fr` : SITE_URL,
+    url: localizedUrl("", locale),
     email: brand.email,
     areaServed: "IT",
     inLanguage: locale,
