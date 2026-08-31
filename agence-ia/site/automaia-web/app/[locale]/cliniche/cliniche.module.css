@@ -17,14 +17,19 @@
   gap: 56px;
   align-items: center;
 }
-.heroPhoto {
+.heroPhotos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.heroPhotoItem {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   height: 340px;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
 }
-.heroPhoto :global(img) { object-fit: cover; }
+.heroPhotoItem :global(img) { object-fit: cover; }
 
 /* ESEMPIO — citazione con bordo teal */
 .esempio {
@@ -43,5 +48,5 @@
 
 @media (max-width: 960px) {
   .heroInner { grid-template-columns: 1fr; }
-  .heroPhoto { height: 260px; }
+  .heroPhotoItem { height: 220px; }
 }

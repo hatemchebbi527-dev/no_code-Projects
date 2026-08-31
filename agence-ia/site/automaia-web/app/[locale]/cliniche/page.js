@@ -44,13 +44,23 @@ export default async function ClinichePage({ params }) {
               </Link>
             </div>
           </Reveal>
-          <Reveal delay={140} variant="scale" className={styles.heroPhoto}>
-            <Image
-              src="/cliniche-reception.jpg"
-              alt={t("hero.eyebrow")}
-              fill
-              sizes="(max-width: 960px) 100vw, 45vw"
-            />
+          <Reveal delay={140} variant="scale" className={styles.heroPhotos}>
+            <div className={styles.heroPhotoItem}>
+              <Image
+                src="/cliniche-salone.jpg"
+                alt={t("hero.eyebrow")}
+                fill
+                sizes="(max-width: 960px) 50vw, 23vw"
+              />
+            </div>
+            <div className={styles.heroPhotoItem}>
+              <Image
+                src="/cliniche-palestra.jpg"
+                alt={t("hero.eyebrow")}
+                fill
+                sizes="(max-width: 960px) 50vw, 23vw"
+              />
+            </div>
           </Reveal>
         </div>
       </section>
