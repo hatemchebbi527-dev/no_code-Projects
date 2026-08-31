@@ -9,7 +9,7 @@
         -760,
         300
       ],
-      "id": "a5661153-884d-46c2-a5d9-7c6ce76a6b90",
+      "id": "9855384d-4fa6-4f21-a109-12103f41cc28",
       "name": "Avvia prospezione"
     },
     {
@@ -29,7 +29,7 @@
         -528,
         -240
       ],
-      "id": "2b79f8ab-86f0-4466-be11-4ecdb9c3c11b",
+      "id": "2e842557-fa55-4345-9495-fd4fe69e41c6",
       "name": "Apify · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -51,7 +51,7 @@
         -304,
         -240
       ],
-      "id": "720bc3ed-b9d5-43d8-af9c-8059118c8b8a",
+      "id": "1b7d88de-57e1-4403-92c7-ba6c7136d490",
       "name": "Dataset · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -70,7 +70,7 @@
         -80,
         -240
       ],
-      "id": "5cc4c6b8-3db3-4b4a-a95e-5c96a8208090",
+      "id": "caef4384-8d32-4222-a40e-689e0b87d633",
       "name": "Mappa · Immobiliari"
     },
     {
@@ -83,7 +83,7 @@
         144,
         -240
       ],
-      "id": "51f32391-175e-49e1-9e55-88beed3fc918",
+      "id": "3aa677a8-413b-48b5-92f6-a7a519818463",
       "name": "Loop · Immobiliari"
     },
     {
@@ -103,7 +103,7 @@
           "cachedResultName": "Prospects v2",
           "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
         },
-        "filterByFormula": "=AND(\n  {Nome} != \"\",\n  OR(\n    FIND(LOWER({Nome}), LOWER(\"{{ $json.Nome }}\")) > 0,\n    FIND(LOWER(\"{{ $json.Nome }}\"), LOWER({Nome})) > 0\n  )\n)",
+        "filterByFormula": "=IF(\n  \"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\" = \"\",\n  FALSE(),\n  AND(\n    {Nome} != \"\",\n    OR(\n      FIND(LOWER({Nome}), LOWER(\"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\")) > 0,\n      FIND(LOWER(\"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\"), LOWER({Nome})) > 0\n    )\n  )\n)",
         "options": {}
       },
       "type": "n8n-nodes-base.airtable",
@@ -112,7 +112,7 @@
         368,
         -360
       ],
-      "id": "cdea3efe-75b6-491d-a67d-7b2fa5746e5e",
+      "id": "f1e52841-d763-4e2b-8e88-24552fb25cd5",
       "name": "Dédoublonnage · Immobiliari",
       "alwaysOutputData": true,
       "credentials": {
@@ -133,7 +133,7 @@
           },
           "conditions": [
             {
-              "id": "a6edefda-2645-4bc1-a453-bb65381c48c5",
+              "id": "c930cf8a-1a28-4054-8ddf-98568c9aa7d8",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -154,7 +154,7 @@
         592,
         -360
       ],
-      "id": "4cd916a7-ebe6-4c3d-a030-42ae3a6b08a8",
+      "id": "ca65b289-844a-4086-8d49-f35624590b14",
       "name": "Già nel CRM? · Immobiliari"
     },
     {
@@ -187,7 +187,7 @@
         592,
         -144
       ],
-      "id": "9042f4c4-44f1-45d9-a6df-db99160a24f2",
+      "id": "726f67de-91eb-4710-b020-4178059a01f2",
       "name": "Claude · Immobiliari",
       "credentials": {
         "httpHeaderAuth": {
@@ -206,7 +206,7 @@
         816,
         -144
       ],
-      "id": "2ff31e4e-efa6-4261-bc89-feef3044ec65",
+      "id": "f62c0325-d88a-409d-9dac-865635c83b3e",
       "name": "Estrai qualifica · Immobiliari"
     },
     {
@@ -647,7 +647,7 @@
         816,
         36
       ],
-      "id": "914a7fa5-5a39-48c0-8b8d-234d5a277aec",
+      "id": "365e82a6-2dd9-4a44-98da-a9bb9ceb6b92",
       "name": "Create · Immobiliari",
       "credentials": {
         "airtableTokenApi": {
@@ -673,7 +673,7 @@
         -528,
         300
       ],
-      "id": "6b1304b3-4483-4818-9344-1d4607ef3a22",
+      "id": "1914ce2f-9aec-43ba-b6ff-fb1e8329c32f",
       "name": "Apify · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -695,7 +695,7 @@
         -304,
         300
       ],
-      "id": "8de4cf88-e1ac-477c-a428-5b3475084d3c",
+      "id": "63840310-ae27-41ed-80f9-3c73fc2a7820",
       "name": "Dataset · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -714,7 +714,7 @@
         -80,
         300
       ],
-      "id": "a91982ad-0fd4-4c21-8ab6-3e6eacd432e4",
+      "id": "1de48c4e-e49a-4709-88ae-8d1856d57944",
       "name": "Mappa · Estetico"
     },
     {
@@ -727,7 +727,7 @@
         144,
         300
       ],
-      "id": "36a5ddb0-613d-4fd4-8edc-3a86e1292d41",
+      "id": "b793c89f-8025-495f-9b73-cbf35f21d432",
       "name": "Loop · Estetico"
     },
     {
@@ -747,7 +747,7 @@
           "cachedResultName": "Prospects v2",
           "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
         },
-        "filterByFormula": "=AND(\n  {Nome} != \"\",\n  OR(\n    FIND(LOWER({Nome}), LOWER(\"{{ $json.Nome }}\")) > 0,\n    FIND(LOWER(\"{{ $json.Nome }}\"), LOWER({Nome})) > 0\n  )\n)",
+        "filterByFormula": "=IF(\n  \"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\" = \"\",\n  FALSE(),\n  AND(\n    {Nome} != \"\",\n    OR(\n      FIND(LOWER({Nome}), LOWER(\"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\")) > 0,\n      FIND(LOWER(\"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\"), LOWER({Nome})) > 0\n    )\n  )\n)",
         "options": {}
       },
       "type": "n8n-nodes-base.airtable",
@@ -756,7 +756,7 @@
         368,
         180
       ],
-      "id": "679abbf5-69f3-4899-b2ac-f813c9a0102b",
+      "id": "a0eca7ca-729d-4478-ad68-edbf1033d55a",
       "name": "Dédoublonnage · Estetico",
       "alwaysOutputData": true,
       "credentials": {
@@ -777,7 +777,7 @@
           },
           "conditions": [
             {
-              "id": "3bc62060-03a3-42c7-844b-2319b064dab5",
+              "id": "f854c4eb-371b-449f-81f5-118b95c713c5",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -798,7 +798,7 @@
         592,
         180
       ],
-      "id": "345875aa-df37-4584-b37c-2700b69c3bda",
+      "id": "7862c431-f12f-47b7-b8b6-5206d5215535",
       "name": "Già nel CRM? · Estetico"
     },
     {
@@ -831,7 +831,7 @@
         592,
         396
       ],
-      "id": "12705967-207a-4667-9eb7-bb73620599d3",
+      "id": "70464c9d-07dc-4ec0-af52-ca85ac1b8768",
       "name": "Claude · Estetico",
       "credentials": {
         "httpHeaderAuth": {
@@ -850,7 +850,7 @@
         816,
         396
       ],
-      "id": "d910bd20-7a3e-4023-aa5b-6bf714894069",
+      "id": "bbfcbb50-ea3d-4b2b-a2fc-29b03f11245b",
       "name": "Estrai qualifica · Estetico"
     },
     {
@@ -1291,7 +1291,7 @@
         816,
         576
       ],
-      "id": "5fc2b287-549d-461c-8428-3c7c1655cfd4",
+      "id": "af90c557-bcad-4ff6-8c8b-440779af03c9",
       "name": "Create · Estetico",
       "credentials": {
         "airtableTokenApi": {
@@ -1317,7 +1317,7 @@
         -528,
         840
       ],
-      "id": "6c749476-6996-458c-8af4-31038b301e91",
+      "id": "4b96d54f-c8e4-4d1b-82f2-6bd58a414a84",
       "name": "Apify · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1339,7 +1339,7 @@
         -304,
         840
       ],
-      "id": "a433bbfa-3bea-40f2-a04d-24eae797ba21",
+      "id": "8ccfd4d1-288a-4e10-bf3e-78ad8ff3b158",
       "name": "Dataset · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1358,7 +1358,7 @@
         -80,
         840
       ],
-      "id": "eac0d41f-535b-4c64-a5c0-08983e99289e",
+      "id": "778c3613-04ed-4ef5-a780-9504a5ac80f9",
       "name": "Mappa · Palestre"
     },
     {
@@ -1371,7 +1371,7 @@
         144,
         840
       ],
-      "id": "80ca8917-7fc2-4e06-b134-2859e6c20558",
+      "id": "35888f52-46a6-44b6-b5fa-6fcccd6ecbdd",
       "name": "Loop · Palestre"
     },
     {
@@ -1391,7 +1391,7 @@
           "cachedResultName": "Prospects v2",
           "cachedResultUrl": "https://airtable.com/appSaFpivfZljmGAL/tbllDC0aYJHUSnFMT"
         },
-        "filterByFormula": "=AND(\n  {Nome} != \"\",\n  OR(\n    FIND(LOWER({Nome}), LOWER(\"{{ $json.Nome }}\")) > 0,\n    FIND(LOWER(\"{{ $json.Nome }}\"), LOWER({Nome})) > 0\n  )\n)",
+        "filterByFormula": "=IF(\n  \"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\" = \"\",\n  FALSE(),\n  AND(\n    {Nome} != \"\",\n    OR(\n      FIND(LOWER({Nome}), LOWER(\"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\")) > 0,\n      FIND(LOWER(\"{{ ($json.Nome || '').toString().replace(/[\"\\r\\n]/g, ' ').trim() }}\"), LOWER({Nome})) > 0\n    )\n  )\n)",
         "options": {}
       },
       "type": "n8n-nodes-base.airtable",
@@ -1400,7 +1400,7 @@
         368,
         720
       ],
-      "id": "998d80c4-5d9e-4421-9168-aac34f05c400",
+      "id": "d122ce07-d1de-4f3e-9a71-12469dbfff2d",
       "name": "Dédoublonnage · Palestre",
       "alwaysOutputData": true,
       "credentials": {
@@ -1421,7 +1421,7 @@
           },
           "conditions": [
             {
-              "id": "1dec0139-144d-4a6b-b4f5-1366034dff73",
+              "id": "f6a618ee-53e1-4b0e-a567-4840030cef0d",
               "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
@@ -1442,7 +1442,7 @@
         592,
         720
       ],
-      "id": "a9df20c3-dbca-4f38-8769-49c1d1436d01",
+      "id": "7aef212a-71dc-4772-802c-19366b97e7cd",
       "name": "Già nel CRM? · Palestre"
     },
     {
@@ -1475,7 +1475,7 @@
         592,
         936
       ],
-      "id": "a91f8b63-cdc0-448f-90ce-12267371312f",
+      "id": "6b34f1e7-a7e2-4368-aab1-f5dc49eec184",
       "name": "Claude · Palestre",
       "credentials": {
         "httpHeaderAuth": {
@@ -1494,7 +1494,7 @@
         816,
         936
       ],
-      "id": "9908e79b-cc97-4144-bfe4-0f863f381a55",
+      "id": "3781ac2c-1ef3-4d92-bf20-ab6ca9ea81b6",
       "name": "Estrai qualifica · Palestre"
     },
     {
@@ -1935,7 +1935,7 @@
         816,
         1116
       ],
-      "id": "4980d99e-e412-4692-9d17-16ed3af36750",
+      "id": "7f42562c-93b4-4fdf-b6f7-bb31c6aad582",
       "name": "Create · Palestre",
       "credentials": {
         "airtableTokenApi": {
