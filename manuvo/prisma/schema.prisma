@@ -1,14 +1,14 @@
-// Manuvo - schema de base de donnees
-// SQLite en dev (aucune config), bascule Postgres en prod via DATABASE_URL.
-// SQLite ne supporte pas les enum Prisma : les champs "enumeres" sont des String
-// valides cote code par les types/constantes de src/lib/constants.ts.
+// Manuvo - schema de base de donnees (PostgreSQL).
+// Les champs "enumeres" (role, categorie, urgence, statut) sont des String
+// valides cote code par les types/constantes de src/lib/constants.ts,
+// pour rester simples a faire evoluer.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

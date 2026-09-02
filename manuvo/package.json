@@ -5,12 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "prisma generate && prisma migrate deploy && tsx prisma/ensure-base.ts && next build",
     "start": "next start",
     "lint": "eslint",
+    "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
     "db:reset": "prisma migrate reset --force",
     "db:seed": "tsx prisma/seed.ts",
+    "db:ensure": "tsx prisma/ensure-base.ts",
     "db:studio": "prisma studio"
   },
   "prisma": {

@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
     "role" TEXT NOT NULL DEFAULT 'ARTIGIANO',
@@ -10,13 +10,15 @@ CREATE TABLE "User" (
     "country" TEXT NOT NULL DEFAULT 'IT',
     "categories" TEXT NOT NULL DEFAULT '',
     "credits" INTEGER NOT NULL DEFAULT 0,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Lead" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "category" TEXT NOT NULL,
     "country" TEXT NOT NULL DEFAULT 'IT',
     "city" TEXT NOT NULL,
@@ -29,41 +31,46 @@ CREATE TABLE "Lead" (
     "status" TEXT NOT NULL DEFAULT 'OPEN',
     "unlocksCount" INTEGER NOT NULL DEFAULT 0,
     "maxUnlocks" INTEGER NOT NULL DEFAULT 3,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Lead_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Unlock" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "leadId" TEXT NOT NULL,
     "creditsSpent" INTEGER NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "Unlock_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT "Unlock_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Unlock_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "CreditTransaction" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "credits" INTEGER NOT NULL,
-    "amountEur" REAL NOT NULL DEFAULT 0,
+    "amountEur" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "reference" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "CreditTransaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "CreditTransaction_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "CreditPack" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "credits" INTEGER NOT NULL,
-    "priceEur" REAL NOT NULL,
+    "priceEur" DOUBLE PRECISION NOT NULL,
     "popular" BOOLEAN NOT NULL DEFAULT false,
     "active" BOOLEAN NOT NULL DEFAULT true,
-    "sortOrder" INTEGER NOT NULL DEFAULT 0
+    "sortOrder" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "CreditPack_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -92,3 +99,12 @@ CREATE UNIQUE INDEX "Unlock_userId_leadId_key" ON "Unlock"("userId", "leadId");
 
 -- CreateIndex
 CREATE INDEX "CreditTransaction_userId_idx" ON "CreditTransaction"("userId");
+
+-- AddForeignKey
+ALTER TABLE "Unlock" ADD CONSTRAINT "Unlock_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Unlock" ADD CONSTRAINT "Unlock_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CreditTransaction" ADD CONSTRAINT "CreditTransaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
