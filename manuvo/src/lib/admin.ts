@@ -1,21 +1,24 @@
 // Manuvo - logica lato server per il pannello admin.
 import { prisma } from "@/lib/prisma";
-import { EUR_PER_CREDIT } from "@/lib/constants";
 
 export async function getAdminStats() {
-  const [totalLeads, openLeads, soldAgg, artisans] = await Promise.all([
+  const [totalLeads, openLeads, soldAgg, artisans, revenueAgg] = await Promise.all([
     prisma.lead.count(),
     prisma.lead.count({ where: { status: "OPEN" } }),
-    prisma.unlock.aggregate({ _sum: { creditsSpent: true }, _count: true }),
+    prisma.unlock.aggregate({ _count: true }),
     prisma.user.count({ where: { role: "ARTIGIANO" } }),
+    // Ricavi reali = denaro effettivamente incassato dalle ricariche (acquisti pacchetti).
+    prisma.creditTransaction.aggregate({
+      where: { type: "PURCHASE" },
+      _sum: { amountEur: true },
+    }),
   ]);
-  const creditsSold = soldAgg._sum.creditsSpent ?? 0;
   return {
     totalLeads,
     openLeads,
     soldContacts: soldAgg._count,
     artisans,
-    revenueEur: creditsSold * EUR_PER_CREDIT,
+    revenueEur: revenueAgg._sum.amountEur ?? 0,
   };
 }
 
