@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "prisma generate && prisma migrate deploy && tsx prisma/ensure-base.ts && next build",
+    "vercel-build": "prisma generate && node prisma/migrate-deploy.mjs && tsx prisma/ensure-base.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
