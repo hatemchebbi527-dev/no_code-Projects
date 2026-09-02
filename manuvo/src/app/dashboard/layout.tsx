@@ -12,8 +12,9 @@ export default async function DashboardLayout({
 }) {
   const session = await auth();
   if (!session?.user) redirect("/login");
+  // L'admin ha il suo pannello: non entra nell'area artigiano.
+  if (session.user.role === "ADMIN") redirect("/admin");
   const credits = await getUserBalance(session.user.id);
-  const isAdmin = session.user.role === "ADMIN";
 
   return (
     <div className="min-h-screen bg-[#FAF8F4] text-neutral-900">
@@ -31,11 +32,6 @@ export default async function DashboardLayout({
             <Link href="/dashboard/crediti" className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-600 hover:bg-neutral-100">
               Crediti
             </Link>
-            {isAdmin && (
-              <Link href="/admin" className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-600 hover:bg-neutral-100">
-                Admin
-              </Link>
-            )}
           </nav>
 
           <Link

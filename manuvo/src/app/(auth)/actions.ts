@@ -20,8 +20,15 @@ export async function authenticate(
     return { error: "Inserisci email e password." };
   }
 
+  // Destinazione in base al ruolo (l'admin va nel pannello admin).
+  const account = await prisma.user.findUnique({
+    where: { email },
+    select: { role: true },
+  });
+  const destination = account?.role === "ADMIN" ? "/admin" : "/dashboard";
+
   try {
-    await signIn("credentials", { email, password, redirectTo: "/dashboard" });
+    await signIn("credentials", { email, password, redirectTo: destination });
   } catch (error) {
     if (error instanceof AuthError) {
       return { error: "Email o password non corretti." };
