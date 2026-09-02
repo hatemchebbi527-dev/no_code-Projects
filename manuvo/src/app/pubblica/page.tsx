@@ -25,7 +25,7 @@ export default async function PubblicaPage() {
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-2xl items-center justify-between gap-3 px-5 py-3">
           <Link href="/" className="flex items-center gap-2 font-extrabold tracking-tight">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-teal-700 text-white">M</span>
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-red-700 text-white">M</span>
             Manuvo
           </Link>
           <div className="flex items-center gap-3">

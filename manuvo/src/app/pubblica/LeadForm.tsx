@@ -25,17 +25,17 @@ export function LeadForm({
 
   if (state?.success) {
     return (
-      <div className="rounded-2xl border border-teal-200 bg-teal-50 p-8 text-center">
-        <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-full bg-teal-600 text-white">
+      <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center">
+        <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-full bg-green-600 text-white">
           <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </div>
-        <h2 className="text-xl font-bold text-teal-900">{t("success_title")}</h2>
-        <p className="mt-2 text-sm text-teal-800">{t("success_text")}</p>
+        <h2 className="text-xl font-bold text-green-900">{t("success_title")}</h2>
+        <p className="mt-2 text-sm text-green-800">{t("success_text")}</p>
         <Link
           href="/pubblica"
-          className="mt-5 inline-block rounded-lg bg-teal-700 px-4 py-2.5 font-semibold text-white hover:bg-teal-800"
+          className="mt-5 inline-block rounded-lg bg-red-700 px-4 py-2.5 font-semibold text-white hover:bg-red-800"
         >
           {t("publish_another")}
         </Link>
@@ -44,7 +44,7 @@ export function LeadForm({
   }
 
   const input =
-    "rounded-lg border border-neutral-300 px-3 py-2.5 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20";
+    "rounded-lg border border-neutral-300 px-3 py-2.5 outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600/20";
   const req = <span className="text-red-600">*</span>;
 
   return (
@@ -114,7 +114,7 @@ export function LeadForm({
       <button
         type="submit"
         disabled={isPending}
-        className="mt-1 rounded-lg bg-teal-700 px-4 py-3 font-semibold text-white transition hover:bg-teal-800 disabled:opacity-60"
+        className="mt-1 rounded-lg bg-red-700 px-4 py-3 font-semibold text-white transition hover:bg-red-800 disabled:opacity-60"
       >
         {isPending ? t("submitting") : t("submit")}
       </button>

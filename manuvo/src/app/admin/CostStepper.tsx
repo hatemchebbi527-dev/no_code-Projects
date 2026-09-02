@@ -19,7 +19,7 @@ export function CostStepper({ leadId, initial }: { leadId: string; initial: numb
   }
 
   const btn =
-    "grid h-7 w-7 place-items-center rounded-md border border-neutral-300 bg-neutral-50 text-base leading-none text-neutral-700 hover:border-teal-500 hover:text-teal-700 disabled:opacity-40";
+    "grid h-7 w-7 place-items-center rounded-md border border-neutral-300 bg-neutral-50 text-base leading-none text-neutral-700 hover:border-red-500 hover:text-red-700 disabled:opacity-40";
 
   return (
     <div className="inline-flex items-center gap-2">

@@ -49,7 +49,7 @@ export async function TransactionList({
             <div className="text-end">
               <div
                 className={`text-sm font-semibold tabular-nums ${
-                  positive ? "text-teal-700" : "text-neutral-700"
+                  positive ? "text-red-700" : "text-neutral-700"
                 }`}
               >
                 {positive ? "+" : ""}

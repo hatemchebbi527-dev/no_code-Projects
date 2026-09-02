@@ -40,7 +40,7 @@ export default async function AdminPage() {
             {leads.map((lead) => (
               <tr key={lead.id} className="border-b border-neutral-100 last:border-0">
                 <td className="px-4 py-3">
-                  <span className="inline-flex items-center rounded-md bg-teal-50 px-2 py-1 text-xs font-semibold text-teal-800">
+                  <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-semibold text-red-800">
                     {tCat(lead.category)}
                   </span>
                 </td>
