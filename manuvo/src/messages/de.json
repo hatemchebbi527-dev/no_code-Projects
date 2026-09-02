@@ -1,0 +1,181 @@
+{
+  "common": {
+    "tagline": "Handwerker & Zuhause",
+    "credits": "Credits",
+    "esci": "Abmelden",
+    "annulla": "Abbrechen",
+    "accedi": "Anmelden"
+  },
+  "nav": {
+    "bacheca": "Anfragen",
+    "crediti": "Credits",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero_title": "Privatkunden und Handwerker, endlich verbunden.",
+    "hero_subtitle": "Privatkunden stellen kostenlos eine Anfrage. Handwerker schalten die Kontakte mit Credits frei.",
+    "cta_publish": "Anfrage stellen",
+    "cta_artisan": "Ich bin Handwerker",
+    "already_artisan": "Schon Handwerker?",
+    "login_link": "Anmelden",
+    "proto_note": "Manuvo · Marktplatz für Handwerker und Privatkunden"
+  },
+  "login": {
+    "title": "Bei Manuvo anmelden",
+    "subtitle": "Handwerker-Bereich. Melden Sie sich an, um Anfragen zu sehen und Kontakte freizuschalten.",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "submitting": "Anmeldung...",
+    "no_account": "Noch kein Konto?",
+    "register_link": "Als Handwerker registrieren"
+  },
+  "signup": {
+    "title": "Werden Sie Handwerker auf Manuvo",
+    "subtitle": "Erstellen Sie ein kostenloses Konto. Credits kaufen Sie, wenn Sie einen Kontakt freischalten möchten.",
+    "name": "Vor- und Nachname",
+    "email": "E-Mail",
+    "city": "Stadt",
+    "password": "Passwort",
+    "password_ph": "min. 8 Zeichen",
+    "confirm": "Bestätigen",
+    "confirm_ph": "Passwort wiederholen",
+    "submit": "Kostenloses Konto erstellen",
+    "submitting": "Wird erstellt...",
+    "have_account": "Haben Sie schon ein Konto?",
+    "login_link": "Anmelden"
+  },
+  "authErrors": {
+    "missing": "E-Mail und Passwort eingeben.",
+    "invalid": "E-Mail oder Passwort falsch.",
+    "required": "Name, E-Mail und Passwort sind erforderlich.",
+    "invalid_email": "Ungültige E-Mail-Adresse.",
+    "password_short": "Das Passwort muss mindestens 8 Zeichen haben.",
+    "password_mismatch": "Die Passwörter stimmen nicht überein.",
+    "email_exists": "Es existiert bereits ein Konto mit dieser E-Mail.",
+    "created_login_failed": "Konto erstellt, aber Anmeldung fehlgeschlagen. Bitte anmelden."
+  },
+  "dashboard": {
+    "title": "Anfragen-Board",
+    "subtitle": "Schalten Sie den Kontakt von Interessenten frei. 1 Credit = 2 €.",
+    "available": "Verfügbar",
+    "unlocked": "Freigeschaltet",
+    "no_credits": "Sie haben keine Credits. Laden Sie auf, um Kontakte freizuschalten.",
+    "recharge": "Aufladen",
+    "contact_hidden": "Kontakt verborgen",
+    "unlock": "Freischalten",
+    "my_contacts": "Meine freigeschalteten Kontakte",
+    "unlocked_badge": "Freigeschaltet",
+    "empty": "Keine Anfragen in dieser Auswahl verfügbar.",
+    "time_min": "vor {n} Min.",
+    "time_hour": "vor {n} Std.",
+    "time_day": "vor {n} T."
+  },
+  "filters": {
+    "scope_label": "Bereich:",
+    "italia": "Italien",
+    "internazionale": "International",
+    "all": "Alle"
+  },
+  "credits": {
+    "title": "Credits",
+    "subtitle": "Laden Sie Ihr Guthaben auf, um Kundenkontakte freizuschalten.",
+    "current_balance": "Aktuelles Guthaben",
+    "choose_pack": "Wählen Sie ein Paket",
+    "history": "Verlauf der Vorgänge",
+    "per_credit": "/ Credit",
+    "save": "Sie sparen",
+    "simulated": "Simulierte Zahlung in diesem Prototyp. 1 Credit = {eur} €.",
+    "popular": "Beliebt",
+    "buy": "Kaufen",
+    "recharge_done": "Aufladung abgeschlossen. Neues Guthaben: {n} Credits.",
+    "recharge_failed": "Aufladung fehlgeschlagen. Erneut versuchen.",
+    "session_expired": "Sitzung abgelaufen. Bitte erneut anmelden.",
+    "invalid_pack": "Ungültiges Paket."
+  },
+  "transactions": {
+    "purchase": "Credit-Aufladung",
+    "unlock": "Kontakt-Freischaltung",
+    "empty": "Noch keine Vorgänge."
+  },
+  "unlockErrors": {
+    "insufficient": "Nicht genug Credits. Laden Sie auf, um freizuschalten.",
+    "full": "Anfrage ausgeschöpft: bereits von der maximalen Anzahl Handwerker freigeschaltet.",
+    "unavailable": "Anfrage nicht mehr verfügbar.",
+    "already": "Sie haben diesen Kontakt bereits freigeschaltet.",
+    "no_user": "Ungültige Sitzung. Bitte erneut anmelden.",
+    "generic": "Freischaltung fehlgeschlagen.",
+    "session": "Sitzung abgelaufen. Bitte erneut anmelden.",
+    "invalid": "Ungültige Anfrage.",
+    "confirm": "Bestätigen",
+    "retry": "Erneut versuchen"
+  },
+  "pubblica": {
+    "eyebrow": "Für Privatkunden",
+    "title": "Brauchen Sie eine Arbeit zu Hause?",
+    "subtitle": "Beschreiben Sie, was Sie brauchen. Kostenlos und ohne Konto. Handwerker aus Ihrer Region melden sich.",
+    "header_artisan": "Sind Sie Handwerker?",
+    "need": "Was brauchen Sie?",
+    "choose": "Kategorie wählen...",
+    "desc": "Arbeit beschreiben",
+    "desc_ph": "Z. B. Wasserleck unter der Küchenspüle, dringender Einsatz nötig.",
+    "country": "Land",
+    "city": "Stadt",
+    "city_ph": "Z. B. Rimini",
+    "when": "Wann?",
+    "name": "Ihr Name",
+    "name_ph": "Vor- und Nachname",
+    "phone": "Telefon",
+    "email_opt": "E-Mail (optional)",
+    "hint": "Ihre Kontaktdaten bleiben privat, bis ein Handwerker sie freischaltet.",
+    "submit": "Anfrage kostenlos stellen",
+    "submitting": "Senden...",
+    "success_title": "Anfrage gestellt!",
+    "success_text": "Handwerker aus Ihrer Region sehen die Anfrage jetzt und können Sie kontaktieren. Ihre Daten bleiben privat, bis ein Profi sie freischaltet.",
+    "publish_another": "Weitere Anfrage stellen"
+  },
+  "leadErrors": {
+    "category": "Wählen Sie eine gültige Kategorie.",
+    "country": "Ungültiges Land.",
+    "city": "Geben Sie die Stadt an.",
+    "description": "Beschreiben Sie die Arbeit (mindestens 10 Zeichen).",
+    "urgency": "Ungültige Dringlichkeit.",
+    "name": "Geben Sie Ihren Namen an.",
+    "phone": "Geben Sie eine Telefonnummer an.",
+    "email": "Ungültige E-Mail-Adresse."
+  },
+  "admin": {
+    "title": "Anfragen verwalten",
+    "subtitle": "Legen Sie die Credit-Kosten jeder Anfrage fest (3-5) und beobachten Sie die Aktivität.",
+    "total": "Anfragen gesamt",
+    "sold": "Verkaufte Kontakte",
+    "revenue": "Geschätzter Umsatz",
+    "artisans": "Handwerker",
+    "th_category": "Kategorie",
+    "th_place": "Ort",
+    "th_request": "Anfrage",
+    "th_unlocks": "Freischaltungen",
+    "th_cost": "Kosten (Credits)",
+    "th_status": "Status",
+    "active": "Aktiv",
+    "closed": "Geschlossen"
+  },
+  "categories": {
+    "idraulica": "Sanitär",
+    "elettricista": "Elektriker",
+    "imbianchino": "Malerarbeiten",
+    "falegname": "Schreinerei",
+    "condizionamento": "Klimaanlagen",
+    "giardinaggio": "Gartenarbeit",
+    "muratura": "Maurerarbeiten",
+    "pulizie": "Reinigung",
+    "trasporti": "Transport & Umzug",
+    "spazzacamino": "Schornsteinfeger",
+    "elettrodomestici": "Gerätereparatur"
+  },
+  "urgency": {
+    "ASAP": "So bald wie möglich",
+    "THIS_WEEK": "Diese Woche",
+    "NOT_URGENT": "Nicht dringend"
+  }
+}

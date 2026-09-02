@@ -1,0 +1,181 @@
+{
+  "common": {
+    "tagline": "Artisans & Maison",
+    "credits": "crédits",
+    "esci": "Déconnexion",
+    "annulla": "Annuler",
+    "accedi": "Se connecter"
+  },
+  "nav": {
+    "bacheca": "Demandes",
+    "crediti": "Crédits",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero_title": "Particuliers et artisans, enfin connectés.",
+    "hero_subtitle": "Les particuliers publient une demande gratuitement. Les artisans débloquent les contacts avec des crédits.",
+    "cta_publish": "Publier une demande",
+    "cta_artisan": "Je suis artisan",
+    "already_artisan": "Déjà artisan ?",
+    "login_link": "Se connecter",
+    "proto_note": "Manuvo · plateforme artisans et particuliers"
+  },
+  "login": {
+    "title": "Connexion à Manuvo",
+    "subtitle": "Espace artisans. Connectez-vous pour voir les demandes et débloquer les contacts.",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "submitting": "Connexion...",
+    "no_account": "Pas encore de compte ?",
+    "register_link": "S'inscrire comme artisan"
+  },
+  "signup": {
+    "title": "Devenez artisan sur Manuvo",
+    "subtitle": "Créez un compte gratuit. Vous achèterez des crédits quand vous voudrez débloquer un contact.",
+    "name": "Nom et prénom",
+    "email": "Email",
+    "city": "Ville",
+    "password": "Mot de passe",
+    "password_ph": "min. 8 caractères",
+    "confirm": "Confirmer",
+    "confirm_ph": "répéter le mot de passe",
+    "submit": "Créer un compte gratuit",
+    "submitting": "Création...",
+    "have_account": "Vous avez déjà un compte ?",
+    "login_link": "Se connecter"
+  },
+  "authErrors": {
+    "missing": "Saisissez email et mot de passe.",
+    "invalid": "Email ou mot de passe incorrect.",
+    "required": "Nom, email et mot de passe sont obligatoires.",
+    "invalid_email": "Adresse email non valide.",
+    "password_short": "Le mot de passe doit contenir au moins 8 caractères.",
+    "password_mismatch": "Les mots de passe ne correspondent pas.",
+    "email_exists": "Un compte existe déjà avec cet email.",
+    "created_login_failed": "Compte créé mais connexion échouée. Veuillez vous connecter."
+  },
+  "dashboard": {
+    "title": "Tableau des demandes",
+    "subtitle": "Débloquez le contact de ceux qui cherchent vos services. 1 crédit = 2 €.",
+    "available": "Disponibles",
+    "unlocked": "Débloqués",
+    "no_credits": "Vous n'avez pas de crédits. Rechargez pour débloquer les contacts.",
+    "recharge": "Recharger",
+    "contact_hidden": "Contact masqué",
+    "unlock": "Débloquer",
+    "my_contacts": "Mes contacts débloqués",
+    "unlocked_badge": "Débloqué",
+    "empty": "Aucune demande disponible dans cette sélection.",
+    "time_min": "il y a {n} min",
+    "time_hour": "il y a {n} h",
+    "time_day": "il y a {n} j"
+  },
+  "filters": {
+    "scope_label": "Portée :",
+    "italia": "Italie",
+    "internazionale": "International",
+    "all": "Toutes"
+  },
+  "credits": {
+    "title": "Crédits",
+    "subtitle": "Rechargez votre solde pour débloquer les contacts des clients.",
+    "current_balance": "Solde actuel",
+    "choose_pack": "Choisissez un pack",
+    "history": "Historique des opérations",
+    "per_credit": "/ crédit",
+    "save": "vous économisez",
+    "simulated": "Paiement simulé dans ce prototype. 1 crédit = {eur} €.",
+    "popular": "Populaire",
+    "buy": "Acheter",
+    "recharge_done": "Recharge effectuée. Nouveau solde : {n} crédits.",
+    "recharge_failed": "Recharge échouée. Réessayez.",
+    "session_expired": "Session expirée. Reconnectez-vous.",
+    "invalid_pack": "Pack non valide."
+  },
+  "transactions": {
+    "purchase": "Recharge de crédits",
+    "unlock": "Déblocage de contact",
+    "empty": "Aucune opération pour le moment."
+  },
+  "unlockErrors": {
+    "insufficient": "Crédits insuffisants. Rechargez pour débloquer.",
+    "full": "Demande complète : déjà débloquée par le nombre maximum d'artisans.",
+    "unavailable": "Demande non disponible.",
+    "already": "Vous avez déjà débloqué ce contact.",
+    "no_user": "Session non valide. Reconnectez-vous.",
+    "generic": "Déblocage échoué.",
+    "session": "Session expirée. Reconnectez-vous.",
+    "invalid": "Demande non valide.",
+    "confirm": "Confirmer",
+    "retry": "Réessayer"
+  },
+  "pubblica": {
+    "eyebrow": "Pour les particuliers",
+    "title": "Besoin d'un travail à la maison ?",
+    "subtitle": "Décrivez ce qu'il vous faut. C'est gratuit et sans compte. Les artisans de votre région vous contacteront.",
+    "header_artisan": "Vous êtes artisan ?",
+    "need": "De quoi avez-vous besoin ?",
+    "choose": "Choisir une catégorie...",
+    "desc": "Décrivez le travail",
+    "desc_ph": "Ex. Fuite d'eau sous l'évier de la cuisine, intervention urgente.",
+    "country": "Pays",
+    "city": "Ville",
+    "city_ph": "Ex. Rimini",
+    "when": "Quand ?",
+    "name": "Votre nom",
+    "name_ph": "Nom et prénom",
+    "phone": "Téléphone",
+    "email_opt": "Email (facultatif)",
+    "hint": "Vos coordonnées restent privées jusqu'à ce qu'un artisan les débloque.",
+    "submit": "Publier la demande gratuitement",
+    "submitting": "Envoi...",
+    "success_title": "Demande publiée !",
+    "success_text": "Les artisans de votre région peuvent maintenant voir la demande et vous contacter. Vos données restent privées jusqu'à ce qu'un professionnel les débloque.",
+    "publish_another": "Publier une autre demande"
+  },
+  "leadErrors": {
+    "category": "Choisissez une catégorie valide.",
+    "country": "Pays non valide.",
+    "city": "Indiquez la ville.",
+    "description": "Décrivez le travail (au moins 10 caractères).",
+    "urgency": "Urgence non valide.",
+    "name": "Indiquez votre nom.",
+    "phone": "Indiquez un numéro de téléphone.",
+    "email": "Adresse email non valide."
+  },
+  "admin": {
+    "title": "Gestion des demandes",
+    "subtitle": "Fixez le coût en crédits de chaque demande (3-5) et suivez l'activité.",
+    "total": "Demandes totales",
+    "sold": "Contacts vendus",
+    "revenue": "Revenus estimés",
+    "artisans": "Artisans",
+    "th_category": "Catégorie",
+    "th_place": "Lieu",
+    "th_request": "Demande",
+    "th_unlocks": "Déblocages",
+    "th_cost": "Coût (crédits)",
+    "th_status": "Statut",
+    "active": "Actif",
+    "closed": "Fermé"
+  },
+  "categories": {
+    "idraulica": "Plomberie",
+    "elettricista": "Électricité",
+    "imbianchino": "Peinture",
+    "falegname": "Menuiserie",
+    "condizionamento": "Climatisation",
+    "giardinaggio": "Jardinage",
+    "muratura": "Maçonnerie",
+    "pulizie": "Nettoyage",
+    "trasporti": "Transport et déménagement",
+    "spazzacamino": "Ramonage",
+    "elettrodomestici": "Réparation électroménager"
+  },
+  "urgency": {
+    "ASAP": "Dès que possible",
+    "THIS_WEEK": "Cette semaine",
+    "NOT_URGENT": "Non urgent"
+  }
+}

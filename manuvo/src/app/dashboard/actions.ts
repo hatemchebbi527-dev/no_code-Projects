@@ -2,38 +2,41 @@
 
 // Manuvo - action serveur di sblocco contatto.
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { unlockLead, UnlockError } from "@/lib/leads";
 
 export type UnlockState = { error?: string; success?: string } | undefined;
 
-const MESSAGES: Record<string, string> = {
-  INSUFFICIENT_CREDITS: "Crediti insufficienti. Ricarica per sbloccare.",
-  LEAD_FULL: "Richiesta esaurita: gia sbloccata dal numero massimo di artigiani.",
-  LEAD_UNAVAILABLE: "Richiesta non piu disponibile.",
-  ALREADY_UNLOCKED: "Hai gia sbloccato questo contatto.",
-  USER_NOT_FOUND: "Sessione non valida. Accedi di nuovo.",
+const KEY: Record<string, string> = {
+  INSUFFICIENT_CREDITS: "insufficient",
+  LEAD_FULL: "full",
+  LEAD_UNAVAILABLE: "unavailable",
+  ALREADY_UNLOCKED: "already",
+  USER_NOT_FOUND: "no_user",
 };
 
 export async function unlockLeadAction(
   _prev: UnlockState,
   formData: FormData,
 ): Promise<UnlockState> {
+  const te = await getTranslations("unlockErrors");
   const session = await auth();
-  if (!session?.user) return { error: "Sessione scaduta. Accedi di nuovo." };
+  if (!session?.user) return { error: te("session") };
 
   const leadId = String(formData.get("leadId") ?? "");
-  if (!leadId) return { error: "Richiesta non valida." };
+  if (!leadId) return { error: te("invalid") };
 
   try {
-    const res = await unlockLead(session.user.id, leadId);
+    await unlockLead(session.user.id, leadId);
     revalidatePath("/dashboard");
     revalidatePath("/dashboard/crediti");
-    return { success: `Contatto sbloccato. Saldo: ${res.creditsLeft} crediti.` };
+    return { success: "ok" };
   } catch (e) {
     if (e instanceof UnlockError) {
-      return { error: MESSAGES[e.message] ?? "Sblocco non riuscito." };
+      const key = KEY[e.message] ?? "generic";
+      return { error: te(key) };
     }
-    return { error: "Sblocco non riuscito. Riprova." };
+    return { error: te("generic") };
   }
 }

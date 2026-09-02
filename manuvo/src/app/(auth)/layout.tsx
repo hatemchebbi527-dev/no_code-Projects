@@ -1,9 +1,13 @@
 // Manuvo - layout des pages d'authentification (centrees, avec logo).
 import Link from "next/link";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#FAF8F4] px-4 py-10">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-[#FAF8F4] px-4 py-10">
+      <div className="absolute end-4 top-4">
+        <LanguageSwitcher />
+      </div>
       <Link href="/" className="mb-8 flex items-center gap-2.5">
         <span className="grid h-9 w-9 place-items-center rounded-lg bg-teal-700 text-white">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -2,12 +2,14 @@
 
 // Manuvo - filtri bacheca: portata (nazionale/internazionale) + categoria.
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { CATEGORIES } from "@/lib/constants";
-import { CATEGORY_LABEL_IT } from "@/lib/catalog";
 
 export function FilterBar() {
   const router = useRouter();
   const params = useSearchParams();
+  const t = useTranslations("filters");
+  const tCat = useTranslations("categories");
   const scope = params.get("scope") === "international" ? "international" : "national";
   const cat = params.get("cat") ?? "all";
 
@@ -21,7 +23,7 @@ export function FilterBar() {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <span className="text-sm font-semibold text-neutral-400">Portata:</span>
+        <span className="text-sm font-semibold text-neutral-400">{t("scope_label")}</span>
         <div className="inline-flex rounded-full border border-neutral-300 bg-neutral-100 p-0.5">
           <button
             onClick={() => setParam("scope", null)}
@@ -30,7 +32,7 @@ export function FilterBar() {
               scope === "national" ? "bg-teal-700 text-white" : "text-neutral-600"
             }`}
           >
-            🇮🇹 Italia
+            🇮🇹 {t("italia")}
           </button>
           <button
             onClick={() => setParam("scope", "international")}
@@ -39,18 +41,18 @@ export function FilterBar() {
               scope === "international" ? "bg-teal-700 text-white" : "text-neutral-600"
             }`}
           >
-            🌍 Internazionale
+            🌍 {t("internazionale")}
           </button>
         </div>
       </div>
 
       <div className="flex flex-wrap gap-2">
         <Chip active={cat === "all"} onClick={() => setParam("cat", null)}>
-          Tutte
+          {t("all")}
         </Chip>
         {CATEGORIES.map((c) => (
           <Chip key={c} active={cat === c} onClick={() => setParam("cat", c)}>
-            {CATEGORY_LABEL_IT[c]}
+            {tCat(c)}
           </Chip>
         ))}
       </div>

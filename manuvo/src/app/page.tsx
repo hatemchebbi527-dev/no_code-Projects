@@ -1,9 +1,17 @@
-// Manuvo - home provvisoria (landing completa all'etape 8).
+// Manuvo - home (landing completa all'etape 8.3).
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
-export default function Home() {
+export default async function Home() {
+  const t = await getTranslations("home");
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#FAF8F4] px-4 text-center">
+    <main className="relative flex min-h-screen flex-col items-center justify-center bg-[#FAF8F4] px-4 text-center">
+      <div className="absolute end-4 top-4">
+        <LanguageSwitcher />
+      </div>
+
       <span className="mb-6 flex items-center gap-2.5">
         <span className="grid h-11 w-11 place-items-center rounded-xl bg-teal-700 text-white">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -14,38 +22,33 @@ export default function Home() {
       </span>
 
       <h1 className="max-w-xl text-3xl font-bold tracking-tight sm:text-4xl">
-        Artigiani e privati, finalmente connessi.
+        {t("hero_title")}
       </h1>
-      <p className="mt-3 max-w-md text-neutral-500">
-        I privati pubblicano una richiesta gratis. Gli artigiani sbloccano i
-        contatti con i crediti.
-      </p>
+      <p className="mt-3 max-w-md text-neutral-500">{t("hero_subtitle")}</p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Link
           href="/pubblica"
           className="rounded-lg bg-teal-700 px-5 py-3 font-semibold text-white transition hover:bg-teal-800"
         >
-          Pubblica una richiesta
+          {t("cta_publish")}
         </Link>
         <Link
           href="/signup"
           className="rounded-lg border border-neutral-300 bg-white px-5 py-3 font-semibold transition hover:bg-neutral-50"
         >
-          Sono un artigiano
+          {t("cta_artisan")}
         </Link>
       </div>
 
       <p className="mt-4 text-sm text-neutral-500">
-        Sei gia artigiano?{" "}
+        {t("already_artisan")}{" "}
         <Link href="/login" className="font-semibold text-teal-700 hover:underline">
-          Accedi
+          {t("login_link")}
         </Link>
       </p>
 
-      <p className="mt-10 text-xs text-neutral-400">
-        Prototipo in costruzione · fase 2/8
-      </p>
+      <p className="mt-10 text-xs text-neutral-400">{t("proto_note")}</p>
     </main>
   );
 }
