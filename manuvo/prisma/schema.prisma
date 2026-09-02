@@ -1,0 +1,105 @@
+// Manuvo - schema de base de donnees
+// SQLite en dev (aucune config), bascule Postgres en prod via DATABASE_URL.
+// SQLite ne supporte pas les enum Prisma : les champs "enumeres" sont des String
+// valides cote code par les types/constantes de src/lib/constants.ts.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Comptes: artisans (ARTIGIANO) et administrateur (ADMIN).
+// Les particuliers (privati) ne creent pas de compte : ils publient une demande (Lead).
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         String   @default("ARTIGIANO") // ARTIGIANO | ADMIN
+  name         String
+  phone        String?
+  city         String?
+  country      String   @default("IT")
+  categories   String   @default("") // codes categories separes par des virgules
+  credits      Int      @default(0)  // solde de credits (1 credit = 2 EUR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  unlocks      Unlock[]
+  transactions CreditTransaction[]
+
+  @@index([role])
+}
+
+// Demande publiee par un particulier.
+model Lead {
+  id           String   @id @default(cuid())
+  category     String   // code categorie (voir CATEGORIES)
+  country      String   @default("IT")
+  city         String
+  description  String
+  urgency      String   @default("ASAP") // ASAP | THIS_WEEK | NOT_URGENT
+
+  // Coordonnees du particulier (masquees tant qu'un artisan ne debloque pas)
+  contactName  String
+  contactPhone String
+  contactEmail String?
+
+  creditCost   Int      @default(4) // cout du contact en credits, fixe par l'admin (3..5)
+  status       String   @default("OPEN") // OPEN | CLOSED
+  unlocksCount Int      @default(0) // nb d'artisans ayant debloque
+  maxUnlocks   Int      @default(3) // plafond : 3 artisans max par demande
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  unlocks      Unlock[]
+
+  @@index([status])
+  @@index([category])
+  @@index([country])
+}
+
+// Deblocage : un artisan a paye pour voir le contact d'une demande.
+model Unlock {
+  id           String   @id @default(cuid())
+  userId       String
+  leadId       String
+  creditsSpent Int
+  createdAt    DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lead         Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, leadId]) // un artisan ne paie qu'une fois le meme lead
+  @@index([leadId])
+  @@index([userId])
+}
+
+// Journal des mouvements de credits (achats et depenses).
+model CreditTransaction {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // PURCHASE | SPEND
+  credits   Int      // positif pour un achat, negatif pour une depense
+  amountEur Float    @default(0)
+  reference String?  // leadId pour une depense, packId pour un achat
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// Packs de recharge proposes aux artisans.
+model CreditPack {
+  id        String   @id @default(cuid())
+  credits   Int
+  priceEur  Float
+  popular   Boolean  @default(false)
+  active    Boolean  @default(true)
+  sortOrder Int      @default(0)
+}
