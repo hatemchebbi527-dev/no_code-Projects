@@ -21,9 +21,6 @@ export default async function AdminLayout({
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-neutral-900 text-white">M</span>
             Manuvo <span className="text-sm font-medium text-neutral-400">Admin</span>
           </Link>
-          <Link href="/dashboard" className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-600 hover:bg-neutral-100">
-            Bacheca
-          </Link>
           <form action={logout}>
             <button className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm font-medium hover:bg-neutral-100">
               Esci
