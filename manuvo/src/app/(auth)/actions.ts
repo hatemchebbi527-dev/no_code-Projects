@@ -2,6 +2,7 @@
 
 // Manuvo - actions serveur d'authentification.
 import { AuthError } from "next-auth";
+import { getTranslations } from "next-intl/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { signIn, signOut } from "@/auth";
@@ -13,11 +14,12 @@ export async function authenticate(
   _prev: AuthState,
   formData: FormData,
 ): Promise<AuthState> {
+  const t = await getTranslations("authErrors");
   const email = String(formData.get("email") ?? "").toLowerCase().trim();
   const password = String(formData.get("password") ?? "");
 
   if (!email || !password) {
-    return { error: "Inserisci email e password." };
+    return { error: t("missing") };
   }
 
   // Destinazione in base al ruolo (l'admin va nel pannello admin).
@@ -31,7 +33,7 @@ export async function authenticate(
     await signIn("credentials", { email, password, redirectTo: destination });
   } catch (error) {
     if (error instanceof AuthError) {
-      return { error: "Email o password non corretti." };
+      return { error: t("invalid") };
     }
     throw error; // laisse passer la redirection Next.js
   }
@@ -43,6 +45,7 @@ export async function registerArtisan(
   _prev: AuthState,
   formData: FormData,
 ): Promise<AuthState> {
+  const t = await getTranslations("authErrors");
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").toLowerCase().trim();
   const password = String(formData.get("password") ?? "");
@@ -50,21 +53,21 @@ export async function registerArtisan(
   const city = String(formData.get("city") ?? "").trim();
 
   if (!name || !email || !password) {
-    return { error: "Nome, email e password sono obbligatori." };
+    return { error: t("required") };
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { error: "Indirizzo email non valido." };
+    return { error: t("invalid_email") };
   }
   if (password.length < 8) {
-    return { error: "La password deve avere almeno 8 caratteri." };
+    return { error: t("password_short") };
   }
   if (password !== confirm) {
-    return { error: "Le password non coincidono." };
+    return { error: t("password_mismatch") };
   }
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
-    return { error: "Esiste gia un account con questa email." };
+    return { error: t("email_exists") };
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
@@ -83,7 +86,7 @@ export async function registerArtisan(
     await signIn("credentials", { email, password, redirectTo: "/dashboard" });
   } catch (error) {
     if (error instanceof AuthError) {
-      return { error: "Account creato ma login fallito. Prova ad accedere." };
+      return { error: t("created_login_failed") };
     }
     throw error;
   }

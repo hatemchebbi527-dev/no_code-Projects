@@ -3,6 +3,7 @@
 // Manuvo - form pubblico per pubblicare una richiesta.
 import { useActionState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { createLead, type LeadFormState } from "./actions";
 
 type Opt = { value: string; label: string };
@@ -16,6 +17,7 @@ export function LeadForm({
   countries: Opt[];
   urgencies: Opt[];
 }) {
+  const t = useTranslations("pubblica");
   const [state, formAction, isPending] = useActionState<LeadFormState, FormData>(
     createLead,
     undefined,
@@ -29,17 +31,13 @@ export function LeadForm({
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </div>
-        <h2 className="text-xl font-bold text-teal-900">Richiesta pubblicata!</h2>
-        <p className="mt-2 text-sm text-teal-800">
-          Gli artigiani della tua zona possono ora vedere la richiesta e
-          contattarti. I tuoi dati restano privati finche un professionista non
-          li sblocca.
-        </p>
+        <h2 className="text-xl font-bold text-teal-900">{t("success_title")}</h2>
+        <p className="mt-2 text-sm text-teal-800">{t("success_text")}</p>
         <Link
           href="/pubblica"
           className="mt-5 inline-block rounded-lg bg-teal-700 px-4 py-2.5 font-semibold text-white hover:bg-teal-800"
         >
-          Pubblica un'altra richiesta
+          {t("publish_another")}
         </Link>
       </div>
     );
@@ -47,13 +45,14 @@ export function LeadForm({
 
   const input =
     "rounded-lg border border-neutral-300 px-3 py-2.5 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20";
+  const req = <span className="text-red-600">*</span>;
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
       <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">Di cosa hai bisogno? <span className="text-red-600">*</span></span>
+        <span className="text-sm font-medium">{t("need")} {req}</span>
         <select name="category" required defaultValue="" className={input}>
-          <option value="" disabled>Scegli una categoria...</option>
+          <option value="" disabled>{t("choose")}</option>
           {categories.map((c) => (
             <option key={c.value} value={c.value}>{c.label}</option>
           ))}
@@ -61,19 +60,13 @@ export function LeadForm({
       </label>
 
       <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">Descrivi il lavoro <span className="text-red-600">*</span></span>
-        <textarea
-          name="description"
-          required
-          rows={4}
-          placeholder="Es. Perdita d'acqua sotto il lavello della cucina, serve intervento urgente."
-          className={`${input} resize-y`}
-        />
+        <span className="text-sm font-medium">{t("desc")} {req}</span>
+        <textarea name="description" required rows={4} placeholder={t("desc_ph")} className={`${input} resize-y`} />
       </label>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">Paese <span className="text-red-600">*</span></span>
+          <span className="text-sm font-medium">{t("country")} {req}</span>
           <select name="country" defaultValue="IT" className={input}>
             {countries.map((c) => (
               <option key={c.value} value={c.value}>{c.label}</option>
@@ -81,13 +74,13 @@ export function LeadForm({
           </select>
         </label>
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">Citta <span className="text-red-600">*</span></span>
-          <input name="city" required placeholder="Es. Rimini" className={input} />
+          <span className="text-sm font-medium">{t("city")} {req}</span>
+          <input name="city" required placeholder={t("city_ph")} className={input} />
         </label>
       </div>
 
       <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">Quando?</span>
+        <span className="text-sm font-medium">{t("when")}</span>
         <select name="urgency" defaultValue="ASAP" className={input}>
           {urgencies.map((u) => (
             <option key={u.value} value={u.value}>{u.label}</option>
@@ -99,21 +92,19 @@ export function LeadForm({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">Il tuo nome <span className="text-red-600">*</span></span>
-          <input name="contactName" required placeholder="Nome e cognome" className={input} />
+          <span className="text-sm font-medium">{t("name")} {req}</span>
+          <input name="contactName" required placeholder={t("name_ph")} className={input} />
         </label>
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">Telefono <span className="text-red-600">*</span></span>
+          <span className="text-sm font-medium">{t("phone")} {req}</span>
           <input name="contactPhone" required placeholder="+39 ..." className={input} />
         </label>
       </div>
 
       <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">Email (facoltativa)</span>
-        <input name="contactEmail" type="email" placeholder="tu@email.it" className={input} />
-        <span className="text-xs text-neutral-400">
-          I tuoi contatti restano privati finche un artigiano non li sblocca.
-        </span>
+        <span className="text-sm font-medium">{t("email_opt")}</span>
+        <input name="contactEmail" type="email" placeholder="you@email.com" className={input} />
+        <span className="text-xs text-neutral-400">{t("hint")}</span>
       </label>
 
       {state?.error && (
@@ -125,7 +116,7 @@ export function LeadForm({
         disabled={isPending}
         className="mt-1 rounded-lg bg-teal-700 px-4 py-3 font-semibold text-white transition hover:bg-teal-800 disabled:opacity-60"
       >
-        {isPending ? "Invio..." : "Pubblica richiesta gratis"}
+        {isPending ? t("submitting") : t("submit")}
       </button>
     </form>
   );

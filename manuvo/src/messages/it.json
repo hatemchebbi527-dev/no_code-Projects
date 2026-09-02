@@ -1,0 +1,181 @@
+{
+  "common": {
+    "tagline": "Artigiani & Casa",
+    "credits": "crediti",
+    "esci": "Esci",
+    "annulla": "Annulla",
+    "accedi": "Accedi"
+  },
+  "nav": {
+    "bacheca": "Bacheca",
+    "crediti": "Crediti",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero_title": "Artigiani e privati, finalmente connessi.",
+    "hero_subtitle": "I privati pubblicano una richiesta gratis. Gli artigiani sbloccano i contatti con i crediti.",
+    "cta_publish": "Pubblica una richiesta",
+    "cta_artisan": "Sono un artigiano",
+    "already_artisan": "Sei gia artigiano?",
+    "login_link": "Accedi",
+    "proto_note": "Manuvo · marketplace artigiani e privati"
+  },
+  "login": {
+    "title": "Accedi a Manuvo",
+    "subtitle": "Area artigiani. Accedi per vedere le richieste e sbloccare i contatti.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Accedi",
+    "submitting": "Accesso...",
+    "no_account": "Non hai un account?",
+    "register_link": "Registrati come artigiano"
+  },
+  "signup": {
+    "title": "Diventa artigiano su Manuvo",
+    "subtitle": "Crea un account gratuito. Comprerai i crediti quando vuoi sbloccare un contatto.",
+    "name": "Nome e cognome",
+    "email": "Email",
+    "city": "Citta",
+    "password": "Password",
+    "password_ph": "min. 8 caratteri",
+    "confirm": "Conferma",
+    "confirm_ph": "ripeti password",
+    "submit": "Crea account gratis",
+    "submitting": "Creazione...",
+    "have_account": "Hai gia un account?",
+    "login_link": "Accedi"
+  },
+  "authErrors": {
+    "missing": "Inserisci email e password.",
+    "invalid": "Email o password non corretti.",
+    "required": "Nome, email e password sono obbligatori.",
+    "invalid_email": "Indirizzo email non valido.",
+    "password_short": "La password deve avere almeno 8 caratteri.",
+    "password_mismatch": "Le password non coincidono.",
+    "email_exists": "Esiste gia un account con questa email.",
+    "created_login_failed": "Account creato ma login fallito. Prova ad accedere."
+  },
+  "dashboard": {
+    "title": "Bacheca richieste",
+    "subtitle": "Sblocca il contatto di chi cerca i tuoi servizi. 1 credito = 2 €.",
+    "available": "Disponibili",
+    "unlocked": "Sbloccati",
+    "no_credits": "Non hai crediti. Ricarica per sbloccare i contatti.",
+    "recharge": "Ricarica",
+    "contact_hidden": "Contatto nascosto",
+    "unlock": "Sblocca",
+    "my_contacts": "I miei contatti sbloccati",
+    "unlocked_badge": "Sbloccato",
+    "empty": "Nessuna richiesta disponibile in questa selezione.",
+    "time_min": "{n} min fa",
+    "time_hour": "{n} h fa",
+    "time_day": "{n} g fa"
+  },
+  "filters": {
+    "scope_label": "Portata:",
+    "italia": "Italia",
+    "internazionale": "Internazionale",
+    "all": "Tutte"
+  },
+  "credits": {
+    "title": "Crediti",
+    "subtitle": "Ricarica il tuo saldo per sbloccare i contatti dei clienti.",
+    "current_balance": "Saldo attuale",
+    "choose_pack": "Scegli un pacchetto",
+    "history": "Storico operazioni",
+    "per_credit": "/ credito",
+    "save": "risparmi",
+    "simulated": "Pagamento simulato in questo prototipo. 1 credito = {eur} €.",
+    "popular": "Popolare",
+    "buy": "Acquista",
+    "recharge_done": "Ricarica completata. Nuovo saldo: {n} crediti.",
+    "recharge_failed": "Ricarica non riuscita. Riprova.",
+    "session_expired": "Sessione scaduta. Accedi di nuovo.",
+    "invalid_pack": "Pacchetto non valido."
+  },
+  "transactions": {
+    "purchase": "Ricarica crediti",
+    "unlock": "Sblocco contatto",
+    "empty": "Nessuna operazione ancora."
+  },
+  "unlockErrors": {
+    "insufficient": "Crediti insufficienti. Ricarica per sbloccare.",
+    "full": "Richiesta esaurita: gia sbloccata dal numero massimo di artigiani.",
+    "unavailable": "Richiesta non piu disponibile.",
+    "already": "Hai gia sbloccato questo contatto.",
+    "no_user": "Sessione non valida. Accedi di nuovo.",
+    "generic": "Sblocco non riuscito.",
+    "session": "Sessione scaduta. Accedi di nuovo.",
+    "invalid": "Richiesta non valida.",
+    "confirm": "Conferma",
+    "retry": "Riprova"
+  },
+  "pubblica": {
+    "eyebrow": "Per i privati",
+    "title": "Hai bisogno di un lavoro in casa?",
+    "subtitle": "Descrivi cosa ti serve. E gratis e non serve alcun account. Gli artigiani della tua zona ti contatteranno.",
+    "header_artisan": "Sei un artigiano?",
+    "need": "Di cosa hai bisogno?",
+    "choose": "Scegli una categoria...",
+    "desc": "Descrivi il lavoro",
+    "desc_ph": "Es. Perdita d'acqua sotto il lavello della cucina, serve intervento urgente.",
+    "country": "Paese",
+    "city": "Citta",
+    "city_ph": "Es. Rimini",
+    "when": "Quando?",
+    "name": "Il tuo nome",
+    "name_ph": "Nome e cognome",
+    "phone": "Telefono",
+    "email_opt": "Email (facoltativa)",
+    "hint": "I tuoi contatti restano privati finche un artigiano non li sblocca.",
+    "submit": "Pubblica richiesta gratis",
+    "submitting": "Invio...",
+    "success_title": "Richiesta pubblicata!",
+    "success_text": "Gli artigiani della tua zona possono ora vedere la richiesta e contattarti. I tuoi dati restano privati finche un professionista non li sblocca.",
+    "publish_another": "Pubblica un'altra richiesta"
+  },
+  "leadErrors": {
+    "category": "Scegli una categoria valida.",
+    "country": "Paese non valido.",
+    "city": "Indica la citta.",
+    "description": "Descrivi il lavoro (almeno 10 caratteri).",
+    "urgency": "Urgenza non valida.",
+    "name": "Indica il tuo nome.",
+    "phone": "Indica un numero di telefono.",
+    "email": "Indirizzo email non valido."
+  },
+  "admin": {
+    "title": "Gestione richieste",
+    "subtitle": "Fissa il costo in crediti di ogni richiesta (3-5) e monitora l'attivita.",
+    "total": "Richieste totali",
+    "sold": "Contatti venduti",
+    "revenue": "Ricavi stimati",
+    "artisans": "Artigiani",
+    "th_category": "Categoria",
+    "th_place": "Luogo",
+    "th_request": "Richiesta",
+    "th_unlocks": "Sblocchi",
+    "th_cost": "Costo (crediti)",
+    "th_status": "Stato",
+    "active": "Attivo",
+    "closed": "Chiuso"
+  },
+  "categories": {
+    "idraulica": "Idraulica",
+    "elettricista": "Elettricista",
+    "imbianchino": "Imbianchino",
+    "falegname": "Falegname",
+    "condizionamento": "Condizionatori",
+    "giardinaggio": "Giardinaggio",
+    "muratura": "Muratura",
+    "pulizie": "Pulizie",
+    "trasporti": "Trasporti e traslochi",
+    "spazzacamino": "Spazzacamino",
+    "elettrodomestici": "Riparazione elettrodomestici"
+  },
+  "urgency": {
+    "ASAP": "Il prima possibile",
+    "THIS_WEEK": "Questa settimana",
+    "NOT_URGENT": "Non urgente"
+  }
+}

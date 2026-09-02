@@ -2,9 +2,13 @@
 
 // Manuvo - bottone di sblocco con conferma inline.
 import { useActionState, useState } from "react";
+import { useTranslations } from "next-intl";
 import { unlockLeadAction, type UnlockState } from "./actions";
 
 export function UnlockButton({ leadId, cost }: { leadId: string; cost: number }) {
+  const t = useTranslations("dashboard");
+  const te = useTranslations("unlockErrors");
+  const tc = useTranslations("common");
   const [state, formAction, isPending] = useActionState<UnlockState, FormData>(
     unlockLeadAction,
     undefined,
@@ -19,7 +23,7 @@ export function UnlockButton({ leadId, cost }: { leadId: string; cost: number })
           onClick={() => setConfirming(true)}
           className="rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-semibold text-white hover:bg-amber-600"
         >
-          Riprova · {cost} cr
+          {te("retry")} · {cost} cr
         </button>
       </div>
     );
@@ -34,14 +38,14 @@ export function UnlockButton({ leadId, cost }: { leadId: string; cost: number })
           onClick={() => setConfirming(false)}
           className="rounded-lg border border-neutral-300 px-2.5 py-1.5 text-sm font-medium text-neutral-600 hover:bg-neutral-100"
         >
-          Annulla
+          {tc("annulla")}
         </button>
         <button
           type="submit"
           disabled={isPending}
           className="rounded-lg bg-amber-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-60"
         >
-          {isPending ? "..." : `Conferma · ${cost} cr`}
+          {isPending ? "..." : `${te("confirm")} · ${cost} cr`}
         </button>
       </form>
     );
@@ -52,7 +56,7 @@ export function UnlockButton({ leadId, cost }: { leadId: string; cost: number })
       onClick={() => setConfirming(true)}
       className="rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-amber-600"
     >
-      Sblocca · {cost} cr
+      {t("unlock")} · {cost} cr
     </button>
   );
 }

@@ -1,0 +1,181 @@
+{
+  "common": {
+    "tagline": "Artisans & Home",
+    "credits": "credits",
+    "esci": "Log out",
+    "annulla": "Cancel",
+    "accedi": "Log in"
+  },
+  "nav": {
+    "bacheca": "Board",
+    "crediti": "Credits",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero_title": "Homeowners and artisans, finally connected.",
+    "hero_subtitle": "Homeowners post a request for free. Artisans unlock the contacts with credits.",
+    "cta_publish": "Post a request",
+    "cta_artisan": "I'm an artisan",
+    "already_artisan": "Already an artisan?",
+    "login_link": "Log in",
+    "proto_note": "Manuvo · marketplace for artisans and homeowners"
+  },
+  "login": {
+    "title": "Log in to Manuvo",
+    "subtitle": "Artisan area. Log in to see requests and unlock contacts.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "submitting": "Logging in...",
+    "no_account": "No account yet?",
+    "register_link": "Sign up as an artisan"
+  },
+  "signup": {
+    "title": "Become an artisan on Manuvo",
+    "subtitle": "Create a free account. You'll buy credits when you want to unlock a contact.",
+    "name": "Full name",
+    "email": "Email",
+    "city": "City",
+    "password": "Password",
+    "password_ph": "min. 8 characters",
+    "confirm": "Confirm",
+    "confirm_ph": "repeat password",
+    "submit": "Create free account",
+    "submitting": "Creating...",
+    "have_account": "Already have an account?",
+    "login_link": "Log in"
+  },
+  "authErrors": {
+    "missing": "Enter email and password.",
+    "invalid": "Wrong email or password.",
+    "required": "Name, email and password are required.",
+    "invalid_email": "Invalid email address.",
+    "password_short": "Password must be at least 8 characters.",
+    "password_mismatch": "Passwords do not match.",
+    "email_exists": "An account with this email already exists.",
+    "created_login_failed": "Account created but login failed. Please log in."
+  },
+  "dashboard": {
+    "title": "Requests board",
+    "subtitle": "Unlock the contact of people looking for your services. 1 credit = €2.",
+    "available": "Available",
+    "unlocked": "Unlocked",
+    "no_credits": "You have no credits. Top up to unlock contacts.",
+    "recharge": "Top up",
+    "contact_hidden": "Contact hidden",
+    "unlock": "Unlock",
+    "my_contacts": "My unlocked contacts",
+    "unlocked_badge": "Unlocked",
+    "empty": "No requests available in this selection.",
+    "time_min": "{n} min ago",
+    "time_hour": "{n} h ago",
+    "time_day": "{n} d ago"
+  },
+  "filters": {
+    "scope_label": "Scope:",
+    "italia": "Italy",
+    "internazionale": "International",
+    "all": "All"
+  },
+  "credits": {
+    "title": "Credits",
+    "subtitle": "Top up your balance to unlock customer contacts.",
+    "current_balance": "Current balance",
+    "choose_pack": "Choose a pack",
+    "history": "Transaction history",
+    "per_credit": "/ credit",
+    "save": "you save",
+    "simulated": "Simulated payment in this prototype. 1 credit = €{eur}.",
+    "popular": "Popular",
+    "buy": "Buy",
+    "recharge_done": "Top-up complete. New balance: {n} credits.",
+    "recharge_failed": "Top-up failed. Try again.",
+    "session_expired": "Session expired. Please log in again.",
+    "invalid_pack": "Invalid pack."
+  },
+  "transactions": {
+    "purchase": "Credit top-up",
+    "unlock": "Contact unlock",
+    "empty": "No transactions yet."
+  },
+  "unlockErrors": {
+    "insufficient": "Not enough credits. Top up to unlock.",
+    "full": "Request full: already unlocked by the maximum number of artisans.",
+    "unavailable": "Request no longer available.",
+    "already": "You already unlocked this contact.",
+    "no_user": "Invalid session. Please log in again.",
+    "generic": "Unlock failed.",
+    "session": "Session expired. Please log in again.",
+    "invalid": "Invalid request.",
+    "confirm": "Confirm",
+    "retry": "Retry"
+  },
+  "pubblica": {
+    "eyebrow": "For homeowners",
+    "title": "Need a job done at home?",
+    "subtitle": "Describe what you need. It's free and no account is required. Local artisans will contact you.",
+    "header_artisan": "Are you an artisan?",
+    "need": "What do you need?",
+    "choose": "Choose a category...",
+    "desc": "Describe the job",
+    "desc_ph": "E.g. Water leak under the kitchen sink, urgent intervention needed.",
+    "country": "Country",
+    "city": "City",
+    "city_ph": "E.g. Rimini",
+    "when": "When?",
+    "name": "Your name",
+    "name_ph": "First and last name",
+    "phone": "Phone",
+    "email_opt": "Email (optional)",
+    "hint": "Your contact details stay private until an artisan unlocks them.",
+    "submit": "Post request for free",
+    "submitting": "Sending...",
+    "success_title": "Request posted!",
+    "success_text": "Local artisans can now see the request and contact you. Your details stay private until a professional unlocks them.",
+    "publish_another": "Post another request"
+  },
+  "leadErrors": {
+    "category": "Choose a valid category.",
+    "country": "Invalid country.",
+    "city": "Enter the city.",
+    "description": "Describe the job (at least 10 characters).",
+    "urgency": "Invalid urgency.",
+    "name": "Enter your name.",
+    "phone": "Enter a phone number.",
+    "email": "Invalid email address."
+  },
+  "admin": {
+    "title": "Manage requests",
+    "subtitle": "Set the credit cost of each request (3-5) and monitor activity.",
+    "total": "Total requests",
+    "sold": "Contacts sold",
+    "revenue": "Estimated revenue",
+    "artisans": "Artisans",
+    "th_category": "Category",
+    "th_place": "Location",
+    "th_request": "Request",
+    "th_unlocks": "Unlocks",
+    "th_cost": "Cost (credits)",
+    "th_status": "Status",
+    "active": "Active",
+    "closed": "Closed"
+  },
+  "categories": {
+    "idraulica": "Plumbing",
+    "elettricista": "Electrician",
+    "imbianchino": "Painting",
+    "falegname": "Carpentry",
+    "condizionamento": "Air conditioning",
+    "giardinaggio": "Gardening",
+    "muratura": "Masonry",
+    "pulizie": "Cleaning",
+    "trasporti": "Transport & moving",
+    "spazzacamino": "Chimney sweep",
+    "elettrodomestici": "Appliance repair"
+  },
+  "urgency": {
+    "ASAP": "As soon as possible",
+    "THIS_WEEK": "This week",
+    "NOT_URGENT": "Not urgent"
+  }
+}

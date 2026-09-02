@@ -1,6 +1,7 @@
 "use server";
 
 // Manuvo - creazione di una richiesta da parte di un privato (senza account).
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import {
   CATEGORIES,
@@ -17,6 +18,7 @@ export async function createLead(
   _prev: LeadFormState,
   formData: FormData,
 ): Promise<LeadFormState> {
+  const t = await getTranslations("leadErrors");
   const category = String(formData.get("category") ?? "");
   const country = String(formData.get("country") ?? "IT");
   const city = String(formData.get("city") ?? "").trim();
@@ -27,22 +29,22 @@ export async function createLead(
   const contactEmail = String(formData.get("contactEmail") ?? "").trim();
 
   if (!isCategory(category) || !(CATEGORIES as readonly string[]).includes(category)) {
-    return { error: "Scegli una categoria valida." };
+    return { error: t("category") };
   }
   if (!(COUNTRIES as readonly string[]).includes(country)) {
-    return { error: "Paese non valido." };
+    return { error: t("country") };
   }
-  if (!city) return { error: "Indica la citta." };
+  if (!city) return { error: t("city") };
   if (description.length < 10) {
-    return { error: "Descrivi il lavoro (almeno 10 caratteri)." };
+    return { error: t("description") };
   }
   if (!(URGENCIES as readonly string[]).includes(urgency)) {
-    return { error: "Urgenza non valida." };
+    return { error: t("urgency") };
   }
-  if (!contactName) return { error: "Indica il tuo nome." };
-  if (!contactPhone) return { error: "Indica un numero di telefono." };
+  if (!contactName) return { error: t("name") };
+  if (!contactPhone) return { error: t("phone") };
   if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) {
-    return { error: "Indirizzo email non valido." };
+    return { error: t("email") };
   }
 
   await prisma.lead.create({
