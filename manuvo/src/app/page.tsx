@@ -23,18 +23,25 @@ export default function Home() {
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Link
-          href="/signup"
+          href="/pubblica"
           className="rounded-lg bg-teal-700 px-5 py-3 font-semibold text-white transition hover:bg-teal-800"
+        >
+          Pubblica una richiesta
+        </Link>
+        <Link
+          href="/signup"
+          className="rounded-lg border border-neutral-300 bg-white px-5 py-3 font-semibold transition hover:bg-neutral-50"
         >
           Sono un artigiano
         </Link>
-        <Link
-          href="/login"
-          className="rounded-lg border border-neutral-300 bg-white px-5 py-3 font-semibold transition hover:bg-neutral-50"
-        >
+      </div>
+
+      <p className="mt-4 text-sm text-neutral-500">
+        Sei gia artigiano?{" "}
+        <Link href="/login" className="font-semibold text-teal-700 hover:underline">
           Accedi
         </Link>
-      </div>
+      </p>
 
       <p className="mt-10 text-xs text-neutral-400">
         Prototipo in costruzione · fase 2/8
