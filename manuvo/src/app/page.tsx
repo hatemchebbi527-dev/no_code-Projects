@@ -13,7 +13,7 @@ export default async function Home() {
       </div>
 
       <span className="mb-6 flex items-center gap-2.5">
-        <span className="grid h-11 w-11 place-items-center rounded-xl bg-teal-700 text-white">
+        <span className="grid h-11 w-11 place-items-center rounded-xl bg-red-700 text-white">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
           </svg>
@@ -29,7 +29,7 @@ export default async function Home() {
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Link
           href="/pubblica"
-          className="rounded-lg bg-teal-700 px-5 py-3 font-semibold text-white transition hover:bg-teal-800"
+          className="rounded-lg bg-red-700 px-5 py-3 font-semibold text-white transition hover:bg-red-800"
         >
           {t("cta_publish")}
         </Link>
@@ -43,7 +43,7 @@ export default async function Home() {
 
       <p className="mt-4 text-sm text-neutral-500">
         {t("already_artisan")}{" "}
-        <Link href="/login" className="font-semibold text-teal-700 hover:underline">
+        <Link href="/login" className="font-semibold text-red-700 hover:underline">
           {t("login_link")}
         </Link>
       </p>

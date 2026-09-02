@@ -14,7 +14,7 @@ export default function SignupPage() {
   );
 
   const input =
-    "rounded-lg border border-neutral-300 px-3 py-2.5 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20";
+    "rounded-lg border border-neutral-300 px-3 py-2.5 outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600/20";
 
   return (
     <div className="w-full max-w-sm">
@@ -55,7 +55,7 @@ export default function SignupPage() {
         <button
           type="submit"
           disabled={isPending}
-          className="mt-1 rounded-lg bg-teal-700 px-4 py-2.5 font-semibold text-white transition hover:bg-teal-800 disabled:opacity-60"
+          className="mt-1 rounded-lg bg-red-700 px-4 py-2.5 font-semibold text-white transition hover:bg-red-800 disabled:opacity-60"
         >
           {isPending ? t("submitting") : t("submit")}
         </button>
@@ -63,7 +63,7 @@ export default function SignupPage() {
 
       <p className="mt-6 text-sm text-neutral-500">
         {t("have_account")}{" "}
-        <Link href="/login" className="font-semibold text-teal-700 hover:underline">
+        <Link href="/login" className="font-semibold text-red-700 hover:underline">
           {t("login_link")}
         </Link>
       </p>

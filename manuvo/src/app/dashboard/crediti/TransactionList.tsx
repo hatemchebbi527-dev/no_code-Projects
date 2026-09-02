@@ -49,16 +49,17 @@ export async function TransactionList({
             <div className="text-end">
               <div
                 className={`text-sm font-semibold tabular-nums ${
-                  positive ? "text-teal-700" : "text-neutral-700"
+                  positive ? "text-red-700" : "text-neutral-700"
                 }`}
               >
                 {positive ? "+" : ""}
                 {tx.credits} {tc("credits")}
               </div>
-              <div className="text-xs text-neutral-400 tabular-nums">
-                {tx.amountEur >= 0 ? "" : "-"}
-                {Math.abs(tx.amountEur)} €
-              </div>
+              {tx.type === "PURCHASE" && (
+                <div className="text-xs text-neutral-400 tabular-nums">
+                  {tx.amountEur} €
+                </div>
+              )}
             </div>
           </li>
         );

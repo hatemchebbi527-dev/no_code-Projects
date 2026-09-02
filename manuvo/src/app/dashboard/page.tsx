@@ -83,7 +83,7 @@ export default async function DashboardPage({
           available.map((lead) => (
             <article key={lead.id} className="flex flex-col gap-3 rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
               <div className="flex items-start gap-2">
-                <span className="inline-flex items-center rounded-lg bg-teal-50 px-2.5 py-1 text-xs font-semibold text-teal-800">
+                <span className="inline-flex items-center rounded-lg bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-800">
                   {tCat(lead.category)}
                 </span>
                 <div className="ms-auto text-end">
@@ -118,19 +118,19 @@ export default async function DashboardPage({
       {mine.length > 0 && (
         <>
           <h2 className="mt-10 mb-3 flex items-center gap-2 text-lg font-semibold">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-teal-600">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-600">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
             </svg>
             {t("my_contacts")}
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {mine.map(({ lead, unlockedAt }) => (
-              <article key={lead.id} className="flex flex-col gap-3 rounded-2xl border-2 border-teal-200 bg-white p-4">
+              <article key={lead.id} className="flex flex-col gap-3 rounded-2xl border-2 border-red-200 bg-white p-4">
                 <div className="flex items-start gap-2">
-                  <span className="inline-flex items-center rounded-lg bg-teal-50 px-2.5 py-1 text-xs font-semibold text-teal-800">
+                  <span className="inline-flex items-center rounded-lg bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-800">
                     {tCat(lead.category)}
                   </span>
-                  <span className="ms-auto rounded-md bg-teal-600 px-2 py-0.5 text-xs font-semibold text-white">{t("unlocked_badge")}</span>
+                  <span className="ms-auto rounded-md bg-red-600 px-2 py-0.5 text-xs font-semibold text-white">{t("unlocked_badge")}</span>
                 </div>
                 <p className="text-sm text-neutral-800">{lead.description}</p>
                 <div className="text-xs text-neutral-500">
@@ -138,11 +138,11 @@ export default async function DashboardPage({
                 </div>
                 <div className="mt-1 flex flex-col gap-1 border-t border-dashed border-neutral-200 pt-3">
                   <span className="font-semibold">{lead.contactName}</span>
-                  <a href={`tel:${lead.contactPhone.replace(/\s/g, "")}`} className="text-sm text-teal-700 hover:underline">
+                  <a href={`tel:${lead.contactPhone.replace(/\s/g, "")}`} className="text-sm text-red-700 hover:underline">
                     {lead.contactPhone}
                   </a>
                   {lead.contactEmail && (
-                    <a href={`mailto:${lead.contactEmail}`} className="text-sm text-teal-700 hover:underline">
+                    <a href={`mailto:${lead.contactEmail}`} className="text-sm text-red-700 hover:underline">
                       {lead.contactEmail}
                     </a>
                   )}

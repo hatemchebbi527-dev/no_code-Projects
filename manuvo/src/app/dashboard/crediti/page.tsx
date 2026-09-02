@@ -1,7 +1,6 @@
 // Manuvo - pagina crediti : ricarica + storico.
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
-import { creditsToEur } from "@/lib/constants";
 import {
   getActivePacks,
   getUserBalance,
@@ -31,9 +30,6 @@ export default async function CreditiPage() {
         <div className="text-sm font-medium text-amber-800">{t("current_balance")}</div>
         <div className="mt-1 text-3xl font-extrabold text-amber-700 tabular-nums">
           {credits} <span className="text-lg font-semibold">{tc("credits")}</span>
-          <span className="ms-2 text-base font-medium text-amber-700/70">
-            = {creditsToEur(credits)} €
-          </span>
         </div>
       </div>
 

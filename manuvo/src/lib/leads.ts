@@ -1,6 +1,5 @@
 // Manuvo - logica lato server delle richieste (bacheca + sblocco contatti).
 import { prisma } from "@/lib/prisma";
-import { creditsToEur } from "@/lib/constants";
 
 export type Scope = "national" | "international";
 
@@ -95,7 +94,7 @@ export async function unlockLead(userId: string, leadId: string) {
         userId,
         type: "SPEND",
         credits: -lead.creditCost,
-        amountEur: -creditsToEur(lead.creditCost),
+        amountEur: 0, // nessun euro reale: lo sblocco si paga in crediti
         reference: leadId,
       },
     });

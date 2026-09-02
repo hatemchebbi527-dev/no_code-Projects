@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import "./globals.css";
 import { RTL_LOCALES, type Locale } from "@/lib/constants";
+import { PWARegister } from "@/components/PWARegister";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +19,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Manuvo",
   description: "Manuvo - il marketplace che collega artigiani e privati.",
+  applicationName: "Manuvo",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Manuvo",
+  },
+  icons: {
+    icon: "/icons/icon-192.png",
+    apple: "/icons/apple-touch-icon.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#DC2626",
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
@@ -32,6 +47,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <PWARegister />
       </body>
     </html>
   );

@@ -24,7 +24,7 @@ export function RechargePanel({ packs }: { packs: Pack[] }) {
   return (
     <div>
       {state?.success && (
-        <p className="mb-4 rounded-lg bg-teal-50 px-3 py-2 text-sm font-medium text-teal-800">
+        <p className="mb-4 rounded-lg bg-green-50 px-3 py-2 text-sm font-medium text-green-800">
           {state.success}
         </p>
       )}
@@ -51,14 +51,14 @@ export function RechargePanel({ packs }: { packs: Pack[] }) {
                   {t("popular")}
                 </span>
               )}
-              <div className="text-3xl font-extrabold text-teal-700 tabular-nums">
+              <div className="text-3xl font-extrabold text-red-700 tabular-nums">
                 {pack.credits}
                 <span className="ms-1 text-sm font-semibold text-neutral-500">{tc("credits")}</span>
               </div>
               <div className="font-mono text-lg font-semibold tabular-nums">{pack.priceEur} €</div>
               <div className="text-xs text-neutral-400">
                 {perCredit} € {t("per_credit")}
-                {saving && <span className="ms-1 font-semibold text-teal-600">{t("save")}</span>}
+                {saving && <span className="ms-1 font-semibold text-red-600">{t("save")}</span>}
               </div>
 
               <input type="hidden" name="packId" value={pack.id} />

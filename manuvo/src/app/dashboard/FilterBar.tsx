@@ -29,7 +29,7 @@ export function FilterBar() {
             onClick={() => setParam("scope", null)}
             aria-pressed={scope === "national"}
             className={`rounded-full px-3 py-1.5 text-sm font-semibold ${
-              scope === "national" ? "bg-teal-700 text-white" : "text-neutral-600"
+              scope === "national" ? "bg-red-700 text-white" : "text-neutral-600"
             }`}
           >
             🇮🇹 {t("italia")}
@@ -38,7 +38,7 @@ export function FilterBar() {
             onClick={() => setParam("scope", "international")}
             aria-pressed={scope === "international"}
             className={`rounded-full px-3 py-1.5 text-sm font-semibold ${
-              scope === "international" ? "bg-teal-700 text-white" : "text-neutral-600"
+              scope === "international" ? "bg-red-700 text-white" : "text-neutral-600"
             }`}
           >
             🌍 {t("internazionale")}
