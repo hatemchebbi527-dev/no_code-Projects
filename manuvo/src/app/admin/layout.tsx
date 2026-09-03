@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { logout } from "../(auth)/actions";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { AdminNav } from "./AdminNav";
 
 export default async function AdminLayout({
   children,
@@ -33,7 +34,10 @@ export default async function AdminLayout({
           </form>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-5 py-8">{children}</main>
+      <main className="mx-auto max-w-5xl px-5 py-8">
+        <AdminNav />
+        {children}
+      </main>
     </div>
   );
 }

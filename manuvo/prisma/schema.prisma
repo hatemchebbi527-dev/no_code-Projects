@@ -16,6 +16,7 @@ datasource db {
 // Les particuliers (privati) ne creent pas de compte : ils publient une demande (Lead).
 model User {
   id           String   @id @default(cuid())
+  matricule    Int      @unique @default(autoincrement()) // identifiant sequentiel affiche ART-0001
   email        String   @unique
   passwordHash String
   role         String   @default("ARTIGIANO") // ARTIGIANO | ADMIN

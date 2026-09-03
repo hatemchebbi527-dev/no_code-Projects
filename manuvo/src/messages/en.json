@@ -158,7 +158,20 @@
     "th_cost": "Cost (credits)",
     "th_status": "Status",
     "active": "Active",
-    "closed": "Closed"
+    "closed": "Closed",
+    "nav_requests": "Requests",
+    "nav_artisans": "Artisans",
+    "artisans_title": "Registered artisans",
+    "artisans_subtitle": "List of artisans with their contact details. Each artisan has a unique ID.",
+    "th_matricule": "ID",
+    "th_name": "Name",
+    "th_email": "Email",
+    "th_phone": "Phone",
+    "th_city": "City",
+    "th_credits": "Credits",
+    "th_joined": "Joined",
+    "export_csv": "Export CSV",
+    "empty_artisans": "No artisans registered."
   },
   "categories": {
     "idraulica": "Plumbing",

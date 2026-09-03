@@ -158,7 +158,20 @@
     "th_cost": "Coût (crédits)",
     "th_status": "Statut",
     "active": "Actif",
-    "closed": "Fermé"
+    "closed": "Fermé",
+    "nav_requests": "Demandes",
+    "nav_artisans": "Artisans",
+    "artisans_title": "Artisans inscrits",
+    "artisans_subtitle": "Liste des artisans avec leurs coordonnées. Chaque artisan a un matricule unique.",
+    "th_matricule": "Matricule",
+    "th_name": "Nom",
+    "th_email": "Email",
+    "th_phone": "Téléphone",
+    "th_city": "Ville",
+    "th_credits": "Crédits",
+    "th_joined": "Inscrit le",
+    "export_csv": "Exporter CSV",
+    "empty_artisans": "Aucun artisan inscrit."
   },
   "categories": {
     "idraulica": "Plomberie",

@@ -158,7 +158,20 @@
     "th_cost": "Kosten (Credits)",
     "th_status": "Status",
     "active": "Aktiv",
-    "closed": "Geschlossen"
+    "closed": "Geschlossen",
+    "nav_requests": "Anfragen",
+    "nav_artisans": "Handwerker",
+    "artisans_title": "Registrierte Handwerker",
+    "artisans_subtitle": "Liste der Handwerker mit ihren Kontaktdaten. Jeder Handwerker hat eine eindeutige Kennung.",
+    "th_matricule": "Kennung",
+    "th_name": "Name",
+    "th_email": "E-Mail",
+    "th_phone": "Telefon",
+    "th_city": "Stadt",
+    "th_credits": "Credits",
+    "th_joined": "Registriert am",
+    "export_csv": "CSV exportieren",
+    "empty_artisans": "Keine Handwerker registriert."
   },
   "categories": {
     "idraulica": "Sanitär",
