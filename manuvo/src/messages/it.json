@@ -173,6 +173,27 @@
     "spazzacamino": "Spazzacamino",
     "elettrodomestici": "Riparazione elettrodomestici"
   },
+  "landing": {
+    "eyebrow": "Il marketplace degli artigiani",
+    "how_title": "Come funziona",
+    "how1_t": "Pubblichi la richiesta",
+    "how1_d": "Il privato descrive il lavoro in 30 secondi, gratis e senza registrarsi.",
+    "how2_t": "L'artigiano la trova",
+    "how2_d": "I professionisti della zona vedono la richiesta e sbloccano il contatto con i crediti.",
+    "how3_t": "Vi mettete d'accordo",
+    "how3_d": "Il privato riceve i preventivi e sceglie. Nessun costo per chi cerca.",
+    "cats_title": "Tutti i mestieri per la casa",
+    "cats_sub": "Dall'idraulico al trasloco: trovi il professionista giusto per ogni lavoro.",
+    "priv_title": "Sei un privato?",
+    "priv_desc": "Hai bisogno di un intervento in casa? Pubblica la richiesta gratis e lascia che gli artigiani ti contattino.",
+    "priv_cta": "Pubblica una richiesta",
+    "art_title": "Sei un artigiano?",
+    "art_desc": "Trova nuovi clienti nella tua zona. Compri i crediti e sblocchi solo i contatti che ti interessano.",
+    "art_cta": "Registrati come artigiano",
+    "band_title": "Pronto a iniziare con Manuvo?",
+    "band_sub": "Gratis per i privati. Nessun abbonamento per gli artigiani, paghi solo i contatti che sblocchi.",
+    "footer": "Manuvo - artigiani e privati, finalmente connessi."
+  },
   "urgency": {
     "ASAP": "Il prima possibile",
     "THIS_WEEK": "Questa settimana",

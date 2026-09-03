@@ -173,6 +173,27 @@
     "spazzacamino": "Ramonage",
     "elettrodomestici": "Réparation électroménager"
   },
+  "landing": {
+    "eyebrow": "La marketplace des artisans",
+    "how_title": "Comment ça marche",
+    "how1_t": "Vous publiez la demande",
+    "how1_d": "Le particulier décrit le travail en 30 secondes, gratuitement et sans inscription.",
+    "how2_t": "L'artisan la trouve",
+    "how2_d": "Les pros de la région voient la demande et débloquent le contact avec des crédits.",
+    "how3_t": "Vous vous mettez d'accord",
+    "how3_d": "Le particulier reçoit des devis et choisit. Aucun coût pour celui qui cherche.",
+    "cats_title": "Tous les métiers de la maison",
+    "cats_sub": "Du plombier au déménagement : trouvez le bon professionnel pour chaque travail.",
+    "priv_title": "Vous êtes un particulier ?",
+    "priv_desc": "Besoin d'un travail à la maison ? Publiez votre demande gratuitement et laissez les artisans vous contacter.",
+    "priv_cta": "Publier une demande",
+    "art_title": "Vous êtes un artisan ?",
+    "art_desc": "Trouvez de nouveaux clients près de chez vous. Achetez des crédits et débloquez seulement les contacts qui vous intéressent.",
+    "art_cta": "S'inscrire comme artisan",
+    "band_title": "Prêt à démarrer avec Manuvo ?",
+    "band_sub": "Gratuit pour les particuliers. Pas d'abonnement pour les artisans, vous ne payez que les contacts débloqués.",
+    "footer": "Manuvo - particuliers et artisans, enfin connectés."
+  },
   "urgency": {
     "ASAP": "Dès que possible",
     "THIS_WEEK": "Cette semaine",
