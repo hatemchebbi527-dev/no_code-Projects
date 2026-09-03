@@ -173,6 +173,27 @@
     "spazzacamino": "Chimney sweep",
     "elettrodomestici": "Appliance repair"
   },
+  "landing": {
+    "eyebrow": "The artisans marketplace",
+    "how_title": "How it works",
+    "how1_t": "Post your request",
+    "how1_d": "The customer describes the job in 30 seconds, free and with no sign-up.",
+    "how2_t": "The artisan finds it",
+    "how2_d": "Local pros see the request and unlock the contact with credits.",
+    "how3_t": "You get in touch",
+    "how3_d": "The customer receives quotes and chooses. Free for those looking.",
+    "cats_title": "Every home trade",
+    "cats_sub": "From plumbing to moving: find the right pro for any job.",
+    "priv_title": "Are you a customer?",
+    "priv_desc": "Need a job done at home? Post your request for free and let artisans contact you.",
+    "priv_cta": "Post a request",
+    "art_title": "Are you an artisan?",
+    "art_desc": "Find new customers near you. Buy credits and unlock only the contacts you want.",
+    "art_cta": "Sign up as an artisan",
+    "band_title": "Ready to start with Manuvo?",
+    "band_sub": "Free for customers. No subscription for artisans, you only pay for the contacts you unlock.",
+    "footer": "Manuvo - artisans and customers, finally connected."
+  },
   "urgency": {
     "ASAP": "As soon as possible",
     "THIS_WEEK": "This week",

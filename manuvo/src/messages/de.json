@@ -173,6 +173,27 @@
     "spazzacamino": "Schornsteinfeger",
     "elettrodomestici": "Gerätereparatur"
   },
+  "landing": {
+    "eyebrow": "Der Marktplatz der Handwerker",
+    "how_title": "So funktioniert es",
+    "how1_t": "Sie stellen die Anfrage ein",
+    "how1_d": "Der Privatkunde beschreibt die Arbeit in 30 Sekunden, kostenlos und ohne Anmeldung.",
+    "how2_t": "Der Handwerker findet sie",
+    "how2_d": "Die Profis der Region sehen die Anfrage und schalten den Kontakt mit Credits frei.",
+    "how3_t": "Sie werden sich einig",
+    "how3_d": "Der Privatkunde erhält Angebote und wählt. Keine Kosten für den Suchenden.",
+    "cats_title": "Alle Handwerke rund ums Haus",
+    "cats_sub": "Vom Klempner bis zum Umzug: Finden Sie den richtigen Profi für jede Arbeit.",
+    "priv_title": "Sind Sie Privatkunde?",
+    "priv_desc": "Brauchen Sie eine Arbeit im Haus? Stellen Sie Ihre Anfrage kostenlos ein und lassen Sie sich von Handwerkern kontaktieren.",
+    "priv_cta": "Eine Anfrage einstellen",
+    "art_title": "Sind Sie Handwerker?",
+    "art_desc": "Finden Sie neue Kunden in Ihrer Nähe. Kaufen Sie Credits und schalten Sie nur die Kontakte frei, die Sie interessieren.",
+    "art_cta": "Als Handwerker registrieren",
+    "band_title": "Bereit, mit Manuvo zu starten?",
+    "band_sub": "Kostenlos für Privatkunden. Kein Abo für Handwerker, Sie zahlen nur die freigeschalteten Kontakte.",
+    "footer": "Manuvo - Privatkunden und Handwerker, endlich verbunden."
+  },
   "urgency": {
     "ASAP": "So bald wie möglich",
     "THIS_WEEK": "Diese Woche",
