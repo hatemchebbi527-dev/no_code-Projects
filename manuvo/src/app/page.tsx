@@ -106,7 +106,7 @@ export default async function Home() {
             {CATEGORIES.map((cat) => (
               <div
                 key={cat}
-                className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-[#FAF8F4] px-4 py-3.5"
+                className="flex h-full flex-col items-center justify-start gap-2.5 rounded-xl border border-neutral-200 bg-[#FAF8F4] px-3 py-4 text-center"
               >
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-red-50 text-red-700">
                   <svg
@@ -121,7 +121,9 @@ export default async function Home() {
                     dangerouslySetInnerHTML={{ __html: CATEGORY_ICON[cat] }}
                   />
                 </span>
-                <span className="text-sm font-semibold leading-tight">{tc(cat)}</span>
+                <span className="hyphens-auto text-sm font-semibold leading-tight">
+                  {tc(cat)}
+                </span>
               </div>
             ))}
           </div>
