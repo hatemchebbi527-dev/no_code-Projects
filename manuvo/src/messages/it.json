@@ -158,7 +158,20 @@
     "th_cost": "Costo (crediti)",
     "th_status": "Stato",
     "active": "Attivo",
-    "closed": "Chiuso"
+    "closed": "Chiuso",
+    "nav_requests": "Richieste",
+    "nav_artisans": "Artigiani",
+    "artisans_title": "Artigiani registrati",
+    "artisans_subtitle": "Elenco degli artigiani con i loro contatti. Ogni artigiano ha una matricola univoca.",
+    "th_matricule": "Matricola",
+    "th_name": "Nome",
+    "th_email": "Email",
+    "th_phone": "Telefono",
+    "th_city": "Citta",
+    "th_credits": "Crediti",
+    "th_joined": "Iscritto il",
+    "export_csv": "Esporta CSV",
+    "empty_artisans": "Nessun artigiano registrato."
   },
   "categories": {
     "idraulica": "Idraulica",

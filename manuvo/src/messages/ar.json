@@ -158,7 +158,20 @@
     "th_cost": "التكلفة (نقاط)",
     "th_status": "الحالة",
     "active": "نشط",
-    "closed": "مغلق"
+    "closed": "مغلق",
+    "nav_requests": "الطلبات",
+    "nav_artisans": "الحرفيون",
+    "artisans_title": "الحرفيون المسجلون",
+    "artisans_subtitle": "قائمة الحرفيين مع بيانات الاتصال. لكل حرفي رقم تعريف فريد.",
+    "th_matricule": "المعرف",
+    "th_name": "الاسم",
+    "th_email": "البريد الإلكتروني",
+    "th_phone": "الهاتف",
+    "th_city": "المدينة",
+    "th_credits": "الأرصدة",
+    "th_joined": "تاريخ التسجيل",
+    "export_csv": "تصدير CSV",
+    "empty_artisans": "لا يوجد حرفيون مسجلون."
   },
   "categories": {
     "idraulica": "سباكة",

@@ -25,3 +25,21 @@ export async function getAdminStats() {
 export async function getAllLeads() {
   return prisma.lead.findMany({ orderBy: { createdAt: "desc" } });
 }
+
+// Liste des artisans avec coordonnees (pour le suivi et le marketing de l'admin).
+export async function getArtisans() {
+  return prisma.user.findMany({
+    where: { role: "ARTIGIANO" },
+    orderBy: { matricule: "asc" },
+    select: {
+      matricule: true,
+      name: true,
+      email: true,
+      phone: true,
+      city: true,
+      country: true,
+      credits: true,
+      createdAt: true,
+    },
+  });
+}

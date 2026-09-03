@@ -56,6 +56,11 @@ export function creditsToEur(credits: number): number {
   return credits * EUR_PER_CREDIT;
 }
 
+// Matricule public d'un artisan : ART-0001, ART-0042, ...
+export function formatMatricule(matricule: number): string {
+  return `ART-${String(matricule).padStart(4, "0")}`;
+}
+
 export function clampLeadCost(cost: number): number {
   return Math.max(MIN_LEAD_COST, Math.min(MAX_LEAD_COST, Math.round(cost)));
 }
