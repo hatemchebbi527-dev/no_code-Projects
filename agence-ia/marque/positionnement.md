@@ -1,95 +1,96 @@
 # positionnement.md — Mon positionnement et mes bios
 
-> Mon ICP en une synthèse, mon offre phare en une phrase, et mes 4 bios prêtes à coller.
-> Produit au Jour 1 du plan, à partir de audience.md et offers_cta.md.
+> Mon ICP en une synthèse, mon offre phare en une phrase, et mes bios prêtes à coller.
+> Produit à partir de audience.md et offers_cta.md.
 > Voix : vouvoiement chaleureux, zéro jargon (voir brand_voice.md).
-> Dernière mise à jour : 2026-07-27
+> Dernière mise à jour : 2026-09-06 (pivot de niche)
 
 ---
 
 ## Mon ICP (client idéal) en une synthèse
 
-Les petits cabinets de professionnels libéraux (avocats et comptables en priorité, plus le vertical cliniche/santé en ouverture, entrée par les vétérinaires), 1 à 5 personnes, qui perdent un temps précieux dans l'administratif répétitif et tiennent à la confidentialité de leurs données. Mon entrée se fait par l'automatisation de leur quotidien.
+Les petites structures locales dont le CA dépend de leads entrants et de rendez-vous tenus : **agences immobilières, centres / instituts de beauté et salles de sport**, 1 à 10 personnes, qui perdent des clients faute de répondre assez vite et des revenus à cause des rendez-vous manqués. Mon entrée se fait par l'automatisation de la réponse aux leads et des rappels de RDV.
 
 ---
 
 ## Mon offre phare (en une phrase)
 
-**Italien (client) :**
-> "Aiuto avvocati e commercialisti a recuperare fino a 10 ore a settimana automatizzando le attività amministrative ripetitive, con i loro dati sempre protetti."
+**Général (français, référence) :**
+> "J'aide les commerces de proximité à ne plus perdre un seul lead ni un seul rendez-vous : réponse automatique en quelques minutes 24/7, rappels anti no-show et relance des clients, pour récupérer jusqu'à 10 heures par semaine."
 
-**Français (référence) :**
-> "J'aide avocats et comptables à récupérer jusqu'à 10 heures par semaine en automatisant les tâches administratives répétitives, avec leurs données toujours protégées."
+Les 3 pièces : public précis (commerces au RDV) + problème précis (leads lents + no-show) + résultat chiffré (leads captés, RDV tenus, 10h/semaine).
 
-Les 3 pièces : public précis (avocats et comptables) + problème précis (admin répétitif) + résultat chiffré (10h/semaine).
+### Variantes par vertical (italien, client)
+
+- **Immobilier :**
+  > "Aiuto le agenzie immobiliari a rispondere a ogni richiesta in pochi minuti, 24/7, e a fissare più visite in automatico. Nessun lead perso."
+
+- **Beauté :**
+  > "Aiuto i centri estetici a riempire l'agenda: prenotazioni online 24/7, promemoria automatici contro le assenze, e clienti che tornano."
+
+- **Fitness :**
+  > "Aiuto le palestre a trasformare le prove gratuite in abbonamenti e a riattivare gli iscritti che mollano, in automatico."
 
 ---
 
-## Mes 4 bios (en italien, prêtes à coller)
+## Mes bios (en italien, prêtes à coller)
 
-### LinkedIn
+> Adapter la ligne de métier selon le prospect visé. Version « polyvalente » ci-dessous, plus une variante par vertical.
+
+### LinkedIn (profil perso)
 
 **Titolo (headline) :**
-> Automazione e IA per studi legali e di commercialisti | Recupera fino a 10 ore a settimana | Dati protetti
+> Automazione e IA per attività locali (immobiliare, estetica, fitness) | Nessun lead perso, agenda sempre piena
 
 **Informazioni (about) :**
-> Aiuto avvocati e commercialisti a liberarsi dalle attività amministrative ripetitive che rubano tempo prezioso.
+> Aiuto agenzie immobiliari, centri estetici e palestre a non perdere più clienti.
 >
-> Appuntamenti, promemoria, solleciti e richieste dei clienti: automatizzo lo studio così Lei recupera fino a 10 ore a settimana, da dedicare al suo vero lavoro.
+> Risposta automatica a ogni richiesta in pochi minuti (anche di notte), promemoria automatici contro le assenze, e riattivazione dei clienti inattivi: più appuntamenti fissati, agenda sempre piena, fino a 10 ore a settimana risparmiate.
 >
-> I suoi dati restano protetti e sotto il suo controllo, sempre.
->
-> 📩 Prenoti un audit gratuito di 20 minuti: individuiamo insieme dove sta perdendo più tempo.
+> 📩 Prenoti un audit gratuito di 20 minuti: vediamo insieme quanti lead e appuntamenti sta perdendo oggi.
 
-### Instagram
+### Instagram (compte Business)
 
-> ⚙️ Automazione & IA per studi legali e di commercialisti
-> ⏱️ Recupera fino a 10 ore a settimana
-> 🔒 I tuoi dati sempre protetti
+> ⚙️ Automazione & IA per immobiliare · estetica · fitness
+> ⚡ Rispondi a ogni cliente in pochi minuti, 24/7
+> 📅 Basta appuntamenti persi (promemoria automatici)
 > 👇 Audit gratuito di 20 min
 
-### Facebook
+### Facebook (Page Business)
 
-> Automatizzo gli studi di avvocati e commercialisti per far recuperare fino a 10 ore a settimana.
+> Automatizzo agenzie immobiliari, centri estetici e palestre: risposta immediata ai clienti, promemoria automatici contro le assenze e riattivazione degli inattivi.
 >
-> Meno burocrazia ripetitiva, più tempo per i clienti e per il lavoro che conta. Dati sempre protetti.
+> Più appuntamenti, meno tempo perso al telefono.
 >
 > 📩 Scrivimi per un audit gratuito di 20 minuti.
 
----
+### TikTok
 
-## Variante cliniche (vertical santé)
-
-**LinkedIn — Titolo :**
-> Automazione e IA per cliniche e studi veterinari | Meno appuntamenti persi | Dati protetti
-
-**About (estratto) :**
-> Aiuto cliniche e ambulatori (veterinari, dentisti, fisioterapisti) a non perdere più richieste e appuntamenti.
->
-> Prenotazione online sempre attiva, promemoria automatici, accoglienza anche in inglese: meno telefono, agenda sempre piena. I dati dei pazienti restano protetti.
->
-> 📩 Prenoti un audit gratuito di 20 minuti.
+> Automazioni IA che riempiono l'agenda 📈
+> Immobiliare · estetica · fitness
+> Meno assenze, più clienti 👇 audit gratis
 
 ---
 
 ## Stratégie de comptes par plateforme
 
-**Principe :** le contenu reste humain et personnel partout (les clients achètent la personne, pas une marque anonyme), mais le type de compte est choisi pour la crédibilité et surtout pour permettre l'automatisation de publication (Jours 12 et 17).
+**Principe :** le contenu reste humain et personnel, mais le mix de plateformes change avec la niche. Ces métiers (beauté, fitness surtout) sont visuels et locaux : Instagram et TikTok deviennent centraux, LinkedIn passe en soutien.
 
-| Plateforme | Type de compte | Pourquoi |
+| Plateforme | Type de compte | Rôle avec la nouvelle niche |
 |---|---|---|
-| LinkedIn | **Profil personnel** (priorité) | En B2B, le profil perso génère reach et confiance. Page entreprise possible plus tard, mais le perso vend. |
-| Facebook | **Page Business** | Une partie de la cible (souvent 40+) y est active. Requise pour l'API, les pubs et la programmation. |
-| Instagram | **Compte Professionnel (Business)** | Présence secondaire / vitrine visuelle. Débloque stats et accès API (lié à une Page Facebook). |
+| Instagram | **Compte Professionnel (Business)** | **Priorité.** Beauté et fitness y vivent (visuel, avant/après, reels). Vitrine + preuve sociale + démonstration d'automatisations. |
+| TikTok | **Compte Pro** | **Priorité montante.** Reels courts « une automatisation = un problème résolu », très efficace pour beauté/fitness. Réintégré à la stratégie (contrairement à l'ancienne niche). |
+| Facebook | **Page Business** | Cible immobilier et 40+ active. Requise pour API, pubs locales et programmation. |
+| LinkedIn | **Profil personnel** | Soutien / crédibilité et approche des gérants d'agences immobilières. Plus central qu'en B2C pur mais secondaire vs IG/TikTok. |
 
-**TikTok : retiré de la stratégie marketing.** La cible (avocats, comptables) n'y est pas en posture professionnelle ; les codes de la plateforme ne collent pas à des libéraux sérieux. Un compte peut rester ouvert uniquement pour s'entraîner techniquement à l'automatisation (API), sans y investir de contenu.
-
-**Priorité d'effort :** ~80% sur LinkedIn (c'est là que les avocats/comptables sont réceptifs en mode pro). Facebook et Instagram servent à entretenir la présence et à entraîner les automatisations, pas à closer cette cible.
+**Priorité d'effort :** ~50% Instagram + TikTok (là où beauté/fitness réagissent), ~30% Facebook (immobilier + pubs locales), ~20% LinkedIn (immobilier B2B et autorité).
 
 ---
 
 ## Note
 
-- Vertical cliniche (santé) ajouté : entrée par les vétérinaires, puis dentistes/kinés, médecins en dernier. Une variante de bios « cliniche » est disponible ci-dessus.
+- Pivot de niche acté le 2026-09-06 : de professionnels libéraux vers immobilier / beauté / fitness.
+- **Changement majeur vs ancienne stratégie : TikTok est réintégré** (pertinent pour beauté et fitness), et Instagram/TikTok passent devant LinkedIn.
+- L'argument central n'est plus la confidentialité mais la **réactivité** (speed-to-lead) et les **RDV tenus** (anti no-show).
 - Versions français/anglais à produire pour l'expansion multilingue.
 - Un seul CTA par bio (l'audit gratuit), conformément à offers_cta.md.

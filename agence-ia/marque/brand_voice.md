@@ -2,13 +2,13 @@
 
 > Comment ma marque parle à ses clients : ton, style, vocabulaire, ce qu'on dit et ce qu'on évite.
 > Sert de référence pour tout : site, posts, emails, propositions, messages de prospection.
-> Dernière mise à jour : 2026-06-16
+> Dernière mise à jour : 2026-09-06 (pivot de niche)
 
 ---
 
 ## En une phrase
 
-Une voix **professionnelle mais accessible** : je parle à des experts (avocats, comptables, médecins) qui n'ont pas le temps et qui détestent le jargon technique. Je suis clair, rassurant, et je parle résultats concrets, pas technologie.
+Une voix **professionnelle mais accessible** : je parle à des gérants de commerces locaux (agences immobilières, centres de beauté, salles de sport) qui n'ont pas le temps et qui détestent le jargon technique. Je suis clair, concret, et je parle résultats (clients captés, agenda plein), pas technologie.
 
 ---
 
@@ -18,7 +18,7 @@ Une voix **professionnelle mais accessible** : je parle à des experts (avocats,
    Pas de jargon IA ("LLM", "API", "workflow", "pipeline"). Je parle bénéfices, pas outils. Un cabinet ne veut pas "un workflow n8n", il veut "ne plus perdre 2h par jour à gérer ses rendez-vous".
 
 2. **Rassurante**
-   Mes clients manipulent des données sensibles. Je rassure sur la confidentialité, la simplicité, le fait qu'ils gardent le contrôle. Jamais de promesse magique qui sonne faux.
+   Mes clients ne sont pas techniques et craignent que « ça soit compliqué ». Je rassure sur la simplicité (rien à installer, rien à gérer), le fait qu'ils gardent le contrôle, et que ça marche vraiment. Jamais de promesse magique qui sonne faux.
 
 3. **Concrète et chiffrée**
    Je parle en heures gagnées, en tâches supprimées, en exemples réels de leur quotidien. Des phrases courtes, des bénéfices mesurables.
@@ -39,7 +39,8 @@ Une voix **professionnelle mais accessible** : je parle à des experts (avocats,
 
 - Bénéfices concrets : "récupérez jusqu'à 10 heures par semaine"
 - Le quotidien du client : "fini les relances clients à la main"
-- La confidentialité : "vos données restent protégées et sous votre contrôle"
+- La réactivité : "chaque demande reçoit une réponse en quelques minutes, même la nuit"
+- Les RDV tenus : "vos clients reçoivent leurs rappels automatiquement, fini les absences"
 - Des preuves : exemples, démos, avant/après
 - Des phrases courtes et directes
 
@@ -59,10 +60,10 @@ Une voix **professionnelle mais accessible** : je parle à des experts (avocats,
 > "Grâce à nos workflows IA automatisés et notre intégration API, révolutionnez votre cabinet et explosez votre productivité !"
 
 **Bon (clair, concret, rassurant) :**
-> "Vos rendez-vous se gèrent tout seuls, vos clients reçoivent leurs rappels automatiquement, et vous récupérez plusieurs heures chaque semaine. Vos données restent chez vous, protégées."
+> "Chaque demande reçoit une réponse en quelques minutes, même la nuit. Vos clients reçoivent leurs rappels automatiquement, fini les rendez-vous manqués, et vous récupérez plusieurs heures chaque semaine. Rien à installer, tout tourne tout seul."
 
 ---
 
 ## Émotion à transmettre
 
-Le client doit ressentir : **"Enfin quelqu'un qui comprend mon problème, qui parle clairement, et à qui je peux faire confiance avec mes données."**
+Le client doit ressentir : **"Enfin quelqu'un qui comprend mon problème, qui parle clairement, et qui va vraiment me faire gagner des clients sans que j'aie à m'en occuper."**
