@@ -7,6 +7,15 @@
 
 ---
 
+## 2026-09-06
+
+### Pivot de niche : immobilier, beauté et fitness
+- **Changement stratégique majeur.** La niche cible passe des cabinets de professionnels libéraux (avocats, comptables, notaires, dentistes, vétérinaires, médecins) aux **agences immobilières, centres / instituts de beauté et salles de sport (fitness)**. Pivot en place « depuis un bon moment » selon Hatem, acté formellement dans le contexte ce jour.
+- Logique commune des trois nouvelles cibles : gestion de RDV et de leads entrants, présence digitale à renforcer, pas de contraintes de données de santé.
+- Le site client **7sport-agency** (fitness) est déjà cohérent avec la nouvelle niche.
+- CONTEXT.md mis à jour (section « Clients types visés »).
+- **À réaligner sur la nouvelle niche (non fait) :** skill `automaia-voce`, fichiers de marque `agence-ia/marque/` (audience, positionnement, brand_voice), lead magnet `guida-5-automazioni`, et les offres (assistant-email, grille tarifaire).
+
 ## 2026-08-07
 
 ### Élargissement de la niche : dentistes et vétérinaires ajoutés

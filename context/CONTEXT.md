@@ -31,7 +31,9 @@ Je me forme activement pour devenir consultant et développeur IA indépendant. 
 - Développer des applications et sites web intégrant l'IA
 - Proposer des services de conseil en transformation digitale par l'IA
 
-**Clients types visés :** cabinets de professionnels libéraux (avocats, comptables, notaires, dentistes, vétérinaires, médecins). Niche fer de lance choisie en juin 2026, élargie en août 2026 aux dentistes et vétérinaires. Médecins et professions de santé abordés avec soin (contraintes données de santé). Cibles secondaires d'expansion : instituts de beauté, agences de com/événementiel, startups.
+**Clients types visés :** agences immobilières, centres / instituts de beauté et salles de sport (fitness). Pivot de niche acté en 2026, qui remplace l'ancienne cible des cabinets de professionnels libéraux (avocats, comptables, notaires, dentistes, vétérinaires, médecins). Ces trois cibles partagent un fort besoin de gestion de RDV / leads entrants et de présence digitale, sans les contraintes lourdes des données de santé.
+
+> ⚠️ Actifs à réaligner sur la nouvelle niche : skill `automaia-voce` (calibrée pour professions libérales), fichiers de marque `agence-ia/marque/` (audience, positionnement, brand_voice), lead magnet et offres.
 
 ---
 
