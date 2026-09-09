@@ -31,8 +31,23 @@ model User {
 
   unlocks      Unlock[]
   transactions CreditTransaction[]
+  resetTokens  PasswordResetToken[]
 
   @@index([role])
+}
+
+// Jeton de reinitialisation de mot de passe (on stocke le hash du jeton, pas le jeton brut).
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 // Demande publiee par un particulier.

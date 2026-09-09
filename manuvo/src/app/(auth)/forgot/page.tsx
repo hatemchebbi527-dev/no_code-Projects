@@ -1,20 +1,35 @@
 "use client";
 
-// Manuvo - pagina di accesso.
+// Manuvo - richiesta di reimpostazione password.
 import { useActionState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { authenticate, type AuthState } from "../actions";
+import { requestPasswordReset, type ResetState } from "../actions";
 
-export default function LoginPage() {
-  const t = useTranslations("login");
-  const [state, formAction, isPending] = useActionState<AuthState, FormData>(
-    authenticate,
+export default function ForgotPage() {
+  const t = useTranslations("forgot");
+  const [state, formAction, isPending] = useActionState<ResetState, FormData>(
+    requestPasswordReset,
     undefined,
   );
 
   const input =
     "rounded-lg border border-neutral-300 px-3 py-2.5 outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600/20";
+
+  if (state?.ok) {
+    return (
+      <div className="w-full max-w-sm">
+        <h1 className="text-2xl font-bold tracking-tight">{t("done_title")}</h1>
+        <p className="mt-2 text-sm text-neutral-600">{t("done_text")}</p>
+        <Link
+          href="/login"
+          className="mt-6 inline-block font-semibold text-red-700 hover:underline"
+        >
+          {t("back_login")}
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-sm">
@@ -26,15 +41,6 @@ export default function LoginPage() {
           <span className="text-sm font-medium">{t("email")}</span>
           <input name="email" type="email" autoComplete="email" required className={input} placeholder="you@email.com" />
         </label>
-
-        <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">{t("password")}</span>
-          <input name="password" type="password" autoComplete="current-password" required className={input} placeholder="********" />
-        </label>
-
-        <Link href="/forgot" className="-mt-1 self-end text-sm font-medium text-red-700 hover:underline">
-          {t("forgot")}
-        </Link>
 
         {state?.error && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>
@@ -50,9 +56,8 @@ export default function LoginPage() {
       </form>
 
       <p className="mt-6 text-sm text-neutral-500">
-        {t("no_account")}{" "}
-        <Link href="/signup" className="font-semibold text-red-700 hover:underline">
-          {t("register_link")}
+        <Link href="/login" className="font-semibold text-red-700 hover:underline">
+          {t("back_login")}
         </Link>
       </p>
     </div>
