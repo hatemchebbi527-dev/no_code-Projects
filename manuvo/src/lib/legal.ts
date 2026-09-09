@@ -9,11 +9,9 @@ export type LegalSlug = "privacy" | "termini" | "cookie" | "note";
 
 export const LEGAL_UPDATED = "2026-09-09";
 
-// Placeholders a remplacer (identiques dans toutes les langues).
-const HOLDER = "[NOME E COGNOME DEL TITOLARE]";
-const EMAIL = "[EMAIL DI CONTATTO]";
-const PIVA = "[P.IVA / CODICE FISCALE, se applicabile]";
-const ADDRESS = "[INDIRIZZO]";
+// Identite du titulaire. P.IVA a ajouter plus tard (rappel a faire).
+const HOLDER = "AutomaIA";
+const EMAIL = "info@automa-ia.net";
 
 export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
   privacy: {
@@ -21,7 +19,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Informativa sulla privacy",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Titolare del trattamento", p: [`Il titolare del trattamento dei dati e ${HOLDER}, contattabile all'indirizzo ${EMAIL} (${PIVA}, ${ADDRESS}).`] },
+        { h: "Titolare del trattamento", p: [`Il titolare del trattamento dei dati e ${HOLDER}, contattabile all'indirizzo ${EMAIL}.`] },
         { h: "Dati raccolti", p: [
           "Artigiani registrati: nome, email, telefono, citta, paese, mestieri offerti e password (conservata in forma cifrata).",
           "Privati che pubblicano una richiesta: nome, telefono, email (facoltativa), citta, paese e descrizione del lavoro richiesto.",
@@ -47,7 +45,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Privacy Policy",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Data controller", p: [`The data controller is ${HOLDER}, reachable at ${EMAIL} (${PIVA}, ${ADDRESS}).`] },
+        { h: "Data controller", p: [`The data controller is ${HOLDER}, reachable at ${EMAIL}.`] },
         { h: "Data collected", p: [
           "Registered artisans: name, email, phone, city, country, trades offered and password (stored encrypted).",
           "Individuals posting a request: name, phone, email (optional), city, country and a description of the job.",
@@ -73,7 +71,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Politique de confidentialité",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Responsable du traitement", p: [`Le responsable du traitement des données est ${HOLDER}, joignable à ${EMAIL} (${PIVA}, ${ADDRESS}).`] },
+        { h: "Responsable du traitement", p: [`Le responsable du traitement des données est ${HOLDER}, joignable à ${EMAIL}.`] },
         { h: "Données collectées", p: [
           "Artisans inscrits : nom, email, téléphone, ville, pays, métiers proposés et mot de passe (conservé chiffré).",
           "Particuliers publiant une demande : nom, téléphone, email (facultatif), ville, pays et description du travail demandé.",
@@ -99,7 +97,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Datenschutzerklärung",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Verantwortlicher", p: [`Verantwortlich für die Datenverarbeitung ist ${HOLDER}, erreichbar unter ${EMAIL} (${PIVA}, ${ADDRESS}).`] },
+        { h: "Verantwortlicher", p: [`Verantwortlich für die Datenverarbeitung ist ${HOLDER}, erreichbar unter ${EMAIL}.`] },
         { h: "Erhobene Daten", p: [
           "Registrierte Handwerker: Name, E-Mail, Telefon, Stadt, Land, angebotene Gewerke und Passwort (verschlüsselt gespeichert).",
           "Privatpersonen, die eine Anfrage stellen: Name, Telefon, E-Mail (optional), Stadt, Land und eine Beschreibung der Arbeit.",
@@ -125,7 +123,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "سياسة الخصوصية",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "المسؤول عن المعالجة", p: [`المسؤول عن معالجة البيانات هو ${HOLDER}، ويمكن التواصل معه عبر ${EMAIL} (${PIVA}، ${ADDRESS}).`] },
+        { h: "المسؤول عن المعالجة", p: [`المسؤول عن معالجة البيانات هو ${HOLDER}، ويمكن التواصل معه عبر ${EMAIL}.`] },
         { h: "البيانات المجمّعة", p: [
           "الحرفيون المسجلون: الاسم، البريد الإلكتروني، الهاتف، المدينة، البلد، الحرف المقدّمة وكلمة المرور (محفوظة مشفّرة).",
           "الأفراد الذين ينشرون طلباً: الاسم، الهاتف، البريد الإلكتروني (اختياري)، المدينة، البلد ووصف العمل المطلوب.",
@@ -305,7 +303,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Note legali",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Titolare del sito", p: [`Il sito Manuvo e gestito da ${HOLDER} (${PIVA}, ${ADDRESS}), contattabile all'indirizzo ${EMAIL}.`] },
+        { h: "Titolare del sito", p: [`Il sito Manuvo e gestito da ${HOLDER}, contattabile all'indirizzo ${EMAIL}.`] },
         { h: "Hosting", p: ["Il sito e ospitato su infrastruttura Vercel; il database e fornito da Neon."] },
         { h: "Proprieta intellettuale", p: ["Il nome Manuvo, il logo e i contenuti del sito sono protetti. Ne e vietata la riproduzione senza autorizzazione."] },
         { h: "Contatti", p: [`Per qualsiasi richiesta relativa al sito: ${EMAIL}.`] },
@@ -315,7 +313,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Legal Notice",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Site owner", p: [`The Manuvo site is operated by ${HOLDER} (${PIVA}, ${ADDRESS}), reachable at ${EMAIL}.`] },
+        { h: "Site owner", p: [`The Manuvo site is operated by ${HOLDER}, reachable at ${EMAIL}.`] },
         { h: "Hosting", p: ["The site is hosted on Vercel infrastructure; the database is provided by Neon."] },
         { h: "Intellectual property", p: ["The Manuvo name, logo and site content are protected. Reproduction without authorisation is prohibited."] },
         { h: "Contact", p: [`For any request regarding the site: ${EMAIL}.`] },
@@ -325,7 +323,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Mentions légales",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Éditeur du site", p: [`Le site Manuvo est géré par ${HOLDER} (${PIVA}, ${ADDRESS}), joignable à ${EMAIL}.`] },
+        { h: "Éditeur du site", p: [`Le site Manuvo est géré par ${HOLDER}, joignable à ${EMAIL}.`] },
         { h: "Hébergement", p: ["Le site est hébergé sur l'infrastructure Vercel ; la base de données est fournie par Neon."] },
         { h: "Propriété intellectuelle", p: ["Le nom Manuvo, le logo et les contenus du site sont protégés. Leur reproduction sans autorisation est interdite."] },
         { h: "Contact", p: [`Pour toute demande concernant le site : ${EMAIL}.`] },
@@ -335,7 +333,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "Impressum",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "Betreiber der Website", p: [`Die Website Manuvo wird betrieben von ${HOLDER} (${PIVA}, ${ADDRESS}), erreichbar unter ${EMAIL}.`] },
+        { h: "Betreiber der Website", p: [`Die Website Manuvo wird betrieben von ${HOLDER}, erreichbar unter ${EMAIL}.`] },
         { h: "Hosting", p: ["Die Website wird auf der Vercel-Infrastruktur gehostet; die Datenbank stellt Neon bereit."] },
         { h: "Geistiges Eigentum", p: ["Der Name Manuvo, das Logo und die Inhalte der Website sind geschützt. Eine Vervielfältigung ohne Genehmigung ist untersagt."] },
         { h: "Kontakt", p: [`Für Anfragen zur Website: ${EMAIL}.`] },
@@ -345,7 +343,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       title: "إشعار قانوني",
       updated: LEGAL_UPDATED,
       sections: [
-        { h: "مالك الموقع", p: [`يُدار موقع Manuvo من قِبل ${HOLDER} (${PIVA}، ${ADDRESS})، ويمكن التواصل عبر ${EMAIL}.`] },
+        { h: "مالك الموقع", p: [`يُدار موقع Manuvo من قِبل ${HOLDER}، ويمكن التواصل عبر ${EMAIL}.`] },
         { h: "الاستضافة", p: ["يُستضاف الموقع على بنية Vercel؛ وقاعدة البيانات مقدّمة من Neon."] },
         { h: "الملكية الفكرية", p: ["اسم Manuvo والشعار ومحتويات الموقع محمية. يُمنع نسخها دون إذن."] },
         { h: "التواصل", p: [`لأي طلب يخص الموقع: ${EMAIL}.`] },
