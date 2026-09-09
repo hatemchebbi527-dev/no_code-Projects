@@ -28,7 +28,41 @@
     "submit": "Accedi",
     "submitting": "Accesso...",
     "no_account": "Non hai un account?",
-    "register_link": "Registrati come artigiano"
+    "register_link": "Registrati come artigiano",
+    "forgot": "Password dimenticata?"
+  },
+  "forgot": {
+    "title": "Reimposta la password",
+    "subtitle": "Inserisci la tua email. Ti invieremo un link per reimpostare la password.",
+    "email": "Email",
+    "submit": "Invia il link",
+    "submitting": "Invio...",
+    "back_login": "Torna all'accesso",
+    "invalid_email": "Indirizzo email non valido.",
+    "done_title": "Controlla la tua email",
+    "done_text": "Se esiste un account con questa email, riceverai un link per reimpostare la password. Controlla anche lo spam."
+  },
+  "reset": {
+    "title": "Nuova password",
+    "subtitle": "Scegli una nuova password per il tuo account.",
+    "password": "Nuova password",
+    "password_ph": "min. 8 caratteri",
+    "confirm": "Conferma",
+    "confirm_ph": "ripeti password",
+    "submit": "Reimposta password",
+    "submitting": "Salvataggio...",
+    "invalid_token": "Link non valido o scaduto. Richiedine uno nuovo.",
+    "done_title": "Password aggiornata",
+    "done_text": "La tua password e stata reimpostata. Ora puoi accedere.",
+    "to_login": "Vai all'accesso"
+  },
+  "emails": {
+    "reset_subject": "Reimposta la tua password Manuvo",
+    "reset_title": "Reimposta la password",
+    "reset_intro": "Hai richiesto di reimpostare la password del tuo account Manuvo. Clicca sul pulsante qui sotto per sceglierne una nuova.",
+    "reset_button": "Reimposta la password",
+    "reset_expires": "Il link e valido per 1 ora.",
+    "reset_ignore": "Se non hai richiesto tu la reimpostazione, ignora questa email."
   },
   "signup": {
     "title": "Diventa artigiano su Manuvo",

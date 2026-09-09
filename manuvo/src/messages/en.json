@@ -28,7 +28,41 @@
     "submit": "Log in",
     "submitting": "Logging in...",
     "no_account": "No account yet?",
-    "register_link": "Sign up as an artisan"
+    "register_link": "Sign up as an artisan",
+    "forgot": "Forgot password?"
+  },
+  "forgot": {
+    "title": "Reset your password",
+    "subtitle": "Enter your email. We'll send you a link to reset your password.",
+    "email": "Email",
+    "submit": "Send the link",
+    "submitting": "Sending...",
+    "back_login": "Back to login",
+    "invalid_email": "Invalid email address.",
+    "done_title": "Check your email",
+    "done_text": "If an account exists for this email, you'll receive a link to reset your password. Check your spam folder too."
+  },
+  "reset": {
+    "title": "New password",
+    "subtitle": "Choose a new password for your account.",
+    "password": "New password",
+    "password_ph": "min. 8 characters",
+    "confirm": "Confirm",
+    "confirm_ph": "repeat password",
+    "submit": "Reset password",
+    "submitting": "Saving...",
+    "invalid_token": "Invalid or expired link. Request a new one.",
+    "done_title": "Password updated",
+    "done_text": "Your password has been reset. You can now log in.",
+    "to_login": "Go to login"
+  },
+  "emails": {
+    "reset_subject": "Reset your Manuvo password",
+    "reset_title": "Reset your password",
+    "reset_intro": "You requested to reset your Manuvo account password. Click the button below to choose a new one.",
+    "reset_button": "Reset password",
+    "reset_expires": "This link is valid for 1 hour.",
+    "reset_ignore": "If you didn't request this, you can ignore this email."
   },
   "signup": {
     "title": "Become an artisan on Manuvo",

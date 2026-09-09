@@ -28,7 +28,41 @@
     "submit": "Anmelden",
     "submitting": "Anmeldung...",
     "no_account": "Noch kein Konto?",
-    "register_link": "Als Handwerker registrieren"
+    "register_link": "Als Handwerker registrieren",
+    "forgot": "Passwort vergessen?"
+  },
+  "forgot": {
+    "title": "Passwort zurücksetzen",
+    "subtitle": "Geben Sie Ihre E-Mail ein. Wir senden Ihnen einen Link zum Zurücksetzen.",
+    "email": "E-Mail",
+    "submit": "Link senden",
+    "submitting": "Senden...",
+    "back_login": "Zurück zur Anmeldung",
+    "invalid_email": "Ungültige E-Mail-Adresse.",
+    "done_title": "Prüfen Sie Ihre E-Mails",
+    "done_text": "Falls ein Konto mit dieser E-Mail existiert, erhalten Sie einen Link zum Zurücksetzen des Passworts. Prüfen Sie auch den Spam-Ordner."
+  },
+  "reset": {
+    "title": "Neues Passwort",
+    "subtitle": "Wählen Sie ein neues Passwort für Ihr Konto.",
+    "password": "Neues Passwort",
+    "password_ph": "min. 8 Zeichen",
+    "confirm": "Bestätigen",
+    "confirm_ph": "Passwort wiederholen",
+    "submit": "Passwort zurücksetzen",
+    "submitting": "Speichern...",
+    "invalid_token": "Ungültiger oder abgelaufener Link. Fordern Sie einen neuen an.",
+    "done_title": "Passwort aktualisiert",
+    "done_text": "Ihr Passwort wurde zurückgesetzt. Sie können sich jetzt anmelden.",
+    "to_login": "Zur Anmeldung"
+  },
+  "emails": {
+    "reset_subject": "Setzen Sie Ihr Manuvo-Passwort zurück",
+    "reset_title": "Passwort zurücksetzen",
+    "reset_intro": "Sie haben angefordert, das Passwort Ihres Manuvo-Kontos zurückzusetzen. Klicken Sie auf die Schaltfläche unten, um ein neues zu wählen.",
+    "reset_button": "Passwort zurücksetzen",
+    "reset_expires": "Dieser Link ist 1 Stunde gültig.",
+    "reset_ignore": "Falls Sie das nicht angefordert haben, ignorieren Sie diese E-Mail."
   },
   "signup": {
     "title": "Werden Sie Handwerker auf Manuvo",
