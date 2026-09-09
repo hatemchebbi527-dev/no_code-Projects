@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { signIn, signOut } from "@/auth";
+import { COUNTRIES, isCategory, type CountryCode } from "@/lib/constants";
 
 export type AuthState = { error?: string } | undefined;
 
@@ -51,12 +52,21 @@ export async function registerArtisan(
   const password = String(formData.get("password") ?? "");
   const confirm = String(formData.get("confirm") ?? "");
   const city = String(formData.get("city") ?? "").trim();
+  const countryRaw = String(formData.get("country") ?? "IT").trim().toUpperCase();
+  const country: CountryCode = (COUNTRIES as readonly string[]).includes(countryRaw)
+    ? (countryRaw as CountryCode)
+    : "IT";
+  // Metiers : liste de cases cochees, on ne garde que les codes valides et uniques.
+  const categories = [...new Set(formData.getAll("categories").map(String))].filter(isCategory);
 
   if (!name || !email || !password) {
     return { error: t("required") };
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { error: t("invalid_email") };
+  }
+  if (categories.length === 0) {
+    return { error: t("no_category") };
   }
   if (password.length < 8) {
     return { error: t("password_short") };
@@ -78,6 +88,8 @@ export async function registerArtisan(
       role: "ARTIGIANO",
       name,
       city: city || null,
+      country,
+      categories: categories.join(","),
       credits: 0,
     },
   });

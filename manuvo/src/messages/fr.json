@@ -35,7 +35,10 @@
     "subtitle": "Créez un compte gratuit. Vous achèterez des crédits quand vous voudrez débloquer un contact.",
     "name": "Nom et prénom",
     "email": "Email",
+    "country": "Pays",
     "city": "Ville",
+    "categories_label": "Vos métiers",
+    "categories_hint": "Sélectionnez un ou plusieurs métiers que vous proposez.",
     "password": "Mot de passe",
     "password_ph": "min. 8 caractères",
     "confirm": "Confirmer",
@@ -53,6 +56,7 @@
     "password_short": "Le mot de passe doit contenir au moins 8 caractères.",
     "password_mismatch": "Les mots de passe ne correspondent pas.",
     "email_exists": "Un compte existe déjà avec cet email.",
+    "no_category": "Sélectionnez au moins un métier.",
     "created_login_failed": "Compte créé mais connexion échouée. Veuillez vous connecter."
   },
   "dashboard": {
