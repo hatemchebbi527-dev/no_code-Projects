@@ -10,7 +10,7 @@ export type LegalSlug = "privacy" | "termini" | "cookie" | "note";
 export const LEGAL_UPDATED = "2026-09-09";
 
 // Identite du titulaire. P.IVA a ajouter plus tard (rappel a faire).
-const HOLDER = "Hatem Chebbi";
+const HOLDER = "AutomaIA";
 const EMAIL = "info@automa-ia.net";
 
 export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
