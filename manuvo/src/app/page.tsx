@@ -1,9 +1,12 @@
 // Manuvo - landing completa (etape 8.3): hero, come funziona, mestieri, privati/artigiani, CTA, footer.
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { CATEGORIES } from "@/lib/constants";
+import { CATEGORIES, LOCALES, type Locale } from "@/lib/constants";
 import { CATEGORY_ICON } from "@/lib/category-icons";
+import { LEGAL, type LegalSlug } from "@/lib/legal";
+
+const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
 
 function LogoMark({ className = "" }: { className?: string }) {
   return (
@@ -19,6 +22,10 @@ export default async function Home() {
   const t = await getTranslations("home");
   const tl = await getTranslations("landing");
   const tc = await getTranslations("categories");
+  const localeRaw = await getLocale();
+  const locale = (LOCALES as readonly string[]).includes(localeRaw)
+    ? (localeRaw as Locale)
+    : "it";
 
   return (
     <div className="min-h-screen bg-[#FAF8F4] text-[#1b1e24]">
@@ -192,6 +199,13 @@ export default async function Home() {
             {t("login_link")}
           </Link>
         </div>
+        <nav className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-neutral-500">
+          {LEGAL_LINKS.map((s) => (
+            <Link key={s} href={`/legal/${s}`} className="hover:text-red-700 hover:underline">
+              {LEGAL[s][locale].title}
+            </Link>
+          ))}
+        </nav>
       </footer>
     </div>
   );

@@ -4,7 +4,8 @@
     "credits": "credits",
     "esci": "Log out",
     "annulla": "Cancel",
-    "accedi": "Log in"
+    "accedi": "Log in",
+    "legal_consent": "By continuing you accept our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>."
   },
   "nav": {
     "bacheca": "Board",

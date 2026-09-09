@@ -4,7 +4,8 @@
     "credits": "Credits",
     "esci": "Abmelden",
     "annulla": "Abbrechen",
-    "accedi": "Anmelden"
+    "accedi": "Anmelden",
+    "legal_consent": "Mit dem Fortfahren akzeptieren Sie unsere <terms>AGB</terms> und <privacy>Datenschutzerklärung</privacy>."
   },
   "nav": {
     "bacheca": "Anfragen",

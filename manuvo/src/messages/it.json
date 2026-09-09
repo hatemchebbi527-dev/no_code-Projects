@@ -4,7 +4,8 @@
     "credits": "crediti",
     "esci": "Esci",
     "annulla": "Annulla",
-    "accedi": "Accedi"
+    "accedi": "Accedi",
+    "legal_consent": "Continuando accetti i nostri <terms>Termini</terms> e la <privacy>Privacy policy</privacy>."
   },
   "nav": {
     "bacheca": "Bacheca",
