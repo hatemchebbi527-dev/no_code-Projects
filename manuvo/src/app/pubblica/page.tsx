@@ -15,6 +15,7 @@ export default async function PubblicaPage() {
   const t = await getTranslations("pubblica");
   const tCat = await getTranslations("categories");
   const tUrg = await getTranslations("urgency");
+  const tCommon = await getTranslations("common");
 
   const categories = CATEGORIES.map((c) => ({ value: c, label: tCat(c) }));
   const countries = COUNTRIES.map((c) => ({ value: c, label: countryName(c, locale) }));
@@ -49,6 +50,17 @@ export default async function PubblicaPage() {
         <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
           <LeadForm categories={categories} countries={countries} urgencies={urgencies} />
         </div>
+
+        <p className="mt-4 text-center text-xs text-neutral-500">
+          {tCommon.rich("legal_consent", {
+            terms: (c) => (
+              <Link href="/legal/termini" className="underline hover:text-red-700">{c}</Link>
+            ),
+            privacy: (c) => (
+              <Link href="/legal/privacy" className="underline hover:text-red-700">{c}</Link>
+            ),
+          })}
+        </p>
       </main>
     </div>
   );

@@ -4,7 +4,8 @@
     "credits": "رصيد",
     "esci": "خروج",
     "annulla": "إلغاء",
-    "accedi": "تسجيل الدخول"
+    "accedi": "تسجيل الدخول",
+    "legal_consent": "بالمتابعة فإنك تقبل <terms>الشروط</terms> و<privacy>سياسة الخصوصية</privacy>."
   },
   "nav": {
     "bacheca": "الطلبات",

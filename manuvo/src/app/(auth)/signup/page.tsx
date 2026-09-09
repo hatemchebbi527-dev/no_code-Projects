@@ -8,6 +8,22 @@ import { registerArtisan, type AuthState } from "../actions";
 import { CATEGORIES, COUNTRIES } from "@/lib/constants";
 import { countryName } from "@/lib/catalog";
 
+function LegalConsent() {
+  const tc = useTranslations("common");
+  return (
+    <p className="text-xs text-neutral-500">
+      {tc.rich("legal_consent", {
+        terms: (c) => (
+          <Link href="/legal/termini" className="underline hover:text-red-700">{c}</Link>
+        ),
+        privacy: (c) => (
+          <Link href="/legal/privacy" className="underline hover:text-red-700">{c}</Link>
+        ),
+      })}
+    </p>
+  );
+}
+
 export default function SignupPage() {
   const t = useTranslations("signup");
   const tc = useTranslations("categories");
@@ -94,6 +110,8 @@ export default function SignupPage() {
         >
           {isPending ? t("submitting") : t("submit")}
         </button>
+
+        <LegalConsent />
       </form>
 
       <p className="mt-6 text-sm text-neutral-500">
