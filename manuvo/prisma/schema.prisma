@@ -32,8 +32,39 @@ model User {
   unlocks      Unlock[]
   transactions CreditTransaction[]
   resetTokens  PasswordResetToken[]
+  notifications Notification[]
+  pushSubscriptions PushSubscription[]
 
   @@index([role])
+}
+
+// Notification in-app (una nuova richiesta corrisponde ai mestieri/zona dell'artigiano).
+model Notification {
+  id        String    @id @default(cuid())
+  userId    String
+  leadId    String
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lead      Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, leadId])
+  @@index([userId])
+}
+
+// Abbonamento Web Push di un dispositivo dell'artigiano.
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 // Jeton de reinitialisation de mot de passe (on stocke le hash du jeton, pas le jeton brut).
@@ -73,6 +104,7 @@ model Lead {
   updatedAt    DateTime @updatedAt
 
   unlocks      Unlock[]
+  notifications Notification[]
 
   @@index([status])
   @@index([category])

@@ -3,6 +3,7 @@
 // Manuvo - creazione di una richiesta da parte di un privato (senza account).
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
+import { notifyMatchingArtisans } from "@/lib/notifications";
 import {
   CATEGORIES,
   COUNTRIES,
@@ -47,7 +48,7 @@ export async function createLead(
     return { error: t("email") };
   }
 
-  await prisma.lead.create({
+  const lead = await prisma.lead.create({
     data: {
       category,
       country,
@@ -63,6 +64,13 @@ export async function createLead(
       maxUnlocks: MAX_UNLOCKS_PER_LEAD,
     },
   });
+
+  // Notifie les artisans correspondants (best effort, ne bloque pas la publication).
+  try {
+    await notifyMatchingArtisans(lead);
+  } catch (err) {
+    console.error("[lead] notification echouee:", err);
+  }
 
   return { success: true };
 }

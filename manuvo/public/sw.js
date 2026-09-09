@@ -1,5 +1,5 @@
-// Manuvo - service worker minimale (network-first, pagina offline).
-const CACHE = "manuvo-v1";
+// Manuvo - service worker (network-first + Web Push).
+const CACHE = "manuvo-v2";
 const OFFLINE_URL = "/offline.html";
 
 self.addEventListener("install", (event) => {
@@ -28,4 +28,39 @@ self.addEventListener("fetch", (event) => {
 
   // Altre risorse GET: rete, fallback eventuale cache.
   event.respondWith(fetch(req).catch(() => caches.match(req)));
+});
+
+// Web Push: mostra la notifica ricevuta.
+self.addEventListener("push", (event) => {
+  let data = { title: "Manuvo", body: "", url: "/dashboard/notifiche" };
+  try {
+    if (event.data) data = { ...data, ...event.data.json() };
+  } catch {
+    if (event.data) data.body = event.data.text();
+  }
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: "/icons/icon-192.png",
+      badge: "/icons/icon-192.png",
+      data: { url: data.url || "/dashboard/notifiche" },
+    }),
+  );
+});
+
+// Clic sulla notifica: apre/mette a fuoco l'app sulla pagina indicata.
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const url = (event.notification.data && event.notification.data.url) || "/dashboard/notifiche";
+  event.waitUntil(
+    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((clients) => {
+      for (const client of clients) {
+        if ("focus" in client) {
+          client.navigate(url);
+          return client.focus();
+        }
+      }
+      return self.clients.openWindow(url);
+    }),
+  );
 });

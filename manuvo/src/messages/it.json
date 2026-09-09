@@ -10,7 +10,8 @@
   "nav": {
     "bacheca": "Bacheca",
     "crediti": "Crediti",
-    "admin": "Admin"
+    "admin": "Admin",
+    "notifiche": "Notifiche"
   },
   "home": {
     "hero_title": "Artigiani e privati, finalmente connessi.",
@@ -245,6 +246,19 @@
     "band_title": "Pronto a iniziare con Manuvo?",
     "band_sub": "Gratis per i privati. Nessun abbonamento per gli artigiani, paghi solo i contatti che sblocchi.",
     "footer": "Manuvo - artigiani e privati, finalmente connessi."
+  },
+  "notifiche": {
+    "title": "Notifiche",
+    "subtitle": "Le richieste che corrispondono ai tuoi mestieri e alla tua zona.",
+    "empty": "Nessuna notifica per ora.",
+    "new_request": "Nuova richiesta",
+    "push_title": "Notifiche push",
+    "push_on_desc": "Ricevi un avviso sul dispositivo per ogni nuova richiesta adatta a te.",
+    "push_off_desc": "Attiva gli avvisi sul dispositivo per non perdere nessuna richiesta.",
+    "enable": "Attiva",
+    "disable": "Disattiva",
+    "unsupported": "Il tuo browser non supporta le notifiche push.",
+    "denied": "Le notifiche sono bloccate nelle impostazioni del browser. Sbloccale per riceverle."
   },
   "urgency": {
     "ASAP": "Il prima possibile",

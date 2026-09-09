@@ -10,7 +10,8 @@
   "nav": {
     "bacheca": "Anfragen",
     "crediti": "Credits",
-    "admin": "Admin"
+    "admin": "Admin",
+    "notifiche": "Benachrichtigungen"
   },
   "home": {
     "hero_title": "Privatkunden und Handwerker, endlich verbunden.",
@@ -245,6 +246,19 @@
     "band_title": "Bereit, mit Manuvo zu starten?",
     "band_sub": "Kostenlos für Privatkunden. Kein Abo für Handwerker, Sie zahlen nur die freigeschalteten Kontakte.",
     "footer": "Manuvo - Privatkunden und Handwerker, endlich verbunden."
+  },
+  "notifiche": {
+    "title": "Benachrichtigungen",
+    "subtitle": "Anfragen, die zu Ihren Gewerken und Ihrer Region passen.",
+    "empty": "Noch keine Benachrichtigungen.",
+    "new_request": "Neue Anfrage",
+    "push_title": "Push-Benachrichtigungen",
+    "push_on_desc": "Erhalten Sie einen Hinweis auf Ihrem Gerät für jede neue passende Anfrage.",
+    "push_off_desc": "Aktivieren Sie Gerätehinweise, um keine Anfrage zu verpassen.",
+    "enable": "Aktivieren",
+    "disable": "Deaktivieren",
+    "unsupported": "Ihr Browser unterstützt keine Push-Benachrichtigungen.",
+    "denied": "Benachrichtigungen sind in den Browsereinstellungen blockiert. Entsperren Sie sie, um Hinweise zu erhalten."
   },
   "urgency": {
     "ASAP": "So bald wie möglich",

@@ -10,7 +10,8 @@
   "nav": {
     "bacheca": "Demandes",
     "crediti": "Crédits",
-    "admin": "Admin"
+    "admin": "Admin",
+    "notifiche": "Notifications"
   },
   "home": {
     "hero_title": "Particuliers et artisans, enfin connectés.",
@@ -245,6 +246,19 @@
     "band_title": "Prêt à démarrer avec Manuvo ?",
     "band_sub": "Gratuit pour les particuliers. Pas d'abonnement pour les artisans, vous ne payez que les contacts débloqués.",
     "footer": "Manuvo - particuliers et artisans, enfin connectés."
+  },
+  "notifiche": {
+    "title": "Notifications",
+    "subtitle": "Les demandes qui correspondent à vos métiers et à votre zone.",
+    "empty": "Aucune notification pour le moment.",
+    "new_request": "Nouvelle demande",
+    "push_title": "Notifications push",
+    "push_on_desc": "Recevez une alerte sur votre appareil à chaque nouvelle demande qui vous correspond.",
+    "push_off_desc": "Activez les alertes sur votre appareil pour ne manquer aucune demande.",
+    "enable": "Activer",
+    "disable": "Désactiver",
+    "unsupported": "Votre navigateur ne prend pas en charge les notifications push.",
+    "denied": "Les notifications sont bloquées dans les réglages du navigateur. Débloquez-les pour les recevoir."
   },
   "urgency": {
     "ASAP": "Dès que possible",
