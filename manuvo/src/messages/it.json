@@ -35,7 +35,10 @@
     "subtitle": "Crea un account gratuito. Comprerai i crediti quando vuoi sbloccare un contatto.",
     "name": "Nome e cognome",
     "email": "Email",
+    "country": "Paese",
     "city": "Citta",
+    "categories_label": "I tuoi mestieri",
+    "categories_hint": "Seleziona uno o piu mestieri che offri.",
     "password": "Password",
     "password_ph": "min. 8 caratteri",
     "confirm": "Conferma",
@@ -53,6 +56,7 @@
     "password_short": "La password deve avere almeno 8 caratteri.",
     "password_mismatch": "Le password non coincidono.",
     "email_exists": "Esiste gia un account con questa email.",
+    "no_category": "Seleziona almeno un mestiere.",
     "created_login_failed": "Account creato ma login fallito. Prova ad accedere."
   },
   "dashboard": {
