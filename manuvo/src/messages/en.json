@@ -10,7 +10,8 @@
   "nav": {
     "bacheca": "Board",
     "crediti": "Credits",
-    "admin": "Admin"
+    "admin": "Admin",
+    "notifiche": "Notifications"
   },
   "home": {
     "hero_title": "Homeowners and artisans, finally connected.",
@@ -245,6 +246,19 @@
     "band_title": "Ready to start with Manuvo?",
     "band_sub": "Free for customers. No subscription for artisans, you only pay for the contacts you unlock.",
     "footer": "Manuvo - artisans and customers, finally connected."
+  },
+  "notifiche": {
+    "title": "Notifications",
+    "subtitle": "Requests that match your trades and your area.",
+    "empty": "No notifications yet.",
+    "new_request": "New request",
+    "push_title": "Push notifications",
+    "push_on_desc": "Get an alert on your device for every new request that fits you.",
+    "push_off_desc": "Turn on device alerts so you don't miss any request.",
+    "enable": "Enable",
+    "disable": "Disable",
+    "unsupported": "Your browser does not support push notifications.",
+    "denied": "Notifications are blocked in your browser settings. Unblock them to receive alerts."
   },
   "urgency": {
     "ASAP": "As soon as possible",
