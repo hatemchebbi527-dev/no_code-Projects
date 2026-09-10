@@ -9,6 +9,7 @@ type Row = {
   phone: string | null;
   city: string | null;
   country: string;
+  trades: string[];
   credits: number;
   createdAt: string;
 };
@@ -27,6 +28,7 @@ export function ExportButton({ rows, label }: { rows: Row[]; label: string }) {
       "telephone",
       "ville",
       "pays",
+      "metiers",
       "credits",
       "inscription",
     ];
@@ -38,6 +40,7 @@ export function ExportButton({ rows, label }: { rows: Row[]; label: string }) {
         r.phone ?? "",
         r.city ?? "",
         r.country,
+        r.trades.join(" ; "),
         String(r.credits),
         new Date(r.createdAt).toISOString().slice(0, 10),
       ]

@@ -1,5 +1,5 @@
 // Manuvo - service worker (network-first + Web Push).
-const CACHE = "manuvo-v2";
+const CACHE = "manuvo-v3";
 const OFFLINE_URL = "/offline.html";
 
 self.addEventListener("install", (event) => {
@@ -43,6 +43,15 @@ self.addEventListener("push", (event) => {
       body: data.body,
       icon: "/icons/icon-192.png",
       badge: "/icons/icon-192.png",
+      // Suono/segnale di sistema attivo (non silenzioso) + vibrazione su mobile.
+      silent: false,
+      vibrate: [200, 100, 200],
+      // Tag fisso + renotify: ogni nuova richiesta avvisa di nuovo (suono/vibrazione) senza accumulare.
+      tag: "manuvo-richiesta",
+      renotify: true,
+      // Resta visibile finche l'utente non interagisce (utile su desktop).
+      requireInteraction: true,
+      timestamp: Date.now(),
       data: { url: data.url || "/dashboard/notifiche" },
     }),
   );

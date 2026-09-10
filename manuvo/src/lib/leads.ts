@@ -7,16 +7,27 @@ export class UnlockError extends Error {}
 
 // Richieste disponibili per un artigiano (contatto NON incluso = mascherato).
 // status OPEN implica gia unlocksCount < maxUnlocks (chiudiamo al raggiungimento del cap).
+// L'artigiano vede SOLO le richieste dei propri mestieri (`trades`). Il filtro `category`
+// (facoltativo) restringe ulteriormente a un singolo mestiere scelto dalla FilterBar.
 export async function getAvailableLeads(
   userId: string,
-  opts: { scope: Scope; category?: string },
+  opts: { scope: Scope; category?: string; trades: string[] },
 ) {
+  // Insieme dei mestieri effettivi: se e scelto un mestiere valido si limita a quello,
+  // altrimenti si usano tutti i mestieri dell'artigiano.
+  const effectiveTrades =
+    opts.category && opts.trades.includes(opts.category)
+      ? [opts.category]
+      : opts.trades;
+  // Nessun mestiere = nessuna richiesta da mostrare (evita di mostrare tutto per errore).
+  if (effectiveTrades.length === 0) return [];
+
   return prisma.lead.findMany({
     where: {
       status: "OPEN",
       unlocks: { none: { userId } }, // non gia sbloccata da questo artigiano
       ...(opts.scope === "national" ? { country: "IT" } : {}),
-      ...(opts.category ? { category: opts.category } : {}),
+      category: { in: effectiveTrades },
     },
     select: {
       id: true,

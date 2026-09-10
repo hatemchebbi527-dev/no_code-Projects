@@ -2,14 +2,23 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { getArtisans } from "@/lib/admin";
 import { countryName } from "@/lib/catalog";
-import { formatMatricule } from "@/lib/constants";
+import { formatMatricule, isCategory } from "@/lib/constants";
 import { ExportButton } from "./ExportButton";
 
 export const metadata = { title: "Manuvo" };
 
+// Divise la stringa "codici,virgola" in lista di codici mestiere validi.
+function splitTrades(raw: string): string[] {
+  return raw
+    .split(",")
+    .map((c) => c.trim())
+    .filter((c) => c.length > 0 && isCategory(c));
+}
+
 export default async function AdminArtisansPage() {
   const locale = await getLocale();
   const t = await getTranslations("admin");
+  const tCat = await getTranslations("categories");
   const artisans = await getArtisans();
 
   const rows = artisans.map((a) => ({
@@ -19,6 +28,7 @@ export default async function AdminArtisansPage() {
     phone: a.phone,
     city: a.city,
     country: a.country,
+    trades: splitTrades(a.categories),
     credits: a.credits,
     createdAt: a.createdAt.toISOString(),
   }));
@@ -39,7 +49,7 @@ export default async function AdminArtisansPage() {
         </p>
       ) : (
         <div className="mt-6 overflow-x-auto rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <table className="w-full min-w-[820px] border-collapse text-sm">
+          <table className="w-full min-w-[980px] border-collapse text-sm">
             <thead>
               <tr className="border-b border-neutral-200 text-start text-xs uppercase tracking-wide text-neutral-400">
                 <th className="px-4 py-3 text-start font-semibold">{t("th_matricule")}</th>
@@ -47,6 +57,7 @@ export default async function AdminArtisansPage() {
                 <th className="px-4 py-3 text-start font-semibold">{t("th_email")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_phone")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_city")}</th>
+                <th className="px-4 py-3 text-start font-semibold">{t("th_categories")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_credits")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_joined")}</th>
               </tr>
@@ -77,6 +88,22 @@ export default async function AdminArtisansPage() {
                   <td className="px-4 py-3 whitespace-nowrap text-neutral-600">
                     {a.city ? `${a.city}, ` : ""}
                     {countryName(a.country, locale)}
+                  </td>
+                  <td className="px-4 py-3">
+                    {a.trades.length === 0 ? (
+                      <span className="text-neutral-300">—</span>
+                    ) : (
+                      <div className="flex flex-wrap gap-1">
+                        {a.trades.map((c) => (
+                          <span
+                            key={c}
+                            className="inline-flex items-center rounded-md bg-red-50 px-2 py-0.5 text-xs font-medium text-red-800"
+                          >
+                            {tCat(c)}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </td>
                   <td className="px-4 py-3 tabular-nums text-neutral-600">{a.credits}</td>
                   <td className="px-4 py-3 whitespace-nowrap tabular-nums text-neutral-500">
