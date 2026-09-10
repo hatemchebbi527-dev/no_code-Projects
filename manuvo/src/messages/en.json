@@ -186,6 +186,7 @@
     "urgency": "Invalid urgency.",
     "name": "Enter your name.",
     "phone": "Enter a phone number.",
+    "phone_invalid": "Invalid phone number. Check the prefix and country.",
     "email": "Invalid email address."
   },
   "admin": {

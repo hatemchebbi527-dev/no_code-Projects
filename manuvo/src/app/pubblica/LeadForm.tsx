@@ -97,7 +97,15 @@ export function LeadForm({
         </label>
         <label className="flex flex-col gap-1.5">
           <span className="text-sm font-medium">{t("phone")} {req}</span>
-          <input name="contactPhone" required placeholder="+39 ..." className={input} />
+          <input
+            name="contactPhone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            placeholder="+39 ..."
+            className={input}
+          />
         </label>
       </div>
 
