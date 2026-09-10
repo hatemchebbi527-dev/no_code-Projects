@@ -212,6 +212,7 @@
     "th_email": "Email",
     "th_phone": "Telefono",
     "th_city": "Citta",
+    "th_categories": "Mestieri",
     "th_credits": "Crediti",
     "th_joined": "Iscritto il",
     "export_csv": "Esporta CSV",

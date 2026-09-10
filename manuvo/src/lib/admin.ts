@@ -38,6 +38,7 @@ export async function getArtisans() {
       phone: true,
       city: true,
       country: true,
+      categories: true,
       credits: true,
       createdAt: true,
     },

@@ -5,6 +5,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { auth } from "@/auth";
 import { getAvailableLeads, getUnlockedLeads, type Scope } from "@/lib/leads";
 import { getUserBalance } from "@/lib/credits";
+import { getUserTrades } from "@/lib/users";
 import { countryName } from "@/lib/catalog";
 import { isCategory } from "@/lib/constants";
 import { FilterBar } from "./FilterBar";
@@ -27,9 +28,10 @@ export default async function DashboardPage({
   const tCat = await getTranslations("categories");
   const tUrg = await getTranslations("urgency");
 
+  const trades = await getUserTrades(userId);
   const [credits, available, mine] = await Promise.all([
     getUserBalance(userId),
-    getAvailableLeads(userId, { scope, category }),
+    getAvailableLeads(userId, { scope, category, trades }),
     getUnlockedLeads(userId),
   ]);
 
@@ -69,7 +71,7 @@ export default async function DashboardPage({
 
       <div className="mt-5">
         <Suspense fallback={<div className="h-10" />}>
-          <FilterBar />
+          <FilterBar trades={trades} />
         </Suspense>
       </div>
 

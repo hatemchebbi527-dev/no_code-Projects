@@ -212,6 +212,7 @@
     "th_email": "Email",
     "th_phone": "Phone",
     "th_city": "City",
+    "th_categories": "Trades",
     "th_credits": "Credits",
     "th_joined": "Joined",
     "export_csv": "Export CSV",

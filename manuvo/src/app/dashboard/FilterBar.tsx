@@ -3,9 +3,9 @@
 // Manuvo - filtri bacheca: portata (nazionale/internazionale) + categoria.
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { CATEGORIES } from "@/lib/constants";
 
-export function FilterBar() {
+// La bacheca mostra solo i mestieri dell'artigiano: i chip categoria derivano da `trades`.
+export function FilterBar({ trades }: { trades: string[] }) {
   const router = useRouter();
   const params = useSearchParams();
   const t = useTranslations("filters");
@@ -46,16 +46,18 @@ export function FilterBar() {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        <Chip active={cat === "all"} onClick={() => setParam("cat", null)}>
-          {t("all")}
-        </Chip>
-        {CATEGORIES.map((c) => (
-          <Chip key={c} active={cat === c} onClick={() => setParam("cat", c)}>
-            {tCat(c)}
+      {trades.length > 1 && (
+        <div className="flex flex-wrap gap-2">
+          <Chip active={cat === "all"} onClick={() => setParam("cat", null)}>
+            {t("all")}
           </Chip>
-        ))}
-      </div>
+          {trades.map((c) => (
+            <Chip key={c} active={cat === c} onClick={() => setParam("cat", c)}>
+              {tCat(c)}
+            </Chip>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
