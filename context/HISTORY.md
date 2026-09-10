@@ -7,6 +7,22 @@
 
 ---
 
+## 2026-09-10
+
+### Manuvo : marketplace artisans/particuliers construite et déployée (produit AutomaIA)
+- Création complète, avec Claude Code, de **Manuvo** (manuvo-automaia.vercel.app) : plateforme qui met en relation des particuliers cherchant un travail à domicile et des artisans, monétisée par des crédits (1 crédit = 2 €, déblocage d'un contact = 3 à 5 crédits, max 3 artisans par demande). Stack : Next.js 16 (App Router, Turbopack), Prisma 6 + PostgreSQL Neon, Auth.js v5, next-intl (5 langues it/en/fr/de/ar + RTL), Tailwind 4. Déploiement Vercel (Root Directory `manuvo`), migrations via connexion directe Neon (contournement du P1002 sur le pooler).
+- Socle livré et en ligne : inscription/connexion artisans + admin, packs de crédits, bacheca des demandes avec toutes les règles de déblocage (atomiques), panneau admin (coût par demande, stats), formulaire public sans compte, PWA installable, identité visuelle rouge + landing soignée.
+- Fonctionnalités ajoutées et fusionnées dans cette session (PR #27 à #38) :
+  - **Matricule artisan** séquentiel (ART-0001) + page admin liste des artisans (nom, email, téléphone, ville, crédits) + export CSV, utile marketing.
+  - **Métiers + pays à l'inscription** artisan (prépare le ciblage des notifications).
+  - **Mot de passe oublié** : jeton haché, TTL 1h, email via **Resend** (expéditeur de test onboarding@resend.dev pour l'instant).
+  - **Pages légales** RGPD multilingues (confidentialité, CGU, cookies, note légale). Titulaire affiché : **AutomaIA**, contact **info@automa-ia.net**, P.IVA laissée vide (à compléter). Cookies strictement nécessaires seulement, donc pas de bannière de consentement.
+  - **Notifications** ciblées métier + pays pour les artisans, et **notif de chaque demande pour l'admin** ; centre in-app avec cloche + badge live (endpoint /api/notifications/unread, rafraîchi toutes les 25s + au focus) et **Web Push** (VAPID, service worker). Clés VAPID dans Vercel.
+  - **Stripe Checkout** : remplacement du paiement simulé par un vrai paiement. Session Checkout côté serveur + webhook `/api/stripe/webhook` (vérif signature, crédit idempotent via l'id de session). **Testé de bout en bout en mode test** (carte 4242, solde crédité). Idempotence et rejet des signatures invalides validés en local.
+- Correctifs notables : contraste (thème clair fixe), euro réel (jamais crédits×2), cartes métiers en colonne pour éviter le débordement multilingue, VAPID subject robuste (normalise mailto:, ne casse plus le build).
+- Config Vercel posée par Hatem : DATABASE_URL (Neon), AUTH_SECRET, clés VAPID (public en Config, privé en Sensitive), STRIPE_SECRET_KEY + STRIPE_WEBHOOK_SECRET (mode test, Production).
+- **Reste à faire côté Hatem** : ajouter RESEND_API_KEY dans Vercel (sinon emails non envoyés) ; renseigner la P.IVA dans les pages légales le moment venu ; **passer Stripe en Live** (vérif compte + IBAN, clés + webhook live) avant d'encaisser de vrais paiements. Pistes futures : domaine manuvo.it, SEO, avis/notation, litiges, profil artisan éditable.
+
 ## 2026-08-07
 
 ### Élargissement de la niche : dentistes et vétérinaires ajoutés
