@@ -131,7 +131,11 @@
     "recharge_done": "Aufladung abgeschlossen. Neues Guthaben: {n} Credits.",
     "recharge_failed": "Aufladung fehlgeschlagen. Erneut versuchen.",
     "session_expired": "Sitzung abgelaufen. Bitte erneut anmelden.",
-    "invalid_pack": "Ungültiges Paket."
+    "invalid_pack": "Ungültiges Paket.",
+    "checkout_unavailable": "Zahlung ist noch nicht eingerichtet. Bitte später erneut versuchen.",
+    "paid_success": "Zahlung erhalten! Ihr Guthaben wurde aktualisiert.",
+    "canceled": "Zahlung abgebrochen.",
+    "secure_note": "Sichere Zahlung über Stripe. 1 Credit = {eur} €."
   },
   "transactions": {
     "purchase": "Credit-Aufladung",

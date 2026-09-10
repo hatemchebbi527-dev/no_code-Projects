@@ -131,7 +131,11 @@
     "recharge_done": "Recharge effectuée. Nouveau solde : {n} crédits.",
     "recharge_failed": "Recharge échouée. Réessayez.",
     "session_expired": "Session expirée. Reconnectez-vous.",
-    "invalid_pack": "Pack non valide."
+    "invalid_pack": "Pack non valide.",
+    "checkout_unavailable": "Le paiement n'est pas encore configuré. Réessayez plus tard.",
+    "paid_success": "Paiement reçu ! Votre solde a été mis à jour.",
+    "canceled": "Paiement annulé.",
+    "secure_note": "Paiement sécurisé via Stripe. 1 crédit = {eur} €."
   },
   "transactions": {
     "purchase": "Recharge de crédits",

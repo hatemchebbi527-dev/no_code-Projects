@@ -24,28 +24,32 @@ export async function getUserTransactions(userId: string, limit = 20) {
   });
 }
 
-// Achat d'un pack (paiement simule) : credite le compte + journalise, de facon atomique.
-export async function purchasePackForUser(userId: string, packId: string): Promise<number> {
-  const pack = await prisma.creditPack.findUnique({ where: { id: packId } });
-  if (!pack || !pack.active) {
-    throw new Error("PACK_NOT_FOUND");
-  }
+// Credite le compte apres un paiement Stripe confirme. Idempotent : la
+// reference (id de session Stripe) garantit qu'un meme paiement ne credite
+// qu'une seule fois, meme si Stripe renvoie le webhook plusieurs fois.
+export async function grantCreditsForCheckout(params: {
+  userId: string;
+  credits: number;
+  amountEur: number;
+  reference: string; // id de session Stripe (unique)
+}): Promise<{ granted: boolean }> {
+  const { userId, credits, amountEur, reference } = params;
 
-  const [user] = await prisma.$transaction([
+  const existing = await prisma.creditTransaction.findFirst({
+    where: { type: "PURCHASE", reference },
+    select: { id: true },
+  });
+  if (existing) return { granted: false }; // deja traite
+
+  await prisma.$transaction([
     prisma.user.update({
       where: { id: userId },
-      data: { credits: { increment: pack.credits } },
+      data: { credits: { increment: credits } },
     }),
     prisma.creditTransaction.create({
-      data: {
-        userId,
-        type: "PURCHASE",
-        credits: pack.credits,
-        amountEur: pack.priceEur,
-        reference: pack.id,
-      },
+      data: { userId, type: "PURCHASE", credits, amountEur, reference },
     }),
   ]);
 
-  return user.credits;
+  return { granted: true };
 }

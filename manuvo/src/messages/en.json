@@ -131,7 +131,11 @@
     "recharge_done": "Top-up complete. New balance: {n} credits.",
     "recharge_failed": "Top-up failed. Try again.",
     "session_expired": "Session expired. Please log in again.",
-    "invalid_pack": "Invalid pack."
+    "invalid_pack": "Invalid pack.",
+    "checkout_unavailable": "Payment is not set up yet. Please try again later.",
+    "paid_success": "Payment received! Your balance has been updated.",
+    "canceled": "Payment canceled.",
+    "secure_note": "Secure payment via Stripe. 1 credit = €{eur}."
   },
   "transactions": {
     "purchase": "Credit top-up",

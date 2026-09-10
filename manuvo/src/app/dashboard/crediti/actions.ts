@@ -1,14 +1,15 @@
 "use server";
 
-// Manuvo - action serveur d'achat de credits (paiement simule).
-import { revalidatePath } from "next/cache";
+// Manuvo - avvio del pagamento Stripe Checkout per un pacchetto di crediti.
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
-import { purchasePackForUser } from "@/lib/credits";
+import { prisma } from "@/lib/prisma";
+import { stripe } from "@/lib/stripe";
+import { getBaseUrl } from "@/lib/base-url";
 
-export type BuyState = { error?: string; success?: string } | undefined;
+export type BuyState = { error?: string; url?: string } | undefined;
 
-export async function buyPack(_prev: BuyState, formData: FormData): Promise<BuyState> {
+export async function startCheckout(_prev: BuyState, formData: FormData): Promise<BuyState> {
   const t = await getTranslations("credits");
   const session = await auth();
   if (!session?.user) return { error: t("session_expired") };
@@ -16,12 +17,38 @@ export async function buyPack(_prev: BuyState, formData: FormData): Promise<BuyS
   const packId = String(formData.get("packId") ?? "");
   if (!packId) return { error: t("invalid_pack") };
 
+  const pack = await prisma.creditPack.findUnique({ where: { id: packId } });
+  if (!pack || !pack.active) return { error: t("invalid_pack") };
+
+  if (!stripe) return { error: t("checkout_unavailable") };
+
+  const base = await getBaseUrl();
   try {
-    const credits = await purchasePackForUser(session.user.id, packId);
-    revalidatePath("/dashboard");
-    revalidatePath("/dashboard/crediti");
-    return { success: t("recharge_done", { n: credits }) };
-  } catch {
+    const checkout = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: [
+        {
+          quantity: 1,
+          price_data: {
+            currency: "eur",
+            unit_amount: Math.round(pack.priceEur * 100),
+            product_data: { name: `Manuvo · ${pack.credits} crediti` },
+          },
+        },
+      ],
+      metadata: {
+        userId: session.user.id,
+        packId: pack.id,
+        credits: String(pack.credits),
+        amountEur: String(pack.priceEur),
+      },
+      success_url: `${base}/dashboard/crediti?paid=1`,
+      cancel_url: `${base}/dashboard/crediti?canceled=1`,
+    });
+    if (!checkout.url) return { error: t("recharge_failed") };
+    return { url: checkout.url };
+  } catch (err) {
+    console.error("[stripe] creazione checkout fallita:", err);
     return { error: t("recharge_failed") };
   }
 }
