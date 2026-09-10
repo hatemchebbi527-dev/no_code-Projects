@@ -3,7 +3,7 @@
 // Manuvo - creazione di una richiesta da parte di un privato (senza account).
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { notifyMatchingArtisans } from "@/lib/notifications";
+import { notifyMatchingArtisans, notifyAdmins } from "@/lib/notifications";
 import {
   CATEGORIES,
   COUNTRIES,
@@ -65,9 +65,10 @@ export async function createLead(
     },
   });
 
-  // Notifie les artisans correspondants (best effort, ne bloque pas la publication).
+  // Notifie les artisans correspondants + les admins (best effort, ne bloque pas la publication).
   try {
     await notifyMatchingArtisans(lead);
+    await notifyAdmins(lead);
   } catch (err) {
     console.error("[lead] notification echouee:", err);
   }

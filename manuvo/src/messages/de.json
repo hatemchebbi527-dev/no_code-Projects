@@ -250,6 +250,7 @@
   "notifiche": {
     "title": "Benachrichtigungen",
     "subtitle": "Anfragen, die zu Ihren Gewerken und Ihrer Region passen.",
+    "subtitle_admin": "Alle neuen auf der Plattform veröffentlichten Anfragen.",
     "empty": "Noch keine Benachrichtigungen.",
     "new_request": "Neue Anfrage",
     "push_title": "Push-Benachrichtigungen",
