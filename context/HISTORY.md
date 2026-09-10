@@ -9,6 +9,12 @@
 
 ## 2026-09-10
 
+### Manuvo : retouches post-production (métiers, notifications push, téléphone)
+- **Bacheca filtrée par métiers** : un artisan ne voit désormais que les demandes de ses propres métiers (partout : liste, logo, cloche). Avant, la bacheca montrait toutes les demandes alors que les notifications étaient déjà ciblées. Les filtres de catégorie ne montrent plus que les métiers de l'artisan (PR #41).
+- **Admin** : colonne Métiers ajoutée à la liste des artisans + à l'export CSV.
+- **Web Push réparé et opérationnel** (PR merges + config Vercel) : après le même piège que Resend (variables non lues au runtime), les **clés VAPID ont été régénérées** proprement et rendues cohérentes (VAPID_PUBLIC_KEY = NEXT_PUBLIC_VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY correspondante, VAPID_SUBJECT en mailto:). Notification reçue avec son testée sur iPhone en PWA. Service worker renforcé (non silencieux, vibration, renotify, manuvo-v3). Rappel iOS : le web push ne marche que si la PWA est ajoutée à l'écran d'accueil et les notifications autorisées depuis l'app.
+- **Validation du téléphone** (PR #42) : le formulaire public refuse un numéro invalide (via libphonenumber-js, selon le pays de la demande) et normalise au format international avant stockage. Évite qu'un artisan paie des crédits pour un contact injoignable.
+
 ### Manuvo : marketplace artisans/particuliers construite et déployée (produit AutomaIA)
 - Création complète, avec Claude Code, de **Manuvo** (manuvo-automaia.vercel.app) : plateforme qui met en relation des particuliers cherchant un travail à domicile et des artisans, monétisée par des crédits (1 crédit = 2 €, déblocage d'un contact = 3 à 5 crédits, max 3 artisans par demande). Stack : Next.js 16 (App Router, Turbopack), Prisma 6 + PostgreSQL Neon, Auth.js v5, next-intl (5 langues it/en/fr/de/ar + RTL), Tailwind 4. Déploiement Vercel (Root Directory `manuvo`), migrations via connexion directe Neon (contournement du P1002 sur le pooler).
 - Socle livré et en ligne : inscription/connexion artisans + admin, packs de crédits, bacheca des demandes avec toutes les règles de déblocage (atomiques), panneau admin (coût par demande, stats), formulaire public sans compte, PWA installable, identité visuelle rouge + landing soignée.
