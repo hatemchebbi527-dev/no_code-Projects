@@ -186,6 +186,7 @@
     "urgency": "Ungültige Dringlichkeit.",
     "name": "Geben Sie Ihren Namen an.",
     "phone": "Geben Sie eine Telefonnummer an.",
+    "phone_invalid": "Ungültige Telefonnummer. Prüfen Sie Vorwahl und Land.",
     "email": "Ungültige E-Mail-Adresse."
   },
   "admin": {

@@ -11,7 +11,9 @@ import {
   DEFAULT_LEAD_COST,
   MAX_UNLOCKS_PER_LEAD,
   isCategory,
+  type CountryCode,
 } from "@/lib/constants";
+import { validatePhone } from "@/lib/phone";
 
 export type LeadFormState = { error?: string; success?: boolean } | undefined;
 
@@ -44,6 +46,9 @@ export async function createLead(
   }
   if (!contactName) return { error: t("name") };
   if (!contactPhone) return { error: t("phone") };
+  // Validazione severa del telefono (evita numeri inutilizzabili pagati in crediti).
+  const phone = validatePhone(contactPhone, country as CountryCode);
+  if (!phone.ok) return { error: t("phone_invalid") };
   if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) {
     return { error: t("email") };
   }
@@ -56,7 +61,7 @@ export async function createLead(
       description,
       urgency,
       contactName,
-      contactPhone,
+      contactPhone: phone.display, // numero normalizzato in formato internazionale
       contactEmail: contactEmail || null,
       creditCost: DEFAULT_LEAD_COST,
       status: "OPEN",

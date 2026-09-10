@@ -186,6 +186,7 @@
     "urgency": "Urgence non valide.",
     "name": "Indiquez votre nom.",
     "phone": "Indiquez un numéro de téléphone.",
+    "phone_invalid": "Numéro de téléphone non valide. Vérifiez l'indicatif et le pays.",
     "email": "Adresse email non valide."
   },
   "admin": {
