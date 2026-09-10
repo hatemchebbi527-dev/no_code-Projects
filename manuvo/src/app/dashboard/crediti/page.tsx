@@ -9,11 +9,17 @@ import {
 import { RechargePanel } from "./RechargePanel";
 import { TransactionList } from "./TransactionList";
 
-export default async function CreditiPage() {
+export default async function CreditiPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ paid?: string; canceled?: string }>;
+}) {
   const session = await auth();
   const userId = session!.user.id;
   const t = await getTranslations("credits");
   const tc = await getTranslations("common");
+  const sp = await searchParams;
+  const status = sp.paid ? "paid" : sp.canceled ? "canceled" : undefined;
 
   const [credits, packs, transactions] = await Promise.all([
     getUserBalance(userId),
@@ -35,6 +41,7 @@ export default async function CreditiPage() {
 
       <h2 className="mt-8 mb-3 text-lg font-semibold">{t("choose_pack")}</h2>
       <RechargePanel
+        status={status}
         packs={packs.map((p) => ({
           id: p.id,
           credits: p.credits,

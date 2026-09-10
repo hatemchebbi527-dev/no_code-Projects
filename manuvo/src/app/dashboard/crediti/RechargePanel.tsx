@@ -1,9 +1,9 @@
 "use client";
 
-// Manuvo - panneau de recharge (choix d'un pack, paiement simule).
-import { useActionState } from "react";
+// Manuvo - panneau de recharge : choix d'un pack -> paiement Stripe.
+import { useActionState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { buyPack, type BuyState } from "./actions";
+import { startCheckout, type BuyState } from "./actions";
 import { EUR_PER_CREDIT } from "@/lib/constants";
 
 type Pack = {
@@ -13,19 +13,35 @@ type Pack = {
   popular: boolean;
 };
 
-export function RechargePanel({ packs }: { packs: Pack[] }) {
+export function RechargePanel({
+  packs,
+  status,
+}: {
+  packs: Pack[];
+  status?: "paid" | "canceled";
+}) {
   const t = useTranslations("credits");
   const tc = useTranslations("common");
   const [state, formAction, isPending] = useActionState<BuyState, FormData>(
-    buyPack,
+    startCheckout,
     undefined,
   );
 
+  // Redirection vers la page de paiement Stripe.
+  useEffect(() => {
+    if (state?.url) window.location.href = state.url;
+  }, [state?.url]);
+
   return (
     <div>
-      {state?.success && (
+      {status === "paid" && (
         <p className="mb-4 rounded-lg bg-green-50 px-3 py-2 text-sm font-medium text-green-800">
-          {state.success}
+          {t("paid_success")}
+        </p>
+      )}
+      {status === "canceled" && (
+        <p className="mb-4 rounded-lg bg-neutral-100 px-3 py-2 text-sm font-medium text-neutral-600">
+          {t("canceled")}
         </p>
       )}
       {state?.error && (
@@ -74,7 +90,7 @@ export function RechargePanel({ packs }: { packs: Pack[] }) {
         })}
       </div>
 
-      <p className="mt-3 text-xs text-neutral-400">{t("simulated", { eur: EUR_PER_CREDIT })}</p>
+      <p className="mt-3 text-xs text-neutral-400">{t("secure_note")}</p>
     </div>
   );
 }

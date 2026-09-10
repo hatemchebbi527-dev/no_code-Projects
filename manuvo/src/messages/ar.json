@@ -131,7 +131,11 @@
     "recharge_done": "اكتمل الشحن. الرصيد الجديد: {n} نقاط.",
     "recharge_failed": "فشل الشحن. أعد المحاولة.",
     "session_expired": "انتهت الجلسة. سجّل الدخول من جديد.",
-    "invalid_pack": "باقة غير صالحة."
+    "invalid_pack": "باقة غير صالحة.",
+    "checkout_unavailable": "الدفع غير مُفعّل بعد. حاول لاحقاً.",
+    "paid_success": "تم استلام الدفع! تم تحديث رصيدك.",
+    "canceled": "أُلغي الدفع.",
+    "secure_note": "دفع آمن عبر Stripe. رصيد واحد = {eur} يورو."
   },
   "transactions": {
     "purchase": "شحن نقاط",
