@@ -250,6 +250,7 @@
   "notifiche": {
     "title": "Notifications",
     "subtitle": "Requests that match your trades and your area.",
+    "subtitle_admin": "All new requests posted on the platform.",
     "empty": "No notifications yet.",
     "new_request": "New request",
     "push_title": "Push notifications",

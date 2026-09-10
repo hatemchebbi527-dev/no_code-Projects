@@ -35,6 +35,27 @@ export async function notifyMatchingArtisans(lead: LeadLike): Promise<void> {
   await Promise.all(matches.map((u) => sendPushToUser(u.id, payload)));
 }
 
+// Notifica tutti gli admin per OGNI nuova richiesta (senza filtro).
+export async function notifyAdmins(lead: LeadLike): Promise<void> {
+  const admins = await prisma.user.findMany({
+    where: { role: "ADMIN" },
+    select: { id: true },
+  });
+  if (admins.length === 0) return;
+
+  await prisma.notification.createMany({
+    data: admins.map((a) => ({ userId: a.id, leadId: lead.id })),
+    skipDuplicates: true,
+  });
+
+  const payload = {
+    title: "Manuvo",
+    body: "Nuova richiesta pubblicata.",
+    url: "/admin/notifiche",
+  };
+  await Promise.all(admins.map((a) => sendPushToUser(a.id, payload)));
+}
+
 export async function getUnreadCount(userId: string): Promise<number> {
   return prisma.notification.count({ where: { userId, readAt: null } });
 }

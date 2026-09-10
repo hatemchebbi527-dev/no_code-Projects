@@ -250,6 +250,7 @@
   "notifiche": {
     "title": "Notifications",
     "subtitle": "Les demandes qui correspondent à vos métiers et à votre zone.",
+    "subtitle_admin": "Toutes les nouvelles demandes publiées sur la plateforme.",
     "empty": "Aucune notification pour le moment.",
     "new_request": "Nouvelle demande",
     "push_title": "Notifications push",
