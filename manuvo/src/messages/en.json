@@ -271,5 +271,38 @@
     "ASAP": "As soon as possible",
     "THIS_WEEK": "This week",
     "NOT_URGENT": "Not urgent"
+  },
+  "install": {
+    "title": "Add Manuvo to your Home Screen",
+    "text_android": "Install the app to reopen it with one tap.",
+    "text_ios": "Add it to your Home Screen to find it easily.",
+    "cta_install": "Install",
+    "cta_how": "How to",
+    "dismiss": "Close"
+  },
+  "installa": {
+    "eyebrow": "App",
+    "title": "Add Manuvo to your Home Screen",
+    "subtitle": "Reopen Manuvo with one tap, like a real app. No store, no heavy download.",
+    "benefits": {
+      "b1": "Open Manuvo in one tap",
+      "b2": "Get notified of new requests",
+      "b3": "Works like an app, full screen"
+    },
+    "detected": "Your device",
+    "ios_title": "On iPhone / iPad (Safari)",
+    "ios_s1": "Tap the Share button at the bottom",
+    "ios_s2": "Choose «Add to Home Screen»",
+    "ios_s3": "Confirm with «Add»",
+    "android_title": "On Android (Chrome)",
+    "android_auto": "Tap the button below to install.",
+    "android_s1": "Open the menu (three dots) top right",
+    "android_s2": "Choose «Install app» or «Add to Home»",
+    "android_s3": "Confirm",
+    "desktop_title": "On computer (Chrome / Edge)",
+    "desktop_s1": "Click the «Install» icon in the address bar",
+    "cta_install": "Install now",
+    "installed": "Manuvo is already installed on your device. 🎉",
+    "back": "Back to Manuvo"
   }
 }
