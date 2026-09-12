@@ -271,5 +271,38 @@
     "ASAP": "Il prima possibile",
     "THIS_WEEK": "Questa settimana",
     "NOT_URGENT": "Non urgente"
+  },
+  "install": {
+    "title": "Aggiungi Manuvo alla Home",
+    "text_android": "Installa l'app per ritrovarla con un tocco.",
+    "text_ios": "Aggiungila alla schermata Home per ritrovarla facilmente.",
+    "cta_install": "Installa",
+    "cta_how": "Come fare",
+    "dismiss": "Chiudi"
+  },
+  "installa": {
+    "eyebrow": "App",
+    "title": "Aggiungi Manuvo alla Home",
+    "subtitle": "Ritrova Manuvo con un tocco, come una vera app. Nessuno store, nessun download.",
+    "benefits": {
+      "b1": "Apri Manuvo in un tocco",
+      "b2": "Ricevi le notifiche delle nuove richieste",
+      "b3": "Funziona come un'app, a schermo intero"
+    },
+    "detected": "Il tuo dispositivo",
+    "ios_title": "Su iPhone / iPad (Safari)",
+    "ios_s1": "Tocca il pulsante Condividi in basso",
+    "ios_s2": "Scegli «Aggiungi alla schermata Home»",
+    "ios_s3": "Conferma con «Aggiungi»",
+    "android_title": "Su Android (Chrome)",
+    "android_auto": "Tocca il pulsante qui sotto per installare.",
+    "android_s1": "Apri il menu (tre puntini) in alto a destra",
+    "android_s2": "Scegli «Installa app» o «Aggiungi a Home»",
+    "android_s3": "Conferma",
+    "desktop_title": "Su computer (Chrome / Edge)",
+    "desktop_s1": "Clicca l'icona «Installa» nella barra degli indirizzi",
+    "cta_install": "Installa ora",
+    "installed": "Manuvo è già installata sul tuo dispositivo. 🎉",
+    "back": "Torna a Manuvo"
   }
 }

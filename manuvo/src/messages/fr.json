@@ -271,5 +271,38 @@
     "ASAP": "Dès que possible",
     "THIS_WEEK": "Cette semaine",
     "NOT_URGENT": "Non urgent"
+  },
+  "install": {
+    "title": "Ajoutez Manuvo à l'écran d'accueil",
+    "text_android": "Installez l'app pour la rouvrir en un geste.",
+    "text_ios": "Ajoutez-la à l'écran d'accueil pour la retrouver facilement.",
+    "cta_install": "Installer",
+    "cta_how": "Comment faire",
+    "dismiss": "Fermer"
+  },
+  "installa": {
+    "eyebrow": "App",
+    "title": "Ajoutez Manuvo à l'écran d'accueil",
+    "subtitle": "Rouvrez Manuvo en un geste, comme une vraie app. Sans store, sans téléchargement lourd.",
+    "benefits": {
+      "b1": "Ouvrez Manuvo en un geste",
+      "b2": "Recevez les notifications des nouvelles demandes",
+      "b3": "Fonctionne comme une app, en plein écran"
+    },
+    "detected": "Votre appareil",
+    "ios_title": "Sur iPhone / iPad (Safari)",
+    "ios_s1": "Touchez le bouton Partager en bas",
+    "ios_s2": "Choisissez «Sur l'écran d'accueil»",
+    "ios_s3": "Confirmez avec «Ajouter»",
+    "android_title": "Sur Android (Chrome)",
+    "android_auto": "Touchez le bouton ci-dessous pour installer.",
+    "android_s1": "Ouvrez le menu (trois points) en haut à droite",
+    "android_s2": "Choisissez «Installer l'application» ou «Ajouter à l'écran d'accueil»",
+    "android_s3": "Confirmez",
+    "desktop_title": "Sur ordinateur (Chrome / Edge)",
+    "desktop_s1": "Cliquez sur l'icône «Installer» dans la barre d'adresse",
+    "cta_install": "Installer maintenant",
+    "installed": "Manuvo est déjà installée sur votre appareil. 🎉",
+    "back": "Retour à Manuvo"
   }
 }

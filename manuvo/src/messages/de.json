@@ -271,5 +271,38 @@
     "ASAP": "So bald wie möglich",
     "THIS_WEEK": "Diese Woche",
     "NOT_URGENT": "Nicht dringend"
+  },
+  "install": {
+    "title": "Manuvo zum Home-Bildschirm hinzufügen",
+    "text_android": "Installiere die App, um sie mit einem Tippen zu öffnen.",
+    "text_ios": "Füge sie zum Home-Bildschirm hinzu, um sie leicht wiederzufinden.",
+    "cta_install": "Installieren",
+    "cta_how": "Anleitung",
+    "dismiss": "Schließen"
+  },
+  "installa": {
+    "eyebrow": "App",
+    "title": "Manuvo zum Home-Bildschirm hinzufügen",
+    "subtitle": "Öffne Manuvo mit einem Tippen, wie eine echte App. Kein Store, kein großer Download.",
+    "benefits": {
+      "b1": "Manuvo mit einem Tippen öffnen",
+      "b2": "Benachrichtigungen zu neuen Anfragen erhalten",
+      "b3": "Funktioniert wie eine App, im Vollbild"
+    },
+    "detected": "Dein Gerät",
+    "ios_title": "Auf iPhone / iPad (Safari)",
+    "ios_s1": "Tippe unten auf die Teilen-Schaltfläche",
+    "ios_s2": "Wähle «Zum Home-Bildschirm»",
+    "ios_s3": "Bestätige mit «Hinzufügen»",
+    "android_title": "Auf Android (Chrome)",
+    "android_auto": "Tippe unten auf die Schaltfläche zum Installieren.",
+    "android_s1": "Öffne das Menü (drei Punkte) oben rechts",
+    "android_s2": "Wähle «App installieren» oder «Zum Startbildschirm»",
+    "android_s3": "Bestätige",
+    "desktop_title": "Am Computer (Chrome / Edge)",
+    "desktop_s1": "Klicke auf das «Installieren»-Symbol in der Adressleiste",
+    "cta_install": "Jetzt installieren",
+    "installed": "Manuvo ist bereits auf deinem Gerät installiert. 🎉",
+    "back": "Zurück zu Manuvo"
   }
 }
