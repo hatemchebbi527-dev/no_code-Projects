@@ -8,6 +8,7 @@ import { getUnreadCount } from "@/lib/notifications";
 import { logout } from "../(auth)/actions";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NotificationBell } from "@/components/NotificationBell";
+import { HeaderNav } from "./HeaderNav";
 
 export default async function DashboardLayout({
   children,
@@ -32,25 +33,7 @@ export default async function DashboardLayout({
             Manuvo
           </Link>
 
-          <nav className="hidden items-center gap-1 sm:flex">
-            <Link href="/dashboard" className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-600 hover:bg-neutral-100">
-              {tn("bacheca")}
-            </Link>
-            <Link href="/dashboard/crediti" className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-600 hover:bg-neutral-100">
-              {tn("crediti")}
-            </Link>
-          </nav>
-
-          <Link
-            href="/dashboard/crediti"
-            className="flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-sm font-semibold text-amber-700 hover:bg-amber-100"
-          >
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4" />
-            </svg>
-            <span className="tabular-nums">{credits}</span>
-          </Link>
+          <HeaderNav credits={credits} bachecaLabel={tn("bacheca")} creditiLabel={tn("crediti")} />
 
           <NotificationBell initialCount={unread} href="/dashboard/notifiche" label={tn("notifiche")} />
 
@@ -58,7 +41,7 @@ export default async function DashboardLayout({
 
           {session.user.name && (
             <span
-              className="hidden max-w-[140px] truncate text-sm font-medium text-neutral-700 sm:inline"
+              className="max-w-[90px] truncate text-sm font-medium text-neutral-700 sm:max-w-[140px]"
               title={session.user.name}
             >
               {session.user.name}
