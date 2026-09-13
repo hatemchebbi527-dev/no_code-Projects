@@ -82,7 +82,9 @@
     "submit": "أنشئ حساباً مجانياً",
     "submitting": "جارٍ الإنشاء...",
     "have_account": "لديك حساب بالفعل؟",
-    "login_link": "تسجيل الدخول"
+    "login_link": "تسجيل الدخول",
+    "piva": "الرقم الضريبي (Partita IVA)",
+    "piva_hint": "11 رقمًا. مطلوب للحصول على رصيد الترحيب."
   },
   "authErrors": {
     "missing": "أدخل البريد وكلمة المرور.",
@@ -93,7 +95,10 @@
     "password_mismatch": "كلمتا المرور غير متطابقتين.",
     "email_exists": "يوجد حساب بهذا البريد بالفعل.",
     "no_category": "اختر حرفة واحدة على الأقل.",
-    "created_login_failed": "تم إنشاء الحساب لكن فشل الدخول. حاول تسجيل الدخول."
+    "created_login_failed": "تم إنشاء الحساب لكن فشل الدخول. حاول تسجيل الدخول.",
+    "piva_required": "أدخل رقمك الضريبي (Partita IVA).",
+    "piva_invalid": "الرقم الضريبي غير صالح (11 رقمًا).",
+    "piva_exists": "هذا الرقم الضريبي مسجل بالفعل."
   },
   "dashboard": {
     "title": "لوحة الطلبات",
@@ -140,7 +145,8 @@
   "transactions": {
     "purchase": "شحن نقاط",
     "unlock": "فتح جهة اتصال",
-    "empty": "لا توجد عمليات بعد."
+    "empty": "لا توجد عمليات بعد.",
+    "welcome": "رصيد الترحيب"
   },
   "unlockErrors": {
     "insufficient": "نقاط غير كافية. اشحن لتفتح.",
@@ -217,7 +223,8 @@
     "th_credits": "الأرصدة",
     "th_joined": "تاريخ التسجيل",
     "export_csv": "تصدير CSV",
-    "empty_artisans": "لا يوجد حرفيون مسجلون."
+    "empty_artisans": "لا يوجد حرفيون مسجلون.",
+    "th_piva": "الرقم الضريبي"
   },
   "categories": {
     "idraulica": "سباكة",

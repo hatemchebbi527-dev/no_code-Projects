@@ -25,6 +25,7 @@ export default async function AdminArtisansPage() {
     matricule: a.matricule,
     name: a.name,
     email: a.email,
+    piva: a.piva,
     phone: a.phone,
     city: a.city,
     country: a.country,
@@ -55,6 +56,7 @@ export default async function AdminArtisansPage() {
                 <th className="px-4 py-3 text-start font-semibold">{t("th_matricule")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_name")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_email")}</th>
+                <th className="px-4 py-3 text-start font-semibold">{t("th_piva")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_phone")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_city")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_categories")}</th>
@@ -75,6 +77,9 @@ export default async function AdminArtisansPage() {
                     <a href={`mailto:${a.email}`} className="text-red-700 hover:underline">
                       {a.email}
                     </a>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap font-mono text-xs text-neutral-600">
+                    {a.piva ?? <span className="font-sans text-neutral-300">—</span>}
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap text-neutral-600">
                     {a.phone ? (

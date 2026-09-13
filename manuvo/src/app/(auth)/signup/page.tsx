@@ -73,6 +73,18 @@ export default function SignupPage() {
           </label>
         </div>
 
+        <label className="flex flex-col gap-1.5">
+          <span className="text-sm font-medium">{t("piva")}</span>
+          <input
+            name="piva"
+            inputMode="numeric"
+            required
+            className={input}
+            placeholder="12345678901"
+          />
+          <span className="text-xs text-neutral-500">{t("piva_hint")}</span>
+        </label>
+
         <fieldset className="flex flex-col gap-2">
           <legend className="text-sm font-medium">{t("categories_label")}</legend>
           <p className="text-xs text-neutral-500">{t("categories_hint")}</p>

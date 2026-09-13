@@ -21,6 +21,7 @@ export async function TransactionList({
   function label(type: string) {
     if (type === "PURCHASE") return t("purchase");
     if (type === "SPEND") return t("unlock");
+    if (type === "BONUS") return t("welcome");
     return type;
   }
 
