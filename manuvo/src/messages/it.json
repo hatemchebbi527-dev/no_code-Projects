@@ -82,7 +82,9 @@
     "submit": "Crea account gratis",
     "submitting": "Creazione...",
     "have_account": "Hai gia un account?",
-    "login_link": "Accedi"
+    "login_link": "Accedi",
+    "piva": "Partita IVA",
+    "piva_hint": "11 cifre. Necessaria per ricevere i crediti di benvenuto."
   },
   "authErrors": {
     "missing": "Inserisci email e password.",
@@ -93,7 +95,10 @@
     "password_mismatch": "Le password non coincidono.",
     "email_exists": "Esiste gia un account con questa email.",
     "no_category": "Seleziona almeno un mestiere.",
-    "created_login_failed": "Account creato ma login fallito. Prova ad accedere."
+    "created_login_failed": "Account creato ma login fallito. Prova ad accedere.",
+    "piva_required": "Inserisci la tua Partita IVA.",
+    "piva_invalid": "Partita IVA non valida (11 cifre).",
+    "piva_exists": "Questa Partita IVA è già registrata."
   },
   "dashboard": {
     "title": "Bacheca richieste",
@@ -140,7 +145,8 @@
   "transactions": {
     "purchase": "Ricarica crediti",
     "unlock": "Sblocco contatto",
-    "empty": "Nessuna operazione ancora."
+    "empty": "Nessuna operazione ancora.",
+    "welcome": "Crediti di benvenuto"
   },
   "unlockErrors": {
     "insufficient": "Crediti insufficienti. Ricarica per sbloccare.",
@@ -217,7 +223,8 @@
     "th_credits": "Crediti",
     "th_joined": "Iscritto il",
     "export_csv": "Esporta CSV",
-    "empty_artisans": "Nessun artigiano registrato."
+    "empty_artisans": "Nessun artigiano registrato.",
+    "th_piva": "P. IVA"
   },
   "categories": {
     "idraulica": "Idraulica",

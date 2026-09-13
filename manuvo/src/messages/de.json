@@ -82,7 +82,9 @@
     "submit": "Kostenloses Konto erstellen",
     "submitting": "Wird erstellt...",
     "have_account": "Haben Sie schon ein Konto?",
-    "login_link": "Anmelden"
+    "login_link": "Anmelden",
+    "piva": "USt-IdNr. (Partita IVA)",
+    "piva_hint": "11 Ziffern. Erforderlich, um Ihre Willkommensguthaben zu erhalten."
   },
   "authErrors": {
     "missing": "E-Mail und Passwort eingeben.",
@@ -93,7 +95,10 @@
     "password_mismatch": "Die Passwörter stimmen nicht überein.",
     "email_exists": "Es existiert bereits ein Konto mit dieser E-Mail.",
     "no_category": "Wählen Sie mindestens ein Gewerk.",
-    "created_login_failed": "Konto erstellt, aber Anmeldung fehlgeschlagen. Bitte anmelden."
+    "created_login_failed": "Konto erstellt, aber Anmeldung fehlgeschlagen. Bitte anmelden.",
+    "piva_required": "Geben Sie Ihre USt-IdNr. (Partita IVA) ein.",
+    "piva_invalid": "Ungültige USt-IdNr. (11 Ziffern).",
+    "piva_exists": "Diese USt-IdNr. ist bereits registriert."
   },
   "dashboard": {
     "title": "Anfragen-Board",
@@ -140,7 +145,8 @@
   "transactions": {
     "purchase": "Credit-Aufladung",
     "unlock": "Kontakt-Freischaltung",
-    "empty": "Noch keine Vorgänge."
+    "empty": "Noch keine Vorgänge.",
+    "welcome": "Willkommensguthaben"
   },
   "unlockErrors": {
     "insufficient": "Nicht genug Credits. Laden Sie auf, um freizuschalten.",
@@ -217,7 +223,8 @@
     "th_credits": "Credits",
     "th_joined": "Registriert am",
     "export_csv": "CSV exportieren",
-    "empty_artisans": "Keine Handwerker registriert."
+    "empty_artisans": "Keine Handwerker registriert.",
+    "th_piva": "USt-IdNr."
   },
   "categories": {
     "idraulica": "Sanitär",

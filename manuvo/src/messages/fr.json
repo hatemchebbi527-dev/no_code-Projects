@@ -82,7 +82,9 @@
     "submit": "Créer un compte gratuit",
     "submitting": "Création...",
     "have_account": "Vous avez déjà un compte ?",
-    "login_link": "Se connecter"
+    "login_link": "Se connecter",
+    "piva": "Numéro de TVA (Partita IVA)",
+    "piva_hint": "11 chiffres. Nécessaire pour recevoir vos crédits de bienvenue."
   },
   "authErrors": {
     "missing": "Saisissez email et mot de passe.",
@@ -93,7 +95,10 @@
     "password_mismatch": "Les mots de passe ne correspondent pas.",
     "email_exists": "Un compte existe déjà avec cet email.",
     "no_category": "Sélectionnez au moins un métier.",
-    "created_login_failed": "Compte créé mais connexion échouée. Veuillez vous connecter."
+    "created_login_failed": "Compte créé mais connexion échouée. Veuillez vous connecter.",
+    "piva_required": "Saisissez votre numéro de TVA (Partita IVA).",
+    "piva_invalid": "Numéro de TVA non valide (11 chiffres).",
+    "piva_exists": "Ce numéro de TVA est déjà enregistré."
   },
   "dashboard": {
     "title": "Tableau des demandes",
@@ -140,7 +145,8 @@
   "transactions": {
     "purchase": "Recharge de crédits",
     "unlock": "Déblocage de contact",
-    "empty": "Aucune opération pour le moment."
+    "empty": "Aucune opération pour le moment.",
+    "welcome": "Crédits de bienvenue"
   },
   "unlockErrors": {
     "insufficient": "Crédits insuffisants. Rechargez pour débloquer.",
@@ -217,7 +223,8 @@
     "th_credits": "Crédits",
     "th_joined": "Inscrit le",
     "export_csv": "Exporter CSV",
-    "empty_artisans": "Aucun artisan inscrit."
+    "empty_artisans": "Aucun artisan inscrit.",
+    "th_piva": "N° TVA"
   },
   "categories": {
     "idraulica": "Plomberie",

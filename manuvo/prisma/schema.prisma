@@ -21,6 +21,7 @@ model User {
   passwordHash String
   role         String   @default("ARTIGIANO") // ARTIGIANO | ADMIN
   name         String
+  piva         String?  @unique // Partita IVA (11 cifre) : cle anti-abus des credits de bienvenue, une fois par P.IVA
   phone        String?
   city         String?
   country      String   @default("IT")

@@ -8,7 +8,14 @@ import { getTranslations, getLocale } from "next-intl/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { signIn, signOut } from "@/auth";
-import { COUNTRIES, isCategory, type CountryCode } from "@/lib/constants";
+import {
+  COUNTRIES,
+  isCategory,
+  isValidPiva,
+  normalizePiva,
+  WELCOME_CREDITS,
+  type CountryCode,
+} from "@/lib/constants";
 import { sendEmail, resetPasswordHtml } from "@/lib/email";
 
 export type AuthState = { error?: string } | undefined;
@@ -76,6 +83,7 @@ export async function registerArtisan(
   const country: CountryCode = (COUNTRIES as readonly string[]).includes(countryRaw)
     ? (countryRaw as CountryCode)
     : "IT";
+  const piva = normalizePiva(String(formData.get("piva") ?? ""));
   // Metiers : liste de cases cochees, on ne garde que les codes valides et uniques.
   const categories = [...new Set(formData.getAll("categories").map(String))].filter(isCategory);
 
@@ -87,6 +95,12 @@ export async function registerArtisan(
   }
   if (categories.length === 0) {
     return { error: t("no_category") };
+  }
+  if (!piva) {
+    return { error: t("piva_required") };
+  }
+  if (!isValidPiva(piva)) {
+    return { error: t("piva_invalid") };
   }
   if (password.length < 8) {
     return { error: t("password_short") };
@@ -100,19 +114,49 @@ export async function registerArtisan(
     return { error: t("email_exists") };
   }
 
+  // Anti-abus : une meme Partita IVA ne peut recevoir les credits de bienvenue qu'une seule fois.
+  const pivaTaken = await prisma.user.findUnique({ where: { piva }, select: { id: true } });
+  if (pivaTaken) {
+    return { error: t("piva_exists") };
+  }
+
   const passwordHash = await bcrypt.hash(password, 10);
-  await prisma.user.create({
-    data: {
-      email,
-      passwordHash,
-      role: "ARTIGIANO",
-      name,
-      city: city || null,
-      country,
-      categories: categories.join(","),
-      credits: 0,
-    },
-  });
+  try {
+    await prisma.user.create({
+      data: {
+        email,
+        passwordHash,
+        role: "ARTIGIANO",
+        name,
+        piva,
+        city: city || null,
+        country,
+        categories: categories.join(","),
+        credits: WELCOME_CREDITS,
+        // Credits de bienvenue traces comme BONUS (exclus du chiffre d'affaires).
+        transactions: {
+          create: {
+            type: "BONUS",
+            credits: WELCOME_CREDITS,
+            amountEur: 0,
+            reference: "welcome",
+          },
+        },
+      },
+    });
+  } catch (error) {
+    // Course entre deux inscriptions simultanees avec la meme P.IVA/email : l'index unique tranche.
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      (error as { code?: string }).code === "P2002"
+    ) {
+      const target = String((error as { meta?: { target?: unknown } }).meta?.target ?? "");
+      return { error: target.includes("piva") ? t("piva_exists") : t("email_exists") };
+    }
+    throw error;
+  }
 
   try {
     await signIn("credentials", { email, password, redirectTo: "/dashboard" });

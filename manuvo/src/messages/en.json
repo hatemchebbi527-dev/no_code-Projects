@@ -82,7 +82,9 @@
     "submit": "Create free account",
     "submitting": "Creating...",
     "have_account": "Already have an account?",
-    "login_link": "Log in"
+    "login_link": "Log in",
+    "piva": "VAT number (Partita IVA)",
+    "piva_hint": "11 digits. Required to receive your welcome credits."
   },
   "authErrors": {
     "missing": "Enter email and password.",
@@ -93,7 +95,10 @@
     "password_mismatch": "Passwords do not match.",
     "email_exists": "An account with this email already exists.",
     "no_category": "Select at least one trade.",
-    "created_login_failed": "Account created but login failed. Please log in."
+    "created_login_failed": "Account created but login failed. Please log in.",
+    "piva_required": "Enter your VAT number (Partita IVA).",
+    "piva_invalid": "Invalid VAT number (11 digits).",
+    "piva_exists": "This VAT number is already registered."
   },
   "dashboard": {
     "title": "Requests board",
@@ -140,7 +145,8 @@
   "transactions": {
     "purchase": "Credit top-up",
     "unlock": "Contact unlock",
-    "empty": "No transactions yet."
+    "empty": "No transactions yet.",
+    "welcome": "Welcome credits"
   },
   "unlockErrors": {
     "insufficient": "Not enough credits. Top up to unlock.",
@@ -217,7 +223,8 @@
     "th_credits": "Credits",
     "th_joined": "Joined",
     "export_csv": "Export CSV",
-    "empty_artisans": "No artisans registered."
+    "empty_artisans": "No artisans registered.",
+    "th_piva": "VAT no."
   },
   "categories": {
     "idraulica": "Plumbing",

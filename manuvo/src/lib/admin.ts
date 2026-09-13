@@ -35,6 +35,7 @@ export async function getArtisans() {
       matricule: true,
       name: true,
       email: true,
+      piva: true,
       phone: true,
       city: true,
       country: true,

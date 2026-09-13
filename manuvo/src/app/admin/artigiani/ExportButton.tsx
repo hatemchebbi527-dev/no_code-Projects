@@ -6,6 +6,7 @@ type Row = {
   matricule: number;
   name: string;
   email: string;
+  piva: string | null;
   phone: string | null;
   city: string | null;
   country: string;
@@ -25,6 +26,7 @@ export function ExportButton({ rows, label }: { rows: Row[]; label: string }) {
       "matricule",
       "nom",
       "email",
+      "piva",
       "telephone",
       "ville",
       "pays",
@@ -37,6 +39,7 @@ export function ExportButton({ rows, label }: { rows: Row[]; label: string }) {
         formatMatricule(r.matricule),
         r.name,
         r.email,
+        r.piva ?? "",
         r.phone ?? "",
         r.city ?? "",
         r.country,

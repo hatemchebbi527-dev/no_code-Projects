@@ -24,24 +24,36 @@ export function PushToggle() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    const supported =
-      typeof window !== "undefined" &&
-      "serviceWorker" in navigator &&
-      "PushManager" in window &&
-      "Notification" in window &&
-      VAPID_PUBLIC.length > 0;
-    if (!supported) {
-      setStatus("unsupported");
-      return;
-    }
-    if (Notification.permission === "denied") {
-      setStatus("denied");
-      return;
-    }
-    navigator.serviceWorker.ready
-      .then((reg) => reg.pushManager.getSubscription())
-      .then((sub) => setStatus(sub ? "on" : "off"))
-      .catch(() => setStatus("off"));
+    let cancelled = false;
+    // Detection au montage : capacites du navigateur + abonnement existant.
+    // Enveloppee dans une fonction asynchrone pour eviter des setState synchrones
+    // dans le corps de l'effet (regle react-hooks/set-state-in-effect).
+    (async () => {
+      const supported =
+        typeof window !== "undefined" &&
+        "serviceWorker" in navigator &&
+        "PushManager" in window &&
+        "Notification" in window &&
+        VAPID_PUBLIC.length > 0;
+      if (!supported) {
+        if (!cancelled) setStatus("unsupported");
+        return;
+      }
+      if (Notification.permission === "denied") {
+        if (!cancelled) setStatus("denied");
+        return;
+      }
+      try {
+        const reg = await navigator.serviceWorker.ready;
+        const sub = await reg.pushManager.getSubscription();
+        if (!cancelled) setStatus(sub ? "on" : "off");
+      } catch {
+        if (!cancelled) setStatus("off");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   async function enable() {
