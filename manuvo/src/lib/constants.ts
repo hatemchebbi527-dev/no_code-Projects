@@ -8,7 +8,7 @@ export const DEFAULT_LEAD_COST = 4;
 export const MAX_UNLOCKS_PER_LEAD = 3; // plafond d'artisans par demande
 // Credits offerts a l'inscription (lancement). 1 credit = 2 EUR, un contact coute 3-5 credits.
 // Verrouille une seule fois par Partita IVA (voir registerArtisan) pour eviter le farming.
-export const WELCOME_CREDITS = 10;
+export const WELCOME_CREDITS = 5;
 
 // ---- Roles ----
 export const ROLES = ["ARTIGIANO", "ADMIN"] as const;
