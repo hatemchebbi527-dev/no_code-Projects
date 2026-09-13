@@ -90,7 +90,7 @@ export function RechargePanel({
         })}
       </div>
 
-      <p className="mt-3 text-xs text-neutral-400">{t("secure_note")}</p>
+      <p className="mt-3 text-xs text-neutral-400">{t("secure_note", { eur: EUR_PER_CREDIT })}</p>
     </div>
   );
 }

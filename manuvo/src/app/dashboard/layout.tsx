@@ -56,6 +56,15 @@ export default async function DashboardLayout({
 
           <LanguageSwitcher />
 
+          {session.user.name && (
+            <span
+              className="hidden max-w-[140px] truncate text-sm font-medium text-neutral-700 sm:inline"
+              title={session.user.name}
+            >
+              {session.user.name}
+            </span>
+          )}
+
           <form action={logout}>
             <button className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm font-medium hover:bg-neutral-100">
               {tc("esci")}
