@@ -35,8 +35,11 @@ export default async function DashboardPage({
     getUnlockedLeads(userId),
   ]);
 
+  // Heure de reference figee une fois par rendu (composant serveur, rendu unique cote serveur).
+  // eslint-disable-next-line react-hooks/purity -- l'anciennete affichee depend de l'instant de la requete
+  const renderedAt = Date.now();
   function timeAgo(d: Date) {
-    const min = Math.round((Date.now() - new Date(d).getTime()) / 60000);
+    const min = Math.round((renderedAt - new Date(d).getTime()) / 60000);
     if (min < 60) return t("time_min", { n: min });
     const h = Math.round(min / 60);
     if (h < 24) return t("time_hour", { n: h });

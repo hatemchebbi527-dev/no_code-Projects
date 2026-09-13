@@ -3,7 +3,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import {
-  DEFAULT_LEAD_COST,
   MAX_UNLOCKS_PER_LEAD,
   creditsToEur,
 } from "../src/lib/constants";
