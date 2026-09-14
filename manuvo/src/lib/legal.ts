@@ -7,7 +7,7 @@ export type LegalSection = { h: string; p: string[] };
 export type LegalDoc = { title: string; updated: string; sections: LegalSection[] };
 export type LegalSlug = "privacy" | "termini" | "cookie" | "note";
 
-export const LEGAL_UPDATED = "2026-09-09";
+export const LEGAL_UPDATED = "2026-09-14";
 
 // Identite du titulaire. P.IVA a ajouter plus tard (rappel a faire).
 const HOLDER = "AutomaIA";
@@ -21,7 +21,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       sections: [
         { h: "Titolare del trattamento", p: [`Il titolare del trattamento dei dati e ${HOLDER}, contattabile all'indirizzo ${EMAIL}.`] },
         { h: "Dati raccolti", p: [
-          "Artigiani registrati: nome, email, telefono, citta, paese, mestieri offerti e password (conservata in forma cifrata).",
+          "Artigiani registrati: nome, email, telefono, citta, paese, mestieri offerti, partita IVA e password (conservata in forma cifrata).",
           "Privati che pubblicano una richiesta: nome, telefono, email (facoltativa), citta, paese e descrizione del lavoro richiesto.",
         ] },
         { h: "Finalita e base giuridica", p: [
@@ -47,7 +47,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       sections: [
         { h: "Data controller", p: [`The data controller is ${HOLDER}, reachable at ${EMAIL}.`] },
         { h: "Data collected", p: [
-          "Registered artisans: name, email, phone, city, country, trades offered and password (stored encrypted).",
+          "Registered artisans: name, email, phone, city, country, trades offered, VAT number (Partita IVA) and password (stored encrypted).",
           "Individuals posting a request: name, phone, email (optional), city, country and a description of the job.",
         ] },
         { h: "Purposes and legal basis", p: [
@@ -73,7 +73,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       sections: [
         { h: "Responsable du traitement", p: [`Le responsable du traitement des données est ${HOLDER}, joignable à ${EMAIL}.`] },
         { h: "Données collectées", p: [
-          "Artisans inscrits : nom, email, téléphone, ville, pays, métiers proposés et mot de passe (conservé chiffré).",
+          "Artisans inscrits : nom, email, téléphone, ville, pays, métiers proposés, numéro de TVA (Partita IVA) et mot de passe (conservé chiffré).",
           "Particuliers publiant une demande : nom, téléphone, email (facultatif), ville, pays et description du travail demandé.",
         ] },
         { h: "Finalités et base légale", p: [
@@ -99,7 +99,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       sections: [
         { h: "Verantwortlicher", p: [`Verantwortlich für die Datenverarbeitung ist ${HOLDER}, erreichbar unter ${EMAIL}.`] },
         { h: "Erhobene Daten", p: [
-          "Registrierte Handwerker: Name, E-Mail, Telefon, Stadt, Land, angebotene Gewerke und Passwort (verschlüsselt gespeichert).",
+          "Registrierte Handwerker: Name, E-Mail, Telefon, Stadt, Land, angebotene Gewerke, USt-IdNr. (Partita IVA) und Passwort (verschlüsselt gespeichert).",
           "Privatpersonen, die eine Anfrage stellen: Name, Telefon, E-Mail (optional), Stadt, Land und eine Beschreibung der Arbeit.",
         ] },
         { h: "Zwecke und Rechtsgrundlage", p: [
@@ -125,7 +125,7 @@ export const LEGAL: Record<LegalSlug, Record<Locale, LegalDoc>> = {
       sections: [
         { h: "المسؤول عن المعالجة", p: [`المسؤول عن معالجة البيانات هو ${HOLDER}، ويمكن التواصل معه عبر ${EMAIL}.`] },
         { h: "البيانات المجمّعة", p: [
-          "الحرفيون المسجلون: الاسم، البريد الإلكتروني، الهاتف، المدينة، البلد، الحرف المقدّمة وكلمة المرور (محفوظة مشفّرة).",
+          "الحرفيون المسجلون: الاسم، البريد الإلكتروني، الهاتف، المدينة، البلد، الحرف المقدّمة، الرقم الضريبي (Partita IVA) وكلمة المرور (محفوظة مشفّرة).",
           "الأفراد الذين ينشرون طلباً: الاسم، الهاتف، البريد الإلكتروني (اختياري)، المدينة، البلد ووصف العمل المطلوب.",
         ] },
         { h: "الأغراض والأساس القانوني", p: [
