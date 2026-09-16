@@ -13,10 +13,13 @@ export const LANGS: { code: Lang; label: string; short: string; dir: "ltr" | "rt
 export const dictionaries = {
   fr: {
     nav: {
+      home: "Accueil",
       destinations: "Destinations",
       offers: "Nos offres",
-      testimonials: "Témoignages",
-      faq: "FAQ",
+      hajj: "Hajj & Omra",
+      ticketing: "Billetterie",
+      about: "À propos",
+      contact: "Contact",
       book: "Réserver maintenant",
     },
     hero: {
@@ -193,10 +196,13 @@ export const dictionaries = {
 
   it: {
     nav: {
+      home: "Home",
       destinations: "Destinazioni",
       offers: "Le nostre offerte",
-      testimonials: "Testimonianze",
-      faq: "FAQ",
+      hajj: "Hajj e Umra",
+      ticketing: "Biglietteria",
+      about: "Chi siamo",
+      contact: "Contatti",
       book: "Prenota ora",
     },
     hero: {
@@ -373,10 +379,13 @@ export const dictionaries = {
 
   ar: {
     nav: {
+      home: "الرئيسية",
       destinations: "الوجهات",
       offers: "عروضنا",
-      testimonials: "آراء العملاء",
-      faq: "الأسئلة الشائعة",
+      hajj: "الحج والعمرة",
+      ticketing: "تذاكر السفر",
+      about: "من نحن",
+      contact: "اتصل بنا",
       book: "احجز الآن",
     },
     hero: {

@@ -18,10 +18,12 @@ export default function Navbar() {
   })
 
   const navLinks = [
-    { label: t.nav.destinations, href: "#features" },
-    { label: t.nav.offers, href: "#pricing" },
-    { label: t.nav.testimonials, href: "#social-proof" },
-    { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.destinations, href: "/destinations" },
+    { label: t.nav.offers, href: "/nos-offres" },
+    { label: t.nav.hajj, href: "/hajj-omra" },
+    { label: t.nav.ticketing, href: "/billetterie" },
+    { label: t.nav.about, href: "/a-propos" },
+    { label: t.nav.contact, href: "/contact" },
   ]
 
   return (
@@ -45,12 +47,12 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-neutral-600 hover:text-cyan-600 transition-colors"
+              className="text-sm font-medium text-neutral-600 hover:text-cyan-600 transition-colors whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -58,16 +60,16 @@ export default function Navbar() {
         </nav>
 
         {/* CTA + language */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle />
-          <Button variant="default" size="sm">
-            {t.nav.book}
+          <Button variant="default" size="sm" asChild>
+            <a href="/contact">{t.nav.book}</a>
           </Button>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-neutral-700"
+          className="lg:hidden text-neutral-700"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
@@ -81,7 +83,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          className="md:hidden bg-white border-t border-neutral-100 px-4 py-4 flex flex-col gap-4"
+          className="lg:hidden bg-white border-t border-neutral-100 px-4 py-4 flex flex-col gap-4"
         >
           {navLinks.map((link) => (
             <a
@@ -96,8 +98,8 @@ export default function Navbar() {
           <div className="pt-1">
             <LanguageToggle compact />
           </div>
-          <Button variant="default" size="sm" className="w-full mt-1">
-            {t.nav.book}
+          <Button variant="default" size="sm" className="w-full mt-1" asChild>
+            <a href="/contact">{t.nav.book}</a>
           </Button>
         </motion.div>
       )}
