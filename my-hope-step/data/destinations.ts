@@ -39,7 +39,7 @@ export const destinations: Destination[] = [
     slug: "tunisie",
     nameKey: "tunisie",
     taglineKey: "tunisieTagline",
-    image: "https://images.unsplash.com/photo-1568402102990-bc541580b59f?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=800&auto=format&fit=crop",
     typesKey: ["circuit", "sejour", "groupe", "mesure"],
   },
   {
