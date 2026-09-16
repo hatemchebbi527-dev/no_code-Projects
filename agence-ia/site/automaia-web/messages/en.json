@@ -1,0 +1,245 @@
+{
+  "brand": {
+    "tagline": "Automation and AI for real estate agencies, beauty salons and gyms",
+    "rightsReserved": "All rights reserved."
+  },
+  "nav": {
+    "home": "Home",
+    "servizi": "Services",
+    "cliniche": "Salons & Gyms",
+    "chiSono": "About",
+    "contatti": "Contact"
+  },
+  "common": {
+    "auditCta": "Free audit",
+    "scopriServizi": "Explore the services",
+    "eyebrowServizi": "Services",
+    "eyebrowMetodo": "The method",
+    "oppureScriva": "Or write to"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "it": "Italian",
+    "fr": "French"
+  },
+  "home": {
+    "hero": {
+      "titlePrefix": "Your business gets back up to",
+      "titleHighlight": "10 hours",
+      "titleSuffix": "a week",
+      "subtitle": "I automate the repetitive tasks of real estate agencies, beauty salons and gyms. Less manual work, more time for your clients and for the work that truly matters. Your data always stays protected.",
+      "cta": { "label": "Book a free audit", "href": "/audit" }
+    },
+    "stats": [
+      { "value": 10, "suffix": "", "label": "hours a week you can get back" },
+      { "value": 24, "suffix": "/7", "label": "assistant always on" },
+      { "value": 20, "suffix": " min", "label": "free audit, no commitment" },
+      { "value": 100, "suffix": "%", "label": "data protected and under your control" }
+    ],
+    "problema": {
+      "title": "How many hours do you lose each week on tasks that don't require your expertise?",
+      "text": "Requests for information. Appointments to confirm by hand. The same client questions, every day. Reminders no one sends. These are necessary tasks, but repetitive. And together they add up to precious hours every week, time taken away from what matters: your clients and your business."
+    },
+    "offerteTeaser": {
+      "title": "Your business handles the repetitive tasks on its own",
+      "intro": "I build automations tailored to you. You touch nothing technical: you only use the result.",
+      "items": [
+        {
+          "title": "Automatic appointments and reminders",
+          "text": "Bookings, reminders and follow-ups run on their own. No more forgotten tasks."
+        },
+        {
+          "title": "Automatic answers to recurring questions",
+          "text": "An assistant answers the usual requests 24/7, with the information you decide."
+        },
+        {
+          "title": "Organization and data kept safe",
+          "text": "Everything gathered in one place. Your data stays protected and under your control."
+        }
+      ],
+      "cta": { "label": "Explore the services", "href": "/servizi" }
+    },
+    "metodoTeaser": {
+      "title": "A simple method, with no risk",
+      "text": "We always start with a free 20-minute audit: together we spot where you lose the most time, before any commitment. Then I set up the automation, test it, and show you how it works. You always stay in control.",
+      "cta": { "label": "How I work", "href": "/chi-sono" }
+    },
+    "ctaFinale": {
+      "title": "Find out how many hours you can get back",
+      "text": "In 20 minutes, free of charge, we identify the first useful automation for your business.",
+      "cta": { "label": "Book your free audit", "href": "/audit" }
+    }
+  },
+  "servizi": {
+    "intro": {
+      "title": "AutomaIA's services",
+      "text": "Tailored solutions for real estate agencies, beauty salons and gyms. We start with the task that steals the most of your time, in complete safety."
+    },
+    "offerte": [
+      {
+        "nome": "Automated Business",
+        "evidenza": true,
+        "badge": "Most requested",
+        "perche": "For the business buried under manual work and repetitive requests.",
+        "include": [
+          "Automatic appointments and reminders",
+          "Automatic client follow-ups",
+          "FAQ assistant active 24/7",
+          "Data always protected"
+        ],
+        "prezzo": "Custom",
+        "nota": "Initial setup + monthly subscription",
+        "cta": { "label": "Book a free audit", "href": "/audit" }
+      },
+      {
+        "nome": "Business 360",
+        "evidenza": false,
+        "badge": "",
+        "perche": "For those who want to organize everything, from client management to online presence.",
+        "include": [
+          "Everything in Automated Business",
+          "Custom CRM for your clients",
+          "Online presence included",
+          "Continuous optimization"
+        ],
+        "prezzo": "Custom",
+        "nota": "Initial setup + monthly subscription",
+        "cta": { "label": "Let's talk about your business", "href": "/audit" }
+      },
+      {
+        "nome": "Online Presence",
+        "evidenza": false,
+        "badge": "",
+        "perche": "For those who also want to look after their visibility.",
+        "include": [
+          "Professional showcase website",
+          "Automatic posting on social media",
+          "Connected contact form"
+        ],
+        "prezzo": "Custom",
+        "nota": "À la carte add-on",
+        "cta": { "label": "Add it to your business", "href": "/audit" }
+      }
+    ]
+  },
+  "chiSono": {
+    "title": "About me and how I work",
+    "intro": "I'm the founder of AutomaIA. I help real estate agencies, beauty salons and gyms free themselves from the repetitive tasks that steal time, so they can focus on their real work. No technical jargon, no magic promises: concrete, tailored solutions.",
+    "metodoTitle": "The method, in 3 steps",
+    "metodo": [
+      {
+        "step": "1",
+        "title": "Free audit (20 minutes)",
+        "text": "Together we spot where you lose the most time. No commitment."
+      },
+      {
+        "step": "2",
+        "title": "Tailored automation",
+        "text": "I set up the solution, test it and show you how it works."
+      },
+      {
+        "step": "3",
+        "title": "You stay in control",
+        "text": "You only use the result. Your data stays protected and under your control."
+      }
+    ],
+    "fiduciaTitle": "Why trust me",
+    "fiducia": [
+      "Confidentiality first: your data stays yours.",
+      "Solutions tailored to your business, not generic packages.",
+      "No commitment until you see the value with your own eyes."
+    ],
+    "cta": { "label": "Book a free audit", "href": "/contatti" }
+  },
+  "contatti": {
+    "title": "Have a question?",
+    "text": "Fill in the form or write directly to info@automa-ia.net. I reply within 24 hours. To book a free audit, use the dedicated page instead.",
+    "successo": "Thank you! I've received your message, I'll get back to you shortly.",
+    "errore": "Something went wrong. Please try again or write directly to info@automa-ia.net."
+  },
+  "contactForm": {
+    "nome": "Full name",
+    "email": "Email",
+    "studio": "Business name",
+    "messaggio": "Message",
+    "invia": "Send message",
+    "invioInCorso": "Sending..."
+  },
+  "cliniche": {
+    "hero": {
+      "eyebrow": "Beauty salons and gyms",
+      "title": "Your business works even after hours",
+      "subtitle": "Bookings, reminders and first replies to clients, automatically. You focus on treatments and training, not on the phone. Your data always stays protected.",
+      "cta": { "label": "Book a free audit", "href": "/audit" }
+    },
+    "problema": {
+      "title": "Every day your salon loses requests and appointments without realizing it",
+      "items": [
+        { "title": "After-hours requests", "text": "Many requests come in during the evening or on weekends, when the salon is closed. Without an automatic reply, the client books elsewhere." },
+        { "title": "Missed appointments", "text": "In this industry around 15% of appointments fall through without notice. Every no-show is lost time and lost revenue." },
+        { "title": "The same questions every day", "text": "Prices, availability, treatment duration: the same questions repeated, stealing hours from the front desk." }
+      ]
+    },
+    "soluzione": {
+      "title": "AutomaIA takes care of it for you",
+      "intro": "I build automations tailored to your salon. You touch nothing technical: you only use the result.",
+      "items": [
+        { "title": "Booking always open", "text": "Clients book their own appointment, at any hour. You find your calendar already filled in." },
+        { "title": "Automatic reminders", "text": "A reminder by SMS and email before every appointment. No-shows drop almost to zero." },
+        { "title": "FAQ assistant 24/7", "text": "An assistant answers recurring questions about prices, availability and services, around the clock." }
+      ]
+    },
+    "esempio": {
+      "title": "A concrete example",
+      "text": "A beauty salon with a front desk staffed only in the morning was losing every request in the afternoon and on weekends. With online booking and automatic reminders, no-shows dropped by 60% and the front desk now handles twice as many clients."
+    },
+    "ctaFinale": {
+      "title": "Find out how many appointments you can get back",
+      "text": "In 20 minutes, free of charge, we identify the first useful automation for your salon.",
+      "cta": { "label": "Book your free audit", "href": "/audit" }
+    }
+  },
+  "audit": {
+    "eyebrow": "Free audit · 20 minutes",
+    "title": "Find out where to start",
+    "lead": "In 20 minutes, we analyze together the tasks of your agency, beauty salon or gym that take the most time. No commitment, no sales pitch. Just a concrete analysis of your first time saving.",
+    "trust": "Data protected · No commitment · GDPR",
+    "steps": [
+      { "step": "01", "title": "Story", "desc": "You tell me about a typical day in your business." },
+      { "step": "02", "title": "Analysis", "desc": "Together we identify the tasks that take the most time." },
+      { "step": "03", "title": "Plan", "desc": "I present your first concrete time saving." }
+    ],
+    "iframeTitle": "Book a free AutomaIA audit"
+  },
+  "metadata": {
+    "home": {
+      "title": "AutomaIA — Automation and AI for real estate agencies, beauty salons and gyms",
+      "description": "I automate the repetitive tasks of real estate agencies, beauty salons and gyms: appointments, reminders and automatic replies. Up to 10 hours saved a week. Free audit.",
+      "ogTitle": "AutomaIA — Automation and AI for real estate agencies, beauty salons and gyms",
+      "ogDescription": "Get back up to 10 hours a week by automating your business's repetitive tasks. Free 20-minute audit."
+    },
+    "servizi": {
+      "title": "Automation services for real estate agencies, beauty salons and gyms",
+      "description": "Tailored automations for real estate agencies, beauty salons and gyms: automatic appointments, follow-ups, FAQ assistant 24/7, CRM and online presence.",
+      "ogDescription": "Automatic appointments, follow-ups, FAQ assistant 24/7 and online presence — tailored to your business."
+    },
+    "cliniche": {
+      "title": "Automation for beauty salons and gyms",
+      "description": "Online bookings, automatic reminders and a FAQ assistant 24/7 for your beauty salon or gym. Cut no-shows and stop losing after-hours requests.",
+      "ogDescription": "Online bookings, automatic reminders and a FAQ assistant 24/7 for your beauty salon or gym."
+    },
+    "chiSono": {
+      "title": "About me and how I work",
+      "description": "The AutomaIA method in 3 steps: free audit, tailored automation, control always in your hands. No technical jargon, concrete solutions.",
+      "ogDescription": "The AutomaIA method in 3 steps: free audit, tailored automation, you stay in control."
+    },
+    "contatti": {
+      "title": "Contact — AutomaIA",
+      "description": "Have a question about AutomaIA? Write to us directly or book a free 20-minute audit for your business."
+    },
+    "audit": {
+      "title": "Free audit · AutomaIA",
+      "description": "Book a free 20-minute audit to discover how to automate your business. No commitment, just a concrete analysis."
+    }
+  }
+}

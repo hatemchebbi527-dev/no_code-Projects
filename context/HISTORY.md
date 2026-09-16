@@ -7,6 +7,30 @@
 
 ---
 
+## 2026-09-10
+
+### Manuvo : retouches post-production (métiers, notifications push, téléphone)
+- **Bacheca filtrée par métiers** : un artisan ne voit désormais que les demandes de ses propres métiers (partout : liste, logo, cloche). Avant, la bacheca montrait toutes les demandes alors que les notifications étaient déjà ciblées. Les filtres de catégorie ne montrent plus que les métiers de l'artisan (PR #41).
+- **Admin** : colonne Métiers ajoutée à la liste des artisans + à l'export CSV.
+- **Web Push réparé et opérationnel** (PR merges + config Vercel) : après le même piège que Resend (variables non lues au runtime), les **clés VAPID ont été régénérées** proprement et rendues cohérentes (VAPID_PUBLIC_KEY = NEXT_PUBLIC_VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY correspondante, VAPID_SUBJECT en mailto:). Notification reçue avec son testée sur iPhone en PWA. Service worker renforcé (non silencieux, vibration, renotify, manuvo-v3). Rappel iOS : le web push ne marche que si la PWA est ajoutée à l'écran d'accueil et les notifications autorisées depuis l'app.
+- **Validation du téléphone** (PR #42) : le formulaire public refuse un numéro invalide (via libphonenumber-js, selon le pays de la demande) et normalise au format international avant stockage. Évite qu'un artisan paie des crédits pour un contact injoignable.
+
+### Manuvo : marketplace artisans/particuliers construite et déployée (produit AutomaIA)
+- Création complète, avec Claude Code, de **Manuvo** (manuvo-automaia.vercel.app) : plateforme qui met en relation des particuliers cherchant un travail à domicile et des artisans, monétisée par des crédits (1 crédit = 2 €, déblocage d'un contact = 3 à 5 crédits, max 3 artisans par demande). Stack : Next.js 16 (App Router, Turbopack), Prisma 6 + PostgreSQL Neon, Auth.js v5, next-intl (5 langues it/en/fr/de/ar + RTL), Tailwind 4. Déploiement Vercel (Root Directory `manuvo`), migrations via connexion directe Neon (contournement du P1002 sur le pooler).
+- Socle livré et en ligne : inscription/connexion artisans + admin, packs de crédits, bacheca des demandes avec toutes les règles de déblocage (atomiques), panneau admin (coût par demande, stats), formulaire public sans compte, PWA installable, identité visuelle rouge + landing soignée.
+- Fonctionnalités ajoutées et fusionnées dans cette session (PR #27 à #38) :
+  - **Matricule artisan** séquentiel (ART-0001) + page admin liste des artisans (nom, email, téléphone, ville, crédits) + export CSV, utile marketing.
+  - **Métiers + pays à l'inscription** artisan (prépare le ciblage des notifications).
+  - **Mot de passe oublié** : jeton haché, TTL 1h, email via **Resend** (expéditeur de test onboarding@resend.dev pour l'instant).
+  - **Pages légales** RGPD multilingues (confidentialité, CGU, cookies, note légale). Titulaire affiché : **AutomaIA**, contact **info@automa-ia.net**, P.IVA laissée vide (à compléter). Cookies strictement nécessaires seulement, donc pas de bannière de consentement.
+  - **Notifications** ciblées métier + pays pour les artisans, et **notif de chaque demande pour l'admin** ; centre in-app avec cloche + badge live (endpoint /api/notifications/unread, rafraîchi toutes les 25s + au focus) et **Web Push** (VAPID, service worker). Clés VAPID dans Vercel.
+  - **Stripe Checkout** : remplacement du paiement simulé par un vrai paiement. Session Checkout côté serveur + webhook `/api/stripe/webhook` (vérif signature, crédit idempotent via l'id de session). **Testé de bout en bout en mode test** (carte 4242, solde crédité). Idempotence et rejet des signatures invalides validés en local.
+- Correctifs notables : contraste (thème clair fixe), euro réel (jamais crédits×2), cartes métiers en colonne pour éviter le débordement multilingue, VAPID subject robuste (normalise mailto:, ne casse plus le build).
+- Config Vercel posée par Hatem : DATABASE_URL (Neon), AUTH_SECRET, clés VAPID (public en Config, privé en Sensitive), STRIPE_SECRET_KEY + STRIPE_WEBHOOK_SECRET (mode test, Production).
+- **Emails Manuvo mis en production (fin de session)** : domaine **automa-ia.net vérifié dans Resend** (DKIM + SPF ajoutés dans la zone DNS **Wix**, nameservers restés chez Wix), expéditeur passé de onboarding@resend.dev à **no-reply@automa-ia.net** via la variable `EMAIL_FROM`, envoi réel vers n'importe quel destinataire. La réinitialisation de mot de passe fonctionne en production.
+  - Débogage clé (plusieurs allers-retours) : les emails ne partaient pas et **aucune ligne n'apparaissait dans Resend**. Cause trouvée via les logs Vercel du POST /forgot ("External APIs: No outgoing requests") : le runtime ne voyait pas `RESEND_API_KEY` (valeur vide ou faute cachée), l'app sautait donc l'envoi en silence. Correctif : **supprimer et recréer la variable** avec une clé Resend neuve (Production coché) + **redéploiement de production sans cache**. Leçons : une variable Vercel ajoutée après un build n'existe qu'après un nouveau déploiement ; le formulaire "mot de passe oublié" ne renvoie jamais d'erreur (sécurité anti-énumération) donc il faut lire les logs ; toujours tester sur l'URL de production (manuvo-automaia.vercel.app), pas une URL de preview.
+- **Reste à faire côté Hatem** : renseigner la P.IVA dans les pages légales le moment venu ; **passer Stripe en Live** (vérif compte + IBAN, clés + webhook live) avant d'encaisser de vrais paiements. Pistes futures : domaine manuvo.it, SEO, avis/notation, litiges, profil artisan éditable.
+
 ## 2026-08-07
 
 ### Élargissement de la niche : dentistes et vétérinaires ajoutés

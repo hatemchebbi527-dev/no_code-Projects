@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Manuvo - tema chiaro fisso (contrasto garantito su qualsiasi impostazione di sistema). */
+:root {
+  --background: #faf8f4;
+  --foreground: #1b1e24;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, Arial, sans-serif;
+}
+
+/* Titoli con la font display Manuvo. */
+.font-display {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
