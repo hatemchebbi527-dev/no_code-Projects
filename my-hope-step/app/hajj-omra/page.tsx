@@ -36,7 +36,7 @@ export default function HajjOmraPage() {
         {/* Hero */}
         <div className="relative h-[55vh] min-h-[340px]">
           <img
-            src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=1400&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1564769625905-50e93615e769?q=80&w=1400&auto=format&fit=crop"
             alt="Hajj & Omra"
             className="w-full h-full object-cover"
           />

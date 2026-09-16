@@ -73,7 +73,7 @@ export default function Hero() {
         {/* CTAs */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <motion.a
-            href="#pricing"
+            href="/nos-offres"
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -82,7 +82,7 @@ export default function Hero() {
             </Button>
           </motion.a>
           <motion.a
-            href="#features"
+            href="/destinations"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >

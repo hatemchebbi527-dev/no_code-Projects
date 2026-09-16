@@ -67,6 +67,46 @@ const contacts = [
   { Flag: FlagBelgium, location: "Belgique, Liège", number: "+32 471 92 79 70", href: "https://wa.me/32471927970" },
 ]
 
+const footerColumns = [
+  {
+    title: "Destinations",
+    items: [
+      { label: "Turquie", href: "/destinations/turquie" },
+      { label: "Maroc", href: "/destinations/maroc" },
+      { label: "Arabie saoudite", href: "/destinations/arabie-saoudite" },
+      { label: "Égypte", href: "/destinations/egypte" },
+      { label: "Émirats arabes unis", href: "/destinations/emirats" },
+      { label: "Toutes les destinations", href: "/destinations" },
+    ],
+  },
+  {
+    title: "Nos offres",
+    items: [
+      { label: "Séjours & Circuits", href: "/nos-offres" },
+      { label: "Hajj & Omra", href: "/hajj-omra" },
+      { label: "Billetterie", href: "/billetterie" },
+      { label: "Voyage sur mesure", href: "/contact" },
+    ],
+  },
+  {
+    title: "Agence",
+    items: [
+      { label: "À propos", href: "/a-propos" },
+      { label: "Contact", href: "/contact" },
+      { label: "Destinations", href: "/destinations" },
+      { label: "FAQ", href: "/#faq" },
+    ],
+  },
+  {
+    title: "Légal",
+    items: [
+      { label: "Mentions légales", href: "#" },
+      { label: "CGV", href: "#" },
+      { label: "Confidentialité", href: "#" },
+    ],
+  },
+]
+
 export default function Footer() {
   const { t } = useI18n()
   return (
@@ -87,7 +127,7 @@ export default function Footer() {
             {t.footer.ctaSubtitle}
           </p>
           <motion.a
-            href="#pricing"
+            href="/nos-offres"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             className="inline-block bg-white text-cyan-700 font-semibold px-8 py-3 rounded-lg text-sm hover:bg-cyan-50 transition-colors shadow-md"
@@ -157,17 +197,17 @@ export default function Footer() {
           </div>
 
           {/* Links cols */}
-          {t.footer.columns.map((col) => (
+          {footerColumns.map((col) => (
             <div key={col.title}>
               <h4 className="text-white text-sm font-semibold mb-4">{col.title}</h4>
               <ul className="space-y-2">
-                {col.items.map((item) => (
-                  <li key={item}>
+                {col.items.map(({ label, href }) => (
+                  <li key={label}>
                     <a
-                      href="#"
+                      href={href}
                       className="text-sm hover:text-cyan-400 transition-colors"
                     >
-                      {item}
+                      {label}
                     </a>
                   </li>
                 ))}
@@ -179,7 +219,14 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <span>© {new Date().getFullYear()} My Hope Step. {t.footer.rights}</span>
-          <span className="text-neutral-600">{t.footer.madeWith}</span>
+          <a
+            href="https://www.automa-ia.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-neutral-500 hover:text-cyan-400 transition-colors"
+          >
+            Fait avec <span className="text-red-400">♥</span> par <span className="font-semibold text-neutral-300">AutomaIA</span>
+          </a>
         </div>
       </div>
     </footer>

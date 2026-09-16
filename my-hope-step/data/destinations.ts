@@ -18,7 +18,7 @@ export const destinations: Destination[] = [
     slug: "arabie-saoudite",
     nameKey: "arabieSaoudite",
     taglineKey: "arabieSaouditeTagline",
-    image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1564769625905-50e93615e769?q=80&w=800&auto=format&fit=crop",
     typesKey: ["hajj", "omra", "sejour", "groupe", "mesure"],
   },
   {
@@ -39,7 +39,7 @@ export const destinations: Destination[] = [
     slug: "tunisie",
     nameKey: "tunisie",
     taglineKey: "tunisieTagline",
-    image: "https://images.unsplash.com/photo-1568402102990-bc541580b59f?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1737276679387-ac18cbca095e?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     typesKey: ["circuit", "sejour", "groupe", "mesure"],
   },
   {
@@ -67,7 +67,7 @@ export const destinations: Destination[] = [
     slug: "grece",
     nameKey: "grece",
     taglineKey: "greceTagline",
-    image: "https://images.unsplash.com/photo-1507501336603-6d3ae5f0b898?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=800&auto=format&fit=crop",
     typesKey: ["sejour", "circuit", "croisiere", "mesure"],
   },
   {
