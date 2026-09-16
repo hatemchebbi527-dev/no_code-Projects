@@ -81,7 +81,7 @@ export const offers: Offer[] = [
     period: "Toute l'année",
     duration: "10 jours / 9 nuits",
     price: null,
-    image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1564769625905-50e93615e769?q=80&w=800&auto=format&fit=crop",
     highlights: ["Hôtels proches des lieux saints", "Transferts inclus", "Accompagnement dédié"],
     description:
       "Effectuez votre Omra dans les meilleures conditions avec un accompagnement attentif. Hébergement à proximité de la Mosquée Al-Haram à La Mecque et de la Mosquée du Prophète à Médine, transferts et guide disponible.",
