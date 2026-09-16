@@ -67,7 +67,7 @@ export const destinations: Destination[] = [
     slug: "grece",
     nameKey: "grece",
     taglineKey: "greceTagline",
-    image: "https://images.unsplash.com/photo-1507501336603-6d3ae5f0b898?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=800&auto=format&fit=crop",
     typesKey: ["sejour", "circuit", "croisiere", "mesure"],
   },
   {
