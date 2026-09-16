@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
-import Features from "@/components/Features"
+import HomeWindows from "@/components/HomeWindows"
+import FeaturedOffers from "@/components/FeaturedOffers"
 import SocialProof from "@/components/SocialProof"
-import Pricing from "@/components/Pricing"
 import Faq from "@/components/Faq"
 import Footer from "@/components/Footer"
 
@@ -11,9 +11,9 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <Features />
+      <HomeWindows />
+      <FeaturedOffers />
       <SocialProof />
-      <Pricing />
       <Faq />
       <Footer />
     </main>
