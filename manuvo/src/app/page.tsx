@@ -2,21 +2,12 @@
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { LogoMark } from "@/components/LogoMark";
 import { CATEGORIES, LOCALES, type Locale } from "@/lib/constants";
 import { CATEGORY_ICON } from "@/lib/category-icons";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 
 const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
-
-function LogoMark({ className = "" }: { className?: string }) {
-  return (
-    <span
-      className={`grid place-items-center rounded-xl bg-red-700 font-display font-extrabold text-white ${className}`}
-    >
-      M
-    </span>
-  );
-}
 
 export default async function Home() {
   const t = await getTranslations("home");
@@ -32,7 +23,7 @@ export default async function Home() {
       {/* Header */}
       <header className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
         <span className="flex items-center gap-2.5">
-          <LogoMark className="h-9 w-9 text-lg" />
+          <LogoMark className="h-9 w-9" />
           <span className="font-display text-2xl font-extrabold tracking-tight">Manuvo</span>
         </span>
         <div className="flex items-center gap-3">
@@ -191,7 +182,7 @@ export default async function Home() {
       <footer className="mx-auto max-w-6xl px-5 py-10">
         <div className="flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-8 sm:flex-row">
           <span className="flex items-center gap-2.5">
-            <LogoMark className="h-8 w-8 text-base" />
+            <LogoMark className="h-8 w-8" />
             <span className="font-display text-lg font-extrabold tracking-tight">Manuvo</span>
           </span>
           <p className="text-sm text-neutral-500">{tl("footer")}</p>

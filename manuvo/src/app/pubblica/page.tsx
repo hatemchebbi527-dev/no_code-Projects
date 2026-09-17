@@ -5,6 +5,7 @@ import { CATEGORIES, COUNTRIES, URGENCIES } from "@/lib/constants";
 import { countryName } from "@/lib/catalog";
 import { LeadForm } from "./LeadForm";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { LogoMark } from "@/components/LogoMark";
 
 export const metadata = {
   title: "Manuvo",
@@ -26,7 +27,7 @@ export default async function PubblicaPage() {
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-2xl items-center justify-between gap-3 px-5 py-3">
           <Link href="/" className="flex items-center gap-2 font-extrabold tracking-tight">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-red-700 text-white">M</span>
+            <LogoMark className="h-8 w-8" />
             Manuvo
           </Link>
           <div className="flex items-center gap-3">

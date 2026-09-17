@@ -8,6 +8,7 @@ import { getUnreadCount } from "@/lib/notifications";
 import { logout } from "../(auth)/actions";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NotificationBell } from "@/components/NotificationBell";
+import { LogoMark } from "@/components/LogoMark";
 import { HeaderNav } from "./HeaderNav";
 
 export default async function DashboardLayout({
@@ -29,7 +30,7 @@ export default async function DashboardLayout({
       <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white/85 backdrop-blur">
         <div className="mx-auto flex max-w-4xl items-center gap-3 px-5 py-3">
           <Link href="/dashboard" className="me-auto flex items-center gap-2 font-extrabold tracking-tight">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-red-700 text-white">M</span>
+            <LogoMark className="h-8 w-8" />
             Manuvo
           </Link>
 

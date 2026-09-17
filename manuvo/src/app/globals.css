@@ -18,17 +18,17 @@
    accenti, focus) diventa corallo. I toni scuri (700-900) restano abbastanza
    profondi da garantire il contrasto del testo su fondo chiaro. */
 @theme {
-  --color-red-50:  #FFF3F1;
-  --color-red-100: #FFE3DF;
-  --color-red-200: #FEC7C0;
-  --color-red-300: #FBA096;
-  --color-red-400: #F87668;
-  --color-red-500: #F5564E; /* corallo di marca (logo) */
-  --color-red-600: #EA4137; /* accenti pieni */
-  --color-red-700: #CE342B; /* pulsanti / testo: contrasto AA su bianco */
-  --color-red-800: #A82A23; /* hover */
-  --color-red-900: #8A241F;
-  --color-red-950: #4E110E;
+  --color-red-50:  #FFF1F1;
+  --color-red-100: #FFE1E1;
+  --color-red-200: #FFC8C8;
+  --color-red-300: #FF9E9F;
+  --color-red-400: #FF7576;
+  --color-red-500: #FF5758; /* corallo di marca (logo, esatto) */
+  --color-red-600: #ED3E40; /* accenti pieni */
+  --color-red-700: #CC2E31; /* pulsanti / testo: contrasto AA su bianco */
+  --color-red-800: #A5262A; /* hover */
+  --color-red-900: #881F23;
+  --color-red-950: #4C0E11;
 }
 
 html {
