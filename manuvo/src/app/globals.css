@@ -20,15 +20,15 @@
 @theme {
   --color-red-50:  #FFF1F1;
   --color-red-100: #FFE1E1;
-  --color-red-200: #FFC8C8;
-  --color-red-300: #FF9E9F;
-  --color-red-400: #FF7576;
-  --color-red-500: #FF5758; /* corallo di marca (logo, esatto) */
-  --color-red-600: #ED3E40; /* accenti pieni */
-  --color-red-700: #CC2E31; /* pulsanti / testo: contrasto AA su bianco */
-  --color-red-800: #A5262A; /* hover */
-  --color-red-900: #881F23;
-  --color-red-950: #4C0E11;
+  --color-red-200: #FFC9C9;
+  --color-red-300: #FFA0A1;
+  --color-red-400: #FF7B7C;
+  --color-red-500: #FF6B6B;
+  --color-red-600: #FF5F60;
+  --color-red-700: #FF5758; /* corallo di marca (logo, esatto) : pulsanti, link, accenti */
+  --color-red-800: #EE4749; /* hover */
+  --color-red-900: #C6383A;
+  --color-red-950: #6E1618;
 }
 
 html {
