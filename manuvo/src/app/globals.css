@@ -13,6 +13,24 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Manuvo - palette di marca: la scala "red" di Tailwind e rimappata sul corallo
+   del logo (H esagonale). Cambiando qui, tutta l'interfaccia (pulsanti, link,
+   accenti, focus) diventa corallo. I toni scuri (700-900) restano abbastanza
+   profondi da garantire il contrasto del testo su fondo chiaro. */
+@theme {
+  --color-red-50:  #FFF1F1;
+  --color-red-100: #FFE1E1;
+  --color-red-200: #FFC8C8;
+  --color-red-300: #FF9E9F;
+  --color-red-400: #FF7576;
+  --color-red-500: #FF5758; /* corallo di marca (logo, esatto) */
+  --color-red-600: #ED3E40; /* accenti pieni */
+  --color-red-700: #CC2E31; /* pulsanti / testo: contrasto AA su bianco */
+  --color-red-800: #A5262A; /* hover */
+  --color-red-900: #881F23;
+  --color-red-950: #4C0E11;
+}
+
 html {
   color-scheme: light;
 }
