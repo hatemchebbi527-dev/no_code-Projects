@@ -7,7 +7,7 @@ import { getUnreadCount } from "@/lib/notifications";
 import { logout } from "../(auth)/actions";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NotificationBell } from "@/components/NotificationBell";
-import { LogoMark } from "@/components/LogoMark";
+import { LogoWordmark } from "@/components/LogoWordmark";
 import { AdminNav } from "./AdminNav";
 
 export default async function AdminLayout({
@@ -27,8 +27,8 @@ export default async function AdminLayout({
       <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center gap-3 px-5 py-3">
           <Link href="/admin" className="me-auto flex items-center gap-2 font-extrabold tracking-tight">
-            <LogoMark className="h-8 w-8" />
-            Manuvo <span className="text-sm font-medium text-neutral-400">{tn("admin")}</span>
+            <LogoWordmark className="h-7 w-auto" />
+            <span className="text-sm font-medium text-neutral-400">{tn("admin")}</span>
           </Link>
           <NotificationBell initialCount={unread} href="/admin/notifiche" label={tn("notifiche")} />
           <LanguageSwitcher />

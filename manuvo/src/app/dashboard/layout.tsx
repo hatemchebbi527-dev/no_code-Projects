@@ -8,7 +8,7 @@ import { getUnreadCount } from "@/lib/notifications";
 import { logout } from "../(auth)/actions";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NotificationBell } from "@/components/NotificationBell";
-import { LogoMark } from "@/components/LogoMark";
+import { LogoWordmark } from "@/components/LogoWordmark";
 import { HeaderNav } from "./HeaderNav";
 
 export default async function DashboardLayout({
@@ -29,9 +29,8 @@ export default async function DashboardLayout({
     <div className="min-h-screen bg-[#FAF8F4] text-neutral-900">
       <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white/85 backdrop-blur">
         <div className="mx-auto flex max-w-4xl items-center gap-3 px-5 py-3">
-          <Link href="/dashboard" className="me-auto flex items-center gap-2 font-extrabold tracking-tight">
-            <LogoMark className="h-8 w-8" />
-            Manuvo
+          <Link href="/dashboard" className="me-auto flex items-center">
+            <LogoWordmark className="h-7 w-auto" />
           </Link>
 
           <HeaderNav credits={credits} bachecaLabel={tn("bacheca")} creditiLabel={tn("crediti")} />

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { LogoMark } from "@/components/LogoMark";
+import { LogoWordmark } from "@/components/LogoWordmark";
 import { CATEGORIES, LOCALES, type Locale } from "@/lib/constants";
 import { CATEGORY_ICON } from "@/lib/category-icons";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
@@ -22,9 +22,8 @@ export default async function Home() {
     <div className="min-h-screen bg-[#FAF8F4] text-[#1b1e24]">
       {/* Header */}
       <header className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <span className="flex items-center gap-2.5">
-          <LogoMark className="h-9 w-9" />
-          <span className="font-display text-2xl font-extrabold tracking-tight">Manuvo</span>
+        <span className="flex items-center">
+          <LogoWordmark className="h-9 w-auto" />
         </span>
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
@@ -181,9 +180,8 @@ export default async function Home() {
       {/* Footer */}
       <footer className="mx-auto max-w-6xl px-5 py-10">
         <div className="flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-8 sm:flex-row">
-          <span className="flex items-center gap-2.5">
-            <LogoMark className="h-8 w-8" />
-            <span className="font-display text-lg font-extrabold tracking-tight">Manuvo</span>
+          <span className="flex items-center">
+            <LogoWordmark className="h-7 w-auto" />
           </span>
           <p className="text-sm text-neutral-500">{tl("footer")}</p>
           <Link href="/login" className="text-sm font-semibold text-red-700 hover:underline">

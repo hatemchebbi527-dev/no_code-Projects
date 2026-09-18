@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { LogoMark } from "@/components/LogoMark";
 
 type BIPEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: string }> };
 
@@ -92,9 +93,7 @@ export function InstallBanner() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 px-3 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2">
       <div className="mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-neutral-200 bg-white p-3 shadow-lg">
-        <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-red-700 text-lg font-extrabold text-white">
-          M
-        </span>
+        <LogoMark className="h-10 w-10 flex-none" />
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold leading-tight">{t("title")}</p>
           <p className="mt-0.5 text-xs text-neutral-500">

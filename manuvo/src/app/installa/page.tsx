@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { LogoMark } from "@/components/LogoMark";
+import { LogoWordmark } from "@/components/LogoWordmark";
 import { InstallGuide } from "./InstallGuide";
 
 export const metadata = { title: "Manuvo" };
@@ -14,9 +14,8 @@ export default async function InstallaPage() {
     <div className="min-h-screen bg-[#FAF8F4]">
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-2xl items-center justify-between gap-3 px-5 py-3">
-          <Link href="/" className="flex items-center gap-2 font-extrabold tracking-tight">
-            <LogoMark className="h-8 w-8" />
-            Manuvo
+          <Link href="/" className="flex items-center">
+            <LogoWordmark className="h-7 w-auto" />
           </Link>
           <LanguageSwitcher />
         </div>
