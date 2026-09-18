@@ -59,9 +59,9 @@ Analyse du concurrent italien ProntoPro (modèle très proche : demande gratuite
 
 **Priorité haute (confiance + différenciation) :**
 
-- [ ] **Anti-faux-leads** (attaque le point faible de ProntoPro)
-  - Vérification du numéro du particulier par **code SMS** avant publication de la demande
-  - **Remboursement des crédits** à l'artisan si le contact est injoignable / faux
+- [~] **Anti-faux-leads** (attaque le point faible de ProntoPro) — _en cours_
+  - [x] Vérification du numéro du particulier par **code SMS** avant publication (PR #59). Reste à **brancher Twilio** en prod : voir `docs/TWILIO.md`. Sans les clés Twilio, le flux tourne en mode dev (code affiché à l'écran) et ne bloque pas encore les faux.
+  - [ ] **Remboursement des crédits** à l'artisan si le contact est injoignable / faux
   - Argument marketing fort : « Chez Manuvo, tu ne paies jamais pour un faux contact »
 
 - [ ] **Système d'avis / notation vérifié**
