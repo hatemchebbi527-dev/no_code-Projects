@@ -53,6 +53,40 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ---
 
+## 4. Inspiration concurrentielle (ProntoPro)
+
+Analyse du concurrent italien ProntoPro (modèle très proche : demande gratuite côté client, artisans qui paient des crédits pour contacter). Idées à évaluer, priorisées. Point faible connu de ProntoPro (récurrent dans les avis) : **demandes fausses ou fantômes** — c'est le principal axe de différenciation pour Manuvo.
+
+**Priorité haute (confiance + différenciation) :**
+
+- [ ] **Anti-faux-leads** (attaque le point faible de ProntoPro)
+  - Vérification du numéro du particulier par **code SMS** avant publication de la demande
+  - **Remboursement des crédits** à l'artisan si le contact est injoignable / faux
+  - Argument marketing fort : « Chez Manuvo, tu ne paies jamais pour un faux contact »
+
+- [ ] **Système d'avis / notation vérifié**
+  - Un avis n'est possible qu'après un déblocage réel (interaction sur la plateforme), comme ProntoPro
+  - Moteur de confiance principal du concurrent ; Manuvo n'en a aucun aujourd'hui
+
+- [ ] **Profil artisan public + badge « P.IVA vérifiée »**
+  - Page publique (métiers, zone, avis, badge de vérification)
+  - Manuvo valide déjà la P.IVA à l'inscription : il reste à l'exposer
+
+**Priorité moyenne :**
+
+- [ ] **Chat intégré particulier ↔ artisan** (rejoint la messagerie du point 3)
+- [ ] **Fiabilité du particulier** : marquer les clients « fantômes » (demandes jamais converties) pour protéger les artisans et affiner l'anti-abus
+- [ ] **« 3 artisans max » comme argument de vente** : ProntoPro va jusqu'à 5 pros par demande, Manuvo plafonne à 3. À mettre en avant explicitement (moins de concurrence par lead)
+
+**Priorité basse :**
+
+- [ ] **Devis en ligne optionnel** : l'artisan propose un prix, le particulier compare
+- [ ] **Paliers de recharge avec crédits offerts** (Manuvo a déjà les crédits de bienvenue)
+
+> Note : ProntoPro n'a pas pu être scrapé (réseau sortant du sandbox verrouillé, et le scraping d'un concurrent pose un problème de CGU). Analyse basée sur des sources publiques (site officiel, guides tiers, avis Trustpilot).
+
+---
+
 ## Hors périmètre Manuvo (monorepo)
 
 - [ ] **Build cassé : `agence-ia/automaia-app`** (projet Vercel `no-code-projects-fibm`)
