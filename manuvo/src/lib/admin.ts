@@ -23,7 +23,19 @@ export async function getAdminStats() {
 }
 
 export async function getAllLeads() {
-  return prisma.lead.findMany({ orderBy: { createdAt: "desc" } });
+  return prisma.lead.findMany({
+    orderBy: { createdAt: "desc" },
+    // Artisans ayant debloque chaque demande = qui traite quoi (tracabilite).
+    include: {
+      unlocks: {
+        orderBy: { createdAt: "asc" },
+        select: {
+          createdAt: true,
+          user: { select: { matricule: true, name: true, phone: true } },
+        },
+      },
+    },
+  });
 }
 
 // Ebauches non finalisees : identite (et coordonnees) captees sur /pubblica

@@ -2,6 +2,7 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { getAdminStats, getAllLeads } from "@/lib/admin";
 import { countryName } from "@/lib/catalog";
+import { formatMatricule } from "@/lib/constants";
 import { CostStepper } from "./CostStepper";
 
 export const metadata = { title: "Manuvo" };
@@ -25,7 +26,7 @@ export default async function AdminPage() {
       </div>
 
       <div className="mt-8 overflow-x-auto rounded-2xl border border-neutral-200 bg-white shadow-sm">
-        <table className="w-full min-w-[720px] border-collapse text-sm">
+        <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-neutral-200 text-start text-xs uppercase tracking-wide text-neutral-400">
               <th className="px-4 py-3 text-start font-semibold">{t("th_category")}</th>
@@ -34,6 +35,7 @@ export default async function AdminPage() {
               <th className="px-4 py-3 text-start font-semibold">{t("th_unlocks")}</th>
               <th className="px-4 py-3 text-start font-semibold">{t("th_cost")}</th>
               <th className="px-4 py-3 text-start font-semibold">{t("th_status")}</th>
+              <th className="px-4 py-3 text-start font-semibold">{t("th_handled_by")}</th>
             </tr>
           </thead>
           <tbody>
@@ -61,6 +63,31 @@ export default async function AdminPage() {
                     <span className="rounded-md bg-green-50 px-2 py-1 text-xs font-semibold text-green-700">{t("active")}</span>
                   ) : (
                     <span className="rounded-md bg-neutral-100 px-2 py-1 text-xs font-semibold text-neutral-500">{t("closed")}</span>
+                  )}
+                </td>
+                <td className="px-4 py-3 align-top">
+                  {lead.unlocks.length === 0 ? (
+                    <span className="text-neutral-300">—</span>
+                  ) : (
+                    <ul className="flex flex-col gap-1.5">
+                      {lead.unlocks.map((u, i) => (
+                        <li key={i} className="whitespace-nowrap text-xs">
+                          <span className="font-mono font-semibold text-red-800">
+                            {formatMatricule(u.user.matricule)}
+                          </span>{" "}
+                          <span className="text-neutral-700">{u.user.name}</span>
+                          {u.user.phone && (
+                            <>
+                              {" · "}
+                              <a href={`tel:${u.user.phone}`} className="text-red-700 hover:underline">
+                                {u.user.phone}
+                              </a>
+                            </>
+                          )}
+                          <span className="text-neutral-400"> · {u.createdAt.toISOString().slice(0, 10)}</span>
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </td>
               </tr>

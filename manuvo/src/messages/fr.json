@@ -231,6 +231,7 @@
     "th_unlocks": "Déblocages",
     "th_cost": "Coût (crédits)",
     "th_status": "Statut",
+    "th_handled_by": "Traité par",
     "active": "Actif",
     "closed": "Fermé",
     "nav_requests": "Demandes",

@@ -231,6 +231,7 @@
     "th_unlocks": "مرات الفتح",
     "th_cost": "التكلفة (نقاط)",
     "th_status": "الحالة",
+    "th_handled_by": "يعالجها",
     "active": "نشط",
     "closed": "مغلق",
     "nav_requests": "الطلبات",

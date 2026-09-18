@@ -231,6 +231,7 @@
     "th_unlocks": "Unlocks",
     "th_cost": "Cost (credits)",
     "th_status": "Status",
+    "th_handled_by": "Handled by",
     "active": "Active",
     "closed": "Closed",
     "nav_requests": "Requests",
