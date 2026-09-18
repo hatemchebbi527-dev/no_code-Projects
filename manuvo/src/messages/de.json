@@ -182,6 +182,7 @@
     "lastName": "Nachname",
     "lastName_ph": "Rossi",
     "greeting": "Freut mich, {name}! Sagen Sie uns, was Sie brauchen.",
+    "privacy_hint": "Wir speichern diese Angaben, um Sie zu kontaktieren, gemäß unserer <privacy>Datenschutzerklärung</privacy>.",
     "title": "Brauchen Sie eine Arbeit zu Hause?",
     "subtitle": "Beschreiben Sie, was Sie brauchen. Kostenlos und ohne Konto. Handwerker aus Ihrer Region melden sich.",
     "header_artisan": "Sind Sie Handwerker?",
@@ -246,7 +247,12 @@
     "th_joined": "Registriert am",
     "export_csv": "CSV exportieren",
     "empty_artisans": "Keine Handwerker registriert.",
-    "th_piva": "USt-IdNr."
+    "th_piva": "USt-IdNr.",
+    "nav_bozze": "Entwürfe",
+    "bozze_title": "Nicht abgeschlossene Entwürfe",
+    "bozze_subtitle": "Auf /pubblica erfasste Kontakte ohne gesendete Anfrage. Nachzufassen.",
+    "empty_bozze": "Noch keine Entwürfe.",
+    "th_created": "Erstellt am"
   },
   "categories": {
     "idraulica": "Sanitär",

@@ -182,6 +182,7 @@
     "lastName": "Last name",
     "lastName_ph": "Rossi",
     "greeting": "Nice to meet you, {name}! Tell us what you need.",
+    "privacy_hint": "We save this information to get back to you, per our <privacy>privacy policy</privacy>.",
     "title": "Need a job done at home?",
     "subtitle": "Describe what you need. It's free and no account is required. Local artisans will contact you.",
     "header_artisan": "Are you an artisan?",
@@ -246,7 +247,12 @@
     "th_joined": "Joined",
     "export_csv": "Export CSV",
     "empty_artisans": "No artisans registered.",
-    "th_piva": "VAT no."
+    "th_piva": "VAT no.",
+    "nav_bozze": "Drafts",
+    "bozze_title": "Unfinished drafts",
+    "bozze_subtitle": "Contacts captured on /pubblica without a submitted request. To follow up.",
+    "empty_bozze": "No drafts yet.",
+    "th_created": "Created"
   },
   "categories": {
     "idraulica": "Plumbing",

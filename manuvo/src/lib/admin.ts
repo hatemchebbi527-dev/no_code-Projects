@@ -26,6 +26,25 @@ export async function getAllLeads() {
   return prisma.lead.findMany({ orderBy: { createdAt: "desc" } });
 }
 
+// Ebauches non finalisees : identite (et coordonnees) captees sur /pubblica
+// mais sans demande soumise. Contacts "perdus" a relancer par l'admin.
+export async function getLeadDrafts() {
+  return prisma.leadDraft.findMany({
+    where: { convertedAt: null },
+    orderBy: { createdAt: "desc" },
+    select: {
+      id: true,
+      firstName: true,
+      lastName: true,
+      phone: true,
+      email: true,
+      category: true,
+      city: true,
+      createdAt: true,
+    },
+  });
+}
+
 // Liste des artisans avec coordonnees (pour le suivi et le marketing de l'admin).
 export async function getArtisans() {
   return prisma.user.findMany({

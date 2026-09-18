@@ -182,6 +182,7 @@
     "lastName": "Cognome",
     "lastName_ph": "Rossi",
     "greeting": "Piacere, {name}! Dicci di cosa hai bisogno.",
+    "privacy_hint": "Salviamo questi dati per ricontattarti, secondo la nostra <privacy>informativa privacy</privacy>.",
     "title": "Hai bisogno di un lavoro in casa?",
     "subtitle": "Descrivi cosa ti serve. E gratis e non serve alcun account. Gli artigiani della tua zona ti contatteranno.",
     "header_artisan": "Sei un artigiano?",
@@ -246,7 +247,12 @@
     "th_joined": "Iscritto il",
     "export_csv": "Esporta CSV",
     "empty_artisans": "Nessun artigiano registrato.",
-    "th_piva": "P. IVA"
+    "th_piva": "P. IVA",
+    "nav_bozze": "Bozze",
+    "bozze_title": "Bozze non finalizzate",
+    "bozze_subtitle": "Contatti catturati su /pubblica ma senza richiesta inviata. Da ricontattare.",
+    "empty_bozze": "Nessuna bozza al momento.",
+    "th_created": "Creato il"
   },
   "categories": {
     "idraulica": "Idraulica",

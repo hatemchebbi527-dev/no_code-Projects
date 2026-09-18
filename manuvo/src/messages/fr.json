@@ -182,6 +182,7 @@
     "lastName": "Nom",
     "lastName_ph": "Rossi",
     "greeting": "Enchanté, {name} ! Dites-nous ce qu'il vous faut.",
+    "privacy_hint": "Nous enregistrons ces informations pour vous recontacter, selon notre <privacy>politique de confidentialité</privacy>.",
     "title": "Besoin d'un travail à la maison ?",
     "subtitle": "Décrivez ce qu'il vous faut. C'est gratuit et sans compte. Les artisans de votre région vous contacteront.",
     "header_artisan": "Vous êtes artisan ?",
@@ -246,7 +247,12 @@
     "th_joined": "Inscrit le",
     "export_csv": "Exporter CSV",
     "empty_artisans": "Aucun artisan inscrit.",
-    "th_piva": "N° TVA"
+    "th_piva": "N° TVA",
+    "nav_bozze": "Ébauches",
+    "bozze_title": "Ébauches non finalisées",
+    "bozze_subtitle": "Contacts captés sur /pubblica mais sans demande envoyée. À relancer.",
+    "empty_bozze": "Aucune ébauche pour le moment.",
+    "th_created": "Créé le"
   },
   "categories": {
     "idraulica": "Plomberie",

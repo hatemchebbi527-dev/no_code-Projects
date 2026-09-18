@@ -32,6 +32,7 @@ export async function createLead(
   const contactName = [firstName, lastName].filter(Boolean).join(" ");
   const contactPhone = String(formData.get("contactPhone") ?? "").trim();
   const contactEmail = String(formData.get("contactEmail") ?? "").trim();
+  const draftId = String(formData.get("draftId") ?? "").trim();
 
   if (!isCategory(category) || !(CATEGORIES as readonly string[]).includes(category)) {
     return { error: t("category") };
@@ -72,6 +73,18 @@ export async function createLead(
       maxUnlocks: MAX_UNLOCKS_PER_LEAD,
     },
   });
+
+  // L'ebauche a abouti a une vraie demande : on la marque convertie (best effort).
+  if (draftId) {
+    try {
+      await prisma.leadDraft.update({
+        where: { id: draftId },
+        data: { convertedAt: new Date() },
+      });
+    } catch {
+      // ebauche introuvable ou deja convertie : sans consequence
+    }
+  }
 
   // Notifie les artisans correspondants + les admins (best effort, ne bloque pas la publication).
   try {
