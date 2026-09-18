@@ -203,7 +203,15 @@
     "submitting": "Senden...",
     "success_title": "Anfrage gestellt!",
     "success_text": "Handwerker aus Ihrer Region sehen die Anfrage jetzt und können Sie kontaktieren. Ihre Daten bleiben privat, bis ein Profi sie freischaltet.",
-    "publish_another": "Weitere Anfrage stellen"
+    "publish_another": "Weitere Anfrage stellen",
+    "verify_cta": "Prüfen",
+    "resend_code": "Erneut senden",
+    "phone_verified": "Verifiziert",
+    "verify_sent_hint": "Wir haben dir einen Code per SMS gesendet. Gib ihn unten ein.",
+    "code_ph": "123456",
+    "confirm_code": "Bestätigen",
+    "verify_required_hint": "Verifiziere deine Nummer, um die Anfrage zu veröffentlichen.",
+    "dev_code_hint": "Dev-Modus, Code: {code}"
   },
   "leadErrors": {
     "category": "Wählen Sie eine gültige Kategorie.",
@@ -216,7 +224,8 @@
     "last_name": "Bitte Nachnamen angeben.",
     "phone": "Geben Sie eine Telefonnummer an.",
     "phone_invalid": "Ungültige Telefonnummer. Prüfen Sie Vorwahl und Land.",
-    "email": "Ungültige E-Mail-Adresse."
+    "email": "Ungültige E-Mail-Adresse.",
+    "phone_not_verified": "Bitte zuerst die Telefonnummer verifizieren."
   },
   "admin": {
     "title": "Anfragen verwalten",
@@ -340,5 +349,14 @@
     "cta_install": "Jetzt installieren",
     "installed": "Manuvo ist bereits auf deinem Gerät installiert. 🎉",
     "back": "Zurück zu Manuvo"
+  },
+  "verifyErrors": {
+    "invalid_phone": "Ungültige Telefonnummer.",
+    "rate_limited": "Zu viele Versuche. Versuche es in ein paar Minuten erneut.",
+    "sms_failed": "SMS-Versand fehlgeschlagen. Bitte erneut versuchen.",
+    "no_code": "Kein aktiver Code. Fordere einen neuen an.",
+    "code_expired": "Code abgelaufen. Fordere einen neuen an.",
+    "too_many_attempts": "Zu viele Versuche. Fordere einen neuen Code an.",
+    "code_invalid": "Falscher Code."
   }
 }

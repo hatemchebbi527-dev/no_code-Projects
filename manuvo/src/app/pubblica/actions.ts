@@ -14,6 +14,7 @@ import {
   type CountryCode,
 } from "@/lib/constants";
 import { validatePhone } from "@/lib/phone";
+import { isPhoneVerified } from "@/lib/phone-verification";
 
 export type LeadFormState = { error?: string; success?: boolean } | undefined;
 
@@ -53,6 +54,10 @@ export async function createLead(
   // Validazione severa del telefono (evita numeri inutilizzabili pagati in crediti).
   const phone = validatePhone(contactPhone, country as CountryCode);
   if (!phone.ok) return { error: t("phone_invalid") };
+  // Anti-faux-leads : le numero doit avoir ete verifie par code SMS.
+  if (!(await isPhoneVerified(contactPhone, country as CountryCode))) {
+    return { error: t("phone_not_verified") };
+  }
   if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) {
     return { error: t("email") };
   }

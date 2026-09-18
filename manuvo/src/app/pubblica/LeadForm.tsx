@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { createLead, type LeadFormState } from "./actions";
 import { saveLeadDraft } from "./draft-actions";
+import { requestPhoneCode, confirmPhoneCode } from "./verify-actions";
 
 type Opt = { value: string; label: string };
 
@@ -25,10 +26,71 @@ export function LeadForm({
   const [draftId, setDraftId] = useState<string | null>(null);
   const draftIdRef = useRef<string | null>(null);
   const savingRef = useRef(false);
+  // Verifica del telefono via SMS (anti-faux-leads).
+  const [phone, setPhone] = useState("");
+  const [phoneVerified, setPhoneVerified] = useState(false);
+  const [codeSent, setCodeSent] = useState(false);
+  const [code, setCode] = useState("");
+  const [verifyBusy, setVerifyBusy] = useState(false);
+  const [verifyMsg, setVerifyMsg] = useState<string | null>(null);
+  const [devCode, setDevCode] = useState<string | null>(null);
   const [state, formAction, isPending] = useActionState<LeadFormState, FormData>(
     createLead,
     undefined,
   );
+
+  function countryFrom(form: HTMLFormElement | null): string {
+    if (!form) return "IT";
+    return String(new FormData(form).get("country") ?? "IT");
+  }
+
+  async function onSendCode(e: React.MouseEvent<HTMLButtonElement>) {
+    const country = countryFrom(e.currentTarget.form);
+    setVerifyBusy(true);
+    setVerifyMsg(null);
+    setDevCode(null);
+    try {
+      const res = await requestPhoneCode(phone, country);
+      if (res.error) {
+        setVerifyMsg(res.error);
+        return;
+      }
+      setCodeSent(true);
+      setDevCode(res.devCode ?? null);
+    } finally {
+      setVerifyBusy(false);
+    }
+  }
+
+  async function onConfirmCode(e: React.MouseEvent<HTMLButtonElement>) {
+    const country = countryFrom(e.currentTarget.form);
+    setVerifyBusy(true);
+    setVerifyMsg(null);
+    try {
+      const res = await confirmPhoneCode(phone, country, code);
+      if (res.error) {
+        setVerifyMsg(res.error);
+        return;
+      }
+      setPhoneVerified(true);
+      setCodeSent(false);
+      setDevCode(null);
+    } finally {
+      setVerifyBusy(false);
+    }
+  }
+
+  // Si le numéro change, toute vérification précédente est annulée.
+  function onPhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setPhone(e.target.value);
+    if (phoneVerified || codeSent) {
+      setPhoneVerified(false);
+      setCodeSent(false);
+      setCode("");
+      setVerifyMsg(null);
+      setDevCode(null);
+    }
+  }
 
   // Sauvegarde progressive de l'ebauche au fil de la saisie (au blur des champs).
   async function persistDraft(form: HTMLFormElement | null) {
@@ -175,9 +237,10 @@ export function LeadForm({
 
       <hr className="my-1 border-neutral-200" />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">{t("phone")} {req}</span>
+      {/* Telefono con verifica via SMS (anti-faux-leads). */}
+      <div className="flex flex-col gap-2">
+        <span className="text-sm font-medium">{t("phone")} {req}</span>
+        <div className="flex gap-2">
           <input
             name="contactPhone"
             type="tel"
@@ -185,16 +248,69 @@ export function LeadForm({
             autoComplete="tel"
             required
             placeholder="+39 ..."
-            className={input}
+            className={`${input} flex-1`}
+            value={phone}
+            onChange={onPhoneChange}
             onBlur={onFieldBlur}
+            readOnly={phoneVerified}
           />
-        </label>
-        <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">{t("email_opt")}</span>
-          <input name="contactEmail" type="email" autoComplete="email" placeholder="you@email.com" className={input} onBlur={onFieldBlur} />
-        </label>
+          {phoneVerified ? (
+            <span className="inline-flex flex-none items-center gap-1.5 rounded-lg bg-green-50 px-3 text-sm font-semibold text-green-700">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              {t("phone_verified")}
+            </span>
+          ) : (
+            <button
+              type="button"
+              onClick={onSendCode}
+              disabled={verifyBusy || phone.trim().length < 6}
+              className="flex-none rounded-lg border border-red-300 bg-white px-3 py-2.5 text-sm font-semibold text-red-700 transition hover:bg-red-50 disabled:opacity-50"
+            >
+              {codeSent ? t("resend_code") : t("verify_cta")}
+            </button>
+          )}
+        </div>
+
+        {codeSent && !phoneVerified && (
+          <div className="flex flex-col gap-2 rounded-lg border border-neutral-200 bg-neutral-50 p-3">
+            <span className="text-xs text-neutral-600">{t("verify_sent_hint")}</span>
+            {devCode && (
+              <span className="text-xs font-semibold text-amber-700">{t("dev_code_hint", { code: devCode })}</span>
+            )}
+            <div className="flex gap-2">
+              <input
+                type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                maxLength={6}
+                placeholder={t("code_ph")}
+                className={`${input} flex-1 tracking-[0.3em]`}
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+              />
+              <button
+                type="button"
+                onClick={onConfirmCode}
+                disabled={verifyBusy || code.replace(/\D/g, "").length !== 6}
+                className="flex-none rounded-lg bg-red-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-800 disabled:opacity-50"
+              >
+                {t("confirm_code")}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {verifyMsg && <p className="text-sm text-red-700">{verifyMsg}</p>}
+        {!phoneVerified && (
+          <span className="text-xs text-neutral-400">{t("verify_required_hint")}</span>
+        )}
       </div>
-      <span className="-mt-2 text-xs text-neutral-400">{t("hint")}</span>
+
+      <label className="flex flex-col gap-1.5">
+        <span className="text-sm font-medium">{t("email_opt")}</span>
+        <input name="contactEmail" type="email" autoComplete="email" placeholder="you@email.com" className={input} onBlur={onFieldBlur} />
+        <span className="text-xs text-neutral-400">{t("hint")}</span>
+      </label>
 
       {state?.error && (
         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>
@@ -202,7 +318,7 @@ export function LeadForm({
 
       <button
         type="submit"
-        disabled={isPending}
+        disabled={isPending || !phoneVerified}
         className="mt-1 rounded-lg bg-red-700 px-4 py-3 font-semibold text-white transition hover:bg-red-800 disabled:opacity-60"
       >
         {isPending ? t("submitting") : t("submit")}
