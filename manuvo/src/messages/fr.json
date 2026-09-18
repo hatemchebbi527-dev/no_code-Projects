@@ -203,7 +203,15 @@
     "submitting": "Envoi...",
     "success_title": "Demande publiée !",
     "success_text": "Les artisans de votre région peuvent maintenant voir la demande et vous contacter. Vos données restent privées jusqu'à ce qu'un professionnel les débloque.",
-    "publish_another": "Publier une autre demande"
+    "publish_another": "Publier une autre demande",
+    "verify_cta": "Vérifier",
+    "resend_code": "Renvoyer",
+    "phone_verified": "Vérifié",
+    "verify_sent_hint": "Nous t'avons envoyé un code par SMS. Saisis-le ci-dessous.",
+    "code_ph": "123456",
+    "confirm_code": "Confirmer",
+    "verify_required_hint": "Vérifie le numéro pour publier la demande.",
+    "dev_code_hint": "Mode dev, code : {code}"
   },
   "leadErrors": {
     "category": "Choisissez une catégorie valide.",
@@ -216,7 +224,8 @@
     "last_name": "Indiquez votre nom.",
     "phone": "Indiquez un numéro de téléphone.",
     "phone_invalid": "Numéro de téléphone non valide. Vérifiez l'indicatif et le pays.",
-    "email": "Adresse email non valide."
+    "email": "Adresse email non valide.",
+    "phone_not_verified": "Vérifie d'abord ton numéro de téléphone."
   },
   "admin": {
     "title": "Gestion des demandes",
@@ -340,5 +349,14 @@
     "cta_install": "Installer maintenant",
     "installed": "Manuvo est déjà installée sur votre appareil. 🎉",
     "back": "Retour à Manuvo"
+  },
+  "verifyErrors": {
+    "invalid_phone": "Numéro de téléphone invalide.",
+    "rate_limited": "Trop de tentatives. Réessaie dans quelques minutes.",
+    "sms_failed": "Échec de l'envoi du SMS. Réessaie.",
+    "no_code": "Aucun code actif. Demandes-en un nouveau.",
+    "code_expired": "Code expiré. Demandes-en un nouveau.",
+    "too_many_attempts": "Trop d'essais. Demande un nouveau code.",
+    "code_invalid": "Code incorrect."
   }
 }

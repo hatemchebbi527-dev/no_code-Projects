@@ -132,6 +132,21 @@ model LeadDraft {
   @@index([convertedAt])
 }
 
+// Verification du telephone du particulier par code SMS (anti-faux-leads).
+// Le code (6 chiffres) est stocke hashe ; une demande n'est publiable que si
+// un enregistrement verifie et recent existe pour ce numero.
+model PhoneVerification {
+  id         String    @id @default(cuid())
+  phone      String    // numero E.164
+  codeHash   String    // sha256 de "phone:code"
+  attempts   Int       @default(0)
+  verifiedAt DateTime? // date de verification reussie (null = pas encore verifie)
+  expiresAt  DateTime
+  createdAt  DateTime  @default(now())
+
+  @@index([phone])
+}
+
 // Deblocage : un artisan a paye pour voir le contact d'une demande.
 model Unlock {
   id           String   @id @default(cuid())

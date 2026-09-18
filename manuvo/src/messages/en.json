@@ -203,7 +203,15 @@
     "submitting": "Sending...",
     "success_title": "Request posted!",
     "success_text": "Local artisans can now see the request and contact you. Your details stay private until a professional unlocks them.",
-    "publish_another": "Post another request"
+    "publish_another": "Post another request",
+    "verify_cta": "Verify",
+    "resend_code": "Resend",
+    "phone_verified": "Verified",
+    "verify_sent_hint": "We sent you a code by SMS. Enter it below.",
+    "code_ph": "123456",
+    "confirm_code": "Confirm",
+    "verify_required_hint": "Verify your number to publish the request.",
+    "dev_code_hint": "Dev mode, code: {code}"
   },
   "leadErrors": {
     "category": "Choose a valid category.",
@@ -216,7 +224,8 @@
     "last_name": "Enter your last name.",
     "phone": "Enter a phone number.",
     "phone_invalid": "Invalid phone number. Check the prefix and country.",
-    "email": "Invalid email address."
+    "email": "Invalid email address.",
+    "phone_not_verified": "Verify your phone number first."
   },
   "admin": {
     "title": "Manage requests",
@@ -340,5 +349,14 @@
     "cta_install": "Install now",
     "installed": "Manuvo is already installed on your device. 🎉",
     "back": "Back to Manuvo"
+  },
+  "verifyErrors": {
+    "invalid_phone": "Invalid phone number.",
+    "rate_limited": "Too many attempts. Try again in a few minutes.",
+    "sms_failed": "Failed to send SMS. Please try again.",
+    "no_code": "No active code. Request a new one.",
+    "code_expired": "Code expired. Request a new one.",
+    "too_many_attempts": "Too many attempts. Request a new code.",
+    "code_invalid": "Incorrect code."
   }
 }
