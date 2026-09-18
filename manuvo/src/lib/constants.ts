@@ -97,3 +97,16 @@ export function isValidPiva(piva: string): boolean {
   }
   return sum % 10 === 0;
 }
+
+// ---- Telefono ----
+// Normalise un numero : garde un eventuel "+" en tete et les chiffres, enleve espaces/points/tirets/parentheses.
+export function normalizePhone(raw: string): string {
+  const trimmed = raw.trim();
+  const plus = trimmed.startsWith("+") ? "+" : "";
+  return plus + trimmed.replace(/[^\d]/g, "");
+}
+
+// Valide un numero de telephone : 8 a 15 chiffres (norme E.164), prefixe "+" optionnel.
+export function isValidPhone(phone: string): boolean {
+  return /^\+?\d{8,15}$/.test(phone);
+}

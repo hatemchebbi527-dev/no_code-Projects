@@ -74,6 +74,19 @@ export default function SignupPage() {
         </div>
 
         <label className="flex flex-col gap-1.5">
+          <span className="text-sm font-medium">{t("phone")}</span>
+          <input
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            className={input}
+            placeholder={t("phone_ph")}
+          />
+        </label>
+
+        <label className="flex flex-col gap-1.5">
           <span className="text-sm font-medium">{t("piva")}</span>
           <input
             name="piva"
