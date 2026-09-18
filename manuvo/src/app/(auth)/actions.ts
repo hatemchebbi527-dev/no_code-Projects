@@ -13,6 +13,8 @@ import {
   isCategory,
   isValidPiva,
   normalizePiva,
+  isValidPhone,
+  normalizePhone,
   WELCOME_CREDITS,
   type CountryCode,
 } from "@/lib/constants";
@@ -84,6 +86,7 @@ export async function registerArtisan(
     ? (countryRaw as CountryCode)
     : "IT";
   const piva = normalizePiva(String(formData.get("piva") ?? ""));
+  const phone = normalizePhone(String(formData.get("phone") ?? ""));
   // Metiers : liste de cases cochees, on ne garde que les codes valides et uniques.
   const categories = [...new Set(formData.getAll("categories").map(String))].filter(isCategory);
 
@@ -95,6 +98,12 @@ export async function registerArtisan(
   }
   if (categories.length === 0) {
     return { error: t("no_category") };
+  }
+  if (!phone) {
+    return { error: t("phone_required") };
+  }
+  if (!isValidPhone(phone)) {
+    return { error: t("phone_invalid") };
   }
   if (!piva) {
     return { error: t("piva_required") };
@@ -129,6 +138,7 @@ export async function registerArtisan(
         role: "ARTIGIANO",
         name,
         piva,
+        phone,
         city: city || null,
         country,
         categories: categories.join(","),

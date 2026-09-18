@@ -10,6 +10,7 @@
   "nav": {
     "bacheca": "Bacheca",
     "crediti": "Crediti",
+    "profilo": "Profilo",
     "admin": "Admin",
     "notifiche": "Notifiche"
   },
@@ -73,6 +74,8 @@
     "email": "Email",
     "country": "Paese",
     "city": "Citta",
+    "phone": "Telefono",
+    "phone_ph": "+39 333 123 4567",
     "categories_label": "I tuoi mestieri",
     "categories_hint": "Seleziona uno o piu mestieri che offri.",
     "password": "Password",
@@ -95,9 +98,11 @@
     "password_mismatch": "Le password non coincidono.",
     "email_exists": "Esiste gia un account con questa email.",
     "no_category": "Seleziona almeno un mestiere.",
+    "phone_required": "Il telefono e obbligatorio.",
+    "phone_invalid": "Numero di telefono non valido.",
     "created_login_failed": "Account creato ma login fallito. Prova ad accedere.",
     "piva_required": "Inserisci la tua Partita IVA.",
-    "piva_invalid": "Partita IVA non valida (11 cifre).",
+    "piva_invalid": "Partita IVA non valida. Controlla le 11 cifre.",
     "piva_exists": "Questa Partita IVA è già registrata."
   },
   "dashboard": {
@@ -115,6 +120,15 @@
     "time_min": "{n} min fa",
     "time_hour": "{n} h fa",
     "time_day": "{n} g fa"
+  },
+  "profilo": {
+    "title": "Il mio profilo",
+    "subtitle": "Aggiorna i tuoi dati di contatto e i mestieri.",
+    "email_locked": "L'email di accesso non e modificabile.",
+    "piva_locked": "La Partita IVA non e modificabile.",
+    "save": "Salva modifiche",
+    "saving": "Salvataggio...",
+    "saved": "Profilo aggiornato."
   },
   "filters": {
     "scope_label": "Portata:",
