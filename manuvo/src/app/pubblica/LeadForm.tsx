@@ -1,10 +1,11 @@
 "use client";
 
 // Manuvo - form pubblico per pubblicare una richiesta.
-import { useActionState } from "react";
+import { useActionState, useRef, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { createLead, type LeadFormState } from "./actions";
+import { saveLeadDraft } from "./draft-actions";
 
 type Opt = { value: string; label: string };
 
@@ -18,10 +19,47 @@ export function LeadForm({
   urgencies: Opt[];
 }) {
   const t = useTranslations("pubblica");
+  // Prénom capté dès l'ouverture : sert à personnaliser l'accueil ("Piacere, Mario!").
+  const [firstName, setFirstName] = useState("");
+  // Ebauche enregistrée avant l'envoi (best effort) : on retient son id pour la mettre à jour.
+  const [draftId, setDraftId] = useState<string | null>(null);
+  const draftIdRef = useRef<string | null>(null);
+  const savingRef = useRef(false);
   const [state, formAction, isPending] = useActionState<LeadFormState, FormData>(
     createLead,
     undefined,
   );
+
+  // Sauvegarde progressive de l'ebauche au fil de la saisie (au blur des champs).
+  async function persistDraft(form: HTMLFormElement | null) {
+    if (!form || savingRef.current) return;
+    const fd = new FormData(form);
+    const fn = String(fd.get("contactFirstName") ?? "").trim();
+    if (!fn) return; // rien à enregistrer tant qu'il n'y a pas de prénom
+    savingRef.current = true;
+    try {
+      const res = await saveLeadDraft({
+        draftId: draftIdRef.current ?? undefined,
+        firstName: fn,
+        lastName: String(fd.get("contactLastName") ?? ""),
+        phone: String(fd.get("contactPhone") ?? ""),
+        email: String(fd.get("contactEmail") ?? ""),
+        category: String(fd.get("category") ?? ""),
+        city: String(fd.get("city") ?? ""),
+        country: String(fd.get("country") ?? ""),
+      });
+      if (res?.id && draftIdRef.current !== res.id) {
+        draftIdRef.current = res.id;
+        setDraftId(res.id);
+      }
+    } finally {
+      savingRef.current = false;
+    }
+  }
+
+  function onFieldBlur(e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) {
+    void persistDraft(e.currentTarget.form);
+  }
 
   if (state?.success) {
     return (
@@ -49,9 +87,56 @@ export function LeadForm({
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
+      {/* id de l'ebauche enregistree avant l'envoi : permet de la marquer convertie a la soumission. */}
+      <input type="hidden" name="draftId" value={draftId ?? ""} />
+
+      {/* Identità : catturata appena si apre la pagina, in cima al modulo. */}
+      <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/60 p-4">
+        <span className="text-sm font-semibold text-neutral-800">{t("identity_title")}</span>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <label className="flex flex-col gap-1.5">
+            <span className="text-sm font-medium">{t("firstName")} {req}</span>
+            <input
+              name="contactFirstName"
+              required
+              autoFocus
+              autoComplete="given-name"
+              placeholder={t("firstName_ph")}
+              className={input}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              onBlur={onFieldBlur}
+            />
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-sm font-medium">{t("lastName")} {req}</span>
+            <input
+              name="contactLastName"
+              required
+              autoComplete="family-name"
+              placeholder={t("lastName_ph")}
+              className={input}
+              onBlur={onFieldBlur}
+            />
+          </label>
+        </div>
+        {firstName.trim() && (
+          <p className="text-sm font-medium text-red-800">
+            {t("greeting", { name: firstName.trim() })}
+          </p>
+        )}
+        <p className="text-xs text-neutral-400">
+          {t.rich("privacy_hint", {
+            privacy: (c) => (
+              <Link href="/legal/privacy" className="underline hover:text-red-700">{c}</Link>
+            ),
+          })}
+        </p>
+      </div>
+
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("need")} {req}</span>
-        <select name="category" required defaultValue="" className={input}>
+        <select name="category" required defaultValue="" className={input} onBlur={onFieldBlur}>
           <option value="" disabled>{t("choose")}</option>
           {categories.map((c) => (
             <option key={c.value} value={c.value}>{c.label}</option>
@@ -75,7 +160,7 @@ export function LeadForm({
         </label>
         <label className="flex flex-col gap-1.5">
           <span className="text-sm font-medium">{t("city")} {req}</span>
-          <input name="city" required placeholder={t("city_ph")} className={input} />
+          <input name="city" required placeholder={t("city_ph")} className={input} onBlur={onFieldBlur} />
         </label>
       </div>
 
@@ -92,10 +177,6 @@ export function LeadForm({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">{t("name")} {req}</span>
-          <input name="contactName" required placeholder={t("name_ph")} className={input} />
-        </label>
-        <label className="flex flex-col gap-1.5">
           <span className="text-sm font-medium">{t("phone")} {req}</span>
           <input
             name="contactPhone"
@@ -105,15 +186,15 @@ export function LeadForm({
             required
             placeholder="+39 ..."
             className={input}
+            onBlur={onFieldBlur}
           />
         </label>
+        <label className="flex flex-col gap-1.5">
+          <span className="text-sm font-medium">{t("email_opt")}</span>
+          <input name="contactEmail" type="email" autoComplete="email" placeholder="you@email.com" className={input} onBlur={onFieldBlur} />
+        </label>
       </div>
-
-      <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">{t("email_opt")}</span>
-        <input name="contactEmail" type="email" placeholder="you@email.com" className={input} />
-        <span className="text-xs text-neutral-400">{t("hint")}</span>
-      </label>
+      <span className="-mt-2 text-xs text-neutral-400">{t("hint")}</span>
 
       {state?.error && (
         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>

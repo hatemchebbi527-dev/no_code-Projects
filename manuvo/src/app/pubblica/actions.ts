@@ -27,9 +27,12 @@ export async function createLead(
   const city = String(formData.get("city") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim();
   const urgency = String(formData.get("urgency") ?? "ASAP");
-  const contactName = String(formData.get("contactName") ?? "").trim();
+  const firstName = String(formData.get("contactFirstName") ?? "").trim();
+  const lastName = String(formData.get("contactLastName") ?? "").trim();
+  const contactName = [firstName, lastName].filter(Boolean).join(" ");
   const contactPhone = String(formData.get("contactPhone") ?? "").trim();
   const contactEmail = String(formData.get("contactEmail") ?? "").trim();
+  const draftId = String(formData.get("draftId") ?? "").trim();
 
   if (!isCategory(category) || !(CATEGORIES as readonly string[]).includes(category)) {
     return { error: t("category") };
@@ -44,7 +47,8 @@ export async function createLead(
   if (!(URGENCIES as readonly string[]).includes(urgency)) {
     return { error: t("urgency") };
   }
-  if (!contactName) return { error: t("name") };
+  if (!firstName) return { error: t("first_name") };
+  if (!lastName) return { error: t("last_name") };
   if (!contactPhone) return { error: t("phone") };
   // Validazione severa del telefono (evita numeri inutilizzabili pagati in crediti).
   const phone = validatePhone(contactPhone, country as CountryCode);
@@ -69,6 +73,18 @@ export async function createLead(
       maxUnlocks: MAX_UNLOCKS_PER_LEAD,
     },
   });
+
+  // L'ebauche a abouti a une vraie demande : on la marque convertie (best effort).
+  if (draftId) {
+    try {
+      await prisma.leadDraft.update({
+        where: { id: draftId },
+        data: { convertedAt: new Date() },
+      });
+    } catch {
+      // ebauche introuvable ou deja convertie : sans consequence
+    }
+  }
 
   // Notifie les artisans correspondants + les admins (best effort, ne bloque pas la publication).
   try {

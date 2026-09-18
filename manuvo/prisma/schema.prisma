@@ -112,6 +112,26 @@ model Lead {
   @@index([country])
 }
 
+// Ebauche de demande : identite (et coordonnees) captees pendant que le
+// particulier remplit /pubblica, enregistrees avant la soumission finale.
+// Permet de ne pas perdre le contact si la demande n'est pas finalisee.
+// convertedAt est renseigne quand l'ebauche aboutit a une vraie demande (Lead).
+model LeadDraft {
+  id           String    @id @default(cuid())
+  firstName    String
+  lastName     String
+  phone        String?
+  email        String?
+  category     String?
+  city         String?
+  country      String?
+  convertedAt  DateTime? // date de conversion en Lead (null = ebauche non finalisee)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([convertedAt])
+}
+
 // Deblocage : un artisan a paye pour voir le contact d'une demande.
 model Unlock {
   id           String   @id @default(cuid())

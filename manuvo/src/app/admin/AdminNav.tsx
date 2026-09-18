@@ -10,6 +10,7 @@ export function AdminNav() {
   const tabs = [
     { href: "/admin", label: t("nav_requests") },
     { href: "/admin/artigiani", label: t("nav_artisans") },
+    { href: "/admin/bozze", label: t("nav_bozze") },
   ];
 
   return (
