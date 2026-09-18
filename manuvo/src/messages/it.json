@@ -10,6 +10,7 @@
   "nav": {
     "bacheca": "Bacheca",
     "crediti": "Crediti",
+    "profilo": "Profilo",
     "admin": "Admin",
     "notifiche": "Notifiche"
   },
@@ -119,6 +120,15 @@
     "time_min": "{n} min fa",
     "time_hour": "{n} h fa",
     "time_day": "{n} g fa"
+  },
+  "profilo": {
+    "title": "Il mio profilo",
+    "subtitle": "Aggiorna i tuoi dati di contatto e i mestieri.",
+    "email_locked": "L'email di accesso non e modificabile.",
+    "piva_locked": "La Partita IVA non e modificabile.",
+    "save": "Salva modifiche",
+    "saving": "Salvataggio...",
+    "saved": "Profilo aggiornato."
   },
   "filters": {
     "scope_label": "Portata:",

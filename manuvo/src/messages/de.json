@@ -10,6 +10,7 @@
   "nav": {
     "bacheca": "Anfragen",
     "crediti": "Credits",
+    "profilo": "Profil",
     "admin": "Admin",
     "notifiche": "Benachrichtigungen"
   },
@@ -119,6 +120,15 @@
     "time_min": "vor {n} Min.",
     "time_hour": "vor {n} Std.",
     "time_day": "vor {n} T."
+  },
+  "profilo": {
+    "title": "Mein Profil",
+    "subtitle": "Aktualisiere deine Kontaktdaten und Gewerke.",
+    "email_locked": "Die Login-E-Mail kann nicht geändert werden.",
+    "piva_locked": "Die USt-IdNr. kann nicht geändert werden.",
+    "save": "Änderungen speichern",
+    "saving": "Speichern...",
+    "saved": "Profil aktualisiert."
   },
   "filters": {
     "scope_label": "Bereich:",

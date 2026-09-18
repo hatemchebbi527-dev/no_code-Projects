@@ -8,14 +8,17 @@ export function HeaderNav({
   credits,
   bachecaLabel,
   creditiLabel,
+  profiloLabel,
 }: {
   credits: number;
   bachecaLabel: string;
   creditiLabel: string;
+  profiloLabel: string;
 }) {
   const pathname = usePathname();
   const onBacheca = pathname === "/dashboard";
   const onCrediti = pathname.startsWith("/dashboard/crediti");
+  const onProfilo = pathname.startsWith("/dashboard/profilo");
 
   const navBase = "rounded-lg px-3 py-1.5 text-sm font-medium transition";
   const navActive = "bg-red-50 text-red-700";
@@ -37,6 +40,13 @@ export function HeaderNav({
           className={`${navBase} ${onCrediti ? navActive : navIdle}`}
         >
           {creditiLabel}
+        </Link>
+        <Link
+          href="/dashboard/profilo"
+          aria-current={onProfilo ? "page" : undefined}
+          className={`${navBase} ${onProfilo ? navActive : navIdle}`}
+        >
+          {profiloLabel}
         </Link>
       </nav>
 

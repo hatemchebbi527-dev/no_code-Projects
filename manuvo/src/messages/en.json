@@ -10,6 +10,7 @@
   "nav": {
     "bacheca": "Board",
     "crediti": "Credits",
+    "profilo": "Profile",
     "admin": "Admin",
     "notifiche": "Notifications"
   },
@@ -119,6 +120,15 @@
     "time_min": "{n} min ago",
     "time_hour": "{n} h ago",
     "time_day": "{n} d ago"
+  },
+  "profilo": {
+    "title": "My profile",
+    "subtitle": "Update your contact details and trades.",
+    "email_locked": "Your login email cannot be changed.",
+    "piva_locked": "The VAT number cannot be changed.",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "saved": "Profile updated."
   },
   "filters": {
     "scope_label": "Scope:",

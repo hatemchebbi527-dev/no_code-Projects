@@ -33,7 +33,7 @@ export default async function DashboardLayout({
             <LogoWordmark className="h-7 w-auto" />
           </Link>
 
-          <HeaderNav credits={credits} bachecaLabel={tn("bacheca")} creditiLabel={tn("crediti")} />
+          <HeaderNav credits={credits} bachecaLabel={tn("bacheca")} creditiLabel={tn("crediti")} profiloLabel={tn("profilo")} />
 
           <NotificationBell initialCount={unread} href="/dashboard/notifiche" label={tn("notifiche")} />
 
