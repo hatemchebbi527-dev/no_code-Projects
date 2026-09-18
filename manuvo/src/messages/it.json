@@ -176,6 +176,12 @@
   },
   "pubblica": {
     "eyebrow": "Per i privati",
+    "identity_title": "Come ti chiami?",
+    "firstName": "Nome",
+    "firstName_ph": "Mario",
+    "lastName": "Cognome",
+    "lastName_ph": "Rossi",
+    "greeting": "Piacere, {name}! Dicci di cosa hai bisogno.",
     "title": "Hai bisogno di un lavoro in casa?",
     "subtitle": "Descrivi cosa ti serve. E gratis e non serve alcun account. Gli artigiani della tua zona ti contatteranno.",
     "header_artisan": "Sei un artigiano?",
@@ -205,6 +211,8 @@
     "description": "Descrivi il lavoro (almeno 10 caratteri).",
     "urgency": "Urgenza non valida.",
     "name": "Indica il tuo nome.",
+    "first_name": "Indica il tuo nome.",
+    "last_name": "Indica il tuo cognome.",
     "phone": "Indica un numero di telefono.",
     "phone_invalid": "Numero di telefono non valido. Controlla il prefisso e il paese.",
     "email": "Indirizzo email non valido."

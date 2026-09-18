@@ -176,6 +176,12 @@
   },
   "pubblica": {
     "eyebrow": "Pour les particuliers",
+    "identity_title": "Comment vous appelez-vous ?",
+    "firstName": "Prénom",
+    "firstName_ph": "Mario",
+    "lastName": "Nom",
+    "lastName_ph": "Rossi",
+    "greeting": "Enchanté, {name} ! Dites-nous ce qu'il vous faut.",
     "title": "Besoin d'un travail à la maison ?",
     "subtitle": "Décrivez ce qu'il vous faut. C'est gratuit et sans compte. Les artisans de votre région vous contacteront.",
     "header_artisan": "Vous êtes artisan ?",
@@ -205,6 +211,8 @@
     "description": "Décrivez le travail (au moins 10 caractères).",
     "urgency": "Urgence non valide.",
     "name": "Indiquez votre nom.",
+    "first_name": "Indiquez votre prénom.",
+    "last_name": "Indiquez votre nom.",
     "phone": "Indiquez un numéro de téléphone.",
     "phone_invalid": "Numéro de téléphone non valide. Vérifiez l'indicatif et le pays.",
     "email": "Adresse email non valide."

@@ -1,7 +1,7 @@
 "use client";
 
 // Manuvo - form pubblico per pubblicare una richiesta.
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { createLead, type LeadFormState } from "./actions";
@@ -18,6 +18,8 @@ export function LeadForm({
   urgencies: Opt[];
 }) {
   const t = useTranslations("pubblica");
+  // Prénom capté dès l'ouverture : sert à personnaliser l'accueil ("Piacere, Mario!").
+  const [firstName, setFirstName] = useState("");
   const [state, formAction, isPending] = useActionState<LeadFormState, FormData>(
     createLead,
     undefined,
@@ -49,6 +51,41 @@ export function LeadForm({
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
+      {/* Identità : catturata appena si apre la pagina, in cima al modulo. */}
+      <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/60 p-4">
+        <span className="text-sm font-semibold text-neutral-800">{t("identity_title")}</span>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <label className="flex flex-col gap-1.5">
+            <span className="text-sm font-medium">{t("firstName")} {req}</span>
+            <input
+              name="contactFirstName"
+              required
+              autoFocus
+              autoComplete="given-name"
+              placeholder={t("firstName_ph")}
+              className={input}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-sm font-medium">{t("lastName")} {req}</span>
+            <input
+              name="contactLastName"
+              required
+              autoComplete="family-name"
+              placeholder={t("lastName_ph")}
+              className={input}
+            />
+          </label>
+        </div>
+        {firstName.trim() && (
+          <p className="text-sm font-medium text-red-800">
+            {t("greeting", { name: firstName.trim() })}
+          </p>
+        )}
+      </div>
+
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("need")} {req}</span>
         <select name="category" required defaultValue="" className={input}>
@@ -92,10 +129,6 @@ export function LeadForm({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">{t("name")} {req}</span>
-          <input name="contactName" required placeholder={t("name_ph")} className={input} />
-        </label>
-        <label className="flex flex-col gap-1.5">
           <span className="text-sm font-medium">{t("phone")} {req}</span>
           <input
             name="contactPhone"
@@ -107,13 +140,12 @@ export function LeadForm({
             className={input}
           />
         </label>
+        <label className="flex flex-col gap-1.5">
+          <span className="text-sm font-medium">{t("email_opt")}</span>
+          <input name="contactEmail" type="email" autoComplete="email" placeholder="you@email.com" className={input} />
+        </label>
       </div>
-
-      <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">{t("email_opt")}</span>
-        <input name="contactEmail" type="email" placeholder="you@email.com" className={input} />
-        <span className="text-xs text-neutral-400">{t("hint")}</span>
-      </label>
+      <span className="-mt-2 text-xs text-neutral-400">{t("hint")}</span>
 
       {state?.error && (
         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>

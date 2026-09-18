@@ -176,6 +176,12 @@
   },
   "pubblica": {
     "eyebrow": "For homeowners",
+    "identity_title": "What's your name?",
+    "firstName": "First name",
+    "firstName_ph": "Mario",
+    "lastName": "Last name",
+    "lastName_ph": "Rossi",
+    "greeting": "Nice to meet you, {name}! Tell us what you need.",
     "title": "Need a job done at home?",
     "subtitle": "Describe what you need. It's free and no account is required. Local artisans will contact you.",
     "header_artisan": "Are you an artisan?",
@@ -205,6 +211,8 @@
     "description": "Describe the job (at least 10 characters).",
     "urgency": "Invalid urgency.",
     "name": "Enter your name.",
+    "first_name": "Enter your first name.",
+    "last_name": "Enter your last name.",
     "phone": "Enter a phone number.",
     "phone_invalid": "Invalid phone number. Check the prefix and country.",
     "email": "Invalid email address."
