@@ -48,6 +48,9 @@ export const CATEGORIES = [
   "dj",
   "autista",
   "sviluppo_web",
+  "fabbro",
+  "vetraio",
+  "tappezziere",
 ] as const;
 export type Category = (typeof CATEGORIES)[number];
 

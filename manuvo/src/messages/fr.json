@@ -296,7 +296,10 @@
     "videomaker": "Vidéaste",
     "dj": "DJ",
     "autista": "Chauffeur privé",
-    "sviluppo_web": "Développeur de sites web"
+    "sviluppo_web": "Développeur de sites web",
+    "fabbro": "Ferronnier",
+    "vetraio": "Vitrier",
+    "tappezziere": "Tapissier"
   },
   "landing": {
     "eyebrow": "La marketplace des artisans",

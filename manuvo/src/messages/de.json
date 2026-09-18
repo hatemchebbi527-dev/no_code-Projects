@@ -296,7 +296,10 @@
     "videomaker": "Videofilmer",
     "dj": "DJ",
     "autista": "Privatfahrer",
-    "sviluppo_web": "Webentwickler"
+    "sviluppo_web": "Webentwickler",
+    "fabbro": "Schlosser",
+    "vetraio": "Glaser",
+    "tappezziere": "Polsterer"
   },
   "landing": {
     "eyebrow": "Der Marktplatz der Handwerker",

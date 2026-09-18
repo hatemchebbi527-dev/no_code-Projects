@@ -62,4 +62,10 @@ export const CATEGORY_ICON: Record<Category, string> = {
     '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3v7M4.5 9 10 12M19.5 9 14 12M8 20l2-6M16 20l-2-6"/>',
   sviluppo_web:
     '<path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 7l-2 10"/>',
+  fabbro:
+    '<path d="M3 21V7l3-2 3 2 3-2 3 2 3-2 3 2v14M2 21h20M3 12h18M6 5v16M12 5v16M18 5v16"/>',
+  vetraio:
+    '<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 12h18M12 3v18M6 6l3 3"/>',
+  tappezziere:
+    '<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M2 13a2 2 0 0 1 2-2 2 2 0 0 1 2 2v1h12v-1a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4H2zM5 17v3M19 17v3"/>',
 };
