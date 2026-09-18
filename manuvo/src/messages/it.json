@@ -102,7 +102,7 @@
     "phone_invalid": "Numero di telefono non valido.",
     "created_login_failed": "Account creato ma login fallito. Prova ad accedere.",
     "piva_required": "Inserisci la tua Partita IVA.",
-    "piva_invalid": "Partita IVA non valida (11 cifre).",
+    "piva_invalid": "Partita IVA non valida. Controlla le 11 cifre.",
     "piva_exists": "Questa Partita IVA è già registrata."
   },
   "dashboard": {

@@ -102,7 +102,7 @@
     "phone_invalid": "Ungültige Telefonnummer.",
     "created_login_failed": "Konto erstellt, aber Anmeldung fehlgeschlagen. Bitte anmelden.",
     "piva_required": "Geben Sie Ihre USt-IdNr. (Partita IVA) ein.",
-    "piva_invalid": "Ungültige USt-IdNr. (11 Ziffern).",
+    "piva_invalid": "Ungültige USt-IdNr. (Partita IVA). Prüfen Sie die 11 Ziffern.",
     "piva_exists": "Diese USt-IdNr. ist bereits registriert."
   },
   "dashboard": {

@@ -102,7 +102,7 @@
     "phone_invalid": "Numéro de téléphone invalide.",
     "created_login_failed": "Compte créé mais connexion échouée. Veuillez vous connecter.",
     "piva_required": "Saisissez votre numéro de TVA (Partita IVA).",
-    "piva_invalid": "Numéro de TVA non valide (11 chiffres).",
+    "piva_invalid": "Numéro de TVA (Partita IVA) non valide. Vérifiez les 11 chiffres.",
     "piva_exists": "Ce numéro de TVA est déjà enregistré."
   },
   "dashboard": {

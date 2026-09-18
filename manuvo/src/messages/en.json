@@ -102,7 +102,7 @@
     "phone_invalid": "Invalid phone number.",
     "created_login_failed": "Account created but login failed. Please log in.",
     "piva_required": "Enter your VAT number (Partita IVA).",
-    "piva_invalid": "Invalid VAT number (11 digits).",
+    "piva_invalid": "Invalid VAT number (Partita IVA). Check the 11 digits.",
     "piva_exists": "This VAT number is already registered."
   },
   "dashboard": {
