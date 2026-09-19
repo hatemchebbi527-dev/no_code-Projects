@@ -421,5 +421,37 @@
     "window_expired": "Le délai pour demander un remboursement est dépassé.",
     "generic": "Erreur. Réessaie.",
     "reason_required": "Choisis un motif."
+  },
+  "review": {
+    "request_cta": "Demander un avis au client",
+    "resend_cta": "Renvoyer la demande d'avis",
+    "sent_hint": "Nous avons envoyé au client un SMS avec le lien pour te noter.",
+    "received": "Avis reçu :"
+  },
+  "reviewErrors": {
+    "session": "Session expirée. Reconnecte-toi.",
+    "invalid": "Demande invalide.",
+    "not_unlocked": "Tu ne peux demander un avis que pour un contact que tu as débloqué.",
+    "not_found": "Demande introuvable.",
+    "already_reviewed": "Le client a déjà laissé un avis.",
+    "rate_limited": "Tu as déjà envoyé la demande. Réessaie dans une minute.",
+    "sms_failed": "Échec de l'envoi du SMS. Réessaie."
+  },
+  "recensione": {
+    "title": "Comment ça s'est passé avec {name} ?",
+    "subtitle": "Ton avis aide les autres clients.",
+    "stars_label": "Note en étoiles",
+    "comment_ph": "Ajoute un commentaire (facultatif)",
+    "submit": "Envoyer l'avis",
+    "submitting": "Envoi...",
+    "thanks_title": "Merci !",
+    "thanks_text": "Ton avis a bien été enregistré.",
+    "invalid": "Lien invalide ou expiré.",
+    "already_title": "Avis déjà envoyé",
+    "already_text": "Merci, nous avons déjà reçu ton avis.",
+    "err_invalid_rating": "Choisis de 1 à 5 étoiles.",
+    "err_not_found": "Lien invalide.",
+    "err_already": "Avis déjà envoyé.",
+    "err_generic": "Erreur. Réessaie."
   }
 }

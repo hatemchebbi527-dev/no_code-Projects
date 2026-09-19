@@ -421,5 +421,37 @@
     "window_expired": "Il periodo per chiedere il rimborso e scaduto.",
     "generic": "Errore. Riprova.",
     "reason_required": "Scegli un motivo."
+  },
+  "review": {
+    "request_cta": "Chiedi una recensione al cliente",
+    "resend_cta": "Rinvia richiesta di recensione",
+    "sent_hint": "Abbiamo inviato al cliente un SMS con il link per recensirti.",
+    "received": "Recensione ricevuta:"
+  },
+  "reviewErrors": {
+    "session": "Sessione scaduta. Accedi di nuovo.",
+    "invalid": "Richiesta non valida.",
+    "not_unlocked": "Puoi chiedere una recensione solo per un contatto che hai sbloccato.",
+    "not_found": "Richiesta non trovata.",
+    "already_reviewed": "Il cliente ha gia lasciato una recensione.",
+    "rate_limited": "Hai gia inviato la richiesta. Riprova tra un minuto.",
+    "sms_failed": "Invio dell'SMS non riuscito. Riprova."
+  },
+  "recensione": {
+    "title": "Com'e andata con {name}?",
+    "subtitle": "La tua opinione aiuta altri clienti.",
+    "stars_label": "Valutazione in stelle",
+    "comment_ph": "Aggiungi un commento (facoltativo)",
+    "submit": "Invia recensione",
+    "submitting": "Invio...",
+    "thanks_title": "Grazie!",
+    "thanks_text": "La tua recensione e stata registrata.",
+    "invalid": "Link non valido o scaduto.",
+    "already_title": "Recensione gia inviata",
+    "already_text": "Grazie, abbiamo gia ricevuto la tua recensione.",
+    "err_invalid_rating": "Scegli da 1 a 5 stelle.",
+    "err_not_found": "Link non valido.",
+    "err_already": "Recensione gia inviata.",
+    "err_generic": "Errore. Riprova."
   }
 }
