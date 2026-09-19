@@ -160,7 +160,8 @@
     "purchase": "Credit top-up",
     "unlock": "Contact unlock",
     "empty": "No transactions yet.",
-    "welcome": "Welcome credits"
+    "welcome": "Welcome credits",
+    "refund": "Credit refund"
   },
   "unlockErrors": {
     "insufficient": "Not enough credits. Top up to unlock.",
@@ -262,7 +263,16 @@
     "bozze_title": "Unfinished drafts",
     "bozze_subtitle": "Contacts captured on /pubblica without a submitted request. To follow up.",
     "empty_bozze": "No drafts yet.",
-    "th_created": "Created"
+    "th_created": "Created",
+    "nav_rimborsi": "Refunds",
+    "rimborsi_title": "Refund requests",
+    "rimborsi_subtitle": "Reports of fake/unreachable contacts. Approve to credit back the credits.",
+    "empty_rimborsi": "No refund requests.",
+    "refund_approve": "Approve",
+    "refund_reject": "Decline",
+    "refund_action_error": "Action failed.",
+    "refund_credits": "credits",
+    "refund_contact": "Contact"
   },
   "categories": {
     "idraulica": "Plumbing",
@@ -382,5 +392,23 @@
     "code_expired": "Code expired. Request a new one.",
     "too_many_attempts": "Too many attempts. Request a new code.",
     "code_invalid": "Incorrect code."
+  },
+  "refund": {
+    "report_cta": "Report a fake or unreachable contact",
+    "report_title": "Why are you requesting a refund?",
+    "reason_ph": "E.g. wrong number, no answer, fake request...",
+    "report_submit": "Send report",
+    "cancel": "Cancel",
+    "badge_pending": "Refund under review",
+    "badge_approved": "Credits refunded",
+    "badge_rejected": "Refund declined"
+  },
+  "refundErrors": {
+    "session": "Session expired. Please log in again.",
+    "invalid": "Invalid request.",
+    "not_found": "Unlock not found.",
+    "already": "Refund already requested for this contact.",
+    "window_expired": "The refund request window has expired.",
+    "generic": "Error. Please try again."
   }
 }

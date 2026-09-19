@@ -155,12 +155,20 @@ model Unlock {
   creditsSpent Int
   createdAt    DateTime @default(now())
 
+  // Remboursement anti-faux-leads : l'artisan signale un contact faux/injoignable,
+  // l'admin valide et rembourse les credits depenses.
+  refundStatus      String    @default("NONE") // NONE | REQUESTED | APPROVED | REJECTED
+  refundReason      String?
+  refundRequestedAt DateTime?
+  refundedAt        DateTime?
+
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   lead         Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
 
   @@unique([userId, leadId]) // un artisan ne paie qu'une fois le meme lead
   @@index([leadId])
   @@index([userId])
+  @@index([refundStatus])
 }
 
 // Journal des mouvements de credits (achats et depenses).

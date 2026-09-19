@@ -160,7 +160,8 @@
     "purchase": "Credit-Aufladung",
     "unlock": "Kontakt-Freischaltung",
     "empty": "Noch keine Vorgänge.",
-    "welcome": "Willkommensguthaben"
+    "welcome": "Willkommensguthaben",
+    "refund": "Guthabenerstattung"
   },
   "unlockErrors": {
     "insufficient": "Nicht genug Credits. Laden Sie auf, um freizuschalten.",
@@ -262,7 +263,16 @@
     "bozze_title": "Nicht abgeschlossene Entwürfe",
     "bozze_subtitle": "Auf /pubblica erfasste Kontakte ohne gesendete Anfrage. Nachzufassen.",
     "empty_bozze": "Noch keine Entwürfe.",
-    "th_created": "Erstellt am"
+    "th_created": "Erstellt am",
+    "nav_rimborsi": "Rückerstattungen",
+    "rimborsi_title": "Rückerstattungsanträge",
+    "rimborsi_subtitle": "Meldungen falscher/nicht erreichbarer Kontakte. Genehmigen, um Guthaben zurückzubuchen.",
+    "empty_rimborsi": "Keine Rückerstattungsanträge.",
+    "refund_approve": "Genehmigen",
+    "refund_reject": "Ablehnen",
+    "refund_action_error": "Aktion fehlgeschlagen.",
+    "refund_credits": "Guthaben",
+    "refund_contact": "Kontakt"
   },
   "categories": {
     "idraulica": "Sanitär",
@@ -382,5 +392,23 @@
     "code_expired": "Code abgelaufen. Fordere einen neuen an.",
     "too_many_attempts": "Zu viele Versuche. Fordere einen neuen Code an.",
     "code_invalid": "Falscher Code."
+  },
+  "refund": {
+    "report_cta": "Falschen oder nicht erreichbaren Kontakt melden",
+    "report_title": "Warum beantragst du eine Rückerstattung?",
+    "reason_ph": "Z. B. falsche Nummer, keine Antwort, falsche Anfrage...",
+    "report_submit": "Meldung senden",
+    "cancel": "Abbrechen",
+    "badge_pending": "Rückerstattung in Prüfung",
+    "badge_approved": "Guthaben erstattet",
+    "badge_rejected": "Rückerstattung abgelehnt"
+  },
+  "refundErrors": {
+    "session": "Sitzung abgelaufen. Bitte erneut anmelden.",
+    "invalid": "Ungültige Anfrage.",
+    "not_found": "Freischaltung nicht gefunden.",
+    "already": "Rückerstattung für diesen Kontakt bereits beantragt.",
+    "window_expired": "Die Frist für die Rückerstattung ist abgelaufen.",
+    "generic": "Fehler. Bitte erneut versuchen."
   }
 }

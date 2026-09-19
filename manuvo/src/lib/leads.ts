@@ -55,6 +55,7 @@ export async function getUnlockedLeads(userId: string) {
   return unlocks.map((u) => ({
     unlockedAt: u.createdAt,
     creditsSpent: u.creditsSpent,
+    refundStatus: u.refundStatus,
     lead: u.lead,
   }));
 }

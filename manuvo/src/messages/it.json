@@ -160,7 +160,8 @@
     "purchase": "Ricarica crediti",
     "unlock": "Sblocco contatto",
     "empty": "Nessuna operazione ancora.",
-    "welcome": "Crediti di benvenuto"
+    "welcome": "Crediti di benvenuto",
+    "refund": "Rimborso crediti"
   },
   "unlockErrors": {
     "insufficient": "Crediti insufficienti. Ricarica per sbloccare.",
@@ -262,7 +263,16 @@
     "bozze_title": "Bozze non finalizzate",
     "bozze_subtitle": "Contatti catturati su /pubblica ma senza richiesta inviata. Da ricontattare.",
     "empty_bozze": "Nessuna bozza al momento.",
-    "th_created": "Creato il"
+    "th_created": "Creato il",
+    "nav_rimborsi": "Rimborsi",
+    "rimborsi_title": "Richieste di rimborso",
+    "rimborsi_subtitle": "Segnalazioni di contatti falsi/irraggiungibili. Approva per riaccreditare i crediti.",
+    "empty_rimborsi": "Nessuna richiesta di rimborso.",
+    "refund_approve": "Approva",
+    "refund_reject": "Rifiuta",
+    "refund_action_error": "Azione non riuscita.",
+    "refund_credits": "crediti",
+    "refund_contact": "Contatto"
   },
   "categories": {
     "idraulica": "Idraulica",
@@ -382,5 +392,23 @@
     "code_expired": "Codice scaduto. Richiedine uno nuovo.",
     "too_many_attempts": "Troppi tentativi. Richiedi un nuovo codice.",
     "code_invalid": "Codice errato."
+  },
+  "refund": {
+    "report_cta": "Segnala contatto falso o irraggiungibile",
+    "report_title": "Perche chiedi il rimborso?",
+    "reason_ph": "Es. numero inesistente, non risponde, richiesta falsa...",
+    "report_submit": "Invia segnalazione",
+    "cancel": "Annulla",
+    "badge_pending": "Rimborso in revisione",
+    "badge_approved": "Crediti rimborsati",
+    "badge_rejected": "Rimborso rifiutato"
+  },
+  "refundErrors": {
+    "session": "Sessione scaduta. Accedi di nuovo.",
+    "invalid": "Richiesta non valida.",
+    "not_found": "Sblocco non trovato.",
+    "already": "Rimborso gia richiesto per questo contatto.",
+    "window_expired": "Il periodo per chiedere il rimborso e scaduto.",
+    "generic": "Errore. Riprova."
   }
 }

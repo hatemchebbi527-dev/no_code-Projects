@@ -22,6 +22,7 @@ export async function TransactionList({
     if (type === "PURCHASE") return t("purchase");
     if (type === "SPEND") return t("unlock");
     if (type === "BONUS") return t("welcome");
+    if (type === "REFUND") return t("refund");
     return type;
   }
 
