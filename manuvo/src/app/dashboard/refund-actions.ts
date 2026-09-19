@@ -13,6 +13,7 @@ const KEY: Record<string, string> = {
   NOT_FOUND: "not_found",
   ALREADY: "already",
   WINDOW_EXPIRED: "window_expired",
+  INVALID_REASON: "invalid",
 };
 
 export async function requestRefundAction(
@@ -24,11 +25,13 @@ export async function requestRefundAction(
   if (!session?.user) return { error: t("session") };
 
   const leadId = String(formData.get("leadId") ?? "");
-  const reason = String(formData.get("reason") ?? "");
+  const reasonCode = String(formData.get("reasonCode") ?? "");
+  const note = String(formData.get("reason") ?? "");
   if (!leadId) return { error: t("invalid") };
+  if (!reasonCode) return { error: t("reason_required") };
 
   try {
-    await requestRefund(session.user.id, leadId, reason);
+    await requestRefund(session.user.id, leadId, reasonCode, note);
     revalidatePath("/dashboard");
     return { success: true };
   } catch (e) {

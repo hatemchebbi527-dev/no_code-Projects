@@ -9,7 +9,15 @@ export const metadata = { title: "Manuvo" };
 export default async function AdminRefundsPage() {
   const t = await getTranslations("admin");
   const tCat = await getTranslations("categories");
+  const tr = await getTranslations("refund");
   const requests = await getRefundRequests();
+
+  const reasonLabel = (code: string | null) => {
+    if (code === "FAKE_NUMBER") return tr("reason_fake_number");
+    if (code === "NO_ANSWER") return tr("reason_no_answer");
+    if (code === "OTHER") return tr("reason_other");
+    return "—";
+  };
 
   return (
     <div>
@@ -46,11 +54,48 @@ export default async function AdminRefundsPage() {
                   <div className="mt-1 text-xs text-neutral-500">
                     {t("refund_contact")} : {r.lead.contactName} · {r.lead.contactPhone}
                   </div>
+
+                  {/* Motif + note */}
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-semibold text-neutral-700">
+                      {reasonLabel(r.refundReasonCode)}
+                    </span>
+                  </div>
                   {r.refundReason && (
                     <p className="mt-2 rounded-lg bg-neutral-50 px-3 py-2 text-sm text-neutral-700">
                       “{r.refundReason}”
                     </p>
                   )}
+
+                  {/* Signaux anti-abus : corroboration + taux artisan */}
+                  <div className="mt-2 flex flex-wrap gap-2 text-xs">
+                    {(() => {
+                      const suspect = r.leadUnlockCount > 1 && r.leadReportCount < r.leadUnlockCount;
+                      return (
+                        <span
+                          className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 font-semibold ${
+                            suspect ? "bg-red-50 text-red-700" : "bg-green-50 text-green-700"
+                          }`}
+                          title={t("refund_corroboration_hint")}
+                        >
+                          {t("refund_corroboration", {
+                            reports: r.leadReportCount,
+                            unlocks: r.leadUnlockCount,
+                          })}
+                          {suspect ? ` · ${t("refund_suspect")}` : ""}
+                        </span>
+                      );
+                    })()}
+                    <span
+                      className="inline-flex items-center gap-1 rounded-md bg-neutral-100 px-2 py-0.5 font-medium text-neutral-600"
+                      title={t("refund_artisan_rate_hint")}
+                    >
+                      {t("refund_artisan_rate", {
+                        reports: r.artisanReportCount,
+                        unlocks: r.artisanUnlockCount,
+                      })}
+                    </span>
+                  </div>
                 </div>
                 <RefundDecision unlockId={r.id} />
               </div>

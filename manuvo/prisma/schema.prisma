@@ -158,7 +158,8 @@ model Unlock {
   // Remboursement anti-faux-leads : l'artisan signale un contact faux/injoignable,
   // l'admin valide et rembourse les credits depenses.
   refundStatus      String    @default("NONE") // NONE | REQUESTED | APPROVED | REJECTED
-  refundReason      String?
+  refundReasonCode  String?   // FAKE_NUMBER | NO_ANSWER | OTHER
+  refundReason      String?   // note libre facoltativa
   refundRequestedAt DateTime?
   refundedAt        DateTime?
 

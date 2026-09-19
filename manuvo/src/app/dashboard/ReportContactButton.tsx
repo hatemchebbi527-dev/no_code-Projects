@@ -54,16 +54,26 @@ export function ReportContactButton({
     );
   }
 
+  const inputCls =
+    "rounded-lg border border-neutral-300 px-2.5 py-2 text-sm outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600/20";
+
   return (
     <form action={formAction} className="mt-2 flex flex-col gap-2 rounded-lg border border-neutral-200 bg-neutral-50 p-3">
       <input type="hidden" name="leadId" value={leadId} />
       <span className="text-xs font-medium text-neutral-700">{t("report_title")}</span>
+      <select name="reasonCode" required defaultValue="" className={inputCls}>
+        <option value="" disabled>{t("reason_choose")}</option>
+        <option value="FAKE_NUMBER">{t("reason_fake_number")}</option>
+        <option value="NO_ANSWER">{t("reason_no_answer")}</option>
+        <option value="OTHER">{t("reason_other")}</option>
+      </select>
       <textarea
         name="reason"
         rows={2}
         placeholder={t("reason_ph")}
-        className="rounded-lg border border-neutral-300 px-2.5 py-2 text-sm outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600/20"
+        className={inputCls}
       />
+      <p className="text-[11px] leading-snug text-neutral-400">{t("not_refundable_hint")}</p>
       {state?.error && <p className="text-xs text-red-700">{state.error}</p>}
       <div className="flex gap-2">
         <button

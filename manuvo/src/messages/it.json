@@ -272,7 +272,12 @@
     "refund_reject": "Rifiuta",
     "refund_action_error": "Azione non riuscita.",
     "refund_credits": "crediti",
-    "refund_contact": "Contatto"
+    "refund_contact": "Contatto",
+    "refund_corroboration": "{reports}/{unlocks} segnalazioni",
+    "refund_corroboration_hint": "Quanti artigiani, tra chi ha sbloccato questo lead, lo hanno segnalato. Se solo uno su piu, probabilmente ha perso il lavoro.",
+    "refund_suspect": "da verificare",
+    "refund_artisan_rate": "artigiano: {reports}/{unlocks} rimborsi",
+    "refund_artisan_rate_hint": "Rimborsi richiesti su sblocchi totali di questo artigiano."
   },
   "categories": {
     "idraulica": "Idraulica",
@@ -401,7 +406,12 @@
     "cancel": "Annulla",
     "badge_pending": "Rimborso in revisione",
     "badge_approved": "Crediti rimborsati",
-    "badge_rejected": "Rimborso rifiutato"
+    "badge_rejected": "Rimborso rifiutato",
+    "reason_choose": "Motivo del rimborso",
+    "reason_fake_number": "Numero falso / inesistente",
+    "reason_no_answer": "Non risponde mai",
+    "reason_other": "Altro",
+    "not_refundable_hint": "Nota: se il cliente ha semplicemente scelto un altro artigiano, non e un rimborso."
   },
   "refundErrors": {
     "session": "Sessione scaduta. Accedi di nuovo.",
@@ -409,6 +419,7 @@
     "not_found": "Sblocco non trovato.",
     "already": "Rimborso gia richiesto per questo contatto.",
     "window_expired": "Il periodo per chiedere il rimborso e scaduto.",
-    "generic": "Errore. Riprova."
+    "generic": "Errore. Riprova.",
+    "reason_required": "Scegli un motivo."
   }
 }

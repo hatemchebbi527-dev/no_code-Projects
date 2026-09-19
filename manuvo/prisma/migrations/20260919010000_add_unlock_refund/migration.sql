@@ -2,6 +2,7 @@
 
 -- AlterTable
 ALTER TABLE "Unlock" ADD COLUMN "refundStatus" TEXT NOT NULL DEFAULT 'NONE';
+ALTER TABLE "Unlock" ADD COLUMN "refundReasonCode" TEXT;
 ALTER TABLE "Unlock" ADD COLUMN "refundReason" TEXT;
 ALTER TABLE "Unlock" ADD COLUMN "refundRequestedAt" TIMESTAMP(3);
 ALTER TABLE "Unlock" ADD COLUMN "refundedAt" TIMESTAMP(3);

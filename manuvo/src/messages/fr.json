@@ -272,7 +272,12 @@
     "refund_reject": "Refuser",
     "refund_action_error": "Action échouée.",
     "refund_credits": "crédits",
-    "refund_contact": "Contact"
+    "refund_contact": "Contact",
+    "refund_corroboration": "{reports}/{unlocks} signalements",
+    "refund_corroboration_hint": "Combien d'artisans, parmi ceux qui ont débloqué ce lead, l'ont signalé. Un seul sur plusieurs = a sans doute perdu le job.",
+    "refund_suspect": "à vérifier",
+    "refund_artisan_rate": "artisan : {reports}/{unlocks} remboursements",
+    "refund_artisan_rate_hint": "Remboursements demandés sur le total des déblocages de cet artisan."
   },
   "categories": {
     "idraulica": "Plomberie",
@@ -401,7 +406,12 @@
     "cancel": "Annuler",
     "badge_pending": "Remboursement en cours d'examen",
     "badge_approved": "Crédits remboursés",
-    "badge_rejected": "Remboursement refusé"
+    "badge_rejected": "Remboursement refusé",
+    "reason_choose": "Motif du remboursement",
+    "reason_fake_number": "Numéro faux / inexistant",
+    "reason_no_answer": "Ne répond jamais",
+    "reason_other": "Autre",
+    "not_refundable_hint": "Note : si le client a simplement choisi un autre artisan, ce n'est pas un remboursement."
   },
   "refundErrors": {
     "session": "Session expirée. Reconnecte-toi.",
@@ -409,6 +419,7 @@
     "not_found": "Déblocage introuvable.",
     "already": "Remboursement déjà demandé pour ce contact.",
     "window_expired": "Le délai pour demander un remboursement est dépassé.",
-    "generic": "Erreur. Réessaie."
+    "generic": "Erreur. Réessaie.",
+    "reason_required": "Choisis un motif."
   }
 }

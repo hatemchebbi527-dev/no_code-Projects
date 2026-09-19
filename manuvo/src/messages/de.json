@@ -272,7 +272,12 @@
     "refund_reject": "Ablehnen",
     "refund_action_error": "Aktion fehlgeschlagen.",
     "refund_credits": "Guthaben",
-    "refund_contact": "Kontakt"
+    "refund_contact": "Kontakt",
+    "refund_corroboration": "{reports}/{unlocks} Meldungen",
+    "refund_corroboration_hint": "Wie viele der Handwerker, die diesen Lead freigeschaltet haben, ihn gemeldet haben. Nur einer von mehreren = hat wohl den Auftrag verloren.",
+    "refund_suspect": "prüfen",
+    "refund_artisan_rate": "Handwerker: {reports}/{unlocks} Rückerstattungen",
+    "refund_artisan_rate_hint": "Beantragte Rückerstattungen im Verhältnis zu allen Freischaltungen dieses Handwerkers."
   },
   "categories": {
     "idraulica": "Sanitär",
@@ -401,7 +406,12 @@
     "cancel": "Abbrechen",
     "badge_pending": "Rückerstattung in Prüfung",
     "badge_approved": "Guthaben erstattet",
-    "badge_rejected": "Rückerstattung abgelehnt"
+    "badge_rejected": "Rückerstattung abgelehnt",
+    "reason_choose": "Grund der Rückerstattung",
+    "reason_fake_number": "Falsche / nicht existierende Nummer",
+    "reason_no_answer": "Antwortet nie",
+    "reason_other": "Sonstiges",
+    "not_refundable_hint": "Hinweis: Wenn der Kunde einfach einen anderen Handwerker gewählt hat, ist das keine Rückerstattung."
   },
   "refundErrors": {
     "session": "Sitzung abgelaufen. Bitte erneut anmelden.",
@@ -409,6 +419,7 @@
     "not_found": "Freischaltung nicht gefunden.",
     "already": "Rückerstattung für diesen Kontakt bereits beantragt.",
     "window_expired": "Die Frist für die Rückerstattung ist abgelaufen.",
-    "generic": "Fehler. Bitte erneut versuchen."
+    "generic": "Fehler. Bitte erneut versuchen.",
+    "reason_required": "Bitte einen Grund wählen."
   }
 }

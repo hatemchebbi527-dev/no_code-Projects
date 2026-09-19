@@ -272,7 +272,12 @@
     "refund_reject": "Decline",
     "refund_action_error": "Action failed.",
     "refund_credits": "credits",
-    "refund_contact": "Contact"
+    "refund_contact": "Contact",
+    "refund_corroboration": "{reports}/{unlocks} reports",
+    "refund_corroboration_hint": "How many of the artisans who unlocked this lead reported it. Only one of several = likely lost the job.",
+    "refund_suspect": "to review",
+    "refund_artisan_rate": "artisan: {reports}/{unlocks} refunds",
+    "refund_artisan_rate_hint": "Refunds requested out of this artisan's total unlocks."
   },
   "categories": {
     "idraulica": "Plumbing",
@@ -401,7 +406,12 @@
     "cancel": "Cancel",
     "badge_pending": "Refund under review",
     "badge_approved": "Credits refunded",
-    "badge_rejected": "Refund declined"
+    "badge_rejected": "Refund declined",
+    "reason_choose": "Refund reason",
+    "reason_fake_number": "Fake / non-existent number",
+    "reason_no_answer": "Never answers",
+    "reason_other": "Other",
+    "not_refundable_hint": "Note: if the client simply chose another pro, it is not a refund."
   },
   "refundErrors": {
     "session": "Session expired. Please log in again.",
@@ -409,6 +419,7 @@
     "not_found": "Unlock not found.",
     "already": "Refund already requested for this contact.",
     "window_expired": "The refund request window has expired.",
-    "generic": "Error. Please try again."
+    "generic": "Error. Please try again.",
+    "reason_required": "Choose a reason."
   }
 }
