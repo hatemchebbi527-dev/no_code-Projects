@@ -38,10 +38,9 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - Niveau 2 (complet) : chat bidirectionnel avec fil de discussion, statut lu/non lu et notifications (réutiliser le système de notifications existant)
   - Reco : commencer par le niveau 1, faire évoluer vers le chat si le besoin se confirme
 
-- [ ] **Capter nom + prénom du particulier à l'ouverture de la page de demande**
-  - Dès que le particulier ouvre la page `/pubblica`, capter son nom et prénom (UI/UX)
-  - Objectif : personnaliser l'expérience et ne pas perdre le contact même si la demande n'est pas finalisée
-  - À définir : petit champ / modal d'accueil en haut de page, puis pré-remplissage du formulaire ; penser au consentement RGPD si on stocke avant soumission
+- [x] **Capter nom + prénom du particulier à l'ouverture de la page de demande** — _fait_
+  - Champs Prénom + Nom en tête de `/pubblica`, autofocus + autofill, message de bienvenue personnalisé.
+  - Ébauche enregistrée avant l'envoi (`LeadDraft`) pour ne pas perdre le contact si la demande n'est pas finalisée ; note de confidentialité RGPD ajoutée ; contacts non finalisés visibles dans l'admin (onglet Ébauches).
 
 - [ ] **Menu de navigation mobile pour l'espace artisan**
   - Aujourd'hui la nav (Demandes / Crédits / Profil) est cachée sur mobile
@@ -59,9 +58,10 @@ Analyse du concurrent italien ProntoPro (modèle très proche : demande gratuite
 
 **Priorité haute (confiance + différenciation) :**
 
-- [~] **Anti-faux-leads** (attaque le point faible de ProntoPro) — _en cours_
-  - [x] Vérification du numéro du particulier par **code SMS** avant publication (PR #59). Reste à **brancher Twilio** en prod : voir `docs/TWILIO.md`. Sans les clés Twilio, le flux tourne en mode dev (code affiché à l'écran) et ne bloque pas encore les faux.
-  - [ ] **Remboursement des crédits** à l'artisan si le contact est injoignable / faux
+- [x] **Anti-faux-leads** (attaque le point faible de ProntoPro) — _livré côté code_
+  - [x] Vérification du numéro du particulier par **code SMS** avant publication (PR #59). ⚠️ Reste une étape ops : **brancher Twilio** en prod (`docs/TWILIO.md`). Sans les clés, le flux tourne en mode dev (code affiché) et ne bloque pas encore les faux.
+  - [x] **Remboursement des crédits** avec **validation admin** (PR #64) : signalement artisan (motif cadré), onglet admin Rimborsi.
+  - [x] **Garde-fous anti-abus** (PR #64) : corroboration entre artisans (X/Y signalements sur le même lead), taux de remboursement de l'artisan, mention « client parti chez un concurrent = non remboursable ».
   - Argument marketing fort : « Chez Manuvo, tu ne paies jamais pour un faux contact »
 
 - [ ] **Système d'avis / notation vérifié**
