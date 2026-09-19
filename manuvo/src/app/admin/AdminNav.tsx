@@ -11,6 +11,7 @@ export function AdminNav() {
     { href: "/admin", label: t("nav_requests") },
     { href: "/admin/artigiani", label: t("nav_artisans") },
     { href: "/admin/bozze", label: t("nav_bozze") },
+    { href: "/admin/rimborsi", label: t("nav_rimborsi") },
   ];
 
   return (

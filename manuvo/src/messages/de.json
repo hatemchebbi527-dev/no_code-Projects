@@ -160,7 +160,8 @@
     "purchase": "Credit-Aufladung",
     "unlock": "Kontakt-Freischaltung",
     "empty": "Noch keine Vorgänge.",
-    "welcome": "Willkommensguthaben"
+    "welcome": "Willkommensguthaben",
+    "refund": "Guthabenerstattung"
   },
   "unlockErrors": {
     "insufficient": "Nicht genug Credits. Laden Sie auf, um freizuschalten.",
@@ -262,7 +263,21 @@
     "bozze_title": "Nicht abgeschlossene Entwürfe",
     "bozze_subtitle": "Auf /pubblica erfasste Kontakte ohne gesendete Anfrage. Nachzufassen.",
     "empty_bozze": "Noch keine Entwürfe.",
-    "th_created": "Erstellt am"
+    "th_created": "Erstellt am",
+    "nav_rimborsi": "Rückerstattungen",
+    "rimborsi_title": "Rückerstattungsanträge",
+    "rimborsi_subtitle": "Meldungen falscher/nicht erreichbarer Kontakte. Genehmigen, um Guthaben zurückzubuchen.",
+    "empty_rimborsi": "Keine Rückerstattungsanträge.",
+    "refund_approve": "Genehmigen",
+    "refund_reject": "Ablehnen",
+    "refund_action_error": "Aktion fehlgeschlagen.",
+    "refund_credits": "Guthaben",
+    "refund_contact": "Kontakt",
+    "refund_corroboration": "{reports}/{unlocks} Meldungen",
+    "refund_corroboration_hint": "Wie viele der Handwerker, die diesen Lead freigeschaltet haben, ihn gemeldet haben. Nur einer von mehreren = hat wohl den Auftrag verloren.",
+    "refund_suspect": "prüfen",
+    "refund_artisan_rate": "Handwerker: {reports}/{unlocks} Rückerstattungen",
+    "refund_artisan_rate_hint": "Beantragte Rückerstattungen im Verhältnis zu allen Freischaltungen dieses Handwerkers."
   },
   "categories": {
     "idraulica": "Sanitär",
@@ -382,5 +397,29 @@
     "code_expired": "Code abgelaufen. Fordere einen neuen an.",
     "too_many_attempts": "Zu viele Versuche. Fordere einen neuen Code an.",
     "code_invalid": "Falscher Code."
+  },
+  "refund": {
+    "report_cta": "Falschen oder nicht erreichbaren Kontakt melden",
+    "report_title": "Warum beantragst du eine Rückerstattung?",
+    "reason_ph": "Z. B. falsche Nummer, keine Antwort, falsche Anfrage...",
+    "report_submit": "Meldung senden",
+    "cancel": "Abbrechen",
+    "badge_pending": "Rückerstattung in Prüfung",
+    "badge_approved": "Guthaben erstattet",
+    "badge_rejected": "Rückerstattung abgelehnt",
+    "reason_choose": "Grund der Rückerstattung",
+    "reason_fake_number": "Falsche / nicht existierende Nummer",
+    "reason_no_answer": "Antwortet nie",
+    "reason_other": "Sonstiges",
+    "not_refundable_hint": "Hinweis: Wenn der Kunde einfach einen anderen Handwerker gewählt hat, ist das keine Rückerstattung."
+  },
+  "refundErrors": {
+    "session": "Sitzung abgelaufen. Bitte erneut anmelden.",
+    "invalid": "Ungültige Anfrage.",
+    "not_found": "Freischaltung nicht gefunden.",
+    "already": "Rückerstattung für diesen Kontakt bereits beantragt.",
+    "window_expired": "Die Frist für die Rückerstattung ist abgelaufen.",
+    "generic": "Fehler. Bitte erneut versuchen.",
+    "reason_required": "Bitte einen Grund wählen."
   }
 }

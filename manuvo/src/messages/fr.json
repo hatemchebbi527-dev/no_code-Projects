@@ -160,7 +160,8 @@
     "purchase": "Recharge de crédits",
     "unlock": "Déblocage de contact",
     "empty": "Aucune opération pour le moment.",
-    "welcome": "Crédits de bienvenue"
+    "welcome": "Crédits de bienvenue",
+    "refund": "Remboursement de crédits"
   },
   "unlockErrors": {
     "insufficient": "Crédits insuffisants. Rechargez pour débloquer.",
@@ -262,7 +263,21 @@
     "bozze_title": "Ébauches non finalisées",
     "bozze_subtitle": "Contacts captés sur /pubblica mais sans demande envoyée. À relancer.",
     "empty_bozze": "Aucune ébauche pour le moment.",
-    "th_created": "Créé le"
+    "th_created": "Créé le",
+    "nav_rimborsi": "Remboursements",
+    "rimborsi_title": "Demandes de remboursement",
+    "rimborsi_subtitle": "Signalements de contacts faux/injoignables. Approuve pour recréditer les crédits.",
+    "empty_rimborsi": "Aucune demande de remboursement.",
+    "refund_approve": "Approuver",
+    "refund_reject": "Refuser",
+    "refund_action_error": "Action échouée.",
+    "refund_credits": "crédits",
+    "refund_contact": "Contact",
+    "refund_corroboration": "{reports}/{unlocks} signalements",
+    "refund_corroboration_hint": "Combien d'artisans, parmi ceux qui ont débloqué ce lead, l'ont signalé. Un seul sur plusieurs = a sans doute perdu le job.",
+    "refund_suspect": "à vérifier",
+    "refund_artisan_rate": "artisan : {reports}/{unlocks} remboursements",
+    "refund_artisan_rate_hint": "Remboursements demandés sur le total des déblocages de cet artisan."
   },
   "categories": {
     "idraulica": "Plomberie",
@@ -382,5 +397,29 @@
     "code_expired": "Code expiré. Demandes-en un nouveau.",
     "too_many_attempts": "Trop d'essais. Demande un nouveau code.",
     "code_invalid": "Code incorrect."
+  },
+  "refund": {
+    "report_cta": "Signaler un contact faux ou injoignable",
+    "report_title": "Pourquoi demandes-tu un remboursement ?",
+    "reason_ph": "Ex. numéro inexistant, ne répond pas, demande fausse...",
+    "report_submit": "Envoyer le signalement",
+    "cancel": "Annuler",
+    "badge_pending": "Remboursement en cours d'examen",
+    "badge_approved": "Crédits remboursés",
+    "badge_rejected": "Remboursement refusé",
+    "reason_choose": "Motif du remboursement",
+    "reason_fake_number": "Numéro faux / inexistant",
+    "reason_no_answer": "Ne répond jamais",
+    "reason_other": "Autre",
+    "not_refundable_hint": "Note : si le client a simplement choisi un autre artisan, ce n'est pas un remboursement."
+  },
+  "refundErrors": {
+    "session": "Session expirée. Reconnecte-toi.",
+    "invalid": "Demande invalide.",
+    "not_found": "Déblocage introuvable.",
+    "already": "Remboursement déjà demandé pour ce contact.",
+    "window_expired": "Le délai pour demander un remboursement est dépassé.",
+    "generic": "Erreur. Réessaie.",
+    "reason_required": "Choisis un motif."
   }
 }

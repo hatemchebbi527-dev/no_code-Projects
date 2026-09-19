@@ -160,7 +160,8 @@
     "purchase": "شحن نقاط",
     "unlock": "فتح جهة اتصال",
     "empty": "لا توجد عمليات بعد.",
-    "welcome": "رصيد الترحيب"
+    "welcome": "رصيد الترحيب",
+    "refund": "استرداد الرصيد"
   },
   "unlockErrors": {
     "insufficient": "نقاط غير كافية. اشحن لتفتح.",
@@ -262,7 +263,21 @@
     "bozze_title": "مسودات غير مكتملة",
     "bozze_subtitle": "جهات اتصال تم التقاطها على /pubblica دون إرسال طلب. للمتابعة.",
     "empty_bozze": "لا توجد مسودات حاليًا.",
-    "th_created": "أُنشئ في"
+    "th_created": "أُنشئ في",
+    "nav_rimborsi": "المبالغ المستردة",
+    "rimborsi_title": "طلبات الاسترداد",
+    "rimborsi_subtitle": "بلاغات عن جهات اتصال مزيفة/غير قابلة للوصول. وافق لإعادة الرصيد.",
+    "empty_rimborsi": "لا توجد طلبات استرداد.",
+    "refund_approve": "موافقة",
+    "refund_reject": "رفض",
+    "refund_action_error": "فشل الإجراء.",
+    "refund_credits": "رصيد",
+    "refund_contact": "جهة الاتصال",
+    "refund_corroboration": "{reports}/{unlocks} بلاغات",
+    "refund_corroboration_hint": "كم عدد الحرفيين الذين فتحوا هذا الطلب وأبلغوا عنه. واحد فقط من عدة = غالبًا خسر العمل.",
+    "refund_suspect": "للمراجعة",
+    "refund_artisan_rate": "الحرفي: {reports}/{unlocks} استرداد",
+    "refund_artisan_rate_hint": "طلبات الاسترداد مقابل إجمالي عمليات الفتح لهذا الحرفي."
   },
   "categories": {
     "idraulica": "سباكة",
@@ -382,5 +397,29 @@
     "code_expired": "انتهت صلاحية الرمز. اطلب رمزًا جديدًا.",
     "too_many_attempts": "محاولات كثيرة. اطلب رمزًا جديدًا.",
     "code_invalid": "رمز غير صحيح."
+  },
+  "refund": {
+    "report_cta": "الإبلاغ عن جهة اتصال مزيفة أو غير قابلة للوصول",
+    "report_title": "لماذا تطلب استرداد الرصيد؟",
+    "reason_ph": "مثال: رقم غير موجود، لا يرد، طلب مزيف...",
+    "report_submit": "إرسال البلاغ",
+    "cancel": "إلغاء",
+    "badge_pending": "الاسترداد قيد المراجعة",
+    "badge_approved": "تم استرداد الرصيد",
+    "badge_rejected": "تم رفض الاسترداد",
+    "reason_choose": "سبب الاسترداد",
+    "reason_fake_number": "رقم مزيف / غير موجود",
+    "reason_no_answer": "لا يرد أبدًا",
+    "reason_other": "آخر",
+    "not_refundable_hint": "ملاحظة: إذا اختار العميل ببساطة حرفيًا آخر، فهذا ليس سببًا للاسترداد."
+  },
+  "refundErrors": {
+    "session": "انتهت الجلسة. سجّل الدخول من جديد.",
+    "invalid": "طلب غير صالح.",
+    "not_found": "لم يتم العثور على عملية الفتح.",
+    "already": "تم طلب الاسترداد لهذه الجهة مسبقًا.",
+    "window_expired": "انتهت مهلة طلب الاسترداد.",
+    "generic": "خطأ. حاول مجددًا.",
+    "reason_required": "اختر سببًا."
   }
 }

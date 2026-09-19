@@ -10,6 +10,7 @@ import { countryName } from "@/lib/catalog";
 import { isCategory } from "@/lib/constants";
 import { FilterBar } from "./FilterBar";
 import { UnlockButton } from "./UnlockButton";
+import { ReportContactButton } from "./ReportContactButton";
 
 export default async function DashboardPage({
   searchParams,
@@ -129,7 +130,7 @@ export default async function DashboardPage({
             {t("my_contacts")}
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            {mine.map(({ lead, unlockedAt }) => (
+            {mine.map(({ lead, unlockedAt, refundStatus }) => (
               <article key={lead.id} className="flex flex-col gap-3 rounded-2xl border-2 border-red-200 bg-white p-4">
                 <div className="flex items-start gap-2">
                   <span className="inline-flex items-center rounded-lg bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-800">
@@ -151,6 +152,7 @@ export default async function DashboardPage({
                       {lead.contactEmail}
                     </a>
                   )}
+                  <ReportContactButton leadId={lead.id} refundStatus={refundStatus} />
                 </div>
               </article>
             ))}
