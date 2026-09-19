@@ -52,12 +52,26 @@ export async function getUnlockedLeads(userId: string) {
     orderBy: { createdAt: "desc" },
     include: { lead: true },
   });
-  return unlocks.map((u) => ({
-    unlockedAt: u.createdAt,
-    creditsSpent: u.creditsSpent,
-    refundStatus: u.refundStatus,
-    lead: u.lead,
-  }));
+
+  // Etat des demandes d'avis de cet artisan sur ces demandes.
+  const reviews = await prisma.review.findMany({
+    where: { artisanId: userId, leadId: { in: unlocks.map((u) => u.leadId) } },
+    select: { leadId: true, rating: true, submittedAt: true },
+  });
+  const reviewByLead = new Map(reviews.map((r) => [r.leadId, r]));
+
+  return unlocks.map((u) => {
+    const r = reviewByLead.get(u.leadId);
+    return {
+      unlockedAt: u.createdAt,
+      creditsSpent: u.creditsSpent,
+      refundStatus: u.refundStatus,
+      // "none" = pas demande, "pending" = demande envoyee, "done" = client a note.
+      reviewState: r ? (r.submittedAt ? "done" : "pending") : "none",
+      reviewRating: r?.rating ?? null,
+      lead: u.lead,
+    };
+  });
 }
 
 // Sblocco atomico di un contatto. Applica tutte le regole di business.

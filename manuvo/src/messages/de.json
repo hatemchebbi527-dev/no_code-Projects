@@ -421,5 +421,37 @@
     "window_expired": "Die Frist für die Rückerstattung ist abgelaufen.",
     "generic": "Fehler. Bitte erneut versuchen.",
     "reason_required": "Bitte einen Grund wählen."
+  },
+  "review": {
+    "request_cta": "Kunden um eine Bewertung bitten",
+    "resend_cta": "Bewertungsanfrage erneut senden",
+    "sent_hint": "Wir haben dem Kunden eine SMS mit dem Bewertungslink gesendet.",
+    "received": "Bewertung erhalten:"
+  },
+  "reviewErrors": {
+    "session": "Sitzung abgelaufen. Bitte erneut anmelden.",
+    "invalid": "Ungültige Anfrage.",
+    "not_unlocked": "Du kannst nur für einen freigeschalteten Kontakt eine Bewertung anfragen.",
+    "not_found": "Anfrage nicht gefunden.",
+    "already_reviewed": "Der Kunde hat bereits eine Bewertung abgegeben.",
+    "rate_limited": "Anfrage bereits gesendet. Versuche es in einer Minute erneut.",
+    "sms_failed": "SMS-Versand fehlgeschlagen. Bitte erneut versuchen."
+  },
+  "recensione": {
+    "title": "Wie lief es mit {name}?",
+    "subtitle": "Dein Feedback hilft anderen Kunden.",
+    "stars_label": "Sternebewertung",
+    "comment_ph": "Kommentar hinzufügen (optional)",
+    "submit": "Bewertung senden",
+    "submitting": "Senden...",
+    "thanks_title": "Danke!",
+    "thanks_text": "Deine Bewertung wurde gespeichert.",
+    "invalid": "Ungültiger oder abgelaufener Link.",
+    "already_title": "Bewertung bereits gesendet",
+    "already_text": "Danke, wir haben deine Bewertung bereits erhalten.",
+    "err_invalid_rating": "Wähle 1 bis 5 Sterne.",
+    "err_not_found": "Ungültiger Link.",
+    "err_already": "Bewertung bereits gesendet.",
+    "err_generic": "Fehler. Bitte erneut versuchen."
   }
 }

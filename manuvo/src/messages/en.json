@@ -421,5 +421,37 @@
     "window_expired": "The refund request window has expired.",
     "generic": "Error. Please try again.",
     "reason_required": "Choose a reason."
+  },
+  "review": {
+    "request_cta": "Ask the client for a review",
+    "resend_cta": "Resend review request",
+    "sent_hint": "We sent the client an SMS with the link to rate you.",
+    "received": "Review received:"
+  },
+  "reviewErrors": {
+    "session": "Session expired. Please log in again.",
+    "invalid": "Invalid request.",
+    "not_unlocked": "You can only ask for a review on a contact you unlocked.",
+    "not_found": "Request not found.",
+    "already_reviewed": "The client already left a review.",
+    "rate_limited": "You already sent the request. Try again in a minute.",
+    "sms_failed": "Failed to send SMS. Please try again."
+  },
+  "recensione": {
+    "title": "How did it go with {name}?",
+    "subtitle": "Your feedback helps other clients.",
+    "stars_label": "Star rating",
+    "comment_ph": "Add a comment (optional)",
+    "submit": "Send review",
+    "submitting": "Sending...",
+    "thanks_title": "Thank you!",
+    "thanks_text": "Your review has been saved.",
+    "invalid": "Invalid or expired link.",
+    "already_title": "Review already sent",
+    "already_text": "Thanks, we already received your review.",
+    "err_invalid_rating": "Choose 1 to 5 stars.",
+    "err_not_found": "Invalid link.",
+    "err_already": "Review already sent.",
+    "err_generic": "Error. Please try again."
   }
 }
