@@ -1,6 +1,7 @@
 "use client";
 
-// Manuvo - navigation de l'espace artisan avec etat "page active".
+// Manuvo - navigation de l'espace artisan avec etat "page active" + menu mobile.
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,13 +10,16 @@ export function HeaderNav({
   bachecaLabel,
   creditiLabel,
   profiloLabel,
+  menuLabel,
 }: {
   credits: number;
   bachecaLabel: string;
   creditiLabel: string;
   profiloLabel: string;
+  menuLabel: string;
 }) {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
   const onBacheca = pathname === "/dashboard";
   const onCrediti = pathname.startsWith("/dashboard/crediti");
   const onProfilo = pathname.startsWith("/dashboard/profilo");
@@ -24,30 +28,60 @@ export function HeaderNav({
   const navActive = "bg-red-50 text-red-700";
   const navIdle = "text-neutral-600 hover:bg-neutral-100";
 
+  const links = [
+    { href: "/dashboard", label: bachecaLabel, active: onBacheca },
+    { href: "/dashboard/crediti", label: creditiLabel, active: onCrediti },
+    { href: "/dashboard/profilo", label: profiloLabel, active: onProfilo },
+  ];
+
   return (
     <>
+      {/* Menu mobile (hamburger) : la nav desktop est masquee sous sm. */}
+      <div className="relative sm:hidden">
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-haspopup="menu"
+          aria-label={menuLabel}
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 text-neutral-700 transition hover:bg-neutral-100"
+        >
+          {open ? <CloseIcon /> : <MenuIcon />}
+        </button>
+
+        {open && (
+          <>
+            {/* Clic exterieur = fermeture */}
+            <div aria-hidden="true" onClick={() => setOpen(false)} className="fixed inset-0 z-30" />
+            <nav className="absolute start-0 top-full z-40 mt-2 w-44 overflow-hidden rounded-xl border border-neutral-200 bg-white p-1 shadow-lg">
+              {links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  aria-current={l.active ? "page" : undefined}
+                  onClick={() => setOpen(false)}
+                  className={`block ${navBase} ${l.active ? navActive : navIdle}`}
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </>
+        )}
+      </div>
+
+      {/* Navigation desktop */}
       <nav className="hidden items-center gap-1 sm:flex">
-        <Link
-          href="/dashboard"
-          aria-current={onBacheca ? "page" : undefined}
-          className={`${navBase} ${onBacheca ? navActive : navIdle}`}
-        >
-          {bachecaLabel}
-        </Link>
-        <Link
-          href="/dashboard/crediti"
-          aria-current={onCrediti ? "page" : undefined}
-          className={`${navBase} ${onCrediti ? navActive : navIdle}`}
-        >
-          {creditiLabel}
-        </Link>
-        <Link
-          href="/dashboard/profilo"
-          aria-current={onProfilo ? "page" : undefined}
-          className={`${navBase} ${onProfilo ? navActive : navIdle}`}
-        >
-          {profiloLabel}
-        </Link>
+        {links.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            aria-current={l.active ? "page" : undefined}
+            className={`${navBase} ${l.active ? navActive : navIdle}`}
+          >
+            {l.label}
+          </Link>
+        ))}
       </nav>
 
       {/* Solde de credits : lien vers la recharge, en mode "actif" (non cliquable) sur la page Crediti. */}
@@ -69,6 +103,22 @@ export function HeaderNav({
         </Link>
       )}
     </>
+  );
+}
+
+function MenuIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M6 6l12 12M18 6l-12 12" />
+    </svg>
   );
 }
 

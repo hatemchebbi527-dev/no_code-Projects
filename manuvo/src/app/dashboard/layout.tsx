@@ -33,7 +33,13 @@ export default async function DashboardLayout({
             <LogoWordmark className="h-7 w-auto" />
           </Link>
 
-          <HeaderNav credits={credits} bachecaLabel={tn("bacheca")} creditiLabel={tn("crediti")} profiloLabel={tn("profilo")} />
+          <HeaderNav
+            credits={credits}
+            bachecaLabel={tn("bacheca")}
+            creditiLabel={tn("crediti")}
+            profiloLabel={tn("profilo")}
+            menuLabel="Menu"
+          />
 
           <NotificationBell initialCount={unread} href="/dashboard/notifiche" label={tn("notifiche")} />
 
@@ -41,7 +47,7 @@ export default async function DashboardLayout({
 
           {session.user.name && (
             <span
-              className="max-w-[90px] truncate text-sm font-medium text-neutral-700 sm:max-w-[140px]"
+              className="hidden max-w-[90px] truncate text-sm font-medium text-neutral-700 sm:inline sm:max-w-[140px]"
               title={session.user.name}
             >
               {session.user.name}
@@ -56,7 +62,8 @@ export default async function DashboardLayout({
         </div>
       </header>
 
-      <main className="mx-auto max-w-4xl px-5 py-8">{children}</main>
+      {/* pb-28 sur mobile : reserve la place de la banniere d'installation fixee en bas. */}
+      <main className="mx-auto max-w-4xl px-5 pt-8 pb-28 sm:pb-8">{children}</main>
     </div>
   );
 }
