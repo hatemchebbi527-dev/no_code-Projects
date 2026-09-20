@@ -18,6 +18,8 @@ export type ArtisanStats = {
   verified: boolean;
 };
 
+const EMPTY_STATS: ArtisanStats = { count: 0, avg: 0, verified: false };
+
 export class ReviewError extends Error {}
 
 async function baseUrl(): Promise<string> {
@@ -117,17 +119,48 @@ export async function submitReview(
 }
 
 // --- Stats artisan + badge verifie ---
-// Version async : lit directement les avis soumis d'un artisan.
+// Les stats d'avis sont NON CRITIQUES : en cas d'erreur cote base (ex. table
+// Review indisponible), on renvoie des stats vides pour ne jamais faire planter
+// les pages profil/admin (500).
 export async function getArtisanStats(artisanId: string): Promise<ArtisanStats> {
-  const reviews = await prisma.review.findMany({
-    where: { artisanId, submittedAt: { not: null }, rating: { not: null } },
-    select: { rating: true },
-  });
-  return computeArtisanStats(reviews);
+  try {
+    const reviews = await prisma.review.findMany({
+      where: { artisanId, submittedAt: { not: null }, rating: { not: null } },
+      select: { rating: true },
+    });
+    return computeArtisanStats(reviews);
+  } catch {
+    return EMPTY_STATS;
+  }
 }
 
-// Version sync : calcule les stats depuis une liste d'avis deja chargee
-// (evite une requete par artisan dans les listes admin).
+// Stats de tous les artisans en une seule requete (evite N requetes dans l'admin).
+// Cle = User.id de l'artisan. Resiliente : Map vide en cas d'erreur.
+export async function getArtisanStatsMap(): Promise<Map<string, ArtisanStats>> {
+  try {
+    const grouped = await prisma.review.groupBy({
+      by: ["artisanId"],
+      where: { submittedAt: { not: null }, rating: { not: null } },
+      _count: { rating: true },
+      _avg: { rating: true },
+    });
+    const map = new Map<string, ArtisanStats>();
+    for (const g of grouped) {
+      const count = g._count.rating;
+      const avg = g._avg.rating ?? 0;
+      map.set(g.artisanId, {
+        count,
+        avg,
+        verified: count >= BADGE_MIN_REVIEWS && avg >= BADGE_MIN_AVG,
+      });
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}
+
+// Calcule les stats depuis une liste d'avis deja chargee.
 export function computeArtisanStats(reviews: { rating: number | null }[]): ArtisanStats {
   const rated = reviews.filter((r): r is { rating: number } => r.rating !== null);
   const count = rated.length;

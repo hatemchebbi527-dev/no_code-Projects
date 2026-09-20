@@ -1,13 +1,15 @@
 // Manuvo - pannello admin: elenco artigiani con matricola, contatti e note.
 import { getTranslations, getLocale } from "next-intl/server";
 import { getArtisans } from "@/lib/admin";
-import { computeArtisanStats } from "@/lib/reviews";
+import { getArtisanStatsMap, type ArtisanStats } from "@/lib/reviews";
 import { countryName } from "@/lib/catalog";
 import { formatMatricule, isCategory } from "@/lib/constants";
 import { StarRating, VerifiedBadge } from "@/components/StarRating";
 import { ExportButton } from "./ExportButton";
 
 export const metadata = { title: "Manuvo" };
+
+const EMPTY_STATS: ArtisanStats = { count: 0, avg: 0, verified: false };
 
 // Divise la stringa "codici,virgola" in lista di codici mestiere validi.
 function splitTrades(raw: string): string[] {
@@ -23,6 +25,7 @@ export default async function AdminArtisansPage() {
   const tCat = await getTranslations("categories");
   const tProfilo = await getTranslations("profilo");
   const artisans = await getArtisans();
+  const statsMap = await getArtisanStatsMap();
 
   // Lignes plates pour l'export CSV (sans objet stats imbrique).
   const exportRows = artisans.map((a) => ({
@@ -38,7 +41,7 @@ export default async function AdminArtisansPage() {
     createdAt: a.createdAt.toISOString(),
   }));
 
-  // Lignes d'affichage avec les stats calculees (note moyenne + badge).
+  // Lignes d'affichage avec les stats (note moyenne + badge), jointes par id artisan.
   const displayRows = artisans.map((a) => ({
     matricule: a.matricule,
     name: a.name,
@@ -50,7 +53,7 @@ export default async function AdminArtisansPage() {
     trades: splitTrades(a.categories),
     credits: a.credits,
     createdAt: a.createdAt.toISOString(),
-    stats: computeArtisanStats(a.reviews),
+    stats: statsMap.get(a.id) ?? EMPTY_STATS,
   }));
 
   return (
