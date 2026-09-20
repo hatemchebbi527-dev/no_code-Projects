@@ -128,7 +128,13 @@
     "piva_locked": "La Partita IVA n'est pas modifiable.",
     "save": "Enregistrer",
     "saving": "Enregistrement...",
-    "saved": "Profil mis à jour."
+    "saved": "Profil mis à jour.",
+    "reviews_title": "Mes avis",
+    "reviews_count": "{n} avis reçus",
+    "reviews_empty": "Aucun avis pour le moment.",
+    "verified_badge": "Artisan vérifié",
+    "progress_hint": "Encore {n} avis pour le badge vérifié.",
+    "avg_hint": "Atteins une moyenne de {avg}/5 pour le badge."
   },
   "filters": {
     "scope_label": "Portée :",
@@ -277,7 +283,8 @@
     "refund_corroboration_hint": "Combien d'artisans, parmi ceux qui ont débloqué ce lead, l'ont signalé. Un seul sur plusieurs = a sans doute perdu le job.",
     "refund_suspect": "à vérifier",
     "refund_artisan_rate": "artisan : {reports}/{unlocks} remboursements",
-    "refund_artisan_rate_hint": "Remboursements demandés sur le total des déblocages de cet artisan."
+    "refund_artisan_rate_hint": "Remboursements demandés sur le total des déblocages de cet artisan.",
+    "th_rating": "Note"
   },
   "categories": {
     "idraulica": "Plomberie",
