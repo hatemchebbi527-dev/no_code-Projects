@@ -128,7 +128,13 @@
     "piva_locked": "The VAT number cannot be changed.",
     "save": "Save changes",
     "saving": "Saving...",
-    "saved": "Profile updated."
+    "saved": "Profile updated.",
+    "reviews_title": "My reviews",
+    "reviews_count": "{n} reviews received",
+    "reviews_empty": "No reviews yet.",
+    "verified_badge": "Verified artisan",
+    "progress_hint": "{n} more reviews needed for the verified badge.",
+    "avg_hint": "Reach an average of {avg}/5 to get the badge."
   },
   "filters": {
     "scope_label": "Scope:",
@@ -277,7 +283,8 @@
     "refund_corroboration_hint": "How many of the artisans who unlocked this lead reported it. Only one of several = likely lost the job.",
     "refund_suspect": "to review",
     "refund_artisan_rate": "artisan: {reports}/{unlocks} refunds",
-    "refund_artisan_rate_hint": "Refunds requested out of this artisan's total unlocks."
+    "refund_artisan_rate_hint": "Refunds requested out of this artisan's total unlocks.",
+    "th_rating": "Rating"
   },
   "categories": {
     "idraulica": "Plumbing",

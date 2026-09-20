@@ -8,6 +8,16 @@ import { sendSms } from "@/lib/sms";
 
 const RESEND_COOLDOWN_SEC = 60;
 
+// Criteri del badge "artisan verifie" : almeno 3 avis soumis con nota, media >= 4.0.
+export const BADGE_MIN_REVIEWS = 3;
+export const BADGE_MIN_AVG = 4.0;
+
+export type ArtisanStats = {
+  count: number;
+  avg: number;
+  verified: boolean;
+};
+
 export class ReviewError extends Error {}
 
 async function baseUrl(): Promise<string> {
@@ -104,4 +114,24 @@ export async function submitReview(
     data: { rating, comment: comment.trim().slice(0, 500) || null, submittedAt: new Date() },
   });
   return { ok: true };
+}
+
+// --- Stats artisan + badge verifie ---
+// Version async : lit directement les avis soumis d'un artisan.
+export async function getArtisanStats(artisanId: string): Promise<ArtisanStats> {
+  const reviews = await prisma.review.findMany({
+    where: { artisanId, submittedAt: { not: null }, rating: { not: null } },
+    select: { rating: true },
+  });
+  return computeArtisanStats(reviews);
+}
+
+// Version sync : calcule les stats depuis une liste d'avis deja chargee
+// (evite une requete par artisan dans les listes admin).
+export function computeArtisanStats(reviews: { rating: number | null }[]): ArtisanStats {
+  const rated = reviews.filter((r): r is { rating: number } => r.rating !== null);
+  const count = rated.length;
+  const avg = count > 0 ? rated.reduce((s, r) => s + r.rating, 0) / count : 0;
+  const verified = count >= BADGE_MIN_REVIEWS && avg >= BADGE_MIN_AVG;
+  return { count, avg, verified };
 }

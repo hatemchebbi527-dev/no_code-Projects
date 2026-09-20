@@ -128,7 +128,13 @@
     "piva_locked": "La Partita IVA non e modificabile.",
     "save": "Salva modifiche",
     "saving": "Salvataggio...",
-    "saved": "Profilo aggiornato."
+    "saved": "Profilo aggiornato.",
+    "reviews_title": "Le tue recensioni",
+    "reviews_count": "{n} recensioni ricevute",
+    "reviews_empty": "Nessuna recensione ancora.",
+    "verified_badge": "Artigiano verificato",
+    "progress_hint": "Ancora {n} recensioni per il badge verificato.",
+    "avg_hint": "Raggiungi una media di {avg}/5 per il badge."
   },
   "filters": {
     "scope_label": "Portata:",
@@ -277,7 +283,8 @@
     "refund_corroboration_hint": "Quanti artigiani, tra chi ha sbloccato questo lead, lo hanno segnalato. Se solo uno su piu, probabilmente ha perso il lavoro.",
     "refund_suspect": "da verificare",
     "refund_artisan_rate": "artigiano: {reports}/{unlocks} rimborsi",
-    "refund_artisan_rate_hint": "Rimborsi richiesti su sblocchi totali di questo artigiano."
+    "refund_artisan_rate_hint": "Rimborsi richiesti su sblocchi totali di questo artigiano.",
+    "th_rating": "Nota"
   },
   "categories": {
     "idraulica": "Idraulica",
