@@ -1,7 +1,7 @@
 "use client";
 
 // Manuvo - navigation de l'espace artisan avec etat "page active" + menu mobile.
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -23,6 +23,16 @@ export function HeaderNav({
   const onBacheca = pathname === "/dashboard";
   const onCrediti = pathname.startsWith("/dashboard/crediti");
   const onProfilo = pathname.startsWith("/dashboard/profilo");
+
+  // Fermeture du menu mobile avec la touche Echap.
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const navBase = "rounded-lg px-3 py-1.5 text-sm font-medium transition";
   const navActive = "bg-red-50 text-red-700";
