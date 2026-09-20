@@ -57,7 +57,7 @@ export async function getLeadDrafts() {
   });
 }
 
-// Liste des artisans avec coordonnees (pour le suivi et le marketing de l'admin).
+// Liste des artisans avec coordonnees et avis (pour le suivi et le marketing de l'admin).
 export async function getArtisans() {
   return prisma.user.findMany({
     where: { role: "ARTIGIANO" },
@@ -73,6 +73,11 @@ export async function getArtisans() {
       categories: true,
       credits: true,
       createdAt: true,
+      // Avis soumis (avec nota) pour calculer la note moyenne et le badge verifie.
+      reviews: {
+        where: { submittedAt: { not: null }, rating: { not: null } },
+        select: { rating: true },
+      },
     },
   });
 }
