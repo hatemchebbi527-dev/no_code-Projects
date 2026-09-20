@@ -128,7 +128,13 @@
     "piva_locked": "Die USt-IdNr. kann nicht geändert werden.",
     "save": "Änderungen speichern",
     "saving": "Speichern...",
-    "saved": "Profil aktualisiert."
+    "saved": "Profil aktualisiert.",
+    "reviews_title": "Meine Bewertungen",
+    "reviews_count": "{n} Bewertungen erhalten",
+    "reviews_empty": "Noch keine Bewertungen.",
+    "verified_badge": "Verifizierter Handwerker",
+    "progress_hint": "Noch {n} Bewertungen für das verifizierte Abzeichen.",
+    "avg_hint": "Erreiche einen Durchschnitt von {avg}/5 für das Abzeichen."
   },
   "filters": {
     "scope_label": "Bereich:",
@@ -277,7 +283,8 @@
     "refund_corroboration_hint": "Wie viele der Handwerker, die diesen Lead freigeschaltet haben, ihn gemeldet haben. Nur einer von mehreren = hat wohl den Auftrag verloren.",
     "refund_suspect": "prüfen",
     "refund_artisan_rate": "Handwerker: {reports}/{unlocks} Rückerstattungen",
-    "refund_artisan_rate_hint": "Beantragte Rückerstattungen im Verhältnis zu allen Freischaltungen dieses Handwerkers."
+    "refund_artisan_rate_hint": "Beantragte Rückerstattungen im Verhältnis zu allen Freischaltungen dieses Handwerkers.",
+    "th_rating": "Bewertung"
   },
   "categories": {
     "idraulica": "Sanitär",
