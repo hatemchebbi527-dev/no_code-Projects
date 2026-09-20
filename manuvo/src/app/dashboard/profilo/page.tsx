@@ -1,20 +1,52 @@
 // Manuvo - pagina profilo artigiano: modifica dati di contatto e mestieri.
 import { redirect } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { isCategory } from "@/lib/constants";
+import { isCategory, formatMatricule, DEFAULT_LOCALE, type Locale } from "@/lib/constants";
 import { getArtisanStats, BADGE_MIN_REVIEWS, BADGE_MIN_AVG } from "@/lib/reviews";
+import { getBaseUrl } from "@/lib/base-url";
 import { StarRating, VerifiedBadge } from "@/components/StarRating";
 import { ProfileForm } from "./ProfileForm";
 
 export const metadata = { title: "Manuvo" };
+
+// Libelles de la carte "profil public" (non presents dans les messages i18n).
+const SHARE: Record<Locale, { title: string; hint: string; cta: string }> = {
+  it: {
+    title: "Il tuo profilo pubblico",
+    hint: "Condividi questo link su WhatsApp o sui social per mostrare le tue recensioni.",
+    cta: "Vedi e condividi",
+  },
+  fr: {
+    title: "Ton profil public",
+    hint: "Partage ce lien sur WhatsApp ou les reseaux pour montrer tes avis.",
+    cta: "Voir et partager",
+  },
+  en: {
+    title: "Your public profile",
+    hint: "Share this link on WhatsApp or social media to show your reviews.",
+    cta: "View and share",
+  },
+  de: {
+    title: "Dein öffentliches Profil",
+    hint: "Teile diesen Link auf WhatsApp oder in sozialen Netzwerken, um deine Bewertungen zu zeigen.",
+    cta: "Ansehen und teilen",
+  },
+  ar: {
+    title: "ملفك العام",
+    hint: "شارك هذا الرابط على واتساب أو وسائل التواصل لعرض تقييماتك.",
+    cta: "اعرض وشارك",
+  },
+};
 
 export default async function ProfiloPage() {
   const session = await auth();
   if (!session?.user) redirect("/login");
 
   const t = await getTranslations("profilo");
+  const locale = (await getLocale()) as Locale;
+  const s = SHARE[locale] ?? SHARE[DEFAULT_LOCALE];
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
     select: {
@@ -25,6 +57,7 @@ export default async function ProfiloPage() {
       country: true,
       piva: true,
       categories: true,
+      matricule: true,
     },
   });
   if (!user) redirect("/login");
@@ -35,6 +68,8 @@ export default async function ProfiloPage() {
     .filter((c) => c.length > 0 && isCategory(c));
 
   const stats = await getArtisanStats(session.user.id);
+  const publicPath = `/artigiano/${formatMatricule(user.matricule)}`;
+  const publicUrl = `${await getBaseUrl()}${publicPath}`;
 
   return (
     <div className="max-w-lg">
@@ -78,6 +113,23 @@ export default async function ProfiloPage() {
             )}
           </div>
         )}
+      </div>
+
+      <div className="mt-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+        <h2 className="text-base font-semibold text-neutral-800">{s.title}</h2>
+        <p className="mt-1 text-sm text-neutral-500">{s.hint}</p>
+        <a
+          href={publicPath}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3.5 py-2 text-sm font-semibold text-red-800 transition hover:bg-red-100"
+        >
+          {s.cta}
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M7 17 17 7M9 7h8v8" />
+          </svg>
+        </a>
+        <p className="mt-2 break-all text-xs text-neutral-400">{publicUrl}</p>
       </div>
     </div>
   );
