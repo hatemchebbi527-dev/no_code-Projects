@@ -57,12 +57,15 @@ export async function getLeadDrafts() {
   });
 }
 
-// Liste des artisans avec coordonnees et avis (pour le suivi et le marketing de l'admin).
+// Liste des artisans avec coordonnees (pour le suivi et le marketing de l'admin).
+// Les stats d'avis sont recuperees separement (getArtisanStatsMap) pour isoler
+// une eventuelle erreur cote table Review de la liste des artisans.
 export async function getArtisans() {
   return prisma.user.findMany({
     where: { role: "ARTIGIANO" },
     orderBy: { matricule: "asc" },
     select: {
+      id: true,
       matricule: true,
       name: true,
       email: true,
@@ -73,11 +76,6 @@ export async function getArtisans() {
       categories: true,
       credits: true,
       createdAt: true,
-      // Avis soumis (avec nota) pour calculer la note moyenne et le badge verifie.
-      reviews: {
-        where: { submittedAt: { not: null }, rating: { not: null } },
-        select: { rating: true },
-      },
     },
   });
 }
