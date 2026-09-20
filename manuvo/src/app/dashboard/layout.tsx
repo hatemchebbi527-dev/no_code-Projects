@@ -62,7 +62,8 @@ export default async function DashboardLayout({
         </div>
       </header>
 
-      <main className="mx-auto max-w-4xl px-5 py-8">{children}</main>
+      {/* pb-28 sur mobile : reserve la place de la banniere d'installation fixee en bas. */}
+      <main className="mx-auto max-w-4xl px-5 pt-8 pb-28 sm:pb-8">{children}</main>
     </div>
   );
 }
