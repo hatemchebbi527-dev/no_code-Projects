@@ -1,10 +1,13 @@
-// Manuvo - landing completa (etape 8.3): hero, come funziona, mestieri, privati/artigiani, CTA, footer.
+// Manuvo - landing completa: hero, come funziona, mestieri (per famiglia), privati/artigiani, CTA, footer.
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LogoWordmark } from "@/components/LogoWordmark";
-import { CATEGORIES, LOCALES, type Locale } from "@/lib/constants";
+import { CategoryImage } from "@/components/CategoryImage";
+import { LOCALES, type Locale } from "@/lib/constants";
 import { CATEGORY_ICON } from "@/lib/category-icons";
+import { FAMILIES, FAMILY_LABEL } from "@/lib/category-groups";
+import { CATEGORY_PHOTO } from "@/lib/category-photos";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 
 const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
@@ -92,35 +95,55 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Mestieri */}
+      {/* Mestieri raggruppati per famiglia */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-center font-display text-3xl font-bold tracking-tight sm:text-4xl">
             {tl("cats_title")}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-center text-neutral-600">{tl("cats_sub")}</p>
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {CATEGORIES.map((cat) => (
-              <div
-                key={cat}
-                className="flex h-full flex-col items-center justify-start gap-2.5 rounded-xl border border-neutral-200 bg-[#FAF8F4] px-3 py-4 text-center"
-              >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-red-50 text-red-700">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    dangerouslySetInnerHTML={{ __html: CATEGORY_ICON[cat] }}
-                  />
-                </span>
-                <span className="hyphens-auto text-sm font-semibold leading-tight">
-                  {tc(cat)}
-                </span>
+
+          <div className="mt-12 space-y-12">
+            {FAMILIES.map((fam) => (
+              <div key={fam.key}>
+                <div className="mb-5 flex items-center gap-3">
+                  <span className={`h-6 w-1.5 rounded-full bg-linear-to-b ${fam.grad}`} />
+                  <h3 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
+                    {FAMILY_LABEL[locale][fam.key]}
+                  </h3>
+                </div>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                  {fam.categories.map((cat) => (
+                    <Link
+                      key={cat}
+                      href={`/pubblica?category=${cat}`}
+                      className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                    >
+                      <CategoryImage
+                        src={CATEGORY_PHOTO[cat]}
+                        label={tc(cat)}
+                        iconPath={CATEGORY_ICON[cat]}
+                        grad={fam.grad}
+                      />
+                      <div className="flex items-center justify-between gap-2 px-3 py-3">
+                        <span className="text-sm font-semibold leading-tight">{tc(cat)}</span>
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="16"
+                          height="16"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="shrink-0 text-neutral-300 transition group-hover:text-red-600"
+                        >
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

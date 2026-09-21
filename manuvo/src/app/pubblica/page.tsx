@@ -1,7 +1,7 @@
 // Manuvo - pagina pubblica: un privato pubblica una richiesta (senza account).
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
-import { CATEGORIES, COUNTRIES, URGENCIES } from "@/lib/constants";
+import { CATEGORIES, COUNTRIES, URGENCIES, isCategory } from "@/lib/constants";
 import { countryName } from "@/lib/catalog";
 import { LeadForm } from "./LeadForm";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -11,7 +11,12 @@ export const metadata = {
   title: "Manuvo",
 };
 
-export default async function PubblicaPage() {
+export default async function PubblicaPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const sp = await searchParams;
   const locale = await getLocale();
   const t = await getTranslations("pubblica");
   const tCat = await getTranslations("categories");
@@ -21,6 +26,7 @@ export default async function PubblicaPage() {
   const categories = CATEGORIES.map((c) => ({ value: c, label: tCat(c) }));
   const countries = COUNTRIES.map((c) => ({ value: c, label: countryName(c, locale) }));
   const urgencies = URGENCIES.map((u) => ({ value: u, label: tUrg(u) }));
+  const defaultCategory = sp.category && isCategory(sp.category) ? sp.category : "";
 
   return (
     <div className="min-h-screen bg-[#FAF8F4]">
@@ -48,7 +54,12 @@ export default async function PubblicaPage() {
         </div>
 
         <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <LeadForm categories={categories} countries={countries} urgencies={urgencies} />
+          <LeadForm
+            categories={categories}
+            countries={countries}
+            urgencies={urgencies}
+            defaultCategory={defaultCategory}
+          />
         </div>
 
         <p className="mt-4 text-center text-xs text-neutral-500">
