@@ -1,4 +1,4 @@
-// Manuvo - regroupement des metiers par famille + accent couleur (landing).
+// Manuvo - regroupement des metiers par famille + accent couleur + slug de page.
 import type { Category, Locale } from "./constants";
 
 export type FamilyKey =
@@ -14,7 +14,7 @@ export type FamilyKey =
 export type Family = {
   key: FamilyKey;
   categories: Category[];
-  // Classes Tailwind litterales (scannees a la compilation) : degrade du fallback.
+  // Classes Tailwind litterales (scannees a la compilation) : degrade du fallback/tuile.
   grad: string;
 };
 
@@ -86,6 +86,22 @@ export const FAMILIES: Family[] = [
     categories: ["ripetizioni", "sviluppo_web"],
   },
 ];
+
+// Slug d'URL de la page famille (/categorie/<slug>).
+export const FAMILY_SLUG: Record<FamilyKey, string> = {
+  casa_impianti: "casa-impianti",
+  ristrutturazione: "ristrutturazione",
+  pulizie: "pulizie",
+  esterni: "esterni",
+  benessere: "benessere",
+  eventi: "eventi",
+  trasporti: "trasporti",
+  servizi: "servizi",
+};
+
+export function familyBySlug(slug: string): Family | undefined {
+  return FAMILIES.find((f) => FAMILY_SLUG[f.key] === slug);
+}
 
 // Libelles des familles (inline, 5 langues) : evite de toucher aux 5 gros JSON.
 export const FAMILY_LABEL: Record<Locale, Record<FamilyKey, string>> = {
