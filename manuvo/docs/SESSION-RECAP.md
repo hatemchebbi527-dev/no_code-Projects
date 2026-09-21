@@ -14,8 +14,8 @@ Document de reprise pour continuer le projet dans une nouvelle session.
 - **Sandbox** : réseau sortant bloqué → impossible de charger le site live ni de tester le rendu ; les vrais SMS ne partent qu'en prod. La vérif visuelle mobile est faite par Hatem.
 
 ## ⚠️ Points de vigilance (opérationnel)
-1. **Migrations Prisma : PLUS automatiques au build.** On a retiré `buildCommand: vercel-build` de `vercel.json` (il figeait les déploiements sur un décalage d'empreinte + verrou Neon). Conséquence : `prisma migrate deploy` **ne tourne plus au déploiement**. Toute nouvelle migration doit être **appliquée à la main dans la console SQL Neon** (base `manuvo-db`), puis enregistrée dans `_prisma_migrations` (checksum = sha256 du fichier `migration.sql`). `prisma generate` continue de tourner via `postinstall`.
-2. **Webhook GitHub→Vercel capricieux.** Plusieurs merges sur `main` n'ont pas déclenché de déploiement Production (resté en Preview / rien). Si la prod ne se met pas à jour ~3 min après un merge : pousser un petit commit sur `main`, ou **Promote to Production** un déploiement `main` Ready depuis l'onglet Deployments.
+1. **Migrations Prisma : automatiques au build (rétabli).** `buildCommand: vercel-build` est de nouveau actif dans `vercel.json` → `prisma migrate deploy` tourne à chaque déploiement (contre l'URL Neon **directe/non-poolée** pour éviter le verrou P1002). Ne plus appliquer les migrations à la main sauf incident. Règle d'or maintenue : **ne jamais éditer une migration déjà appliquée**, toujours en créer une nouvelle.
+2. **Déploiement Production fiable via GitHub Action + Deploy Hook.** Le webhook natif GitHub→Vercel ratait des merges. Désormais `.github/workflows/vercel-deploy.yml` (racine du repo) appelle un **Deploy Hook Vercel** (secret repo `VERCEL_DEPLOY_HOOK`) à chaque push sur `main` touchant `manuvo/**` (+ lancement manuel `workflow_dispatch`). Note : l'`ignoreCommand` de Vercel annule le build si le commit de tête ne touche pas `manuvo/` (comportement voulu).
 3. **Twilio toujours à brancher** (voir plus bas) : sans les clés, vérif SMS + demande d'avis tournent en mode dev.
 
 ## Fait (mergé en prod)
@@ -30,6 +30,7 @@ Document de reprise pour continuer le projet dans une nouvelle session.
 9. **Menu mobile de l'espace artisan** (hamburger : Bacheca / Crediti / Profilo, fermeture clic ext. + Échap) + fix : padding bas pour que la bannière d'installation ne masque plus le dernier bloc.
 10. **Page profil public** `/artigiano/[matricule]` (ex. `/artigiano/ART-0004`) : nom, ville/pays, matricule, badge vérifié, note + étoiles, métiers, avis clients (note+commentaire, sans identité client), CTA « publie ta demande ». **Données publiques uniquement** (jamais tél/email/P.IVA). Lien « Voir/partager mon profil public » dans `/dashboard/profilo`.
 11. **Traçabilité des remboursements** : onglet Rimborsi → nouvelle section **Historique** (remboursements approuvés/refusés) avec artisan + client (nom+tél) + motif + date, et **signaux de récidive** (« client signalé ×N », « remboursements artisan ×N »). Voir `getRefundHistory` dans `lib/refunds.ts`.
+12. **Infra déploiement** : migrations auto rétablies au build (#80) + déploiement Production fiable via GitHub Action + Deploy Hook Vercel (#82). Voir points de vigilance 1 et 2.
 
 ## Incident prod résolu (2026-09-20/21)
 - Symptôme : 500 sur `/dashboard` et l'admin. Cause : la base de **prod** avait la migration `add_unlock_refund` marquée appliquée mais la colonne **`Unlock.refundReasonCode` manquait** (migration éditée après coup → jamais rejouée). Corrigé en ajoutant la colonne à la main dans Neon (`ALTER TABLE "Unlock" ADD COLUMN IF NOT EXISTS "refundReasonCode" TEXT;`).
@@ -44,7 +45,8 @@ Document de reprise pour continuer le projet dans une nouvelle session.
 - Messagerie **artisan ↔ admin**.
 - Relancer les artisans inscrits **sans téléphone** ; **P.IVA** réelle dans les mentions légales.
 - Renommage éventuel **Manuvo → « Expert »** (à confirmer).
-- Dette technique : migrer les libellés inline vers les 5 JSON ; réactiver proprement les migrations au build (résoudre le décalage d'empreinte + P1002 Neon) ; badge « P.IVA vérifiée » distinct du badge avis.
+- Sécurité : marquer en **Sensitive** les variables d'env Vercel signalées « Needs Attention ».
+- Dette technique : migrer les libellés inline vers les 5 JSON ; aligner l'empreinte `_prisma_migrations` de `add_unlock_refund` (checksum `622ae7b...`) ; badge « P.IVA vérifiée » distinct du badge avis.
 - Hors Manuvo : build cassé `agence-ia/automaia-app`.
 
 ## Repères techniques
@@ -52,4 +54,5 @@ Document de reprise pour continuer le projet dans une nouvelle session.
 - Libs : `lib/reviews.ts` (avis + `getArtisanStats` / `getArtisanStatsMap` / `computeArtisanStats`, badge >=3 & >=4.0), `lib/refunds.ts` (`getRefundRequests` + `getRefundHistory`), `lib/sms.ts`, `lib/phone-verification.ts`, `lib/base-url.ts`, `lib/constants.ts` (`formatMatricule`).
 - Composants : `components/StarRating.tsx` (`StarRating`, `VerifiedBadge`).
 - Pages clés : `/dashboard` (bacheca) + layout `HeaderNav` (menu mobile), `/dashboard/profilo`, `/artigiano/[matricule]` (public), admin onglets Demandes / Artisans / Ébauches / Rimborsi (+ Historique).
+- Infra : `vercel.json` (`buildCommand: vercel-build`, `ignoreCommand`), `prisma/migrate-deploy.mjs` (migrate deploy sur URL Neon directe), `.github/workflows/vercel-deploy.yml` (Deploy Hook).
 - Admin : onglets Demandes / Artisans / Ébauches / Rimborsi.
