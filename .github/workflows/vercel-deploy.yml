@@ -1,0 +1,19 @@
+name: Deploy Manuvo (Vercel)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "manuvo/**"
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "Secret VERCEL_DEPLOY_HOOK manquant"; exit 1; fi
+          curl -fsS -X POST "$HOOK"
