@@ -14,10 +14,12 @@ export function LeadForm({
   categories,
   countries,
   urgencies,
+  defaultCategory = "",
 }: {
   categories: Opt[];
   countries: Opt[];
   urgencies: Opt[];
+  defaultCategory?: string;
 }) {
   const t = useTranslations("pubblica");
   // Prénom capté dès l'ouverture : sert à personnaliser l'accueil ("Piacere, Mario!").
@@ -198,7 +200,7 @@ export function LeadForm({
 
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("need")} {req}</span>
-        <select name="category" required defaultValue="" className={input} onBlur={onFieldBlur}>
+        <select name="category" required defaultValue={defaultCategory} className={input} onBlur={onFieldBlur}>
           <option value="" disabled>{t("choose")}</option>
           {categories.map((c) => (
             <option key={c.value} value={c.value}>{c.label}</option>

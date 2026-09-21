@@ -1,18 +1,26 @@
-// Manuvo - landing completa (etape 8.3): hero, come funziona, mestieri, privati/artigiani, CTA, footer.
+// Manuvo - landing: hero, come funziona, famiglie di mestieri (tuiles), privati/artigiani, CTA, footer.
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LogoWordmark } from "@/components/LogoWordmark";
-import { CATEGORIES, LOCALES, type Locale } from "@/lib/constants";
+import { LOCALES, type Locale } from "@/lib/constants";
 import { CATEGORY_ICON } from "@/lib/category-icons";
+import { FAMILIES, FAMILY_LABEL, FAMILY_SLUG } from "@/lib/category-groups";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 
 const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
 
+const SERVIZI_WORD: Record<Locale, string> = {
+  it: "servizi",
+  fr: "services",
+  en: "services",
+  de: "Leistungen",
+  ar: "خدمات",
+};
+
 export default async function Home() {
   const t = await getTranslations("home");
   const tl = await getTranslations("landing");
-  const tc = await getTranslations("categories");
   const localeRaw = await getLocale();
   const locale = (LOCALES as readonly string[]).includes(localeRaw)
     ? (localeRaw as Locale)
@@ -92,36 +100,42 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Mestieri */}
+      {/* Famiglie di mestieri (tuiles vers /categorie/[slug]) */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-center font-display text-3xl font-bold tracking-tight sm:text-4xl">
             {tl("cats_title")}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-center text-neutral-600">{tl("cats_sub")}</p>
+
           <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {CATEGORIES.map((cat) => (
-              <div
-                key={cat}
-                className="flex h-full flex-col items-center justify-start gap-2.5 rounded-xl border border-neutral-200 bg-[#FAF8F4] px-3 py-4 text-center"
+            {FAMILIES.map((fam) => (
+              <Link
+                key={fam.key}
+                href={`/categorie/${FAMILY_SLUG[fam.key]}`}
+                className={`group flex min-h-[150px] flex-col justify-between overflow-hidden rounded-2xl bg-linear-to-br ${fam.grad} p-5 text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md`}
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-red-50 text-red-700">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    dangerouslySetInnerHTML={{ __html: CATEGORY_ICON[cat] }}
-                  />
-                </span>
-                <span className="hyphens-auto text-sm font-semibold leading-tight">
-                  {tc(cat)}
-                </span>
-              </div>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="30"
+                  height="30"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-white/90 transition group-hover:scale-110"
+                  dangerouslySetInnerHTML={{ __html: CATEGORY_ICON[fam.categories[0]] }}
+                />
+                <div>
+                  <div className="font-display text-base font-bold leading-tight">
+                    {FAMILY_LABEL[locale][fam.key]}
+                  </div>
+                  <div className="mt-0.5 text-xs text-white/80">
+                    {fam.categories.length} {SERVIZI_WORD[locale]}
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
