@@ -13,6 +13,8 @@ export type RefundReasonCode = (typeof REFUND_REASON_CODES)[number];
 
 // Etats consideres comme un "signalement" (demande faite, en attente ou aboutie).
 const REPORTED = ["REQUESTED", "APPROVED"] as const;
+// Tous les etats de signalement (pour la tracabilite / recidive).
+const ALL_REPORTED = ["REQUESTED", "APPROVED", "REJECTED"] as const;
 
 export class RefundError extends Error {}
 
@@ -105,6 +107,49 @@ export async function getRefundRequests() {
     leadReportCount: leadReportMap.get(r.leadId) ?? 1,
     artisanUnlockCount: userTotalMap.get(r.userId) ?? 1,
     artisanReportCount: userReportMap.get(r.userId) ?? 1,
+  }));
+}
+
+// --- Cote admin : historique des remboursements traites (tracabilite) ---
+// Retourne les remboursements APPROVED/REJECTED avec l'artisan et le client,
+// plus des compteurs de recidive : combien de signalements partagent le meme
+// numero client, et combien pour le meme artisan.
+export async function getRefundHistory(limit = 100) {
+  const rows = await prisma.unlock.findMany({
+    where: { refundStatus: { in: ["APPROVED", "REJECTED"] } },
+    orderBy: [{ refundedAt: "desc" }, { refundRequestedAt: "desc" }],
+    take: limit,
+    select: {
+      id: true,
+      userId: true,
+      creditsSpent: true,
+      refundStatus: true,
+      refundReasonCode: true,
+      refundReason: true,
+      refundRequestedAt: true,
+      refundedAt: true,
+      user: { select: { matricule: true, name: true } },
+      lead: { select: { category: true, city: true, contactName: true, contactPhone: true } },
+    },
+  });
+
+  // Recidive : compte les signalements (tous etats) par numero client et par artisan.
+  const reported = await prisma.unlock.findMany({
+    where: { refundStatus: { in: [...ALL_REPORTED] } },
+    select: { userId: true, lead: { select: { contactPhone: true } } },
+  });
+  const byPhone = new Map<string, number>();
+  const byUser = new Map<string, number>();
+  for (const u of reported) {
+    const phone = u.lead.contactPhone;
+    byPhone.set(phone, (byPhone.get(phone) ?? 0) + 1);
+    byUser.set(u.userId, (byUser.get(u.userId) ?? 0) + 1);
+  }
+
+  return rows.map((r) => ({
+    ...r,
+    clientReportCount: byPhone.get(r.lead.contactPhone) ?? 1,
+    artisanReportCount: byUser.get(r.userId) ?? 1,
   }));
 }
 
