@@ -6,6 +6,17 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ---
 
+## 0. Dette technique / ops (issu de la session du 2026-09-20/21)
+
+- [ ] **Réactiver les migrations Prisma au déploiement**
+  - `buildCommand: vercel-build` a été retiré de `vercel.json` (il figeait les déploiements sur un décalage d'empreinte de `add_unlock_refund` + verrou advisory Neon P1002).
+  - En attendant : appliquer chaque nouvelle migration **à la main dans la console SQL Neon** puis l'enregistrer dans `_prisma_migrations` (checksum = sha256 du `migration.sql`).
+  - À faire : nettoyer le décalage d'empreinte côté prod, puis remettre `migrate deploy` au build de façon fiable.
+- [ ] **Webhook GitHub→Vercel peu fiable** : plusieurs merges `main` n'ont pas déclenché de déploiement Production. À surveiller ; contournement : petit commit ou « Promote to Production ».
+- [ ] **Migrer les libellés inline vers les 5 fichiers de messages** : page `/artigiano/[matricule]`, carte « profil public » du profil, historique Rimborsi, aria-label « Menu » du hamburger (clé `nav.menu`).
+
+---
+
 ## 1. Mise en production / paiements
 
 - [ ] **Stripe en mode Live**
@@ -40,11 +51,10 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 - [x] **Capter nom + prénom du particulier à l'ouverture de la page de demande** — _fait_
   - Champs Prénom + Nom en tête de `/pubblica`, autofocus + autofill, message de bienvenue personnalisé.
-  - Ébauche enregistrée avant l'envoi (`LeadDraft`) pour ne pas perdre le contact si la demande n'est pas finalisée ; note de confidentialité RGPD ajoutée ; contacts non finalisés visibles dans l'admin (onglet Ébauches).
+  - Ébauche enregistrée avant l'envoi (`LeadDraft`) ; note de confidentialité RGPD ; onglet admin Ébauches.
 
-- [ ] **Menu de navigation mobile pour l'espace artisan**
-  - Aujourd'hui la nav (Demandes / Crédits / Profil) est cachée sur mobile
-  - Ajouter un menu (burger ou barre) pour que les artisans accèdent facilement au profil et aux crédits depuis leur téléphone
+- [x] **Menu de navigation mobile pour l'espace artisan** — _fait_
+  - Hamburger (Bacheca / Crediti / Profilo), fermeture clic ext. + Échap. Fix padding bas (bannière d'installation ne masque plus le contenu).
 
 - [ ] **Relancer les artisans déjà inscrits pour compléter leur téléphone**
   - Les comptes créés avant l'ajout du champ téléphone n'ont pas de numéro
@@ -54,36 +64,40 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ## 4. Inspiration concurrentielle (ProntoPro)
 
-Analyse du concurrent italien ProntoPro (modèle très proche : demande gratuite côté client, artisans qui paient des crédits pour contacter). Idées à évaluer, priorisées. Point faible connu de ProntoPro (récurrent dans les avis) : **demandes fausses ou fantômes** — c'est le principal axe de différenciation pour Manuvo.
+Analyse du concurrent italien ProntoPro (modèle très proche). Point faible connu de ProntoPro : **demandes fausses ou fantômes** — principal axe de différenciation pour Manuvo.
 
 **Priorité haute (confiance + différenciation) :**
 
-- [x] **Anti-faux-leads** (attaque le point faible de ProntoPro) — _livré côté code_
-  - [x] Vérification du numéro du particulier par **code SMS** avant publication (PR #59). ⚠️ Reste une étape ops : **brancher Twilio** en prod (`docs/TWILIO.md`). Sans les clés, le flux tourne en mode dev (code affiché) et ne bloque pas encore les faux.
-  - [x] **Remboursement des crédits** avec **validation admin** (PR #64) : signalement artisan (motif cadré), onglet admin Rimborsi.
-  - [x] **Garde-fous anti-abus** (PR #64) : corroboration entre artisans (X/Y signalements sur le même lead), taux de remboursement de l'artisan, mention « client parti chez un concurrent = non remboursable ».
-  - Argument marketing fort : « Chez Manuvo, tu ne paies jamais pour un faux contact »
+- [x] **Anti-faux-leads** — _livré_
+  - [x] Vérification du numéro du particulier par **code SMS** avant publication. ⚠️ Reste à **brancher Twilio** en prod (`docs/TWILIO.md`) ; sinon mode dev (ne bloque pas encore les faux).
+  - [x] **Remboursement des crédits** avec **validation admin** (onglet Rimborsi, motif cadré).
+  - [x] **Garde-fous anti-abus** : corroboration entre artisans (X/Y sur le même lead), taux de remboursement de l'artisan, motifs cadrés.
+  - [x] **Traçabilité des remboursements** : historique des remboursements traités (client + artisan) + signaux de récidive (client signalé ×N, remboursements artisan ×N).
+  - Argument marketing : « Chez Manuvo, tu ne paies jamais pour un faux contact »
 
-- [ ] **Système d'avis / notation vérifié**
-  - Un avis n'est possible qu'après un déblocage réel (interaction sur la plateforme), comme ProntoPro
-  - Moteur de confiance principal du concurrent ; Manuvo n'en a aucun aujourd'hui
+- [x] **Système d'avis / notation vérifié** — _fait_
+  - Avis possible uniquement après un déblocage réel ; lien envoyé par SMS au client (l'artisan ne le voit pas). Note moyenne + badge « artisan vérifié » (>=3 avis & moyenne >=4.0).
 
-- [ ] **Profil artisan public + badge « P.IVA vérifiée »**
-  - Page publique (métiers, zone, avis, badge de vérification)
-  - Manuvo valide déjà la P.IVA à l'inscription : il reste à l'exposer
+- [x] **Profil artisan public** — _fait (v1)_
+  - Page publique `/artigiano/[matricule]` : métiers, zone, note, avis, badge vérifié ; lien de partage dans l'espace artisan.
+  - [ ] Reste : badge distinct **« P.IVA vérifiée »** (la P.IVA est validée à l'inscription, à exposer comme badge séparé du badge avis).
 
 **Priorité moyenne :**
 
 - [ ] **Chat intégré particulier ↔ artisan** (rejoint la messagerie du point 3)
-- [ ] **Fiabilité du particulier** : marquer les clients « fantômes » (demandes jamais converties) pour protéger les artisans et affiner l'anti-abus
-- [ ] **« 3 artisans max » comme argument de vente** : ProntoPro va jusqu'à 5 pros par demande, Manuvo plafonne à 3. À mettre en avant explicitement (moins de concurrence par lead)
+- [ ] **Fiabilité du particulier** : marquer les clients « fantômes » (demandes jamais converties) — complète la traçabilité remboursements par n° client déjà en place
+- [ ] **« 3 artisans max » comme argument de vente** (ProntoPro va jusqu'à 5)
 
 **Priorité basse :**
 
 - [ ] **Devis en ligne optionnel** : l'artisan propose un prix, le particulier compare
-- [ ] **Paliers de recharge avec crédits offerts** (Manuvo a déjà les crédits de bienvenue)
+- [ ] **Paliers de recharge avec crédits offerts**
 
-> Note : ProntoPro n'a pas pu être scrapé (réseau sortant du sandbox verrouillé, et le scraping d'un concurrent pose un problème de CGU). Analyse basée sur des sources publiques (site officiel, guides tiers, avis Trustpilot).
+---
+
+## 5. Naming
+
+- [ ] **Renommage éventuel Manuvo → « Expert »** (à confirmer ; nom générique, envisager un nom composé)
 
 ---
 
