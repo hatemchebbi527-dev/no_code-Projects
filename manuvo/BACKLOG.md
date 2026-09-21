@@ -13,11 +13,12 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - Action : pour chacune, `⋯` → Edit → cocher **Sensitive** (parfois recréer la variable en Sensitive). Ne pas changer les valeurs.
   - Ne pas supprimer à l'aveugle les variables gérées par l'intégration Neon (risque de recréation / lien cassé) ; Manuvo n'utilise que `DATABASE_URL`.
   - Priorité : basse, mais à faire **avant la mise en Live de Stripe**.
-- [ ] **Réactiver les migrations Prisma au déploiement**
-  - `buildCommand: vercel-build` a été retiré de `vercel.json` (il figeait les déploiements sur un décalage d'empreinte de `add_unlock_refund` + verrou advisory Neon P1002).
-  - En attendant : appliquer chaque nouvelle migration **à la main dans la console SQL Neon** puis l'enregistrer dans `_prisma_migrations` (checksum = sha256 du `migration.sql`).
-  - À faire : nettoyer le décalage d'empreinte côté prod, puis remettre `migrate deploy` au build de façon fiable.
-- [ ] **Webhook GitHub→Vercel peu fiable** : plusieurs merges `main` n'ont pas déclenché de déploiement Production. À surveiller ; contournement : petit commit ou « Promote to Production ».
+- [x] **Migrations Prisma auto au déploiement — rétabli (2026-09-21)**
+  - `buildCommand: vercel-build` réactivé (#80) ; `prisma migrate deploy` tourne au build (prouvé par un déploiement Production Ready). Les migrations en attente s'appliquent automatiquement.
+  - Reste (optionnel) : aligner le checksum de `add_unlock_refund` dans `_prisma_migrations` (drift toléré par migrate deploy).
+- [~] **Webhook GitHub→Vercel — intégration reconnectée (2026-09-21), à confirmer**
+  - Lien Git disconnect/reconnect ; Production Branch = `main` et Root = `manuvo` vérifiés. À confirmer qu'un merge déclenche bien un déploiement Production automatiquement.
+  - Si ça rate encore : vérifier les Recent Deliveries du webhook côté GitHub (repo → Settings → Webhooks) ; contournement : petit commit ou « Promote to Production ».
 - [ ] **Migrer les libellés inline vers les 5 fichiers de messages** : page `/artigiano/[matricule]`, carte « profil public » du profil, historique Rimborsi, aria-label « Menu » du hamburger (clé `nav.menu`).
 
 ---
