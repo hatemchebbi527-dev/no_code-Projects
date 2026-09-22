@@ -73,4 +73,26 @@ export const CATEGORY_PHOTO: Partial<Record<Category, string>> = {
     "https://images.unsplash.com/photo-1571732154690-f6d1c3e5178a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   pilates:
     "https://images.unsplash.com/photo-1697060739671-586c21fa5e30?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Eventi e media ---
+  fotografo:
+    "https://images.unsplash.com/photo-1503525443530-339273ca8a86?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  videomaker:
+    "https://images.unsplash.com/photo-1612130536441-95ece5dcbb86?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  dj:
+    "https://images.unsplash.com/photo-1496337589254-7e19d01cec44?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Trasporti e auto ---
+  trasporti:
+    "https://images.unsplash.com/photo-1601656125693-aac12521664f?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  meccanico:
+    "https://images.unsplash.com/photo-1775590766345-c117265f0c1b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  autista:
+    "https://images.unsplash.com/photo-1773063449875-332dff62b6e3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Servizi e formazione ---
+  ripetizioni:
+    "https://images.unsplash.com/photo-1580894732930-0babd100d356?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  sviluppo_web:
+    "https://images.unsplash.com/photo-1590608897129-79da98d15969?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
