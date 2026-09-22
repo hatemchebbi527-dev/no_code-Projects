@@ -1,14 +1,16 @@
-// Manuvo - landing: hero, come funziona, famiglie di mestieri (tuiles avec photo), privati/artigiani, CTA, footer.
+// Manuvo - landing: hero, come funziona (con foto), famiglie di mestieri (tuiles avec photo), privati/artigiani, CTA, footer.
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LogoWordmark } from "@/components/LogoWordmark";
 import { FamilyTile } from "@/components/FamilyTile";
+import { StepImage } from "@/components/StepImage";
 import { LOCALES, type Locale } from "@/lib/constants";
 import { CATEGORY_ICON } from "@/lib/category-icons";
 import { FAMILIES, FAMILY_LABEL, FAMILY_SLUG } from "@/lib/category-groups";
 import { CATEGORY_PHOTO } from "@/lib/category-photos";
 import { FAMILY_PHOTO } from "@/lib/family-photos";
+import { HOW_PHOTO } from "@/lib/how-photos";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 
 const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
@@ -91,13 +93,16 @@ export default async function Home() {
           {[1, 2, 3].map((n) => (
             <div
               key={n}
-              className="rounded-2xl border border-neutral-200 bg-white p-7 shadow-sm"
+              className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm"
             >
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-red-50 font-display text-xl font-extrabold text-red-700">
-                {n}
-              </span>
-              <h3 className="mt-5 font-display text-xl font-bold">{tl(`how${n}_t`)}</h3>
-              <p className="mt-2 text-neutral-600">{tl(`how${n}_d`)}</p>
+              <StepImage src={HOW_PHOTO[n - 1]} alt={tl(`how${n}_t`)} />
+              <div className="p-7">
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-red-50 font-display text-xl font-extrabold text-red-700">
+                  {n}
+                </span>
+                <h3 className="mt-5 font-display text-xl font-bold">{tl(`how${n}_t`)}</h3>
+                <p className="mt-2 text-neutral-600">{tl(`how${n}_d`)}</p>
+              </div>
             </div>
           ))}
         </div>
