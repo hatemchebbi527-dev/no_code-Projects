@@ -45,4 +45,18 @@ export const CATEGORY_PHOTO: Partial<Record<Category, string>> = {
     "https://images.unsplash.com/photo-1653729167410-a0c5238419ac?q=80&w=737&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   spazzacamino:
     "https://images.unsplash.com/photo-1594560225349-7d4541d32e87?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Pulizie e disinfestazione ---
+  pulizie:
+    "https://images.unsplash.com/photo-1669101602108-fa5ba89507ee?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  lavaggio_tappeti:
+    "https://images.unsplash.com/photo-1742483359033-13315b247c74?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  pulizia_cantiere:
+    "https://images.unsplash.com/photo-1718152421680-d1580e843cc9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  colf:
+    "https://images.unsplash.com/photo-1713552566168-89c00fd622cf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  derattizzazione:
+    "https://images.unsplash.com/photo-1642611141599-73b9b35b4e2a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  disinfestazione:
+    "https://images.unsplash.com/photo-1670989292166-8b20b9530438?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
