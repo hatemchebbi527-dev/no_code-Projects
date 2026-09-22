@@ -31,4 +31,18 @@ export const CATEGORY_PHOTO: Partial<Record<Category, string>> = {
     "https://images.unsplash.com/photo-1614945201958-a1ea751e6b7e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   vetraio:
     "https://images.unsplash.com/photo-1708576085431-f77b19960396?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Ristrutturazione e lavori ---
+  muratura:
+    "https://images.unsplash.com/photo-1704005445445-2747074be8ac?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  imbianchino:
+    "https://images.unsplash.com/photo-1688372199140-cade7ae820fe?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  falegname:
+    "https://images.unsplash.com/photo-1667923006173-9e0d2251f608?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  ristrutturazione:
+    "https://images.unsplash.com/photo-1780385187605-7324343d3f76?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  tappezziere:
+    "https://images.unsplash.com/photo-1653729167410-a0c5238419ac?q=80&w=737&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  spazzacamino:
+    "https://images.unsplash.com/photo-1594560225349-7d4541d32e87?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
