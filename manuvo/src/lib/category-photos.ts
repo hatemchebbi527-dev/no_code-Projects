@@ -59,4 +59,18 @@ export const CATEGORY_PHOTO: Partial<Record<Category, string>> = {
     "https://images.unsplash.com/photo-1642611141599-73b9b35b4e2a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   disinfestazione:
     "https://images.unsplash.com/photo-1670989292166-8b20b9530438?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Esterni e giardino ---
+  giardinaggio:
+    "https://images.unsplash.com/photo-1734303023491-db8037a21f09?q=80&w=2142&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Benessere e bellezza ---
+  estetista:
+    "https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  massaggio:
+    "https://images.unsplash.com/photo-1696841212541-449ca29397cc?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  personal_trainer:
+    "https://images.unsplash.com/photo-1571732154690-f6d1c3e5178a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  pilates:
+    "https://images.unsplash.com/photo-1697060739671-586c21fa5e30?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
