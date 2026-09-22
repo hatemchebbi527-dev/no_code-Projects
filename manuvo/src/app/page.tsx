@@ -1,11 +1,14 @@
-// Manuvo - landing: hero, come funziona, famiglie di mestieri (tuiles), privati/artigiani, CTA, footer.
+// Manuvo - landing: hero, come funziona, famiglie di mestieri (tuiles avec photo), privati/artigiani, CTA, footer.
 import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LogoWordmark } from "@/components/LogoWordmark";
+import { FamilyTile } from "@/components/FamilyTile";
 import { LOCALES, type Locale } from "@/lib/constants";
 import { CATEGORY_ICON } from "@/lib/category-icons";
 import { FAMILIES, FAMILY_LABEL, FAMILY_SLUG } from "@/lib/category-groups";
+import { CATEGORY_PHOTO } from "@/lib/category-photos";
+import { FAMILY_PHOTO } from "@/lib/family-photos";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 
 const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
@@ -100,7 +103,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Famiglie di mestieri (tuiles vers /categorie/[slug]) */}
+      {/* Famiglie di mestieri (tuiles avec photo vers /categorie/[slug]) */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-center font-display text-3xl font-bold tracking-tight sm:text-4xl">
@@ -113,28 +116,15 @@ export default async function Home() {
               <Link
                 key={fam.key}
                 href={`/categorie/${FAMILY_SLUG[fam.key]}`}
-                className={`group flex min-h-[150px] flex-col justify-between overflow-hidden rounded-2xl bg-linear-to-br ${fam.grad} p-5 text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md`}
+                className="group block"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="30"
-                  height="30"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-white/90 transition group-hover:scale-110"
-                  dangerouslySetInnerHTML={{ __html: CATEGORY_ICON[fam.categories[0]] }}
+                <FamilyTile
+                  src={FAMILY_PHOTO[fam.key] ?? CATEGORY_PHOTO[fam.categories[0]]}
+                  label={FAMILY_LABEL[locale][fam.key]}
+                  meta={`${fam.categories.length} ${SERVIZI_WORD[locale]}`}
+                  grad={fam.grad}
+                  iconPath={CATEGORY_ICON[fam.categories[0]]}
                 />
-                <div>
-                  <div className="font-display text-base font-bold leading-tight">
-                    {FAMILY_LABEL[locale][fam.key]}
-                  </div>
-                  <div className="mt-0.5 text-xs text-white/80">
-                    {fam.categories.length} {SERVIZI_WORD[locale]}
-                  </div>
-                </div>
               </Link>
             ))}
           </div>
