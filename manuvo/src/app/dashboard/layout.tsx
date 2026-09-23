@@ -1,15 +1,26 @@
 // Manuvo - layout de l'espace artisan (barre du haut + navigation).
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { auth } from "@/auth";
 import { getUserBalance } from "@/lib/credits";
 import { getUnreadCount } from "@/lib/notifications";
+import { getArtisanUnread } from "@/lib/messages";
+import { LOCALES, type Locale } from "@/lib/constants";
 import { logout } from "../(auth)/actions";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NotificationBell } from "@/components/NotificationBell";
 import { LogoWordmark } from "@/components/LogoWordmark";
 import { HeaderNav } from "./HeaderNav";
+
+// Libelle de nav "Messaggi" (inline, 5 langues) pour eviter de toucher aux 5 JSON.
+const NAV_MESSAGGI: Record<Locale, string> = {
+  it: "Messaggi",
+  fr: "Messages",
+  en: "Messages",
+  de: "Nachrichten",
+  ar: "الرسائل",
+};
 
 export default async function DashboardLayout({
   children,
@@ -22,6 +33,11 @@ export default async function DashboardLayout({
   if (session.user.role === "ADMIN") redirect("/admin");
   const credits = await getUserBalance(session.user.id);
   const unread = await getUnreadCount(session.user.id);
+  const msgUnread = await getArtisanUnread(session.user.id);
+  const localeRaw = await getLocale();
+  const locale = (LOCALES as readonly string[]).includes(localeRaw)
+    ? (localeRaw as Locale)
+    : "it";
   const tn = await getTranslations("nav");
   const tc = await getTranslations("common");
 
@@ -38,6 +54,8 @@ export default async function DashboardLayout({
             bachecaLabel={tn("bacheca")}
             creditiLabel={tn("crediti")}
             profiloLabel={tn("profilo")}
+            messaggiLabel={NAV_MESSAGGI[locale]}
+            messaggiUnread={msgUnread}
             menuLabel="Menu"
           />
 

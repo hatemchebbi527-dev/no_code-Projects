@@ -1,14 +1,25 @@
 // Manuvo - layout del pannello admin (header + guardia ruolo ADMIN).
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { auth } from "@/auth";
 import { getUnreadCount } from "@/lib/notifications";
+import { getTotalAdminUnread } from "@/lib/messages";
+import { LOCALES, type Locale } from "@/lib/constants";
 import { logout } from "../(auth)/actions";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NotificationBell } from "@/components/NotificationBell";
 import { LogoWordmark } from "@/components/LogoWordmark";
 import { AdminNav } from "./AdminNav";
+
+// Libelle de nav "Messaggi" (inline, 5 langues).
+const NAV_MESSAGGI: Record<Locale, string> = {
+  it: "Messaggi",
+  fr: "Messages",
+  en: "Messages",
+  de: "Nachrichten",
+  ar: "الرسائل",
+};
 
 export default async function AdminLayout({
   children,
@@ -19,6 +30,11 @@ export default async function AdminLayout({
   if (!session?.user) redirect("/login");
   if (session.user.role !== "ADMIN") redirect("/dashboard");
   const unread = await getUnreadCount(session.user.id);
+  const msgUnread = await getTotalAdminUnread();
+  const localeRaw = await getLocale();
+  const locale = (LOCALES as readonly string[]).includes(localeRaw)
+    ? (localeRaw as Locale)
+    : "it";
   const tn = await getTranslations("nav");
   const tc = await getTranslations("common");
 
@@ -40,7 +56,7 @@ export default async function AdminLayout({
         </div>
       </header>
       <main className="mx-auto max-w-5xl px-5 py-8">
-        <AdminNav />
+        <AdminNav messaggiLabel={NAV_MESSAGGI[locale]} messaggiUnread={msgUnread} />
         {children}
       </main>
     </div>
