@@ -36,8 +36,23 @@ model User {
   notifications Notification[]
   pushSubscriptions PushSubscription[]
   reviews      Review[]
+  messages     Message[]
 
   @@index([role])
+}
+
+// Messaggeria in-app admin <-> artigiano (un thread per artigiano).
+model Message {
+  id        String    @id @default(cuid())
+  userId    String
+  fromAdmin Boolean   @default(false) // true = messaggio dell'admin, false = dell'artigiano
+  body      String
+  readAt    DateTime? // quando il destinatario l'ha letto
+  createdAt DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
 }
 
 // Notification in-app (una nuova richiesta corrisponde ai mestieri/zona dell'artigiano).
