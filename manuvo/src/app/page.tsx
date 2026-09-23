@@ -23,6 +23,176 @@ const SERVIZI_WORD: Record<Locale, string> = {
   ar: "خدمات",
 };
 
+type FaqContent = { title: string; items: { q: string; a: string }[] };
+
+const FAQ_STRINGS: Record<Locale, FaqContent> = {
+  it: {
+    title: "Domande frequenti",
+    items: [
+      {
+        q: "Devo creare un account per pubblicare una richiesta?",
+        a: "No. Pubblichi la tua richiesta senza registrazione: sono gli artigiani a contattarti.",
+      },
+      {
+        q: "Quanto costa per chi cerca un artigiano?",
+        a: "È gratuito per i privati. Paghi solo il lavoro concordato direttamente con l'artigiano.",
+      },
+      {
+        q: "Come faccio a essere sicuro che i contatti siano reali?",
+        a: "Ogni cliente verifica il proprio numero con un codice SMS prima di pubblicare: un numero falso non supera la verifica. E se un contatto sbloccato risulta falso o irraggiungibile, ti rimborsiamo i crediti. Con Manuvo non paghi mai per un falso contatto.",
+      },
+      {
+        q: "Come funzionano i crediti?",
+        a: "1 credito = 2 €. Sbloccare un contatto costa da 3 a 5 crediti, e ogni richiesta è visibile al massimo a 3 artigiani.",
+      },
+      {
+        q: "C'è un importo minimo per ricaricare i crediti?",
+        a: "No. La ricarica è libera, nessun minimo imposto: aggiungi i crediti che vuoi, quando vuoi.",
+      },
+      {
+        q: "Come ricevo le richieste dei clienti?",
+        a: "Ricevi una notifica quando una richiesta corrisponde al tuo mestiere e alla tua zona. Sblocchi solo i contatti che ti interessano.",
+      },
+      {
+        q: "Cos'è il badge «artigiano verificato»?",
+        a: "Gli artigiani con Partita IVA e recensioni positive dei clienti ottengono un badge di fiducia: così i privati sanno subito con chi hanno a che fare.",
+      },
+    ],
+  },
+  fr: {
+    title: "Questions fréquentes",
+    items: [
+      {
+        q: "Dois-je créer un compte pour publier une demande ?",
+        a: "Non. Vous publiez votre demande sans inscription : ce sont les artisans qui vous contactent.",
+      },
+      {
+        q: "Combien ça coûte pour celui qui cherche un artisan ?",
+        a: "C'est gratuit pour les particuliers. Vous payez seulement le travail convenu directement avec l'artisan.",
+      },
+      {
+        q: "Comment être sûr que les contacts sont réels ?",
+        a: "Chaque client vérifie son numéro avec un code SMS avant de publier : un faux numéro ne passe pas la vérification. Et si un contact débloqué s'avère faux ou injoignable, nous vous remboursons les crédits. Avec Manuvo, vous ne payez jamais pour un faux contact.",
+      },
+      {
+        q: "Comment fonctionnent les crédits ?",
+        a: "1 crédit = 2 €. Débloquer un contact coûte de 3 à 5 crédits, et chaque demande est visible par 3 artisans maximum.",
+      },
+      {
+        q: "Y a-t-il un montant minimum pour recharger les crédits ?",
+        a: "Non. La recharge est libre, aucun minimum imposé : ajoutez les crédits que vous voulez, quand vous voulez.",
+      },
+      {
+        q: "Comment je reçois les demandes des clients ?",
+        a: "Vous recevez une notification quand une demande correspond à votre métier et à votre zone. Vous débloquez seulement les contacts qui vous intéressent.",
+      },
+      {
+        q: "Qu'est-ce que le badge «artisan vérifié» ?",
+        a: "Les artisans avec numéro de TVA et avis positifs de clients obtiennent un badge de confiance : ainsi les particuliers savent tout de suite à qui ils ont affaire.",
+      },
+    ],
+  },
+  en: {
+    title: "Frequently asked questions",
+    items: [
+      {
+        q: "Do I need an account to post a request?",
+        a: "No. You post your request without signing up: it's the artisans who contact you.",
+      },
+      {
+        q: "How much does it cost for someone looking for an artisan?",
+        a: "It's free for individuals. You only pay for the work agreed directly with the artisan.",
+      },
+      {
+        q: "How can I be sure the contacts are real?",
+        a: "Every client verifies their number with an SMS code before posting: a fake number won't pass verification. And if an unlocked contact turns out to be fake or unreachable, we refund your credits. With Manuvo, you never pay for a fake contact.",
+      },
+      {
+        q: "How do credits work?",
+        a: "1 credit = €2. Unlocking a contact costs 3 to 5 credits, and each request is visible to a maximum of 3 artisans.",
+      },
+      {
+        q: "Is there a minimum amount to top up credits?",
+        a: "No. Top-up is free, with no minimum imposed: add as many credits as you want, whenever you want.",
+      },
+      {
+        q: "How do I receive client requests?",
+        a: "You get a notification when a request matches your trade and area. You only unlock the contacts you're interested in.",
+      },
+      {
+        q: "What is the “verified artisan” badge?",
+        a: "Artisans with a VAT number and positive client reviews earn a trust badge, so individuals know right away who they're dealing with.",
+      },
+    ],
+  },
+  de: {
+    title: "Häufige Fragen",
+    items: [
+      {
+        q: "Muss ich ein Konto erstellen, um eine Anfrage zu veröffentlichen?",
+        a: "Nein. Sie veröffentlichen Ihre Anfrage ohne Registrierung: Die Handwerker kontaktieren Sie.",
+      },
+      {
+        q: "Wie viel kostet es für jemanden, der einen Handwerker sucht?",
+        a: "Für Privatpersonen ist es kostenlos. Sie zahlen nur die direkt mit dem Handwerker vereinbarte Arbeit.",
+      },
+      {
+        q: "Wie kann ich sicher sein, dass die Kontakte echt sind?",
+        a: "Jeder Kunde bestätigt seine Nummer vor der Veröffentlichung mit einem SMS-Code: Eine falsche Nummer besteht die Prüfung nicht. Und wenn ein freigeschalteter Kontakt sich als falsch oder nicht erreichbar herausstellt, erstatten wir Ihnen die Credits. Mit Manuvo zahlen Sie nie für einen falschen Kontakt.",
+      },
+      {
+        q: "Wie funktionieren die Credits?",
+        a: "1 Credit = 2 €. Das Freischalten eines Kontakts kostet 3 bis 5 Credits, und jede Anfrage ist für höchstens 3 Handwerker sichtbar.",
+      },
+      {
+        q: "Gibt es einen Mindestbetrag zum Aufladen der Credits?",
+        a: "Nein. Das Aufladen ist frei, kein Mindestbetrag vorgeschrieben: Fügen Sie so viele Credits hinzu, wie Sie möchten, wann Sie möchten.",
+      },
+      {
+        q: "Wie erhalte ich Kundenanfragen?",
+        a: "Sie erhalten eine Benachrichtigung, wenn eine Anfrage zu Ihrem Beruf und Ihrer Region passt. Sie schalten nur die Kontakte frei, die Sie interessieren.",
+      },
+      {
+        q: "Was ist das Abzeichen „verifizierter Handwerker“?",
+        a: "Handwerker mit Umsatzsteuer-Nummer und positiven Kundenbewertungen erhalten ein Vertrauensabzeichen, damit Privatpersonen sofort wissen, mit wem sie es zu tun haben.",
+      },
+    ],
+  },
+  ar: {
+    title: "الأسئلة الشائعة",
+    items: [
+      {
+        q: "هل يجب أن أنشئ حسابًا لنشر طلب؟",
+        a: "لا. تنشر طلبك دون تسجيل: الحرفيون هم من يتواصلون معك.",
+      },
+      {
+        q: "كم تبلغ التكلفة لمن يبحث عن حرفي؟",
+        a: "مجاني للأفراد. تدفع فقط مقابل العمل المتفق عليه مباشرة مع الحرفي.",
+      },
+      {
+        q: "كيف أتأكد من أن جهات الاتصال حقيقية؟",
+        a: "يتحقق كل عميل من رقمه برمز عبر الرسائل القصيرة قبل النشر: الرقم المزيف لا يجتاز التحقق. وإذا تبيّن أن جهة اتصال مفتوحة مزيفة أو يتعذر الوصول إليها، نعيد لك الأرصدة. مع Manuvo لا تدفع أبدًا مقابل جهة اتصال مزيفة.",
+      },
+      {
+        q: "كيف تعمل الأرصدة؟",
+        a: "رصيد واحد = 2 يورو. فتح جهة اتصال يكلف من 3 إلى 5 أرصدة، وكل طلب يظهر لثلاثة حرفيين كحد أقصى.",
+      },
+      {
+        q: "هل هناك حد أدنى لإعادة شحن الأرصدة؟",
+        a: "لا. الشحن حر، دون حد أدنى مفروض: أضف ما تشاء من الأرصدة، متى شئت.",
+      },
+      {
+        q: "كيف أستقبل طلبات العملاء؟",
+        a: "يصلك إشعار عندما يتطابق طلب مع مهنتك ومنطقتك. تفتح فقط جهات الاتصال التي تهمّك.",
+      },
+      {
+        q: "ما هي شارة «الحرفي الموثّق»؟",
+        a: "يحصل الحرفيون الذين لديهم رقم ضريبة القيمة المضافة وتقييمات إيجابية من العملاء على شارة ثقة، حتى يعرف الأفراد فورًا مع من يتعاملون.",
+      },
+    ],
+  },
+};
+
 export default async function Home() {
   const t = await getTranslations("home");
   const tl = await getTranslations("landing");
@@ -158,6 +328,41 @@ export default async function Home() {
             >
               {tl("art_cta")}
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ (accordéon, sans JS via <details>) */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-3xl px-5">
+          <h2 className="text-center font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            {FAQ_STRINGS[locale].title}
+          </h2>
+          <div className="mt-10 space-y-3">
+            {FAQ_STRINGS[locale].items.map((item, i) => (
+              <details
+                key={i}
+                className="group rounded-2xl border border-neutral-200 bg-[#FAF8F4] px-5 open:bg-white open:shadow-sm"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-lg font-semibold [&::-webkit-details-marker]:hidden">
+                  {item.q}
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    className="shrink-0 text-red-700 transition-transform group-open:rotate-45"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </summary>
+                <p className="pb-5 text-neutral-600">{item.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
