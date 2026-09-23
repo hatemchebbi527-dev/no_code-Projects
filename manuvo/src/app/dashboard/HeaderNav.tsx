@@ -10,12 +10,16 @@ export function HeaderNav({
   bachecaLabel,
   creditiLabel,
   profiloLabel,
+  messaggiLabel,
+  messaggiUnread,
   menuLabel,
 }: {
   credits: number;
   bachecaLabel: string;
   creditiLabel: string;
   profiloLabel: string;
+  messaggiLabel: string;
+  messaggiUnread: number;
   menuLabel: string;
 }) {
   const pathname = usePathname();
@@ -23,6 +27,7 @@ export function HeaderNav({
   const onBacheca = pathname === "/dashboard";
   const onCrediti = pathname.startsWith("/dashboard/crediti");
   const onProfilo = pathname.startsWith("/dashboard/profilo");
+  const onMessaggi = pathname.startsWith("/dashboard/messaggi");
 
   // Fermeture du menu mobile avec la touche Echap.
   useEffect(() => {
@@ -39,9 +44,10 @@ export function HeaderNav({
   const navIdle = "text-neutral-600 hover:bg-neutral-100";
 
   const links = [
-    { href: "/dashboard", label: bachecaLabel, active: onBacheca },
-    { href: "/dashboard/crediti", label: creditiLabel, active: onCrediti },
-    { href: "/dashboard/profilo", label: profiloLabel, active: onProfilo },
+    { href: "/dashboard", label: bachecaLabel, active: onBacheca, badge: 0 },
+    { href: "/dashboard/crediti", label: creditiLabel, active: onCrediti, badge: 0 },
+    { href: "/dashboard/messaggi", label: messaggiLabel, active: onMessaggi, badge: messaggiUnread },
+    { href: "/dashboard/profilo", label: profiloLabel, active: onProfilo, badge: 0 },
   ];
 
   return (
@@ -70,9 +76,10 @@ export function HeaderNav({
                   href={l.href}
                   aria-current={l.active ? "page" : undefined}
                   onClick={() => setOpen(false)}
-                  className={`block ${navBase} ${l.active ? navActive : navIdle}`}
+                  className={`flex items-center justify-between ${navBase} ${l.active ? navActive : navIdle}`}
                 >
-                  {l.label}
+                  <span>{l.label}</span>
+                  {l.badge > 0 && <NavBadge count={l.badge} />}
                 </Link>
               ))}
             </nav>
@@ -87,9 +94,10 @@ export function HeaderNav({
             key={l.href}
             href={l.href}
             aria-current={l.active ? "page" : undefined}
-            className={`${navBase} ${l.active ? navActive : navIdle}`}
+            className={`inline-flex items-center gap-1.5 ${navBase} ${l.active ? navActive : navIdle}`}
           >
-            {l.label}
+            <span>{l.label}</span>
+            {l.badge > 0 && <NavBadge count={l.badge} />}
           </Link>
         ))}
       </nav>
@@ -113,6 +121,14 @@ export function HeaderNav({
         </Link>
       )}
     </>
+  );
+}
+
+function NavBadge({ count }: { count: number }) {
+  return (
+    <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-red-600 px-1.5 text-[11px] font-bold leading-none text-white">
+      {count > 9 ? "9+" : count}
+    </span>
   );
 }
 
