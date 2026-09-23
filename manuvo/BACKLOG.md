@@ -16,10 +16,9 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 - [x] **Migrations Prisma auto au déploiement — rétabli (2026-09-21)**
   - `buildCommand: vercel-build` réactivé (#80) ; `prisma migrate deploy` tourne au build (prouvé par un déploiement Production Ready). Les migrations en attente s'appliquent automatiquement.
   - Reste (optionnel) : aligner le checksum de `add_unlock_refund` dans `_prisma_migrations` (drift toléré par migrate deploy).
-- [~] **Webhook GitHub→Vercel — intégration reconnectée (2026-09-21), à confirmer**
-  - Lien Git disconnect/reconnect ; Production Branch = `main` et Root = `manuvo` vérifiés. À confirmer qu'un merge déclenche bien un déploiement Production automatiquement.
-  - Si ça rate encore : vérifier les Recent Deliveries du webhook côté GitHub (repo → Settings → Webhooks) ; contournement : petit commit ou « Promote to Production ».
-- [ ] **Migrer les libellés inline vers les 5 fichiers de messages** : page `/artigiano/[matricule]`, carte « profil public » du profil, historique Rimborsi, aria-label « Menu » du hamburger (clé `nav.menu`).
+- [x] **Déploiement Production fiable — GitHub Action + Deploy Hook (2026-09-21)**
+  - `.github/workflows/vercel-deploy.yml` appelle un Deploy Hook Vercel (secret `VERCEL_DEPLOY_HOOK`) à chaque push sur `main` touchant `manuvo/**` (+ `workflow_dispatch`). Testé de bout en bout. Le webhook natif reste actif en parallèle (doublons occasionnels sans gravité).
+- [ ] **Migrer les libellés inline vers les 5 fichiers de messages** : page `/artigiano/[matricule]`, carte « profil public » du profil, historique Rimborsi, aria-label « Menu » du hamburger (clé `nav.menu`), libellés des familles/tuiles de la landing, section « Come funziona ».
 
 ---
 
@@ -54,6 +53,7 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - Niveau 1 (simple) : l'artisan envoie un message à l'admin depuis son espace ; l'admin les reçoit dans une boîte de réception au panneau admin
   - Niveau 2 (complet) : chat bidirectionnel avec fil de discussion, statut lu/non lu et notifications (réutiliser le système de notifications existant)
   - Reco : commencer par le niveau 1, faire évoluer vers le chat si le besoin se confirme
+  - **Gratuit** (canal support/opérationnel) : les crédits restent réservés au déblocage des leads.
 
 - [x] **Capter nom + prénom du particulier à l'ouverture de la page de demande** — _fait_
   - Champs Prénom + Nom en tête de `/pubblica`, autofocus + autofill, message de bienvenue personnalisé.
@@ -62,9 +62,8 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 - [x] **Menu de navigation mobile pour l'espace artisan** — _fait_
   - Hamburger (Bacheca / Crediti / Profilo), fermeture clic ext. + Échap. Fix padding bas (bannière d'installation ne masque plus le contenu).
 
-- [ ] **Relancer les artisans déjà inscrits pour compléter leur téléphone**
-  - Les comptes créés avant l'ajout du champ téléphone n'ont pas de numéro
-  - Envoyer un email les invitant à compléter leur profil (`/dashboard/profilo`)
+- [x] **Visuel de la landing / des métiers** — _fait_
+  - 35 métiers regroupés en 8 familles ; pages `/categorie/[slug]` ; cartes métier et tuiles de familles en photos (Unsplash, fallback icône/dégradé) ; cartes « Come funziona » en photos ; formulaire pré-rempli via `?category=` + boutons retour.
 
 ---
 
