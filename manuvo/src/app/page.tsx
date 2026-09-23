@@ -42,7 +42,7 @@ export default async function Home() {
           <LanguageSwitcher />
           <Link
             href="/login"
-            className="hidden rounded-lg px-4 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-white sm:inline-block"
+            className="inline-block whitespace-nowrap rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-50 sm:border-transparent sm:bg-transparent sm:px-4 sm:hover:bg-white"
           >
             {t("login_link")}
           </Link>
