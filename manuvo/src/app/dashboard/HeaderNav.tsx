@@ -5,6 +5,18 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// Conteggio messaggi non letti (aggiornato lato client, senza ricaricare).
+async function fetchMsgUnread(): Promise<number | null> {
+  try {
+    const res = await fetch("/api/messages/unread", { cache: "no-store" });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { count?: number };
+    return typeof data.count === "number" ? data.count : null;
+  } catch {
+    return null;
+  }
+}
+
 export function HeaderNav({
   credits,
   bachecaLabel,
@@ -29,6 +41,39 @@ export function HeaderNav({
   const onProfilo = pathname.startsWith("/dashboard/profilo");
   const onMessaggi = pathname.startsWith("/dashboard/messaggi");
 
+  // Badge messaggi non letti, aggiornato lato client (polling + focus/scheda).
+  const [msgCount, setMsgCount] = useState(messaggiUnread);
+  useEffect(() => {
+    let active = true;
+    const poll = async () => {
+      const c = await fetchMsgUnread();
+      if (active && c !== null) setMsgCount(c);
+    };
+    const id = setInterval(poll, 25_000);
+    const onVisible = () => {
+      if (document.visibilityState === "visible") poll();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", poll);
+    poll();
+    return () => {
+      active = false;
+      clearInterval(id);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", poll);
+    };
+  }, []);
+  // Rinfresca al cambio pagina (es. dopo aver aperto il thread che segna letto).
+  useEffect(() => {
+    let active = true;
+    fetchMsgUnread().then((c) => {
+      if (active && c !== null) setMsgCount(c);
+    });
+    return () => {
+      active = false;
+    };
+  }, [pathname]);
+
   // Fermeture du menu mobile avec la touche Echap.
   useEffect(() => {
     if (!open) return;
@@ -46,7 +91,7 @@ export function HeaderNav({
   const links = [
     { href: "/dashboard", label: bachecaLabel, active: onBacheca, badge: 0 },
     { href: "/dashboard/crediti", label: creditiLabel, active: onCrediti, badge: 0 },
-    { href: "/dashboard/messaggi", label: messaggiLabel, active: onMessaggi, badge: messaggiUnread },
+    { href: "/dashboard/messaggi", label: messaggiLabel, active: onMessaggi, badge: msgCount },
     { href: "/dashboard/profilo", label: profiloLabel, active: onProfilo, badge: 0 },
   ];
 
@@ -60,9 +105,12 @@ export function HeaderNav({
           aria-expanded={open}
           aria-haspopup="menu"
           aria-label={menuLabel}
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 text-neutral-700 transition hover:bg-neutral-100"
+          className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 text-neutral-700 transition hover:bg-neutral-100"
         >
           {open ? <CloseIcon /> : <MenuIcon />}
+          {!open && msgCount > 0 && (
+            <span className="absolute -end-1 -top-1 h-2.5 w-2.5 rounded-full bg-red-600 ring-2 ring-white" />
+          )}
         </button>
 
         {open && (
