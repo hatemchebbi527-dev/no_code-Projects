@@ -100,9 +100,11 @@ const footerColumns = [
   {
     title: "Légal",
     items: [
-      { label: "Mentions légales", href: "#" },
-      { label: "CGV", href: "#" },
-      { label: "Confidentialité", href: "#" },
+      { label: "Note legali", href: "#" },
+      { label: "Privacy Policy", href: "#" },
+      { label: "Cookie Policy", href: "#" },
+      { label: "Condizioni di vendita", href: "#" },
+      { label: "Reclami e assistenza", href: "#" },
     ],
   },
 ]
@@ -216,17 +218,34 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <span>© {new Date().getFullYear()} My Hope Step. {t.footer.rights}</span>
-          <a
-            href="https://www.automa-ia.net"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-neutral-500 hover:text-cyan-400 transition-colors"
-          >
-            Fait avec <span className="text-red-400">♥</span> par <span className="font-semibold text-neutral-300">AutomaIA</span>
-          </a>
+        {/* Legal section */}
+        <div className="mt-12 pt-6 border-t border-neutral-800 text-xs text-neutral-500 space-y-3">
+          {/* Legal links */}
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+            {[
+              "Note legali", "Privacy Policy", "Cookie Policy", "Condizioni di vendita", "Reclami e assistenza",
+            ].map((label) => (
+              <a key={label} href="#" className="hover:text-cyan-400 transition-colors">{label}</a>
+            ))}
+          </div>
+          {/* Company info */}
+          <div className="text-center space-y-1 leading-relaxed">
+            <p>MY HOPE STEP BY NAJLA – Titolare: CHEBBI NAJLA</p>
+            <p>P. IVA 04405401201 · REA BO-690782 · SCIA SUAP Bologna – Prot. PG 754540/2026 del 24/09/2026</p>
+            <p>RC Professionale: Bene Assicurazioni · Garanzia insolvenza: Vacanze Garantite</p>
+          </div>
+          {/* Copyright */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 pt-3 border-t border-neutral-800">
+            <span>© {new Date().getFullYear()} My Hope Step. Tutti i diritti riservati.</span>
+            <a
+              href="https://www.automa-ia.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors"
+            >
+              Realizzato con <span className="text-red-400">♥</span> da <span className="font-semibold text-neutral-300">AutomaIA</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
