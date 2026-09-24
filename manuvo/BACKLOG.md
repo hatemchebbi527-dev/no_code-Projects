@@ -8,12 +8,9 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ## 0. Dette technique / ops (issu de la session du 2026-09-20/21)
 
-- [~] **Sécurité : passer les variables secrètes Vercel en « Sensitive »**
-  - Vercel signale « Needs Attention » sur ~9 variables contenant des secrets (`DATABASE_URL`, `POSTGRES_PASSWORD`, `PGPASSWORD`, `POSTGRES_URL*`, `DATABASE_URL_UNPOOLED`, `NEON_AUTH_BASE_URL`…) : elles sont lisibles en clair dans le dashboard.
-  - Action : pour chacune, `⋯` → Edit → cocher **Sensitive** (parfois recréer la variable en Sensitive). Ne pas changer les valeurs.
-  - Ne pas supprimer à l'aveugle les variables gérées par l'intégration Neon (risque de recréation / lien cassé) ; Manuvo n'utilise que `DATABASE_URL`.
-  - Priorité : basse, mais à faire **avant la mise en Live de Stripe**.
-  - 2026-09-24 : `DATABASE_URL` supprimée puis recréée à l'identique (valeur inchangée) ; recréation à re-cocher en Sensitive une fois le build validé. Rappel : une variable Sensitive a sa valeur masquée définitivement (write-only), c'est le comportement attendu.
+- [x] **Sécurité : passer les variables secrètes Vercel en « Sensitive »** — _fait (2026-09-24)_
+  - Les ~9 variables secrètes (`DATABASE_URL`, `POSTGRES_PASSWORD`, `PGPASSWORD`, `POSTGRES_URL*`, `DATABASE_URL_UNPOOLED`, `NEON_AUTH_BASE_URL`…) recréées en **Sensitive** (valeurs inchangées, masquées write-only). Build production vert après migration : la base reste bien branchée.
+  - Rappel : une variable Sensitive a sa valeur masquée définitivement ; pour la modifier plus tard, il faut la supprimer puis recréer (copier la valeur avant suppression).
 - [x] **Migrations Prisma auto au déploiement — rétabli (2026-09-21)**
   - `buildCommand: vercel-build` réactivé (#80) ; `prisma migrate deploy` tourne au build (prouvé par un déploiement Production Ready). Les migrations en attente s'appliquent automatiquement.
   - Reste (optionnel) : aligner le checksum de `add_unlock_refund` dans `_prisma_migrations` (drift toléré par migrate deploy).
