@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { getArtisanStats } from "@/lib/reviews";
 import { countryName } from "@/lib/catalog";
 import { formatMatricule, isCategory, DEFAULT_LOCALE, type Locale } from "@/lib/constants";
-import { StarRating, VerifiedBadge } from "@/components/StarRating";
+import { StarRating, VerifiedBadge, PivaBadge } from "@/components/StarRating";
 import { LogoWordmark } from "@/components/LogoWordmark";
 
 // Libelles propres a la vitrine (non presents dans les messages i18n).
@@ -15,6 +15,7 @@ const STRINGS: Record<Locale, {
   cta: string;
   notFound: string;
   back: string;
+  pivaBadge: string;
 }> = {
   it: {
     subtitle: "Artigiano su Manuvo",
@@ -22,6 +23,7 @@ const STRINGS: Record<Locale, {
     cta: "Ti serve un artigiano? Pubblica la tua richiesta gratis.",
     notFound: "Artigiano non trovato.",
     back: "Vai su Manuvo",
+    pivaBadge: "P.IVA registrata",
   },
   fr: {
     subtitle: "Artisan sur Manuvo",
@@ -29,6 +31,7 @@ const STRINGS: Record<Locale, {
     cta: "Besoin d'un artisan ? Publie ta demande gratuitement.",
     notFound: "Artisan introuvable.",
     back: "Aller sur Manuvo",
+    pivaBadge: "P.IVA enregistrée",
   },
   en: {
     subtitle: "Artisan on Manuvo",
@@ -36,6 +39,7 @@ const STRINGS: Record<Locale, {
     cta: "Need an artisan? Post your request for free.",
     notFound: "Artisan not found.",
     back: "Go to Manuvo",
+    pivaBadge: "VAT registered",
   },
   de: {
     subtitle: "Handwerker auf Manuvo",
@@ -43,6 +47,7 @@ const STRINGS: Record<Locale, {
     cta: "Brauchst du einen Handwerker? Stelle deine Anfrage kostenlos.",
     notFound: "Handwerker nicht gefunden.",
     back: "Zu Manuvo",
+    pivaBadge: "USt-Nr. registriert",
   },
   ar: {
     subtitle: "حرفي على Manuvo",
@@ -50,6 +55,7 @@ const STRINGS: Record<Locale, {
     cta: "تحتاج حرفيًا؟ انشر طلبك مجانًا.",
     notFound: "الحرفي غير موجود.",
     back: "اذهب إلى Manuvo",
+    pivaBadge: "الرقم الضريبي مسجّل",
   },
 };
 
@@ -63,7 +69,7 @@ function parseMatricule(raw: string): number | null {
 async function getPublicArtisan(matricule: number) {
   return prisma.user.findFirst({
     where: { matricule, role: "ARTIGIANO" },
-    select: { id: true, name: true, city: true, country: true, categories: true, matricule: true },
+    select: { id: true, name: true, city: true, country: true, categories: true, matricule: true, piva: true },
   });
 }
 
@@ -148,6 +154,7 @@ export default async function ArtisanPublicPage({
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-2xl font-bold tracking-tight">{artisan.name}</h1>
                 {stats.verified && <VerifiedBadge label={tp("verified_badge")} />}
+                {artisan.piva && <PivaBadge label={s.pivaBadge} />}
               </div>
               <p className="mt-1 text-sm text-neutral-500">{s.subtitle}</p>
               <p className="mt-2 text-sm text-neutral-600">
