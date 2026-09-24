@@ -87,7 +87,8 @@ Analyse du concurrent italien ProntoPro (modèle très proche). Point faible con
 
 - [x] **Profil artisan public** — _fait (v1)_
   - Page publique `/artigiano/[matricule]` : métiers, zone, note, avis, badge vérifié ; lien de partage dans l'espace artisan.
-  - [ ] Reste : badge distinct **« P.IVA vérifiée »** (la P.IVA est validée à l'inscription, à exposer comme badge séparé du badge avis).
+  - [x] Badge distinct **« P.IVA registrata »** — _fait (2026-09-24)_ : affiché sur le profil public `/artigiano/[matricule]`, à côté du nom et du badge avis (bleu + icône document). Atteste que l'artisan a fourni un numéro de TVA italien valide (format 11 chiffres + checksum) à l'inscription. Libellé honnête (« registrata », pas « verificata ») car ce n'est pas encore une vérification au registre officiel.
+  - [ ] Optionnel avant lancement : vraie **vérification VIES / Agenzia Entrate** (API officielle) pour confirmer que la P.IVA est active, et alors passer le libellé à « verificata ».
 
 **Priorité moyenne :**
 
