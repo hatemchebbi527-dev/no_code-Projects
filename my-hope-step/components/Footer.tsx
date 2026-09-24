@@ -97,16 +97,6 @@ const footerColumns = [
       { label: "FAQ", href: "/#faq" },
     ],
   },
-  {
-    title: "Légal",
-    items: [
-      { label: "Note legali", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "Condizioni di vendita", href: "#" },
-      { label: "Reclami e assistenza", href: "#" },
-    ],
-  },
 ]
 
 export default function Footer() {
