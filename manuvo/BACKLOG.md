@@ -8,11 +8,12 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ## 0. Dette technique / ops (issu de la session du 2026-09-20/21)
 
-- [ ] **Sécurité : passer les variables secrètes Vercel en « Sensitive »**
+- [~] **Sécurité : passer les variables secrètes Vercel en « Sensitive »**
   - Vercel signale « Needs Attention » sur ~9 variables contenant des secrets (`DATABASE_URL`, `POSTGRES_PASSWORD`, `PGPASSWORD`, `POSTGRES_URL*`, `DATABASE_URL_UNPOOLED`, `NEON_AUTH_BASE_URL`…) : elles sont lisibles en clair dans le dashboard.
   - Action : pour chacune, `⋯` → Edit → cocher **Sensitive** (parfois recréer la variable en Sensitive). Ne pas changer les valeurs.
   - Ne pas supprimer à l'aveugle les variables gérées par l'intégration Neon (risque de recréation / lien cassé) ; Manuvo n'utilise que `DATABASE_URL`.
   - Priorité : basse, mais à faire **avant la mise en Live de Stripe**.
+  - 2026-09-24 : `DATABASE_URL` supprimée puis recréée à l'identique (valeur inchangée) ; recréation à re-cocher en Sensitive une fois le build validé. Rappel : une variable Sensitive a sa valeur masquée définitivement (write-only), c'est le comportement attendu.
 - [x] **Migrations Prisma auto au déploiement — rétabli (2026-09-21)**
   - `buildCommand: vercel-build` réactivé (#80) ; `prisma migrate deploy` tourne au build (prouvé par un déploiement Production Ready). Les migrations en attente s'appliquent automatiquement.
   - Reste (optionnel) : aligner le checksum de `add_unlock_refund` dans `_prisma_migrations` (drift toléré par migrate deploy).
@@ -49,11 +50,9 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ## 3. Fonctionnalités produit
 
-- [ ] **Espace de contact / messagerie artisan ↔ admin**
-  - Niveau 1 (simple) : l'artisan envoie un message à l'admin depuis son espace ; l'admin les reçoit dans une boîte de réception au panneau admin
-  - Niveau 2 (complet) : chat bidirectionnel avec fil de discussion, statut lu/non lu et notifications (réutiliser le système de notifications existant)
-  - Reco : commencer par le niveau 1, faire évoluer vers le chat si le besoin se confirme
-  - **Gratuit** (canal support/opérationnel) : les crédits restent réservés au déblocage des leads.
+- [x] **Espace de contact / messagerie artisan ↔ admin** — _fait (2026-09-23)_
+  - Chat bidirectionnel in-app : l'artisan écrit à l'admin depuis son espace (`/dashboard/messaggi`), l'admin répond depuis sa boîte de réception (`/admin/messaggi`). Fil par artisan, statut lu/non lu, badges non-lus en temps réel (polling 25 s + focus/visibilité + point sur le hamburger mobile).
+  - **Gratuit** : aucun coût extra (pas de SMS), les crédits restent réservés au déblocage des leads.
 
 - [x] **Capter nom + prénom du particulier à l'ouverture de la page de demande** — _fait_
   - Champs Prénom + Nom en tête de `/pubblica`, autofocus + autofill, message de bienvenue personnalisé.
@@ -64,6 +63,12 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 - [x] **Visuel de la landing / des métiers** — _fait_
   - 35 métiers regroupés en 8 familles ; pages `/categorie/[slug]` ; cartes métier et tuiles de familles en photos (Unsplash, fallback icône/dégradé) ; cartes « Come funziona » en photos ; formulaire pré-rempli via `?category=` + boutons retour.
+
+- [x] **Section FAQ sur la landing** — _fait (2026-09-23, #96)_
+  - Accordéon `<details>` (sans JS) avant la bande CTA, 7 questions/réponses dans les 5 langues (it/fr/en/de/ar). Met en avant la vérification SMS (pas de faux contact + remboursement) et la recharge de crédits libre sans minimum.
+
+- [x] **Bouton « Accedi » visible sur mobile** — _fait_
+  - Header landing : le lien de connexion s'affiche désormais en bouton compact sur mobile (était masqué sous `sm`).
 
 ---
 
