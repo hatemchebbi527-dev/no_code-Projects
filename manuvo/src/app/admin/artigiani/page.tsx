@@ -6,6 +6,7 @@ import { countryName } from "@/lib/catalog";
 import { formatMatricule, isCategory } from "@/lib/constants";
 import { StarRating, VerifiedBadge } from "@/components/StarRating";
 import { ExportButton } from "./ExportButton";
+import { seedTestReviewsAction, clearTestReviewsAction } from "./actions";
 
 export const metadata = { title: "Manuvo" };
 
@@ -43,6 +44,7 @@ export default async function AdminArtisansPage() {
 
   // Lignes d'affichage avec les stats (note moyenne + badge), jointes par id artisan.
   const displayRows = artisans.map((a) => ({
+    id: a.id,
     matricule: a.matricule,
     name: a.name,
     email: a.email,
@@ -85,6 +87,7 @@ export default async function AdminArtisansPage() {
                 <th className="px-4 py-3 text-start font-semibold">{t("th_credits")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_joined")}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t("th_rating")}</th>
+                <th className="px-4 py-3 text-start font-semibold">Test</th>
               </tr>
             </thead>
             <tbody>
@@ -151,6 +154,28 @@ export default async function AdminArtisansPage() {
                         {a.stats.verified && <VerifiedBadge label={tProfilo("verified_badge")} />}
                       </div>
                     )}
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="flex flex-col gap-1.5">
+                      <form action={seedTestReviewsAction}>
+                        <input type="hidden" name="artisanId" value={a.id} />
+                        <button
+                          type="submit"
+                          className="whitespace-nowrap rounded-md border border-emerald-300 bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                        >
+                          + 3 avis test
+                        </button>
+                      </form>
+                      <form action={clearTestReviewsAction}>
+                        <input type="hidden" name="artisanId" value={a.id} />
+                        <button
+                          type="submit"
+                          className="whitespace-nowrap rounded-md border border-neutral-300 bg-white px-2 py-1 text-xs font-medium text-neutral-500 transition hover:bg-neutral-100"
+                        >
+                          Reset test
+                        </button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
               ))}

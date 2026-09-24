@@ -17,6 +17,7 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 - [x] **Déploiement Production fiable — GitHub Action + Deploy Hook (2026-09-21)**
   - `.github/workflows/vercel-deploy.yml` appelle un Deploy Hook Vercel (secret `VERCEL_DEPLOY_HOOK`) à chaque push sur `main` touchant `manuvo/**` (+ `workflow_dispatch`). Testé de bout en bout. Le webhook natif reste actif en parallèle (doublons occasionnels sans gravité).
 - [ ] **Migrer les libellés inline vers les 5 fichiers de messages** : page `/artigiano/[matricule]`, carte « profil public » du profil, historique Rimborsi, aria-label « Menu » du hamburger (clé `nav.menu`), libellés des familles/tuiles de la landing, section « Come funziona ».
+- [ ] **Retirer l'outil de test « avis » avant le lancement** : boutons admin « + 3 avis test » / « Reset test » sur `/admin/artigiani` (`admin/artigiani/actions.ts`) qui injectent/suppriment des avis de démonstration (note 5) pour valider le badge « artisan vérifié ». Admin uniquement. À supprimer, ou masquer derrière un flag, en production.
 
 ---
 
