@@ -169,7 +169,8 @@ export async function registerArtisan(
   }
 
   try {
-    await signIn("credentials", { email, password, redirectTo: "/dashboard" });
+    // registered=1 : declenche l'evenement Meta "CompleteRegistration" une fois arrive sur le dashboard.
+    await signIn("credentials", { email, password, redirectTo: "/dashboard?registered=1" });
   } catch (error) {
     if (error instanceof AuthError) {
       return { error: t("created_login_failed") };

@@ -12,15 +12,18 @@ import { FilterBar } from "./FilterBar";
 import { UnlockButton } from "./UnlockButton";
 import { ReportContactButton } from "./ReportContactButton";
 import { RequestReviewButton } from "./RequestReviewButton";
+import { PixelEvent } from "@/components/PixelEvent";
 
 export default async function DashboardPage({
   searchParams,
 }: {
-  searchParams: Promise<{ scope?: string; cat?: string }>;
+  searchParams: Promise<{ scope?: string; cat?: string; registered?: string }>;
 }) {
   const sp = await searchParams;
   const scope: Scope = sp.scope === "international" ? "international" : "national";
   const category = sp.cat && isCategory(sp.cat) ? sp.cat : undefined;
+  // Conversion "cote offre" : un artisan vient de s'inscrire (Meta Pixel).
+  const justRegistered = sp.registered === "1";
 
   const session = await auth();
   const userId = session!.user.id;
@@ -50,6 +53,9 @@ export default async function DashboardPage({
 
   return (
     <div>
+      {justRegistered && (
+        <PixelEvent event="CompleteRegistration" clearParam="registered" />
+      )}
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
