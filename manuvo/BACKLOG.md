@@ -36,9 +36,12 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ## 2. Marketing / acquisition
 
-- [ ] **Meta Pixel + UTM**
-  - Installer le Meta Pixel sur le site
-  - Ajouter les paramètres UTM sur les liens des annonces pour tracer les conversions
+- [~] **Meta Pixel + UTM**
+  - [x] Pixel branché dans le code (2026-09-25), piloté par `NEXT_PUBLIC_META_PIXEL_ID` (inactif tant que la variable n'est pas définie). Événements : `PageView` (toutes pages), `Lead` (publication d'une demande), `CompleteRegistration` (inscription artisan).
+  - [x] Convention UTM documentée + instructions de setup dans `MARKETING.md`.
+  - [ ] Reste : créer le Pixel côté Meta et coller l'ID dans la variable Vercel (voir `MARKETING.md`).
+  - [ ] Reste : événement `Purchase` sur l'achat de crédits (à faire avec Stripe Live).
+  - [ ] Optionnel : Meta Conversions API (CAPI) serveur pour fiabiliser le suivi.
 
 - [ ] **Régénérer les vrais visuels d'annonces (Meta / Google)**
   - Images carrées et verticales prêtes à uploader, avec le nouveau logo (hexagone + anuvo), le corail `#FF5758` et le domaine `manuvo.automa-ia.net`

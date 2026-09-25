@@ -6,6 +6,7 @@ import "./globals.css";
 import { RTL_LOCALES, type Locale } from "@/lib/constants";
 import { PWARegister } from "@/components/PWARegister";
 import { InstallBanner } from "@/components/InstallBanner";
+import { MetaPixel } from "@/components/MetaPixel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,6 +60,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           <InstallBanner />
         </NextIntlClientProvider>
         <PWARegister />
+        <MetaPixel />
       </body>
     </html>
   );

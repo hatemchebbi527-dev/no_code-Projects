@@ -1,12 +1,13 @@
 "use client";
 
 // Manuvo - form pubblico per pubblicare una richiesta.
-import { useActionState, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { createLead, type LeadFormState } from "./actions";
 import { saveLeadDraft } from "./draft-actions";
 import { requestPhoneCode, confirmPhoneCode } from "./verify-actions";
+import { trackPixel } from "@/lib/pixel";
 
 type Opt = { value: string; label: string };
 
@@ -40,6 +41,11 @@ export function LeadForm({
     createLead,
     undefined,
   );
+
+  // Conversion "cote demande" : une richiesta est publiee (Meta Pixel).
+  useEffect(() => {
+    if (state?.success) trackPixel("Lead");
+  }, [state?.success]);
 
   function countryFrom(form: HTMLFormElement | null): string {
     if (!form) return "IT";
