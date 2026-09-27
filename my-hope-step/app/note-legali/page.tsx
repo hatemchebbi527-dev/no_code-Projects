@@ -97,9 +97,18 @@ const content = {
   },
 }
 
+const arTitles: Record<string, string> = {
+  "note-legali": "المعلومات القانونية",
+  "privacy-policy": "سياسة الخصوصية",
+  "cookie-policy": "سياسة ملفات تعريف الارتباط",
+  "condizioni-di-vendita": "شروط البيع والحجز",
+  "reclami": "الشكاوى والمساعدة",
+}
+
 export default function NoteLegaliPage() {
   const { lang } = useI18n()
   const c = content[lang === "it" ? "it" : "fr"]
+  const isAr = lang === "ar"
 
   return (
     <>
@@ -107,7 +116,14 @@ export default function NoteLegaliPage() {
       <main className="pt-24 min-h-screen bg-white">
         <div className="max-w-3xl mx-auto px-4 py-16 prose prose-neutral">
 
-          <h1 className="text-3xl font-bold text-neutral-900 mb-2">{c.title}</h1>
+          <h1 className="text-3xl font-bold text-neutral-900 mb-2" dir={isAr ? "rtl" : "ltr"}>
+            {isAr ? arTitles["note-legali"] : c.title}
+          </h1>
+          {isAr && (
+            <p className="text-sm text-neutral-500 mb-6 text-right" dir="rtl">
+              المحتوى القانوني متاح باللغة الفرنسية
+            </p>
+          )}
 
           <h2 className="text-xl font-bold text-neutral-800 mt-10 mb-3">{c.infoTitle}</h2>
           <h3 className="text-base font-semibold text-neutral-700 mt-6 mb-2">{c.ownerTitle}</h3>

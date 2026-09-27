@@ -171,6 +171,7 @@ export default function CondizioniDiVenditaPage() {
   const { lang } = useI18n()
   const c = content[lang === "it" ? "it" : "fr"]
   const pt = penaltyTable[lang === "it" ? "it" : "fr"]
+  const isAr = lang === "ar"
 
   return (
     <>
@@ -178,8 +179,15 @@ export default function CondizioniDiVenditaPage() {
       <main className="pt-24 min-h-screen bg-white">
         <div className="max-w-3xl mx-auto px-4 py-16 prose prose-neutral">
 
-          <h1 className="text-3xl font-bold text-neutral-900 mb-2">{c.title}</h1>
+          <h1 className="text-3xl font-bold text-neutral-900 mb-2" dir={isAr ? "rtl" : "ltr"}>
+            {isAr ? "شروط البيع والحجز" : c.title}
+          </h1>
           <p className="text-xs text-neutral-500 mb-8">{c.updated}</p>
+          {isAr && (
+            <p className="text-sm text-neutral-500 mb-4 text-right" dir="rtl">
+              المحتوى القانوني متاح باللغة الفرنسية
+            </p>
+          )}
           <p className="text-sm text-neutral-600 leading-relaxed">{c.intro}</p>
 
           <hr className="my-8 border-neutral-200" />

@@ -220,6 +220,14 @@ export default function Footer() {
                   { label: "Condizioni di vendita", href: "/condizioni-di-vendita" },
                   { label: "Reclami e assistenza", href: "/reclami" },
                 ]
+              : lang === "ar"
+              ? [
+                  { label: "المعلومات القانونية", href: "/note-legali" },
+                  { label: "سياسة الخصوصية", href: "/privacy-policy" },
+                  { label: "سياسة ملفات تعريف الارتباط", href: "/cookie-policy" },
+                  { label: "شروط البيع", href: "/condizioni-di-vendita" },
+                  { label: "الشكاوى والمساعدة", href: "/reclami" },
+                ]
               : [
                   { label: "Mentions légales", href: "/note-legali" },
                   { label: "Politique de confidentialité", href: "/privacy-policy" },
