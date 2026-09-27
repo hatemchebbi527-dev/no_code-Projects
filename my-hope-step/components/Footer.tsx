@@ -213,9 +213,13 @@ export default function Footer() {
           {/* Legal links */}
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1.5">
             {[
-              "Note legali", "Privacy Policy", "Cookie Policy", "Condizioni di vendita", "Reclami e assistenza",
-            ].map((label) => (
-              <a key={label} href="#" className="hover:text-cyan-400 transition-colors">{label}</a>
+              { label: "Note legali", href: "/note-legali" },
+              { label: "Privacy Policy", href: "/privacy-policy" },
+              { label: "Cookie Policy", href: "/cookie-policy" },
+              { label: "Condizioni di vendita", href: "/condizioni-di-vendita" },
+              { label: "Reclami e assistenza", href: "/reclami" },
+            ].map(({ label, href }) => (
+              <a key={label} href={href} className="hover:text-cyan-400 transition-colors">{label}</a>
             ))}
           </div>
           {/* Company info */}
