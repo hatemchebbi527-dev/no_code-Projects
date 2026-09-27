@@ -100,7 +100,7 @@ const footerColumns = [
 ]
 
 export default function Footer() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   return (
     <footer className="bg-neutral-900 text-neutral-400">
       {/* CTA banner */}
@@ -212,13 +212,22 @@ export default function Footer() {
         <div className="mt-12 pt-6 border-t border-neutral-800 text-xs text-neutral-500 space-y-3">
           {/* Legal links */}
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1.5">
-            {[
-              { label: "Note legali", href: "/note-legali" },
-              { label: "Privacy Policy", href: "/privacy-policy" },
-              { label: "Cookie Policy", href: "/cookie-policy" },
-              { label: "Condizioni di vendita", href: "/condizioni-di-vendita" },
-              { label: "Reclami e assistenza", href: "/reclami" },
-            ].map(({ label, href }) => (
+            {(lang === "it"
+              ? [
+                  { label: "Note legali", href: "/note-legali" },
+                  { label: "Privacy Policy", href: "/privacy-policy" },
+                  { label: "Cookie Policy", href: "/cookie-policy" },
+                  { label: "Condizioni di vendita", href: "/condizioni-di-vendita" },
+                  { label: "Reclami e assistenza", href: "/reclami" },
+                ]
+              : [
+                  { label: "Mentions légales", href: "/note-legali" },
+                  { label: "Politique de confidentialité", href: "/privacy-policy" },
+                  { label: "Politique de cookies", href: "/cookie-policy" },
+                  { label: "Conditions de vente", href: "/condizioni-di-vendita" },
+                  { label: "Réclamations", href: "/reclami" },
+                ]
+            ).map(({ label, href }) => (
               <a key={label} href={href} className="hover:text-cyan-400 transition-colors">{label}</a>
             ))}
           </div>
