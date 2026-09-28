@@ -23,8 +23,16 @@ export function LeadForm({
   defaultCategory?: string;
 }) {
   const t = useTranslations("pubblica");
-  // Prénom capté dès l'ouverture : sert à personnaliser l'accueil ("Piacere, Mario!").
+  // Champs contrôlés : indispensables pour NE PAS perdre la saisie si le serveur
+  // renvoie une erreur (React 19 réinitialise les champs non contrôlés après une action).
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [category, setCategory] = useState(defaultCategory);
+  const [description, setDescription] = useState("");
+  const [country, setCountry] = useState("IT");
+  const [city, setCity] = useState("");
+  const [urgency, setUrgency] = useState("ASAP");
+  const [email, setEmail] = useState("");
   // Ebauche enregistrée avant l'envoi (best effort) : on retient son id pour la mettre à jour.
   const [draftId, setDraftId] = useState<string | null>(null);
   const draftIdRef = useRef<string | null>(null);
@@ -189,6 +197,8 @@ export function LeadForm({
               autoComplete="family-name"
               placeholder={t("lastName_ph")}
               className={input}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               onBlur={onFieldBlur}
             />
           </label>
@@ -209,7 +219,7 @@ export function LeadForm({
 
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("need")} {req}</span>
-        <select name="category" required defaultValue={defaultCategory} className={input} onBlur={onFieldBlur}>
+        <select name="category" required value={category} onChange={(e) => setCategory(e.target.value)} className={input} onBlur={onFieldBlur}>
           <option value="" disabled>{t("choose")}</option>
           {categories.map((c) => (
             <option key={c.value} value={c.value}>{c.label}</option>
@@ -219,13 +229,13 @@ export function LeadForm({
 
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("desc")} {req}</span>
-        <textarea name="description" required rows={4} placeholder={t("desc_ph")} className={`${input} resize-y`} />
+        <textarea name="description" required rows={4} placeholder={t("desc_ph")} className={`${input} resize-y`} value={description} onChange={(e) => setDescription(e.target.value)} onBlur={onFieldBlur} />
       </label>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5">
           <span className="text-sm font-medium">{t("country")} {req}</span>
-          <select name="country" defaultValue="IT" className={input}>
+          <select name="country" value={country} onChange={(e) => setCountry(e.target.value)} className={input} onBlur={onFieldBlur}>
             {countries.map((c) => (
               <option key={c.value} value={c.value}>{c.label}</option>
             ))}
@@ -233,13 +243,13 @@ export function LeadForm({
         </label>
         <label className="flex flex-col gap-1.5">
           <span className="text-sm font-medium">{t("city")} {req}</span>
-          <input name="city" required placeholder={t("city_ph")} className={input} onBlur={onFieldBlur} />
+          <input name="city" required placeholder={t("city_ph")} className={input} value={city} onChange={(e) => setCity(e.target.value)} onBlur={onFieldBlur} />
         </label>
       </div>
 
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("when")}</span>
-        <select name="urgency" defaultValue="ASAP" className={input}>
+        <select name="urgency" value={urgency} onChange={(e) => setUrgency(e.target.value)} className={input}>
           {urgencies.map((u) => (
             <option key={u.value} value={u.value}>{u.label}</option>
           ))}
@@ -319,7 +329,7 @@ export function LeadForm({
 
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("email_opt")}</span>
-        <input name="contactEmail" type="email" autoComplete="email" placeholder="you@email.com" className={input} onBlur={onFieldBlur} />
+        <input name="contactEmail" type="email" autoComplete="email" placeholder="you@email.com" className={input} value={email} onChange={(e) => setEmail(e.target.value)} onBlur={onFieldBlur} />
         <span className="text-xs text-neutral-400">{t("hint")}</span>
       </label>
 
