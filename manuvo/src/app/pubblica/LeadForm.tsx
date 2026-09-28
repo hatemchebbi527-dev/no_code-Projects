@@ -154,12 +154,14 @@ export function LeadForm({
         <p className="mx-auto mt-3 max-w-md rounded-lg bg-white/70 px-4 py-3 text-sm font-medium text-green-900 ring-1 ring-inset ring-green-200">
           {t("success_tip")}
         </p>
-        <Link
+        {/* Lien "dur" (rechargement complet) : on est déjà sur /pubblica, un Link
+            ne remonterait pas le composant et laisserait l'écran de succès affiché. */}
+        <a
           href="/pubblica"
           className="mt-5 inline-block rounded-lg bg-red-700 px-4 py-2.5 font-semibold text-white hover:bg-red-800"
         >
           {t("publish_another")}
-        </Link>
+        </a>
       </div>
     );
   }
