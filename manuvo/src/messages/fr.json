@@ -210,6 +210,7 @@
     "submitting": "Envoi...",
     "success_title": "Demande publiée !",
     "success_text": "Les artisans de votre région peuvent maintenant voir la demande et vous contacter. Vos données restent privées jusqu'à ce qu'un professionnel les débloque.",
+    "success_tip": "Vous recevrez jusqu'à 3 artisans : comparez leurs devis et choisissez le meilleur. Répondez à leurs appels pour recevoir les offres plus vite.",
     "publish_another": "Publier une autre demande",
     "verify_cta": "Vérifier",
     "resend_code": "Renvoyer",

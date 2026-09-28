@@ -210,6 +210,7 @@
     "submitting": "Invio...",
     "success_title": "Richiesta pubblicata!",
     "success_text": "Gli artigiani della tua zona possono ora vedere la richiesta e contattarti. I tuoi dati restano privati finche un professionista non li sblocca.",
+    "success_tip": "Riceverai fino a 3 artigiani: confronta i loro preventivi e scegli il migliore. Rispondi alle loro chiamate per ricevere le offerte più in fretta.",
     "publish_another": "Pubblica un'altra richiesta",
     "verify_cta": "Verifica",
     "resend_code": "Rinvia",
