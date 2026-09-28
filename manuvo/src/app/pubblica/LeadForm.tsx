@@ -135,7 +135,9 @@ export function LeadForm({
     }
   }
 
-  function onFieldBlur(e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) {
+  function onFieldBlur(
+    e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) {
     void persistDraft(e.currentTarget.form);
   }
 
