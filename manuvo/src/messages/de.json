@@ -210,6 +210,7 @@
     "submitting": "Senden...",
     "success_title": "Anfrage gestellt!",
     "success_text": "Handwerker aus Ihrer Region sehen die Anfrage jetzt und können Sie kontaktieren. Ihre Daten bleiben privat, bis ein Profi sie freischaltet.",
+    "success_tip": "Sie erhalten bis zu 3 Handwerker: Vergleichen Sie ihre Angebote und wählen Sie das beste. Beantworten Sie ihre Anrufe, um die Angebote schneller zu erhalten.",
     "publish_another": "Weitere Anfrage stellen",
     "verify_cta": "Prüfen",
     "resend_code": "Erneut senden",

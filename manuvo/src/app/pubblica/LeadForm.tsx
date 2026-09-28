@@ -141,6 +141,9 @@ export function LeadForm({
         </div>
         <h2 className="text-xl font-bold text-green-900">{t("success_title")}</h2>
         <p className="mt-2 text-sm text-green-800">{t("success_text")}</p>
+        <p className="mx-auto mt-3 max-w-md rounded-lg bg-white/70 px-4 py-3 text-sm font-medium text-green-900 ring-1 ring-inset ring-green-200">
+          {t("success_tip")}
+        </p>
         <Link
           href="/pubblica"
           className="mt-5 inline-block rounded-lg bg-red-700 px-4 py-2.5 font-semibold text-white hover:bg-red-800"
