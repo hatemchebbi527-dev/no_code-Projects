@@ -51,6 +51,11 @@ export const CATEGORIES = [
   "fabbro",
   "vetraio",
   "tappezziere",
+  "fisioterapista",
+  "cartongessista",
+  "spurghi",
+  "levigatura_parquet",
+  "stufe_camini",
 ] as const;
 export type Category = (typeof CATEGORIES)[number];
 

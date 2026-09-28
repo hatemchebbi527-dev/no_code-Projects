@@ -95,4 +95,16 @@ export const CATEGORY_PHOTO: Partial<Record<Category, string>> = {
     "https://images.unsplash.com/photo-1580894732930-0babd100d356?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   sviluppo_web:
     "https://images.unsplash.com/photo-1590608897129-79da98d15969?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  // --- Nuovi mestieri (2026-09-28) ---
+  fisioterapista:
+    "https://images.unsplash.com/photo-1706353399656-210cca727a33?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  cartongessista:
+    "https://images.unsplash.com/photo-1774977863604-59f4e6d37a90?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  spurghi:
+    "https://images.unsplash.com/photo-1773232806669-24919988ae6d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  levigatura_parquet:
+    "https://images.unsplash.com/photo-1560185008-b033106af5c3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  stufe_camini:
+    "https://images.unsplash.com/photo-1603283297903-81277ca7ce8f?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };

@@ -68,4 +68,14 @@ export const CATEGORY_ICON: Record<Category, string> = {
     '<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 12h18M12 3v18M6 6l3 3"/>',
   tappezziere:
     '<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M2 13a2 2 0 0 1 2-2 2 2 0 0 1 2 2v1h12v-1a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4H2zM5 17v3M19 17v3"/>',
+  fisioterapista:
+    '<path d="M12 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM8 21l1.5-6L7 12l1-4 4 1 3 2M9 15l-2 6M15 21l-1.5-5 3-2"/>',
+  cartongessista:
+    '<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 9v12M15 3v6M6 15l3 3"/>',
+  spurghi:
+    '<path d="M7 3v6a5 5 0 0 0 10 0V3M5 3h4M15 3h4M12 14v4M9 21h6M10 21l-1-3M14 21l1-3"/>',
+  levigatura_parquet:
+    '<rect x="2" y="14" width="20" height="6" rx="1"/><path d="M6 14V8h8l4 4M14 8V4M8 17h.01M12 17h.01M16 17h.01"/>',
+  stufe_camini:
+    '<path d="M4 3h16v18H4zM7 21v-7a5 5 0 0 1 10 0v7M12 10c1.5-1 1-2.5 0-3.5.5 1.5-1 2-1 3.5a1 1 0 0 0 2 0"/>',
 };

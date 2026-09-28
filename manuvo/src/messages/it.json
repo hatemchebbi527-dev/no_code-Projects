@@ -322,7 +322,12 @@
     "sviluppo_web": "Sviluppatore siti web",
     "fabbro": "Fabbro",
     "vetraio": "Vetraio",
-    "tappezziere": "Tappezziere"
+    "tappezziere": "Tappezziere",
+    "fisioterapista": "Fisioterapista",
+    "cartongessista": "Cartongessista",
+    "spurghi": "Spurghi",
+    "levigatura_parquet": "Levigatura parquet",
+    "stufe_camini": "Manutenzione stufe e camini"
   },
   "landing": {
     "eyebrow": "Il marketplace degli artigiani",

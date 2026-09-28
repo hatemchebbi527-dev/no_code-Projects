@@ -322,7 +322,12 @@
     "sviluppo_web": "Développeur de sites web",
     "fabbro": "Ferronnier",
     "vetraio": "Vitrier",
-    "tappezziere": "Tapissier"
+    "tappezziere": "Tapissier",
+    "fisioterapista": "Kinésithérapeute",
+    "cartongessista": "Plaquiste",
+    "spurghi": "Débouchage canalisations",
+    "levigatura_parquet": "Ponçage de parquet",
+    "stufe_camini": "Entretien poêles et cheminées"
   },
   "landing": {
     "eyebrow": "La marketplace des artisans",
