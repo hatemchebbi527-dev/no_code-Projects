@@ -34,6 +34,7 @@ export const FAMILIES: Family[] = [
       "serrature",
       "fabbro",
       "vetraio",
+      "spurghi",
     ],
   },
   {
@@ -46,6 +47,9 @@ export const FAMILIES: Family[] = [
       "ristrutturazione",
       "tappezziere",
       "spazzacamino",
+      "cartongessista",
+      "levigatura_parquet",
+      "stufe_camini",
     ],
   },
   {
@@ -68,7 +72,7 @@ export const FAMILIES: Family[] = [
   {
     key: "benessere",
     grad: "from-pink-500 to-rose-600",
-    categories: ["estetista", "massaggio", "personal_trainer", "pilates"],
+    categories: ["estetista", "massaggio", "personal_trainer", "pilates", "fisioterapista"],
   },
   {
     key: "eventi",

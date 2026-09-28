@@ -322,7 +322,12 @@
     "sviluppo_web": "مطوّر مواقع ويب",
     "fabbro": "حدّاد",
     "vetraio": "زجّاج",
-    "tappezziere": "منجّد"
+    "tappezziere": "منجّد",
+    "fisioterapista": "أخصائي علاج طبيعي",
+    "cartongessista": "فني ألواح جبسية",
+    "spurghi": "تسليك المجاري",
+    "levigatura_parquet": "صنفرة الباركيه",
+    "stufe_camini": "صيانة المدافئ والمواقد"
   },
   "landing": {
     "eyebrow": "سوق الحرفيين",

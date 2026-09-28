@@ -322,7 +322,12 @@
     "sviluppo_web": "Web developer",
     "fabbro": "Metalworker / Locksmith",
     "vetraio": "Glazier",
-    "tappezziere": "Upholsterer"
+    "tappezziere": "Upholsterer",
+    "fisioterapista": "Physiotherapist",
+    "cartongessista": "Drywaller",
+    "spurghi": "Drain unblocking",
+    "levigatura_parquet": "Parquet sanding",
+    "stufe_camini": "Stove & fireplace maintenance"
   },
   "landing": {
     "eyebrow": "The artisans marketplace",

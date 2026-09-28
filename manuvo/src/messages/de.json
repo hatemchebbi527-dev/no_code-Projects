@@ -322,7 +322,12 @@
     "sviluppo_web": "Webentwickler",
     "fabbro": "Schlosser",
     "vetraio": "Glaser",
-    "tappezziere": "Polsterer"
+    "tappezziere": "Polsterer",
+    "fisioterapista": "Physiotherapeut",
+    "cartongessista": "Trockenbauer",
+    "spurghi": "Rohrreinigung",
+    "levigatura_parquet": "Parkettschleifen",
+    "stufe_camini": "Ofen- und Kaminwartung"
   },
   "landing": {
     "eyebrow": "Der Marktplatz der Handwerker",
