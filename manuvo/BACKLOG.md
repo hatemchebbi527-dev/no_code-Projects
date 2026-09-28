@@ -43,9 +43,13 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - [ ] Reste : événement `Purchase` sur l'achat de crédits (à faire avec Stripe Live).
   - [ ] Optionnel : Meta Conversions API (CAPI) serveur pour fiabiliser le suivi.
 
+- [x] **Plan marketing + contenus (2026-09-25/27)** — _fait_
+  - Artefact **« Piano Marketing Manuvo »** (stratégie chauffe + lancement, 3 phases, calendrier, posts italiens prêts à copier) ; fichier versionné `manuvo/SOCIAL.md`.
+  - Artefact **« Annunci Meta e Google »** rafraîchi avec l'angle confiance (vérif SMS, zéro contact falso), targeting, mots-clés + négatifs, RSA, budget.
+  - Comptes sociaux créés (handle `manuvo.it`) + bios italiennes ; visuels de profil (fond blanc + corail), couverture Facebook, bannière LinkedIn.
 - [ ] **Régénérer les vrais visuels d'annonces (Meta / Google)**
   - Images carrées et verticales prêtes à uploader, avec le nouveau logo (hexagone + anuvo), le corail `#FF5758` et le domaine `manuvo.automa-ia.net`
-  - Note : le kit actuel `manuvo-ads.html` ne contient que les textes et réglages, pas les visuels
+  - Note : les kits d'annonces ne contiennent que les textes et réglages, pas les visuels des créas
 
 ---
 
@@ -70,6 +74,11 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 - [x] **Bouton « Accedi » visible sur mobile** — _fait_
   - Header landing : le lien de connexion s'affiche désormais en bouton compact sur mobile (était masqué sous `sm`).
+
+- [x] **UX formulaire `/pubblica` — robustesse (2026-09-28)** — _fait_
+  - Conseil au particulier sur l'écran de confirmation (comparer les 3 devis + répondre aux appels), 5 langues, visible côté privato uniquement (#103).
+  - Conservation de la saisie après une erreur serveur : tous les champs passés en contrôlés (React 19 réinitialisait le formulaire) — plus de perte de données ni d'abandon (#104).
+  - Bouton « Pubblica un'altra richiesta » : rechargement complet pour repartir sur un formulaire vierge (était inactif car déjà sur `/pubblica`) (#105).
 
 ---
 
