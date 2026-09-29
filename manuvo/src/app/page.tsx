@@ -23,6 +23,30 @@ const SERVIZI_WORD: Record<Locale, string> = {
   ar: "خدمات",
 };
 
+// Argument de vente "max 3 artigiani" : message adapté à chaque public (5 langues).
+const MAX3: Record<Locale, { priv: string; art: string }> = {
+  it: {
+    priv: "Solo 3 artigiani vedono la tua richiesta: niente spam.",
+    art: "Max 3 artigiani per richiesta: hai davvero la tua chance.",
+  },
+  fr: {
+    priv: "Seuls 3 artisans voient ta demande : pas de spam.",
+    art: "Max 3 artisans par demande : tu as ta vraie chance.",
+  },
+  en: {
+    priv: "Only 3 artisans see your request: no spam.",
+    art: "Max 3 artisans per request: a real chance to win it.",
+  },
+  de: {
+    priv: "Nur 3 Handwerker sehen deine Anfrage: kein Spam.",
+    art: "Max. 3 Handwerker pro Anfrage: echte Chancen.",
+  },
+  ar: {
+    priv: "٣ حرفيين فقط يرون طلبك: بلا إزعاج.",
+    art: "٣ حرفيين كحد أقصى لكل طلب: فرصتك حقيقية.",
+  },
+};
+
 type FaqContent = { title: string; items: { q: string; a: string }[] };
 
 const FAQ_STRINGS: Record<Locale, FaqContent> = {
@@ -312,6 +336,12 @@ export default async function Home() {
           <div className="flex flex-col rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
             <h3 className="font-display text-2xl font-bold">{tl("priv_title")}</h3>
             <p className="mt-3 grow text-neutral-600">{tl("priv_desc")}</p>
+            <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700 ring-1 ring-inset ring-red-100">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              {MAX3[locale].priv}
+            </span>
             <Link
               href="/pubblica"
               className="mt-6 inline-flex w-fit rounded-xl bg-red-700 px-5 py-3 font-semibold text-white transition hover:bg-red-800"
@@ -322,6 +352,12 @@ export default async function Home() {
           <div className="flex flex-col rounded-2xl border border-neutral-900 bg-neutral-900 p-8 text-white shadow-sm">
             <h3 className="font-display text-2xl font-bold">{tl("art_title")}</h3>
             <p className="mt-3 grow text-neutral-300">{tl("art_desc")}</p>
+            <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-inset ring-white/20">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              {MAX3[locale].art}
+            </span>
             <Link
               href="/signup"
               className="mt-6 inline-flex w-fit rounded-xl bg-white px-5 py-3 font-semibold text-neutral-900 transition hover:bg-neutral-100"
