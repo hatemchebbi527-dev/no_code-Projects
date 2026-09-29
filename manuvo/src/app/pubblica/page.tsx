@@ -21,6 +21,15 @@ const BACK: Record<Locale, { prefix: string; home: string }> = {
   ar: { prefix: "العودة إلى", home: "الرئيسية" },
 };
 
+// Réassurance "max 3 artigiani" côté privato (inline, 5 langues).
+const MAX3_PUB: Record<Locale, string> = {
+  it: "La tua richiesta è visibile solo a 3 artigiani della tua zona: niente spam, contatti mirati.",
+  fr: "Ta demande n'est visible que par 3 artisans de ta zone : pas de spam, des contacts ciblés.",
+  en: "Your request is shown to only 3 local artisans: no spam, focused contacts.",
+  de: "Deine Anfrage sehen nur 3 Handwerker aus deiner Nähe: kein Spam, gezielte Kontakte.",
+  ar: "طلبك يظهر لـ٣ حرفيين فقط في منطقتك: بلا إزعاج، جهات اتصال مستهدفة.",
+};
+
 export default async function PubblicaPage({
   searchParams,
 }: {
@@ -81,6 +90,12 @@ export default async function PubblicaPage({
           </div>
           <h1 className="mt-1 text-3xl font-bold tracking-tight">{t("title")}</h1>
           <p className="mt-2 text-neutral-500">{t("subtitle")}</p>
+          <div className="mt-4 flex items-start gap-2 rounded-xl border border-red-100 bg-red-50/70 px-3.5 py-2.5 text-sm font-medium text-red-800">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" aria-hidden>
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <span>{MAX3_PUB[locale]}</span>
+          </div>
         </div>
 
         <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
