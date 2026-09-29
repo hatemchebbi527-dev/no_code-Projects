@@ -24,6 +24,32 @@ export async function sendEmail({ to, subject, html }: SendArgs): Promise<{ sent
   }
 }
 
+// Gabarit generique d'avis admin (inline styles pour compatibilite clients mail).
+export function adminNoticeHtml(opts: {
+  title: string;
+  lines: string[]; // paires "Etichetta: valore" gia formattate
+  button: string;
+  url: string;
+}): string {
+  const rows = opts.lines
+    .map(
+      (l) =>
+        `<p style="font-size:15px;line-height:1.5;margin:0 0 8px;">${l}</p>`,
+    )
+    .join("");
+  return `<!doctype html>
+<html>
+  <body style="margin:0;background:#faf8f4;font-family:Arial,Helvetica,sans-serif;color:#1b1e24;">
+    <div style="max-width:480px;margin:0 auto;padding:32px 24px;">
+      <div style="font-size:22px;font-weight:800;color:#dc2626;margin-bottom:24px;">Manuvo</div>
+      <h1 style="font-size:20px;margin:0 0 16px;">${opts.title}</h1>
+      ${rows}
+      <a href="${opts.url}" style="display:inline-block;margin-top:16px;background:#dc2626;color:#ffffff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:10px;">${opts.button}</a>
+    </div>
+  </body>
+</html>`;
+}
+
 // Gabarit minimal et lisible (inline styles pour compatibilite clients mail).
 export function resetPasswordHtml(opts: {
   title: string;

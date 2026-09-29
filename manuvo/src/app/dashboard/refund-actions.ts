@@ -6,6 +6,8 @@ import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { requestRefund, RefundError } from "@/lib/refunds";
+import { notifyAdminsRefundRequest } from "@/lib/notifications";
+import { getBaseUrl } from "@/lib/base-url";
 
 export type RefundState = { error?: string; success?: boolean } | undefined;
 
@@ -32,6 +34,19 @@ export async function requestRefundAction(
 
   try {
     await requestRefund(session.user.id, leadId, reasonCode, note);
+    // Avvisa gli admin (email + push) senza bloccare in caso di errore.
+    try {
+      const baseUrl = await getBaseUrl();
+      await notifyAdminsRefundRequest({
+        artisanId: session.user.id,
+        leadId,
+        reasonCode,
+        note,
+        baseUrl,
+      });
+    } catch (err) {
+      console.error("[refund] notifica admin fallita:", err);
+    }
     revalidatePath("/dashboard");
     return { success: true };
   } catch (e) {
