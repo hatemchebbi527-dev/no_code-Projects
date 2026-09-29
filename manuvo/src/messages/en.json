@@ -113,6 +113,7 @@
     "no_credits": "You have no credits. Top up to unlock contacts.",
     "recharge": "Top up",
     "contact_hidden": "Contact hidden",
+    "contact_verified": "Verified contact",
     "unlock": "Unlock",
     "my_contacts": "My unlocked contacts",
     "unlocked_badge": "Unlocked",
@@ -233,7 +234,8 @@
     "phone": "Enter a phone number.",
     "phone_invalid": "Invalid phone number. Check the prefix and country.",
     "email": "Invalid email address.",
-    "phone_not_verified": "Verify your phone number first."
+    "phone_not_verified": "Verify your phone number first.",
+    "phone_blocked": "This number has been reported several times: it cannot be published."
   },
   "admin": {
     "title": "Manage requests",

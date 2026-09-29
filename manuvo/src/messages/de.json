@@ -113,6 +113,7 @@
     "no_credits": "Sie haben keine Credits. Laden Sie auf, um Kontakte freizuschalten.",
     "recharge": "Aufladen",
     "contact_hidden": "Kontakt verborgen",
+    "contact_verified": "Verifizierter Kontakt",
     "unlock": "Freischalten",
     "my_contacts": "Meine freigeschalteten Kontakte",
     "unlocked_badge": "Freigeschaltet",
@@ -233,7 +234,8 @@
     "phone": "Geben Sie eine Telefonnummer an.",
     "phone_invalid": "Ungültige Telefonnummer. Prüfen Sie Vorwahl und Land.",
     "email": "Ungültige E-Mail-Adresse.",
-    "phone_not_verified": "Bitte zuerst die Telefonnummer verifizieren."
+    "phone_not_verified": "Bitte zuerst die Telefonnummer verifizieren.",
+    "phone_blocked": "Diese Nummer wurde mehrfach gemeldet: Veröffentlichung nicht möglich."
   },
   "admin": {
     "title": "Anfragen verwalten",

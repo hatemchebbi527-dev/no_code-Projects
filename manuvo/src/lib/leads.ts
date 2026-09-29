@@ -1,5 +1,6 @@
 // Manuvo - logica lato server delle richieste (bacheca + sblocco contatti).
 import { prisma } from "@/lib/prisma";
+import { getBlockedPhones } from "@/lib/phone-reputation";
 
 export type Scope = "national" | "international";
 
@@ -22,7 +23,7 @@ export async function getAvailableLeads(
   // Nessun mestiere = nessuna richiesta da mostrare (evita di mostrare tutto per errore).
   if (effectiveTrades.length === 0) return [];
 
-  return prisma.lead.findMany({
+  const leads = await prisma.lead.findMany({
     where: {
       status: "OPEN",
       unlocks: { none: { userId } }, // non gia sbloccata da questo artigiano
@@ -40,9 +41,16 @@ export async function getAvailableLeads(
       unlocksCount: true,
       maxUnlocks: true,
       createdAt: true,
+      contactPhone: true, // serve solo per filtrare i numeri bloccati, non viene esposto
     },
     orderBy: { createdAt: "desc" },
   });
+
+  // Anti clients fantomes : nascondi le richieste dei numeri gia rimborsati piu volte.
+  const blocked = await getBlockedPhones(leads.map((l) => l.contactPhone));
+  return leads
+    .filter((l) => !blocked.has(l.contactPhone))
+    .map(({ contactPhone: _contactPhone, ...rest }) => rest); // rimuovi il telefono dal payload
 }
 
 // Contatti gia sbloccati dall'artigiano (con coordinate visibili).
