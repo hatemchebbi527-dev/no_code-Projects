@@ -26,23 +26,23 @@ const SERVIZI_WORD: Record<Locale, string> = {
 // Argument de vente "max 3 artigiani" : message adapté à chaque public (5 langues).
 const MAX3: Record<Locale, { priv: string; art: string }> = {
   it: {
-    priv: "Solo 3 artigiani vedono la tua richiesta: niente spam.",
+    priv: "Ricevi fino a 3 preventivi e scegli il migliore.",
     art: "Max 3 artigiani per richiesta: hai davvero la tua chance.",
   },
   fr: {
-    priv: "Seuls 3 artisans voient ta demande : pas de spam.",
+    priv: "Reçois jusqu'à 3 devis et choisis le meilleur.",
     art: "Max 3 artisans par demande : tu as ta vraie chance.",
   },
   en: {
-    priv: "Only 3 artisans see your request: no spam.",
+    priv: "Get up to 3 quotes and pick the best one.",
     art: "Max 3 artisans per request: a real chance to win it.",
   },
   de: {
-    priv: "Nur 3 Handwerker sehen deine Anfrage: kein Spam.",
+    priv: "Erhalte bis zu 3 Angebote und wähle das beste.",
     art: "Max. 3 Handwerker pro Anfrage: echte Chancen.",
   },
   ar: {
-    priv: "٣ حرفيين فقط يرون طلبك: بلا إزعاج.",
+    priv: "احصل على ٣ عروض أسعار كحد أقصى واختر الأفضل.",
     art: "٣ حرفيين كحد أقصى لكل طلب: فرصتك حقيقية.",
   },
 };
