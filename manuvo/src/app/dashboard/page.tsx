@@ -113,6 +113,14 @@ export default async function DashboardPage({
                 <span className="text-neutral-400">{timeAgo(lead.createdAt)}</span>
               </div>
 
+              {/* Rassicurazione anti clients fantomes : ogni richiesta pubblicata ha il numero verificato via SMS. */}
+              <span className="inline-flex w-fit items-center gap-1.5 rounded-lg bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                {t("contact_verified")}
+              </span>
+
               <div className="mt-1 flex items-center justify-between border-t border-dashed border-neutral-200 pt-3">
                 <span className="flex items-center gap-1.5 text-xs text-neutral-400">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

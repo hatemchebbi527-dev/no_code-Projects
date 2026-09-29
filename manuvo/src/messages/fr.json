@@ -113,6 +113,7 @@
     "no_credits": "Vous n'avez pas de crédits. Rechargez pour débloquer les contacts.",
     "recharge": "Recharger",
     "contact_hidden": "Contact masqué",
+    "contact_verified": "Contact vérifié",
     "unlock": "Débloquer",
     "my_contacts": "Mes contacts débloqués",
     "unlocked_badge": "Débloqué",
@@ -233,7 +234,8 @@
     "phone": "Indiquez un numéro de téléphone.",
     "phone_invalid": "Numéro de téléphone non valide. Vérifiez l'indicatif et le pays.",
     "email": "Adresse email non valide.",
-    "phone_not_verified": "Vérifie d'abord ton numéro de téléphone."
+    "phone_not_verified": "Vérifie d'abord ton numéro de téléphone.",
+    "phone_blocked": "Ce numéro a été signalé plusieurs fois : publication impossible."
   },
   "admin": {
     "title": "Gestion des demandes",

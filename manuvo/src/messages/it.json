@@ -113,6 +113,7 @@
     "no_credits": "Non hai crediti. Ricarica per sbloccare i contatti.",
     "recharge": "Ricarica",
     "contact_hidden": "Contatto nascosto",
+    "contact_verified": "Contatto verificato",
     "unlock": "Sblocca",
     "my_contacts": "I miei contatti sbloccati",
     "unlocked_badge": "Sbloccato",
@@ -233,7 +234,8 @@
     "phone": "Indica un numero di telefono.",
     "phone_invalid": "Numero di telefono non valido. Controlla il prefisso e il paese.",
     "email": "Indirizzo email non valido.",
-    "phone_not_verified": "Verifica prima il tuo numero di telefono."
+    "phone_not_verified": "Verifica prima il tuo numero di telefono.",
+    "phone_blocked": "Questo numero e stato segnalato piu volte: non e possibile pubblicare."
   },
   "admin": {
     "title": "Gestione richieste",
