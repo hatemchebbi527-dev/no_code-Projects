@@ -39,7 +39,8 @@ export async function startCheckout(_prev: BuyState, formData: FormData): Promis
       metadata: {
         userId: session.user.id,
         packId: pack.id,
-        credits: String(pack.credits),
+        // Credits totaux accredites = payes + offerts (le bonus des paliers).
+        credits: String(pack.credits + pack.bonusCredits),
         amountEur: String(pack.priceEur),
       },
       success_url: `${base}/dashboard/crediti?paid=1`,

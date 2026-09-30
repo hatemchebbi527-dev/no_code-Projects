@@ -161,7 +161,9 @@
     "checkout_unavailable": "الدفع غير مُفعّل بعد. حاول لاحقاً.",
     "paid_success": "تم استلام الدفع! تم تحديث رصيدك.",
     "canceled": "أُلغي الدفع.",
-    "secure_note": "دفع آمن عبر Stripe. رصيد واحد = {eur} يورو."
+    "secure_note": "دفع آمن عبر Stripe. رصيد واحد = {eur} يورو.",
+    "bonus_badge": "+{n} مجاناً",
+    "total_credits": "{n} نقطة إجمالاً"
   },
   "transactions": {
     "purchase": "شحن نقاط",

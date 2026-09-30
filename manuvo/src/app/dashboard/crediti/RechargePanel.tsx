@@ -9,6 +9,7 @@ import { EUR_PER_CREDIT } from "@/lib/constants";
 type Pack = {
   id: string;
   credits: number;
+  bonusCredits: number;
   priceEur: number;
   popular: boolean;
 };
@@ -52,8 +53,8 @@ export function RechargePanel({
 
       <div className="grid gap-4 sm:grid-cols-3">
         {packs.map((pack) => {
-          const perCredit = (pack.priceEur / pack.credits).toFixed(2).replace(".", ",");
-          const saving = pack.priceEur < pack.credits * EUR_PER_CREDIT;
+          const hasBonus = pack.bonusCredits > 0;
+          const total = pack.credits + pack.bonusCredits;
           return (
             <form
               key={pack.id}
@@ -71,10 +72,14 @@ export function RechargePanel({
                 {pack.credits}
                 <span className="ms-1 text-sm font-semibold text-neutral-500">{tc("credits")}</span>
               </div>
-              <div className="font-mono text-lg font-semibold tabular-nums">{pack.priceEur} €</div>
+              {hasBonus && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700">
+                  {t("bonus_badge", { n: pack.bonusCredits })}
+                </span>
+              )}
+              <div className="mt-1 font-mono text-lg font-semibold tabular-nums">{pack.priceEur} €</div>
               <div className="text-xs text-neutral-400">
-                {perCredit} € {t("per_credit")}
-                {saving && <span className="ms-1 font-semibold text-red-600">{t("save")}</span>}
+                {hasBonus ? t("total_credits", { n: total }) : `${EUR_PER_CREDIT} € ${t("per_credit")}`}
               </div>
 
               <input type="hidden" name="packId" value={pack.id} />
