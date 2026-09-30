@@ -161,7 +161,9 @@
     "checkout_unavailable": "Le paiement n'est pas encore configuré. Réessayez plus tard.",
     "paid_success": "Paiement reçu ! Votre solde a été mis à jour.",
     "canceled": "Paiement annulé.",
-    "secure_note": "Paiement sécurisé via Stripe. 1 crédit = {eur} €."
+    "secure_note": "Paiement sécurisé via Stripe. 1 crédit = {eur} €.",
+    "bonus_badge": "+{n} offerts",
+    "total_credits": "{n} crédits au total"
   },
   "transactions": {
     "purchase": "Recharge de crédits",

@@ -161,7 +161,9 @@
     "checkout_unavailable": "Payment is not set up yet. Please try again later.",
     "paid_success": "Payment received! Your balance has been updated.",
     "canceled": "Payment canceled.",
-    "secure_note": "Secure payment via Stripe. 1 credit = €{eur}."
+    "secure_note": "Secure payment via Stripe. 1 credit = €{eur}.",
+    "bonus_badge": "+{n} free",
+    "total_credits": "{n} credits total"
   },
   "transactions": {
     "purchase": "Credit top-up",

@@ -226,10 +226,11 @@ model CreditTransaction {
 
 // Packs de recharge proposes aux artisans.
 model CreditPack {
-  id        String   @id @default(cuid())
-  credits   Int
-  priceEur  Float
-  popular   Boolean  @default(false)
-  active    Boolean  @default(true)
-  sortOrder Int      @default(0)
+  id           String   @id @default(cuid())
+  credits      Int      // crediti pagati
+  bonusCredits Int      @default(0) // crediti offerti in piu (paliers a bonus)
+  priceEur     Float
+  popular      Boolean  @default(false)
+  active       Boolean  @default(true)
+  sortOrder    Int      @default(0)
 }

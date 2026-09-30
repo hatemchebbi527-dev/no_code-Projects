@@ -52,9 +52,9 @@ async function main() {
   // ---- Packs de recharge ----
   await prisma.creditPack.createMany({
     data: [
-      { credits: 10, priceEur: 20, popular: false, sortOrder: 1 },
-      { credits: 25, priceEur: 48, popular: true, sortOrder: 2 },
-      { credits: 50, priceEur: 90, popular: false, sortOrder: 3 },
+      { credits: 10, bonusCredits: 0, priceEur: 20, popular: false, sortOrder: 1 },
+      { credits: 25, bonusCredits: 3, priceEur: 50, popular: true, sortOrder: 2 },
+      { credits: 50, bonusCredits: 10, priceEur: 100, popular: false, sortOrder: 3 },
     ],
   });
 

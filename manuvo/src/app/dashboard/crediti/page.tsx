@@ -45,6 +45,7 @@ export default async function CreditiPage({
         packs={packs.map((p) => ({
           id: p.id,
           credits: p.credits,
+          bonusCredits: p.bonusCredits,
           priceEur: p.priceEur,
           popular: p.popular,
         }))}

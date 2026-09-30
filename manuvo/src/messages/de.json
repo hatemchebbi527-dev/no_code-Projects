@@ -161,7 +161,9 @@
     "checkout_unavailable": "Zahlung ist noch nicht eingerichtet. Bitte später erneut versuchen.",
     "paid_success": "Zahlung erhalten! Ihr Guthaben wurde aktualisiert.",
     "canceled": "Zahlung abgebrochen.",
-    "secure_note": "Sichere Zahlung über Stripe. 1 Credit = {eur} €."
+    "secure_note": "Sichere Zahlung über Stripe. 1 Credit = {eur} €.",
+    "bonus_badge": "+{n} gratis",
+    "total_credits": "{n} Credits gesamt"
   },
   "transactions": {
     "purchase": "Credit-Aufladung",
