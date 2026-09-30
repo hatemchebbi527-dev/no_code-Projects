@@ -18,15 +18,27 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - `.github/workflows/vercel-deploy.yml` appelle un Deploy Hook Vercel (secret `VERCEL_DEPLOY_HOOK`) à chaque push sur `main` touchant `manuvo/**` (+ `workflow_dispatch`). Testé de bout en bout. Le webhook natif reste actif en parallèle (doublons occasionnels sans gravité).
 - [ ] **Migrer les libellés inline vers les 5 fichiers de messages** : page `/artigiano/[matricule]`, carte « profil public » du profil, historique Rimborsi, aria-label « Menu » du hamburger (clé `nav.menu`), libellés des familles/tuiles de la landing, section « Come funziona ».
 - [ ] **Retirer l'outil de test « avis » avant le lancement** : boutons admin « + 3 avis test » / « Reset test » sur `/admin/artigiani` (`admin/artigiani/actions.ts`) qui injectent/suppriment des avis de démonstration (note 5) pour valider le badge « artisan vérifié ». Admin uniquement. À supprimer, ou masquer derrière un flag, en production.
+- [ ] **Nettoyer les données de test avant lancement** : vider les leads/unlocks/transactions/reviews/push de démonstration en base (Neon) pour partir sur une base propre.
+
+### Infra e-mail & push configurée (session 2026-09-30)
+
+- [x] **E-mail transactionnel opérationnel (Resend)** : domaine d'envoi **`manuvo.automa-ia.net`** vérifié dans le compte Resend qui détient la clé (DKIM + SPF/CNAME chez Wix). `EMAIL_FROM = Manuvo <noreply@manuvo.automa-ia.net>`, `RESEND_API_KEY` du bon compte. Admin destinataire = `info@automa-ia.net`.
+- [x] **Web push (VAPID) réparé** : nouvelle paire de clés alignée (`VAPID_PUBLIC_KEY` = `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT`). Les anciens abonnements (créés avec l'ancienne clé) échouaient en 400 ; réabonnement propre requis après changement de clé.
+- [x] **Doublon admin nettoyé** : un seul compte ADMIN (`info@automa-ia.net`), mot de passe réinitialisé via « mot de passe oublié ».
+- [ ] **Optionnel (hygiène) : régénérer les secrets qui ont transité en clair dans la session de chat** (clé Resend, clés VAPID) et mettre à jour Vercel, si tu veux être 100% carré.
 
 ---
 
 ## 1. Mise en production / paiements
 
-- [ ] **Stripe en mode Live**
+- [x] **Recharge de crédits (test) réparée — webhook Stripe (2026-09-30)**
+  - Cause : l'endpoint webhook pointait vers l'ancienne URL `manuvo-automaia.vercel.app` qui renvoyait un **308** (Stripe ne suit pas les redirections) → 100% d'échec → crédits jamais ajoutés. Corrigé vers `https://manuvo.automa-ia.net/api/stripe/webhook` (event `checkout.session.completed`), `STRIPE_WEBHOOK_SECRET` aligné. Recharge test validée (livraison 200, solde crédité).
+
+- [ ] **Stripe en mode Live** (au lancement, avec la P.IVA)
   - Compléter le KYC du compte Stripe (identité + IBAN pour les virements)
-  - Basculer les clés API de test vers les clés Live (variables d'environnement Vercel)
-  - Pointer le webhook Stripe vers le domaine de production : `https://manuvo.automa-ia.net/api/stripe/...`
+  - Basculer les clés API de test vers les clés Live dans Vercel (`STRIPE_SECRET_KEY` = `sk_live_`, clé publique si utilisée)
+  - **Recréer le webhook côté Live** : endpoint `https://manuvo.automa-ia.net/api/stripe/webhook` (event `checkout.session.completed`) et coller son `whsec_` Live dans `STRIPE_WEBHOOK_SECRET`, puis redéployer (attention : ne pas laisser une URL vercel.app qui redirige en 308)
+  - Ajouter l'événement `Purchase` Meta Pixel sur l'achat
   - Tester un vrai achat de crédits de bout en bout
 
 - [ ] **Mentions légales avec la vraie P.IVA**
@@ -93,6 +105,7 @@ Analyse du concurrent italien ProntoPro (modèle très proche). Point faible con
   - [x] **Remboursement des crédits** avec **validation admin** (onglet Rimborsi, motif cadré).
   - [x] **Garde-fous anti-abus** : corroboration entre artisans (X/Y sur le même lead), taux de remboursement de l'artisan, motifs cadrés.
   - [x] **Traçabilité des remboursements** : historique des remboursements traités (client + artisan) + signaux de récidive (client signalé ×N, remboursements artisan ×N).
+  - [x] **Notification auto des demandes de remboursement à l'admin** — _fait (2026-09-30)_ : email (Resend) + web push dès qu'un artisan signale un contact, avec lien vers `/admin/rimborsi`. Best effort, ne bloque jamais l'artisan.
   - Argument marketing : « Chez Manuvo, tu ne paies jamais pour un faux contact »
 
 - [x] **Système d'avis / notation vérifié** — _fait_
@@ -106,13 +119,15 @@ Analyse du concurrent italien ProntoPro (modèle très proche). Point faible con
 **Priorité moyenne :**
 
 - [ ] **Chat intégré particulier ↔ artisan** (rejoint la messagerie du point 3)
-- [ ] **Fiabilité du particulier** : marquer les clients « fantômes » (demandes jamais converties) — complète la traçabilité remboursements par n° client déjà en place
-- [ ] **« 3 artisans max » comme argument de vente** (ProntoPro va jusqu'à 5)
+- [x] **Fiabilité du particulier / clients fantômes** — _fait (2026-09-30)_
+  - **Auto-blocage des numéros récidivistes** (`lib/phone-reputation.ts`) : un numéro client avec ≥ 2 remboursements **approuvés** ne peut plus republier (bloqué dans `createLead`) et ses demandes ouvertes sont masquées de la bacheca (`getAvailableLeads`). Seuil `BLOCK_THRESHOLD`. Basé sur les remboursements validés admin uniquement.
+  - **Badge « Contatto verificato »** sur chaque demande de la bacheca, avant déblocage (rend visible la garantie SMS déjà en place).
+- [x] **« 3 artisans max » comme argument de vente** — _fait (2026-09-29)_ : mis en avant sur la landing (cartes privati/artigiani) et la page `/pubblica` (5 langues). Carte privati orientée bénéfice « Ricevi fino a 3 preventivi e scegli il migliore ».
 
 **Priorité basse :**
 
 - [ ] **Devis en ligne optionnel** : l'artisan propose un prix, le particulier compare
-- [ ] **Paliers de recharge avec crédits offerts**
+- [x] **Paliers de recharge avec crédits offerts** — _fait (2026-09-30)_ : champ `CreditPack.bonusCredits`, grille prix plat 2€/crédit (10cr/20€ +0, 25cr/50€ +3 popolare, 50cr/100€ +10), badge vert « +N offerti », checkout crédite le total. Testé en prod.
 
 ---
 
