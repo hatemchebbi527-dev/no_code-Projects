@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Motion design films (HyperFrames projects, vendored runtimes): not part of the app.
+    "videos/**",
   ]),
 ]);
 

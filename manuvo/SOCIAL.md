@@ -216,6 +216,8 @@ Sta arrivando. Seguici per non perdere il lancio 🛠️
 
 ### Post 2 — Teaser (TikTok + Reel IG) — vidéo ~15s
 
+> **Version motion design générée (2026-10-01)** : `manuvo/videos/teaser-phase0/` (skill `brand-motion-design`, 17 s, 9:16, musique générée libre de droits). Alternative au tournage face caméra ci-dessous : même texte, même CTA doux. Rendu : `node .claude/skills/brand-motion-design/scripts/render.mjs manuvo/videos/teaser-phase0` (fichiers dans `out/`, non versionnés).
+
 Plans (texte à l'écran à chaque plan) :
 1. 0-3s — gros plan agacé, scroll téléphone · « Cercare un idraulico a Rimini… »
 2. 3-7s — souffle, dépité · « Numeri che non rispondono. Preventivi fantasma. »

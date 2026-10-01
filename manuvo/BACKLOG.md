@@ -59,6 +59,10 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - Artefact **« Piano Marketing Manuvo »** (stratégie chauffe + lancement, 3 phases, calendrier, posts italiens prêts à copier) ; fichier versionné `manuvo/SOCIAL.md`.
   - Artefact **« Annunci Meta e Google »** rafraîchi avec l'angle confiance (vérif SMS, zéro contact falso), targeting, mots-clés + négatifs, RSA, budget.
   - Comptes sociaux créés (handle `manuvo.it`) + bios italiennes ; visuels de profil (fond blanc + corail), couverture Facebook, bannière LinkedIn.
+- [~] **Vidéos de marque en motion design (skill `brand-motion-design`, 2026-10-01)**
+  - Skill installée dans le repo (`.claude/skills/brand-motion-design/`, MIT) : films HyperFrames + Three.js, 9:16, musique générée. Profil de marque vidéo : `manuvo/videos/BRAND.md`.
+  - [x] Teaser Phase 0 (`manuvo/videos/teaser-phase0/`, 17 s) : v1 livrée.
+  - [ ] Suite possible (même série, même HUD et musique) : « Il problema n°1 » (Phase 0, Post 3), annonce J1 « Manuvo è online » au lancement, démo « pubblica in 60s ».
 - [ ] **Régénérer les vrais visuels d'annonces (Meta / Google)**
   - Images carrées et verticales prêtes à uploader, avec le nouveau logo (hexagone + anuvo), le corail `#FF5758` et le domaine `manuvo.automa-ia.net`
   - Note : les kits d'annonces ne contiennent que les textes et réglages, pas les visuels des créas

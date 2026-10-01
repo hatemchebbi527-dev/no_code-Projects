@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Manuvo · Teaser Phase 0</title>
+    <!-- Vendored runtimes: nothing loads from the network at render time. -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/words.js"></script>
+    <script src="kit/draw.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage Grotesque for titles, Geist for UI, Geist Mono for the HUD. */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Noto Color Emoji"; src: local("Noto Color Emoji"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1e24; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1e24; color: #faf8f4; font-family: "Geist", sans-serif; }
+      .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      #cam { position: absolute; inset: 0; }
+      /* Giant slammed lines: the Manuvo display face, 800, uppercase, tight. */
+      .head { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Bricolage", sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .ghost { color: transparent; -webkit-text-stroke: 4px #faf8f4; }
+      .emoji { font-family: "Noto Color Emoji", sans-serif; }
+      .handle { font-family: "Geist", sans-serif; font-weight: 600; text-transform: none; letter-spacing: -0.01em; }
+      #ring { position: absolute; border-radius: 50%; border: 6px solid #1b1e24; visibility: hidden; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="17.1429" data-width="1080" data-height="1920">
+      <!-- Layers, bottom to top: camera wrapper (3D canvas, shockwave, words) > floods > vignette and grain > HUD. -->
+      <div id="cam">
+        <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
+        <div id="ring" data-layout-ignore></div>
+        <div id="words" class="full">
+          <!-- 01 Rimini (ink) -->
+          <div id="w1a" class="head" style="top:330px;font-size:120px;color:#faf8f4">Cercare un</div>
+          <div id="w1b" class="head" style="top:462px;font-size:150px;color:#FF5758">idraulico</div>
+          <div id="w1c" class="head" style="top:626px;font-size:96px;color:#faf8f4">a Rimini…</div>
+          <!-- 02 Numeri (cream) -->
+          <div id="w2a" class="head" style="top:320px;font-size:150px;color:#1b1e24">Numeri</div>
+          <div id="w2b" class="head" style="top:476px;font-size:150px;color:#1b1e24">che non</div>
+          <div id="w2c" class="head" style="top:632px;font-size:118px;color:#C6383A">rispondono.</div>
+          <!-- 03 Fantasma (ink) -->
+          <div id="w3a" class="head" style="top:380px;font-size:128px;color:#faf8f4">Preventivi</div>
+          <div id="w3b" class="head ghost" style="top:522px;font-size:150px">fantasma.</div>
+          <!-- 04 Cambia (coral) -->
+          <div id="w4a" class="head" style="top:330px;font-size:128px;color:#1b1e24">Sta per</div>
+          <div id="w4b" class="head" style="top:466px;font-size:160px;color:#1b1e24">cambiare</div>
+          <div id="w4c" class="head" style="top:640px;font-size:150px;color:#1b1e24">tutto <span class="emoji">👀</span></div>
+          <!-- 05 Manuvo (cream) -->
+          <div id="w5a" class="head" style="top:1250px;font-size:88px;color:#1b1e24">Presto a Rimini</div>
+          <div id="w5b" class="head handle" style="top:1366px;font-size:76px;color:#C6383A">@manuvo.it</div>
+        </div>
+      </div>
+      <div id="wipe" class="full" data-layout-ignore style="visibility:hidden"></div>
+      <div id="vignette" class="full" data-layout-ignore></div>
+      <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%"></canvas>
+      <div id="hud-layer" class="full" data-layout-ignore></div>
+      <!-- Three.js and add-ons are ES modules: they hand themselves to the kit, then the film starts. -->
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "./vendor/three/addons/postprocessing/EffectComposer.js";
+        import { RenderPass } from "./vendor/three/addons/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "./vendor/three/addons/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "./vendor/three/addons/postprocessing/OutputPass.js";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { RoundedBoxGeometry } from "./vendor/three/addons/geometries/RoundedBoxGeometry.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment, RoundedBoxGeometry, SVGLoader };
+        PF.signal("three").resolve();
+      </script>
+      <!-- pf:audio -->
+      <audio id="pf-music" data-timeline-role="music" src="assets/audio/bed.wav" data-start="0" data-duration="17.1429" data-track-index="20" data-volume="0.9"></audio>
+      <audio id="pf-sfx-01-tick" src="assets/audio/sfx/tick.wav" data-start="0.4285" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-02-tick" src="assets/audio/sfx/tick.wav" data-start="0.8570" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-03-thud" src="assets/audio/sfx/thud.wav" data-start="1.7120" data-duration="0.4000" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-04-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="2.8908" data-duration="0.6000" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-05-ping" src="assets/audio/sfx/ping.wav" data-start="3.4262" data-duration="0.9000" data-track-index="22" data-volume="0.3"></audio>
+      <audio id="pf-sfx-06-ping" src="assets/audio/sfx/ping.wav" data-start="4.2833" data-duration="0.9000" data-track-index="21" data-volume="0.25"></audio>
+      <audio id="pf-sfx-07-ping" src="assets/audio/sfx/ping.wav" data-start="5.1405" data-duration="0.9000" data-track-index="22" data-volume="0.25"></audio>
+      <audio id="pf-sfx-08-click" src="assets/audio/sfx/click.wav" data-start="5.9992" data-duration="0.0300" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-09-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="6.3194" data-duration="0.6000" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-10-pop" src="assets/audio/sfx/pop.wav" data-start="6.8568" data-duration="0.0900" data-track-index="22" data-volume="0.25"></audio>
+      <audio id="pf-sfx-11-pop" src="assets/audio/sfx/pop.wav" data-start="7.2854" data-duration="0.0900" data-track-index="21" data-volume="0.25"></audio>
+      <audio id="pf-sfx-12-pop" src="assets/audio/sfx/pop.wav" data-start="7.7140" data-duration="0.0900" data-track-index="21" data-volume="0.2"></audio>
+      <audio id="pf-sfx-13-thud" src="assets/audio/sfx/thud.wav" data-start="8.5691" data-duration="0.4000" data-track-index="21" data-volume="0.45"></audio>
+      <audio id="pf-sfx-14-tick" src="assets/audio/sfx/tick.wav" data-start="9.4285" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-15-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="11.4622" data-duration="0.6000" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-16-chime" src="assets/audio/sfx/chime.wav" data-start="11.9953" data-duration="1.4000" data-track-index="22" data-volume="0.35"></audio>
+      <audio id="pf-sfx-17-tick" src="assets/audio/sfx/tick.wav" data-start="13.7142" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-18-pop" src="assets/audio/sfx/pop.wav" data-start="14.1426" data-duration="0.0900" data-track-index="21" data-volume="0.3"></audio>
+      <!-- /pf:audio -->
+    </div>
+    <script>
+      const b = PF.grid(CUES.grid);
+      const $ = PF.$;
+      const W = CUES.width, H = CUES.height;
+      // Manuvo palette (manuvo/src/app/globals.css). Coral is the one highlight; red-900 for coral text on cream (contrast).
+      const C = { cream: "#faf8f4", ink: "#1b1e24", coral: "#FF5758", coralText: "#C6383A", deep: "#6E1618" };
+      const at = (c) => b(c[0], c[1] || 1, c[2] || 0);
+      const SC = CUES.scenes.map((s) => ({ name: s.name, from: at(s.from), to: at(s.to) }));
+      const BG = [C.ink, C.cream, C.ink, C.coral, C.cream];
+      const HUDC = ["rgba(250,248,244,.72)", "rgba(27,30,36,.62)", "rgba(250,248,244,.72)", "rgba(27,30,36,.72)", "rgba(27,30,36,.62)"];
+      const LABEL = ["01 — Rimini", "02 — Numeri", "03 — Preventivi", "04 — Cambia tutto", "05 — Manuvo"];
+      let st, hud, S = {};
+
+      /* ---------- helpers ---------- */
+      function sceneAt(t) { let k = 0; SC.forEach((s, i) => { if (t >= s.from) k = i; }); return k; }
+      // A slammed line: lands at `on`, leaves (quick blur) at `off`.
+      function slam(id, t, on, off, from = 1.3) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.16;
+        PF.show(el, live);
+        if (!live) return;
+        const s = PF.slam(t, on, { from, length: 0.22, blur: 16 });
+        const leave = PF.clamp01((t - off) / 0.16);
+        PF.css(el, {
+          transform: `scale(${(s.scale * (1 + leave * 0.08)).toFixed(4)})`,
+          opacity: (s.opacity * (1 - leave)).toFixed(3),
+          filter: s.blur + leave * 14 > 0.05 ? `blur(${(s.blur + leave * 14).toFixed(2)}px)` : "none",
+        });
+      }
+      function scene(bg) {
+        const THREE = st.THREE, s = st.newScene();
+        s.background = new THREE.Color(bg);
+        s.fog = new THREE.Fog(bg, 9, 34);
+        s.environmentIntensity = 0.55;
+        PF.three.lights(st, { scene: s, ground: bg, fill: 0.5, key: 1.6, keyPos: [-4, 8, 6] });
+        return s;
+      }
+      function unlit(mesh) { mesh.material.toneMapped = false; return mesh; }
+
+      /* ---------- setup ---------- */
+      function setup() {
+        hud = PF.hud($("#hud-layer"), { size: 22, font: "'Geist Mono', monospace", top: CUES.safe.top - 60, bottom: CUES.safe.bottom - 60, color: HUDC[0] });
+        st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.9, radius: 0.6, threshold: 1.0 }, exposure: 0.95 });
+        const THREE = st.THREE, A = window.THREE_ADDONS;
+        // The composer's OutputPass tone-maps the whole frame (material.toneMapped is ignored there),
+        // which turned the cream background grey and the coral pink. No tone mapping: brand swatches stay exact.
+        st.renderer.toneMapping = THREE.NoToneMapping;
+
+        /* 01 Rimini: a town of glossy columns, a coral point searching through it. */
+        S.s1 = scene(C.ink);
+        const rnd = PF.random(11);
+        const hts = []; for (let i = 0; i < 22 * 22; i++) hts.push(0.25 + Math.pow(rnd(), 2.2) * 2.4);
+        const path = [];
+        for (let i = 0; i <= 40; i++) { const u = i / 40; path.push([-7 + 14 * u, 2.9 + 0.35 * Math.sin(u * 9), 3.2 * Math.sin(u * Math.PI * 2.2) - 0.6]); }
+        S.trail = PF.three.tube(st, path, { radius: 0.045, segments: 600, material: PF.three.mat("gloss", C.cream), scene: S.s1 });
+        S.dot = new THREE.Mesh(new THREE.SphereGeometry(0.22, 48, 32), PF.three.mat("glow", C.coral));
+        S.s1.add(S.dot);
+        S.dotLight = new THREE.PointLight(C.coral, 0, 6, 1.6); S.s1.add(S.dotLight);
+        const ramp1 = PF.three.ramp([C.ink, C.deep, C.coral]);
+        S.city = PF.three.field(st, {
+          nx: 22, nz: 22, xRange: [-7.5, 7.5], zRange: [-7.5, 7.5], size: 0.5, depth: 7, scene: S.s1,
+          material: PF.three.mat("gloss", "#ffffff"),
+          height: (i, j, x, z, t) => { const h = hts[i * 22 + j]; const rise = PF.step(t + 0.32 - 0.02 * ((i + j) % 9), { stiffness: 90, damping: 14 }); /* already rising on frame 0 */ return PF.lerp(-6, h, rise); },
+          color: (i, j, y, t) => { const d = Math.hypot(S.city.x(i) - S.dot.position.x, S.city.z(j) - S.dot.position.z); return ramp1(PF.clamp01(1.25 - d / 2.4) * 0.92); },
+        });
+        S.dust1 = PF.three.particles(st, 500, {
+          scene: S.s1, size: 0.05, color: (i) => (i % 4 ? C.cream : C.coral),
+          pos: (i, t, o) => { const r = PF.random(i * 13 + 1); o.x = -10 + r() * 20 - t * 0.5; o.y = 0.5 + r() * 7 + t * 0.15; o.z = (r() - 0.5) * 16; },
+        });
+        unlit(S.dust1.points);
+
+        /* 02 Numeri: a phone calling, coral rings, nobody answers. */
+        S.s2 = scene(C.cream);
+        S.phone = new THREE.Group(); S.s2.add(S.phone);
+        const body = new THREE.Mesh(new A.RoundedBoxGeometry(1.75, 3.5, 0.2, 6, 0.2), PF.three.mat("gloss", C.ink));
+        S.phone.add(body);
+        S.screenTex = PF.three.canvasTexture(st, 520, 1060, () => {});
+        S.screenKey = "";
+        const screen = PF.three.card(st, S.screenTex, 1.6);
+        screen.material.fog = false; screen.position.z = 0.102; S.phone.add(screen);
+        S.rings = [0, 1, 2].map(() => { const m = new THREE.Mesh(new THREE.TorusGeometry(1, 0.06, 16, 96), PF.three.mat("glow", C.coral, { transparent: true })); m.position.z = -0.05; S.phone.add(m); return m; });
+        S.dust2 = PF.three.particles(st, 260, {
+          scene: S.s2, size: 0.05, color: (i) => (i % 3 ? C.coral : C.ink),
+          pos: (i, t, o) => { const r = PF.random(i * 7 + 3); o.x = (r() - 0.5) * 12; o.y = (r() - 0.5) * 10 + t * 0.12; o.z = -3 - r() * 8; },
+        });
+        unlit(S.dust2.points);
+
+        /* 03 Fantasma: quote sheets floating like ghosts, gone one per beat. */
+        S.s3 = scene(C.ink);
+        const quote = PF.three.canvasTexture(st, 600, 780, (c, w, h) => {
+          c.fillStyle = C.cream; c.beginPath(); c.roundRect(0, 0, w, h, 28); c.fill();
+          c.fillStyle = C.ink; c.font = "800 64px Bricolage"; c.fillText("PREVENTIVO", 48, 110);
+          c.fillStyle = "rgba(27,30,36,.16)";
+          [180, 240, 300, 360, 420].forEach((y, i) => { c.beginPath(); c.roundRect(48, y, [430, 360, 470, 300, 400][i], 26, 13); c.fill(); });
+          c.fillStyle = C.ink; c.font = "600 48px Geist"; c.fillText("Totale:  € ???", 48, 560);
+          c.strokeStyle = C.coral; c.lineWidth = 6; c.beginPath(); c.roundRect(48, 620, 400, 92, 18); c.stroke();
+          c.fillStyle = C.coral; c.font = "700 44px Geist"; c.fillText("IN ATTESA…", 78, 682);
+        });
+        S.ghosts = [0, 1, 2, 3, 4].map((i) => {
+          const m = PF.three.card(st, quote, 2.0, { opacity: 0.6 });
+          const r = PF.random(i * 31 + 5);
+          m.userData = { x: [-1.9, 1.7, -0.4, 2.3, -2.4][i], y: [0.2, -0.9, -1.8, 0.9, -2.5][i], z: -r() * 2.5, rz: (r() - 0.5) * 0.5, ry: (r() - 0.5) * 0.9, gone: b(5, 1 + i) };
+          S.s3.add(m); return m;
+        });
+        S.dust3 = PF.three.particles(st, 400, {
+          scene: S.s3, size: 0.05, color: () => C.cream,
+          pos: (i, t, o) => { const r = PF.random(i * 5 + 9); o.x = (r() - 0.5) * 14; o.y = (r() - 0.5) * 12 + t * 0.3; o.z = (r() - 0.5) * 10 - 2; },
+        });
+        unlit(S.dust3.points);
+
+        /* 04 Cambia tutto: particles converge into the Manuvo hexagon. */
+        S.s4 = scene(C.coral);
+        const mark = PF.three.samplePoints((c, w, h) => { const s = h * 0.96; c.drawImage(PF.img.mark, (w - s) / 2, (h - s) / 2, s, s); }, 2200, { w: 900, h: 900, seed: 5 });
+        const cols = [C.cream, C.cream, C.cream, C.ink, C.cream, C.deep, C.cream];
+        S.swarm = PF.three.particles(st, mark.length, {
+          scene: S.s4, size: 0.1, color: (i) => cols[i % cols.length],
+          pos: (i, t, o) => {
+            const r = PF.random(i * 17 + 2);
+            const a = r() * Math.PI * 2, e = (r() - 0.5) * Math.PI, R = 2.2 + r() * 4.5, delay = r();
+            const spin = a + (t - b(6, 1)) * 0.5;
+            const sx = R * Math.cos(e) * Math.cos(spin), sy = R * Math.sin(e) * 0.8, sz = R * Math.cos(e) * Math.sin(spin) - 2;
+            const u = PF.step(t - b(6, 1) - delay * 0.7, { stiffness: 40, damping: 10 });
+            const tx = mark[i].x * 2.3, ty = mark[i].y * 2.3, tz = Math.sin(i * 0.37 + t * 2) * 0.04;
+            o.x = PF.lerp(sx, tx, u); o.y = PF.lerp(sy, ty, u); o.z = PF.lerp(sz, tz, u);
+          },
+        });
+        unlit(S.swarm.points);
+
+        /* 05 Manuvo: the logo (manuvo/public/logo.svg) extruded; the face keeps the exact coral. */
+        S.s5 = scene(C.cream);
+        const svg = new A.SVGLoader().parse(window.MANUVO_LOGO_SVG);
+        const shapes = [];
+        svg.paths.forEach((p) => { const f = (p.userData.style.fill || "").replace(/\s/g, ""); if (f === "rgb(255,87,88)" || f.toLowerCase() === "#ff5758") shapes.push(...A.SVGLoader.createShapes(p)); });
+        const geo = new THREE.ExtrudeGeometry(shapes, { depth: 40, bevelEnabled: true, bevelThickness: 6, bevelSize: 4, bevelSegments: 4, curveSegments: 24 });
+        geo.computeBoundingBox();
+        const bb = geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+        geo.translate(-cx, -cy, -20);
+        const k = 2.8 / (bb.max.x - bb.min.x);
+        const face = new THREE.MeshBasicMaterial({ color: C.coral, toneMapped: false, fog: false });
+        const side = PF.three.mat("gloss", C.coralText);
+        S.logo = new THREE.Mesh(geo, [face, side]);
+        S.logo.scale.set(k, -k, k); // SVG y points down
+        S.logoGroup = new THREE.Group(); S.logoGroup.add(S.logo); S.s5.add(S.logoGroup);
+        S.logoH = (bb.max.y - bb.min.y) * k;
+        S.dust5 = PF.three.particles(st, 300, {
+          scene: S.s5, size: 0.06, color: (i) => (i % 3 ? C.coral : C.deep),
+          pos: (i, t, o) => { const r = PF.random(i * 23 + 4); o.x = (r() - 0.5) * 12; o.y = 6 - ((r() * 12 + (t - b(8, 1)) * (0.3 + r() * 0.4)) % 12); o.z = -2 - r() * 8; },
+        });
+        unlit(S.dust5.points);
+
+        PF.debug({ grid: b, safe: CUES.safe });
+      }
+
+      /* ---------- the phone screen (repainted only when its state changes) ---------- */
+      function paintScreen(mode, secs) {
+        const key = mode + secs;
+        if (key === S.screenKey) return;
+        S.screenKey = key;
+        S.screenTex.repaint((c, w, h) => {
+          c.fillStyle = C.ink; c.fillRect(0, 0, w, h);
+          c.textAlign = "center";
+          c.fillStyle = "rgba(250,248,244,.7)"; c.font = "500 34px Geist";
+          c.fillText(mode === "none" ? "Chiamata terminata" : "Chiamata in corso…", w / 2, 150);
+          c.fillStyle = C.cream; c.font = "700 50px Geist"; c.fillText("+39 333 ••• ••••", w / 2, 222);
+          c.fillStyle = "rgba(250,248,244,.55)"; c.font = "500 34px Geist Mono"; c.fillText("00:0" + secs, w / 2, 278);
+          c.fillStyle = mode === "none" ? C.coral : "rgba(250,248,244,.12)";
+          c.beginPath(); c.arc(w / 2, 470, 110, 0, Math.PI * 2); c.fill();
+          c.fillStyle = mode === "none" ? C.ink : C.cream; c.font = "800 120px Bricolage"; c.fillText("?", w / 2, 512);
+          if (mode === "none") { c.fillStyle = C.coral; c.font = "800 62px Bricolage"; c.fillText("NESSUNA", w / 2, 700); c.fillText("RISPOSTA", w / 2, 770); }
+          c.fillStyle = C.coral; c.beginPath(); c.arc(w / 2, 930, 64, 0, Math.PI * 2); c.fill();
+          c.fillStyle = C.cream; c.beginPath(); c.roundRect(w / 2 - 34, 920, 68, 20, 10); c.fill();
+        });
+      }
+
+      /* ---------- draw(t) ---------- */
+      function draw(t) {
+        const k = sceneAt(t);
+        PF.css($("#root"), { background: BG[k] });
+        hud.color(HUDC[k]);
+
+        if (k === 0) {
+          st.use(S.s1);
+          const p = PF.lerp(0.12, 1, PF.clamp01(PF.progress(t, 0, SC[0].to + 0.2))); // the point is in frame on frame 0
+          S.trail.draw(p);
+          const head = S.trail.at(p);
+          S.dot.position.set(head.x, head.y, head.z);
+          S.dotLight.position.copy(S.dot.position); S.dotLight.intensity = 30;
+          S.city.update(t); S.dust1.update(t);
+          const hx = head.x * 0.4, hz = head.z * 0.4;
+          PF.three.shots(st.camera, t, [
+            { at: 0, azimuth: -35, elevation: 30, radius: 15, target: [hx, 4.6, hz], drift: { azimuth: 9, radius: -1.2 } },
+            { at: b(1, 3), azimuth: 28, elevation: 24, radius: 13, target: [hx, 4.4, hz], drift: { azimuth: -7 } },
+            { at: b(2, 1), azimuth: -6, elevation: 40, radius: 15.5, target: [hx, 5.0, hz], drift: { radius: -1.5 } },
+            { at: b(2, 3), azimuth: 50, elevation: 22, radius: 12.5, target: [hx, 4.2, hz], drift: { azimuth: -8 } },
+          ]);
+        } else if (k === 1) {
+          st.use(S.s2);
+          const s0 = SC[1].from;
+          const close = t >= b(4, 3);
+          const buzz = [b(3, 1), b(3, 3), b(4, 1)].reduce((a, h) => a + (t >= h && t < h + 0.35 ? Math.sin((t - h) * 90) * 0.05 * (1 - (t - h) / 0.35) : 0), 0);
+          S.phone.rotation.set(close ? 0 : -0.12, (close ? 0 : 0.42 * Math.sin((t - s0) * 0.9) - 0.15) , buzz);
+          S.phone.position.set(buzz * 2, 0, 0);
+          [b(3, 1), b(3, 3), b(4, 1)].forEach((h, i) => {
+            const u = PF.clamp01((t - h) / 1.0);
+            const m = S.rings[i];
+            m.visible = t >= h && u < 1 && !close;
+            const sc = 1.2 + u * 3.2; m.scale.set(sc * 0.95, sc * 1.25, 1);
+            m.material.opacity = (1 - u) * 0.9;
+          });
+          paintScreen(t >= b(4, 2, 0.5) ? "none" : "call", Math.min(9, 1 + Math.floor((t - s0) / b.beat / 2)));
+          S.dust2.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: b(3, 1), azimuth: -22, elevation: 6, radius: 11, target: [0, 1.15, 0], drift: { azimuth: 8, radius: -0.6 } },
+            { at: b(3, 3), azimuth: 20, elevation: 2, radius: 10.5, target: [0, 1.1, 0], drift: { azimuth: -6 } },
+            { at: b(4, 1), azimuth: -6, elevation: 12, radius: 11.5, target: [0, 1.2, 0], drift: { radius: -0.8 } },
+            { at: b(4, 3), azimuth: 0, elevation: 0, radius: 5.8, target: [0, 0.05, 0], drift: { radius: -0.4 } },
+          ]);
+        } else if (k === 2) {
+          st.use(S.s3);
+          S.ghosts.forEach((m, i) => {
+            const d = m.userData;
+            const u = PF.clamp01((t - d.gone) / 0.22);
+            const flick = 0.42 + 0.18 * Math.sin(t * 23 + i * 2.1) + 0.1 * Math.sin(t * 7.3 + i);
+            m.visible = u < 1;
+            m.material.opacity = flick * (1 - u);
+            const s = 1 + u * 0.35;
+            m.scale.set(s, s, s);
+            m.position.set(d.x, d.y - 0.6 + (t - SC[2].from) * 0.5 + u * 0.4, d.z);
+            m.rotation.set(0, d.ry + (t - SC[2].from) * 0.25, d.rz);
+          });
+          S.dust3.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: b(5, 1), azimuth: -14, elevation: 8, radius: 11, target: [0, 1.6, -1], drift: { azimuth: 7 } },
+            { at: b(5, 3), azimuth: 16, elevation: 4, radius: 10, target: [0, 1.4, -1], drift: { azimuth: -6, radius: -0.5 } },
+          ]);
+        } else if (k === 3) {
+          st.use(S.s4);
+          S.swarm.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: b(6, 1), azimuth: 0, elevation: 0, radius: 12, target: [0, 1.1, 0], drift: { azimuth: 10, radius: -1 } },
+            { at: b(6, 3), azimuth: 26, elevation: 10, radius: 11, target: [0, 1.0, 0], drift: { azimuth: -10 } },
+            { at: b(7, 1), azimuth: -22, elevation: -6, radius: 10.5, target: [0, 1.0, 0], drift: { azimuth: 12 } },
+            { at: b(7, 3), azimuth: 0, elevation: 0, radius: 10.5, target: [0, 1.05, 0], drift: { radius: -0.4 } },
+          ]);
+        } else {
+          st.use(S.s5);
+          const u = PF.step(t - b(8, 1), { stiffness: 70, damping: 11 });
+          S.logoGroup.rotation.set(0.15 * (1 - u), -1.9 * (1 - u) + 0.08 * Math.sin((t - b(8, 1)) * 1.1), 0);
+          const s = PF.lerp(0.55, 1, u); S.logoGroup.scale.set(s, s, s);
+          S.dust5.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: b(8, 1), azimuth: 0, elevation: 0, radius: 9.4, target: [0, -0.95, 0], drift: { radius: -0.5 } },
+            { at: b(9, 1), azimuth: 4, elevation: 2, radius: 9.6, target: [0, -0.98, 0], drift: { azimuth: -6, radius: -0.3 } },
+          ]);
+        }
+        // Drop: shake the camera wrapper (not the HUD).
+        const sh = PF.shake(t, [b(6, 1), b(8, 1)], { amp: 16, decay: 0.4 });
+        PF.css($("#cam"), { transform: `translate(${sh.x.toFixed(2)}px, ${sh.y.toFixed(2)}px) rotate(${sh.r.toFixed(3)}deg)` });
+        st.render();
+
+        // Shockwave from the hexagon on the drop.
+        const rg = PF.ring(t, b(6, 1), { length: 0.7, to: 640 });
+        PF.show($("#ring"), rg.opacity > 0);
+        PF.css($("#ring"), { left: `${540 - rg.r}px`, top: `${1150 - rg.r}px`, width: `${rg.r * 2}px`, height: `${rg.r * 2}px`, opacity: rg.opacity.toFixed(3), borderWidth: `${(rg.width * 1.4).toFixed(2)}px` });
+
+        // Words: slammed on the beat, out before every handoff.
+        slam("#w1a", t, b(1, 2), b(2, 4, 0.4));
+        slam("#w1b", t, b(1, 3), b(2, 4, 0.4), 1.5);
+        slam("#w1c", t, b(2, 1), b(2, 4, 0.4));
+        slam("#w2a", t, b(3, 1), b(4, 2, 0.6));
+        slam("#w2b", t, b(3, 2), b(4, 2, 0.6));
+        slam("#w2c", t, b(3, 3), b(4, 2, 0.6), 1.5);
+        slam("#w3a", t, b(5, 1), b(5, 4, 0.2));
+        slam("#w3b", t, b(5, 2), b(5, 4, 0.2), 1.5);
+        slam("#w4a", t, b(6, 1), b(7, 4, 0.3));
+        slam("#w4b", t, b(6, 2), b(7, 4, 0.3), 1.6);
+        slam("#w4c", t, b(6, 3), b(7, 4, 0.3));
+        slam("#w5a", t, b(9, 1), CUES.duration + 1);
+        slam("#w5b", t, b(9, 2), CUES.duration + 1);
+
+        // Transitions: cream flood up, ink flood down, (hard cut on the drop), cream iris from the hexagon.
+        const wipe = $("#wipe");
+        const T = [
+          { at: SC[1].from, len: 0.24, color: C.cream, kind: "up" },
+          { at: SC[2].from, len: 0.24, color: C.ink, kind: "down" },
+          { at: SC[4].from, len: 0.3, color: C.cream, kind: "iris" },
+        ].find((x) => t >= x.at - x.len && t < x.at);
+        PF.show(wipe, !!T);
+        if (T) {
+          const p = PF.bezier(0.7, 0, 0.2, 1)(PF.progress(t, T.at - T.len, T.len));
+          PF.css(wipe, { background: T.color });
+          if (T.kind === "iris") PF.iris(wipe, p, 540, 1150, W, H); else PF.flood(wipe, p, T.kind);
+        }
+
+        PF.css($("#vignette"), { background: PF.vignette(k === 1 || k === 4 ? 0.12 : 0.35, k === 3 ? "110,22,24" : "0,0,0") });
+        hud.set({ tl: LABEL[k], tr: "Manuvo · Teaser", bl: "Rimini · Romagna", br: PF.timecode(t, 30) }, t);
+        PF.grain($("#grain"), t, { alpha: k === 1 || k === 4 ? 0.04 : 0.06 });
+      }
+
+      PF.film({
+        duration: CUES.duration,
+        setup,
+        draw,
+        waitFor: [PF.signal("three"), PF.loadImages({ mark: "assets/images/logo-mark.svg" })],
+        // Registered only after setup and the clock are built (fonts first).
+        register: (tl) => {
+          window.__timelines["main"] = tl;
+        },
+      });
+    </script>
+  </body>
+</html>
