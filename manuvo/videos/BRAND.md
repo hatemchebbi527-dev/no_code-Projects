@@ -18,7 +18,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 ## Films
 | Film | Type | Date | Owner's reaction, what changed |
 |---|---|---|---|
-| `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft) |
+| `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft); final v1 (2026-10-01): 60 fps, blur 2, 17.15 s, -14.7 LUFS, `out/manuvo-teaser-phase0/v1/` (+ `-social.mp4` at 11 Mbps, 23 MB) |
 
 ## Assets on file (reusable across films)
 | Asset | Path | Notes |
@@ -66,3 +66,4 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 - Skill: `.claude/skills/brand-motion-design/` (setup, synth, place-audio, beat-sheet, stills, render, verify).
 - Renders in `out/` (gitignored), review stills in `review/` (gitignored).
 - Trap found: with the bloom composer, `material.toneMapped = false` is ignored (the OutputPass tone-maps the whole frame). Use `renderer.toneMapping = NoToneMapping` so cream and coral stay exact.
+- Trap found: the grain canvas (normal blend, mid-grey, 4 to 6 % opacity) pulls every colour toward grey by 4 to 10 levels (coral #FF5758 decodes about 245,88,90; cream about 245,241,238). For exact swatches, blend the grain with `mix-blend-mode: overlay` or lower it.
