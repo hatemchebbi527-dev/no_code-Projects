@@ -351,7 +351,7 @@
           const rq = E.avvita(pr(t, S[5].from + 0.1, S[5].from + 0.5));
           PF.css($(".req", L4), { opacity: rq.toFixed(3), transform: `translateY(${(16 * (1 - rq)).toFixed(1)}px)` });
           let n = 0;
-          $$(".links path", L4).forEach((p, i) => { const a0 = b(7, 2 + i), v = E.rotta(pr(t, a0 - 0.2, a0 + 0.25)); p.setAttribute("stroke-dasharray", v >= 0.999 ? "0.02 0.03" : v.toFixed(4) + " 1"); });
+          $$(".links path", L4).forEach((p, i) => { const a0 = b(7, 2 + i), v = E.rotta(pr(t, a0 - 0.2, a0 + 0.25)); p.setAttribute("stroke-dasharray", v >= 0.999 ? "0.02 0.03" : v.toFixed(4) + " 1"); p.setAttribute("stroke-dashoffset", v >= 0.999 ? (-(t * 0.1) % 0.05).toFixed(4) : 0); });
           [".a1", ".a2", ".a3"].forEach((c, i) => { const a0 = b(7, 2 + i, 0.5), v = E.avvita(pr(t, a0, a0 + 0.3)); PF.css($(c, L4), { opacity: v.toFixed(3), transform: `translateY(${(16 * (1 - v)).toFixed(1)}px) scale(${lerp(0.96, 1, v).toFixed(3)})` }); if (t >= a0 + 0.3) n++; });
           const cnt = $(".cnt", L4); cnt.textContent = "Contatti sbloccati · " + n + "/3";
           PF.css(cnt, { opacity: E.avvita(pr(t, b(7, 2), b(7, 3))).toFixed(3) });
