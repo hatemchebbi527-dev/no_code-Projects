@@ -388,7 +388,7 @@
           return { tubes, pn, tools };
         });
         add(5, "#faf8f4", (st, s) => {
-          const stars = [0, 1, 2, 3, 4].map((i) => { const g = prop(star(), { w: 0.5, h: 0.25, op: 0.15 }); g.position.set((i - 2) * 0.62, -0.42, 0.2); s.add(g); return g; });
+          const stars = [0, 1, 2, 3, 4].map((i) => { const g = prop(star(), { w: 0.5, h: 0.25, op: 0.15 }); g.position.set((i - 2) * 0.4, -0.3, 0.2); g.userData.inner.scale.setScalar(0.62); s.add(g); return g; });
           const sh = prop(shield(), { w: 0.9, h: 0.4, op: 0.16 }); sh.position.set(1.15, 1.05, 0.3); s.add(sh);
           return { stars, sh };
         });
