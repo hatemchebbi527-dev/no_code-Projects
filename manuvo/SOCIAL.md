@@ -185,3 +185,72 @@ La prossima volta che ti serve un artigiano, sai dove trovarlo.
 - [ ] 3-5 Stories/jour (coulisses, réponses, repartage)
 - [ ] Suivre 10 comptes locaux pertinents (artisans, commerces, groupes Rimini)
 - [ ] Vérifier les stats une fois/semaine et couper ce qui ne marche pas
+
+---
+
+## Phase 0 — contenus prêts à produire (chauffe)
+
+> CTA **doux** en chauffe (« seguici / presto a Rimini »), pas « pubblica ora » : la vérif SMS attend Twilio Live. On convertit à la Phase 1.
+
+### Post 1 — « Chi siamo » (IG carrousel + FB) — pas de tournage
+
+Slides (fond blanc / corail #FF5758) :
+1. « Presto a Rimini: basta cercare artigiani a caso. »
+2. Ciao, sono Hatem. Ho creato Manuvo perché trovare un idraulico o un elettricista di fiducia a Rimini è un incubo: numeri falsi, preventivi fantasma, zero garanzie.
+3. Manuvo mette la fiducia al primo posto. Contatti verificati via SMS. Recensioni reali. Artigiani con P.IVA.
+4. Gratis per chi cerca. Pubblichi, e sono gli artigiani della tua zona a contattarti.
+5. Stiamo per partire. Seguici 👉 @manuvo.it
+
+```
+Presto a Rimini 👀
+
+Trovare un artigiano di fiducia non dovrebbe essere una lotteria.
+Sono Hatem, e ho creato Manuvo per questo: contatti verificati, recensioni reali, zero numeri falsi.
+
+Gratis per chi cerca un artigiano. Artigiani della zona che ti contattano davvero.
+
+Sta arrivando. Seguici per non perdere il lancio 🛠️
+
+#Rimini #Riccione #artigiani #casarimini #romagna #manuvo
+```
+
+### Post 2 — Teaser (TikTok + Reel IG) — vidéo ~15s
+
+Plans (texte à l'écran à chaque plan) :
+1. 0-3s — gros plan agacé, scroll téléphone · « Cercare un idraulico a Rimini… »
+2. 3-7s — souffle, dépité · « Numeri che non rispondono. Preventivi fantasma. »
+3. 7-11s — relève la tête, sourire · « Sta per cambiare tutto 👀 »
+4. 11-15s — logo sur fond corail · « Presto a Rimini · @manuvo.it »
+
+Audio : son tendance « suspense → reveal ». Pas besoin de parler.
+
+```
+A Rimini trovare un artigiano è un terno al lotto 🎰
+Numeri falsi, preventivi che non arrivano, gente che sparisce.
+
+Sta per arrivare qualcosa di diverso. 👀
+Seguici per scoprirlo 🛠️
+
+#Rimini #Riccione #artigiani #casarimini #romagna #manuvo
+```
+
+### Post 3 — « Il problema n°1 » (TikTok + Reel IG) — vidéo ~20s, face caméra
+
+Script (parlé = sous-titres synchronisés) :
+1. 0-3s (hook) — « Il problema n°1 quando cerchi un artigiano a Rimini? »
+2. 3-9s — « I numeri falsi. Chiami e non risponde nessuno. O peggio: perdi tempo con contatti che non esistono. »
+3. 9-15s — « Noi lo risolviamo: da noi ogni cliente verifica il numero con un codice SMS. Niente fake. »
+4. 15-20s — « Si chiama Manuvo. Presto a Rimini. Seguici 👉 @manuvo.it »
+
+```
+Il problema più grande quando cerchi un artigiano? I contatti falsi. 😤
+
+Su Manuvo ogni cliente verifica il numero con un codice SMS prima di pubblicare: un numero falso non passa.
+Meno perdite di tempo, più lavoro vero.
+
+Presto a Rimini. Seguici 👉 @manuvo.it
+
+#Rimini #artigiani #idraulico #elettricista #fiducia #manuvo
+```
+
+Règle **1 vidéo = 4 posts** : TikTok + Reel IG + Reel FB + extrait Story.
