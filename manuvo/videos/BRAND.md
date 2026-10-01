@@ -3,6 +3,9 @@
 The brand, the owner's standing choices and the films made so far. Every new film reads this first and only asks what is new.
 Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `public/logo*.svg`), `manuvo/SOCIAL.md` (content plan), owner notes. When this file and the brand's own files disagree, the brand's files win.
 
+## Motion identity
+- Full system: `manuvo/videos/motion-identity/index.html` (published guide: https://claude.ai/artifact/62Psy9tkAb3N8CKTfuirgz). Signature: "un sixième de tour" (the hexagon turns 60° in 480 ms, `cubic-bezier(.16,1,.3,1)`, stops dead, with a click). Easing tokens: avvita (enter), via (exit), click (success), rotta (routes). Every film ends on logo concept A.
+
 ## Owner choices (standing: reuse for every film unless they say otherwise)
 - Where films play: TikTok + Instagram Reels (+ Reel FB, Story extract), 9:16 1080x1920. Usual length: 15 to 20 s. Language on screen: **Italian**. Audience: privati in Rimini + dintorni looking for an artisan; artigiani as the second audience.
 - Music: **suspense** (owner's choice, 2026-10-01): generated bed `teaser-phase0/suspense.py` (drone, heartbeat, clock tick, F-Gb minor second, hush, riser, half-beat silence, then the turn Db / Eb / F major). 140 BPM, F minor. Royalty-free, ours. The trap bed from `synth.py` was replaced.
@@ -18,7 +21,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 ## Films
 | Film | Type | Date | Owner's reaction, what changed |
 |---|---|---|---|
-| `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft) |
+| `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft); final v1 (2026-10-01): 60 fps, blur 2, 17.15 s, -14.7 LUFS, `out/manuvo-teaser-phase0/v1/` (+ `-social.mp4` at 11 Mbps, 23 MB) |
 
 ## Assets on file (reusable across films)
 | Asset | Path | Notes |
@@ -66,3 +69,4 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 - Skill: `.claude/skills/brand-motion-design/` (setup, synth, place-audio, beat-sheet, stills, render, verify).
 - Renders in `out/` (gitignored), review stills in `review/` (gitignored).
 - Trap found: with the bloom composer, `material.toneMapped = false` is ignored (the OutputPass tone-maps the whole frame). Use `renderer.toneMapping = NoToneMapping` so cream and coral stay exact.
+- Trap found: the grain canvas (normal blend, mid-grey, 4 to 6 % opacity) pulls every colour toward grey by 4 to 10 levels (coral #FF5758 decodes about 245,88,90; cream about 245,241,238). For exact swatches, blend the grain with `mix-blend-mode: overlay` or lower it.
