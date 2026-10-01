@@ -1,0 +1,1114 @@
+<title>Manuvo Motion Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field guide. Sticky index on the left, one reading column, every rule shown live on a "stage" (the brand surface). */
+:root {
+  --bg: #faf8f4;        /* Manuvo cream (globals.css --background) */
+  --paper: #ffffff;
+  --ink: #1b1e24;       /* Manuvo ink (--foreground) */
+  --muted: #5d6068;
+  --line: #e6dfd4;
+  --stage: #f2ede5;
+  --coral: #FF5758;     /* brand coral, red-700 */
+  --coral-ink: #C6383A; /* red-900, coral text on light surfaces */
+  --blush: #FFE1E1;     /* red-100 */
+  --on-coral: #1b1e24;
+  --f-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body: "Geist", "Inter", system-ui, sans-serif;
+  --f-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 18px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #14161b; --paper: #1c1f26; --ink: #f4f1ec; --muted: #a6aab2; --line: #2b2f38; --stage: #20232b;
+  --coral-ink: #FF8586; --blush: #3b1d21; --on-coral: #1b1e24; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #14161b; --paper: #1c1f26; --ink: #f4f1ec; --muted: #a6aab2; --line: #2b2f38; --stage: #20232b;
+  --coral-ink: #FF8586; --blush: #3b1d21; --on-coral: #1b1e24; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body); padding-inline: 20px; padding-block: 0 80px; }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 56px; }
+nav.idx { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; padding-top: 32px; }
+nav.idx a { display: grid; grid-template-columns: 28px 1fr; color: var(--muted); text-decoration: none; font-size: 13.5px; padding: 5px 0; }
+nav.idx a span { font-family: var(--f-mono); font-size: 11.5px; color: var(--coral-ink); padding-top: 1px; }
+nav.idx a:hover { color: var(--ink); }
+nav.idx .brand { display: flex; gap: 10px; align-items: center; margin-bottom: 22px; }
+nav.idx .brand svg { height: 22px; }
+main { min-width: 0; }
+section { padding-block: 64px 8px; border-top: 1px solid var(--line); }
+section:first-of-type { border-top: 0; padding-top: 32px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(40px, 6.4vw, 76px); }
+h2 { font-size: clamp(30px, 3.6vw, 44px); margin-bottom: 14px; }
+h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
+.eyebrow { font: 500 12px/1 var(--f-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral-ink); margin-bottom: 14px; display: block; }
+p { margin: 0 0 14px; max-width: 66ch; }
+.lead { font-size: 19px; color: var(--muted); max-width: 60ch; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-size: 13px; }
+code { font-family: var(--f-mono); font-size: 0.88em; background: var(--stage); padding: 1px 6px; border-radius: 6px; }
+.grid { display: grid; gap: 18px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; min-width: 0; }
+.stage { position: relative; background: var(--stage); border-radius: 14px; overflow: hidden; }
+.stage.ink { background: #1b1e24; color: #faf8f4; }
+.stage.coral { background: var(--coral); color: #1b1e24; }
+.replay { position: absolute; right: 10px; bottom: 10px; z-index: 5; font: 500 11px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid currentColor; background: transparent; color: inherit; opacity: 0.55; padding: 6px 9px; border-radius: 999px; cursor: pointer; }
+.replay:hover, .replay:focus-visible { opacity: 1; }
+:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
+dl.spec { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 6px 14px; margin: 14px 0 0; font-size: 14px; }
+dl.spec dt { font: 500 11.5px/1.9 var(--f-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+dl.spec dd { margin: 0; }
+.tag { display: inline-block; font: 500 11px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 8px; border-radius: 999px; background: var(--blush); color: var(--coral-ink); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 11.5px/1.4 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+pre { margin: 0; overflow-x: auto; background: #1b1e24; color: #f2eee8; border-radius: 14px; padding: 18px; font: 400 12.5px/1.6 var(--f-mono); }
+.codebox { position: relative; }
+pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+.copy { position: absolute; top: 10px; right: 10px; font: 500 11px/1 var(--f-mono); text-transform: uppercase; letter-spacing: 0.08em; background: #2b2f38; color: #f2eee8; border: 0; padding: 7px 10px; border-radius: 8px; cursor: pointer; }
+svg { display: block; }
+.coral-t { color: var(--coral-ink); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.hero .stage { aspect-ratio: 4 / 3; display: grid; place-items: center; }
+.hero .stage svg { width: 88%; }
+.formula { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 22px; font: 500 12px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.formula b { font-weight: 500; padding: 8px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); }
+.formula b.m { background: var(--coral); border-color: var(--coral); color: #1b1e24; }
+.formula i { font-style: normal; color: var(--muted); }
+
+/* route diagram */
+.route { position: relative; padding: 44px 28px 52px; }
+.route .track { position: absolute; left: 10%; right: 10%; top: 72px; height: 2px; }
+.route .nodes { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); text-align: center; }
+.route .node { display: grid; justify-items: center; gap: 10px; font: 500 11px/1.3 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.route .node .dot { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); border: 2px solid var(--line); transition: none; }
+.route .node .dot svg { width: 26px; height: 26px; }
+.route .node.on { color: var(--ink); }
+.route .node.on .dot { border-color: var(--coral); }
+.route .node.hexn .dot { border-radius: 0; border: 0; background: none; }
+
+/* personality */
+.trait { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: start; }
+.trait .stage { aspect-ratio: 1; display: grid; place-items: center; }
+.trait h3 { margin-top: 4px; }
+
+/* logo concepts */
+.logo-stage { aspect-ratio: 16 / 9; display: grid; place-items: center; }
+.logo-stage svg { width: 82%; }
+
+/* typography */
+.ty { aspect-ratio: 16 / 10; padding: 26px; display: flex; flex-direction: column; justify-content: center; }
+.mask { overflow: hidden; display: block; padding-bottom: 0.06em; }
+.mask > span { display: inline-block; }
+.ty .big { font: 800 clamp(28px, 3.2vw, 40px)/1.02 var(--f-display); letter-spacing: -0.025em; }
+.ty .sub { font-size: 15px; color: var(--muted); margin-top: 12px; }
+.hl { position: relative; display: inline-block; }
+.hl::before { content: ""; position: absolute; left: -4px; right: -4px; bottom: 0.08em; height: 0.42em; background: var(--coral); opacity: 0.85; transform-origin: 0 50%; transform: scaleX(var(--s, 1)); z-index: 0; border-radius: 3px; }
+.hl > span { position: relative; z-index: 1; }
+.btn { display: inline-flex; gap: 10px; align-items: center; background: var(--coral); color: #1b1e24; font: 600 16px/1 var(--f-body); padding: 15px 20px; border-radius: 999px; border: 0; }
+.count { font: 800 76px/0.9 var(--f-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+
+/* icons */
+.icons { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ico { text-align: center; padding: 16px 12px 14px; cursor: default; }
+.ico .stage { aspect-ratio: 1; display: grid; place-items: center; margin-bottom: 12px; }
+.ico svg { width: 56%; color: var(--ink); overflow: visible; }
+.ico .k { font: 500 11px/1.3 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.ico h3 { font-size: 16px; margin: 4px 0; }
+.ico p { font-size: 13px; color: var(--muted); margin: 0; }
+.ac { color: var(--coral); }
+/* icon loops: play while hovered, focused or freshly in view */
+.ico.play .drop { animation: drop 1.1s cubic-bezier(.7,0,.84,0) infinite; }
+.ico.play .ripple { animation: ripple 1.1s cubic-bezier(.16,1,.3,1) infinite; }
+@keyframes drop { 0% { transform: translateY(0) scaleY(.6); opacity: 0 } 15% { opacity: 1; transform: translateY(0) scaleY(1) } 70% { transform: translateY(13px); opacity: 1 } 72%,100% { transform: translateY(13px); opacity: 0 } }
+@keyframes ripple { 0%,70% { transform: scale(.2); opacity: 0 } 72% { opacity: .9 } 100% { transform: scale(1); opacity: 0 } }
+.ico.play .pulse { animation: pulse 1.2s linear infinite; }
+.ico.play .spark { animation: spark 1.2s cubic-bezier(.34,1.4,.64,1) infinite; }
+@keyframes pulse { from { stroke-dashoffset: 60 } to { stroke-dashoffset: 0 } }
+@keyframes spark { 0%,70% { transform: scale(0); opacity: 0 } 80% { transform: scale(1); opacity: 1 } 100% { transform: scale(.7); opacity: 0 } }
+.ico.play .stroke { animation: stroke 1.4s cubic-bezier(.65,0,.35,1) infinite; }
+.ico.play .brush { animation: brush 1.4s cubic-bezier(.65,0,.35,1) infinite; }
+@keyframes stroke { 0% { stroke-dashoffset: 1 } 60%,85% { stroke-dashoffset: 0 } 100% { stroke-dashoffset: 0; opacity: 0 } }
+@keyframes brush { 0% { transform: translateX(-12px) } 60% { transform: translateX(12px) } 100% { transform: translateX(-12px) } }
+.ico.play .gear { animation: ratchet 1.8s infinite; }
+@keyframes ratchet { 0% { transform: rotate(0); animation-timing-function: cubic-bezier(.16,1,.3,1) } 30%,50% { transform: rotate(60deg); animation-timing-function: cubic-bezier(.16,1,.3,1) } 80%,100% { transform: rotate(120deg) } }
+.ico.play .tw1 { animation: twinkle 1.4s cubic-bezier(.34,1.4,.64,1) infinite; }
+.ico.play .tw2 { animation: twinkle 1.4s cubic-bezier(.34,1.4,.64,1) .35s infinite; }
+.ico.play .tw3 { animation: twinkle 1.4s cubic-bezier(.34,1.4,.64,1) .7s infinite; }
+@keyframes twinkle { 0%,100% { transform: scale(.3) rotate(0); opacity: .2 } 40% { transform: scale(1) rotate(45deg); opacity: 1 } 70% { transform: scale(.6) rotate(45deg); opacity: .6 } }
+.ico.play .pin { animation: pin 1.6s cubic-bezier(.16,1,.3,1) infinite; }
+.ico.play .radius { animation: radius 1.6s cubic-bezier(.16,1,.3,1) infinite; }
+@keyframes pin { 0% { transform: translateY(-10px); opacity: 0 } 25%,100% { transform: translateY(0); opacity: 1 } }
+@keyframes radius { 0%,25% { transform: scale(.3); opacity: 0 } 30% { opacity: .9 } 90%,100% { transform: scale(1.2); opacity: 0 } }
+.ico.play .check { animation: check 1.6s cubic-bezier(.16,1,.3,1) infinite; }
+@keyframes check { 0%,15% { stroke-dashoffset: 1 } 55%,100% { stroke-dashoffset: 0 } }
+.ico.play .bell { animation: bell 1.6s cubic-bezier(.65,0,.35,1) infinite; }
+.ico.play .badge { animation: badge 1.6s cubic-bezier(.34,1.4,.64,1) infinite; }
+@keyframes bell { 0% { transform: rotate(0) } 10% { transform: rotate(8deg) } 20% { transform: rotate(-8deg) } 30% { transform: rotate(5deg) } 40%,100% { transform: rotate(0) } }
+@keyframes badge { 0%,35% { transform: scale(0) rotate(-60deg) } 55%,100% { transform: scale(1) rotate(0) } }
+.drop, .ripple, .spark, .gear, .tw1, .tw2, .tw3, .pin, .radius, .bell, .badge, .brush { transform-box: fill-box; transform-origin: center; }
+.pin { transform-origin: 50% 100%; } .bell { transform-origin: 50% 10%; }
+
+/* UI journey */
+.journey { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 34px; align-items: start; }
+.phone { width: 300px; max-width: 100%; aspect-ratio: 300 / 600; border-radius: 42px; background: #1b1e24; padding: 12px; box-shadow: 0 30px 60px -30px rgba(27,30,36,.45); }
+.screen { position: relative; height: 100%; border-radius: 31px; overflow: hidden; background: #faf8f4; color: #1b1e24; font-size: 13px; }
+.scr { position: absolute; inset: 0; padding: 46px 18px 18px; visibility: hidden; }
+.scr h4 { font: 800 21px/1.1 var(--f-display); letter-spacing: -0.02em; margin: 0 0 14px; }
+.scr .lbl { font: 500 10.5px/1 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: #6b6e75; margin-bottom: 8px; }
+.field { background: #fff; border-radius: 12px; padding: 13px 12px; border: 1px solid #e6dfd4; position: relative; min-height: 44px; }
+.field .ul { position: absolute; left: 10px; right: 10px; bottom: -1px; height: 2px; background: #FF5758; transform-origin: 0 50%; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip { font-size: 12px; padding: 7px 10px; border-radius: 999px; background: #fff; border: 1px solid #e6dfd4; }
+.chip.sel { background: #FF5758; border-color: #FF5758; }
+.codes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 6px 0 18px; }
+.codes div { aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 1.5px solid #e6dfd4; border-radius: 12px; font: 700 22px/1 var(--f-display); }
+.codes div.f { border-color: #FF5758; }
+.map { height: 230px; border-radius: 16px; background-color: #f0ebe2; background-image: linear-gradient(#e4ddd1 1px, transparent 1px), linear-gradient(90deg, #e4ddd1 1px, transparent 1px); background-size: 26px 26px; position: relative; overflow: hidden; }
+.toast { position: absolute; left: 12px; right: 12px; top: 12px; background: #1b1e24; color: #faf8f4; border-radius: 14px; padding: 11px 12px; display: flex; gap: 10px; align-items: center; font-size: 12.5px; z-index: 3; }
+.acard { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; background: #fff; border: 1px solid #e6dfd4; border-radius: 14px; padding: 10px; margin-bottom: 8px; position: relative; z-index: 1; }
+.av { width: 34px; height: 34px; border-radius: 50%; background: #FFE1E1; display: grid; place-items: center; font: 700 13px/1 var(--f-display); color: #C6383A; }
+.acard b { display: block; font-size: 13px; } .acard small { color: #6b6e75; font-size: 11.5px; }
+.vbadge { font: 500 9.5px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; background: #FFE1E1; color: #C6383A; padding: 5px 6px; border-radius: 999px; }
+.req { background: #1b1e24; color: #faf8f4; border-radius: 14px; padding: 11px 12px; font-size: 12.5px; margin-bottom: 18px; position: relative; z-index: 1; }
+.stars { display: flex; gap: 6px; margin: 10px 0 6px; }
+.steps { display: grid; gap: 8px; }
+.step { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--paper); }
+.step .n { font: 500 12px/24px var(--f-mono); color: var(--muted); }
+.step.on { border-color: var(--coral); }
+.step.on .n { color: var(--coral-ink); }
+.step b { display: block; font-weight: 600; }
+.step small { color: var(--muted); font-size: 13px; display: block; }
+
+/* transitions */
+.tr { aspect-ratio: 16 / 10; }
+.tr .scA, .tr .scB { position: absolute; inset: 0; display: grid; place-items: center; font: 800 22px/1 var(--f-display); letter-spacing: -0.02em; }
+.tr .scA { background: var(--stage); color: var(--ink); }
+.tr .scB { background: var(--coral); color: #1b1e24; }
+.tr .fx { position: absolute; inset: 0; pointer-events: none; }
+
+/* social */
+.anat { display: grid; grid-template-columns: 1fr 1.3fr 2.4fr 1.4fr 1.5fr; gap: 4px; margin: 10px 0 6px; }
+.anat div { padding: 12px 10px; border-radius: 10px; background: var(--paper); border: 1px solid var(--line); min-width: 0; }
+.anat div b { display: block; font: 500 11px/1.3 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--coral-ink); }
+.anat div span { font-size: 13px; display: block; margin-top: 4px; }
+.anat div em { font-style: normal; font: 500 11px/1 var(--f-mono); color: var(--muted); display: block; margin-top: 6px; }
+.safe { aspect-ratio: 9 / 16; max-width: 250px; width: 100%; background: var(--stage); border-radius: 18px; position: relative; overflow: hidden; }
+.safe div { position: absolute; left: 0; right: 0; font: 500 10px/1.3 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: grid; place-items: center; text-align: center; }
+.safe .top { top: 0; height: 13%; background: repeating-linear-gradient(135deg, transparent 0 8px, var(--line) 8px 9px); }
+.safe .bot { bottom: 0; height: 22%; background: repeating-linear-gradient(135deg, transparent 0 8px, var(--line) 8px 9px); }
+.safe .rgt { top: 45%; bottom: 22%; left: auto; width: 11%; background: repeating-linear-gradient(135deg, transparent 0 8px, var(--line) 8px 9px); }
+.safe .mid { top: 13%; bottom: 22%; right: 11%; color: var(--ink); font-size: 11px; }
+
+/* storyboard */
+.sb { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 32px; align-items: start; }
+.anim { width: 290px; max-width: 100%; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden; position: relative; background: #faf8f4; color: #1b1e24; margin-inline: auto; box-shadow: 0 0 0 1px var(--line), 0 30px 60px -34px rgba(27,30,36,.45); }
+.anim .lay { position: absolute; inset: 0; visibility: hidden; }
+.anim .ttl { position: absolute; left: 22px; right: 22px; top: 54px; font: 800 30px/1 var(--f-display); letter-spacing: -0.03em; }
+.bar { height: 4px; background: var(--line); border-radius: 4px; margin-top: 12px; position: relative; overflow: hidden; }
+.bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--coral); width: 0; }
+.scenes { display: grid; gap: 12px; }
+.scene { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); }
+.scene.on { border-color: var(--coral); }
+.scene .t { font: 500 13px/1.3 var(--f-mono); color: var(--coral-ink); }
+.scene .t small { display: block; color: var(--muted); font-size: 11px; margin-top: 4px; }
+.scene dl.spec { grid-template-columns: 92px minmax(0, 1fr); margin-top: 6px; font-size: 13.5px; }
+
+/* rules */
+.curve { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 14px; align-items: center; }
+.curve svg { width: 110px; height: 110px; }
+.avoid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.avoid div { padding: 12px 14px; border-radius: 12px; border: 1px dashed var(--line); font-size: 14px; }
+.avoid b { display: block; font-weight: 600; }
+
+/* signature evolution */
+.evo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.evo .stage { aspect-ratio: 1; display: grid; place-items: center; }
+.evo .stage svg { width: 62%; }
+.evo h3 { font-size: 16px; margin-top: 12px; }
+.evo p { font-size: 13px; color: var(--muted); margin: 0; }
+.mini-btn { display: inline-flex; gap: 8px; align-items: center; background: #FF5758; color: #1b1e24; font: 600 13px/1 var(--f-body); padding: 11px 14px; border-radius: 999px; white-space: nowrap; }
+.mini-btn svg { width: 16px !important; height: 16px; }
+
+@media (max-width: 980px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  nav.idx { position: static; display: flex; gap: 6px 14px; flex-wrap: wrap; padding-top: 20px; }
+  nav.idx .brand { width: 100%; margin-bottom: 4px; }
+  nav.idx a { display: inline; font-size: 13px; }
+  nav.idx a span { margin-right: 4px; }
+  .hero, .journey, .sb { grid-template-columns: minmax(0, 1fr); }
+  .g4, .icons, .evo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .phone, .anim { margin: 0 auto; }
+}
+@media (max-width: 620px) {
+  .g2, .g3, .avoid { grid-template-columns: minmax(0, 1fr); }
+  .anat { grid-template-columns: minmax(0, 1fr); }
+  .route { padding-inline: 4px; }
+  .route .node .dot { width: 44px; height: 44px; }
+  .route .node { font-size: 9.5px; }
+  .route .track { top: 65px; }
+  dl.spec { grid-template-columns: 90px minmax(0, 1fr); }
+  .trait { grid-template-columns: 76px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .ico.play * { animation: none !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Manuvo mark (manuvo/public/logo-mark.svg), path in its own coordinates (y up), flipped here. -->
+    <path id="markp" transform="scale(1,-1)" d="M 161.23 210.25 L 124.84 189.24 L 88.45 168.23 C 87.66 167.78 87.18 166.95 87.18 166.05 L 87.18 124.02 L 87.18 81.99 C 87.18 81.09 87.66 80.26 88.44 79.81 L 124.84 58.80 L 140.52 49.74 C 142.20 48.77 144.31 49.98 144.31 51.93 L 144.31 87.95 C 144.31 88.85 143.83 89.68 143.05 90.14 L 124.69 100.73 C 123.90 101.18 123.42 102.02 123.42 102.92 L 123.42 124.02 L 123.42 145.12 C 123.42 146.02 123.90 146.85 124.69 147.30 L 140.52 156.45 C 142.20 157.42 144.31 156.20 144.31 154.26 L 144.31 122.98 C 144.31 122.09 144.77 121.27 145.52 120.82 L 161.18 111.34 C 161.98 110.86 162.99 110.86 163.79 111.34 L 179.47 120.82 C 180.22 121.27 180.68 122.09 180.68 122.98 L 180.68 154.26 C 180.68 156.20 182.79 157.42 184.47 156.44 L 200.30 147.30 C 201.08 146.85 201.56 146.02 201.56 145.12 L 201.56 124.02 L 201.56 102.92 C 201.56 102.02 201.08 101.18 200.30 100.73 L 181.95 90.14 C 181.17 89.69 180.68 88.86 180.68 87.95 L 180.68 51.93 C 180.68 49.99 182.79 48.77 184.47 49.74 L 200.15 58.80 L 236.54 79.81 C 237.32 80.26 237.81 81.09 237.81 81.99 L 237.81 124.02 L 237.81 166.04 C 237.81 166.95 237.32 167.78 236.54 168.23 L 200.15 189.24 L 163.75 210.25 C 163.37 210.48 162.93 210.59 162.49 210.59 C 162.06 210.59 161.62 210.48 161.23 210.25 Z"/>
+    <!-- ANUVO wordmark (manuvo/public/logo-horizontal.svg), placed in the mark's frame. -->
+    <g id="wordp"><path transform="translate(255.47,-88.57) scale(0.8307)" d="M 26.18 0 L 40.46 0 L 40.46 -71.16 C 40.46 -78.18 35.34 -83.3 28.32 -83.3 L 26.18 -83.3 L 14.52 -83.3 C 7.5 -83.3 2.38 -78.18 2.38 -71.16 L 2.38 0 L 16.66 0 L 16.66 -30.94 L 26.18 -30.94 Z M 16.66 -45.22 L 16.66 -69.02 L 26.18 -69.02 L 26.18 -45.22 Z M 84.61 0 L 98.89 0 L 98.89 -71.16 C 98.89 -78.18 93.77 -83.3 86.75 -83.3 L 84.61 -83.3 L 60.81 -83.3 L 60.81 0 L 75.09 0 L 75.09 -69.02 L 84.61 -69.02 Z M 131.38 0 L 145.18 0 C 152.2 0 157.32 -5.12 157.32 -12.14 L 157.32 -83.3 L 143.04 -83.3 L 143.04 -14.28 L 133.52 -14.28 L 133.52 -83.3 L 119.24 -83.3 L 119.24 -12.14 C 119.24 -5.12 124.36 0 131.38 0 Z M 201.47 -24.99 L 196.59 -14.99 L 191.95 -24.99 L 191.83 -24.99 L 191.95 -83.3 L 177.79 -83.3 L 177.67 -24.99 L 177.79 -24.99 L 189.45 0 L 203.61 0 L 215.63 -24.99 L 215.75 -83.3 L 201.47 -83.3 Z M 248.23 0 L 262.04 0 C 269.06 0 274.18 -5.12 274.18 -12.14 L 274.18 -71.16 C 274.18 -78.18 269.06 -83.3 262.04 -83.3 L 250.38 -83.3 L 248.23 -83.3 C 241.21 -83.3 236.1 -78.18 236.1 -71.16 L 236.1 -12.14 C 236.1 -5.12 241.21 0 248.23 0 Z M 250.38 -14.28 L 250.38 -69.02 L 259.9 -69.02 L 259.9 -14.28 Z"/></g>
+  </defs>
+</svg>
+
+<div class="wrap">
+<nav class="idx" aria-label="Sommaire">
+  <div class="brand"><svg viewBox="84 -214 402 168" role="img" aria-label="Manuvo"><use href="#markp" fill="#FF5758"/><use href="#wordp" fill="#FF5758"/></svg></div>
+  <a href="#concept"><span>01</span>Concept</a>
+  <a href="#personnalite"><span>02</span>Personnalité</a>
+  <a href="#logo"><span>03</span>Logo en mouvement</a>
+  <a href="#typo"><span>04</span>Typographie</a>
+  <a href="#icones"><span>05</span>Icônes</a>
+  <a href="#ui"><span>06</span>Motion de l'app</a>
+  <a href="#transitions"><span>07</span>Transitions</a>
+  <a href="#social"><span>08</span>Réseaux sociaux</a>
+  <a href="#storyboard"><span>09</span>Film de marque 12 s</a>
+  <a href="#regles"><span>10</span>Règles</a>
+  <a href="#signature"><span>11</span>Signature</a>
+  <a href="#exemples"><span>12</span>Exemples pratiques</a>
+</nav>
+
+<main>
+<!-- HERO + 01 -->
+<section id="concept">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Manuvo · Motion Identity Guide · v1</span>
+      <h1>Un sixième de tour, et c'est réglé.</h1>
+      <p class="lead" style="margin-top:18px">Le logo Manuvo est un écrou hexagonal ouvert par une mâchoire de clé. Le mouvement de la marque en découle : une demande trace sa route, entre dans la mâchoire, et l'hexagone tourne de 60° pour verrouiller la connexion. Simple, rapide, sûr.</p>
+      <div class="formula" aria-label="Le parcours Manuvo">
+        <b>Cliente</b><i>→</i><b>Bisogno</b><i>→</i><b class="m">Manuvo</b><i>→</i><b>Artigiano</b><i>→</i><b>Soluzione</b>
+      </div>
+    </div>
+    <div class="stage" data-demo="sigHero">
+      <svg viewBox="-110 -222 600 214" aria-label="Animation signature : un point suit une route pointillée, entre dans l'hexagone qui tourne de 60°, puis le mot ANUVO apparaît">
+        <defs><mask id="mHero"><path class="rmask" d="M -96 -26 C 10 -26, 70 -26, 162.5 -26" pathLength="1" stroke="#fff" stroke-width="14" fill="none" stroke-dasharray="0 1"/></mask>
+          <clipPath id="cHero"><rect class="wclip" x="236" y="-220" width="0" height="200"/></clipPath></defs>
+        <path class="route" d="M -96 -26 C 10 -26, 70 -26, 162.5 -26" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="7 9" stroke-linecap="round" mask="url(#mHero)" opacity=".45"/>
+        <circle class="ring" cx="162.5" cy="-86" r="14" fill="none" stroke="#FF5758" stroke-width="3" opacity="0"/>
+        <g class="turn"><use href="#markp" fill="#FF5758"/></g>
+        <circle class="bolt" cx="-96" cy="-26" r="12" fill="currentColor"/>
+        <g clip-path="url(#cHero)"><g class="word"><use href="#wordp" fill="#FF5758"/></g></g>
+      </svg>
+      <button class="replay" type="button">Rejouer</button>
+    </div>
+  </div>
+
+  <div style="margin-top:64px">
+    <span class="eyebrow">01 · Concept</span>
+    <h2>L'Aggancio : la bonne pièce, au bon endroit</h2>
+    <p>Chez Manuvo, une demande ne flotte jamais dans le vide. Elle part d'un client, suit une route visible, et s'enclenche chez l'artisan de la zone, comme une clé qui trouve son écrou. Cette image, <b>l'aggancio</b> (l'accroche), devient le geste de la marque. Il tient en trois éléments que l'on retrouve partout :</p>
+    <div class="grid g3" style="margin:22px 0">
+      <div class="card"><h3>Le point</h3><p class="muted" style="margin:0">La demande du client. Un petit rond plein, toujours encre ou crème, jamais corail. C'est lui qui bouge en premier.</p></div>
+      <div class="card"><h3>La route</h3><p class="muted" style="margin:0">Une ligne pointillée (celle du carrousel) qui se dessine devant le point. Elle montre que la demande va quelque part, et vite.</p></div>
+      <div class="card"><h3>Le sixième de tour</h3><p class="muted" style="margin:0">L'hexagone tourne de 60° et s'arrête net. C'est le « clic » qui dit : c'est connecté, c'est fiable.</p></div>
+    </div>
+    <div class="stage route" data-demo="route">
+      <svg class="track" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="1" x2="100" y2="1" stroke="currentColor" stroke-width="2" stroke-dasharray="1.2 1.6" opacity=".3" vector-effect="non-scaling-stroke"/><line class="fill" x1="0" y1="1" x2="0" y2="1" stroke="#FF5758" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+      <div class="nodes">
+        <div class="node"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>Cliente</div>
+        <div class="node"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v11"/><circle cx="12" cy="19" r="1.4" fill="currentColor"/></svg></div>Bisogno</div>
+        <div class="node hexn"><div class="dot"><svg viewBox="84 -214 157 168" style="width:58px;height:58px"><g class="nturn"><use href="#markp" fill="#FF5758"/></g></svg></div>Manuvo</div>
+        <div class="node"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.3 2.3-2.7-.3-.3-2.7z"/></svg></div>Artigiano</div>
+        <div class="node"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>Soluzione</div>
+      </div>
+      <button class="replay" type="button">Rejouer</button>
+    </div>
+    <p class="muted" style="margin-top:14px;font-size:14px">Règle du concept : chaque animation Manuvo raconte ce parcours, même en 300 ms. Quelque chose part d'un point, suit une route courte, et se verrouille.</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="personnalite">
+  <span class="eyebrow">02 · Personnalité</span>
+  <h2>Six traits, six comportements</h2>
+  <p>Chaque mot se traduit en une règle d'animation vérifiable. Si une animation ne respecte pas l'une de ces règles, elle n'est pas Manuvo.</p>
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card trait"><div class="stage" data-demo="tDiretto"><svg viewBox="0 0 80 80" width="70%"><line x1="10" y1="40" x2="70" y2="40" stroke="currentColor" stroke-width="2" stroke-dasharray="3 4" opacity=".35"/><circle class="d" cx="10" cy="40" r="6" fill="currentColor"/></svg></div>
+      <div><h3>Diretto</h3><p class="muted" style="margin:0">Trajectoires droites ou une seule courbe. Aucun détour, aucun zigzag : le point va du départ à l'arrivée par le chemin le plus court.</p></div></div>
+    <div class="card trait"><div class="stage" data-demo="tPreciso"><svg viewBox="0 0 80 80" width="70%"><g class="h"><polygon points="40,14 62.5,27 62.5,53 40,66 17.5,53 17.5,27" fill="none" stroke="#FF5758" stroke-width="5" stroke-linejoin="round"/></g></svg></div>
+      <div><h3>Preciso</h3><p class="muted" style="margin:0">Les rotations se font par multiples de 60°, les arrêts tombent pile. Pas de flottement en fin de course : on arrive, on s'arrête.</p></div></div>
+    <div class="card trait"><div class="stage" data-demo="tAffidabile"><svg viewBox="0 0 80 80" width="70%"><rect class="a" x="16" y="30" width="20" height="20" rx="5" fill="currentColor"/><rect class="b" x="44" y="30" width="20" height="20" rx="5" fill="#FF5758"/></svg></div>
+      <div><h3>Affidabile</h3><p class="muted" style="margin:0">Quatre courbes d'easing, pas une de plus. Le même geste produit toujours le même mouvement, sur l'app comme dans une pub.</p></div></div>
+    <div class="card trait"><div class="stage" data-demo="tUmano"><svg viewBox="0 0 80 80" width="70%"><rect class="u" x="20" y="28" width="40" height="24" rx="12" fill="#FF5758"/></svg></div>
+      <div><h3>Umano</h3><p class="muted" style="margin:0">Coins arrondis, fins de traits ronds, un léger dépassement (4 % maximum) sur les moments de réussite. Chaleureux, jamais élastique.</p></div></div>
+    <div class="card trait"><div class="stage" data-demo="tRapido"><svg viewBox="0 0 80 80" width="70%"><rect x="12" y="38" width="56" height="4" rx="2" fill="currentColor" opacity=".15"/><rect class="r" x="12" y="38" width="0" height="4" rx="2" fill="#FF5758"/></svg></div>
+      <div><h3>Rapido</h3><p class="muted" style="margin:0">De 120 à 480 ms dans l'interface. L'utilisateur ne doit jamais attendre une animation pour agir : elle accompagne, elle ne bloque pas.</p></div></div>
+    <div class="card trait"><div class="stage" data-demo="tLocale"><svg viewBox="0 0 80 80" width="70%"><circle class="ring" cx="40" cy="50" r="8" fill="none" stroke="#FF5758" stroke-width="2"/><path class="p" d="M40 52c-7-8-11-13-11-19a11 11 0 0 1 22 0c0 6-4 11-11 19z" fill="#FF5758"/><circle class="p" cx="40" cy="33" r="4" fill="#faf8f4"/></svg></div>
+      <div><h3>Locale</h3><p class="muted" style="margin:0">Le mouvement part toujours d'un lieu : un point sur une carte, un rayon autour de Rimini. On montre la proximité, pas l'abstraction.</p></div></div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="logo">
+  <span class="eyebrow">03 · Logo en mouvement</span>
+  <h2>Trois propositions, une recommandée</h2>
+  <p>Le logo ne change pas : mêmes fichiers, même corail, mêmes proportions. Seule son entrée en scène est dessinée. L'hexagone est aussi le « M » de MANUVO : dans la version horizontale, le mot ANUVO sort de derrière lui.</p>
+  <div class="grid" style="margin-top:24px;gap:22px">
+    <div class="card">
+      <div class="grid g2" style="align-items:center">
+        <div class="stage logo-stage" data-demo="logoA">
+          <svg viewBox="-110 -222 600 214" aria-label="Concept A, Un sixième de tour">
+            <defs><mask id="mA"><path class="rmask" d="M -96 -26 C 10 -26, 70 -26, 162.5 -26" pathLength="1" stroke="#fff" stroke-width="14" fill="none" stroke-dasharray="0 1"/></mask><clipPath id="cA"><rect class="wclip" x="236" y="-220" width="0" height="200"/></clipPath></defs>
+            <path class="route" d="M -96 -26 C 10 -26, 70 -26, 162.5 -26" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="7 9" stroke-linecap="round" mask="url(#mA)" opacity=".45"/>
+            <circle class="ring" cx="162.5" cy="-86" r="14" fill="none" stroke="#FF5758" stroke-width="3" opacity="0"/>
+            <g class="turn"><use href="#markp" fill="#FF5758"/></g>
+            <circle class="bolt" cx="-96" cy="-26" r="12" fill="currentColor"/>
+            <g clip-path="url(#cA)"><g class="word"><use href="#wordp" fill="#FF5758"/></g></g>
+          </svg>
+          <button class="replay" type="button">Rejouer</button>
+        </div>
+        <div>
+          <span class="tag">Recommandé · logo officiel</span>
+          <h3 style="margin-top:10px">A. Un sixième de tour</h3>
+          <dl class="spec">
+            <dt>Départ</dt><dd>Un point encre à gauche, sur une route pointillée. L'hexagone apparaît tourné de −60°, à 86 % de sa taille.</dd>
+            <dt>Mouvement</dt><dd>La route se dessine devant le point (0 à 520 ms). Le point monte dans la mâchoire.</dd>
+            <dt>Transformation</dt><dd>L'hexagone tourne de 60° et s'arrête quand le point entre (360 à 840 ms). Clic : le point se résorbe en une onde.</dd>
+            <dt>Révélation</dt><dd>ANUVO glisse de derrière l'hexagone vers la droite, par masque (1 000 à 1 450 ms).</dd>
+            <dt>Durée</dt><dd>1,6 s, puis tenue.</dd>
+            <dt>Easing</dt><dd><code>rotta</code> pour la route, <code>avvita</code> pour le tour, <code>click</code> pour l'onde.</dd>
+            <dt>État final</dt><dd>Logo horizontal statique, route effacée. Identique au fichier <code>logo-horizontal.svg</code>.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="grid g2" style="gap:22px">
+      <div class="card">
+        <div class="stage logo-stage" data-demo="logoB">
+          <svg viewBox="20 -232 480 200" aria-label="Concept B, Il Ponte">
+            <defs><clipPath id="cB"><rect class="wclip" x="236" y="-220" width="0" height="200"/></clipPath></defs>
+            <line class="bridge" x1="40" y1="-130" x2="285" y2="-130" stroke="currentColor" stroke-width="3" stroke-dasharray="7 9" stroke-linecap="round" opacity="0"/>
+            <polygon class="hexline" points="162.5,-210 237,-167 237,-81 162.5,-38 88,-81 88,-167" fill="none" stroke="#FF5758" stroke-width="6" stroke-linejoin="round" pathLength="1" stroke-dasharray="0 1" transform="rotate(90 162.5 -124)"/>
+            <g class="mk" opacity="0"><use href="#markp" fill="#FF5758"/></g>
+            <circle class="d1" cx="40" cy="-130" r="11" fill="currentColor"/>
+            <circle class="d2" cx="285" cy="-130" r="11" fill="#FF5758"/>
+            <g clip-path="url(#cB)"><g class="word"><use href="#wordp" fill="#FF5758"/></g></g>
+          </svg>
+          <button class="replay" type="button">Rejouer</button>
+        </div>
+        <h3 style="margin-top:16px">B. Il Ponte</h3>
+        <dl class="spec">
+          <dt>Départ</dt><dd>Deux points face à face : le client (encre) et l'artisan (corail).</dd>
+          <dt>Mouvement</dt><dd>Ils avancent l'un vers l'autre, un pont pointillé les relie (0 à 500 ms).</dd>
+          <dt>Transformation</dt><dd>Au contact, le pont se replie en contour d'hexagone (500 à 950 ms), qui se remplit.</dd>
+          <dt>Révélation</dt><dd>Le logo plein apparaît avec un dépassement de 3 %, ANUVO sort ensuite.</dd>
+          <dt>Durée · easing</dt><dd>1,4 s · <code>avvita</code>, <code>click</code></dd>
+          <dt>Usage</dt><dd>Contenus « mise en relation », pubs côté artisans.</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <div class="stage logo-stage" data-demo="logoC">
+          <svg viewBox="20 -232 480 200" aria-label="Concept C, Assemblaggio">
+            <defs><clipPath id="cC"><rect x="236" y="-170" width="260" height="90"/></clipPath></defs>
+            <g class="segs" stroke="#FF5758" stroke-width="12" stroke-linecap="round"></g>
+            <g class="mk" opacity="0"><use href="#markp" fill="#FF5758"/></g>
+            <g clip-path="url(#cC)"><g class="word"><use href="#wordp" fill="#FF5758"/></g></g>
+          </svg>
+          <button class="replay" type="button">Rejouer</button>
+        </div>
+        <h3 style="margin-top:16px">C. Assemblaggio</h3>
+        <dl class="spec">
+          <dt>Départ</dt><dd>Six côtés d'hexagone dispersés autour du centre, comme des pièces sur un établi.</dd>
+          <dt>Mouvement</dt><dd>Ils convergent un par un, décalés de 40 ms, et s'emboîtent (0 à 600 ms).</dd>
+          <dt>Transformation</dt><dd>Les côtés fusionnent dans le logo plein (550 à 800 ms).</dd>
+          <dt>Révélation</dt><dd>ANUVO monte par masque depuis la ligne de base (750 à 1 200 ms).</dd>
+          <dt>Durée · easing</dt><dd>1,2 s · <code>avvita</code></dd>
+          <dt>Usage</dt><dd>Écran de démarrage de l'app (PWA), où la vitesse prime.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="typo">
+  <span class="eyebrow">04 · Typographie</span>
+  <h2>Le texte arrive par la route, pas par magie</h2>
+  <p>Titres en Bricolage Grotesque 800, texte courant en Geist, étiquettes et chiffres en Geist Mono. Le texte ne rebondit jamais, ne tourne jamais, ne se floute jamais dans l'app. Il monte, se révèle par masque, et s'arrête net.</p>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><div class="stage ty" data-demo="tyHead">
+        <div class="big"><span class="mask"><span>Artigiani e privati,</span></span><span class="mask"><span>finalmente <span class="coral-t">connessi.</span></span></span></div>
+        <div class="sub">Pubblichi gratis. Gli artigiani della zona ti contattano.</div>
+        <button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">Titres · masque ascendant</h3>
+      <p class="muted" style="font-size:14px;margin:0">Chaque ligne monte de 100 % à 0 dans son masque, 420 ms, décalage de 70 ms entre lignes, easing <code>avvita</code>. Sous-titre : fondu et 8 px de montée, 240 ms, 120 ms après la dernière ligne.</p></div>
+    <div class="card"><div class="stage ty" data-demo="tyNum" style="flex-direction:row;align-items:center;gap:20px">
+        <div class="count">0</div>
+        <div><div style="font:700 20px/1.15 var(--f-display)">mestieri, in 8 famiglie</div><div class="sub" style="margin-top:6px">Dall'idraulico al trasloco.</div></div>
+        <button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">Chiffres · compteur</h3>
+      <p class="muted" style="font-size:14px;margin:0">Compte de 0 à la valeur réelle en 600 ms, chiffres à chasse fixe pour éviter les sauts. Seuls de vrais chiffres Manuvo (35 métiers, 3 artisans maximum, 1 crédit = 2 €). Jamais de statistique inventée.</p></div>
+    <div class="card"><div class="stage ty" data-demo="tyEmph">
+        <div class="big">Zero contatti <span class="hl"><span>falsi.</span></span></div>
+        <div class="sub">Ogni cliente verifica il numero via SMS.</div>
+        <button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">Mot important · surlignage</h3>
+      <p class="muted" style="font-size:14px;margin:0">Un trait corail passe derrière le mot clé, de gauche à droite, 320 ms. Un seul mot surligné par écran. C'est la version typographique de la route.</p></div>
+    <div class="card"><div class="stage ty" data-demo="tyCta" style="align-items:flex-start">
+        <span class="eyebrow tk" style="margin-bottom:12px">Chi siamo</span>
+        <span class="btn">Pubblica una richiesta <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        <button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">Étiquette et appel à l'action</h3>
+      <p class="muted" style="font-size:14px;margin:0">Étiquette : l'interlettrage se resserre de 0,5 em à 0,16 em en 400 ms. Bouton : monte de 12 px en 240 ms, puis la flèche avance deux fois de 4 px pour inviter au geste. Une seule invitation par écran.</p></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="icones">
+  <span class="eyebrow">05 · Icônes</span>
+  <h2>Un métier, un geste</h2>
+  <p>Chaque icône de métier a un seul mouvement, tiré du travail réel. Les icônes au trait (interface) s'animent de l'intérieur. Les illustrations en relief du carrousel (style pâte d'argile blanc et corail) restent fixes ou flottent de 4 px au maximum : on ne les fait pas tourner. Survole une icône pour la voir jouer.</p>
+  <div class="grid icons" style="margin-top:22px">
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14h16a6 6 0 0 1 6 6v3"/><path d="M8 10v8"/><path d="M27 23h6"/><path class="drop ac" d="M30 28c-1.6 2.2-2.4 3.6-2.4 4.7a2.4 2.4 0 0 0 4.8 0c0-1.1-.8-2.5-2.4-4.7z" fill="currentColor" stroke="none"/><ellipse class="ripple ac" cx="30" cy="43" rx="9" ry="2.5"/></svg></div><div class="k">Idraulico</div><h3>La goutte</h3><p>Elle tombe, une onde, et recommence. 1,1 s.</p></div>
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="12" width="16" height="14" rx="4"/><path d="M14 12V6M22 12V6"/><path d="M18 26v4c0 6 6 6 10 6h10"/><path class="pulse ac" d="M18 26v4c0 6 6 6 10 6h10" stroke-dasharray="6 54"/><path class="spark ac" d="M41 31l2 5 -4 0 2 5" /></svg></div><div class="k">Elettricista</div><h3>L'impulsion</h3><p>Un trait d'énergie parcourt le câble, une étincelle au bout. 1,2 s.</p></div>
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="stroke ac" d="M8 38c8-4 16 2 32-3" stroke-width="5" pathLength="1" stroke-dasharray="1 1"/><g class="brush"><rect x="19" y="6" width="10" height="9" rx="2"/><path d="M21 15v5a3 3 0 0 0 6 0v-5"/><path d="M24 23v8"/></g></svg></div><div class="k">Imbianchino</div><h3>Le coup de pinceau</h3><p>Une bande corail se peint sous le pinceau. 1,4 s.</p></div>
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><g class="gear"><polygon points="24,9 37,16.5 37,31.5 24,39 11,31.5 11,16.5"/><circle cx="24" cy="24" r="5" class="ac"/></g></svg></div><div class="k">Tecnico</div><h3>Le cliquet</h3><p>L'écrou tourne par crans de 60°, avec une pause. 1,8 s. C'est la signature en miniature.</p></div>
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tw1 ac" d="M22 8c1 7 3 9 10 10-7 1-9 3-10 10-1-7-3-9-10-10 7-1 9-3 10-10z" fill="currentColor" stroke="none"/><path class="tw2" d="M36 28c.6 3.6 1.4 4.4 5 5-3.6.6-4.4 1.4-5 5-.6-3.6-1.4-4.4-5-5 3.6-.6 4.4-1.4 5-5z"/><path class="tw3" d="M14 32c.5 2.6 1 3.1 3.6 3.6-2.6.5-3.1 1-3.6 3.6-.5-2.6-1-3.1-3.6-3.6 2.6-.5 3.1-1 3.6-3.6z"/></svg></div><div class="k">Pulizie</div><h3>L'éclat</h3><p>Trois étoiles scintillent en décalé, rotation de 45°. 1,4 s.</p></div>
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><ellipse class="radius ac" cx="24" cy="38" rx="12" ry="3.5"/><g class="pin"><path d="M24 37c-7-8-11-13-11-19a11 11 0 0 1 22 0c0 6-4 11-11 19z" class="ac" fill="currentColor" stroke="none"/><circle cx="24" cy="18" r="4" fill="#faf8f4" stroke="none"/></g></svg></div><div class="k">Zona</div><h3>L'épingle</h3><p>Elle se pose sans rebond, un rayon s'étend autour. 1,6 s.</p></div>
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l14 5v11c0 9-6 15-14 19-8-4-14-10-14-19V11z"/><path class="check ac" d="M17 24l5 5 9-10" stroke-width="3.4" pathLength="1" stroke-dasharray="1 1"/></svg></div><div class="k">Verificato</div><h3>Le bouclier</h3><p>La coche se trace d'un trait. 1,6 s. Pour SMS, P.IVA, avis.</p></div>
+    <div class="card ico" tabindex="0"><div class="stage"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><g class="bell"><path d="M14 32V22a10 10 0 0 1 20 0v10l3 3H11z"/><path d="M21 39a3 3 0 0 0 6 0"/></g><g class="badge"><polygon points="36,6 41.2,9 41.2,15 36,18 30.8,15 30.8,9" fill="#FF5758" stroke="none"/></g></svg></div><div class="k">Notifica</div><h3>La cloche</h3><p>Deux oscillations de ±8°, la pastille hexagonale arrive en sixième de tour.</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card"><h3>Une seule action</h3><p class="muted" style="margin:0;font-size:14px">Un mouvement par icône, lié au métier. Pas de combinaison « ça tourne et ça rebondit ».</p></div>
+    <div class="card"><h3>Petite amplitude</h3><p class="muted" style="margin:0;font-size:14px">Déplacement de 10 % de la taille de l'icône au maximum. Le corail ne touche que la partie qui bouge.</p></div>
+    <div class="card"><h3>Déclenchée par un état</h3><p class="muted" style="margin:0;font-size:14px">L'icône joue au survol, à la sélection ou au chargement. En boucle seulement dans un indicateur d'attente.</p></div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="ui">
+  <span class="eyebrow">06 · Motion de l'app</span>
+  <h2>Le parcours réel, sans effort</h2>
+  <p>L'app Manuvo ne fait pas de réservation ni de paiement entre client et artisan : le client publie, les artisans de la zone débloquent son contact (3 au maximum), puis ils se mettent d'accord directement. Le motion suit ce vrai parcours. Les étapes « réservation » et « service terminé » du brief deviennent donc « accord direct » et « avis vérifié ».</p>
+  <div class="journey" style="margin-top:24px">
+    <div class="phone" data-demo="journey">
+      <div class="screen">
+        <div class="scr" data-s="0">
+          <h4>Pubblica una richiesta</h4>
+          <div class="lbl">Di cosa hai bisogno?</div>
+          <div class="field"><span class="typed"></span><span class="caret" style="display:inline-block;width:1.5px;height:15px;background:#1b1e24;vertical-align:-2px;margin-left:1px"></span><div class="ul"></div></div>
+          <div class="chips"><span class="chip c0">Idraulico</span><span class="chip">Elettricista</span><span class="chip">Imbianchino</span><span class="chip">Pulizie</span></div>
+        </div>
+        <div class="scr" data-s="1">
+          <h4>Verifica il numero</h4>
+          <div class="lbl">Codice SMS</div>
+          <div class="codes"><div></div><div></div><div></div><div></div></div>
+          <div style="display:flex;gap:10px;align-items:center"><svg width="34" height="34" viewBox="0 0 48 48" fill="none" stroke="#1b1e24" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l14 5v11c0 9-6 15-14 19-8-4-14-10-14-19V11z"/><path class="ck" d="M17 24l5 5 9-10" stroke="#FF5758" stroke-width="3.6" pathLength="1" stroke-dasharray="0 1"/></svg><span class="okt" style="font-weight:600;opacity:0">Numero verificato</span></div>
+        </div>
+        <div class="scr" data-s="2">
+          <h4>Richiesta pubblicata</h4>
+          <div class="map">
+            <div class="toast"><svg width="18" height="18" viewBox="0 0 48 48" fill="none" stroke="#faf8f4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 32V22a10 10 0 0 1 20 0v10l3 3H11z"/><path d="M21 39a3 3 0 0 0 6 0"/></svg>Inviata agli artigiani della zona</div>
+            <svg viewBox="0 0 260 230" style="position:absolute;inset:0;width:100%;height:100%"><circle class="rad" cx="130" cy="140" r="20" fill="#FF5758" fill-opacity=".14" stroke="#FF5758" stroke-width="1.5"/><g class="mpin"><path d="M130 142c-11-12-17-20-17-29a17 17 0 0 1 34 0c0 9-6 17-17 29z" fill="#FF5758"/><circle cx="130" cy="113" r="6" fill="#faf8f4"/></g><text x="130" y="170" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#6b6e75" letter-spacing="1">RIMINI</text></svg>
+          </div>
+        </div>
+        <div class="scr" data-s="3">
+          <div class="req">Perdita sotto il lavello · Idraulico · Rimini</div>
+          <svg class="links" viewBox="0 0 264 220" style="position:absolute;left:18px;top:86px;width:calc(100% - 36px);height:220px;z-index:0;overflow:visible"><path d="M24 -2 V 34" pathLength="1"/><path d="M24 -2 V 92" pathLength="1"/><path d="M24 -2 V 150" pathLength="1"/></svg>
+          <div class="acard"><span class="av">MR</span><span><b>Marco R.</b><small>Idraulico · 4 km</small></span><span class="vbadge">Verificato</span></div>
+          <div class="acard"><span class="av">LB</span><span><b>Luca B.</b><small>Idraulico · 7 km</small></span><span class="vbadge">P.IVA</span></div>
+          <div class="acard"><span class="av">GT</span><span><b>Giulia T.</b><small>Idraulica · 9 km</small></span><span class="vbadge">Verificato</span></div>
+          <div class="lbl cnt" style="margin-top:10px">Contatti sbloccati · 0/3</div>
+        </div>
+        <div class="scr" data-s="4">
+          <div class="acard sel" style="border-color:#FF5758"><span class="av">MR</span><span><b>Marco R.</b><small>Idraulico · 4 km</small></span><span class="vbadge">Verificato</span></div>
+          <div style="display:grid;justify-items:center;gap:12px;margin-top:40px;text-align:center">
+            <svg width="70" height="70" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19" stroke="#FF5758" stroke-width="3" class="cc" pathLength="1" stroke-dasharray="0 1" transform="rotate(-90 24 24)"/><path class="ck2" d="M15 24.5l6 6 12-12" stroke="#1b1e24" stroke-width="3.6" pathLength="1" stroke-dasharray="0 1"/></svg>
+            <h4 style="margin:0">Vi mettete d'accordo</h4>
+            <span style="color:#6b6e75">Preventivo diretto, nessun costo per te.</span>
+          </div>
+        </div>
+        <div class="scr" data-s="5">
+          <h4>Com'è andata?</h4>
+          <div class="acard"><span class="av">MR</span><span><b>Marco R.</b><small>Idraulico · lavoro concluso</small></span><span class="vbadge">Verificato</span></div>
+          <div class="stars"></div>
+          <div class="lbl" style="margin-top:8px">Recensione verificata</div>
+        </div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" data-k="0"><span class="n">01</span><span><b>Recherche · saisie</b><small>Le soulignement corail grandit sous le champ (240 ms, <code>avvita</code>). Le métier détecté s'allume dans les puces : fond corail, 160 ms.</small></span></div>
+      <div class="step" data-k="1"><span class="n">02</span><span><b>Confirmation · code SMS</b><small>Chaque chiffre entre avec 8 px de montée, la case passe au corail. La coche du bouclier se trace en 320 ms.</small></span></div>
+      <div class="step" data-k="2"><span class="n">03</span><span><b>Localisation · notification</b><small>L'épingle se pose sans rebond, un rayon s'étend une seule fois. Le toast glisse du haut (280 ms) avec la cloche.</small></span></div>
+      <div class="step" data-k="3"><span class="n">04</span><span><b>Matching · fiches artisans</b><small>Les fiches montent de 16 px en cascade (80 ms d'écart). Une route pointillée relie la demande à chaque contact débloqué. Compteur 0/3 → 3/3.</small></span></div>
+      <div class="step" data-k="4"><span class="n">05</span><span><b>Accord direct</b><small>La fiche choisie monte en tête, les autres s'effacent. Le cercle se trace, la coche suit : 480 ms, le temps d'un sixième de tour.</small></span></div>
+      <div class="step" data-k="5"><span class="n">06</span><span><b>Avis vérifié</b><small>Les étoiles se remplissent de gauche à droite, 60 ms chacune, avec un dépassement de 4 % sur la dernière.</small></span></div>
+    </div>
+  </div>
+  <div class="tbl" style="margin-top:22px"><table>
+    <thead><tr><th>Élément</th><th>Entrée</th><th>Sortie</th><th>Durée</th><th>Easing</th></tr></thead>
+    <tbody>
+      <tr><td>Catégories (tuiles)</td><td>Fondu + 12 px, cascade 30 ms</td><td>Fondu</td><td class="num">240 ms</td><td><code>avvita</code></td></tr>
+      <tr><td>Survol de tuile</td><td>Monte de 2 px, ombre plus nette</td><td>Retour</td><td class="num">160 ms</td><td><code>avvita</code></td></tr>
+      <tr><td>Fiche artisan</td><td>Montée 16 px, cascade 80 ms</td><td>Glisse 16 px vers le bas</td><td class="num">280 ms</td><td><code>avvita</code> / <code>via</code></td></tr>
+      <tr><td>Badge « Verificato »</td><td>Coche tracée après la fiche</td><td>—</td><td class="num">320 ms</td><td><code>avvita</code></td></tr>
+      <tr><td>Bottom sheet (filtres)</td><td>Monte de 100 %</td><td>Redescend</td><td class="num">320 ms / 240 ms</td><td><code>avvita</code> / <code>via</code></td></tr>
+      <tr><td>Cloche + pastille</td><td>±8° deux fois, pastille en sixième de tour</td><td>—</td><td class="num">480 ms</td><td><code>click</code></td></tr>
+      <tr><td>Crédits débloqués</td><td>Compteur qui descend, hexagone qui tourne</td><td>—</td><td class="num">600 ms</td><td><code>avvita</code></td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- 07 -->
+<section id="transitions">
+  <span class="eyebrow">07 · Transitions</span>
+  <h2>Six passages signés</h2>
+  <p>Chaque transition reprend un élément de la marque : la route, l'hexagone, la carte, l'angle de 30° des côtés de l'hexagone, l'épingle. Clique « Rejouer » pour les comparer.</p>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card"><div class="stage tr" data-demo="trRotta"><div class="scA">A</div><div class="scB">B</div><svg class="fx" viewBox="0 0 160 100" preserveAspectRatio="none"><line class="ln" x1="0" y1="50" x2="0" y2="50" stroke="#FF5758" stroke-width="2.5" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/><circle class="pt" cx="0" cy="50" r="3" fill="#1b1e24"/></svg><button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">1. La Rotta</h3><p class="muted" style="font-size:14px;margin:0">Une route se trace, l'écran suivant arrive en la suivant. <b>Quand :</b> étape suivante d'un parcours (publier, vérifier, envoyer). 360 ms.</p></div>
+    <div class="card"><div class="stage tr" data-demo="trSesto"><div class="scA">A</div><div class="scB">B</div><button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">2. Il Sesto</h3><p class="muted" style="font-size:14px;margin:0">Un hexagone s'ouvre depuis un point en tournant de 60°. <b>Quand :</b> moment de réussite, démarrage de l'app, changement de chapitre en vidéo. 480 ms.</p></div>
+    <div class="card"><div class="stage tr" data-demo="trAggancio"><div class="scA" style="place-items:start;padding:14px;font-size:14px">Bacheca</div><div class="slot" style="position:absolute;right:12%;top:28%;width:38%;height:44%;border:2px dashed currentColor;opacity:.35;border-radius:10px"></div><div class="mv" style="position:absolute;left:10%;top:56%;width:38%;height:30%;background:var(--paper);border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;font:600 12px/1 var(--f-body)">Richiesta</div><button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">3. L'Aggancio</h3><p class="muted" style="font-size:14px;margin:0">Une carte se déplace et s'emboîte dans un emplacement, qui passe en trait plein. <b>Quand :</b> débloquer un contact, choisir un artisan. 400 ms.</p></div>
+    <div class="card"><div class="stage tr" data-demo="trPannello"><div class="scA">A</div><div class="sheet" style="position:absolute;left:6%;right:6%;bottom:0;height:62%;background:var(--paper);border-radius:14px 14px 0 0;box-shadow:0 -10px 30px -18px rgba(0,0,0,.4);padding:12px"><div style="width:36px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 10px"></div><div style="font:600 13px/1 var(--f-body)">Filtri</div></div><button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">4. Il Pannello</h3><p class="muted" style="font-size:14px;margin:0">Un panneau monte du bas, sans rebond. <b>Quand :</b> filtres, détail d'une demande, recharge de crédits. 320 ms à l'entrée, 240 ms à la sortie.</p></div>
+    <div class="card"><div class="stage tr" data-demo="trTaglio"><div class="scA">A</div><div class="scB">B</div><div class="band" style="position:absolute;top:-30%;bottom:-30%;width:40%;background:#1b1e24;transform:skewX(-30deg)"></div><button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">5. Il Taglio a 30°</h3><p class="muted" style="font-size:14px;margin:0">Une bande encre balaie l'écran à 30°, l'angle des côtés de l'hexagone. <b>Quand :</b> changement de chapitre dans un Reel ou une Story. 420 ms.</p></div>
+    <div class="card"><div class="stage tr" data-demo="trPin"><div class="scA">A</div><svg class="fx" viewBox="0 0 160 100"><polygon class="morph" fill="#FF5758" points=""/></svg><button class="replay" type="button">Rejouer</button></div>
+      <h3 style="margin-top:14px">6. Dal pin all'esagono</h3><p class="muted" style="font-size:14px;margin:0">L'épingle de localisation se transforme en hexagone Manuvo. <b>Quand :</b> passer de « près de chez toi » au résultat, fin de pub locale. 520 ms.</p></div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section id="social">
+  <span class="eyebrow">08 · Réseaux sociaux</span>
+  <h2>Reels, Stories, posts : le sujet en moins de 2 secondes</h2>
+  <p>Le spectateur décide en deux secondes, souvent sans le son. Le premier plan montre donc déjà le problème en mouvement (une fuite, un téléphone qui sonne dans le vide), jamais un logo qui s'installe.</p>
+  <div class="anat" aria-label="Anatomie d'un Reel de 13 secondes">
+    <div><b>Ouverture</b><span>Un objet déjà en mouvement</span><em>0 à 0,5 s</em></div>
+    <div><b>Accroche</b><span>Une question en masque ascendant</span><em>0,5 à 2 s</em></div>
+    <div><b>Texte + produit</b><span>1 idée par écran, 3 mots par temps, la vraie interface qui arrive par la route</span><em>2 à 8 s</em></div>
+    <div><b>Appel à l'action</b><span>Bouton qui monte, flèche qui avance</span><em>8 à 11 s</em></div>
+    <div><b>Fin</b><span>Sixième de tour + logo, tenu 2 s, boucle propre</span><em>11 à 13 s</em></div>
+  </div>
+  <div class="grid g3" style="margin-top:24px;align-items:start">
+    <div class="card" style="display:grid;place-items:center;gap:10px">
+      <div class="safe"><div class="top">Interface IG · 250 px</div><div class="mid">Zone sûre<br>textes et logo ici</div><div class="rgt">Icônes</div><div class="bot">Légende · 420 px</div></div>
+      <small class="muted mono">1080 × 1920 · marge droite 120 px</small>
+    </div>
+    <div class="card">
+      <span class="tag">Registre campagne</span>
+      <h3 style="margin-top:10px">Teaser, lancement, pubs</h3>
+      <p class="muted" style="font-size:14px">Fond encre, coupes au temps, 3D éclairée, musique de suspense. C'est le registre du teaser Phase 0. On l'utilise pour les moments forts, pas tous les jours.</p>
+      <dl class="spec" style="grid-template-columns:86px minmax(0,1fr)"><dt>Rythme</dt><dd>une image toutes les 2 temps (140 BPM)</dd><dt>Fin</dt><dd>logo 3D + sixième de tour</dd></dl>
+    </div>
+    <div class="card">
+      <span class="tag">Registre quotidien</span>
+      <h3 style="margin-top:10px">Carrousels, Stories, conseils</h3>
+      <p class="muted" style="font-size:14px">Fond crème ou corail plein, illustrations en relief blanc et corail du carrousel, mouvements courts. C'est la voix de tous les jours.</p>
+      <dl class="spec" style="grid-template-columns:86px minmax(0,1fr)"><dt>Rythme</dt><dd>un écran toutes les 2 à 3 s</dd><dt>Fin</dt><dd>logo à plat + @manuvo.it</dd></dl>
+    </div>
+  </div>
+  <div class="tbl" style="margin-top:22px"><table>
+    <thead><tr><th>Moment</th><th>Animation</th><th>Durée</th><th>Exemple Manuvo</th></tr></thead>
+    <tbody>
+      <tr><td>Ouverture</td><td>L'objet du problème bouge dès l'image 1 (goutte, téléphone qui vibre)</td><td class="num">0 à 0,5 s</td><td>Robinet qui goutte, badges « ! » qui apparaissent</td></tr>
+      <tr><td>Accroche</td><td>Titre en masque ascendant, 2 lignes maximum, 96 à 120 px</td><td class="num">0,5 à 2 s</td><td>« Cerchi un idraulico a Rimini? »</td></tr>
+      <tr><td>Texte</td><td>Une phrase par écran, mot clé surligné corail</td><td class="num">≥ 1,2 s par phrase</td><td>« Zero contatti <b>falsi</b>. »</td></tr>
+      <tr><td>Révélation produit</td><td>Le téléphone arrive par la route, écrans réels de l'app</td><td class="num">1,5 à 3 s</td><td>Formulaire /pubblica, code SMS</td></tr>
+      <tr><td>Appel à l'action</td><td>Bouton qui monte, flèche qui avance deux fois</td><td class="num">1,5 s</td><td>« Seguici · @manuvo.it » (phase 0), « Pubblica gratis » (après lancement)</td></tr>
+      <tr><td>Fin</td><td>Sixième de tour, logo tenu 2 s, dernière image = première pour la boucle</td><td class="num">2 à 3 s</td><td>Logo + manuvo.automa-ia.net</td></tr>
+    </tbody></table></div>
+  <p class="muted" style="margin-top:14px;font-size:14px"><b>Stories :</b> la barre de progression d'Instagram fait déjà office de route. On ne rajoute donc pas de barre, et chaque Story commence par le point qui arrive dans le cadre. <b>Posts carrousel :</b> la flèche « scorri » avance de 4 px, deux fois, sur la première slide seulement.</p>
+</section>
+
+<!-- 09 -->
+<section id="storyboard">
+  <span class="eyebrow">09 · Film de marque 12 s</span>
+  <h2>« Il rubinetto perde. » Storyboard et animatique</h2>
+  <p>Format 9:16, 12 secondes, registre quotidien. L'animatique ci-dessous joue le film en boucle : c'est une maquette de rythme, pas le rendu final.</p>
+  <div class="sb" style="margin-top:22px">
+    <div>
+      <div class="anim" data-demo="film">
+        <div class="lay" data-l="0">
+          <div class="ttl"><span class="mask"><span>Il rubinetto</span></span><span class="mask"><span>perde.</span></span></div>
+          <svg viewBox="0 0 290 516" style="position:absolute;inset:0;width:100%;height:100%"><g transform="translate(145 300)" fill="none" stroke="#1b1e24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M-70 -40h80a28 28 0 0 1 28 28v18"/><path d="M-70 -62v44"/><path d="M26 6h30"/><path class="fd" d="M41 30c-8 11-12 18-12 23a12 12 0 0 0 24 0c0-5-4-12-12-23z" fill="#FF5758" stroke="none"/><g class="bang"><g class="b1" transform="translate(-60 -110)"><rect x="-16" y="-16" width="32" height="32" rx="10" fill="#FF5758" stroke="none"/><path d="M0 -8v8M0 7v.5" stroke="#faf8f4" stroke-width="5"/></g><g class="b2" transform="translate(70 -95)"><rect x="-14" y="-14" width="28" height="28" rx="9" fill="#FF5758" stroke="none"/><path d="M0 -7v7M0 6v.5" stroke="#faf8f4" stroke-width="4.5"/></g><g class="b3" transform="translate(-85 60)"><rect x="-12" y="-12" width="24" height="24" rx="8" fill="#FF5758" stroke="none"/><path d="M0 -6v6M0 5v.5" stroke="#faf8f4" stroke-width="4"/></g></g></g></svg>
+        </div>
+        <div class="lay" data-l="1">
+          <div class="ttl" style="font-size:27px"><span class="mask"><span>Pubblichi gratis,</span></span><span class="mask"><span class="coral-t">in 30 secondi.</span></span></div>
+          <div class="mph" style="position:absolute;left:50%;top:180px;width:170px;height:300px;margin-left:-85px;border-radius:26px;background:#1b1e24;padding:8px">
+            <div style="height:100%;border-radius:19px;background:#faf8f4;padding:30px 12px 12px;font-size:11px">
+              <div style="font:800 14px/1.1 var(--f-display);margin-bottom:10px">Di cosa hai bisogno?</div>
+              <div class="field" style="padding:9px 8px;min-height:32px;font-size:11px"><span class="typed2"></span><div class="ul"></div></div>
+              <div class="pbtn" style="margin-top:14px;background:#FF5758;border-radius:999px;text-align:center;padding:9px;font-weight:600">Pubblica gratis</div>
+            </div>
+          </div>
+        </div>
+        <div class="lay" data-l="2" style="background:#FF5758">
+          <div class="ttl" style="font-size:27px"><span class="mask"><span>Fino a 3 artigiani</span></span><span class="mask"><span>della tua zona.</span></span></div>
+          <svg viewBox="0 0 290 516" style="position:absolute;inset:0;width:100%;height:100%"><g fill="none" stroke="#1b1e24" stroke-width="2.5" stroke-dasharray="6 6" stroke-linecap="round"><path class="l1" d="M145 250 C 145 300, 60 300, 60 350" pathLength="1"/><path class="l2" d="M145 250 V 350" pathLength="1"/><path class="l3" d="M145 250 C 145 300, 230 300, 230 350" pathLength="1"/></g>
+            <g transform="translate(145 228)"><rect x="-74" y="-24" width="148" height="48" rx="14" fill="#1b1e24"/><text x="0" y="5" text-anchor="middle" font-family="Geist, sans-serif" font-size="12" fill="#faf8f4">Idraulico · Rimini</text></g>
+            <g class="a1" transform="translate(60 380)"><rect x="-38" y="-30" width="76" height="60" rx="14" fill="#faf8f4"/><circle cy="-6" r="11" fill="#FFE1E1"/><text y="-2" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="10" fill="#C6383A">MR</text><text y="20" text-anchor="middle" font-family="Geist, sans-serif" font-size="9" fill="#1b1e24">4 km</text></g>
+            <g class="a2" transform="translate(145 380)"><rect x="-38" y="-30" width="76" height="60" rx="14" fill="#faf8f4"/><circle cy="-6" r="11" fill="#FFE1E1"/><text y="-2" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="10" fill="#C6383A">LB</text><text y="20" text-anchor="middle" font-family="Geist, sans-serif" font-size="9" fill="#1b1e24">7 km</text></g>
+            <g class="a3" transform="translate(230 380)"><rect x="-38" y="-30" width="76" height="60" rx="14" fill="#faf8f4"/><circle cy="-6" r="11" fill="#FFE1E1"/><text y="-2" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="10" fill="#C6383A">GT</text><text y="20" text-anchor="middle" font-family="Geist, sans-serif" font-size="9" fill="#1b1e24">9 km</text></g>
+          </svg>
+        </div>
+        <div class="lay" data-l="3">
+          <div class="ttl"><span class="mask"><span>Scegli tu.</span></span><span class="mask"><span class="coral-t">Recensioni vere.</span></span></div>
+          <svg viewBox="0 0 290 516" style="position:absolute;inset:0;width:100%;height:100%"><g transform="translate(145 290)"><rect x="-100" y="-60" width="200" height="120" rx="20" fill="#fff" stroke="#e6dfd4"/><circle cx="-62" cy="-18" r="20" fill="#FFE1E1"/><text x="-62" y="-13" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="13" fill="#C6383A">MR</text><text x="-30" y="-22" font-family="Geist, sans-serif" font-weight="600" font-size="14" fill="#1b1e24">Marco R.</text><text x="-30" y="-5" font-family="Geist, sans-serif" font-size="11" fill="#6b6e75">Idraulico · Rimini</text><g class="st"></g><path class="ck3" d="M64 -26l7 7 14-15" fill="none" stroke="#FF5758" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="0 1"/></g></svg>
+        </div>
+        <div class="lay" data-l="4">
+          <svg viewBox="-110 -232 600 260" style="position:absolute;left:8%;top:168px;width:84%"><defs><mask id="mF"><path class="rmask" d="M -96 -26 C 10 -26, 70 -26, 162.5 -26" pathLength="1" stroke="#fff" stroke-width="14" fill="none" stroke-dasharray="0 1"/></mask><clipPath id="cF"><rect class="wclip" x="236" y="-220" width="0" height="200"/></clipPath></defs><path class="route" d="M -96 -26 C 10 -26, 70 -26, 162.5 -26" fill="none" stroke="#1b1e24" stroke-width="3" stroke-dasharray="7 9" stroke-linecap="round" mask="url(#mF)" opacity=".45"/><circle class="ring" cx="162.5" cy="-86" r="14" fill="none" stroke="#FF5758" stroke-width="3" opacity="0"/><g class="turn"><use href="#markp" fill="#FF5758"/></g><circle class="bolt" cx="-96" cy="-26" r="12" fill="#1b1e24"/><g clip-path="url(#cF)"><g class="word"><use href="#wordp" fill="#FF5758"/></g></g></svg>
+          <div class="tag2" style="position:absolute;left:22px;right:22px;top:300px;text-align:center;font:700 19px/1.15 var(--f-display);letter-spacing:-0.01em">Artigiani e privati,<br>finalmente connessi.</div>
+          <div class="url" style="position:absolute;left:0;right:0;top:372px;text-align:center;font:500 11px/1 var(--f-mono);letter-spacing:.06em;color:#6b6e75">manuvo.automa-ia.net</div>
+        </div>
+      </div>
+      <div class="bar" style="max-width:290px;margin-left:auto;margin-right:auto"><i></i></div>
+    </div>
+    <div class="scenes">
+      <div class="scene" data-k="0"><div class="t">0 · 2 s<small>Problème</small></div><div><dl class="spec">
+        <dt>Visuel</dt><dd>Robinet au trait sur fond crème, une goutte corail qui tombe en boucle.</dd>
+        <dt>Animation</dt><dd>Image 1 déjà en mouvement : la goutte tombe. Trois badges « ! » apparaissent en sixième de tour (0,2 · 0,5 · 0,8 s).</dd>
+        <dt>Texte</dt><dd>« Il rubinetto perde. » en masque ascendant.</dd>
+        <dt>Transition</dt><dd>La Rotta : la goutte devient le point qui part vers la scène 2.</dd>
+        <dt>Son</dt><dd>Goutte sèche, tic d'horloge discret.</dd></dl></div></div>
+      <div class="scene" data-k="1"><div class="t">2 · 4 s<small>Demande</small></div><div><dl class="spec">
+        <dt>Visuel</dt><dd>Le téléphone Manuvo monte du bas, écran /pubblica.</dd>
+        <dt>Animation</dt><dd>Saisie « Idraulico · Rimini », soulignement corail, pression sur « Pubblica gratis ».</dd>
+        <dt>Texte</dt><dd>« Pubblichi gratis, in 30 secondi. »</dd>
+        <dt>Transition</dt><dd>Il Sesto : un hexagone corail s'ouvre depuis le bouton.</dd>
+        <dt>Son</dt><dd>Frappe douce, clic du bouton.</dd></dl></div></div>
+      <div class="scene" data-k="2"><div class="t">4 · 7 s<small>Aggancio</small></div><div><dl class="spec">
+        <dt>Visuel</dt><dd>Fond corail. La demande en haut, trois artisans en bas avec leur distance.</dd>
+        <dt>Animation</dt><dd>Trois routes pointillées se tracent vers les artisans (4,6 · 4,9 · 5,2 s). Chaque fiche se pose au bout de sa route.</dd>
+        <dt>Texte</dt><dd>« Fino a 3 artigiani della tua zona. »</dd>
+        <dt>Transition</dt><dd>L'Aggancio : la fiche de Marco s'agrandit vers la scène 4.</dd>
+        <dt>Son</dt><dd>Trois « tic » montants, un par route.</dd></dl></div></div>
+      <div class="scene" data-k="3"><div class="t">7 · 10 s<small>Solution</small></div><div><dl class="spec">
+        <dt>Visuel</dt><dd>La fiche de l'artisan choisi, au centre.</dd>
+        <dt>Animation</dt><dd>La coche se trace, puis cinq étoiles se remplissent, 60 ms chacune.</dd>
+        <dt>Texte</dt><dd>« Scegli tu. Recensioni vere. »</dd>
+        <dt>Transition</dt><dd>Fondu crème de 240 ms.</dd>
+        <dt>Son</dt><dd>Accord majeur léger, petit carillon par étoile.</dd></dl></div></div>
+      <div class="scene" data-k="4"><div class="t">10 · 12 s<small>Signature</small></div><div><dl class="spec">
+        <dt>Visuel</dt><dd>Logo horizontal Manuvo, slogan du site, URL.</dd>
+        <dt>Animation</dt><dd>Un sixième de tour (1,6 s), slogan en fondu 120 ms après, URL en dernier.</dd>
+        <dt>Texte</dt><dd>« Artigiani e privati, finalmente connessi. »</dd>
+        <dt>Transition</dt><dd>Image finale identique à l'image d'ouverture vidée, pour la boucle.</dd>
+        <dt>Son</dt><dd>Le logo sonore : un clic métallique doux, puis une note tenue.</dd></dl></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="regles">
+  <span class="eyebrow">10 · Règles</span>
+  <h2>Durées, courbes, mouvements</h2>
+  <div class="grid g2" style="margin-top:20px;align-items:start">
+    <div class="tbl"><table>
+      <thead><tr><th>Catégorie</th><th>Durée</th><th>Exemples</th></tr></thead>
+      <tbody>
+        <tr><td>Micro-interaction</td><td class="num">120 à 180 ms</td><td>Pression d'un bouton, survol, case cochée</td></tr>
+        <tr><td>Transition d'interface</td><td class="num">240 à 320 ms</td><td>Changer d'écran, ouvrir un panneau</td></tr>
+        <tr><td>Signature (le tour)</td><td class="num">480 ms</td><td>Hexagone qui tourne de 60°, toujours la même durée</td></tr>
+        <tr><td>Transition de scène</td><td class="num">400 à 600 ms</td><td>Chapitres de Reel, Il Sesto, Il Taglio</td></tr>
+        <tr><td>Logo animé</td><td class="num">1,2 à 1,6 s</td><td>Concepts A, B, C, puis tenue de 1,5 s minimum</td></tr>
+        <tr><td>Cascade (stagger)</td><td class="num">30 à 80 ms</td><td>6 éléments au maximum, au-delà tout arrive ensemble</td></tr>
+      </tbody></table></div>
+    <div class="grid" style="gap:12px">
+      <div class="card curve"><svg viewBox="-6 -6 112 112" data-curve=".16,1,.3,1"></svg><div><b>avvita</b> <span class="muted mono">cubic-bezier(.16, 1, .3, 1)</span><br><span class="muted" style="font-size:14px">Entrées. Départ franc, arrivée douce, comme une vis qu'on serre.</span></div></div>
+      <div class="card curve"><svg viewBox="-6 -6 112 112" data-curve=".7,0,.84,0"></svg><div><b>via</b> <span class="muted mono">cubic-bezier(.7, 0, .84, 0)</span><br><span class="muted" style="font-size:14px">Sorties. L'élément accélère et part, sans traîner.</span></div></div>
+      <div class="card curve"><svg viewBox="-6 -6 112 112" data-curve=".34,1.4,.64,1"></svg><div><b>click</b> <span class="muted mono">cubic-bezier(.34, 1.4, .64, 1)</span><br><span class="muted" style="font-size:14px">Mise en valeur. Un seul petit dépassement, pour les réussites.</span></div></div>
+      <div class="card curve"><svg viewBox="-6 -6 112 112" data-curve=".65,0,.35,1"></svg><div><b>rotta</b> <span class="muted mono">cubic-bezier(.65, 0, .35, 1)</span><br><span class="muted" style="font-size:14px">Routes et déplacements longs. Symétrique, régulière.</span></div></div>
+    </div>
+  </div>
+  <div class="tbl" style="margin-top:22px"><table>
+    <thead><tr><th>Mouvement</th><th>Règle</th></tr></thead>
+    <tbody>
+      <tr><td>Direction</td><td>En avant = de gauche à droite et de bas en haut (le sens de la route). Retour = sens inverse. Une seule direction par écran.</td></tr>
+      <tr><td>Vitesse</td><td>Distances par paliers de 8 px : 8 px pour le texte, 16 px pour les cartes, 24 px pour les panneaux. Au-delà, on utilise une route.</td></tr>
+      <tr><td>Échelle</td><td>Entre 0,96 et 1,04 dans l'app. Seul le logo démarre plus petit (0,86).</td></tr>
+      <tr><td>Rotation</td><td>Seulement par multiples de 60° (l'hexagone). Exception : la cloche, ±8°.</td></tr>
+      <tr><td>Flou</td><td>Jamais dans l'app. En vidéo, uniquement le flou de mouvement du rendu.</td></tr>
+      <tr><td>Accessibilité</td><td>Avec « réduire les animations » activé : fondus de 120 ms, pas de rotation, pas de route tracée.</td></tr>
+    </tbody></table></div>
+  <h3 style="margin-top:30px">À éviter</h3>
+  <div class="avoid" style="margin-top:10px">
+    <div><b>Rebonds au hasard</b>Un élément qui rebondit sans raison. Un dépassement, c'est pour une réussite.</div>
+    <div><b>Zooms excessifs</b>Pas de zoom au-delà de 1,04 dans l'app, pas de « punch-in » à chaque coupe.</div>
+    <div><b>Animations corporate génériques</b>Globe qui tourne, poignée de main stock, flèches qui montent.</div>
+    <div><b>3D gratuite</b>La 3D est réservée au registre campagne et aux illustrations fixes.</div>
+    <div><b>Transitions compliquées</b>Plus de deux effets en même temps, c'est déjà trop.</div>
+    <div><b>Mouvement enfantin</b>Pas d'élastique, pas de gelée, pas de confettis à chaque clic.</div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="signature">
+  <span class="eyebrow">11 · Signature</span>
+  <h2>Un sixième de tour, partout</h2>
+  <p>La signature, c'est une rotation de 60° en 480 ms avec la courbe <code>avvita</code>, qui s'arrête net, accompagnée d'un clic. Elle tient sur un écrou de 16 px comme sur un écran de 1920 px. Comme l'hexagone est symétrique, il a exactement la même forme avant et après le tour : seul le mouvement le rend vivant.</p>
+  <div class="grid evo" style="margin-top:22px">
+    <div class="card"><div class="stage" data-demo="eLoader"><svg viewBox="0 0 100 100"><g class="h"><polygon points="50,14 81,32 81,68 50,86 19,68 19,32" fill="none" stroke="#FF5758" stroke-width="9" stroke-linejoin="round"/></g></svg></div><h3>Chargement</h3><p>Le cliquet : un cran de 60°, une pause de 200 ms, et ainsi de suite.</p></div>
+    <div class="card"><div class="stage" data-demo="eNotif"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><g class="bl"><path d="M14 32V22a10 10 0 0 1 20 0v10l3 3H11z"/><path d="M21 39a3 3 0 0 0 6 0"/></g><g class="bd"><polygon points="36,6 41.2,9 41.2,15 36,18 30.8,15 30.8,9" fill="#FF5758" stroke="none"/></g></svg></div><h3>Notifications</h3><p>La pastille arrive en sixième de tour. Push et cloche de la bacheca.</p></div>
+    <div class="card"><div class="stage" data-demo="eBtn"><span class="mini-btn"><svg viewBox="0 0 100 100"><g class="h"><polygon points="50,10 85,30 85,70 50,90 15,70 15,30" fill="#1b1e24"/></g></svg><span class="lb">Sblocca contatto</span></span></div><h3>Bouton</h3><p>Au succès, l'icône tourne de 60° et le libellé change : « Sbloccato ».</p></div>
+    <div class="card"><div class="stage" data-demo="eLogo"><svg viewBox="84 -214 157 168"><g class="h"><use href="#markp" fill="#FF5758"/></g></svg></div><h3>Logo</h3><p>Concept A en version courte : juste le tour et le clic, 480 ms.</p></div>
+    <div class="card"><div class="stage" data-demo="eIris" style="background:var(--stage)"><div class="ir" style="position:absolute;inset:0;background:#FF5758"></div><svg viewBox="84 -214 157 168" style="position:relative;width:40%"><use href="#markp" fill="#1b1e24"/></svg></div><h3>Transition vidéo</h3><p>Il Sesto : l'hexagone s'ouvre en tournant pour passer au chapitre suivant.</p></div>
+    <div class="card"><div class="stage ink" data-demo="eReel"><div style="aspect-ratio:9/16;height:84%;background:#faf8f4;border-radius:12px;display:grid;place-items:center;position:relative"><svg viewBox="84 -214 402 168" style="width:78%"><g class="h"><use href="#markp" fill="#FF5758"/></g><g class="w"><use href="#wordp" fill="#FF5758"/></g></svg><span style="position:absolute;bottom:22%;font:500 8px/1 var(--f-mono);color:#6b6e75">@manuvo.it</span></div></div><h3>Instagram</h3><p>Image de fin de chaque Reel. Tenue 2 s, boucle propre.</p></div>
+    <div class="card"><div class="stage" data-demo="eSite" style="padding:0 12%"><svg viewBox="0 0 200 40" style="width:100%"><line x1="0" y1="20" x2="200" y2="20" stroke="currentColor" stroke-width="2" stroke-dasharray="4 6" opacity=".25"/><line class="l" x1="0" y1="20" x2="0" y2="20" stroke="#FF5758" stroke-width="2"/><g class="h"><polygon points="0,-9 7.8,-4.5 7.8,4.5 0,9 -7.8,4.5 -7.8,-4.5" fill="#FF5758"/></g></svg></div><h3>Site web</h3><p>Séparateur de section : la route se trace au défilement, l'écrou tourne au bout.</p></div>
+    <div class="card"><div class="stage" data-demo="eSlide"><div class="s1" style="position:absolute;inset:16% 12%;background:var(--paper);border-radius:8px;display:grid;place-items:center;font:700 13px/1 var(--f-display)">Slide 1</div><div class="s2" style="position:absolute;inset:16% 12%;background:#FF5758;color:#1b1e24;border-radius:8px;display:grid;place-items:center;font:700 13px/1 var(--f-display)">Slide 2</div></div><h3>Présentation</h3><p>Changement de slide par Il Sesto, 480 ms. Pitch artisans et partenaires.</p></div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>Le logo sonore</h3>
+    <p class="muted" style="margin:0">Un clic métallique doux (le cliquet de la clé), puis une note tenue en Fa majeur. Toujours synchronisé sur l'arrêt du tour. En vidéo, il remplace tout effet sonore générique de fin.</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="exemples">
+  <span class="eyebrow">12 · Exemples pratiques</span>
+  <h2>À copier dans l'app et les montages</h2>
+  <p>L'app Manuvo est en Next.js avec Tailwind 4. Ces jetons se collent dans <code>globals.css</code>, et la signature tient en quelques lignes d'API Web Animations, sans bibliothèque.</p>
+  <div class="grid g2" style="margin-top:20px">
+    <div class="codebox"><button class="copy" type="button">Copier</button><pre><code>/* Manuvo motion tokens · globals.css */
+:root {
+  --ease-avvita: cubic-bezier(.16, 1, .3, 1);   /* entrées */
+  --ease-via:    cubic-bezier(.7, 0, .84, 0);   /* sorties */
+  --ease-click:  cubic-bezier(.34, 1.4, .64, 1); /* réussite */
+  --ease-rotta:  cubic-bezier(.65, 0, .35, 1);  /* routes */
+
+  --dur-micro: 160ms;
+  --dur-ui:    280ms;
+  --dur-sesto: 480ms;  /* la signature */
+  --dur-scene: 520ms;
+  --dur-logo:  1600ms;
+  --stagger:   60ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 120ms !important;
+    transition-duration: 120ms !important;
+  }
+}</code></pre></div>
+    <div class="codebox"><button class="copy" type="button">Copier</button><pre><code>// La signature : un sixième de tour
+export function sesto(el, { turns = 1 } = {}) {
+  const reduce = matchMedia(
+    "(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return el.animate(
+    [{ opacity: .6 }, { opacity: 1 }],
+    { duration: 120 });
+  return el.animate(
+    [{ transform: `rotate(${-60 * turns}deg)` },
+     { transform: "rotate(0deg)" }],
+    { duration: 480 * turns,
+      easing: "cubic-bezier(.16,1,.3,1)" });
+}
+
+// Exemple : bouton « Sblocca contatto »
+// await sesto(icon).finished;
+// label.textContent = "Sbloccato";</code></pre></div>
+  </div>
+  <div class="tbl" style="margin-top:22px"><table>
+    <thead><tr><th>Où</th><th>Quoi appliquer</th></tr></thead>
+    <tbody>
+      <tr><td>Formulaire <code>/pubblica</code></td><td>Soulignement corail au focus, puces de métier en <code>--dur-micro</code>, Rotta vers la vérification SMS.</td></tr>
+      <tr><td>Bacheca artisan</td><td>Fiches en cascade de 60 ms, Aggancio au déblocage, compteur de crédits qui descend avec un sixième de tour.</td></tr>
+      <tr><td>Notifications push</td><td>Icône de l'app (l'hexagone) : pas d'animation possible dans la notification système. Dans l'app, cloche + pastille.</td></tr>
+      <tr><td>Écran de démarrage PWA</td><td>Concept C (Assemblaggio), 1,2 s maximum, coupé dès que l'app est prête.</td></tr>
+      <tr><td>Reels (HyperFrames)</td><td>Projet <code>manuvo/videos/</code> : reprendre ces courbes dans <code>PF.ease()</code> et finir chaque film sur le concept A.</td></tr>
+      <tr><td>CapCut, After Effects</td><td>Entrées en « ease out » fort (avvita), sorties en « ease in » (via), images clés de rotation à 0° et −60° uniquement.</td></tr>
+    </tbody></table></div>
+  <div class="card" style="margin-top:18px">
+    <h3>Check-list avant de publier une animation</h3>
+    <p class="muted" style="margin:0">Elle raconte le parcours point → route → verrouillage. Elle dure dans la plage de sa catégorie. Elle utilise une des quatre courbes. Les rotations sont des multiples de 60°. Le corail ne marque qu'une seule chose par écran. Elle se lit sans le son. Elle a une version « mouvement réduit ».</p>
+  </div>
+  <p class="muted mono" style="margin-top:28px;font-size:12px">Manuvo Motion Identity · v1 · octobre 2026 · logo, couleurs et polices issus du code de l'app (manuvo/public, globals.css, layout.tsx). Les noms d'artisans montrés sont des exemples.</p>
+</section>
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /* ---------- math ---------- */
+  function bez(x1, y1, x2, y2) {
+    var cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    var cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    function sx(u) { return ((ax * u + bx) * u + cx) * u; }
+    function sy(u) { return ((ay * u + by) * u + cy) * u; }
+    function dx(u) { return (3 * ax * u + 2 * bx) * u + cx; }
+    function solve(x) { var u = x; for (var i = 0; i < 8; i++) { var e = sx(u) - x; if (Math.abs(e) < 1e-6) return u; var d = dx(u); if (Math.abs(d) < 1e-6) break; u -= e / d; } var lo = 0, hi = 1; u = x; while (hi - lo > 1e-7) { var v = sx(u); if (Math.abs(v - x) < 1e-6) return u; if (x > v) lo = u; else hi = u; u = (lo + hi) / 2; } return u; }
+    var f = function (x) { return x <= 0 ? 0 : x >= 1 ? 1 : sy(solve(x)); };
+    f.raw = [x1, y1, x2, y2];
+    return f;
+  }
+  var E = { avvita: bez(.16, 1, .3, 1), via: bez(.7, 0, .84, 0), click: bez(.34, 1.4, .64, 1), rotta: bez(.65, 0, .35, 1), lin: function (x) { return x; } };
+  function cl(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function pr(t, a, b) { return b <= a ? (t >= a ? 1 : 0) : cl((t - a) / (b - a)); }
+  function lerp(a, b, u) { return a + (b - a) * u; }
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function vis(el, on) { if (el) el.style.visibility = on ? "inherit" : "hidden"; }
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- the signature, shared by hero, logo A, film end ---------- */
+  function signature(root, t) {
+    var route = $(".route", root), rm = $(".rmask", root), bolt = $(".bolt", root), turn = $(".turn", root), ring = $(".ring", root), wclip = $(".wclip", root), word = $(".word", root);
+    var p = E.rotta(pr(t, 0, .52));
+    rm.setAttribute("stroke-dasharray", p.toFixed(4) + " 1");
+    route.style.opacity = (0.45 * (1 - pr(t, .84, 1.1))).toFixed(3);
+    var bx, by;
+    if (t < .52) { var L = route.getTotalLength(), pt = route.getPointAtLength(L * p); bx = pt.x; by = pt.y; }
+    else { var u = E.avvita(pr(t, .52, .84)); bx = 162.5; by = lerp(-26, -86, u); }
+    var bs = 1 - E.via(pr(t, .84, .98));
+    bolt.setAttribute("cx", bx.toFixed(2)); bolt.setAttribute("cy", by.toFixed(2)); bolt.setAttribute("r", (12 * bs).toFixed(2));
+    bolt.style.opacity = bs > 0.01 ? 1 : 0;
+    var a = -60 * (1 - E.avvita(pr(t, .36, .84))), s = lerp(.86, 1, E.avvita(pr(t, .2, .84)));
+    turn.setAttribute("transform", "rotate(" + a.toFixed(2) + " 162.5 -124) translate(162.5 -124) scale(" + s.toFixed(4) + ") translate(-162.5 124)");
+    turn.style.opacity = E.avvita(pr(t, .16, .4)).toFixed(3);
+    var rg = E.click(pr(t, .84, 1.2));
+    ring.setAttribute("r", lerp(14, 58, E.avvita(pr(t, .84, 1.2))).toFixed(2));
+    ring.style.opacity = (t >= .84 ? 0.7 * (1 - pr(t, .84, 1.2)) : 0).toFixed(3);
+    var w = E.avvita(pr(t, 1.0, 1.45));
+    wclip.setAttribute("width", (250 * w).toFixed(2));
+    word.setAttribute("transform", "translate(" + (-30 * (1 - w)).toFixed(2) + " 0)");
+  }
+
+  /* ---------- player: autoplay in view, loop with hold, replay ---------- */
+  var DEMOS = {};
+  function player(el) {
+    var d = DEMOS[el.getAttribute("data-demo")]; if (!d) return;
+    var start = null, raf = 0, visible = false, once = reduce;
+    function frame(now) {
+      if (start === null) start = now;
+      var e = (now - start) / 1000, total = d.dur + (d.hold == null ? 1.4 : d.hold);
+      var t = d.loop && !once ? e % total : Math.min(e, d.dur);
+      d.render(el, Math.min(t, d.dur), t);
+      if ((d.loop && !once) || e < d.dur) { if (visible) raf = requestAnimationFrame(frame); }
+      else raf = 0;
+    }
+    function play() { cancelAnimationFrame(raf); start = null; raf = requestAnimationFrame(frame); }
+    if (d.init) d.init(el);
+    d.render(el, d.dur, d.dur); /* complete at rest: show the final state until it plays */
+    var btn = $(".replay", el); if (btn) btn.addEventListener("click", function () { once = true; visible = true; play(); });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (x) { visible = x.isIntersecting; if (visible && !reduce) { if (!raf) { once = false; play(); } } else if (!visible) { cancelAnimationFrame(raf); raf = 0; } }); }, { threshold: 0.25 }).observe(el);
+    } else if (!reduce) { visible = true; play(); }
+    if (reduce) d.render(el, d.dur, d.dur);
+  }
+
+  DEMOS.sigHero = { dur: 1.6, loop: true, hold: 1.8, render: signature };
+  DEMOS.logoA = DEMOS.sigHero;
+
+  DEMOS.route = { dur: 2.6, loop: true, hold: 1.4, render: function (el, t) {
+    var p = E.rotta(pr(t, .1, 2.2)); $(".fill", el).setAttribute("x2", (p * 100).toFixed(2));
+    $$(".node", el).forEach(function (n, i) { n.classList.toggle("on", p >= i / 4 - 0.001 && t > 0.1 || (i === 0 && t > .1)); });
+    var a = -60 * (1 - E.avvita(pr(t, 1.05, 1.53)));
+    $(".nturn", el).setAttribute("transform", "rotate(" + a.toFixed(2) + " 162.5 -124)");
+  } };
+
+  /* personality */
+  DEMOS.tDiretto = { dur: .9, loop: true, hold: .7, render: function (el, t) { $(".d", el).setAttribute("cx", lerp(10, 70, E.avvita(pr(t, 0, .6))).toFixed(2)); } };
+  DEMOS.tPreciso = { dur: .48, loop: true, hold: .9, render: function (el, t) { $(".h", el).setAttribute("transform", "rotate(" + (-60 * (1 - E.avvita(pr(t, 0, .48)))).toFixed(2) + " 40 40)"); } };
+  DEMOS.tAffidabile = { dur: 1, loop: true, hold: .6, render: function (el, t) { var u = E.avvita(pr(t, 0, .4)), v = E.avvita(pr(t, .5, .9)); $(".a", el).setAttribute("y", (30 - 10 * u + 10 * v).toFixed(2)); $(".b", el).setAttribute("y", (30 - 10 * u + 10 * v).toFixed(2)); } };
+  DEMOS.tUmano = { dur: .6, loop: true, hold: 1, render: function (el, t) { var s = lerp(.7, 1, E.click(pr(t, 0, .5))); $(".u", el).setAttribute("transform", "translate(40 40) scale(" + s.toFixed(4) + ") translate(-40 -40)"); } };
+  DEMOS.tRapido = { dur: .3, loop: true, hold: .8, render: function (el, t) { $(".r", el).setAttribute("width", (56 * E.avvita(pr(t, 0, .28))).toFixed(2)); } };
+  DEMOS.tLocale = { dur: 1.2, loop: true, hold: .5, render: function (el, t) { var u = E.avvita(pr(t, 0, .35)); $$(".p", el).forEach(function (p) { p.setAttribute("transform", "translate(0 " + (-10 * (1 - u)).toFixed(2) + ")"); p.style.opacity = u; }); var r = E.avvita(pr(t, .3, 1.2)); var ring = $(".ring", el); ring.setAttribute("r", lerp(6, 24, r).toFixed(2)); ring.style.opacity = t > .3 ? (1 - r).toFixed(3) : 0; } };
+
+  /* logo B */
+  DEMOS.logoB = { dur: 1.4, loop: true, hold: 1.8, render: function (el, t) {
+    var u = E.avvita(pr(t, 0, .5));
+    var d1 = $(".d1", el), d2 = $(".d2", el), br = $(".bridge", el), hx = $(".hexline", el), mk = $(".mk", el);
+    var x1 = lerp(40, 152, u), x2 = lerp(285, 173, u);
+    d1.setAttribute("cx", x1.toFixed(2)); d2.setAttribute("cx", x2.toFixed(2));
+    var dOut = 1 - pr(t, .5, .62);
+    d1.style.opacity = dOut; d2.style.opacity = dOut;
+    br.setAttribute("x1", 40); br.setAttribute("x2", 285);
+    br.style.opacity = (t < .5 ? 0.45 * pr(t, 0, .15) : 0.45 * (1 - pr(t, .5, .7))).toFixed(3);
+    br.setAttribute("stroke-dasharray", "7 9");
+    var h = E.avvita(pr(t, .5, .95));
+    hx.setAttribute("stroke-dasharray", h.toFixed(4) + " 1");
+    hx.style.opacity = (1 - pr(t, .95, 1.1)).toFixed(3);
+    var m = pr(t, .88, 1.1), ms = lerp(.92, 1, E.click(m));
+    mk.style.opacity = m.toFixed(3);
+    mk.setAttribute("transform", "translate(162.5 -124) scale(" + ms.toFixed(4) + ") translate(-162.5 124)");
+    var w = E.avvita(pr(t, 1.0, 1.4));
+    $(".wclip", el).setAttribute("width", (250 * w).toFixed(2));
+    $(".word", el).setAttribute("transform", "translate(" + (-30 * (1 - w)).toFixed(2) + " 0)");
+  } };
+
+  /* logo C */
+  var HEX = [90, 30, -30, -90, -150, 150].map(function (a) { a = a * Math.PI / 180; return [162.5 + 86 * Math.cos(a), -124 - 86 * Math.sin(a)]; });
+  DEMOS.logoC = { dur: 1.2, loop: true, hold: 1.8,
+    init: function (el) { var g = $(".segs", el); for (var i = 0; i < 6; i++) { var l = document.createElementNS("http://www.w3.org/2000/svg", "line"); var a = HEX[i], b = HEX[(i + 1) % 6]; l.setAttribute("x1", a[0]); l.setAttribute("y1", a[1]); l.setAttribute("x2", b[0]); l.setAttribute("y2", b[1]); g.appendChild(l); } },
+    render: function (el, t) {
+      $$(".segs line", el).forEach(function (l, i) {
+        var a = HEX[i], b = HEX[(i + 1) % 6], mx = (a[0] + b[0]) / 2 - 162.5, my = (a[1] + b[1]) / 2 + 124;
+        var u = E.avvita(pr(t, i * .04, .36 + i * .04)), off = 70 * (1 - u), rot = 30 * (1 - u);
+        var n = Math.hypot(mx, my);
+        l.setAttribute("transform", "translate(" + (mx / n * off).toFixed(2) + " " + (my / n * off).toFixed(2) + ") rotate(" + rot.toFixed(2) + " " + ((a[0] + b[0]) / 2).toFixed(2) + " " + ((a[1] + b[1]) / 2).toFixed(2) + ")");
+        l.style.opacity = (pr(t, i * .04, .12 + i * .04) * (1 - pr(t, .62, .8))).toFixed(3);
+      });
+      var m = E.avvita(pr(t, .55, .8)); var mk = $(".mk", el); mk.style.opacity = m;
+      var w = E.avvita(pr(t, .75, 1.2)); $(".word", el).setAttribute("transform", "translate(0 " + (90 * (1 - w)).toFixed(2) + ")");
+    } };
+
+  /* typography */
+  DEMOS.tyHead = { dur: 1.1, loop: true, hold: 2, render: function (el, t) {
+    $$(".mask > span", el).forEach(function (s, i) { var u = E.avvita(pr(t, i * .07, .42 + i * .07)); s.style.transform = "translateY(" + (105 * (1 - u)).toFixed(2) + "%)"; });
+    var s2 = E.avvita(pr(t, .61, .85)); var sub = $(".sub", el); sub.style.opacity = s2; sub.style.transform = "translateY(" + (8 * (1 - s2)).toFixed(2) + "px)";
+  } };
+  DEMOS.tyNum = { dur: 1.0, loop: true, hold: 2, render: function (el, t) { $(".count", el).textContent = Math.round(35 * E.avvita(pr(t, .1, .7))); } };
+  DEMOS.tyEmph = { dur: 1.1, loop: true, hold: 2, render: function (el, t) {
+    var b = $(".big", el), u = E.avvita(pr(t, 0, .42)); b.style.opacity = u; b.style.transform = "translateY(" + (10 * (1 - u)).toFixed(2) + "px)";
+    $(".hl", el).style.setProperty("--s", E.avvita(pr(t, .5, .82)).toFixed(4));
+    var s = $(".sub", el), v = E.avvita(pr(t, .7, .95)); s.style.opacity = v;
+  } };
+  DEMOS.tyCta = { dur: 1.6, loop: true, hold: 1.4, render: function (el, t) {
+    var tk = $(".tk", el), u = E.avvita(pr(t, 0, .4)); tk.style.letterSpacing = lerp(.5, .16, u).toFixed(3) + "em"; tk.style.opacity = u;
+    var btn = $(".btn", el), v = E.avvita(pr(t, .3, .54)); btn.style.opacity = v; btn.style.transform = "translateY(" + (12 * (1 - v)).toFixed(2) + "px)";
+    var n = 0; [[.8, 1.0], [1.05, 1.25]].forEach(function (k) { var w = pr(t, k[0], k[1]); n += Math.sin(w * Math.PI) * 4; });
+    $(".arr", el).style.transform = "translateX(" + n.toFixed(2) + "px)";
+  } };
+
+  /* UI journey */
+  var TYPED = "Perdita sotto il lavello";
+  DEMOS.journey = { dur: 9.6, loop: true, hold: .8,
+    init: function (el) { var st = $('[data-s="5"] .stars', el); for (var i = 0; i < 5; i++) st.insertAdjacentHTML("beforeend", '<svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="#e6dfd4"/></svg>'); },
+    render: function (el, t) {
+      var B = [0, 1.6, 3.2, 4.8, 7.0, 8.4, 9.6];
+      var k = 0; for (var i = 0; i < 6; i++) if (t >= B[i]) k = i;
+      $$(".scr", el).forEach(function (s, i) {
+        var on = i === k; vis(s, on); if (!on) return;
+        var u = E.avvita(pr(t, B[i], B[i] + .28)); s.style.opacity = u; s.style.transform = "translateX(" + (24 * (1 - u)).toFixed(2) + "px)";
+      });
+      $$(".step").forEach(function (s) { s.classList.toggle("on", +s.getAttribute("data-k") === k); });
+      var s0 = $('[data-s="0"]', el);
+      $(".typed", s0).textContent = TYPED.slice(0, Math.floor(TYPED.length * pr(t, .25, 1.1)));
+      $(".ul", s0).style.transform = "scaleX(" + E.avvita(pr(t, .1, .35)).toFixed(4) + ")";
+      $(".caret", s0).style.opacity = (Math.floor(t * 4) % 2 === 0 || (t > .25 && t < 1.1)) ? 1 : 0;
+      $(".c0", s0).classList.toggle("sel", t >= 1.2);
+      var s1 = $('[data-s="1"]', el);
+      $$(".codes div", s1).forEach(function (c, i) { var on = t >= 1.85 + i * .2; c.textContent = on ? "7294"[i] : ""; c.classList.toggle("f", on); });
+      $(".ck", s1).setAttribute("stroke-dasharray", E.avvita(pr(t, 2.7, 3.02)).toFixed(4) + " 1");
+      $(".okt", s1).style.opacity = E.avvita(pr(t, 2.85, 3.05));
+      var s2 = $('[data-s="2"]', el), pu = E.avvita(pr(t, 3.3, 3.62));
+      $(".mpin", s2).setAttribute("transform", "translate(0 " + (-24 * (1 - pu)).toFixed(2) + ")"); $(".mpin", s2).style.opacity = pu;
+      var r = E.avvita(pr(t, 3.55, 4.6)); $(".rad", s2).setAttribute("r", lerp(10, 80, r).toFixed(2)); $(".rad", s2).style.opacity = t > 3.55 ? (1 - r).toFixed(3) : 0;
+      var to = E.avvita(pr(t, 3.9, 4.18)); $(".toast", s2).style.transform = "translateY(" + (-70 * (1 - to)).toFixed(2) + "px)";
+      var s3 = $('[data-s="3"]', el), cards = $$(".acard", s3), links = $$(".links path", s3), cnt = 0;
+      cards.forEach(function (c, i) { var a = 4.95 + i * .42, v = E.avvita(pr(t, a, a + .28)); c.style.opacity = v; c.style.transform = "translateY(" + (16 * (1 - v)).toFixed(2) + "px)"; if (t >= a + .28) cnt++; });
+      links.forEach(function (p, i) { var a = 5.0 + i * .42, v = E.rotta(pr(t, a, a + .35)); p.setAttribute("fill", "none"); p.setAttribute("stroke", "#FF5758"); p.setAttribute("stroke-width", "2"); p.setAttribute("stroke-dasharray", v > .999 ? "0.03 0.03" : (v.toFixed(4) + " 1")); });
+      $(".cnt", s3).textContent = "Contatti sbloccati · " + cnt + "/3";
+      var s4 = $('[data-s="4"]', el);
+      $(".cc", s4).setAttribute("stroke-dasharray", E.avvita(pr(t, 7.25, 7.73)).toFixed(4) + " 1");
+      $(".ck2", s4).setAttribute("stroke-dasharray", E.avvita(pr(t, 7.6, 7.92)).toFixed(4) + " 1");
+      var sc = $(".acard.sel", s4), sv = E.avvita(pr(t, 7.0, 7.3)); sc.style.transform = "translateY(" + (60 * (1 - sv)).toFixed(2) + "px)";
+      var s5 = $('[data-s="5"]', el);
+      $$(".stars path", s5).forEach(function (p, i) { var a = 8.6 + i * .06; p.setAttribute("fill", t >= a ? "#FF5758" : "#e6dfd4"); var ps = i === 4 ? lerp(.6, 1, E.click(pr(t, a, a + .3))) : 1; p.parentNode.style.transform = t >= a ? "scale(" + ps.toFixed(3) + ")" : "scale(1)"; });
+    } };
+
+  /* transitions */
+  function hexPts(cx, cy, R, rot, sx) { var o = []; for (var i = 0; i < 6; i++) { var a = (90 + i * 60 + rot) * Math.PI / 180; o.push((cx + R * Math.cos(a) * (sx || 1)).toFixed(2) + "% " + (cy - R * Math.sin(a)).toFixed(2) + "%"); } return "polygon(" + o.join(",") + ")"; }
+  DEMOS.trRotta = { dur: .9, loop: true, hold: 1.2, render: function (el, t) {
+    var p = E.rotta(pr(t, 0, .42)); $(".ln", el).setAttribute("x2", (160 * p).toFixed(2)); $(".pt", el).setAttribute("cx", (160 * p).toFixed(2));
+    $(".pt", el).style.opacity = 1 - pr(t, .42, .5); $(".ln", el).style.opacity = 1 - pr(t, .55, .8);
+    var b = E.avvita(pr(t, .3, .66)); var B = $(".scB", el); B.style.clipPath = "inset(0 " + ((1 - b) * 100).toFixed(2) + "% 0 0)"; B.style.transform = "translateX(" + (-16 * (1 - b)).toFixed(2) + "px)";
+  } };
+  DEMOS.trSesto = { dur: .8, loop: true, hold: 1.2, render: function (el, t) { var u = E.avvita(pr(t, 0, .48)); $(".scB", el).style.clipPath = hexPts(50, 50, 140 * u, -60 * (1 - u), .625); } };
+  DEMOS.trAggancio = { dur: .9, loop: true, hold: 1.2, render: function (el, t) {
+    var u = E.avvita(pr(t, .05, .45)), mv = $(".mv", el), slot = $(".slot", el);
+    mv.style.left = lerp(10, 50, u).toFixed(2) + "%"; mv.style.top = lerp(56, 28, u).toFixed(2) + "%"; mv.style.height = lerp(30, 44, u).toFixed(2) + "%";
+    var c = E.click(pr(t, .45, .7)); mv.style.transform = "scale(" + (t > .45 ? lerp(1.04, 1, c) : 1).toFixed(3) + ")";
+    slot.style.borderStyle = t > .45 ? "solid" : "dashed"; slot.style.borderColor = t > .45 ? "#FF5758" : "currentColor"; slot.style.opacity = t > .45 ? 1 : .35;
+  } };
+  DEMOS.trPannello = { dur: .8, loop: true, hold: 1.2, render: function (el, t) { var u = t < .5 ? E.avvita(pr(t, 0, .32)) : 1; $(".sheet", el).style.transform = "translateY(" + (102 * (1 - u)).toFixed(2) + "%)"; } };
+  DEMOS.trTaglio = { dur: .8, loop: true, hold: 1.2, render: function (el, t) {
+    var u = E.rotta(pr(t, 0, .42)), band = $(".band", el); band.style.left = lerp(-60, 130, u).toFixed(2) + "%";
+    var b = $(".scB", el), x = lerp(-60, 130, u) + 20; b.style.clipPath = "polygon(0 0," + Math.max(0, x + 12).toFixed(2) + "% 0," + Math.max(0, x - 12).toFixed(2) + "% 100%,0 100%)";
+  } };
+  var PIN = [[80, 22], [96, 34], [94, 52], [80, 78], [66, 52], [64, 34]];
+  var HX = [0, 1, 2, 3, 4, 5].map(function (i) { var a = (90 - i * 60) * Math.PI / 180; return [80 + 30 * Math.cos(a), 50 - 30 * Math.sin(a)]; });
+  DEMOS.trPin = { dur: 1.0, loop: true, hold: 1.2, render: function (el, t) {
+    var u = E.avvita(pr(t, .1, .62)), rot = -60 * (1 - E.avvita(pr(t, .3, .78)));
+    var pts = PIN.map(function (p, i) { var x = lerp(p[0], HX[i][0], u), y = lerp(p[1], HX[i][1], u); var a = rot * Math.PI / 180 * u, dx = x - 80, dy = y - 50; return (80 + dx * Math.cos(a) - dy * Math.sin(a)).toFixed(2) + "," + (50 + dx * Math.sin(a) + dy * Math.cos(a)).toFixed(2); });
+    $(".morph", el).setAttribute("points", pts.join(" "));
+  } };
+
+  /* film animatic */
+  var TYPED2 = "Idraulico · Rimini";
+  DEMOS.film = { dur: 12, loop: true, hold: .4,
+    init: function (el) { var g = $('[data-l="3"] .st', el); for (var i = 0; i < 5; i++) g.insertAdjacentHTML("beforeend", '<path transform="translate(' + (-62 + i * 26) + ' 28) scale(.9)" d="M0 -10l2.9 6 6.6.9-4.8 4.5 1.2 6.5L0 4.8l-5.9 3.1 1.2-6.5-4.8-4.5 6.6-.9z" fill="#e6dfd4"/>'); },
+    render: function (el, t) {
+      var B = [0, 2, 4, 7, 10, 12], k = 0; for (var i = 0; i < 5; i++) if (t >= B[i]) k = i;
+      $$(".lay", el).forEach(function (l, i) { vis(l, i === k); });
+      $$(".scene").forEach(function (s) { s.classList.toggle("on", +s.getAttribute("data-k") === k); });
+      var bar = el.parentNode.querySelector(".bar i"); if (bar) bar.style.width = (t / 12 * 100).toFixed(2) + "%";
+      function mask(layer, at) { $$(".mask > span", layer).forEach(function (s, i) { var u = E.avvita(pr(t, at + i * .07, at + .42 + i * .07)); s.style.transform = "translateY(" + (105 * (1 - u)).toFixed(2) + "%)"; }); }
+      var L = $$(".lay", el);
+      if (k === 0) { mask(L[0], .25); var fd = $(".fd", L[0]), c = (t % .9) / .9; fd.setAttribute("transform", "translate(0 " + (60 * E.via(c)).toFixed(2) + ")"); fd.style.opacity = c < .85 ? 1 : 0;
+        [".b1", ".b2", ".b3"].forEach(function (s, i) { var a = .2 + i * .3, u = E.click(pr(t, a, a + .3)); var g = $(s, L[0]); var tr = g.getAttribute("data-t") || g.getAttribute("transform"); g.setAttribute("data-t", tr); g.setAttribute("transform", tr + " scale(" + u.toFixed(3) + ") rotate(" + (-60 * (1 - E.avvita(pr(t, a, a + .48)))).toFixed(1) + ")"); }); }
+      if (k === 1) { mask(L[1], 2.1); var ph = $(".mph", L[1]), u = E.avvita(pr(t, 2.0, 2.45)); ph.style.transform = "translateY(" + (260 * (1 - u)).toFixed(1) + "px)";
+        $(".typed2", L[1]).textContent = TYPED2.slice(0, Math.floor(TYPED2.length * pr(t, 2.5, 3.2))); $(".ul", L[1]).style.transform = "scaleX(" + E.avvita(pr(t, 2.45, 2.7)).toFixed(3) + ")";
+        var pb = $(".pbtn", L[1]); pb.style.transform = "scale(" + (t > 3.4 && t < 3.55 ? .96 : 1) + ")"; }
+      if (k === 2) { mask(L[2], 4.25); var lay = L[2], iris = E.avvita(pr(t, 4, 4.4)); lay.style.clipPath = hexPts(50, 70, 130 * iris, -60 * (1 - iris), 1.78);
+        [".l1", ".l2", ".l3"].forEach(function (s, i) { var a = 4.6 + i * .3, v = E.rotta(pr(t, a, a + .45)); $(s, lay).setAttribute("stroke-dasharray", v >= .999 ? "6 6" : (v.toFixed(4) + " 1")); if (v >= .999) $(s, lay).removeAttribute("pathLength"); else $(s, lay).setAttribute("pathLength", "1"); });
+        [".a1", ".a2", ".a3"].forEach(function (s, i) { var a = 5.0 + i * .3, v = E.avvita(pr(t, a, a + .3)); var g = $(s, lay); var tr = g.getAttribute("data-t") || g.getAttribute("transform"); g.setAttribute("data-t", tr); g.setAttribute("transform", tr + " translate(0 " + (16 * (1 - v)).toFixed(2) + ")"); g.style.opacity = v; }); }
+      if (k === 3) { mask(L[3], 7.15); $(".ck3", L[3]).setAttribute("stroke-dasharray", E.avvita(pr(t, 7.4, 7.8)).toFixed(4) + " 1");
+        $$(".st path", L[3]).forEach(function (p, i) { p.setAttribute("fill", t >= 8.2 + i * .1 ? "#FF5758" : "#e6dfd4"); }); }
+      if (k === 4) { signature(L[4], t - 10); var g = E.avvita(pr(t, 11.2, 11.5)); $(".tag2", L[4]).style.opacity = g; $(".url", L[4]).style.opacity = E.avvita(pr(t, 11.4, 11.7)); }
+    } };
+
+  /* signature evolution */
+  DEMOS.eLoader = { dur: 2.4, loop: true, hold: 0, render: function (el, t) { var step = Math.floor(t / .6), f = (t % .6) / .48; var a = 60 * step + 60 * E.avvita(cl(f)); $(".h", el).setAttribute("transform", "rotate(" + a.toFixed(2) + " 50 50)"); } };
+  DEMOS.eNotif = { dur: 1.2, loop: true, hold: 1, render: function (el, t) {
+    var r = 0; [[0, .15, 8], [.15, .3, -8], [.3, .42, 5], [.42, .5, 0]].forEach(function (k, i, arr) { if (t >= k[0]) { var prev = i ? arr[i - 1][2] : 0; r = lerp(prev, k[2], E.rotta(pr(t, k[0], k[1]))); } });
+    $(".bl", el).setAttribute("transform", "rotate(" + r.toFixed(2) + " 24 8)");
+    var u = E.avvita(pr(t, .3, .78)); $(".bd", el).setAttribute("transform", "rotate(" + (-60 * (1 - u)).toFixed(2) + " 36 12) translate(36 12) scale(" + E.click(pr(t, .3, .6)).toFixed(3) + ") translate(-36 -12)");
+  } };
+  DEMOS.eBtn = { dur: 1.4, loop: true, hold: 1.2, render: function (el, t) { var u = E.avvita(pr(t, .4, .88)); $(".h", el).setAttribute("transform", "rotate(" + (60 * u).toFixed(2) + " 50 50)"); $(".lb", el).textContent = t >= .88 ? "Sbloccato" : "Sblocca contatto"; $(".mini-btn", el).style.transform = "scale(" + (t > .3 && t < .4 ? .97 : 1) + ")"; } };
+  DEMOS.eLogo = { dur: .7, loop: true, hold: 1.4, render: function (el, t) { var u = E.avvita(pr(t, 0, .48)); $(".h", el).setAttribute("transform", "rotate(" + (-60 * (1 - u)).toFixed(2) + " 162.5 -124)"); } };
+  DEMOS.eIris = { dur: .8, loop: true, hold: 1.2, render: function (el, t) { var u = E.avvita(pr(t, 0, .48)); $(".ir", el).style.clipPath = hexPts(50, 50, 90 * u, -60 * (1 - u), 1); } };
+  DEMOS.eReel = { dur: 1, loop: true, hold: 1.6, render: function (el, t) { var u = E.avvita(pr(t, 0, .48)); $(".h", el).setAttribute("transform", "rotate(" + (-60 * (1 - u)).toFixed(2) + " 162.5 -124)"); var w = E.avvita(pr(t, .45, .9)); var g = $(".w", el); g.style.opacity = w; g.setAttribute("transform", "translate(" + (-24 * (1 - w)).toFixed(2) + " 0)"); } };
+  DEMOS.eSite = { dur: 1.3, loop: true, hold: 1.2, render: function (el, t) { var p = E.rotta(pr(t, 0, .8)); $(".l", el).setAttribute("x2", (200 * p).toFixed(2)); var a = -60 * (1 - E.avvita(pr(t, .8, 1.28))); $(".h", el).setAttribute("transform", "translate(" + (200 * p).toFixed(2) + " 20) rotate(" + a.toFixed(2) + ")"); } };
+  DEMOS.eSlide = { dur: .8, loop: true, hold: 1.4, render: function (el, t) { var u = E.avvita(pr(t, 0, .48)); $(".s2", el).style.clipPath = hexPts(50, 50, 120 * u, -60 * (1 - u), .9); } };
+
+  $$("[data-demo]").forEach(player);
+
+  /* easing curves, plotted from the same functions */
+  $$("[data-curve]").forEach(function (svg) {
+    var v = svg.getAttribute("data-curve").split(",").map(Number), f = bez(v[0], v[1], v[2], v[3]), d = "";
+    for (var i = 0; i <= 60; i++) { var x = i / 60, y = f(x); d += (i ? "L" : "M") + (x * 100).toFixed(2) + " " + (100 - y * 100).toFixed(2); }
+    svg.innerHTML = '<rect x="0" y="0" width="100" height="100" fill="none" stroke="currentColor" opacity=".15"/><line x1="0" y1="100" x2="100" y2="0" stroke="currentColor" opacity=".15" stroke-dasharray="3 3"/><path d="' + d + '" fill="none" stroke="#FF5758" stroke-width="3" stroke-linecap="round"/>';
+  });
+
+  /* icons: play on hover/focus, and once when they enter the view */
+  $$(".ico").forEach(function (c) {
+    var on = function () { c.classList.add("play"); }, off = function () { c.classList.remove("play"); };
+    c.addEventListener("mouseenter", on); c.addEventListener("mouseleave", off); c.addEventListener("focus", on); c.addEventListener("blur", off);
+    if (!reduce && "IntersectionObserver" in window) new IntersectionObserver(function (es, o) { es.forEach(function (x) { if (x.isIntersecting) { on(); setTimeout(off, 2600); o.disconnect(); } }); }, { threshold: .6 }).observe(c);
+  });
+
+  /* copy buttons */
+  $$(".copy").forEach(function (b) { b.addEventListener("click", function () {
+    var txt = b.parentNode.querySelector("code").textContent;
+    var done = function () { b.textContent = "Copié"; setTimeout(function () { b.textContent = "Copier"; }, 1400); };
+    try { navigator.clipboard.writeText(txt).then(done, function () { sel(); }); } catch (e) { sel(); }
+    function sel() { var r = document.createRange(); r.selectNodeContents(b.parentNode.querySelector("code")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Sélectionné"; }
+  }); });
+})();
+</script>

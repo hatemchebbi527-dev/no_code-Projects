@@ -3,6 +3,9 @@
 The brand, the owner's standing choices and the films made so far. Every new film reads this first and only asks what is new.
 Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `public/logo*.svg`), `manuvo/SOCIAL.md` (content plan), owner notes. When this file and the brand's own files disagree, the brand's files win.
 
+## Motion identity
+- Full system: `manuvo/videos/motion-identity/index.html` (published guide: https://claude.ai/artifact/62Psy9tkAb3N8CKTfuirgz). Signature: "un sixième de tour" (the hexagon turns 60° in 480 ms, `cubic-bezier(.16,1,.3,1)`, stops dead, with a click). Easing tokens: avvita (enter), via (exit), click (success), rotta (routes). Every film ends on logo concept A.
+
 ## Owner choices (standing: reuse for every film unless they say otherwise)
 - Where films play: TikTok + Instagram Reels (+ Reel FB, Story extract), 9:16 1080x1920. Usual length: 15 to 20 s. Language on screen: **Italian**. Audience: privati in Rimini + dintorni looking for an artisan; artigiani as the second audience.
 - Music: **suspense** (owner's choice, 2026-10-01): generated bed `teaser-phase0/suspense.py` (drone, heartbeat, clock tick, F-Gb minor second, hush, riser, half-beat silence, then the turn Db / Eb / F major). 140 BPM, F minor. Royalty-free, ours. The trap bed from `synth.py` was replaced.
