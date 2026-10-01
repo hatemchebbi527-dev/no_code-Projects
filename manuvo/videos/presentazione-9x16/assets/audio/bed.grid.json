@@ -1,0 +1,16 @@
+{
+  "bpm": 120.0,
+  "firstBeat": 0,
+  "pickupBeats": 0,
+  "beatsPerBar": 4,
+  "bars": 12,
+  "duration": 24.0,
+  "fileDuration": 24.0,
+  "energy": "223333332333",
+  "key": "D major",
+  "progression": "I V vi IV",
+  "style": "punchy",
+  "hits": "3 6 11",
+  "risers": "3 11",
+  "gaps": "3"
+}

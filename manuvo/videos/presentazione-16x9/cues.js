@@ -1,0 +1,58 @@
+/*
+ * cues.js: the beat sheet as data (window.CUES in the browser, read by the scripts in Node).
+ * Manuvo, video di presentazione: 12 bars at 120 BPM (24 s). Same story in 9:16 and 16:9.
+ * Motion rules: manuvo/videos/motion-identity (everyday register: 2D, cream/coral/ink, no grain).
+ */
+window.CUES = {
+  name: "manuvo-presentazione-16x9",
+  title: "Manuvo · Presentazione",
+  width: 1920,
+  height: 1080,
+  duration: 24,
+  grid: { bpm: 120, firstBeat: 0, pickupBeats: 0, beatsPerBar: 4 }, // assets/audio/bed.grid.json (exact)
+  music: { src: "assets/audio/bed.wav", volume: 0.85, license: "generated with synth.py (royalty-free, ours)" },
+  sfx: { dir: "assets/audio/sfx", peaks: "assets/audio/sfx/peaks.json" },
+  safe: { top: 70, bottom: 70, left: 110, right: 110 }, // 16:9 title-safe,
+  scenes: [
+    { name: "Hook", from: [1, 1], to: [2, 1], what: "cream. A tap drips, ! badges pop. TI SERVE UN ARTIGIANO?" },
+    { name: "Problema", from: [2, 1], to: [3, 1], what: "ink (30° cut). A phone rings into the void, a ghost quote fades. Numeri falsi. Preventivi fantasma." },
+    { name: "Manuvo", from: [3, 1], to: [4, 1], what: "cream (hex iris). The signature: a sixth of a turn, the logo locks. Ecco Manuvo." },
+    { name: "Pubblichi", from: [4, 1], to: [6, 1], what: "cream (route wipe). The phone: request typed, Idraulico selected. 01 Pubblichi gratis, senza registrazione." },
+    { name: "Verifichi", from: [6, 1], to: [7, 1], what: "same phone, screen slides: SMS code, shield check. 02 Contatti verificati via SMS." },
+    { name: "Ti contattano", from: [7, 1], to: [9, 1], what: "coral (hex iris). Request + routes to 3 artisans of the zone. 03 Fino a 3 artigiani della tua zona." },
+    { name: "Scegli", from: [9, 1], to: [10, 1], what: "cream. Chosen card, check, five stars. 04 Scegli tu. Recensioni vere." },
+    { name: "Artigiani", from: [10, 1], to: [11, 1], what: "ink (30° cut). Bell + new request notification. Sei un artigiano? Nessun abbonamento." },
+    { name: "Firma", from: [11, 1], to: [13, 1], what: "cream (hex iris). Logo A, tagline, Pubblica gratis, manuvo.automa-ia.net." },
+  ],
+  events: [
+    { at: [1, 1, 0.5], what: "TI SERVE UN", sfx: "tick", volume: 0.3 },
+    { at: [1, 2, 0.5], what: "ARTIGIANO?", sfx: "tick", volume: 0.3 },
+    { at: [1, 3], what: "! badges", sfx: "pop", volume: 0.25 },
+    { at: [1, 4, 0.5], what: "30° cut to ink", sfx: "whoosh", volume: 0.28 },
+    { at: [2, 1], what: "Numeri falsi." },
+    { at: [2, 3], what: "Preventivi fantasma.", sfx: "tick", volume: 0.3 },
+    { at: [2, 4, 0.5], what: "hex iris to cream", sfx: "whoosh", volume: 0.28 },
+    { at: [3, 1], what: "logo turns a sixth (hit)", sfx: "chime", volume: 0.35 },
+    { at: [3, 3], what: "Ecco Manuvo." },
+    { at: [4, 1], what: "route wipe, phone rises", sfx: "whoosh", volume: 0.25 },
+    { at: [4, 3], what: "typing the request" },
+    { at: [5, 2], what: "Idraulico selected", sfx: "pop", volume: 0.3 },
+    { at: [5, 4], what: "Pubblica pressed", sfx: "click", volume: 0.35 },
+    { at: [6, 1], what: "SMS screen slides in (hit)" },
+    { at: [6, 3], what: "shield check", sfx: "ping", volume: 0.3 },
+    { at: [6, 4, 0.5], what: "hex iris to coral", sfx: "whoosh", volume: 0.28 },
+    { at: [7, 2], what: "route 1, artisan 1", sfx: "ping", volume: 0.25 },
+    { at: [7, 3], what: "route 2, artisan 2", sfx: "ping", volume: 0.25 },
+    { at: [7, 4], what: "route 3, artisan 3", sfx: "ping", volume: 0.25 },
+    { at: [8, 3], what: "counter 3/3" },
+    { at: [9, 1], what: "cut to the chosen card" },
+    { at: [9, 2], what: "check", sfx: "click", volume: 0.3 },
+    { at: [9, 3], what: "stars fill", sfx: "chime", volume: 0.25 },
+    { at: [9, 4, 0.5], what: "30° cut to ink", sfx: "whoosh", volume: 0.28 },
+    { at: [10, 1, 0.5], what: "bell + notification", sfx: "ping", volume: 0.3 },
+    { at: [10, 4, 0.5], what: "hex iris to cream", sfx: "whoosh", volume: 0.28 },
+    { at: [11, 1], what: "logo A (hit)", sfx: "chime", volume: 0.35 },
+    { at: [11, 4], what: "tagline" },
+    { at: [12, 1], what: "Pubblica gratis + URL", sfx: "pop", volume: 0.3 },
+  ],
+};
