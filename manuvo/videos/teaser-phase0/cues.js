@@ -13,7 +13,7 @@ window.CUES = {
   height: 1920,
   duration: 17.1429, // 10 bars at 140 BPM
   grid: { bpm: 140, firstBeat: 0, pickupBeats: 0, beatsPerBar: 4 }, // assets/audio/bed.grid.json (exact)
-  music: { src: "assets/audio/bed.wav", volume: 0.9, license: "generated with synth.py (royalty-free, ours)" },
+  music: { src: "assets/audio/bed.wav", volume: 0.6, license: "generated with suspense.py (royalty-free, ours)" },
   sfx: { dir: "assets/audio/sfx", peaks: "assets/audio/sfx/peaks.json" },
   safe: { top: 250, bottom: 420, left: 60, right: 120 }, // 9:16 social (reference/social.md)
   scenes: [
