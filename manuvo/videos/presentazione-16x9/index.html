@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Manuvo · Presentazione</title>
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (layout.tsx): Bricolage Grotesque titles, Geist UI, Geist Mono labels. */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { overflow: hidden; background: #faf8f4; }
+      #root { position: relative; overflow: hidden; background: #faf8f4; color: #1b1e24; font-family: "Geist", sans-serif; }
+      .slot, .bgs, .fgs, .bg, .sc, .gl { position: absolute; inset: 0; }
+      .slot, .bg, .sc { visibility: hidden; }
+      .slot { overflow: hidden; }
+      .gl { width: 100%; height: 100%; }
+      .tt { position: absolute; }
+      .eb { font: 500 30px/1 "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 26px; }
+      .ln { display: block; overflow: hidden; font-family: "Bricolage", sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; padding-bottom: 0.06em; white-space: nowrap; }
+      .ln > span { display: inline-block; }
+      .vis { position: absolute; width: 0; height: 0; }
+      .vis > * { position: absolute; }
+      .phone { width: 340px; height: 690px; left: -170px; top: -345px; border-radius: 52px; background: #1b1e24; padding: 14px; box-shadow: 0 50px 80px -40px rgba(27,30,36,.55); }
+      .scr { position: relative; height: 100%; border-radius: 39px; background: #faf8f4; overflow: hidden; }
+      .pg { position: absolute; inset: 0; padding: 64px 24px 24px; }
+      .pg h4 { font: 800 30px/1.08 "Bricolage", sans-serif; letter-spacing: -0.02em; margin-bottom: 20px; }
+      .lbl { font: 500 14px/1 "Geist Mono", monospace; letter-spacing: 0.1em; text-transform: uppercase; color: #6b6e75; margin-bottom: 12px; }
+      .field { position: relative; background: #fff; border: 1.5px solid #e6dfd4; border-radius: 16px; padding: 16px 14px; font-size: 19px; min-height: 58px; }
+      .field .ul { position: absolute; left: 14px; right: 14px; bottom: -1.5px; height: 3px; background: #FF5758; transform-origin: 0 50%; }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+      .chip { font-size: 16px; padding: 9px 13px; border-radius: 999px; background: #fff; border: 1.5px solid #e6dfd4; }
+      .pbtn { margin-top: 26px; background: #FF5758; border-radius: 999px; text-align: center; padding: 17px; font-weight: 600; font-size: 19px; }
+      .codes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 6px 0 26px; }
+      .codes div { aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 2px solid #e6dfd4; border-radius: 16px; font: 800 34px/1 "Bricolage", sans-serif; }
+      .card { background: #fff; border-radius: 26px; display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; padding: 18px; box-shadow: 0 2px 0 #e6dfd4, 0 34px 50px -30px rgba(27,30,36,.45); }
+      .av { width: 64px; height: 64px; border-radius: 50%; background: #FFE1E1; display: grid; place-items: center; font: 700 22px/1 "Bricolage", sans-serif; color: #C6383A; }
+      .card b { display: block; font-size: 22px; font-weight: 600; }
+      .card small { display: block; font-size: 16px; color: #6b6e75; margin-top: 3px; }
+      .badge { font: 500 12px/1 "Geist Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; background: #FFE1E1; color: #6E1618; padding: 7px 9px; border-radius: 999px; display: inline-block; margin-top: 8px; }
+      .ac { background: #faf8f4; border-radius: 26px; padding: 18px; text-align: center; box-shadow: 0 3px 0 rgba(110,22,24,.25), 0 34px 44px -26px rgba(110,22,24,.6); }
+      .btn { display: inline-flex; align-items: center; gap: 14px; background: #FF5758; color: #1b1e24; font: 600 40px/1 "Geist", sans-serif; padding: 28px 40px; border-radius: 999px; box-shadow: 0 30px 40px -24px rgba(198,56,58,.7); }
+      .url { font: 500 30px/1 "Geist Mono", monospace; letter-spacing: 0.04em; color: #5d6068; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1920" data-height="1080">
+      <!-- Two slots so a transition can show two scenes at once: layers alternate between them.
+           Each slot: backgrounds, then its WebGL canvas (the clay objects), then the DOM content (titles, app UI). -->
+      <div class="slot" id="slot0"><div class="bgs"></div><canvas class="gl" id="gl0" data-layout-allow-overflow width="1080" height="1920"></canvas><div class="fgs"></div></div>
+      <div class="slot" id="slot1"><div class="bgs"></div><canvas class="gl" id="gl1" data-layout-allow-overflow width="1080" height="1920"></canvas><div class="fgs"></div></div>
+
+      <!-- Layer contents (moved into their slot in setup). data-bg is the scene colour. -->
+      <div class="sc" id="L0" data-bg="#faf8f4">
+        <div class="tt"><span class="ln"><span>Ti serve un</span></span><span class="ln"><span style="color:#C6383A">artigiano?</span></span></div>
+        <div class="vis"></div>
+      </div>
+      <div class="sc" id="L1" data-bg="#1b1e24" style="color:#faf8f4">
+        <div class="tt"><span class="ln"><span>Numeri falsi.</span></span><span class="ln"><span>Preventivi</span></span><span class="ln"><span style="color:#FF5758">fantasma.</span></span></div>
+        <div class="vis"></div>
+      </div>
+      <div class="sc" id="L2" data-bg="#faf8f4">
+        <div class="tt"><span class="ln"><span>C'è un modo</span></span><span class="ln"><span style="color:#C6383A">più semplice.</span></span></div>
+        <div class="vis"></div>
+      </div>
+      <div class="sc" id="L3" data-bg="#faf8f4">
+        <div class="tt t3a"><div class="eb" style="color:#C6383A">01 · Pubblichi</div><span class="ln"><span>Gratis,</span></span><span class="ln"><span>senza</span></span><span class="ln"><span style="color:#C6383A">registrazione.</span></span></div>
+        <div class="tt t3b"><div class="eb" style="color:#C6383A">02 · Verifichi</div><span class="ln"><span>Contatti</span></span><span class="ln"><span>verificati</span></span><span class="ln"><span style="color:#C6383A">via SMS.</span></span></div>
+        <div class="vis"><div class="phone ph3"><div class="scr">
+          <div class="pg pa"><h4>Pubblica una richiesta</h4><div class="lbl">Di cosa hai bisogno?</div>
+            <div class="field"><span class="typed"></span><div class="ul"></div></div>
+            <div class="chips"><span class="chip c0">Idraulico</span><span class="chip">Elettricista</span><span class="chip">Imbianchino</span><span class="chip">Pulizie</span></div>
+            <div class="pbtn">Pubblica gratis</div></div>
+          <div class="pg pb"><h4>Verifica il numero</h4><div class="lbl">Codice SMS</div>
+            <div class="codes"><div></div><div></div><div></div><div></div></div>
+            <div style="display:flex;gap:14px;align-items:center"><svg width="60" height="60" viewBox="0 0 48 48" fill="none" stroke="#1b1e24" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l14 5v11c0 9-6 15-14 19-8-4-14-10-14-19V11z"/><path class="ck" d="M17 24l5 5 9-10" stroke="#FF5758" stroke-width="3.8" pathLength="1" stroke-dasharray="0 1"/></svg><span class="okt" style="font-weight:600;font-size:21px">Numero verificato</span></div></div>
+        </div></div></div>
+      </div>
+      <div class="sc" id="L4" data-bg="#FF5758">
+        <div class="tt"><div class="eb">03 · Ti contattano</div><span class="ln"><span>Fino a 3</span></span><span class="ln"><span>artigiani</span></span><span class="ln"><span>della tua zona.</span></span></div>
+        <div class="vis">
+          <div class="req" style="left:-200px;top:-240px;width:400px;background:#1b1e24;color:#faf8f4;border-radius:22px;padding:22px;text-align:center;font-size:23px;box-shadow:0 30px 40px -24px rgba(27,30,36,.6)">Idraulico · Rimini</div>
+          <div class="ac a1" style="left:-310px;top:40px;width:180px"><div class="av" style="margin:0 auto">MR</div><div style="font:600 19px/1.2 Geist;margin-top:10px">Marco R.</div><div style="font-size:15px;color:#6b6e75">4 km</div></div>
+          <div class="ac a2" style="left:-90px;top:40px;width:180px"><div class="av" style="margin:0 auto">LB</div><div style="font:600 19px/1.2 Geist;margin-top:10px">Luca B.</div><div style="font-size:15px;color:#6b6e75">7 km</div></div>
+          <div class="ac a3" style="left:130px;top:40px;width:180px"><div class="av" style="margin:0 auto">GT</div><div style="font:600 19px/1.2 Geist;margin-top:10px">Giulia T.</div><div style="font-size:15px;color:#6b6e75">9 km</div></div>
+          <div class="cnt" style="left:-200px;top:250px;width:400px;text-align:center;font:500 20px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase">Contatti sbloccati · 0/3</div>
+        </div>
+      </div>
+      <div class="sc" id="L5" data-bg="#faf8f4">
+        <div class="tt"><div class="eb" style="color:#C6383A">04 · Scegli tu</div><span class="ln"><span>Scegli</span></span><span class="ln"><span style="color:#C6383A">il migliore.</span></span></div>
+        <div class="vis"><div class="card c5" style="left:-270px;top:-170px;width:540px;grid-template-columns:84px 1fr auto;padding:26px"><div class="av" style="width:84px;height:84px;font-size:28px">MR</div><div><b style="font-size:28px">Marco R.</b><small style="font-size:19px">Idraulico · Rimini</small><span class="badge">Verificato</span></div>
+          <svg width="74" height="74" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19" stroke="#FF5758" stroke-width="3.4" class="cc" pathLength="1" stroke-dasharray="0 1" transform="rotate(-90 24 24)"/><path class="ck5" d="M15 24.5l6 6 12-12" stroke="#1b1e24" stroke-width="4" pathLength="1" stroke-dasharray="0 1"/></svg></div>
+          <div style="left:-200px;top:230px;width:400px;text-align:center;font:500 18px/1 'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#6b6e75">Recensione verificata</div>
+        </div>
+      </div>
+      <div class="sc" id="L6" data-bg="#1b1e24" style="color:#faf8f4">
+        <div class="tt"><div class="eb" style="color:#FF5758">Sei un artigiano?</div><span class="ln"><span>Richieste</span></span><span class="ln"><span>della tua zona.</span></span><span class="ln"><span style="color:#FF5758">Zero abbonamenti.</span></span></div>
+        <div class="vis">
+          <div class="card nt" style="left:-270px;top:20px;width:540px;color:#1b1e24;grid-template-columns:64px 1fr"><div class="av" style="background:#FF5758;color:#1b1e24">!</div><div><b>Nuova richiesta</b><small>Idraulico · Rimini · 4 km</small></div></div>
+          <div class="nt2" style="left:-270px;top:180px;width:540px;text-align:center;font-size:24px;color:rgba(250,248,244,.8)">Sblocchi solo i contatti che ti interessano.</div>
+        </div>
+      </div>
+      <div class="sc" id="L7" data-bg="#faf8f4">
+        <div class="vis">
+          <div class="tag" style="left:-470px;top:130px;width:940px;text-align:center;font:700 54px/1.12 Bricolage,sans-serif;letter-spacing:-0.02em">Artigiani e privati,<br>finalmente connessi.</div>
+          <div class="cta" style="left:-470px;top:310px;width:940px;text-align:center"><span class="btn">Pubblica gratis <svg class="arr" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></div>
+          <div class="url" style="left:-470px;top:470px;width:940px;text-align:center">manuvo.automa-ia.net</div>
+        </div>
+      </div>
+
+      <div id="edge" data-layout-ignore style="position:absolute;width:26px;height:26px;border-radius:50%;background:#FF5758;visibility:hidden;z-index:50"></div>
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { RoundedBoxGeometry } from "./vendor/three/addons/geometries/RoundedBoxGeometry.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { RoomEnvironment, RoundedBoxGeometry, SVGLoader };
+        PF.signal("three").resolve();
+      </script>
+      <!-- pf:audio -->
+      <audio id="pf-sfx-01-tick" src="assets/audio/sfx/tick.wav" data-start="0.2499" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-02-tick" src="assets/audio/sfx/tick.wav" data-start="0.7499" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-03-pop" src="assets/audio/sfx/pop.wav" data-start="0.9997" data-duration="0.0900" data-track-index="20" data-volume="0.25"></audio>
+      <audio id="pf-sfx-04-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="1.4265" data-duration="0.6000" data-track-index="20" data-volume="0.28"></audio>
+      <audio id="pf-sfx-05-tick" src="assets/audio/sfx/tick.wav" data-start="2.9999" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-06-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="3.4265" data-duration="0.6000" data-track-index="20" data-volume="0.28"></audio>
+      <audio id="pf-sfx-07-chime" src="assets/audio/sfx/chime.wav" data-start="3.9953" data-duration="1.4000" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-08-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="5.6765" data-duration="0.6000" data-track-index="20" data-volume="0.25"></audio>
+      <audio id="pf-sfx-09-pop" src="assets/audio/sfx/pop.wav" data-start="8.4997" data-duration="0.0900" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-10-click" src="assets/audio/sfx/click.wav" data-start="9.4992" data-duration="0.0300" data-track-index="20" data-volume="0.35"></audio>
+      <audio id="pf-sfx-11-ping" src="assets/audio/sfx/ping.wav" data-start="10.9976" data-duration="0.9000" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-12-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="11.4265" data-duration="0.6000" data-track-index="21" data-volume="0.28"></audio>
+      <audio id="pf-sfx-13-ping" src="assets/audio/sfx/ping.wav" data-start="12.4976" data-duration="0.9000" data-track-index="20" data-volume="0.25"></audio>
+      <audio id="pf-sfx-14-ping" src="assets/audio/sfx/ping.wav" data-start="12.9976" data-duration="0.9000" data-track-index="21" data-volume="0.25"></audio>
+      <audio id="pf-sfx-15-ping" src="assets/audio/sfx/ping.wav" data-start="13.4976" data-duration="0.9000" data-track-index="20" data-volume="0.25"></audio>
+      <audio id="pf-sfx-16-click" src="assets/audio/sfx/click.wav" data-start="16.4992" data-duration="0.0300" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-17-chime" src="assets/audio/sfx/chime.wav" data-start="16.9953" data-duration="1.4000" data-track-index="20" data-volume="0.25"></audio>
+      <audio id="pf-sfx-18-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="17.4265" data-duration="0.6000" data-track-index="21" data-volume="0.28"></audio>
+      <audio id="pf-sfx-19-ping" src="assets/audio/sfx/ping.wav" data-start="18.2476" data-duration="0.9000" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-20-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="19.4265" data-duration="0.6000" data-track-index="20" data-volume="0.28"></audio>
+      <audio id="pf-sfx-21-chime" src="assets/audio/sfx/chime.wav" data-start="19.9953" data-duration="1.4000" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-22-pop" src="assets/audio/sfx/pop.wav" data-start="21.9997" data-duration="0.0900" data-track-index="20" data-volume="0.3"></audio>
+      <!-- /pf:audio -->
+    </div>
+    <script>
+      const b = PF.grid(CUES.grid);
+      const $ = PF.$, $$ = PF.$$;
+      const W = CUES.width, H = CUES.height, PORTRAIT = H > W;
+      // Manuvo motion tokens (videos/motion-identity): avvita enter, via exit, click success, rotta routes.
+      const E = { avvita: PF.bezier(0.16, 1, 0.3, 1), via: PF.bezier(0.7, 0, 0.84, 0), click: PF.bezier(0.34, 1.4, 0.64, 1), rotta: PF.bezier(0.65, 0, 0.35, 1) };
+      const pr = (t, a, z) => PF.clamp01(z <= a ? (t >= a ? 1 : 0) : (t - a) / (z - a));
+      const lerp = PF.lerp, TAU = Math.PI * 2, DEG = Math.PI / 180;
+      const at = (c) => b(c[0], c[1] || 1, c[2] || 0);
+      const S = CUES.scenes.map((s) => ({ from: at(s.from), to: at(s.to) }));
+      const LAYERS = [
+        { s: [0, 0], tr: null }, { s: [1, 1], tr: "taglio" }, { s: [2, 2], tr: "sesto" }, { s: [3, 4], tr: "rotta" },
+        { s: [5, 5], tr: "sesto" }, { s: [6, 6], tr: "cut" }, { s: [7, 7], tr: "taglio" }, { s: [8, 8], tr: "sesto" },
+      ].map((l) => ({ ...l, from: S[l.s[0]].from, to: S[l.s[1]].to }));
+      const PRE = { taglio: 0.26, sesto: 0.24, rotta: 0.3, cut: 0 }, POST = { taglio: 0, sesto: 0.24, rotta: 0, cut: 0 };
+      const TYPED = "Perdita sotto il lavello";
+      const PX = 280; // one world unit = 280 px of the visual's local frame (DOM and 3D share the anchor)
+      let ST = [], G = [], ANCH = [];
+
+      /* ---------- layout: stacked in 9:16, side by side in 16:9 ---------- */
+      function layout() {
+        PF.css($("#root"), { width: W + "px", height: H + "px" });
+        document.documentElement.style.cssText = `width:${W}px;height:${H}px`;
+        document.body.style.cssText = `width:${W}px;height:${H}px`;
+        const T = PORTRAIT ? { left: 90, top: 290, size: 96 } : { left: 150, size: 92 };
+        const V = PORTRAIT ? { x: 520, y: 1160, s: 1.3 } : { x: 1400, y: 570, s: 1.2 };
+        $$(".tt").forEach((el) => {
+          PF.css(el, { left: T.left + "px", top: (PORTRAIT ? T.top : H / 2) + "px", transform: PORTRAIT ? "none" : "translateY(-50%)" });
+          $$(".ln", el).forEach((l) => PF.css(l, { fontSize: T.size + "px" }));
+        });
+        for (let i = 0; i < 8; i++) {
+          let a = { x: V.x, y: V.y, s: V.s };
+          if (i === 2) a = PORTRAIT ? { x: W / 2, y: 1180, s: 1.35 } : { x: V.x, y: 560, s: 1.2 };
+          if (i === 7) a = PORTRAIT ? { x: W / 2, y: 860, s: 1 } : { x: W / 2, y: 380, s: 0.86 };
+          ANCH[i] = a;
+          PF.css($("#L" + i + " .vis"), { left: a.x + "px", top: a.y + "px", transform: `scale(${a.s})` });
+        }
+      }
+
+      /* ---------- clay toolkit ---------- */
+      let T3, A3;
+      const MAT = {};
+      function mats() {
+        MAT.white = new T3.MeshPhysicalMaterial({ color: "#f6f3ee", roughness: 0.55, clearcoat: 0.25, clearcoatRoughness: 0.45, sheen: 0.5, sheenColor: new T3.Color("#ffffff") });
+        MAT.coral = new T3.MeshPhysicalMaterial({ color: "#FF5758", roughness: 0.42, clearcoat: 0.4, clearcoatRoughness: 0.3, sheen: 0.3, sheenColor: new T3.Color("#ffd2d2") });
+        MAT.ink = new T3.MeshPhysicalMaterial({ color: "#1b1e24", roughness: 0.4, clearcoat: 0.5 });
+        MAT.metal = new T3.MeshPhysicalMaterial({ color: "#d9d5ce", roughness: 0.25, metalness: 0.75 });
+        MAT.ghost = new T3.MeshPhysicalMaterial({ color: "#ffffff", roughness: 0.6, transparent: true, opacity: 0.82, sheen: 0.6, sheenColor: new T3.Color("#ffffff") });
+        MAT.face = new T3.MeshBasicMaterial({ color: "#FF5758", toneMapped: false });
+        const c = document.createElement("canvas"); c.width = c.height = 128;
+        const x = c.getContext("2d"), gr = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+        gr.addColorStop(0, "rgba(0,0,0,1)"); gr.addColorStop(0.55, "rgba(0,0,0,.45)"); gr.addColorStop(1, "rgba(0,0,0,0)");
+        x.fillStyle = gr; x.fillRect(0, 0, 128, 128);
+        MAT.blobTex = new T3.CanvasTexture(c);
+      }
+      const rb = (w, h, d, r, m) => new T3.Mesh(new A3.RoundedBoxGeometry(w, h, d, 5, r), m);
+      const mesh = (g, m) => new T3.Mesh(g, m);
+      const ext = (shape, depth, bevel) => { const g = new T3.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel * 0.8, bevelSegments: 4, curveSegments: 24 }); g.translate(0, 0, -depth / 2); return g; };
+      function blob(w, h, op) { const m = new T3.Mesh(new T3.PlaneGeometry(w, h), new T3.MeshBasicMaterial({ map: MAT.blobTex, transparent: true, opacity: op, depthWrite: false, toneMapped: false })); m.renderOrder = -1; return m; }
+      // A floating clay object: the group, plus a soft shadow on the wall behind it.
+      function prop(obj, sh = { w: 1.2, h: 0.5, op: 0.2 }) { const g = new T3.Group(), inner = new T3.Group(); inner.add(obj); g.add(inner); const s = blob(sh.w, sh.h, sh.op); s.position.set(0.12, -0.5, -0.9); g.add(s); g.userData = { inner, shadow: s }; return g; }
+
+      function wrench(m = MAT.coral) {
+        const g = new T3.Group();
+        const h = rb(1.4, 0.3, 0.2, 0.1, m); h.position.x = -0.55; g.add(h);
+        const R = 0.42, a0 = 0.55, s = new T3.Shape();
+        s.moveTo(R * Math.cos(a0), R * Math.sin(a0)); s.absarc(0, 0, R, a0, TAU - a0, false);
+        s.lineTo(0.04, -0.12); s.lineTo(0.04, 0.12); s.closePath();
+        const head = mesh(ext(s, 0.18, 0.04), m); head.position.x = 0.3; g.add(head);
+        return g;
+      }
+      function plug(body = MAT.white) {
+        const g = new T3.Group();
+        g.add(rb(0.62, 0.72, 0.46, 0.16, body));
+        [-0.13, 0.13].forEach((x) => { const p = mesh(new T3.CylinderGeometry(0.05, 0.05, 0.4, 20), MAT.metal); p.position.set(x, 0.52, 0); g.add(p); });
+        const cv = new T3.CatmullRomCurve3([new T3.Vector3(0, -0.36, 0), new T3.Vector3(0, -0.7, 0), new T3.Vector3(0.25, -0.95, 0.05), new T3.Vector3(0.65, -0.95, 0)]);
+        g.add(mesh(new T3.TubeGeometry(cv, 40, 0.06, 12, false), body));
+        return g;
+      }
+      function brush() {
+        const g = new T3.Group();
+        const hd = mesh(new T3.CapsuleGeometry(0.08, 0.85, 8, 16), MAT.white); hd.position.y = -0.55; g.add(hd);
+        const fe = mesh(new T3.CylinderGeometry(0.14, 0.14, 0.26, 28), MAT.metal); fe.position.y = 0.04; g.add(fe);
+        const br = rb(0.32, 0.42, 0.17, 0.06, MAT.coral); br.position.y = 0.38; g.add(br);
+        return g;
+      }
+      function pin(m = MAT.coral) {
+        const g = new T3.Group();
+        const s = mesh(new T3.SphereGeometry(0.3, 40, 28), m); s.position.y = 0.25; g.add(s);
+        const c = mesh(new T3.ConeGeometry(0.29, 0.62, 40), m); c.rotation.z = Math.PI; c.position.y = -0.16; g.add(c);
+        const h = mesh(new T3.SphereGeometry(0.11, 24, 16), m === MAT.white ? MAT.coral : MAT.white); h.position.set(0, 0.27, 0.23); g.add(h);
+        return g;
+      }
+      function bang() {
+        const g = new T3.Group();
+        g.add(rb(0.44, 0.44, 0.18, 0.12, MAT.coral));
+        const bar = rb(0.08, 0.17, 0.06, 0.03, MAT.white); bar.position.set(0, 0.05, 0.1); g.add(bar);
+        const dot = mesh(new T3.SphereGeometry(0.045, 16, 12), MAT.white); dot.position.set(0, -0.11, 0.1); g.add(dot);
+        return g;
+      }
+      function house() {
+        const g = new T3.Group();
+        g.add(rb(1.3, 1.0, 1.0, 0.1, MAT.white));
+        const rs = new T3.Shape(); rs.moveTo(-0.84, 0); rs.lineTo(0.84, 0); rs.lineTo(0, 0.64); rs.closePath();
+        const roof = mesh(ext(rs, 1.12, 0.05), MAT.coral); roof.position.y = 0.46; g.add(roof);
+        const door = rb(0.3, 0.5, 0.08, 0.06, MAT.coral); door.position.set(-0.22, -0.25, 0.5); g.add(door);
+        const win = rb(0.3, 0.28, 0.06, 0.06, MAT.ink); win.position.set(0.3, 0.1, 0.5); g.add(win);
+        const cv = new T3.CatmullRomCurve3([new T3.Vector3(0.6, -0.1, 0.15), new T3.Vector3(1.0, -0.1, 0.15), new T3.Vector3(1.22, -0.22, 0.15), new T3.Vector3(1.25, -0.48, 0.15)]);
+        g.add(mesh(new T3.TubeGeometry(cv, 40, 0.09, 14, false), MAT.white));
+        const tap = mesh(new T3.CylinderGeometry(0.13, 0.13, 0.12, 24), MAT.metal); tap.position.set(1.25, -0.52, 0.15); g.add(tap);
+        return g;
+      }
+      function drop() { const g = new T3.Group(); g.add(mesh(new T3.SphereGeometry(0.1, 24, 16), MAT.coral)); const c = mesh(new T3.ConeGeometry(0.087, 0.14, 24), MAT.coral); c.position.y = 0.1; g.add(c); return g; }
+      function phone3(tex) {
+        const g = new T3.Group();
+        g.add(rb(1.25, 2.5, 0.16, 0.17, MAT.white));
+        const scr = mesh(new T3.PlaneGeometry(1.08, 2.32), new T3.MeshBasicMaterial({ map: tex, toneMapped: false })); scr.position.z = 0.085; g.add(scr);
+        return g;
+      }
+      function ghost() {
+        const pts = [[0, 1], [0.2, 0.97], [0.34, 0.88], [0.43, 0.72], [0.46, 0.5], [0.46, -0.12], [0.4, -0.28], [0.3, -0.34], [0.2, -0.27], [0.1, -0.36], [0, -0.3]].map((p) => new T3.Vector3(p[0], p[1], 0));
+        const smooth = new T3.CatmullRomCurve3(pts).getPoints(60).map((v) => new T3.Vector2(Math.max(0, v.x), v.y));
+        const g = new T3.Group(); g.add(mesh(new T3.LatheGeometry(smooth, 64), MAT.ghost));
+        [-0.13, 0.13].forEach((x) => { const e = mesh(new T3.SphereGeometry(0.065, 16, 12), MAT.ink); e.position.set(x, 0.55, 0.4); g.add(e); });
+        return g;
+      }
+      function bell() {
+        const pts = [[0, 0.64], [0.1, 0.62], [0.18, 0.52], [0.24, 0.28], [0.28, 0.02], [0.36, -0.24], [0.48, -0.38], [0.51, -0.46], [0, -0.46]].map((p) => new T3.Vector2(p[0], p[1]));
+        const g = new T3.Group(), body = new T3.Group();
+        body.add(mesh(new T3.LatheGeometry(pts, 56), MAT.white));
+        const cl = mesh(new T3.SphereGeometry(0.11, 24, 16), MAT.coral); cl.position.y = -0.52; body.add(cl);
+        const loop = mesh(new T3.TorusGeometry(0.08, 0.03, 12, 32), MAT.white); loop.position.y = 0.7; body.add(loop);
+        g.add(body);
+        const hx = mesh(new T3.CylinderGeometry(0.2, 0.2, 0.12, 6), MAT.coral); hx.rotation.x = Math.PI / 2; const hg = new T3.Group(); hg.add(hx); hg.position.set(0.42, 0.5, 0.2); g.add(hg);
+        g.userData = { body, badge: hg };
+        return g;
+      }
+      function star() {
+        const s = new T3.Shape();
+        for (let i = 0; i < 10; i++) { const r = i % 2 ? 0.11 : 0.26, a = Math.PI / 2 + (i * Math.PI) / 5, x = r * Math.cos(a), y = r * Math.sin(a); if (i) s.lineTo(x, y); else s.moveTo(x, y); }
+        s.closePath();
+        return mesh(ext(s, 0.1, 0.03), MAT.coral);
+      }
+      function shield() {
+        const g = new T3.Group(), s = new T3.Shape();
+        s.moveTo(0, 0.52); s.lineTo(0.42, 0.38); s.quadraticCurveTo(0.45, -0.25, 0, -0.54); s.quadraticCurveTo(-0.45, -0.25, -0.42, 0.38); s.closePath();
+        g.add(mesh(ext(s, 0.14, 0.04), MAT.coral));
+        const cp = new T3.CurvePath(), P = (x, y) => new T3.Vector3(x, y, 0.13);
+        cp.add(new T3.LineCurve3(P(-0.18, 0.0), P(-0.04, -0.14))); cp.add(new T3.LineCurve3(P(-0.04, -0.14), P(0.2, 0.16)));
+        g.add(mesh(new T3.TubeGeometry(cp, 24, 0.045, 10, false), MAT.white));
+        return g;
+      }
+      function chat() {
+        const g = new T3.Group(); g.add(rb(0.82, 0.56, 0.2, 0.2, MAT.white));
+        const tl = mesh(new T3.ConeGeometry(0.1, 0.2, 16), MAT.white); tl.position.set(-0.22, -0.32, 0); tl.rotation.z = 0.5; g.add(tl);
+        [-0.2, 0, 0.2].forEach((x) => { const d = mesh(new T3.SphereGeometry(0.055, 16, 12), MAT.ink); d.position.set(x, 0, 0.11); g.add(d); });
+        return g;
+      }
+      // The Manuvo logo, extruded from manuvo/public/logo-horizontal.svg: the face keeps the exact coral, the sides are clay.
+      function logo3() {
+        const data = new A3.SVGLoader().parse(window.MANUVO_HLOGO_SVG), parts = [];
+        data.paths.forEach((p) => { const f = (p.userData.style.fill || "").replace(/\s/g, ""); if (f === "rgb(255,87,88)") parts.push(A3.SVGLoader.createShapes(p)); });
+        const geos = parts.map((sh) => { const g = new T3.ExtrudeGeometry(sh, { depth: 16, bevelEnabled: true, bevelThickness: 3, bevelSize: 2, bevelSegments: 3, curveSegments: 20 }); g.scale(1, -1, 1); return g; });
+        const box = new T3.Box3(); geos.forEach((g) => { g.computeBoundingBox(); box.union(g.boundingBox); });
+        const k = 3.3 / (box.max.x - box.min.x), cx = (box.min.x + box.max.x) / 2, cy = (box.min.y + box.max.y) / 2;
+        geos.forEach((g) => { g.translate(-cx, -cy, -8); g.scale(k, k, k); g.computeBoundingBox(); });
+        const mb = geos[0].boundingBox, mh = mb.max.y - mb.min.y;
+        const mc = new T3.Vector3((mb.min.x + mb.max.x) / 2, mb.min.y + 0.4641 * mh, 0); // the hexagon's true centre (its bottom vertex is cut by the jaw)
+        geos[0].translate(-mc.x, -mc.y, 0);
+        const mark = new T3.Group(); mark.add(new T3.Mesh(geos[0], [MAT.face, MAT.coral])); mark.position.copy(mc);
+        const word = new T3.Mesh(geos[1], [MAT.face, MAT.coral]);
+        const g = new T3.Group(); g.add(mark); g.add(word);
+        // dotted route and the bolt (the request) that enters the jaw
+        const seat = new T3.Vector3(mc.x, mb.min.y + ((86 - 48.8) / 161.8) * mh, 0.1), low = mb.min.y - 0.32;
+        const route = new T3.CatmullRomCurve3([new T3.Vector3(mc.x - 3.2, low, 0.1), new T3.Vector3(mc.x - 1.6, low, 0.1), new T3.Vector3(mc.x - 0.4, low, 0.1), new T3.Vector3(mc.x, low, 0.1)]);
+        const dots = []; for (let i = 0; i < 16; i++) { const d = mesh(new T3.SphereGeometry(0.035, 12, 8), MAT.ink); d.position.copy(route.getPointAt(i / 15)); g.add(d); dots.push(d); }
+        const bolt = mesh(new T3.SphereGeometry(0.1, 28, 20), MAT.ink); g.add(bolt);
+        const ring = mesh(new T3.TorusGeometry(1, 0.025, 12, 64), new T3.MeshBasicMaterial({ color: "#FF5758", toneMapped: false, transparent: true })); ring.position.copy(seat); g.add(ring);
+        g.userData = { mark, word, wordX: word.position.x, route, dots, bolt, ring, seat, low, markX: mc.x };
+        return g;
+      }
+
+      /* ---------- the 3D scenes, one per layer ---------- */
+      function scene(stage, bg) {
+        const s = stage.newScene(); s.environmentIntensity = 0.6;
+        s.add(new T3.HemisphereLight(0xffffff, new T3.Color(bg), 1.1));
+        const k = new T3.DirectionalLight(0xffffff, 1.7); k.position.set(-3, 5, 6); s.add(k);
+        const r = new T3.DirectionalLight(0xffffff, 0.6); r.position.set(4, 1, -2); s.add(r);
+        return s;
+      }
+      function screenTex(stage) {
+        return PF.three.canvasTexture(stage, 432, 928, (c, w, h) => {
+          c.fillStyle = "#14161b"; c.beginPath(); c.roundRect(0, 0, w, h, 48); c.fill();
+          c.textAlign = "center"; c.fillStyle = "rgba(250,248,244,.7)"; c.font = "500 26px Geist"; c.fillText("Chiamata terminata", w / 2, 150);
+          c.fillStyle = "#faf8f4"; c.font = "700 36px Geist"; c.fillText("+39 333 ••• ••••", w / 2, 210);
+          c.fillStyle = "#FF5758"; c.beginPath(); c.arc(w / 2, 400, 96, 0, TAU); c.fill();
+          c.fillStyle = "#1b1e24"; c.font = "800 110px Bricolage"; c.fillText("?", w / 2, 440);
+          c.fillStyle = "#FF5758"; c.font = "800 54px Bricolage"; c.fillText("NESSUNA", w / 2, 610); c.fillText("RISPOSTA", w / 2, 672);
+        });
+      }
+      const homeProps = (s, list, sh = 0.16) => list.map(([o, x, y, r, sc]) => { const g = prop(o, { w: 0.9, h: 0.4, op: sh }); g.scale.setScalar(sc); g.userData.home = [x, y, r]; s.add(g); return g; });
+      function build() {
+        const add = (i, bg, fn) => { const st = ST[i % 2], s = scene(st, bg); const o = fn(st, s) || {}; o.scene = s; o.stage = st; G[i] = o; };
+        add(0, "#faf8f4", (st, s) => {
+          const hs = prop(house(), { w: 3.0, h: 0.9, op: 0.22 }); s.add(hs);
+          const drops = [0, 1, 2].map(() => { const d = drop(); s.add(d); return d; });
+          const bangs = [[-1.3, 1.1], [1.4, 0.9], [-1.45, -0.6]].map(([x, y]) => { const g = prop(bang(), { w: 0.6, h: 0.3, op: 0.18 }); g.position.set(x, y, 0.4); s.add(g); return g; });
+          return { hs, drops, bangs };
+        });
+        add(1, "#1b1e24", (st, s) => {
+          const ph = prop(phone3(screenTex(st)), { w: 1.8, h: 1, op: 0 }); ph.position.set(-0.45, -0.05, 0); s.add(ph);
+          const gh = prop(ghost(), { w: 1, h: 0.4, op: 0 }); gh.position.set(0.95, 0.55, 0.3); gh.userData.inner.scale.setScalar(0.7); s.add(gh);
+          return { ph, gh };
+        });
+        add(2, "#faf8f4", (st, s) => {
+          const lg = logo3(); lg.scale.setScalar(0.62); s.add(lg);
+          const tools = homeProps(s, [[wrench(), -1.05, 0.95, 0.5, 0.5], [plug(MAT.coral), 1.1, 0.9, -0.4, 0.5], [brush(), 1.1, -0.95, 0.7, 0.5], [pin(), -1.05, -0.95, -0.2, 0.5]]);
+          return { lg, tools };
+        });
+        add(3, "#faf8f4", (st, s) => {
+          const tools = homeProps(s, [[wrench(), -1.2, PORTRAIT ? 0.85 : 1.2, 0.6, 0.55], [plug(MAT.coral), 1.2, 0.9, -0.35, 0.55], [brush(), -1.2, -0.95, -0.5, 0.55], [chat(), 1.2, -0.25, 0.15, 0.55], [pin(), 1.05, -1.3, 0.1, 0.55]]);
+          const sh = prop(shield(), { w: 0.9, h: 0.4, op: 0.18 }); sh.position.set(1.15, -0.3, 0.5); s.add(sh);
+          return { tools, sh };
+        });
+        add(4, "#FF5758", (st, s) => {
+          const rq = [0, (240 - 40) / PX, -0.2], tgt = [[-220, -40], [0, -40], [220, -40]].map(([x, y]) => [x / PX, y / PX, -0.2]);
+          const tubes = tgt.map((p) => PF.three.tube(st, [rq, [rq[0], (rq[1] + p[1]) / 2 + 0.1, -0.15], [p[0], (rq[1] + p[1]) / 2 - 0.1, -0.15], p], { radius: 0.035, segments: 160, material: MAT.white, scene: s }));
+          const pn = prop(pin(MAT.white), { w: 0.8, h: 0.3, op: 0.2 }); pn.position.set(1.2, 0.72, 0.2); pn.scale.setScalar(0.75); s.add(pn);
+          const tools = homeProps(s, [[wrench(MAT.white), -1.3, 0.72, 0.5, 0.5], [brush(), 1.3, -1.3, -0.6, 0.5]], 0.18);
+          return { tubes, pn, tools };
+        });
+        add(5, "#faf8f4", (st, s) => {
+          const stars = [0, 1, 2, 3, 4].map((i) => { const g = prop(star(), { w: 0.5, h: 0.25, op: 0.15 }); g.position.set((i - 2) * 0.4, -0.3, 0.2); g.userData.inner.scale.setScalar(0.62); s.add(g); return g; });
+          const sh = prop(shield(), { w: 0.9, h: 0.4, op: 0.16 }); sh.position.set(1.15, 1.05, 0.3); s.add(sh);
+          return { stars, sh };
+        });
+        add(6, "#1b1e24", (st, s) => {
+          const bl = bell(), g = prop(bl, { w: 1, h: 0.4, op: 0 }); g.position.set(0, 0.45, 0); s.add(g);
+          const tools = homeProps(s, [[wrench(), -1.2, 0.3, 0.4, 0.5], [plug(MAT.coral), 1.25, 0.4, -0.3, 0.5]], 0);
+          return { g, bl, tools };
+        });
+        add(7, "#faf8f4", (st, s) => { const lg = logo3(); lg.scale.setScalar(0.78); lg.position.y = 0.3; s.add(lg); return { lg }; });
+      }
+
+      function setup() {
+        layout();
+        T3 = window.THREE; A3 = window.THREE_ADDONS; mats();
+        // Move each layer into its slot: backgrounds under the canvas, content over it.
+        for (let i = 0; i < 8; i++) {
+          const sc = $("#L" + i), slot = $("#slot" + (i % 2));
+          const bg = document.createElement("div"); bg.className = "bg"; bg.id = "B" + i; bg.style.background = sc.getAttribute("data-bg");
+          $(".bgs", slot).appendChild(bg); $(".fgs", slot).appendChild(sc);
+        }
+        ST = [0, 1].map((k) => {
+          const st = PF.three.stage($("#gl" + k), { width: W, height: H, fov: 30, env: true, background: null, exposure: 1 });
+          st.renderer.toneMapping = T3.NeutralToneMapping; // soft clay highlights; brand swatches use unlit materials
+          return st;
+        });
+        build();
+        PF.debug({ grid: b, safe: CUES.safe });
+      }
+
+      /* ---------- shared motion ---------- */
+      function lines(scope, t, start, { out = Infinity, gap = 0.08 } = {}) {
+        $$(".ln > span", scope).forEach((s, i) => {
+          const u = E.avvita(pr(t, start + i * gap, start + 0.42 + i * gap)), o = E.via(pr(t, out, out + 0.2));
+          PF.css(s, { transform: `translateY(${(105 * (1 - u) - 105 * o).toFixed(2)}%)` });
+        });
+        const eb = $(".eb", scope);
+        if (eb) { const u = E.avvita(pr(t, start - 0.05, start + 0.35)), o = pr(t, out, out + 0.15); PF.css(eb, { opacity: (u * (1 - o)).toFixed(3), letterSpacing: lerp(0.4, 0.16, u).toFixed(3) + "em" }); }
+      }
+      // Camera for a layer: the world origin sits on the layer's visual anchor, a slow drift keeps it alive.
+      function camera(st, i, t, az = 0, el = 0) {
+        const a = ANCH[i], d = H / (2 * Math.tan(15 * DEG) * PX * a.s), cam = st.camera;
+        const A = (az + 4 * Math.sin(t * 0.35)) * DEG, Ee = (el + 2 * Math.sin(t * 0.27 + 1)) * DEG;
+        cam.position.set(d * Math.sin(A) * Math.cos(Ee), d * Math.sin(Ee), d * Math.cos(A) * Math.cos(Ee));
+        cam.lookAt(0, 0, 0);
+        cam.setViewOffset(W, H, W / 2 - a.x, H / 2 - a.y, W, H);
+      }
+      // Clay props float: a gentle bob and turn, each on its own phase.
+      function float(g, t, i, amp = 0.06) {
+        const ph = i * 1.7;
+        g.userData.inner.position.y = amp * Math.sin(t * 1.6 + ph);
+        g.userData.inner.rotation.y = 0.25 * Math.sin(t * 0.9 + ph);
+        g.userData.inner.rotation.x = 0.08 * Math.sin(t * 1.2 + ph);
+      }
+      // Props fly in from outside and settle home, a sixth of a turn on the way.
+      function settle(g, t, a0, i) {
+        const [x, y, r] = g.userData.home, u = E.avvita(pr(t, a0 + i * 0.08, a0 + 0.6 + i * 0.08)), n = Math.hypot(x, y) || 1;
+        g.position.set(x + (x / n) * 2.6 * (1 - u), y + (y / n) * 2.6 * (1 - u), 0);
+        g.rotation.z = r - 60 * DEG * (1 - u);
+        return u;
+      }
+      function signature3(o, t) {
+        const d = o.lg.userData, p = E.rotta(pr(t, 0, 0.52));
+        d.dots.forEach((dt, i) => { dt.visible = p >= i / 15 && t < 1.1; dt.scale.setScalar(Math.max(0.001, 1 - pr(t, 0.84, 1.1))); });
+        const pos = t < 0.52 ? d.route.getPointAt(p) : new T3.Vector3(d.markX, lerp(d.low, d.seat.y, E.avvita(pr(t, 0.52, 0.84))), 0.1);
+        d.bolt.position.copy(pos); d.bolt.scale.setScalar(Math.max(0.001, 1 - E.via(pr(t, 0.84, 0.98))));
+        d.mark.rotation.z = -60 * DEG * (1 - E.avvita(pr(t, 0.36, 0.84)));
+        d.mark.scale.setScalar(lerp(0.86, 1, E.avvita(pr(t, 0.16, 0.84))));
+        d.mark.visible = t >= 0.12;
+        const rg = pr(t, 0.84, 1.2); d.ring.visible = rg > 0 && rg < 1; d.ring.scale.setScalar(lerp(0.12, 0.7, E.avvita(rg))); d.ring.material.opacity = 0.8 * (1 - rg);
+        const w = E.avvita(pr(t, 1.0, 1.45));
+        d.word.position.x = d.wordX - 1.2 * (1 - w); d.word.visible = w > 0.001; d.word.scale.set(lerp(0.6, 1, w), 1, 1);
+      }
+      function hexClip(p) {
+        const cx = W / 2, cy = H / 2, R = (Math.hypot(W, H) / 2 / Math.cos(Math.PI / 6)) * 1.02 * p, rot = -60 * (1 - p), pts = [];
+        for (let i = 0; i < 6; i++) { const a = (90 + i * 60 + rot) * DEG; pts.push(`${(cx + R * Math.cos(a)).toFixed(1)}px ${(cy - R * Math.sin(a)).toFixed(1)}px`); }
+        return `polygon(${pts.join(",")})`;
+      }
+      function tagClip(p) { const off = (H * Math.tan(Math.PI / 6)) / 2, x = lerp(-off, W + off, p); return `polygon(0 0, ${(x + off).toFixed(1)}px 0, ${(x - off).toFixed(1)}px ${H}px, 0 ${H}px)`; }
+
+      /* ---------- per-layer motion (DOM + clay) ---------- */
+      const SCN = [];
+      SCN[0] = (t, o) => {
+        lines($("#L0"), t, b(1, 1, 0.5), { gap: b.beat });
+        camera(o.stage, 0, t, -18, 6);
+        const u = E.avvita(pr(t, 0, 0.5)), ry = -0.45 + 0.08 * Math.sin(t * 1.1);
+        o.hs.position.set(-0.35, -0.15 - 0.5 * (1 - u), 0); o.hs.rotation.y = ry; o.hs.scale.setScalar(lerp(0.85, 1, u));
+        const tx = -0.35 + 1.25 * Math.cos(ry) + 0.15 * Math.sin(ry), tz = -1.25 * Math.sin(ry) + 0.15 * Math.cos(ry);
+        o.drops.forEach((d, i) => { const ph = ((t + (i * b.beat) / 3) % b.beat) / b.beat; d.position.set(tx, -0.15 - 0.72 - 0.9 * E.via(ph), tz); d.visible = ph < 0.85 && t > 0.05; d.scale.setScalar(lerp(0.6, 1, pr(ph, 0, 0.2))); });
+        o.bangs.forEach((g, i) => { const a0 = b(1, 3) + i * 0.15; g.scale.setScalar(Math.max(0.001, E.click(pr(t, a0, a0 + 0.32)))); g.rotation.z = -60 * DEG * (1 - E.avvita(pr(t, a0, a0 + 0.48))); float(g, t, i, 0.04); });
+      };
+      SCN[1] = (t, o) => {
+        const L = S[1].from, u = E.avvita(pr(t, L, L + 0.45));
+        lines($("#L1"), t, L + 0.05, { gap: 0.25 });
+        camera(o.stage, 1, t, 10, 4);
+        const buzz = [b(2, 1), b(2, 2)].reduce((a, h) => a + (t >= h && t < h + 0.3 ? Math.sin((t - h) * 80) * 0.035 * (1 - (t - h) / 0.3) : 0), 0);
+        o.ph.position.set(-0.45 + buzz, -0.05 - 0.6 * (1 - u), 0); o.ph.rotation.set(-0.08, 0.28 + 0.05 * Math.sin(t), -0.12 + buzz * 2);
+        const g = pr(t, b(2, 3), b(2, 4, 0.5)), gu = E.avvita(pr(t, L + 0.2, L + 0.7));
+        o.gh.position.set(0.95 + 0.2 * Math.sin(t * 2), 0.55 + 0.35 * g + 0.06 * Math.sin(t * 3), 0.3); o.gh.scale.setScalar(Math.max(0.001, gu * (1 - 0.4 * g)));
+        MAT.ghost.opacity = 0.82 * (1 - 0.8 * g);
+        o.gh.rotation.z = 0.15 * Math.sin(t * 2.5);
+      };
+      SCN[2] = (t, o) => {
+        const L = S[2].from;
+        signature3(o, t - L); lines($("#L2"), t, b(3, 3));
+        camera(o.stage, 2, t, 0, 0);
+        o.tools.forEach((g, i) => { settle(g, t, L + 0.7, i); float(g, t, i); });
+      };
+      SCN[3] = (t, o) => {
+        const L = S[3].from, u = E.avvita(pr(t, L, L + 0.42)), swap = S[4].from, sc = $("#L3");
+        camera(o.stage, 3, t, 0, 0);
+        PF.css($(".ph3", sc), { transform: `translateY(${(140 * (1 - u)).toFixed(1)}px)`, opacity: u.toFixed(3) });
+        o.tools.forEach((g, i) => { settle(g, t, L + 0.15, i); float(g, t, i); });
+        const sv = E.click(pr(t, b(6, 3), b(6, 3, 0.6))); o.sh.scale.setScalar(Math.max(0.001, sv * 0.75)); o.sh.rotation.z = -60 * DEG * (1 - E.avvita(pr(t, b(6, 3), b(6, 3, 0.96)))); float(o.sh, t, 7);
+        o.tools[3].visible = t < b(6, 3); // the chat bubble makes room for the shield
+        lines($(".t3a", sc), t, b(4, 1, 0.5), { out: swap - 0.2, gap: b.beat / 2 });
+        lines($(".t3b", sc), t, swap + 0.05, { gap: b.beat / 2 });
+        PF.show($(".t3a", sc), t < swap + 0.05); PF.show($(".t3b", sc), t >= swap - 0.05);
+        const pa = $(".pa", sc), pb = $(".pb", sc), s2 = E.avvita(pr(t, swap, swap + 0.28));
+        PF.css(pa, { transform: `translateX(${(-100 * s2).toFixed(2)}%)` }); PF.css(pb, { transform: `translateX(${(100 * (1 - s2)).toFixed(2)}%)` });
+        $(".typed", pa).textContent = TYPED.slice(0, Math.floor(TYPED.length * pr(t, b(4, 3), b(5, 1, 0.5))));
+        PF.css($(".ul", pa), { transform: `scaleX(${E.avvita(pr(t, b(4, 2), b(4, 2, 0.5))).toFixed(4)})` });
+        const ch = $(".c0", pa), on = t >= b(5, 2);
+        PF.css(ch, { background: on ? "#FF5758" : "#fff", borderColor: on ? "#FF5758" : "#e6dfd4", transform: `scale(${on ? lerp(1.06, 1, E.click(pr(t, b(5, 2), b(5, 2, 0.6)))).toFixed(3) : 1})` });
+        PF.css($(".pbtn", pa), { transform: `scale(${t >= b(5, 4) && t < b(5, 4, 0.3) ? 0.96 : 1})` });
+        $$(".codes div", pb).forEach((c, i) => { const v = t >= b(6, 1, 0.6 + i * 0.4); c.textContent = v ? "7294"[i] : ""; PF.css(c, { borderColor: v ? "#FF5758" : "#e6dfd4" }); });
+        $(".ck", pb).setAttribute("stroke-dasharray", E.avvita(pr(t, b(6, 3), b(6, 3, 0.64))).toFixed(4) + " 1");
+        PF.css($(".okt", pb), { opacity: E.avvita(pr(t, b(6, 3, 0.4), b(6, 3, 0.9))).toFixed(3) });
+      };
+      SCN[4] = (t, o) => {
+        const L = S[5].from, sc = $("#L4");
+        lines(sc, t, L + 0.15, { gap: b.beat / 2 });
+        camera(o.stage, 4, t, 0, 0);
+        const rq = E.avvita(pr(t, L + 0.1, L + 0.5));
+        PF.css($(".req", sc), { opacity: rq.toFixed(3), transform: `translateY(${(16 * (1 - rq)).toFixed(1)}px)` });
+        o.tubes.forEach((tb, i) => tb.draw(E.rotta(pr(t, b(7, 2 + i) - 0.2, b(7, 2 + i) + 0.25))));
+        let n = 0;
+        [".a1", ".a2", ".a3"].forEach((c, i) => { const a0 = b(7, 2 + i, 0.5), v = E.avvita(pr(t, a0, a0 + 0.3)); PF.css($(c, sc), { opacity: v.toFixed(3), transform: `translateY(${(16 * (1 - v)).toFixed(1)}px) scale(${lerp(0.96, 1, v).toFixed(3)})` }); if (t >= a0 + 0.3) n++; });
+        const cnt = $(".cnt", sc); cnt.textContent = "Contatti sbloccati · " + n + "/3"; PF.css(cnt, { opacity: E.avvita(pr(t, b(7, 2), b(7, 3))).toFixed(3) });
+        const pu = E.avvita(pr(t, L + 0.2, L + 0.62)); o.pn.position.y = 0.72 + 0.6 * (1 - pu); o.pn.userData.inner.rotation.y = t * 1.4; o.pn.visible = pu > 0.01;
+        o.tools.forEach((g, i) => { settle(g, t, L + 0.3, i); float(g, t, i); });
+      };
+      SCN[5] = (t, o) => {
+        const L = S[6].from, sc = $("#L5");
+        lines(sc, t, L + 0.05, { gap: b.beat / 2 });
+        camera(o.stage, 5, t, 0, 0);
+        const c = E.avvita(pr(t, L, L + 0.36));
+        PF.css($(".c5", sc), { opacity: c.toFixed(3), transform: `scale(${lerp(1.04, 1, c).toFixed(3)})` });
+        $(".cc", sc).setAttribute("stroke-dasharray", E.avvita(pr(t, b(9, 2), b(9, 2, 0.96))).toFixed(4) + " 1");
+        $(".ck5", sc).setAttribute("stroke-dasharray", E.avvita(pr(t, b(9, 2, 0.6), b(9, 3))).toFixed(4) + " 1");
+        o.stars.forEach((g, i) => { const a0 = b(9, 3) + i * 0.09; g.scale.setScalar(Math.max(0.001, E.click(pr(t, a0, a0 + 0.32)))); g.rotation.z = -60 * DEG * (1 - E.avvita(pr(t, a0, a0 + 0.48))); float(g, t, i, 0.03); });
+        float(o.sh, t, 6); o.sh.scale.setScalar(Math.max(0.001, 0.7 * E.avvita(pr(t, L + 0.1, L + 0.5))));
+      };
+      SCN[6] = (t, o) => {
+        const L = S[7].from, sc = $("#L6"), h = b(10, 1, 0.5);
+        lines(sc, t, L + 0.1, { gap: b.beat / 2 });
+        camera(o.stage, 6, t, 0, 0);
+        let r = 0; [[0, 0.12, 14], [0.12, 0.24, -14], [0.24, 0.34, 8], [0.34, 0.44, 0]].forEach((k, i, arr) => { if (t >= h + k[0]) { const prev = i ? arr[i - 1][2] : 0; r = lerp(prev, k[2], E.rotta(pr(t, h + k[0], h + k[1]))); } });
+        const u = E.avvita(pr(t, L, L + 0.45));
+        o.g.position.y = 0.45 + 0.5 * (1 - u); o.g.scale.setScalar(Math.max(0.001, 0.8 * u)); o.bl.userData.body.rotation.z = r * DEG; o.g.userData.inner.rotation.y = 0.3 * Math.sin(t * 0.8);
+        const bu = E.avvita(pr(t, h + 0.2, h + 0.68)); o.bl.userData.badge.scale.setScalar(Math.max(0.001, E.click(pr(t, h + 0.2, h + 0.5)))); o.bl.userData.badge.rotation.z = -60 * DEG * (1 - bu);
+        o.tools.forEach((g, i) => { settle(g, t, L + 0.2, i); float(g, t, i); });
+        const nt = E.avvita(pr(t, h + 0.3, h + 0.6)); PF.css($(".nt", sc), { opacity: nt.toFixed(3), transform: `translateY(${(-24 * (1 - nt)).toFixed(1)}px)` });
+        PF.css($(".nt2", sc), { opacity: E.avvita(pr(t, b(10, 3), b(10, 4))).toFixed(3) });
+      };
+      SCN[7] = (t, o) => {
+        const L = S[8].from, sc = $("#L7");
+        signature3(o, t - L);
+        camera(o.stage, 7, t, 0, 0);
+        o.lg.rotation.y = 0.12 * Math.sin((t - L) * 0.9) * pr(t, L + 1.4, L + 2.4);
+        const tg = E.avvita(pr(t, b(11, 4), b(11, 4, 0.8))); PF.css($(".tag", sc), { opacity: tg.toFixed(3), transform: `translateY(${(12 * (1 - tg)).toFixed(1)}px)` });
+        const ca = E.avvita(pr(t, b(12, 1), b(12, 1, 0.48))); PF.css($(".cta", sc), { opacity: ca.toFixed(3), transform: `translateY(${(14 * (1 - ca)).toFixed(1)}px)` });
+        let n = 0; [[b(12, 3), b(12, 3, 0.4)], [b(12, 4), b(12, 4, 0.4)]].forEach((k) => { n += Math.sin(pr(t, k[0], k[1]) * Math.PI) * 6; });
+        PF.css($(".arr", sc), { transform: `translateX(${n.toFixed(2)}px)` });
+        PF.css($(".url", sc), { opacity: E.avvita(pr(t, b(12, 1, 0.5), b(12, 2, 0.5))).toFixed(3) });
+      };
+
+      /* ---------- the clock ---------- */
+      function draw(t) {
+        let edge = null, top = -1;
+        const live = LAYERS.map((L, i) => {
+          const next = LAYERS[i + 1], start = L.from - (L.tr ? PRE[L.tr] : 0), end = next ? next.from + POST[next.tr] : CUES.duration + 1;
+          return t >= start && t < end;
+        });
+        for (let k = 0; k < 2; k++) {
+          const idx = live.map((v, i) => (v && i % 2 === k ? i : -1)).filter((i) => i >= 0);
+          const slot = $("#slot" + k), i = idx.length ? idx[idx.length - 1] : -1;
+          PF.show(slot, i >= 0);
+          for (let j = k; j < 8; j += 2) { PF.show($("#B" + j), j === i); PF.show($("#L" + j), j === i); }
+          if (i < 0) continue;
+          if (i > top) top = i;
+          const L = LAYERS[i];
+          let clip = "none";
+          if (L.tr && t < L.from + POST[L.tr]) {
+            const p = pr(t, L.from - PRE[L.tr], L.from + POST[L.tr]);
+            if (L.tr === "sesto") clip = hexClip(E.avvita(p));
+            else if (L.tr === "taglio") clip = tagClip(E.rotta(p));
+            else if (L.tr === "rotta") { const q = E.rotta(p); clip = `inset(0 ${((1 - q) * 100).toFixed(2)}% 0 0)`; edge = q * W; }
+          }
+          PF.css(slot, { clipPath: clip });
+          const o = G[i]; o.stage.use(o.scene); SCN[i](t, o); o.stage.render();
+        }
+        for (let k = 0; k < 2; k++) PF.css($("#slot" + k), { zIndex: top >= 0 && top % 2 === k ? 2 : 1 });
+        const ed = $("#edge"); PF.show(ed, edge !== null && edge < W - 2);
+        if (edge !== null) PF.css(ed, { left: (edge - 13).toFixed(1) + "px", top: (H * (PORTRAIT ? 0.78 : 0.82)).toFixed(1) + "px" });
+      }
+
+      PF.film({
+        duration: CUES.duration,
+        setup,
+        draw,
+        waitFor: [PF.signal("three")],
+        register: (tl) => {
+          window.__timelines["main"] = tl;
+        },
+      });
+    </script>
+  </body>
+</html>
