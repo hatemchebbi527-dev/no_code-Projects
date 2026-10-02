@@ -14,6 +14,8 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 - Ending: the logo, then the CTA chosen for the phase. Phase 0 (warm-up): soft CTA only, "Presto a Rimini · @manuvo.it" (no "pubblica ora" until Twilio + Stripe Live). Site: `manuvo.automa-ia.net`.
 - Rule from SOCIAL.md: 1 video = 4 posts (TikTok, Reel IG, Reel FB, Story extract).
 
+- Music on presentation films: none in the file (the owner adds trending audio per platform); keep sound effects quiet.
+
 ## Chosen by Claude (the owner can overrule)
 - 2026-10-01: colour rhythm ink / cream / ink / coral (drop) / cream (lockup); HUD labels in Italian; red-900 `#C6383A` for coral text on cream (contrast), coral `#FF5758` for shapes and text on ink.
 - 2026-10-01: 10 bars (17.1 s) instead of 15 s so every line holds long enough to read.
@@ -22,6 +24,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 | Film | Type | Date | Owner's reaction, what changed |
 |---|---|---|---|
 | `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft); final v1 (2026-10-01): 60 fps, blur 2, 17.15 s, -14.7 LUFS, `out/manuvo-teaser-phase0/v1/` (+ `-social.mp4` at 11 Mbps, 23 MB) |
+| `presentazione-9x16` / `presentazione-16x9` | Product presentation (both audiences, CTA Pubblica gratis) | 2026-10-02 | v1 flat 2D → owner: "more creative" → clay 3D (carousel style); owner: "remove the music, I add it on the platforms" (sfx kept) |
 
 ## Assets on file (reusable across films)
 | Asset | Path | Notes |

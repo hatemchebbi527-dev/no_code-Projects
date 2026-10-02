@@ -10,7 +10,7 @@ window.CUES = {
   height: 1920,
   duration: 24,
   grid: { bpm: 120, firstBeat: 0, pickupBeats: 0, beatsPerBar: 4 }, // assets/audio/bed.grid.json (exact)
-  music: { src: "assets/audio/bed.wav", volume: 0.85, license: "generated with synth.py (royalty-free, ours)" },
+  music: null, // no bed: the owner adds music on each platform (sfx only)
   sfx: { dir: "assets/audio/sfx", peaks: "assets/audio/sfx/peaks.json" },
   safe: { top: 250, bottom: 420, left: 60, right: 120 }, // 9:16 social,
   scenes: [
