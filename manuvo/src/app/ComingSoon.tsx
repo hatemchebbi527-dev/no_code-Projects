@@ -39,7 +39,7 @@ const S: Record<Locale, Strings> = {
     success: "Ci sei! Ti avviseremo appena Manuvo apre a Rimini. 🎉",
     invalid: "Inserisci un'email valida.",
     generic: "Qualcosa è andato storto. Riprova.",
-    follow: "Seguici @manuvo.it",
+    follow: "Seguici",
   },
   fr: {
     badge: "Bientôt à Rimini",
@@ -51,7 +51,7 @@ const S: Record<Locale, Strings> = {
     success: "C'est bon ! On te préviendra dès l'ouverture de Manuvo à Rimini. 🎉",
     invalid: "Saisis une adresse email valide.",
     generic: "Une erreur est survenue. Réessaie.",
-    follow: "Suis-nous @manuvo.it",
+    follow: "Suis-nous",
   },
   en: {
     badge: "Coming soon to Rimini",
@@ -63,7 +63,7 @@ const S: Record<Locale, Strings> = {
     success: "You're in! We'll let you know as soon as Manuvo opens in Rimini. 🎉",
     invalid: "Enter a valid email.",
     generic: "Something went wrong. Try again.",
-    follow: "Follow us @manuvo.it",
+    follow: "Follow us",
   },
   de: {
     badge: "Demnächst in Rimini",
@@ -75,7 +75,7 @@ const S: Record<Locale, Strings> = {
     success: "Geschafft! Wir melden uns, sobald Manuvo in Rimini startet. 🎉",
     invalid: "Gib eine gültige E-Mail ein.",
     generic: "Etwas ist schiefgelaufen. Versuch es erneut.",
-    follow: "Folge uns @manuvo.it",
+    follow: "Folge uns",
   },
   ar: {
     badge: "قريباً في ريميني",
@@ -87,7 +87,7 @@ const S: Record<Locale, Strings> = {
     success: "تم! سنعلمك فور انطلاق Manuvo في ريميني. 🎉",
     invalid: "أدخل بريداً إلكترونياً صحيحاً.",
     generic: "حدث خطأ ما. حاول مجدداً.",
-    follow: "تابعنا @manuvo.it",
+    follow: "تابعنا",
   },
 };
 
