@@ -224,6 +224,16 @@ model CreditTransaction {
   @@index([userId])
 }
 
+// Liste d'attente (mode « coming soon » avant le lancement officiel).
+model Waitlist {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  lang      String   @default("it")
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
 // Packs de recharge proposes aux artisans.
 model CreditPack {
   id           String   @id @default(cuid())
