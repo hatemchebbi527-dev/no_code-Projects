@@ -15,6 +15,16 @@ export const authConfig = {
       const role = auth?.user?.role;
       const path = nextUrl.pathname;
 
+      // Mode « coming soon » (pre-lancement) : les parcours publics
+      // (publier, familles de metiers, inscription artisan) renvoient vers
+      // l'accueil, qui affiche la capture d'email. /login et /admin restent ouverts.
+      if (
+        process.env.COMING_SOON === "1" &&
+        (path.startsWith("/pubblica") || path.startsWith("/categorie") || path === "/signup")
+      ) {
+        return Response.redirect(new URL("/", nextUrl));
+      }
+
       if (path.startsWith("/admin")) {
         if (!isLoggedIn) return false; // -> page de login
         if (role !== "ADMIN") return Response.redirect(new URL("/dashboard", nextUrl));
