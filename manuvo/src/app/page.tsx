@@ -12,6 +12,8 @@ import { CATEGORY_PHOTO } from "@/lib/category-photos";
 import { FAMILY_PHOTO } from "@/lib/family-photos";
 import { HOW_PHOTO } from "@/lib/how-photos";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
+import { COMING_SOON } from "@/lib/waitlist";
+import { ComingSoon } from "./ComingSoon";
 
 const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
 
@@ -218,6 +220,15 @@ const FAQ_STRINGS: Record<Locale, FaqContent> = {
 };
 
 export default async function Home() {
+  const localeRaw0 = await getLocale();
+  const locale0 = (LOCALES as readonly string[]).includes(localeRaw0)
+    ? (localeRaw0 as Locale)
+    : "it";
+  // Mode « coming soon » (pre-lancement) : page de capture d'email au lieu de la landing.
+  if (COMING_SOON) {
+    return <ComingSoon locale={locale0} />;
+  }
+
   const t = await getTranslations("home");
   const tl = await getTranslations("landing");
   const localeRaw = await getLocale();
