@@ -4,7 +4,9 @@
 import { useActionState } from "react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type { Locale } from "@/lib/constants";
-import { joinWaitlist, type WaitState } from "./waitlist-actions";
+import { joinWaitlist } from "./waitlist-actions";
+
+type WaitState = { ok?: boolean; error?: string } | undefined;
 
 type Strings = {
   badge: string;
