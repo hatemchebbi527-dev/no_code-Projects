@@ -27,7 +27,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 |---|---|---|---|
 | `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft); final v1 (2026-10-01): 60 fps, blur 2, 17.15 s, -14.7 LUFS, `out/manuvo-teaser-phase0/v1/` (+ `-social.mp4` at 11 Mbps, 23 MB) |
 | `presentazione-9x16` / `presentazione-16x9` | Product presentation (both audiences, CTA Pubblica gratis) | 2026-10-02 | v1 flat 2D → owner: "more creative" → clay 3D (carousel style); owner: "remove the music, I add it on the platforms" (sfx kept) |
-| `problema-n1` | Problem / solution teaser (pillar trust: SMS verification vs fake contacts), owner's brief | 2026-10-04 | v1: 144 BPM trap bed, 12 bars = 20.0 s; delivered with music + sfx-only copy |
+| `problema-n1` | Problem / solution teaser (pillar trust: SMS verification vs fake contacts), owner's brief | 2026-10-04 | final v1 (2026-10-04): 60 fps, blur 2, 20.0 s, -13.8 LUFS, colours verified exact (grain in overlay); `out/manuvo-problema-n1/v1/`: master, `-social` (10 Mbps), `-sfx-only` (+ social), `-story-6s` (14 to 20 s), poster (hook) |
 
 ## Assets on file (reusable across films)
 | Asset | Path | Notes |
