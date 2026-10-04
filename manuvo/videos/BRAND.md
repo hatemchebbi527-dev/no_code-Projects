@@ -15,6 +15,8 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 - Rule from SOCIAL.md: 1 video = 4 posts (TikTok, Reel IG, Reel FB, Story extract).
 
 - Music on presentation films: none in the file (the owner adds trending audio per platform); keep sound effects quiet.
+- Music on short warm-up films written by the owner (brief "Il problema n°1", 2026-10-04): hip-hop / punchy beat, cut every 2 beats, no voice, every line burned in (4 to 6 words per shot). Deliver also an sfx-only copy so trending audio can be used instead.
+- Logo on coral: reversed cream, as the app does on coral (`ComingSoon.tsx`: `brightness-0 invert`).
 
 ## Chosen by Claude (the owner can overrule)
 - 2026-10-01: colour rhythm ink / cream / ink / coral (drop) / cream (lockup); HUD labels in Italian; red-900 `#C6383A` for coral text on cream (contrast), coral `#FF5758` for shapes and text on ink.
@@ -25,6 +27,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 |---|---|---|---|
 | `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft); final v1 (2026-10-01): 60 fps, blur 2, 17.15 s, -14.7 LUFS, `out/manuvo-teaser-phase0/v1/` (+ `-social.mp4` at 11 Mbps, 23 MB) |
 | `presentazione-9x16` / `presentazione-16x9` | Product presentation (both audiences, CTA Pubblica gratis) | 2026-10-02 | v1 flat 2D → owner: "more creative" → clay 3D (carousel style); owner: "remove the music, I add it on the platforms" (sfx kept) |
+| `problema-n1` | Problem / solution teaser (pillar trust: SMS verification vs fake contacts), owner's brief | 2026-10-04 | v1: 144 BPM trap bed, 12 bars = 20.0 s; delivered with music + sfx-only copy |
 
 ## Assets on file (reusable across films)
 | Asset | Path | Notes |
@@ -72,4 +75,5 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 - Skill: `.claude/skills/brand-motion-design/` (setup, synth, place-audio, beat-sheet, stills, render, verify).
 - Renders in `out/` (gitignored), review stills in `review/` (gitignored).
 - Trap found: with the bloom composer, `material.toneMapped = false` is ignored (the OutputPass tone-maps the whole frame). Use `renderer.toneMapping = NoToneMapping` so cream and coral stay exact.
+- Trap found: a lit glossy prism on cream or ink reads grey or pink (env + specular). Caps as unlit exact swatches, sides glossy (the logo recipe). The film now blends the grain with `mix-blend-mode: overlay`.
 - Trap found: the grain canvas (normal blend, mid-grey, 4 to 6 % opacity) pulls every colour toward grey by 4 to 10 levels (coral #FF5758 decodes about 245,88,90; cream about 245,241,238). For exact swatches, blend the grain with `mix-blend-mode: overlay` or lower it.
