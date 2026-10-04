@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Manuvo · Il problema n°1</title>
+    <!-- Vendored runtimes: nothing loads from the network at render time. -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/words.js"></script>
+    <script src="kit/draw.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage Grotesque for titles, Geist for UI, Geist Mono for the HUD. */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Noto Color Emoji"; src: local("Noto Color Emoji"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1e24; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1e24; color: #faf8f4; font-family: "Geist", sans-serif; }
+      .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      #cam { position: absolute; inset: 0; }
+      /* Giant slammed lines: the Manuvo display face, 800, uppercase, tight. */
+      .head { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Bricolage", sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.025em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .emoji { font-family: "Noto Color Emoji", sans-serif; }
+      .handle { font-family: "Geist", sans-serif; font-weight: 700; text-transform: none; letter-spacing: -0.01em; }
+      #ring { position: absolute; border-radius: 50%; border: 6px solid #faf8f4; visibility: hidden; }
+      /* Viewfinder reticle that tracks the phone in 02 Problema. */
+      #reticle { position: absolute; visibility: hidden; color: #1b1e24; }
+      #reticle i { position: absolute; width: 56px; height: 56px; border: 0 solid currentColor; }
+      #reticle .a { left: 0; top: 0; border-top-width: 6px; border-left-width: 6px; }
+      #reticle .b { right: 0; top: 0; border-top-width: 6px; border-right-width: 6px; }
+      #reticle .c { left: 0; bottom: 0; border-bottom-width: 6px; border-left-width: 6px; }
+      #reticle .d { right: 0; bottom: 0; border-bottom-width: 6px; border-right-width: 6px; }
+      #reticle span { position: absolute; left: 0; right: 0; top: -58px; text-align: center; font: 600 30px/1 "Geist Mono", monospace; letter-spacing: 0.12em; white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      <!-- Layers, bottom to top: camera wrapper (3D canvas, shockwave, reticle, words) > wipes > vignette and grain > HUD. -->
+      <div id="cam">
+        <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
+        <div id="ring" data-layout-ignore></div>
+        <div id="reticle" data-layout-ignore><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><span>Numero non verificato</span></div>
+        <div id="words" class="full">
+          <!-- 01 Hook (ink) -->
+          <div id="w1a" class="head" style="top:300px;font-size:132px;color:#faf8f4">Il problema</div>
+          <div id="w1b" class="head" style="top:446px;font-size:330px;color:#FF5758">N°1</div>
+          <div id="w1c" class="head" style="top:808px;font-size:112px;color:#faf8f4">quando cerchi</div>
+          <div id="w1d" class="head" style="top:932px;font-size:112px;color:#faf8f4">un artigiano?</div>
+          <!-- 02 Problema (coral) -->
+          <div id="w2a" class="head" style="top:300px;font-size:170px;color:#1b1e24">Numeri</div>
+          <div id="w2b" class="head" style="top:478px;font-size:170px;color:#1b1e24">falsi.</div>
+          <div id="w2c" class="head" style="top:300px;font-size:170px;color:#1b1e24">Nessuna</div>
+          <div id="w2d" class="head" style="top:478px;font-size:170px;color:#1b1e24">risposta.</div>
+          <div id="w2e" class="head" style="top:300px;font-size:170px;color:#1b1e24">Preventivi</div>
+          <div id="w2f" class="head" style="top:478px;font-size:170px;color:#faf8f4">fantasma.</div>
+          <!-- 03 Basta (ink) -->
+          <div id="w3a" class="head" style="top:800px;font-size:300px;color:#faf8f4">Basta.</div>
+          <!-- 04 Soluzione (coral) -->
+          <div id="w4a" class="head" style="top:290px;font-size:96px;color:#faf8f4">Su Manuvo</div>
+          <div id="w4b" class="head" style="top:396px;font-size:120px;color:#1b1e24">ogni cliente</div>
+          <div id="w4c" class="head" style="top:522px;font-size:120px;color:#1b1e24">verifica il numero</div>
+          <div id="w4d" class="head" style="top:648px;font-size:120px;color:#1b1e24">via SMS.</div>
+          <div id="w4e" class="head" style="top:330px;font-size:150px;color:#1b1e24">Un numero falso</div>
+          <div id="w4f" class="head" style="top:490px;font-size:170px;color:#faf8f4">non passa.</div>
+          <!-- 05 Beneficio (cream, then ink) -->
+          <div id="w5a" class="head" style="top:330px;font-size:190px;color:#1b1e24">Meno</div>
+          <div id="w5b" class="head" style="top:530px;font-size:190px;color:#C6383A">perditempo.</div>
+          <div id="w5c" class="head" style="top:330px;font-size:190px;color:#faf8f4">Più lavoro</div>
+          <div id="w5d" class="head" style="top:530px;font-size:190px;color:#FF5758">vero.</div>
+          <!-- 06 Manuvo (coral) -->
+          <div id="w6a" class="head" style="top:1190px;font-size:100px;color:#1b1e24">Presto a Rimini</div>
+          <div id="w6b" class="head" style="top:1322px;font-size:64px;color:#1b1e24">Seguici <span class="emoji">👉</span> <span class="handle" style="color:#faf8f4;background:#1b1e24;border-radius:999px;padding:4px 26px 10px">@manuvo.it</span></div>
+        </div>
+      </div>
+      <div id="wipe" class="full" data-layout-ignore style="visibility:hidden"></div>
+      <div id="vignette" class="full" data-layout-ignore></div>
+      <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%;mix-blend-mode:overlay"></canvas>
+      <div id="hud-layer" class="full" data-layout-ignore></div>
+      <!-- Three.js and add-ons are ES modules: they hand themselves to the kit, then the film starts. -->
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "./vendor/three/addons/postprocessing/EffectComposer.js";
+        import { RenderPass } from "./vendor/three/addons/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "./vendor/three/addons/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "./vendor/three/addons/postprocessing/OutputPass.js";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { RoundedBoxGeometry } from "./vendor/three/addons/geometries/RoundedBoxGeometry.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        import { MeshSurfaceSampler } from "./vendor/three/addons/math/MeshSurfaceSampler.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment, RoundedBoxGeometry, SVGLoader, MeshSurfaceSampler };
+        PF.signal("three").resolve();
+      </script>
+      <!-- pf:audio -->
+      <audio id="pf-music" data-timeline-role="music" src="assets/audio/bed.wav" data-start="0" data-duration="20" data-track-index="20" data-volume="0.9"></audio>
+      <audio id="pf-sfx-01-thud" src="assets/audio/sfx/thud.wav" data-start="0.0000" data-duration="0.4000" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-02-tick" src="assets/audio/sfx/tick.wav" data-start="0.4166" data-duration="0.0500" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-03-click" src="assets/audio/sfx/click.wav" data-start="1.2492" data-duration="0.0300" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-04-tick" src="assets/audio/sfx/tick.wav" data-start="1.6666" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-05-tick" src="assets/audio/sfx/tick.wav" data-start="2.0832" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-06-click" src="assets/audio/sfx/click.wav" data-start="2.9159" data-duration="0.0300" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-07-thud" src="assets/audio/sfx/thud.wav" data-start="3.3310" data-duration="0.4000" data-track-index="21" data-volume="0.4"></audio>
+      <audio id="pf-sfx-08-ping" src="assets/audio/sfx/ping.wav" data-start="4.5809" data-duration="0.9000" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-09-ping" src="assets/audio/sfx/ping.wav" data-start="4.9976" data-duration="0.9000" data-track-index="22" data-volume="0.25"></audio>
+      <audio id="pf-sfx-10-click" src="assets/audio/sfx/click.wav" data-start="5.4159" data-duration="0.0300" data-track-index="23" data-volume="0.3"></audio>
+      <audio id="pf-sfx-11-tick" src="assets/audio/sfx/tick.wav" data-start="5.8332" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-12-click" src="assets/audio/sfx/click.wav" data-start="6.2492" data-duration="0.0300" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-13-thud" src="assets/audio/sfx/thud.wav" data-start="6.6644" data-duration="0.4000" data-track-index="21" data-volume="0.45"></audio>
+      <audio id="pf-sfx-14-thud" src="assets/audio/sfx/thud.wav" data-start="7.0810" data-duration="0.4000" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-15-thud" src="assets/audio/sfx/thud.wav" data-start="7.4977" data-duration="0.4000" data-track-index="21" data-volume="0.5"></audio>
+      <audio id="pf-sfx-16-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="8.0098" data-duration="0.6000" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-17-ping" src="assets/audio/sfx/ping.wav" data-start="8.7476" data-duration="0.9000" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-18-tick" src="assets/audio/sfx/tick.wav" data-start="9.5832" data-duration="0.0500" data-track-index="22" data-volume="0.25"></audio>
+      <audio id="pf-sfx-19-tick" src="assets/audio/sfx/tick.wav" data-start="9.9999" data-duration="0.0500" data-track-index="21" data-volume="0.25"></audio>
+      <audio id="pf-sfx-20-chime" src="assets/audio/sfx/chime.wav" data-start="10.8286" data-duration="1.4000" data-track-index="21" data-volume="0.4"></audio>
+      <audio id="pf-sfx-21-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="11.3432" data-duration="0.6000" data-track-index="22" data-volume="0.25"></audio>
+      <audio id="pf-sfx-22-thud" src="assets/audio/sfx/thud.wav" data-start="12.0810" data-duration="0.4000" data-track-index="22" data-volume="0.4"></audio>
+      <audio id="pf-sfx-23-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="12.8015" data-duration="0.6000" data-track-index="21" data-volume="0.25"></audio>
+      <audio id="pf-sfx-24-tick" src="assets/audio/sfx/tick.wav" data-start="13.3332" data-duration="0.0500" data-track-index="22" data-volume="0.3"></audio>
+      <audio id="pf-sfx-25-tick" src="assets/audio/sfx/tick.wav" data-start="13.7499" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-26-thud" src="assets/audio/sfx/thud.wav" data-start="14.9977" data-duration="0.4000" data-track-index="21" data-volume="0.35"></audio>
+      <audio id="pf-sfx-27-tick" src="assets/audio/sfx/tick.wav" data-start="15.4166" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-28-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="16.1348" data-duration="0.6000" data-track-index="21" data-volume="0.25"></audio>
+      <audio id="pf-sfx-29-chime" src="assets/audio/sfx/chime.wav" data-start="17.4953" data-duration="1.4000" data-track-index="21" data-volume="0.4"></audio>
+      <audio id="pf-sfx-30-tick" src="assets/audio/sfx/tick.wav" data-start="17.9166" data-duration="0.0500" data-track-index="22" data-volume="0.3"></audio>
+      <audio id="pf-sfx-31-pop" src="assets/audio/sfx/pop.wav" data-start="18.3330" data-duration="0.0900" data-track-index="22" data-volume="0.3"></audio>
+      <!-- /pf:audio -->
+    </div>
+    <script>
+      const b = PF.grid(CUES.grid);
+      const $ = PF.$;
+      const W = CUES.width, H = CUES.height;
+      // Manuvo palette (manuvo/src/app/globals.css). Coral is the one highlight; red-900 for coral text on cream (contrast).
+      // green-700 / green-50: the app's own "Verificato" chip (src/app/pubblica/LeadForm.tsx), used only for that state.
+      const C = { cream: "#faf8f4", ink: "#1b1e24", coral: "#FF5758", coralText: "#C6383A", deep: "#6E1618", green: "#15803d", greenBg: "#f0fdf4", line: "#e5e5e5" };
+      const at = (c) => b(c[0], c[1] || 1, c[2] || 0);
+      const SC = CUES.scenes.map((s) => ({ name: s.name, from: at(s.from), to: at(s.to) }));
+      // Avvita (enter) and click (success) from the Manuvo motion identity.
+      const AVVITA = PF.ease("cubic-bezier(.16,1,.3,1)"), CLICK = PF.ease("cubic-bezier(.34,1.4,.64,1)");
+      const BASTA = b(5, 3);
+      const BENE2 = b(10, 1);
+      let st, hud, S = {};
+
+      /* ---------- helpers ---------- */
+      function sceneAt(t) { let k = 0; SC.forEach((s, i) => { if (t >= s.from) k = i; }); return k; }
+      // A slammed line: lands at `on`, leaves (quick blur) at `off`.
+      function slam(id, t, on, off, from = 1.3) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.12;
+        PF.show(el, live);
+        if (!live) return;
+        const s = PF.slam(t, on, { from, length: 0.2, blur: 16 });
+        const leave = PF.clamp01((t - off) / 0.12);
+        PF.css(el, {
+          transform: `scale(${(s.scale * (1 + leave * 0.08)).toFixed(4)})`,
+          opacity: (s.opacity * (1 - leave)).toFixed(3),
+          filter: s.blur + leave * 14 > 0.05 ? `blur(${(s.blur + leave * 14).toFixed(2)}px)` : "none",
+        });
+      }
+      // Light glitch: a few frames of RGB split and jitter after each hit (hash of the frame, no randomness).
+      const GLITCH = [[1, 2], [1, 4], [2, 4], [3, 1], [3, 4], [4, 3], [4, 4], [5, 1], [5, 3]].map(at);
+      function glitch(t) {
+        let a = 0;
+        for (const g of GLITCH) { const d = t - g; if (d >= 0 && d < 0.13) a = Math.max(a, 1 - d / 0.13); }
+        if (!a) return { a: 0, x: 0, sk: 0 };
+        const f = Math.floor(t * 30), h = (n) => { const s = Math.sin(f * 12.9898 + n * 78.233) * 43758.5453; return s - Math.floor(s) - 0.5; };
+        return { a, x: h(1) * 34 * a, sk: h(2) * 6 * a };
+      }
+      function scene(bg, far = 34) {
+        const THREE = st.THREE, s = st.newScene();
+        s.background = new THREE.Color(bg);
+        s.fog = new THREE.Fog(bg, 9, far);
+        s.environmentIntensity = 0.55;
+        PF.three.lights(st, { scene: s, ground: bg, fill: 0.5, key: 1.6, keyPos: [-4, 8, 6] });
+        return s;
+      }
+      function unlit(mesh) { mesh.material.toneMapped = false; return mesh; }
+      // Shrink a line until it fits the safe width (measured after fonts load).
+      function fit(el, max = 880) {
+        PF.show(el, true);
+        const r = document.createRange(); r.selectNodeContents(el);
+        const w = r.getBoundingClientRect().width;
+        if (w > max) el.style.fontSize = (parseFloat(el.style.fontSize) * max / w).toFixed(1) + "px";
+        PF.show(el, false);
+      }
+      function contactTex(fake) {
+        return PF.three.canvasTexture(st, 640, 240, (c, w, h) => {
+          c.fillStyle = C.cream; c.beginPath(); c.roundRect(0, 0, w, h, 36); c.fill();
+          c.fillStyle = "rgba(27,30,36,.12)"; c.beginPath(); c.arc(110, h / 2, 62, 0, Math.PI * 2); c.fill();
+          c.fillStyle = C.ink; c.font = "800 70px Bricolage"; c.textAlign = "center"; c.fillText("?", 110, h / 2 + 25);
+          c.textAlign = "left"; c.font = "700 46px Geist"; c.fillText(fake ? "+39 000 000 0000" : "+39 3•• ••• ••••", 200, 112);
+          c.fillStyle = "rgba(27,30,36,.5)"; c.font = "500 32px Geist"; c.fillText(fake ? "numero falso" : "artigiano?", 200, 166);
+          if (fake) { c.strokeStyle = C.coral; c.lineWidth = 10; c.beginPath(); c.moveTo(190, 98); c.lineTo(600, 98); c.stroke(); }
+        });
+      }
+
+      /* ---------- setup ---------- */
+      function setup() {
+        document.querySelectorAll(".head").forEach((el) => fit(el));
+        hud = PF.hud($("#hud-layer"), { size: 22, font: "'Geist Mono', monospace", top: CUES.safe.top - 60, bottom: CUES.safe.bottom - 60, color: "rgba(250,248,244,.72)" });
+        st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.8, radius: 0.55, threshold: 1.0 }, exposure: 0.95 });
+        const THREE = st.THREE, A = window.THREE_ADDONS;
+        // The composer's OutputPass tone-maps the whole frame: no tone mapping keeps the brand swatches exact.
+        st.renderer.toneMapping = THREE.NoToneMapping;
+
+        /* 01 Hook: contact cards with no face drift in the fog below the words. */
+        S.s1 = scene(C.ink, 26);
+        const ct = contactTex(false);
+        S.cards1 = [];
+        for (let i = 0; i < 14; i++) {
+          const r = PF.random(i * 19 + 7);
+          const m = PF.three.card(st, ct, 2.2);
+          m.userData = { x: (r() - 0.5) * 9, y: -2.3 - r() * 3.8, z: 1.5 - r() * 9, ry: (r() - 0.5) * 0.9, rz: (r() - 0.5) * 0.3, sp: 0.2 + r() * 0.35, ph: r() * 6 };
+          S.s1.add(m); S.cards1.push(m);
+        }
+        S.dust1 = PF.three.particles(st, 420, {
+          scene: S.s1, size: 0.05, color: (i) => (i % 5 ? C.cream : C.coral),
+          pos: (i, t, o) => { const r = PF.random(i * 13 + 1); o.x = (r() - 0.5) * 16; o.y = (r() - 0.5) * 12 + t * 0.25; o.z = -r() * 12 + 2; },
+        });
+        unlit(S.dust1.points);
+
+        /* The phone (shared by 02 Problema and 04 Soluzione; re-parented per scene). */
+        S.phone = new THREE.Group();
+        const body = new THREE.Mesh(new A.RoundedBoxGeometry(1.75, 3.5, 0.2, 6, 0.2), PF.three.mat("gloss", C.ink));
+        S.phone.add(body);
+        S.screenTex = PF.three.canvasTexture(st, 520, 1060, () => {});
+        S.screenKey = "";
+        const screen = PF.three.card(st, S.screenTex, 1.6);
+        screen.material.fog = false; screen.position.z = 0.102; S.phone.add(screen);
+        S.rings = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.TorusGeometry(1, 0.05, 16, 96), new THREE.MeshBasicMaterial({ color: C.cream, transparent: true, toneMapped: false })); m.position.z = -0.05; S.phone.add(m); return m; });
+
+        /* 02 Problema: coral, fake number chips flicker around the phone. */
+        S.s2 = scene(C.coral);
+        const fk = contactTex(true);
+        S.chips = [];
+        for (let i = 0; i < 9; i++) {
+          const r = PF.random(i * 41 + 3);
+          const m = PF.three.card(st, i % 2 ? fk : ct, 1.7);
+          const side = i % 2 ? 1 : -1;
+          m.userData = { x: side * (1.7 + r() * 1.6), y: -1.8 + r() * 3.6, z: -1 - r() * 4, ry: -side * (0.3 + r() * 0.4), rz: (r() - 0.5) * 0.4, ph: r() * 6, gone: b(3, 1) + (i + 1) * b.beat * 0.75 };
+          S.s2.add(m); S.chips.push(m);
+        }
+        S.dust2 = PF.three.particles(st, 260, {
+          scene: S.s2, size: 0.05, color: (i) => (i % 3 ? C.ink : C.cream),
+          pos: (i, t, o) => { const r = PF.random(i * 7 + 3); o.x = (r() - 0.5) * 12; o.y = (r() - 0.5) * 10 + t * 0.2; o.z = -3 - r() * 8; },
+        });
+        unlit(S.dust2.points);
+
+        /* 03 Basta: a coral cross slams toward the lens. */
+        S.s3 = scene(C.ink, 40);
+        S.cross = new THREE.Group();
+        const bar = new A.RoundedBoxGeometry(3.4, 0.78, 0.78, 6, 0.3);
+        const xm = PF.three.mat("gloss", C.coral, { emissive: C.coral, emissiveIntensity: 0.18 });
+        [-1, 1].forEach((sgn) => { const m = new THREE.Mesh(bar, xm); m.rotation.z = (sgn * Math.PI) / 4; S.cross.add(m); });
+        S.s3.add(S.cross);
+        S.dust3 = PF.three.particles(st, 380, {
+          scene: S.s3, size: 0.06, color: (i) => (i % 4 ? C.cream : C.coral),
+          pos: (i, t, o) => { const r = PF.random(i * 5 + 9); o.x = (r() - 0.5) * 14; o.y = (r() - 0.5) * 14; o.z = -14 + ((r() * 20 + (t - SC[2].from) * 18) % 20); },
+        });
+        unlit(S.dust3.points);
+
+        /* 04 Soluzione: coral, clean. Logo watermark, the shield, the fake card that bursts. */
+        S.s4 = scene(C.coral);
+        const wm = PF.three.canvasTexture(st, 900, 900, (c, w, h) => {
+          c.drawImage(PF.img.mark, 0, 0, w, h);
+          c.globalCompositeOperation = "source-in"; c.fillStyle = C.cream; c.fillRect(0, 0, w, h);
+        });
+        S.water = PF.three.card(st, wm, 7.5, { opacity: 0.14 });
+        S.water.position.set(0, 0.2, -4); S.s4.add(S.water);
+        S.shield = new THREE.Mesh(new THREE.TorusGeometry(2.25, 0.07, 12, 6), new THREE.MeshBasicMaterial({ color: C.cream, transparent: true, toneMapped: false }));
+        S.shield.rotation.z = Math.PI / 6; S.shield.position.set(0, 0, 0.9); S.s4.add(S.shield);
+        S.fake = PF.three.card(st, fk, 2.0); S.s4.add(S.fake);
+        S.burst = PF.three.particles(st, 420, {
+          scene: S.s4, size: 0.075, color: (i) => (i % 3 ? C.cream : C.ink),
+          pos: (i, t, o) => {
+            const r = PF.random(i * 29 + 11), d = Math.max(0, t - b(8, 2));
+            const a = r() * Math.PI * 2, sp = 2 + r() * 5;
+            o.x = 2.2 + (r() - 0.5) * 1.8 + Math.cos(a) * sp * d; o.y = 0.4 + (r() - 0.5) * 0.7 + Math.sin(a) * sp * d - 4 * d * d; o.z = 1.1 + (r() - 0.2) * 2.5 * d;
+          },
+        });
+        unlit(S.burst.points);
+        S.badgeTex = PF.three.canvasTexture(st, 760, 220, (c, w, h) => {
+          c.save(); c.shadowColor = "rgba(27,30,36,.3)"; c.shadowBlur = 26; c.shadowOffsetY = 10;
+          c.fillStyle = C.cream; c.beginPath(); c.roundRect(14, 14, w - 28, h - 40, (h - 40) / 2); c.fill(); c.restore();
+          c.fillStyle = C.green; c.beginPath(); c.arc(112, 104, 64, 0, Math.PI * 2); c.fill();
+          c.strokeStyle = C.cream; c.lineWidth = 15; c.lineCap = c.lineJoin = "round"; c.beginPath(); c.moveTo(82, 106); c.lineTo(104, 128); c.lineTo(144, 84); c.stroke();
+          c.fillStyle = C.ink; c.font = "800 84px Bricolage"; c.fillText("VERIFICATO", 200, 134);
+        });
+        S.badge = PF.three.card(st, S.badgeTex, 2.9); S.s4.add(S.badge);
+        S.dust4 = PF.three.particles(st, 240, {
+          scene: S.s4, size: 0.06, color: (i) => (i % 4 ? C.cream : C.deep),
+          pos: (i, t, o) => { const r = PF.random(i * 23 + 4); o.x = (r() - 0.5) * 12; o.y = -6 + ((r() * 12 + t * (0.3 + r() * 0.4)) % 12); o.z = -2 - r() * 8; },
+        });
+        unlit(S.dust4.points);
+
+        /* 05 Beneficio: a hexagon prism turning a sixth on every beat (ink on cream, then coral on ink). */
+        const prism = new THREE.CylinderGeometry(1.6, 1.6, 0.7, 6, 1);
+        S.s5a = scene(C.cream);
+        // Caps in the exact swatch (unlit), sides glossy for depth: the logo's own recipe.
+        const cap = (hex) => new THREE.MeshBasicMaterial({ color: hex, toneMapped: false, fog: false });
+        S.prismA = new THREE.Mesh(prism, [PF.three.mat("gloss", C.ink), cap(C.ink), cap(C.ink)]); S.s5a.add(S.prismA);
+        S.s5b = scene(C.ink);
+        S.prismB = new THREE.Mesh(prism, [PF.three.mat("gloss", C.coralText), cap(C.coral), cap(C.coral)]); S.s5b.add(S.prismB);
+        S.dust5 = PF.three.particles(st, 300, {
+          scene: S.s5b, size: 0.06, color: (i) => (i % 3 ? C.coral : C.cream),
+          pos: (i, t, o) => { const r = PF.random(i * 31 + 8); o.x = (r() - 0.5) * 12; o.y = -6 + ((r() * 12 + t * (0.5 + r() * 0.5)) % 12); o.z = -1 - r() * 9; },
+        });
+        unlit(S.dust5.points);
+
+        /* 06 Manuvo: particles converge into the logo (manuvo/public/logo.svg), then the extruded logo. */
+        S.s6 = scene(C.coral);
+        const svg = new A.SVGLoader().parse(window.MANUVO_LOGO_SVG);
+        const shapes = [];
+        svg.paths.forEach((p) => { const f = (p.userData.style.fill || "").replace(/\s/g, ""); if (f === "rgb(255,87,88)" || f.toLowerCase() === "#ff5758") shapes.push(...A.SVGLoader.createShapes(p)); });
+        const geo = new THREE.ExtrudeGeometry(shapes, { depth: 40, bevelEnabled: true, bevelThickness: 6, bevelSize: 4, bevelSegments: 4, curveSegments: 24 });
+        geo.computeBoundingBox();
+        const bb = geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+        geo.translate(-cx, -cy, -20);
+        const k = 2.7 / (bb.max.x - bb.min.x);
+        // Reversed mark (cream on coral), as the app does on coral (ComingSoon.tsx: brightness-0 invert).
+        S.logoFace = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false, transparent: true });
+        S.logoSide = PF.three.mat("gloss", C.deep, { transparent: true });
+        S.logo = new THREE.Mesh(geo, [S.logoFace, S.logoSide]);
+        S.logo.scale.set(k, -k, k);
+        S.logoGroup = new THREE.Group(); S.logoGroup.add(S.logo); S.s6.add(S.logoGroup);
+        const flat = new THREE.ShapeGeometry(shapes, 12); flat.translate(-cx, -cy, 0);
+        const sampler = new A.MeshSurfaceSampler(new THREE.Mesh(flat)).setRandomGenerator(PF.random(5)).build();
+        const v = new THREE.Vector3();
+        S.target = [];
+        for (let i = 0; i < 2600; i++) { sampler.sample(v); S.target.push({ x: v.x * k, y: -v.y * k }); }
+        S.swarm = PF.three.particles(st, S.target.length, {
+          scene: S.s6, size: 0.075, color: (i) => (i % 9 === 0 ? C.deep : C.cream),
+          pos: (i, t, o) => {
+            const r = PF.random(i * 17 + 2);
+            const a = r() * Math.PI * 2, e = (r() - 0.5) * Math.PI, R = 2.5 + r() * 5, delay = r();
+            const spin = a + (t - b(11, 1)) * 0.6;
+            const sx = R * Math.cos(e) * Math.cos(spin), sy = R * Math.sin(e) * 0.9, sz = R * Math.cos(e) * Math.sin(spin) - 1.5;
+            const u = PF.step(t - b(11, 1) + 0.25 - delay * 0.45, { stiffness: 60, damping: 12 });
+            const g = S.target[i];
+            o.x = PF.lerp(sx, g.x, u); o.y = PF.lerp(sy, g.y, u); o.z = PF.lerp(sz, 0.12, u);
+          },
+        });
+        unlit(S.swarm.points);
+        S.logoGroup.add(S.swarm.points);
+        S.dust6 = PF.three.particles(st, 220, {
+          scene: S.s6, size: 0.06, color: (i) => (i % 3 ? C.cream : C.deep),
+          pos: (i, t, o) => { const r = PF.random(i * 37 + 6); o.x = (r() - 0.5) * 12; o.y = 6 - ((r() * 12 + t * (0.3 + r() * 0.4)) % 12); o.z = -3 - r() * 8; },
+        });
+        unlit(S.dust6.points);
+
+        PF.debug({ grid: b, safe: CUES.safe });
+      }
+
+      /* ---------- the phone screen (repainted only when its state changes) ---------- */
+      const NUMS = ["+39 333 •••• 120", "+39 347 •••• 908", "+39 320 •••• 451", "+39 389 •••• 077", "+39 340 •••• 362", "+39 331 •••• 815", "+39 366 •••• 249"];
+      function paintScreen(mode, n) {
+        const key = mode + ":" + n;
+        if (key === S.screenKey) return;
+        S.screenKey = key;
+        S.screenTex.repaint((c, w, h) => {
+          c.textAlign = "left";
+          if (mode === "list") {
+            c.fillStyle = C.cream; c.fillRect(0, 0, w, h);
+            c.fillStyle = C.ink; c.font = "800 50px Bricolage"; c.fillText("Idraulico Rimini", 40, 110);
+            c.fillStyle = "rgba(27,30,36,.5)"; c.font = "500 28px Geist"; c.fillText("7 contatti trovati", 40, 156);
+            const off = (n % 4) * 8;
+            NUMS.forEach((num, i) => {
+              const y = 200 + i * 118 - off;
+              c.fillStyle = "#ffffff"; c.beginPath(); c.roundRect(28, y, w - 56, 100, 22); c.fill();
+              c.fillStyle = "rgba(27,30,36,.12)"; c.beginPath(); c.arc(88, y + 50, 30, 0, Math.PI * 2); c.fill();
+              c.fillStyle = C.ink; c.font = "600 34px Geist"; c.fillText(num, 136, y + 62);
+              if (i < n) {
+                c.strokeStyle = C.coral; c.lineWidth = 7; c.beginPath(); c.moveTo(128, y + 50); c.lineTo(w - 50, y + 50); c.stroke();
+                c.fillStyle = C.coral; c.beginPath(); c.roundRect(w - 170, y + 10, 118, 40, 20); c.fill();
+                c.fillStyle = C.cream; c.font = "700 24px Geist"; c.textAlign = "center"; c.fillText("FALSO", w - 111, y + 38); c.textAlign = "left";
+              }
+            });
+          } else if (mode === "call" || mode === "none") {
+            c.fillStyle = C.ink; c.fillRect(0, 0, w, h); c.textAlign = "center";
+            c.fillStyle = "rgba(250,248,244,.7)"; c.font = "500 34px Geist";
+            c.fillText(mode === "none" ? "Chiamata terminata" : "Chiamata in corso…", w / 2, 150);
+            c.fillStyle = C.cream; c.font = "700 50px Geist"; c.fillText("+39 347 •••• 908", w / 2, 222);
+            c.fillStyle = "rgba(250,248,244,.55)"; c.font = "500 34px Geist Mono"; c.fillText("00:0" + n, w / 2, 278);
+            c.fillStyle = mode === "none" ? C.coral : "rgba(250,248,244,.12)";
+            c.beginPath(); c.arc(w / 2, 470, 110, 0, Math.PI * 2); c.fill();
+            c.fillStyle = mode === "none" ? C.ink : C.cream; c.font = "800 120px Bricolage"; c.fillText("?", w / 2, 512);
+            if (mode === "none") { c.fillStyle = C.coral; c.font = "800 62px Bricolage"; c.fillText("NESSUNA", w / 2, 700); c.fillText("RISPOSTA", w / 2, 770); }
+            c.fillStyle = C.coral; c.beginPath(); c.arc(w / 2, 930, 64, 0, Math.PI * 2); c.fill();
+            c.fillStyle = C.cream; c.beginPath(); c.roundRect(w / 2 - 34, 920, 68, 20, 10); c.fill();
+          } else if (mode === "quote") {
+            c.fillStyle = C.cream; c.fillRect(0, 0, w, h);
+            c.fillStyle = C.ink; c.font = "800 52px Bricolage"; c.fillText("Preventivo", 40, 110);
+            c.globalAlpha = n ? 0.35 : 1;
+            c.fillStyle = "#ffffff"; c.beginPath(); c.roundRect(28, 160, w - 56, 520, 26); c.fill();
+            c.fillStyle = "rgba(27,30,36,.14)";
+            [210, 270, 330, 390].forEach((y, i) => { c.beginPath(); c.roundRect(64, y, [360, 300, 380, 240][i], 26, 13); c.fill(); });
+            c.fillStyle = C.ink; c.font = "600 44px Geist"; c.fillText("Totale:  € ???", 64, 510);
+            c.strokeStyle = C.coral; c.lineWidth = 6; c.beginPath(); c.roundRect(64, 560, 330, 84, 18); c.stroke();
+            c.fillStyle = C.coral; c.font = "700 38px Geist"; c.fillText("IN ATTESA…", 92, 616);
+            c.globalAlpha = 1;
+            c.fillStyle = "rgba(27,30,36,.5)"; c.font = "500 30px Geist"; c.fillText("Ultimo messaggio: 12 giorni fa", 40, 760);
+          } else {
+            // The Manuvo verification step (src/app/pubblica/LeadForm.tsx, src/messages/it.json).
+            const filled = String(n).split("|")[0].length, ok = mode === "ok";
+            c.fillStyle = C.cream; c.fillRect(0, 0, w, h);
+            c.fillStyle = C.coral; c.beginPath(); c.roundRect(40, 70, 64, 64, 14); c.fill();
+            c.drawImage(PF.img.markCream, 46, 76, 52, 52);
+            c.fillStyle = C.ink; c.font = "800 44px Bricolage"; c.fillText("Pubblica richiesta", 122, 118);
+            c.font = "600 30px Geist"; c.fillText("Telefono", 40, 230);
+            c.fillStyle = "#ffffff"; c.strokeStyle = C.line; c.lineWidth = 3; c.beginPath(); c.roundRect(40, 252, ok ? 270 : 440, 84, 16); c.fill(); c.stroke();
+            c.fillStyle = C.ink; c.font = "500 34px Geist"; c.fillText("+39 347 •••12", 62, 306);
+            if (ok) {
+              c.fillStyle = C.greenBg; c.beginPath(); c.roundRect(322, 252, 158, 84, 16); c.fill();
+              c.strokeStyle = C.green; c.lineWidth = 6; c.lineCap = c.lineJoin = "round"; c.beginPath(); c.moveTo(340, 296); c.lineTo(352, 308); c.lineTo(372, 284); c.stroke();
+              c.fillStyle = C.green; c.font = "700 27px Geist"; c.fillText("Verificato", 380, 304);
+            }
+            c.fillStyle = "#fafafa"; c.strokeStyle = C.line; c.beginPath(); c.roundRect(40, 372, 440, 330, 18); c.fill(); c.stroke();
+            c.fillStyle = "#525252"; c.font = "500 25px Geist";
+            c.fillText("Ti abbiamo inviato un codice", 64, 420); c.fillText("via SMS. Inseriscilo qui sotto.", 64, 452);
+            const code = "482913";
+            for (let i = 0; i < 6; i++) {
+              const x = 64 + i * 66;
+              c.fillStyle = "#ffffff"; c.strokeStyle = ok ? C.green : i < filled ? C.ink : C.line; c.lineWidth = ok || i < filled ? 4 : 3;
+              c.beginPath(); c.roundRect(x, 490, 56, 76, 12); c.fill(); c.stroke();
+              if (i < filled) { c.fillStyle = C.ink; c.font = "700 44px Geist Mono"; c.textAlign = "center"; c.fillText(code[i], x + 28, 543); c.textAlign = "left"; }
+            }
+            c.fillStyle = filled === 6 ? C.coralText : "rgba(198,56,58,.4)"; c.beginPath(); c.roundRect(64, 600, 392, 76, 16); c.fill();
+            c.fillStyle = "#ffffff"; c.font = "700 32px Geist"; c.textAlign = "center"; c.fillText(ok ? "Numero verificato" : "Conferma", 260, 650); c.textAlign = "left";
+            c.fillStyle = "rgba(27,30,36,.35)"; c.font = "500 26px Geist"; c.fillText("Un numero falso non passa la verifica.", 40, 770);
+          }
+          // The SMS banner (the text the app sends: src/lib/phone-verification.ts).
+          if (mode === "code" || mode === "ok") {
+            const y = S.bannerY;
+            if (y > -200) {
+              c.fillStyle = C.ink; c.beginPath(); c.roundRect(18, y, w - 36, 170, 28); c.fill();
+              c.fillStyle = C.coral; c.beginPath(); c.roundRect(42, y + 26, 48, 48, 12); c.fill();
+              c.fillStyle = "rgba(250,248,244,.6)"; c.font = "600 24px Geist"; c.fillText("MESSAGGI · ora", 106, y + 58);
+              c.fillStyle = C.cream; c.font = "600 30px Geist"; c.fillText("Manuvo: il tuo codice di", 42, y + 112);
+              c.fillText("verifica è ", 42, y + 150); c.font = "700 32px Geist Mono"; c.fillText("482913", 196, y + 150);
+            }
+          }
+        });
+      }
+
+      /* ---------- draw(t) ---------- */
+      const BG = [C.ink, C.coral, C.ink, C.coral, C.cream, C.coral];
+      const LABEL = ["01 — Il problema", "02 — Contatti falsi", "03 — Basta", "04 — Verifica SMS", "05 — Lavoro vero", "06 — Manuvo"];
+      function projectBox(obj, hw, hh) {
+        const THREE = st.THREE, cam = st.camera; obj.updateMatrixWorld(true); cam.updateMatrixWorld(true);
+        let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+        [[-hw, -hh], [hw, -hh], [-hw, hh], [hw, hh]].forEach(([x, y]) => {
+          const v = new THREE.Vector3(x, y, 0.1).applyMatrix4(obj.matrixWorld).project(cam);
+          const px = ((v.x + 1) / 2) * W, py = ((1 - v.y) / 2) * H;
+          x0 = Math.min(x0, px); x1 = Math.max(x1, px); y0 = Math.min(y0, py); y1 = Math.max(y1, py);
+        });
+        return { x0, y0, x1, y1 };
+      }
+      function draw(t) {
+        const k = sceneAt(t);
+        const bg = k === 4 && t >= BENE2 ? C.ink : k === 2 && t >= BASTA ? C.ink : BG[k];
+        PF.css($("#root"), { background: bg });
+        hud.color(bg === C.cream ? "rgba(27,30,36,.62)" : bg === C.coral ? "rgba(27,30,36,.72)" : "rgba(250,248,244,.72)");
+        let canvasOn = true, reticle = false;
+
+        if (k === 0) {
+          st.use(S.s1);
+          S.cards1.forEach((m, i) => {
+            const d = m.userData;
+            m.position.set(d.x + Math.sin(t * d.sp + d.ph) * 0.3, d.y + t * d.sp * 0.5, d.z);
+            m.rotation.set(0, d.ry + Math.sin(t * 0.7 + d.ph) * 0.15, d.rz);
+          });
+          S.dust1.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: 0, azimuth: -18, elevation: 6, radius: 12, target: [0, 0, 0], drift: { azimuth: 8, radius: -0.8 } },
+            { at: b(1, 3), azimuth: 16, elevation: 2, radius: 11, target: [0, 0.2, 0], drift: { azimuth: -7 } },
+            { at: b(2, 1), azimuth: -6, elevation: 12, radius: 12.5, target: [0, 0.3, 0], drift: { radius: -1 } },
+            { at: b(2, 3), azimuth: 24, elevation: 4, radius: 11, target: [0, 0, 0], drift: { azimuth: -8 } },
+          ]);
+        } else if (k === 1 || k === 3) {
+          const sc = k === 1 ? S.s2 : S.s4;
+          if (S.phone.parent !== sc) sc.add(S.phone);
+          st.use(sc);
+          const s0 = SC[k].from;
+          if (k === 1) {
+            reticle = true;
+            const calls = [b(3, 4), b(4, 1)];
+            const buzz = calls.reduce((a, h) => a + (t >= h && t < h + 0.35 ? Math.sin((t - h) * 90) * 0.05 * (1 - (t - h) / 0.35) : 0), 0);
+            S.phone.rotation.set(-0.08, 0.32 * Math.sin((t - s0) * 1.3) - 0.1, buzz);
+            S.phone.position.set(buzz * 2, 0, 0);
+            calls.forEach((h, i) => {
+              const u = PF.clamp01((t - h) / 0.9), m = S.rings[i];
+              m.visible = t >= h && u < 1;
+              const s = 1.2 + u * 2.2; m.scale.set(s * 0.95, s * 1.2, 1);
+              m.material.opacity = (1 - u) * 0.85;
+            });
+            if (t < b(3, 4)) paintScreen("list", Math.floor((t - s0) / (b.beat * 0.5)));
+            else if (t < b(4, 3)) paintScreen(t >= b(4, 2) ? "none" : "call", Math.min(9, 1 + Math.floor((t - b(3, 4)) / b.beat)));
+            else paintScreen("quote", Math.floor(t * 15) % 3 === 0 ? 1 : 0);
+            S.chips.forEach((m, i) => {
+              const d = m.userData, u = PF.clamp01((t - d.gone) / 0.2);
+              const flick = 0.75 + 0.25 * Math.sin(t * 29 + i * 2.3);
+              m.visible = u < 1;
+              m.material.opacity = flick * (1 - u);
+              m.position.set(d.x, d.y + (t - s0) * 0.6 + u * 0.5, d.z);
+              m.rotation.set(0, d.ry, d.rz + Math.sin(t * 2 + d.ph) * 0.05);
+              const s = 1 + u * 0.3; m.scale.set(s, s, s);
+            });
+            S.dust2.update(t);
+            PF.three.shots(st.camera, t, [
+              { at: b(3, 1), azimuth: -20, elevation: 6, radius: 11.5, target: [0, 1.25, 0], drift: { azimuth: 7, radius: -0.6 } },
+              { at: b(3, 3), azimuth: 18, elevation: 2, radius: 11, target: [0, 1.2, 0], drift: { azimuth: -6 } },
+              { at: b(4, 1), azimuth: -8, elevation: 10, radius: 12, target: [0, 1.3, 0], drift: { radius: -0.8 } },
+              { at: b(4, 3), azimuth: 14, elevation: -2, radius: 10.5, target: [0, 1.15, 0], drift: { azimuth: -6, radius: -0.4 } },
+            ]);
+          } else {
+            S.rings.forEach((m) => (m.visible = false));
+            const inU = PF.step(t - s0 + 0.12, { stiffness: 90, damping: 13 });
+            S.phone.position.set(0, PF.lerp(-6, 0, inU), 0);
+            S.phone.rotation.set(-0.06, PF.lerp(0.9, 0, inU) + 0.12 * Math.sin((t - s0) * 0.9), 0);
+            // Banner drops at 6.2 and leaves when the code is typed.
+            const bIn = AVVITA(PF.progress(t, b(6, 2), 0.32)), bOut = PF.progress(t, b(7, 2), 0.3);
+            S.bannerY = t < b(6, 2) ? -400 : PF.lerp(-180, 24, bIn) - bOut * 260;
+            const typed = Math.max(0, Math.min(6, Math.floor((t - b(6, 4)) / (b.beat * 0.5)) + 1));
+            const ok = t >= b(7, 3);
+            paintScreen(ok ? "ok" : "code", (t < b(6, 4) ? "" : "482913".slice(0, typed)) + "|" + Math.round(S.bannerY));
+            // ✓ VERIFICATO pops with the click curve and stays, tilted.
+            const bu = CLICK(PF.progress(t, b(7, 3), 0.42));
+            S.badge.visible = t >= b(7, 3) && t < b(8, 1);
+            S.badge.scale.setScalar(Math.max(0.001, bu));
+            S.badge.position.set(0.55, -1.2, 0.9);
+            S.badge.rotation.set(0, -0.12, 0.08);
+            // Fake card flies in, hits the shield on 8.2 and bursts.
+            const fu = AVVITA(PF.progress(t, b(8, 1), b(8, 2) - b(8, 1)));
+            S.fake.visible = t >= b(8, 1) && t < b(8, 2);
+            S.fake.position.set(PF.lerp(7, 2.2, fu), PF.lerp(2.2, 0.4, fu), 1.1);
+            S.fake.rotation.set(0, -0.4 * (1 - fu), -0.25 + 0.15 * fu);
+            S.burst.points.visible = t >= b(8, 2);
+            if (S.burst.points.visible) { S.burst.update(t); S.burst.points.material.opacity = 1 - PF.clamp01((t - b(8, 3, 0.5)) / 0.5); }
+            const shU = PF.progress(t, b(8, 1, 0.5), 0.25);
+            S.shield.visible = t >= b(8, 1, 0.5);
+            S.shield.material.opacity = Math.min(shU, 1 - PF.clamp01((t - b(8, 4)) / 0.3)) * 0.95;
+            const turn = AVVITA(PF.progress(t, b(8, 2), 0.48)); // the signature: a sixth of a turn, stops dead
+            S.shield.rotation.z = Math.PI / 6 + turn * (Math.PI / 3);
+            const pulse = 1 + 0.08 * Math.exp(-Math.max(0, t - b(8, 2)) * 8) * (t >= b(8, 2) ? 1 : 0);
+            S.shield.scale.set(pulse * PF.lerp(0.7, 1, AVVITA(shU)), pulse * PF.lerp(0.7, 1, AVVITA(shU)), 1);
+            S.water.scale.setScalar(1 + (t - s0) * 0.02);
+            S.dust4.update(t);
+            PF.three.shots(st.camera, t, [
+              { at: b(6, 1), azimuth: -14, elevation: 4, radius: 10, target: [0, 1.45, 0], drift: { azimuth: 6, radius: -0.4 } },
+              { at: b(6, 3), azimuth: 10, elevation: 2, radius: 9.6, target: [0, 1.4, 0], drift: { azimuth: -5 } },
+              { at: b(7, 1), azimuth: 0, elevation: 0, radius: 8.2, target: [0.1, 1.15, 0], drift: { radius: -0.5 } },
+              { at: b(7, 3), azimuth: -10, elevation: 3, radius: 9.4, target: [0, 1.3, 0], drift: { azimuth: 5 } },
+              { at: b(8, 1), azimuth: 12, elevation: 3, radius: 12, target: [0.4, 1.4, 0], drift: { azimuth: -4 } },
+              { at: b(8, 3), azimuth: -6, elevation: 6, radius: 12.5, target: [0.3, 1.4, 0], drift: { radius: -0.6 } },
+            ]);
+          }
+        } else if (k === 2) {
+          st.use(S.s3);
+          canvasOn = t < BASTA;
+          const u = PF.step(t - SC[2].from + 0.05, { stiffness: 140, damping: 14 });
+          S.cross.position.set(0, -0.6, PF.lerp(-26, 0, u));
+          S.cross.rotation.set(0.25 * (1 - u), PF.lerp(-2.2, 0, u) + 0.06 * Math.sin(t * 7), PF.lerp(1.2, 0, u));
+          S.dust3.update(t);
+          const zoom = AVVITA(PF.progress(t, b(5, 2), 0.42));
+          st.camera.position.set(0, -0.2, PF.lerp(12, 4.6, zoom));
+          st.camera.lookAt(0, -0.45, 0);
+        } else if (k === 4) {
+          const two = t >= BENE2;
+          st.use(two ? S.s5b : S.s5a);
+          const p = two ? S.prismB : S.prismA;
+          const s0 = two ? BENE2 : SC[4].from;
+          // A sixth of a turn on beats 1 and 3 of the bar, stopping dead.
+          const turns = [0, 2].reduce((a, bt) => a + AVVITA(PF.progress(t, s0 + bt * b.beat, 0.48)), 0);
+          p.rotation.set(Math.PI / 2 - 0.35, turns * (Math.PI / 3) + 0.2, 0);
+          p.position.set(0, -1.55, 0);
+          const sIn = CLICK(PF.progress(t, s0, 0.3)); p.scale.setScalar(Math.max(0.001, PF.lerp(0.6, 1, sIn)));
+          if (two) S.dust5.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: s0, azimuth: -16, elevation: 8, radius: 11, target: [0, 0, 0], drift: { azimuth: 8 } },
+            { at: s0 + 2 * b.beat, azimuth: 14, elevation: 2, radius: 10.5, target: [0, 0, 0], drift: { azimuth: -7, radius: -0.4 } },
+          ]);
+        } else {
+          st.use(S.s6);
+          const solid = PF.clamp01((t - b(11, 3)) / 0.18);
+          S.swarm.update(t);
+          S.swarm.points.material.opacity = 1 - solid;
+          S.swarm.points.visible = solid < 1;
+          S.logo.visible = solid > 0;
+          S.logoFace.opacity = solid; S.logoSide.opacity = solid;
+          const lu = PF.step(t - b(11, 3), { stiffness: 80, damping: 11 });
+          S.logoGroup.rotation.set(0.12 * (1 - lu), -0.5 * (1 - lu) + 0.06 * Math.sin((t - b(11, 3)) * 1.1), 0);
+          S.logoGroup.position.set(0, 1.3, 0);
+          S.dust6.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: b(11, 1), azimuth: 0, elevation: 0, radius: 10.5, target: [0, 0.05, 0], drift: { radius: -0.6, azimuth: 6 } },
+            { at: b(11, 3), azimuth: 0, elevation: 0, radius: 9.6, target: [0, 0.05, 0], drift: { radius: -0.4 } },
+            { at: b(12, 1), azimuth: 3, elevation: 1, radius: 9.6, target: [0, 0.05, 0], drift: { azimuth: -5, radius: -0.3 } },
+          ]);
+        }
+        // Shake on the hits (camera wrapper, not the HUD).
+        const sh = PF.shake(t, [b(3, 1), b(5, 1), b(5, 2), BASTA, b(8, 2), BENE2], { amp: 18, decay: 0.38 });
+        const gl = glitch(t);
+        PF.css($("#cam"), { transform: `translate(${(sh.x + gl.x).toFixed(2)}px, ${sh.y.toFixed(2)}px) rotate(${sh.r.toFixed(3)}deg) skewX(${gl.sk.toFixed(2)}deg)` });
+        const onCoral = bg === C.coral;
+        PF.css($("#words"), { textShadow: gl.a > 0 ? `${(9 * gl.a).toFixed(1)}px 0 ${onCoral ? "rgba(250,248,244,.85)" : "rgba(255,87,88,.9)"}, ${(-9 * gl.a).toFixed(1)}px 0 ${onCoral ? "rgba(110,22,24,.7)" : "rgba(110,22,24,.9)"}` : "none" });
+        PF.show($("#three"), canvasOn);
+        if (canvasOn) st.render();
+
+        // Viewfinder reticle on the phone (02 Problema), label blinking on the beat.
+        PF.show($("#reticle"), reticle);
+        if (reticle) {
+          const r = projectBox(S.phone, 0.95, 1.8), pad = 26;
+          PF.css($("#reticle"), { left: `${(r.x0 - pad).toFixed(1)}px`, top: `${(r.y0 - pad).toFixed(1)}px`, width: `${(r.x1 - r.x0 + pad * 2).toFixed(1)}px`, height: `${(r.y1 - r.y0 + pad * 2).toFixed(1)}px` });
+          PF.css($("#reticle span"), { opacity: Math.floor((t - SC[1].from) / (b.beat * 0.5)) % 2 ? "0.35" : "1" });
+        }
+
+        // Shockwave from the logo when it turns solid.
+        const rg = PF.ring(t, b(11, 3), { length: 0.75, to: 700 });
+        PF.show($("#ring"), rg.opacity > 0);
+        const ry = rg.opacity > 0 ? (projectBox(S.logoGroup, 0, 0).y0) : 700;
+        PF.css($("#ring"), { left: `${540 - rg.r}px`, top: `${ry - rg.r}px`, width: `${rg.r * 2}px`, height: `${rg.r * 2}px`, opacity: rg.opacity.toFixed(3), borderWidth: `${(rg.width * 1.4).toFixed(2)}px` });
+
+        // Words: slammed on the beat, out before every handoff.
+        const H1 = b(2, 4, 0.75), P1 = b(3, 4) - 0.1, P2 = b(4, 3) - 0.1, P3 = b(5, 1) - 0.12;
+        slam("#w1a", t, -0.12, H1);
+        slam("#w1b", t, b(1, 2), H1, 1.6);
+        slam("#w1c", t, b(2, 1), H1);
+        slam("#w1d", t, b(2, 2), H1);
+        slam("#w2a", t, b(3, 1), P1); slam("#w2b", t, b(3, 1, 0.5), P1, 1.5);
+        slam("#w2c", t, b(3, 4), P2); slam("#w2d", t, b(3, 4, 0.5), P2, 1.5);
+        slam("#w2e", t, b(4, 3), P3); slam("#w2f", t, b(4, 3, 0.5), P3, 1.5);
+        slam("#w3a", t, BASTA - 0.04, b(6, 1) - 0.32, 1.8);
+        slam("#w4a", t, b(6, 1), b(7, 4, 0.6));
+        slam("#w4b", t, b(6, 1, 0.5), b(7, 4, 0.6));
+        slam("#w4c", t, b(6, 2), b(7, 4, 0.6));
+        slam("#w4d", t, b(6, 3), b(7, 4, 0.6), 1.5);
+        slam("#w4e", t, b(8, 1), b(8, 4, 0.3));
+        slam("#w4f", t, b(8, 2), b(8, 4, 0.3), 1.6);
+        slam("#w5a", t, b(9, 1), BENE2 - 0.12);
+        slam("#w5b", t, b(9, 2), BENE2 - 0.12, 1.5);
+        slam("#w5c", t, BENE2, b(10, 4, 0.3));
+        slam("#w5d", t, b(10, 2), b(10, 4, 0.3), 1.6);
+        slam("#w6a", t, b(11, 4), CUES.duration + 1);
+        slam("#w6b", t, b(12, 1), CUES.duration + 1);
+
+        // Transitions: (hard cuts on 3.1, 5.1, 5.3 and 10.1), coral iris after the silence, cream flood up, coral iris from the prism.
+        const wipe = $("#wipe");
+        const T = [
+          { at: SC[3].from, len: 0.3, color: C.coral, kind: "iris", y: 1180 },
+          { at: SC[4].from, len: 0.24, color: C.cream, kind: "up" },
+          { at: SC[5].from, len: 0.3, color: C.coral, kind: "iris", y: 1440 },
+        ].find((x) => t >= x.at - x.len && t < x.at);
+        PF.show(wipe, !!T);
+        if (T) {
+          const p = PF.bezier(0.7, 0, 0.2, 1)(PF.progress(t, T.at - T.len, T.len));
+          PF.css(wipe, { background: T.color });
+          if (T.kind === "iris") PF.iris(wipe, p, 540, T.y, W, H); else PF.flood(wipe, p, T.kind);
+        }
+
+        PF.css($("#vignette"), { background: PF.vignette(bg === C.cream ? 0.1 : 0.3, bg === C.coral ? "110,22,24" : "0,0,0") });
+        hud.set({ tl: LABEL[k], tr: k < 3 ? "● REC" : "Manuvo", bl: "Rimini · Romagna", br: PF.timecode(t, 30) }, t);
+        PF.grain($("#grain"), t, { alpha: 0.07 });
+      }
+
+      PF.film({
+        duration: CUES.duration,
+        setup,
+        draw,
+        waitFor: [PF.signal("three"), PF.loadImages({ mark: "assets/images/logo-mark.svg", markCream: "assets/images/logo-mark-cream.svg" })],
+        // Registered only after setup and the clock are built (fonts first).
+        register: (tl) => {
+          window.__timelines["main"] = tl;
+        },
+      });
+    </script>
+  </body>
+</html>
