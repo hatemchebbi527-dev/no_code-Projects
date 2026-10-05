@@ -4,7 +4,18 @@ Plan organique pour Instagram, TikTok, Facebook, LinkedIn. Deux publics : **priv
 
 Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 
-> Rappel : le vrai lancement (grosse pousse + pubs) attend Twilio + Stripe live. La Phase 0 (chauffe organique) peut démarrer maintenant.
+> Rappel : le vrai lancement (grosse pousse + pubs) attend Twilio + Stripe live. La Phase 0 (chauffe organique) est en cours.
+
+---
+
+## Journal de publication
+
+| Date | Réseau(x) | Post | Statut |
+|------|-----------|------|--------|
+| 01 oct | FB | Teaser « Sta per arrivare qualcosa per Rimini 👀 » | ✅ Publié — 200+ vues |
+| 01 oct | IG Reel + TikTok | Même vidéo teaser | ✅ Publié |
+| 06 oct | IG carousel + FB | « Chi siamo » (Canva) | ⏳ À publier lundi |
+| 07 oct | TikTok + IG Reel | « Il problema n°1 » (motion design) | ⏳ À produire + publier mercredi |
 
 ---
 
@@ -21,11 +32,11 @@ Règle de production : **1 vidéo tournée = 4 posts** (TikTok, Reel IG, Reel FB
 
 ## Phase 0 — Chauffe (2 semaines avant le lancement) — 3 posts/sem
 
-| Jour | Réseau | Format | Idée |
-|------|--------|--------|------|
-| Lun | TikTok + IG Reel | Vidéo 15-20s | Teaser « Sta per arrivare qualcosa per Rimini 👀 » |
-| Mer | IG carousel + FB | Image | « Chi siamo » : l'histoire du fondateur, pourquoi Manuvo |
-| Ven | TikTok + IG Reel | Vidéo | « Il problema n°1 quando cerchi un artigiano » (les faux contacts) |
+| Jour | Réseau | Format | Idée | Statut |
+|------|--------|--------|------|--------|
+| Lun | TikTok + IG Reel | Vidéo 15-20s | Teaser « Sta per arrivare qualcosa per Rimini 👀 » | ✅ Publié le 01 oct (FB + IG + TikTok) |
+| Mer | IG carousel + FB | Image | « Chi siamo » : l'histoire du fondateur, pourquoi Manuvo | ⏳ Canva — à publier lun 06 oct |
+| Ven | TikTok + IG Reel | Vidéo | « Il problema n°1 quando cerchi un artigiano » (les faux contacts) | ⏳ Brand Motion Design — à publier mer 07 oct |
 
 ---
 
