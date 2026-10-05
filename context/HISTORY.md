@@ -7,6 +7,15 @@
 
 ---
 
+## 2026-10-04
+
+### Manuvo : production vidéo de marque (skill brand-motion-design)
+- Skill brand-motion-design installée (repo ouerf-man/brand-motion-design-skill) : vidéos HTML vers MP4 avec 3D, beat, rendu vérifié (couleurs, volume).
+- Identité motion Manuvo créée (12 sections, signature « un sixième de tour ») et publiée en artifact.
+- Films livrés et mergés : teaser Phase 0 (PR #116 à #118), présentation 3D « argile » 9:16 + 16:9 (PR #122), « Il problema n°1 » 20 s avec beat, copie effets seuls et extrait Story 6 s (PR #123).
+- Choix enregistrés dans manuvo/videos/BRAND.md : vidéos en italien, CTA doux « Presto a Rimini · @manuvo.it » tant que Twilio et Stripe Live ne sont pas actifs, logo crème sur fond corail.
+- Point de vigilance : les vidéos annoncent la vérification SMS, donc Twilio doit être actif en production au lancement.
+
 ## 2026-09-10
 
 ### Manuvo : retouches post-production (métiers, notifications push, téléphone)
