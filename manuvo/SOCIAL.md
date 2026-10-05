@@ -207,7 +207,7 @@ La prossima volta che ti serve un artigiano, sai dove trovarlo.
 
 Slides (fond blanc / corail #FF5758) :
 1. « Presto a Rimini: basta cercare artigiani a caso. »
-2. Ciao, sono Hatem. Ho creato Manuvo perché trovare un idraulico o un elettricista di fiducia a Rimini è un incubo: numeri falsi, preventivi fantasma, zero garanzie.
+2. Ciao, sono Manuvo. Ho creato Manuvo perché trovare un idraulico o un elettricista di fiducia a Rimini è un incubo: numeri falsi, preventivi fantasma, zero garanzie.
 3. Manuvo mette la fiducia al primo posto. Contatti verificati via SMS. Recensioni reali. Artigiani con P.IVA.
 4. Gratis per chi cerca. Pubblichi, e sono gli artigiani della tua zona a contattarti.
 5. Stiamo per partire. Seguici 👉 @manuvo.it
@@ -266,4 +266,4 @@ Presto a Rimini. Seguici 👉 @manuvo.it
 #Rimini #artigiani #idraulico #elettricista #fiducia #manuvo
 ```
 
-Règle **1 vidéo = 4 posts** : TikTok + Reel IG + Reel FB + extrait Story.
+Règole **1 vidéo = 4 posts** : TikTok + Reel IG + Reel FB + extrait Story.
