@@ -9,7 +9,7 @@
 - **Zone vague 1** : Rimini + 20 km · **Langue** : italien (tu) · **Handle** : `manuvo.it`
 - **Site** : https://manuvo.automa-ia.net
 - **Jour J** : vendredi 20 novembre 2026 (inchangé)
-- Version 2, 12 octobre 2026 : adaptée au déplacement du 14 octobre au 5 novembre
+- Version 3, 12 octobre 2026 : déplacement du 14 octobre au 5 novembre, P.IVA impossible à distance
 
 ---
 
@@ -40,7 +40,7 @@ plus des plannings :
    Stripe Live conditionne le revenu.
 3. **Une ville à la fois.** Rimini jusqu'à la densité, puis on duplique la recette.
 
-## 3. La contrainte qui structure la version 2
+## 3. La contrainte qui structure la version 3
 
 **Déplacement du 14 octobre au 5 novembre inclus.** Aucune action terrain possible
 pendant 23 jours. Le jour J reste au 20 novembre : seules les étapes terrain bougent.
@@ -53,10 +53,11 @@ Trois leviers compensent, et ils sont tous déjà intégrés au calendrier :
 | Levier | Avant | Version 2 |
 |---|---|---|
 | Préparation des contacts | Aucune, appels à froid | **45 contacts chauds** préparés par message pendant le déplacement |
-| Flyers | 200 pièces | **1 600 pièces**, commandées avant le départ, livrées pendant l'absence |
+| Flyers | 200 pièces | **1 600 pièces**, commandées en express le 6 nov, livrées vers le 11-12 |
 | Appels par semaine | 10 | **30**, sur une liste de 60 artisans au lieu de 40 |
 | Grossistes | 5 | **12**, avec un deuxième passage |
-| Travail technique | Étalé sur novembre | **Entièrement fait pendant le déplacement**, pour que les 14 jours de retour soient 100 % terrain |
+| Travail technique non bloqué | Étalé sur novembre | **Entièrement fait pendant le déplacement**, pour que les 14 jours de retour soient 100 % terrain |
+| P.IVA, Stripe Live, Twilio | Novembre, étalés | **Bloqués jusqu'au 6 novembre** : la P.IVA ne s'ouvre pas à distance, et Stripe comme Twilio en dépendent |
 
 La règle de repli est posée à la Porte 2 : le lancement organique n'est jamais décalé,
 seules les campagnes payantes attendent le compteur d'artisans.
@@ -73,7 +74,7 @@ Tout ce qui doit être lancé maintenant pour tourner sans toi.
 |---|---|---|---|
 | 1 | Figer l'itinéraire unique | 12 oct | Fait |
 | 2 | Fiche Google Business Profile | 13 oct | 30 min, gratuit, commence à référencer pendant l'absence |
-| 5a | **Commander 1 600 flyers en ligne** | 13 oct | Livrés pendant l'absence, prêts à distribuer au retour |
+| 2b | **Bloquer le rendez-vous commercialista du 6 novembre** | 13 oct | 10 min aujourd'hui qui évitent de perdre une semaine au retour. La P.IVA commande Stripe Live et Twilio |
 
 ### Bloc B · Pendant le déplacement — mer 14 oct au mer 5 nov · 100 % en ligne
 
@@ -85,66 +86,131 @@ Rien de terrain. Tout le reste avance, y compris la totalité du bloc technique.
 | 3 | Liste de **60 artisans** (recherche Maps, Pagine Gialle, groupes) | 19 oct | Bureau |
 | 6a | **Prospection artisans par message : 15 par semaine** | 16, 23, 30 oct | En ligne |
 | 10 | Répondre aux « cerco idraulico » dans les groupes | 19, 26 oct · 2 nov | En ligne |
-| 11 | Twilio en production (SMS réel testé) | 20 oct | Technique |
-| 13a | Lancer la demande de P.IVA avec le commercialista, par email | 21 oct | Administratif |
+| 11a | Préparer le dossier Twilio (compte, crédit, pièces du Sender ID) | 20 oct | Technique |
 | 14 | Meta Pixel actif, 3 events vérifiés | 22 oct | Technique |
+| 11b | **Basculer le code SMS sur Twilio Verify** (supprime la dépendance au Sender ID) | 23 oct | Technique |
 | 8 | Fixer l'offre d'amorçage (crédits offerts) | 26 oct | Décision |
 | 17 | Comptes pub prêts, 3 campagnes en pause | 28 oct | Pub |
 | 18 | 6 créas publicitaires | 30 oct | Pub |
 | 16 | Nettoyage de la base + retrait de l'outil d'avis test | 2 nov | Technique |
+| 16b | **Masquer le badge « Contatto verificato » tant que Twilio n'est pas live** | 2 nov | Technique |
 | 19 | Tableau UTM figé | 3 nov | Pub |
 | 9 / 20 | Contenu : 3 posts par semaine, puis countdown et waitlist | 14 oct → 19 nov | Contenu |
 
 **Objectif de sortie du bloc B :** 45 artisans contactés avec un pré-accord d'appel,
-liste de 60 complète, plateforme techniquement prête, campagnes construites et en pause.
+liste de 60 complète, tout le technique non bloquant fait, campagnes construites et en pause.
+
+**Ce qui ne peut pas avancer pendant l'absence :** la P.IVA, donc Stripe Live et Twilio.
+Les flyers non plus : commande et distribution se font au retour.
 
 ### Bloc C · Retour, terrain intensif — jeu 5 au jeu 19 nov (14 jours)
 
-Ces 14 jours ne contiennent **que** du terrain et les deux dernières briques techniques
-qui dépendent de la P.IVA.
+Deux dépendances administratives à déclencher dès le premier matin, puis 14 jours de terrain.
 
 | # | Étape | Date |
 |---|---|---|
-| — | Retour à Rimini, bascule en mode terrain | 5 nov |
-| 13b | Finaliser la P.IVA et l'inscrire dans les pages légales | 6 nov |
-| 6b | **Appels artisans : 30 cette semaine** (closing des 45 contacts chauds) | 6 nov |
-| 7a | Dépôt de flyers chez **12 grossistes** | 7 nov |
-| 5b | Distribution des **900 flyers privati** (3 passages : 9, 13, 17 nov) | 9 nov |
-| 12 | Stripe en mode Live (dépend de la P.IVA) | 11 nov |
+| — | Retour à Rimini | 5 nov |
+| 13a | **Ouvrir la P.IVA avec le commercialista** (rendez-vous déjà bloqué) | 6 nov |
+| 5a | **Commander les 1 600 flyers en express** | 6 nov |
+| 6b | Appels artisans : 30 cette semaine (closing des 45 contacts chauds) | 6 nov |
+| 7a | Tour des 12 grossistes : accord de dépôt, **sans flyers** | 9 nov |
+| 13b | Inscrire la P.IVA dans les pages légales | 11 nov |
+| 11c | Twilio en production : soumettre la pré-inscription du Sender ID | 12 nov |
+| 7b | Dépôt effectif des 600 flyers artigiani | 13 nov |
 | 6b | Appels artisans : 30 cette semaine (semaine 2) | 13 nov |
+| 5b | Distribution des 900 flyers privati, passage 1 | 14 nov |
 | **🚦** | **PORTE 1 — couverture artisans à mi-parcours** | **15 nov** |
-| 15 | Event `Purchase` branché sur l'achat de crédits | 16 nov |
+| 12 | Stripe en mode Live (dépend de la P.IVA) | 16 nov |
+| 15 | Event `Purchase` branché sur l'achat de crédits | 17 nov |
+| 5b | Distribution des flyers privati, passage 2 | 17 nov |
 | 6c | Closing : relancer tous les artisans non inscrits | 17 nov |
-| 7b | Deuxième passage grossistes + réassort | 18 nov |
+| 7d | Réassort grossistes + vendeurs du comptoir | 18 nov |
 | **🚦** | **PORTE 2 — Go/No-Go lancement** | **19 nov** |
+| **🚦** | **Décision promesse SMS : communication version A ou B** | **19 nov** |
+
+**La chaîne critique :** P.IVA ouverte le 6, active vers le 10-11, puis Stripe Live le 16 et
+Twilio soumis le 12. Si le rendez-vous du commercialista glisse d'une semaine, Stripe Live
+tombe après le 20 novembre et la règle de repli n°1 de la Porte 2 s'applique.
+
+**Les flyers n'arrivent pas avant le 11 ou 12 novembre.** D'où l'ordre : le tour des
+grossistes du 9 sert à obtenir l'accord de dépôt et à parler aux vendeurs du comptoir, le
+dépôt effectif a lieu le 13. Plan B si la livraison glisse : 100 flyers imprimés dans un
+copy shop de Rimini pour tenir les 12 points.
 
 #### 🚦 PORTE 1 — dim 15 novembre
 - [ ] ≥ 15 artisans inscrits (la moitié de l'objectif)
 - [ ] 4 métiers sur 5 couverts
-- [ ] 12 grossistes visités, 600 flyers artigiani déposés
+- [ ] 12 grossistes rencontrés le 9, flyers déposés le 13
+- [ ] **P.IVA active** (sinon Stripe et Twilio ne passeront pas avant le 20)
 
 **Si moins de 10 inscrits :** basculer les 4 derniers jours du téléphone vers la visite
 physique directe (ateliers, chantiers, grossistes le matin).
 
 #### 🚦 PORTE 2 — jeu 19 novembre
-- [ ] Twilio en prod, SMS testé
+- [ ] P.IVA active et inscrite dans les pages légales
 - [ ] Stripe Live, achat réel testé
-- [ ] P.IVA dans les pages légales
 - [ ] Pixel actif, 3 events + `Purchase`
 - [ ] Données de test nettoyées, outil d'avis test retiré
 - [ ] 6 créas prêtes, tableau UTM figé
 - [ ] **≥ 30 artisans inscrits, 5 métiers couverts**
+- [ ] Twilio en prod **ou** communication basculée en version B
 
-**Deux règles de repli, séparées :**
+**Trois règles de repli, séparées :**
 
-1. **Twilio ou Stripe Live pas prêt** → le lancement organique part, toute la pub reste OFF.
-2. **Compteur d'artisans entre 20 et 29** → le lancement organique part, Google Search
-   Privati démarre le 23 novembre mais à 2 €/jour au lieu de 3,5 €, et Meta Privati attend
-   le franchissement des 30 artisans. **En dessous de 20 artisans, aucune pub** : le terrain
-   continue pendant la semaine de lancement, porté par la visibilité du lancement lui-même.
+1. **Stripe Live pas prêt** → le lancement organique part, toute la pub reste OFF. Inutile de
+   payer pour envoyer des artisans sur une recharge de crédits qui ne fonctionne pas.
+2. **Compteur d'artisans entre 20 et 29** → le lancement organique part, Google Search Privati
+   démarre le 23 novembre mais à 2 €/jour au lieu de 3,5 €, et Meta Privati attend le
+   franchissement des 30 artisans. **En dessous de 20 artisans, aucune pub.**
+3. **Twilio pas live** → lancement en **communication version B** (section 5 ci-dessous).
 
-Le lancement organique n'est jamais décalé. Il ne coûte rien et il alimente le recrutement
-d'artisans : un artisan voit passer le lancement et s'inscrit de lui-même.
+Le lancement organique du 20 novembre n'est jamais décalé. Ce qui est négociable, c'est la pub
+et les arguments employés, jamais la date ni la vérité de ce qu'on affirme.
+
+---
+
+## 5. La promesse SMS : version A ou version B
+
+C'est le point le plus sensible de la version 3. Toute la communication écrite jusqu'ici
+promet « contatti verificati via SMS, zero fake ». Or :
+
+- l'Italie impose la **pré-inscription du Sender ID alphanumérique** (code de conduite ALIAS,
+  délibération AGCOM 42/13/CIR), avec des données d'entreprise à fournir ;
+- donc Twilio dépend de la P.IVA, qui n'existera pas avant le 10 ou 11 novembre ;
+- et **Twilio ne publie aucun délai de traitement** pour cette vérification.
+
+Conclusion honnête : on ne peut pas garantir que les SMS réels partiront le 20 novembre.
+Trois parades, dans cet ordre.
+
+**Parade 1, pendant le déplacement : basculer le code sur Twilio Verify** (étape 11b).
+Twilio recommande Verify pour les OTP parce qu'il prend en charge automatiquement les
+enregistrements requis par pays. Cela supprime la dépendance au Sender ID italien. À
+vérifier avant de coder : si Verify exige lui aussi un compte entreprise vérifié pour
+l'Italie, on retombe sur la dépendance P.IVA.
+
+**Parade 2 : masquer ce qui n'est pas vrai** (étape 16b). Tant que Twilio tourne en mode dev,
+le code s'affiche à l'écran et aucun faux numéro n'est bloqué. Le badge « Contatto
+verificato » de la bacheca et la mention SMS de la FAQ doivent être conditionnés à la
+présence des variables Twilio. Un artisan qui paie des crédits pour un contact faux après
+avoir lu « verificato » est un remboursement, un avis négatif, et une réputation perdue dans
+un marché de 150 000 habitants.
+
+**Parade 3 : la communication version B.** Si Twilio n'est pas live le 19 novembre, le
+lancement part quand même le 20, mais sans un mot sur la vérification SMS, ni dans les posts,
+ni sur le site, ni dans les pubs. On s'appuie sur les piliers de confiance qui sont déjà vrais
+en production :
+
+- **rimborso dei crediti** si un contact débloqué est faux ou injoignable
+- **recensioni reali**, possibles seulement après un vrai déblocage
+- **P.IVA registrata** et badge artisan vérifié
+- **massimo 3 artigiani** par demande
+
+L'argument SMS est réactivé le jour où Twilio passe en prod, et ce jour-là il devient un post
+à part entière : « da oggi ogni cliente verifica il numero via SMS ». Une promesse tenue en
+retard vaut mieux qu'une promesse fausse au lancement.
+
+Le post J4 du 23 novembre a donc deux légendes, A et B, toutes deux stockées dans le
+calendrier Notion.
 
 ---
 
@@ -191,7 +257,7 @@ par semaine. Règle de production : **1 vidéo tournée = 4 posts**.
 
 ---
 
-## 5. Ordre d'allumage des campagnes payantes
+## 6. Ordre d'allumage des campagnes payantes
 
 | # | Campagne | Démarrage | Budget | Destination | Condition |
 |---|---|---|---|---|---|
@@ -203,11 +269,11 @@ par semaine. Règle de production : **1 vidéo tournée = 4 posts**.
 Google avant Meta : l'intention est maximale et le coût par résultat lisible tout de suite.
 Les privati avant les artigiani : après la chauffe, c'est la demande qui est rare.
 
-## 6. Budget unique
+## 7. Budget unique
 
 | Période | Poste | Montant |
 |---|---|---|
-| 13 oct | **Impression 1 600 flyers + 100 affiches A4** | **60 à 90 € une fois** |
+| 6 nov | **Impression 1 600 flyers + 100 affiches A4, en express** | **60 à 90 € une fois**, plus le surcoût d'express |
 | Permanent | Outils (Canva, divers) | ~25 €/mois |
 | 23 nov → | Google Search Privati | ~105 €/mois |
 | 25 nov → | Meta Privati | ~60 €/mois |
@@ -215,8 +281,8 @@ Les privati avant les artigiani : après la chauffe, c'est la demande qui est ra
 | — | Google Artigiani | 0 € |
 
 **Total en régime établi : ≈ 200 €/mois de pub + 25 € d'outils.**
-L'impression passe de 35 € à 60-90 € : c'est la seule ligne modifiée en version 2, et elle
-reste marginale face au budget pub.
+L'impression passe de 35 € à 60-90 €, plus l'express : c'est la seule ligne modifiée depuis
+la version 1, et elle reste marginale face au budget pub.
 
 ### Détail des supports imprimés
 
@@ -231,12 +297,14 @@ artigiani donnent 6 à 18 contacts. Le flyer est un support, le moteur reste l'a
 visite. D'où les 30 appels par semaine au retour.
 
 **Arithmétique du recrutement sur 2 semaines, pour savoir si l'objectif tient :**
-60 appels à 25-35 % de conversion donnent 15 à 20 inscriptions, 45 contacts préparés en
-ligne à 15 % en donnent 7, les flyers et grossistes 5 à 10. Total réaliste **27 à 37
-artisans**. L'objectif de 30 est atteignable, mais sans marge : c'est pour ça que la Porte 1
-du 15 novembre existe.
+60 appels à 25-35 % de conversion donnent 15 à 20 inscriptions, les 45 contacts préparés en
+ligne à 15 % en donnent 7, les flyers et grossistes 3 à 8 puisqu'ils n'arrivent que 7 jours
+avant le lancement. Total réaliste **25 à 33 artisans**, contre 27 à 37 quand les flyers
+étaient commandés avant le départ. L'objectif de 30 reste atteignable mais la marge est
+mince, et c'est le tour des grossistes du 9 novembre qui la crée : un vendeur de comptoir
+convaincu parle à 30 artisans par matinée.
 
-## 7. Tableau de bord (objectifs 90 jours)
+## 8. Tableau de bord (objectifs 90 jours)
 
 | Indicateur | Étape AARRR | Objectif |
 |---|---|---|
@@ -249,7 +317,7 @@ du 15 novembre existe.
 | CAC artisan | Acquisition | < 4 € |
 | Part des inscrits venus du parrainage | Referral | ≥ 20 % |
 
-## 8. Rituels quotidiens
+## 9. Rituels quotidiens
 
 **Pendant le déplacement, 14 oct au 5 nov (30 min, en ligne)**
 - [ ] 1 contenu publié ou 3-5 Stories, selon le calendrier du jour
@@ -265,7 +333,7 @@ du 15 novembre existe.
 - [ ] Répondre aux commentaires et DM sous 2 h
 - [ ] 5 min : mettre à jour le compteur d'artisans inscrits
 
-## 9. Convention de liens (rappel)
+## 10. Convention de liens (rappel)
 
 - Privati payant : `/pubblica?utm_source=google|facebook|instagram&utm_medium=cpc&utm_campaign=lancio_privati&utm_content=…`
 - Artigiani payant : `/signup?utm_source=facebook&utm_medium=cpc&utm_campaign=lancio_artigiani&utm_content=…`
