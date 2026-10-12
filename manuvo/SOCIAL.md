@@ -4,7 +4,10 @@ Plan organique pour Instagram, TikTok, Facebook, LinkedIn. Deux publics : **priv
 
 Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 
-> Rappel : le vrai lancement (grosse pousse + pubs) attend Twilio + Stripe live. La Phase 0 (chauffe organique) est en cours.
+> ⚠️ **L'ordre des opérations et toutes les dates vivent dans `ROADMAP.md` + le calendrier Notion « 📅 Calendrier Marketing Manuvo — itinéraire unique ».**
+> Ce fichier ne garde que les **légendes italiennes** et le **journal de publication**. Ne plus y planifier de dates.
+>
+> Rappel : jour J = **vendredi 20 novembre 2026**. Les campagnes payantes démarrent après (Google Search Privati le 23 nov, Meta Privati le 25 nov), jamais avant Twilio + Stripe Live.
 
 ---
 
@@ -14,8 +17,9 @@ Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 |------|-----------|------|--------|
 | 01 oct | FB | Teaser « Sta per arrivare qualcosa per Rimini 👀 » | ✅ Publié — 200+ vues |
 | 01 oct | IG Reel + TikTok | Même vidéo teaser | ✅ Publié |
-| 06 oct | IG carousel + FB | « Chi siamo » (Canva) | ⏳ À publier lundi |
-| 07 oct | TikTok + IG Reel | « Il problema n°1 » (motion design) | ⏳ À produire + publier mercredi |
+| 06 oct | IG carousel + FB | « Chi siamo » (Canva) | ✅ Publié |
+| 07 oct | TikTok + IG Reel | « Il problema n°1 » (motion design) | ✅ Publié |
+| 10-11 oct | IG Stories | Sondage + Story Manuvo | ✅ Publié |
 
 ---
 
@@ -30,7 +34,9 @@ Règle de production : **1 vidéo tournée = 4 posts** (TikTok, Reel IG, Reel FB
 
 ---
 
-## Phase 0 — Chauffe (2 semaines avant le lancement) — 3 posts/sem
+## Phase 0 — Chauffe (12 oct → 1 nov) — 3 posts/sem
+
+> Planning à jour : calendrier Notion. Le tableau ci-dessous est l'historique de la première semaine.
 
 | Jour | Réseau | Format | Idée | Statut |
 |------|--------|--------|------|--------|
@@ -40,7 +46,7 @@ Règle de production : **1 vidéo tournée = 4 posts** (TikTok, Reel IG, Reel FB
 
 ---
 
-## Phase 1 — Semaine de lancement (jour par jour)
+## Phase 1 — Semaine de lancement (20 → 26 nov, jour par jour)
 
 Légendes complètes ci-dessous (section « Légendes de lancement »).
 
