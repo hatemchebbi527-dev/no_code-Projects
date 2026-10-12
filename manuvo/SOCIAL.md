@@ -8,6 +8,8 @@ Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 > Ce fichier ne garde que les **légendes italiennes** et le **journal de publication**. Ne plus y planifier de dates.
 >
 > Rappel : jour J = **vendredi 20 novembre 2026**. Les campagnes payantes démarrent après (Google Search Privati le 23 nov, Meta Privati le 25 nov), jamais avant Twilio + Stripe Live.
+>
+> 🧳 **Déplacement du 14 oct au 5 nov** : le contenu continue normalement (3 posts/semaine, Stories), seules les actions terrain sont décalées au 6-19 nov. Voir `ROADMAP.md` version 2.
 
 ---
 
