@@ -3,7 +3,7 @@
 Guide opérationnel pour le suivi des conversions (Meta Pixel) et la convention de liens (UTM).
 
 > ⚠️ **Quand allumer quelle campagne, avec quel budget : voir `ROADMAP.md` (itinéraire unique).**
-> Ce fichier ne traite que la mesure et les liens. Rappel de l'ordre : Google Search Privati (23 nov) → Meta Privati (25 nov) → Meta Artigiani (7 déc, conditionnel) → Google Artigiani jamais.
+> Ce fichier ne traite que la mesure et les liens. Rappel de l'ordre : Google Search Privati (7 déc) → Meta Privati (9 déc) → Meta Artigiani (21 déc, conditionnel) → Google Artigiani jamais.
 
 ---
 

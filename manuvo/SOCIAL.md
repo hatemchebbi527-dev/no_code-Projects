@@ -7,9 +7,11 @@ Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 > ⚠️ **L'ordre des opérations et toutes les dates vivent dans `ROADMAP.md` + le calendrier Notion « 📅 Calendrier Marketing Manuvo — itinéraire unique ».**
 > Ce fichier ne garde que les **légendes italiennes** et le **journal de publication**. Ne plus y planifier de dates.
 >
-> Rappel : jour J = **vendredi 20 novembre 2026**. Les campagnes payantes démarrent après (Google Search Privati le 23 nov, Meta Privati le 25 nov), jamais avant Twilio + Stripe Live.
+> Rappel : jour J = **vendredi 4 décembre 2026**. Les campagnes payantes démarrent après (Google Search Privati le 7 déc, Meta Privati le 9 déc), jamais avant Twilio + Stripe Live.
 >
-> 🧳 **Déplacement du 14 oct au 5 nov** : le contenu continue normalement (3 posts/semaine, Stories), seules les actions terrain sont décalées au 6-19 nov. Voir `ROADMAP.md` version 2.
+> 🧳 **Déplacement du 14 oct au 5 nov** : le contenu continue normalement (3 posts/semaine, Stories), le terrain reprend du 6 nov au 3 déc. La date a été décalée du 20 nov au 4 déc pour ne pas annoncer la vérification SMS avant qu'elle soit réellement active. Voir `ROADMAP.md` version 4.
+>
+> ⚠️ Les légendes qui annoncent « contatti verificati via SMS » ne sortent que si Twilio est en production. Sinon, version B : remboursement des crédits, recensioni reali, P.IVA registrata, 3 artigiani max.
 
 ---
 
@@ -48,7 +50,7 @@ Règle de production : **1 vidéo tournée = 4 posts** (TikTok, Reel IG, Reel FB
 
 ---
 
-## Phase 1 — Semaine de lancement (20 → 26 nov, jour par jour)
+## Phase 1 — Semaine de lancement (4 → 10 déc, jour par jour)
 
 Légendes complètes ci-dessous (section « Légendes de lancement »).
 
