@@ -7,9 +7,11 @@ Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 > ⚠️ **L'ordre des opérations et toutes les dates vivent dans `ROADMAP.md` + le calendrier Notion « 📅 Calendrier Marketing Manuvo — itinéraire unique ».**
 > Ce fichier ne garde que les **légendes italiennes** et le **journal de publication**. Ne plus y planifier de dates.
 >
-> Rappel : jour J = **vendredi 4 décembre 2026**. Les campagnes payantes démarrent après (Google Search Privati le 7 déc, Meta Privati le 9 déc), jamais avant Twilio + Stripe Live.
+> Jour J = **vendredi 22 janvier 2027**. La P.IVA s'ouvre en janvier 2027 (régime forfettario, 5 ans à 5 %), et Stripe comme Twilio en dépendent : d'où un lancement unique en janvier, où tout est vrai le premier jour. Campagnes payantes : Google Search Privati le 25 janv, Meta Privati le 27 janv.
 >
-> 🧳 **Déplacement du 14 oct au 5 nov** : le contenu continue normalement (3 posts/semaine, Stories), le terrain reprend du 6 nov au 3 déc. La date a été décalée du 20 nov au 4 déc pour ne pas annoncer la vérification SMS avant qu'elle soit réellement active. Voir `ROADMAP.md` version 4.
+> 🧳 **Déplacement du 14 oct au 5 nov** : contenu normal (3 posts/semaine, Stories), zéro terrain.
+> 📋 **6 nov → 18 déc** : le terrain sert à la **pré-inscription** des artisans, pas à leur inscription. Objectif 50 pré-inscrits.
+> 🚀 **4 → 21 janv** : sprint de conversion, P.IVA, Stripe, Twilio, puis lancement.
 >
 > ⚠️ Les légendes qui annoncent « contatti verificati via SMS » ne sortent que si Twilio est en production. Sinon, version B : remboursement des crédits, recensioni reali, P.IVA registrata, 3 artigiani max.
 
@@ -50,7 +52,7 @@ Règle de production : **1 vidéo tournée = 4 posts** (TikTok, Reel IG, Reel FB
 
 ---
 
-## Phase 1 — Semaine de lancement (4 → 10 déc, jour par jour)
+## Phase 1 — Semaine de lancement (22 → 28 janv 2027, jour par jour)
 
 Légendes complètes ci-dessous (section « Légendes de lancement »).
 
