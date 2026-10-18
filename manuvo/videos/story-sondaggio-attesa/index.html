@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Manuvo · Story sondaggio: l'attesa</title>
+    <!-- Vendored runtimes: nothing loads from the network at render time. -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/words.js"></script>
+    <script src="kit/draw.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-data.js"></script>
+    <script src="assets/logo-mark-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage for titles, Geist for UI, Geist Mono for the HUD. */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1e24; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1e24; color: #faf8f4; font-family: "Geist", sans-serif; }
+      .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      #cam { position: absolute; inset: 0; }
+      /* Slammed lines: the Manuvo display face, 800, uppercase, tight. */
+      .head { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Bricolage", sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.025em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .handle { font-family: "Geist", sans-serif; font-weight: 700; text-transform: none; letter-spacing: -0.01em; }
+      #ring { position: absolute; border-radius: 50%; border: 6px solid #faf8f4; visibility: hidden; }
+      /* Scrims in the scene colour: the words always sit on clean colour, and the
+         poll band stays a flat slab whatever the 3D does behind it. */
+      #scrim-top, #scrim-bot { position: absolute; left: 0; width: 1080px; }
+      #scrim-top { top: 0; height: 760px; }
+      #scrim-bot { top: 980px; height: 940px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1080" data-height="1920">
+      <!-- Layers, bottom to top: 3D > scrims > shockwave > words > wipe > vignette + grain > HUD. -->
+      <div id="cam">
+        <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
+        <div id="scrim-top" data-layout-ignore></div>
+        <div id="scrim-bot" data-layout-ignore></div>
+        <div id="ring" data-layout-ignore></div>
+        <div id="words" class="full">
+          <!-- 01 Attesa (ink): two giant lines at a time. -->
+          <div id="w1a" class="head" style="top:320px;font-size:150px;color:#faf8f4">Quante volte</div>
+          <div id="w1b" class="head" style="top:492px;font-size:150px;color:#FF5758">hai aspettato</div>
+          <div id="w1c" class="head" style="top:320px;font-size:150px;color:#faf8f4">un artigiano</div>
+          <div id="w1d" class="head" style="top:492px;font-size:150px;color:#faf8f4">che non è mai</div>
+          <!-- 02 Mai arrivato (coral): the punch, alone. -->
+          <div id="w2a" class="head" style="top:400px;font-size:230px;color:#1b1e24">Arrivato?</div>
+          <!-- 03 Domanda → 04 Manuvo: the readable block that holds to the end. -->
+          <div id="q1" class="head" style="top:320px;font-size:92px;color:#1b1e24">Quante volte</div>
+          <div id="q2" class="head" style="top:422px;font-size:92px;color:#1b1e24">hai aspettato un</div>
+          <div id="q3" class="head" style="top:524px;font-size:92px;color:#1b1e24">artigiano che non</div>
+          <div id="q4" class="head" style="top:626px;font-size:92px;color:#1b1e24">è mai arrivato?</div>
+          <!-- 04 Manuvo: soft warm-up CTA (no date, no "pubblica ora" before the launch). -->
+          <div id="cta1" class="head" style="top:1046px;font-size:50px;color:#1b1e24">Presto a Rimini <span class="handle" style="color:#faf8f4;background:#1b1e24;border-radius:999px;padding:6px 26px 10px;margin-left:12px">@manuvo.it</span></div>
+        </div>
+      </div>
+      <div id="wipe" class="full" data-layout-ignore style="visibility:hidden"></div>
+      <div id="vignette" class="full" data-layout-ignore></div>
+      <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%;mix-blend-mode:overlay"></canvas>
+      <div id="hud-layer" class="full" data-layout-ignore></div>
+      <!-- Three.js and add-ons are ES modules: they hand themselves to the kit, then the film starts. -->
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "./vendor/three/addons/postprocessing/EffectComposer.js";
+        import { RenderPass } from "./vendor/three/addons/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "./vendor/three/addons/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "./vendor/three/addons/postprocessing/OutputPass.js";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment, SVGLoader };
+        PF.signal("three").resolve();
+      </script>
+      <script>
+        const $ = (s) => document.querySelector(s);
+        const W = CUES.width, H = CUES.height;
+        const b = PF.grid(CUES.grid);
+        const at = (a) => b(a[0], a[1], a[2] || 0);
+        // Manuvo palette (manuvo/src/app/globals.css). Nothing outside it.
+        const C = { cream: "#faf8f4", ink: "#1b1e24", coral: "#FF5758", coralText: "#C6383A", deep: "#6E1618" };
+        // The brand signature: a sixth of a turn in 480 ms, stopping dead.
+        const SIXTH = PF.ease("cubic-bezier(.16,1,.3,1)");
+        const TURN = Math.PI / 3;
+        let st, hud, LOGO = null;
+        const S = {};
+
+        /* The scene colour at time t: hard cuts on the downbeats, one flood, one iris. */
+        function bgAt(t) {
+          if (t < at([3, 1])) return C.ink;
+          if (t < at([4, 1])) return C.coral;
+          if (t < at([5, 1])) return C.cream;
+          return C.coral;
+        }
+        /* How many sixths the hexagon has turned by t (it only ever stops dead). */
+        const TURNS = [[3, 3], [4, 2], [4, 3], [4, 4]].map(at);
+        function sixths(t) {
+          let a = 0;
+          for (const u of TURNS) a += SIXTH(PF.progress(t, u, 0.48));
+          return a * TURN;
+        }
+        /* The sweeping hand: fast and accelerating, then dead still from the punch. */
+        function sweep(t) {
+          const stop = at([3, 1]);
+          const u = Math.min(t, stop);
+          return -(u * 2.3 + u * u * 0.52) * Math.PI;
+        }
+        function unlit(mesh) { mesh.material.toneMapped = false; return mesh; }
+        /* Shrink a line until it fits the safe width (measured after the fonts load). */
+        function fit(el, max = 880) {
+          PF.show(el, true);
+          const r = document.createRange(); r.selectNodeContents(el);
+          const w = r.getBoundingClientRect().width;
+          if (w > max) el.style.fontSize = (parseFloat(el.style.fontSize) * max / w).toFixed(1) + "px";
+          PF.show(el, false);
+        }
+
+        function setup() {
+          document.querySelectorAll(".head").forEach((el) => fit(el));
+          // The viewfinder frames the content zone only, so the poll band stays clean.
+          hud = PF.hud($("#hud-layer"), {
+            size: 22, font: "'Geist Mono', monospace", bracket: 30,
+            top: CUES.safe.top - 48, bottom: H - CUES.sticker.top - 48 + 110, color: "rgba(250,248,244,.7)",
+          });
+          st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.85, radius: 0.6, threshold: 1.0 }, exposure: 0.95 });
+          const THREE = st.THREE, A = window.THREE_ADDONS;
+          // The composer's OutputPass tone-maps the whole frame: no tone mapping keeps the swatches exact.
+          st.renderer.toneMapping = THREE.NoToneMapping;
+
+          /* One scene, one colour state animated: the flips are the edit. */
+          const s = st.newScene();
+          s.background = new THREE.Color(C.ink);
+          s.fog = new THREE.Fog(C.ink, 15, 44);
+          s.environmentIntensity = 0.55;
+          PF.three.lights(st, { scene: s, ground: C.ink, fill: 0.5, key: 1.6, keyPos: [-4, 8, 6] });
+          S.s = s;
+
+          /* The clock: the Manuvo hexagon as the bezel, a cream hand sweeping too fast. */
+          S.cap = new THREE.MeshBasicMaterial({ color: C.coral, toneMapped: false, fog: false });
+          S.side = PF.three.mat("gloss", C.deep);
+          S.hex = new THREE.Mesh(new THREE.CylinderGeometry(1.45, 1.45, 0.22, 6, 1), [S.side, S.cap, S.cap]);
+          S.hex.rotation.x = Math.PI / 2;
+          S.clock = new THREE.Group();
+          S.clock.add(S.hex);
+          // Twelve marks on the face, and the hand with the one bloomed highlight at its tip.
+          S.markMat = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false });
+          S.marks = new THREE.Group();
+          for (let i = 0; i < 12; i++) {
+            const long = i % 3 === 0;
+            const m = new THREE.Mesh(new THREE.BoxGeometry(0.05, long ? 0.21 : 0.11, 0.03), S.markMat);
+            const a = (i / 12) * Math.PI * 2;
+            m.position.set(Math.sin(a) * 1.18, Math.cos(a) * 1.18, 0.13);
+            m.rotation.z = -a;
+            S.marks.add(m);
+          }
+          S.clock.add(S.marks);
+          S.handMat = PF.three.mat("gloss", C.cream);
+          S.hand = new THREE.Mesh(new THREE.BoxGeometry(0.075, 1.02, 0.075), S.handMat);
+          S.hand.position.y = 0.51;
+          S.handPivot = new THREE.Group();
+          S.handPivot.position.z = 0.19;
+          S.handPivot.add(S.hand);
+          S.tip = new THREE.Mesh(new THREE.SphereGeometry(0.095, 40, 28), PF.three.mat("glow", C.coral));
+          S.tip.position.y = 1.02;
+          S.handPivot.add(S.tip);
+          S.hubMat = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false });
+          S.hub = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.1, 32), S.hubMat);
+          S.hub.rotation.x = Math.PI / 2;
+          S.hub.position.z = 0.19;
+          S.clock.add(S.handPivot, S.hub);
+          S.clock.position.set(0, 0.18, 0);
+          s.add(S.clock);
+
+          S.dust = PF.three.particles(st, 420, {
+            scene: s, size: 0.055, color: (i) => (i % 5 ? C.cream : C.coral),
+            pos: (i, t, o) => { const r = PF.random(i * 13 + 1); o.x = (r() - 0.5) * 18; o.y = -7 + ((r() * 14 + t * (0.5 + r() * 0.6)) % 14); o.z = -2 - r() * 11; },
+          });
+          unlit(S.dust.points);
+
+          /* The lockup: manuvo/public/logo-mark.svg extruded, reversed cream on coral.
+             The mark alone: the wordmark is carried by the @manuvo.it pill below. */
+          const svg = new A.SVGLoader().parse(window.MANUVO_MARK_SVG);
+          const shapes = [];
+          svg.paths.forEach((p) => {
+            const f = (p.userData.style.fill || "").replace(/\s/g, "");
+            if (f === "rgb(255,87,88)" || f.toLowerCase() === "#ff5758") shapes.push(...A.SVGLoader.createShapes(p));
+          });
+          const geo = new THREE.ExtrudeGeometry(shapes, { depth: 40, bevelEnabled: true, bevelThickness: 6, bevelSize: 4, bevelSegments: 4, curveSegments: 24 });
+          geo.computeBoundingBox();
+          const bb = geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+          geo.translate(-cx, -cy, -20);
+          const k = 0.89 / (bb.max.x - bb.min.x);
+          S.logoFace = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false, transparent: true });
+          S.logoSide = PF.three.mat("gloss", C.deep, { transparent: true });
+          S.logo = new THREE.Mesh(geo, [S.logoFace, S.logoSide]);
+          S.logo.scale.set(k, -k, k);
+          S.logoGroup = new THREE.Group();
+          S.logoGroup.add(S.logo);
+          S.logoGroup.position.set(0, 0.79, 0);
+          s.add(S.logoGroup);
+          LOGO = { k };
+        }
+
+        function draw(t) {
+          const bg = bgAt(t);
+          const onDark = bg === C.ink || bg === C.coral;
+          const s = S.s;
+          st.use(s);
+          s.background.set(bg);
+          s.fog.color.set(bg);
+
+          /* Colour state per chapter: exact swatches, nothing invented. */
+          const coralBg = bg === C.coral, creamBg = bg === C.cream;
+          S.cap.color.set(creamBg ? C.ink : coralBg ? C.cream : C.coral);
+          S.side.color.set(creamBg ? C.ink : C.deep);
+          S.markMat.color.set(coralBg ? C.ink : creamBg ? C.cream : C.cream);
+          S.hubMat.color.set(coralBg ? C.ink : creamBg ? C.coral : C.cream);
+          S.handMat.color.set(coralBg ? C.ink : creamBg ? C.coral : C.cream);
+          S.tip.material.color.set(coralBg ? C.cream : C.coral);
+
+          /* The clock: spins, stops dead on the punch, then the hexagon turns a sixth at a time. */
+          S.handPivot.rotation.z = sweep(t);
+          S.clock.rotation.z = sixths(t);
+          const clockOut = PF.progress(t, at([5, 1]), 0.34);
+          const cs = PF.lerp(1, 0.2, PF.bezier(0.5, 0, 0.9, 0.2)(clockOut));
+          S.clock.scale.setScalar(cs);
+          S.clock.visible = clockOut < 1;
+          S.dust.update(t);
+
+          /* The lockup rises from the hexagon and lands with the sixth of a turn. */
+          const lu = PF.step(t - at([5, 1]), { stiffness: 46, damping: 13 });
+          // The brand signature: the lockup turns its sixth as it rises, then stops dead.
+          const turn = SIXTH(PF.progress(t, at([5, 1]), 0.48));
+          const click = PF.progress(t, at([5, 3]), 0.34);
+          const pop = click > 0 && click < 1 ? Math.sin(click * Math.PI) * 0.05 : 0;
+          S.logoGroup.visible = t >= at([5, 1]) - 0.02;
+          S.logoGroup.scale.setScalar(PF.lerp(0.6, 1, lu) + pop);
+          S.logoGroup.rotation.set(0, PF.lerp(-0.7, 0, lu), PF.lerp(-TURN, 0, turn));
+          S.logoFace.opacity = S.logoSide.opacity = lu;
+
+          /* Camera: a new framing every two beats, each with a small drift. */
+          PF.three.shots(st.camera, t, [
+            { at: b(1, 1), azimuth: -13, elevation: 7, radius: 12.6, target: [0, 0.18, 0], drift: { azimuth: 6, radius: -0.7 } },
+            { at: b(1, 3), azimuth: 11, elevation: -5, radius: 11.4, target: [0, 0.18, 0], drift: { azimuth: -5 } },
+            { at: b(2, 1), azimuth: -7, elevation: 11, radius: 10.9, target: [0, 0.2, 0], drift: { azimuth: 8, elevation: -4 } },
+            { at: b(2, 3), azimuth: 16, elevation: 3, radius: 10.2, target: [0.1, 0.18, 0], drift: { azimuth: -9 } },
+            { at: b(3, 1), azimuth: 0, elevation: 0, radius: 11.8, target: [0, 0.18, 0], drift: { radius: -0.7 } },
+            { at: b(3, 3), azimuth: -9, elevation: 6, radius: 11.2, target: [0, 0.18, 0], drift: { azimuth: 5 } },
+            { at: b(4, 1), azimuth: 7, elevation: -5, radius: 11.6, target: [0, 0.18, 0], drift: { azimuth: -4 } },
+            { at: b(5, 1), azimuth: 0, elevation: 0, radius: 8.2, target: [0, 0.47, 0], drift: { radius: -0.3 } },
+          ]);
+
+          /* Words: two giant lines at a time, then the readable block that holds. */
+          const slam = (el, cue, win) => {
+            const on = t >= cue && t < cue + win;
+            PF.show(el, on);
+            if (on) PF.slamStyle(el, PF.slam(t, cue, { from: 1.3, length: 0.2, blur: 16 }));
+          };
+          slam($("#w1a"), b(1, 1), b(2, 1) - b(1, 1));
+          slam($("#w1b"), b(1, 3), b(2, 1) - b(1, 3));
+          slam($("#w1c"), b(2, 1), at([3, 1]) - 0.2 - b(2, 1));
+          slam($("#w1d"), b(2, 3), at([3, 1]) - 0.2 - b(2, 3));
+          slam($("#w2a"), b(3, 1), b(4, 1) - b(3, 1));
+          // The question block appears one line per beat and then never moves again.
+          [["#q1", b(4, 1)], ["#q2", b(4, 2)], ["#q3", b(4, 3)], ["#q4", b(4, 4)]].forEach(([sel, cue]) => {
+            const el = $(sel), on = t >= cue;
+            PF.show(el, on);
+            if (on) PF.slamStyle(el, PF.slam(t, cue, { from: 1.18, length: 0.2, blur: 12 }));
+          });
+          // Soft warm-up CTA only: no date, no "pubblica ora" before the launch.
+          [["#cta1", b(6, 1)]].forEach(([sel, cue]) => {
+            const el = $(sel), on = t >= cue;
+            PF.show(el, on);
+            if (on) PF.slamStyle(el, PF.slam(t, cue, { from: 1.12, length: 0.22, blur: 10 }));
+          });
+
+          /* Scrims in the scene colour: words on clean colour, poll band a flat slab. */
+          PF.css($("#scrim-top"), { background: `linear-gradient(to bottom, ${bg} 0%, ${bg} 58%, rgba(0,0,0,0) 100%)`, opacity: 0.94 });
+          // Solid from y=1150 down: the poll sticker always lands on flat brand colour.
+          PF.css($("#scrim-bot"), { background: `linear-gradient(to bottom, rgba(0,0,0,0) 0%, ${bg} 18%, ${bg} 100%)`, opacity: 1 });
+
+          /* One flood on the punch, one iris into the lockup. */
+          const wipe = $("#wipe");
+          const fl = PF.progress(t, at([3, 1]) - 0.17, 0.3), ir = PF.progress(t, at([5, 1]) - 0.1, 0.42);
+          if (fl > 0 && fl < 1) {
+            PF.show(wipe, true); PF.css(wipe, { background: C.coral, clipPath: null });
+            PF.flood(wipe, PF.bezier(0.7, 0, 0.2, 1)(fl), "up");
+          } else if (ir > 0 && ir < 1) {
+            PF.show(wipe, true); PF.css(wipe, { background: C.coral });
+            PF.iris(wipe, PF.bezier(0.6, 0, 0.25, 1)(ir), W / 2, 900, W, H);
+          } else PF.show(wipe, false);
+
+          /* One shockwave on the punch, one on the landing. Never looping. */
+          const ring = $("#ring");
+          const rg = PF.ring(t, at([3, 1]), { length: 0.62, to: 900 });
+          PF.show(ring, rg.opacity > 0);
+          if (rg.opacity > 0) {
+            const cy = 900;
+            PF.css(ring, { left: (W / 2 - rg.r) + "px", top: (cy - rg.r) + "px", width: rg.r * 2 + "px", height: rg.r * 2 + "px", opacity: rg.opacity, borderColor: bg === C.coral ? C.ink : C.coral, borderWidth: Math.max(2, 7 * rg.opacity) + "px" });
+          }
+
+          /* One shake on the punch. The HUD never shakes. */
+          const sh = PF.shake(t, [at([3, 1])], { amp: 16, decay: 0.3, freq: 22, rot: 0.5 });
+          PF.css($("#cam"), { transform: `translate(${sh.x.toFixed(2)}px, ${sh.y.toFixed(2)}px) rotate(${sh.r.toFixed(3)}deg)` });
+
+          /* Viewfinder, grain, vignette. */
+          hud.color(onDark ? "rgba(250,248,244,.7)" : "rgba(27,30,36,.6)");
+          const chapter = t < at([3, 1]) ? "01 — Attesa" : t < at([4, 1]) ? "02 — Mai arrivato" : t < at([5, 1]) ? "03 — Domanda" : "04 — Manuvo";
+          hud.set({ tl: chapter, tr: PF.timecode(t, 30), bl: "Rimini", br: "Sondaggio" }, t);
+          PF.grain($("#grain"), t, { alpha: 0.05 });
+          PF.css($("#vignette"), { background: PF.vignette(0.3, onDark ? "0,0,0" : "110,22,24") });
+
+          st.render();
+        }
+
+        PF.film({
+          duration: CUES.duration, setup, draw,
+          waitFor: [PF.signal("three")],
+          register: (tl) => { window.__timelines["main"] = tl; },
+        });
+      </script>
+    </div>
+  </body>
+</html>
