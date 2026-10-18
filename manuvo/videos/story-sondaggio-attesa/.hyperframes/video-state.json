@@ -1590,5 +1590,16 @@
         "attribution": "inputs-changed"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "088dc963-d552-4c43-96f7-905341525f13",
+      "completedAt": 1792358273566,
+      "output": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/out/manuvo-story-sondaggio-attesa/v1/_master.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }
