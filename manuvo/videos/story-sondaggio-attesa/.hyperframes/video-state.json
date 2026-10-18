@@ -1234,16 +1234,12 @@
     }
   },
   "checks": {
-    "latest": {
-      "revision": "7621f22e-2c84-4933-8219-730ab3ed3bb5",
-      "id": "0acce799-9c53-411e-81f8-433df15f8ca3"
-    },
+    "latest": null,
     "revisions": {
       "247f44cf-0a5b-484b-8894-800b411090dc": [
         {
           "id": "711f2882-0d71-4b6a-9fef-d7b80260332c",
           "scope": "project",
-          "report": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/.hyperframes/artifacts/checks/711f2882-0d71-4b6a-9fef-d7b80260332c.json",
           "metadata": {
             "ok": false,
             "browserSkipped": false,
@@ -1265,14 +1261,15 @@
           "revision": "247f44cf-0a5b-484b-8894-800b411090dc",
           "inputFingerprint": "cf28d5a5e5414b9f5d8d462b01f49f904b115c00356773d7736156320dd96f11",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "5b84bf95-f6b9-4cf2-931d-87581a9a8c4d"
         }
       ],
       "327465e1-6493-4e35-8caf-701f4b37220d": [
         {
           "id": "c0ced874-c5bb-413a-b181-5aaec7199263",
           "scope": "project",
-          "report": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/.hyperframes/artifacts/checks/c0ced874-c5bb-413a-b181-5aaec7199263.json",
           "metadata": {
             "ok": false,
             "browserSkipped": false,
@@ -1294,14 +1291,15 @@
           "revision": "327465e1-6493-4e35-8caf-701f4b37220d",
           "inputFingerprint": "c47dc4a14711287c5b6b8930e1db87f587ff87d385c65356f43214e13b6edd6d",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "5b84bf95-f6b9-4cf2-931d-87581a9a8c4d"
         }
       ],
       "7f031c6a-c976-4ff0-8c7d-e1cd6c7822db": [
         {
           "id": "9c6ebf6f-e5fd-4dcf-9231-b1a900902d83",
           "scope": "project",
-          "report": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/.hyperframes/artifacts/checks/9c6ebf6f-e5fd-4dcf-9231-b1a900902d83.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1323,14 +1321,15 @@
           "revision": "7f031c6a-c976-4ff0-8c7d-e1cd6c7822db",
           "inputFingerprint": "86a356d2c20c1aea32c268291793ac92f3f8198688e8ad296f505db21563b5e8",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "5b84bf95-f6b9-4cf2-931d-87581a9a8c4d"
         }
       ],
       "6021dbb0-e23a-4a2a-85d8-b3eb85820560": [
         {
           "id": "ee589dd0-7b56-4cb7-ba79-4b582027e8df",
           "scope": "project",
-          "report": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/.hyperframes/artifacts/checks/ee589dd0-7b56-4cb7-ba79-4b582027e8df.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1352,14 +1351,15 @@
           "revision": "6021dbb0-e23a-4a2a-85d8-b3eb85820560",
           "inputFingerprint": "b8dd6782386dfde0e04888bb737be5116a82a9c622a10ff423dc89bb43f12374",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "5b84bf95-f6b9-4cf2-931d-87581a9a8c4d"
         }
       ],
       "b921f2ea-6856-4a84-9a42-bf8e25640f8e": [
         {
           "id": "31c7da1f-23fd-4ff2-aae8-4aa3b729c0e9",
           "scope": "project",
-          "report": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/.hyperframes/artifacts/checks/31c7da1f-23fd-4ff2-aae8-4aa3b729c0e9.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1381,14 +1381,15 @@
           "revision": "b921f2ea-6856-4a84-9a42-bf8e25640f8e",
           "inputFingerprint": "fe9b0d725de0fee8edbb7f6ba9919936dd729c4f5f10d817896ac61451ee9ba1",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "5b84bf95-f6b9-4cf2-931d-87581a9a8c4d"
         }
       ],
       "7621f22e-2c84-4933-8219-730ab3ed3bb5": [
         {
           "id": "0acce799-9c53-411e-81f8-433df15f8ca3",
           "scope": "project",
-          "report": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/.hyperframes/artifacts/checks/0acce799-9c53-411e-81f8-433df15f8ca3.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1410,7 +1411,9 @@
           "revision": "7621f22e-2c84-4933-8219-730ab3ed3bb5",
           "inputFingerprint": "4ab3ee8a8802fe1c797d99ddb24f63e9f70b0cc4213a7bb1d72652b42543c9ae",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "5b84bf95-f6b9-4cf2-931d-87581a9a8c4d"
         }
       ]
     },
@@ -1507,13 +1510,15 @@
   },
   "renders": {
     "latest": {
-      "id": "088dc963-d552-4c43-96f7-905341525f13",
-      "completedAt": 1792358273566,
-      "output": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/out/manuvo-story-sondaggio-attesa/v1/_master.mp4",
+      "id": "5b84bf95-f6b9-4cf2-931d-87581a9a8c4d",
+      "completedAt": 1792360645490,
+      "output": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/out/manuvo-story-sondaggio-attesa/v2/_master.mp4",
       "status": "completed",
-      "revision": null
+      "revision": "57526ba7-1337-4b2a-a70b-004db13829ac"
     },
-    "retainedRevisions": []
+    "retainedRevisions": [
+      "57526ba7-1337-4b2a-a70b-004db13829ac"
+    ]
   },
   "pendingArtifactCleanup": []
 }
