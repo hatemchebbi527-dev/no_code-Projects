@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "e7743c77-2a17-4578-bda1-a761f44231a9",
-  "currentRevision": "1d74af01-e464-482a-a5a2-7257412a4a14",
+  "currentRevision": "57526ba7-1337-4b2a-a70b-004db13829ac",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -37,8 +37,8 @@
       "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
     },
     "index.html": {
-      "hash": "1e50dc5bfed354ae1b748d6139b383e0934317eabf4405a58fa13560025acc7f",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/1e/1e50dc5bfed354ae1b748d6139b383e0934317eabf4405a58fa13560025acc7f"
+      "hash": "9e56fc95673bb9574d7c4e9486ed5b4b61e7fe8adf57e1011a6b3693236cd631",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/9e/9e56fc95673bb9574d7c4e9486ed5b4b61e7fe8adf57e1011a6b3693236cd631"
     },
     "kit/cursor.js": {
       "hash": "a321fb9b197453bbadf3824552ce8302e81585367e27952b291b0528e52ef1d4",
@@ -620,73 +620,37 @@
       "hash": "5f3af9a2386c0193c1693f8022620aca9d407489d3b63d04f9be2d711f183dbb",
       "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/5f/5f3af9a2386c0193c1693f8022620aca9d407489d3b63d04f9be2d711f183dbb"
     },
-    "review/latest/frame-00-at-0.3s.png": {
-      "hash": "fd11b62396ff4c98de06d2f8cb9a59016740adadd0a13510b123d19e132b52e5",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/fd/fd11b62396ff4c98de06d2f8cb9a59016740adadd0a13510b123d19e132b52e5"
+    "out/manuvo-story-sondaggio-attesa/v1/manuvo-story-sondaggio-attesa.mp4": {
+      "hash": "56288396d13da992a76eb68001654ad93dcc51e0c780358439fd4c5cebdc0b0d",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/56/56288396d13da992a76eb68001654ad93dcc51e0c780358439fd4c5cebdc0b0d"
     },
-    "review/latest/frame-01-at-1s.png": {
-      "hash": "dbe9c1287449be386b1ba44da7bcb778fc00d3edd0111e6677eabf174c52847e",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/db/dbe9c1287449be386b1ba44da7bcb778fc00d3edd0111e6677eabf174c52847e"
+    "out/manuvo-story-sondaggio-attesa/v1/poster.jpg": {
+      "hash": "b898d837a187d9573c9101b2885b73eef10849f83bf686de840254ecc7fadf19",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/b8/b898d837a187d9573c9101b2885b73eef10849f83bf686de840254ecc7fadf19"
     },
-    "review/latest/frame-02-at-1.7s.png": {
-      "hash": "b45179d635ca963b9bb8d4453bd8568ae81638c4245670a7e927467410394733",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/b4/b45179d635ca963b9bb8d4453bd8568ae81638c4245670a7e927467410394733"
+    "PROMPT.md": {
+      "hash": "76148d82b13a00fda4b9db94c6e22aa2076bdb8fd72b70f13991e372a375ff00",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/76/76148d82b13a00fda4b9db94c6e22aa2076bdb8fd72b70f13991e372a375ff00"
     },
-    "review/latest/frame-03-at-2.4s.png": {
-      "hash": "7aa913f72ec7172936ef04369fce94892556fac602d803b7abef986c6152f000",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/7a/7aa913f72ec7172936ef04369fce94892556fac602d803b7abef986c6152f000"
+    "review/latest/frame-00-at-0.5s.png": {
+      "hash": "6a78714d405266a0394639be23240cb8c575af6849931a5e63f0543948cbcae3",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/6a/6a78714d405266a0394639be23240cb8c575af6849931a5e63f0543948cbcae3"
     },
-    "review/latest/frame-04-at-3.1s.png": {
-      "hash": "12a794069c4d0c0f57366f39bcedf41a438484a304a8b29ed2cdadd2e625563f",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/12/12a794069c4d0c0f57366f39bcedf41a438484a304a8b29ed2cdadd2e625563f"
+    "review/latest/frame-01-at-3.7s.png": {
+      "hash": "9aee4cb0a2496d5c2f19c74a1670d9473b779b84b7c77d617ce62aeda6dc695e",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/9a/9aee4cb0a2496d5c2f19c74a1670d9473b779b84b7c77d617ce62aeda6dc695e"
     },
-    "review/latest/frame-05-at-3.8s.png": {
-      "hash": "3248aca159f09ec4636416f9ccc5e12b06434ec98b0933f85972d8746da377bf",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/32/3248aca159f09ec4636416f9ccc5e12b06434ec98b0933f85972d8746da377bf"
+    "review/latest/frame-02-at-6.6s.png": {
+      "hash": "4a59792b0dffc342522c5d0dd127b70efa198d3edca12dc3872261b6ff07d251",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/4a/4a59792b0dffc342522c5d0dd127b70efa198d3edca12dc3872261b6ff07d251"
     },
-    "review/latest/frame-06-at-4.5s.png": {
-      "hash": "2c603aa8e55fd7634ef1867cf76e993016d31c353b36642314132491675712fb",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/2c/2c603aa8e55fd7634ef1867cf76e993016d31c353b36642314132491675712fb"
+    "review/latest/frame-03-at-9.8s.png": {
+      "hash": "1229da0736757c93d8521fc1236baecebfb26521d91bbf4446d8f613fd57d6b5",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/12/1229da0736757c93d8521fc1236baecebfb26521d91bbf4446d8f613fd57d6b5"
     },
-    "review/latest/frame-07-at-5.2s.png": {
-      "hash": "8a18e71ce04a21cf2b6309d9048a13999ea637ca47e65ecc9853e2d9acb478b5",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/8a/8a18e71ce04a21cf2b6309d9048a13999ea637ca47e65ecc9853e2d9acb478b5"
-    },
-    "review/latest/frame-08-at-5.9s.png": {
-      "hash": "080e2770bfa8464675aed16a19bb8474403837a099ef15da4f89f7e02919cf1c",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/08/080e2770bfa8464675aed16a19bb8474403837a099ef15da4f89f7e02919cf1c"
-    },
-    "review/latest/frame-09-at-6.6s.png": {
-      "hash": "f88c1faa75c7a035fcfbd7bcbda07b7d354d360427c928f96d78c69447b36fd9",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/f8/f88c1faa75c7a035fcfbd7bcbda07b7d354d360427c928f96d78c69447b36fd9"
-    },
-    "review/latest/frame-10-at-7.3s.png": {
-      "hash": "69482b323762ef94c2277e7a403bf6beb5be492c12e292beb4bd9c776aabd35e",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/69/69482b323762ef94c2277e7a403bf6beb5be492c12e292beb4bd9c776aabd35e"
-    },
-    "review/latest/frame-11-at-8s.png": {
-      "hash": "63ae33bd3f23eda95f9ee0b9311eec558802f9d76e7c58e8bfcb899392bacde2",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/63/63ae33bd3f23eda95f9ee0b9311eec558802f9d76e7c58e8bfcb899392bacde2"
-    },
-    "review/latest/frame-12-at-8.7s.png": {
-      "hash": "7462f3003de9ddaf10992d61816fad60970890fc13b323529e2eea622a5472f0",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/74/7462f3003de9ddaf10992d61816fad60970890fc13b323529e2eea622a5472f0"
-    },
-    "review/latest/frame-13-at-9.4s.png": {
-      "hash": "d1d9f60d88e7c84c9dc427df04832a07446c5f56048320691b9e590c91026877",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/d1/d1d9f60d88e7c84c9dc427df04832a07446c5f56048320691b9e590c91026877"
-    },
-    "review/latest/frame-14-at-9.9s.png": {
-      "hash": "9bb3f3225a1444d1f8dee97d1abeb0519a041ad4608008b2b46017404f6b0563",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/9b/9bb3f3225a1444d1f8dee97d1abeb0519a041ad4608008b2b46017404f6b0563"
-    },
-    "review/latest/contact-sheet-1.jpg": {
-      "hash": "ce58ef15524e99797c7a792c26f4e12a2e7fc2bbc8a32345c755adde296e27e2",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/ce/ce58ef15524e99797c7a792c26f4e12a2e7fc2bbc8a32345c755adde296e27e2"
-    },
-    "review/latest/contact-sheet-2.jpg": {
-      "hash": "c5dea0b93b6ee33e127e70832ad872c388613e579b46e96e272d65c4ed4b7c60",
-      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/c5/c5dea0b93b6ee33e127e70832ad872c388613e579b46e96e272d65c4ed4b7c60"
+    "review/latest/contact-sheet.jpg": {
+      "hash": "e1bb2c6cb7a37bd121692639cb7843b5e44029c10aa94e37013586a8a98300e2",
+      "content": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/e1/e1bb2c6cb7a37bd121692639cb7843b5e44029c10aa94e37013586a8a98300e2"
     }
   },
   "revisions": {
@@ -1126,12 +1090,153 @@
           "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/9b/9bb3f3225a1444d1f8dee97d1abeb0519a041ad4608008b2b46017404f6b0563"
         }
       }
+    },
+    "7621f22e-2c84-4933-8219-730ab3ed3bb5": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792359056802,
+      "endedAt": 1792359056859,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/1e/1e50dc5bfed354ae1b748d6139b383e0934317eabf4405a58fa13560025acc7f",
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/18/1855e7c9891eb589adac4d237121f5bc5d885ff84bbd634938e61586e8730c53"
+        },
+        "out/manuvo-story-sondaggio-attesa/v1/manuvo-story-sondaggio-attesa.mp4": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/56/56288396d13da992a76eb68001654ad93dcc51e0c780358439fd4c5cebdc0b0d"
+        },
+        "out/manuvo-story-sondaggio-attesa/v1/poster.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/b8/b898d837a187d9573c9101b2885b73eef10849f83bf686de840254ecc7fadf19"
+        },
+        "PROMPT.md": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/76/76148d82b13a00fda4b9db94c6e22aa2076bdb8fd72b70f13991e372a375ff00"
+        }
+      }
+    },
+    "5eefb318-7939-45e7-9dd5-4a3d320dc8e0": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792359084628,
+      "endedAt": 1792359084637,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/18/1855e7c9891eb589adac4d237121f5bc5d885ff84bbd634938e61586e8730c53",
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/9e/9e56fc95673bb9574d7c4e9486ed5b4b61e7fe8adf57e1011a6b3693236cd631"
+        },
+        "review/latest/contact-sheet-1.jpg": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/ce/ce58ef15524e99797c7a792c26f4e12a2e7fc2bbc8a32345c755adde296e27e2",
+          "after": null
+        },
+        "review/latest/contact-sheet-2.jpg": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/c5/c5dea0b93b6ee33e127e70832ad872c388613e579b46e96e272d65c4ed4b7c60",
+          "after": null
+        },
+        "review/latest/frame-00-at-0.3s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/fd/fd11b62396ff4c98de06d2f8cb9a59016740adadd0a13510b123d19e132b52e5",
+          "after": null
+        },
+        "review/latest/frame-01-at-1s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/db/dbe9c1287449be386b1ba44da7bcb778fc00d3edd0111e6677eabf174c52847e",
+          "after": null
+        },
+        "review/latest/frame-02-at-1.7s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/b4/b45179d635ca963b9bb8d4453bd8568ae81638c4245670a7e927467410394733",
+          "after": null
+        },
+        "review/latest/frame-03-at-2.4s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/7a/7aa913f72ec7172936ef04369fce94892556fac602d803b7abef986c6152f000",
+          "after": null
+        },
+        "review/latest/frame-04-at-3.1s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/12/12a794069c4d0c0f57366f39bcedf41a438484a304a8b29ed2cdadd2e625563f",
+          "after": null
+        },
+        "review/latest/frame-05-at-3.8s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/32/3248aca159f09ec4636416f9ccc5e12b06434ec98b0933f85972d8746da377bf",
+          "after": null
+        },
+        "review/latest/frame-06-at-4.5s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/2c/2c603aa8e55fd7634ef1867cf76e993016d31c353b36642314132491675712fb",
+          "after": null
+        },
+        "review/latest/frame-07-at-5.2s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/8a/8a18e71ce04a21cf2b6309d9048a13999ea637ca47e65ecc9853e2d9acb478b5",
+          "after": null
+        },
+        "review/latest/frame-08-at-5.9s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/08/080e2770bfa8464675aed16a19bb8474403837a099ef15da4f89f7e02919cf1c",
+          "after": null
+        },
+        "review/latest/frame-09-at-6.6s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/f8/f88c1faa75c7a035fcfbd7bcbda07b7d354d360427c928f96d78c69447b36fd9",
+          "after": null
+        },
+        "review/latest/frame-10-at-7.3s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/69/69482b323762ef94c2277e7a403bf6beb5be492c12e292beb4bd9c776aabd35e",
+          "after": null
+        },
+        "review/latest/frame-11-at-8s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/63/63ae33bd3f23eda95f9ee0b9311eec558802f9d76e7c58e8bfcb899392bacde2",
+          "after": null
+        },
+        "review/latest/frame-12-at-8.7s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/74/7462f3003de9ddaf10992d61816fad60970890fc13b323529e2eea622a5472f0",
+          "after": null
+        },
+        "review/latest/frame-13-at-9.4s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/d1/d1d9f60d88e7c84c9dc427df04832a07446c5f56048320691b9e590c91026877",
+          "after": null
+        },
+        "review/latest/frame-14-at-9.9s.png": {
+          "before": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/9b/9bb3f3225a1444d1f8dee97d1abeb0519a041ad4608008b2b46017404f6b0563",
+          "after": null
+        }
+      }
+    },
+    "57526ba7-1337-4b2a-a70b-004db13829ac": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792359105867,
+      "endedAt": 1792359105894,
+      "files": {
+        "review/latest/contact-sheet.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/e1/e1bb2c6cb7a37bd121692639cb7843b5e44029c10aa94e37013586a8a98300e2"
+        },
+        "review/latest/frame-00-at-0.5s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/6a/6a78714d405266a0394639be23240cb8c575af6849931a5e63f0543948cbcae3"
+        },
+        "review/latest/frame-01-at-3.7s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/9a/9aee4cb0a2496d5c2f19c74a1670d9473b779b84b7c77d617ce62aeda6dc695e"
+        },
+        "review/latest/frame-02-at-6.6s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/4a/4a59792b0dffc342522c5d0dd127b70efa198d3edca12dc3872261b6ff07d251"
+        },
+        "review/latest/frame-03-at-9.8s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/e7743c77-2a17-4578-bda1-a761f44231a9/blobs/12/1229da0736757c93d8521fc1236baecebfb26521d91bbf4446d8f613fd57d6b5"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": "b921f2ea-6856-4a84-9a42-bf8e25640f8e",
-      "id": "31c7da1f-23fd-4ff2-aae8-4aa3b729c0e9"
+      "revision": "7621f22e-2c84-4933-8219-730ab3ed3bb5",
+      "id": "0acce799-9c53-411e-81f8-433df15f8ca3"
     },
     "revisions": {
       "247f44cf-0a5b-484b-8894-800b411090dc": [
@@ -1278,6 +1383,35 @@
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
+      ],
+      "7621f22e-2c84-4933-8219-730ab3ed3bb5": [
+        {
+          "id": "0acce799-9c53-411e-81f8-433df15f8ca3",
+          "scope": "project",
+          "report": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/.hyperframes/artifacts/checks/0acce799-9c53-411e-81f8-433df15f8ca3.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792359077868,
+          "contentHash": "20afb32f7c16cc3969f5596eac40cf3cc8246e6965d745a6af62f3bf768bf55f",
+          "revision": "7621f22e-2c84-4933-8219-730ab3ed3bb5",
+          "inputFingerprint": "4ab3ee8a8802fe1c797d99ddb24f63e9f70b0cc4213a7bb1d72652b42543c9ae",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
       ]
     },
     "unversioned": []
@@ -1285,15 +1419,15 @@
   "snapshots": {
     "latest": {
       "revision": null,
-      "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-14"
+      "id": "0611b0de-8e5a-4f13-a2ed-d8b3d677edb8-3"
     },
     "revisions": {},
     "unversioned": [
       {
         "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-0",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-00-at-0.3s.png",
-        "time": 0.3,
+        "id": "0611b0de-8e5a-4f13-a2ed-d8b3d677edb8-0",
+        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-00-at-0.5s.png",
+        "time": 0.5,
         "metadata": {
           "width": 1080,
           "height": 1920,
@@ -1302,18 +1436,18 @@
           "warnings": [],
           "partial": false
         },
-        "createdAt": 1792357074270,
-        "contentHash": "fd11b62396ff4c98de06d2f8cb9a59016740adadd0a13510b123d19e132b52e5",
+        "createdAt": 1792359096136,
+        "contentHash": "6a78714d405266a0394639be23240cb8c575af6849931a5e63f0543948cbcae3",
         "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
+        "inputFingerprint": "d21d402eeae5a3729348f1e0d14fc007720f07dd27e732805a39c152f97a85e0",
         "inputScope": "local-project-files",
         "attribution": "inputs-changed"
       },
       {
         "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-1",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-01-at-1s.png",
-        "time": 1,
+        "id": "0611b0de-8e5a-4f13-a2ed-d8b3d677edb8-1",
+        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-01-at-3.7s.png",
+        "time": 3.7,
         "metadata": {
           "width": 1080,
           "height": 1920,
@@ -1322,157 +1456,17 @@
           "warnings": [],
           "partial": false
         },
-        "createdAt": 1792357074270,
-        "contentHash": "dbe9c1287449be386b1ba44da7bcb778fc00d3edd0111e6677eabf174c52847e",
+        "createdAt": 1792359096136,
+        "contentHash": "9aee4cb0a2496d5c2f19c74a1670d9473b779b84b7c77d617ce62aeda6dc695e",
         "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
+        "inputFingerprint": "d21d402eeae5a3729348f1e0d14fc007720f07dd27e732805a39c152f97a85e0",
         "inputScope": "local-project-files",
         "attribution": "inputs-changed"
       },
       {
         "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-2",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-02-at-1.7s.png",
-        "time": 1.7,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "b45179d635ca963b9bb8d4453bd8568ae81638c4245670a7e927467410394733",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-3",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-03-at-2.4s.png",
-        "time": 2.4,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "7aa913f72ec7172936ef04369fce94892556fac602d803b7abef986c6152f000",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-4",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-04-at-3.1s.png",
-        "time": 3.1,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "12a794069c4d0c0f57366f39bcedf41a438484a304a8b29ed2cdadd2e625563f",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-5",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-05-at-3.8s.png",
-        "time": 3.8,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "3248aca159f09ec4636416f9ccc5e12b06434ec98b0933f85972d8746da377bf",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-6",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-06-at-4.5s.png",
-        "time": 4.5,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "2c603aa8e55fd7634ef1867cf76e993016d31c353b36642314132491675712fb",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-7",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-07-at-5.2s.png",
-        "time": 5.2,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "8a18e71ce04a21cf2b6309d9048a13999ea637ca47e65ecc9853e2d9acb478b5",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-8",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-08-at-5.9s.png",
-        "time": 5.9,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "080e2770bfa8464675aed16a19bb8474403837a099ef15da4f89f7e02919cf1c",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-9",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-09-at-6.6s.png",
+        "id": "0611b0de-8e5a-4f13-a2ed-d8b3d677edb8-2",
+        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-02-at-6.6s.png",
         "time": 6.6,
         "metadata": {
           "width": 1080,
@@ -1482,18 +1476,18 @@
           "warnings": [],
           "partial": false
         },
-        "createdAt": 1792357074270,
-        "contentHash": "f88c1faa75c7a035fcfbd7bcbda07b7d354d360427c928f96d78c69447b36fd9",
+        "createdAt": 1792359096136,
+        "contentHash": "4a59792b0dffc342522c5d0dd127b70efa198d3edca12dc3872261b6ff07d251",
         "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
+        "inputFingerprint": "d21d402eeae5a3729348f1e0d14fc007720f07dd27e732805a39c152f97a85e0",
         "inputScope": "local-project-files",
         "attribution": "inputs-changed"
       },
       {
         "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-10",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-10-at-7.3s.png",
-        "time": 7.3,
+        "id": "0611b0de-8e5a-4f13-a2ed-d8b3d677edb8-3",
+        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-03-at-9.8s.png",
+        "time": 9.8,
         "metadata": {
           "width": 1080,
           "height": 1920,
@@ -1502,90 +1496,10 @@
           "warnings": [],
           "partial": false
         },
-        "createdAt": 1792357074270,
-        "contentHash": "69482b323762ef94c2277e7a403bf6beb5be492c12e292beb4bd9c776aabd35e",
+        "createdAt": 1792359096136,
+        "contentHash": "1229da0736757c93d8521fc1236baecebfb26521d91bbf4446d8f613fd57d6b5",
         "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-11",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-11-at-8s.png",
-        "time": 8,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "63ae33bd3f23eda95f9ee0b9311eec558802f9d76e7c58e8bfcb899392bacde2",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-12",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-12-at-8.7s.png",
-        "time": 8.7,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "7462f3003de9ddaf10992d61816fad60970890fc13b323529e2eea622a5472f0",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-13",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-13-at-9.4s.png",
-        "time": 9.4,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "d1d9f60d88e7c84c9dc427df04832a07446c5f56048320691b9e590c91026877",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
-        "inputScope": "local-project-files",
-        "attribution": "inputs-changed"
-      },
-      {
-        "scope": "full",
-        "id": "10f9319a-b7e3-4792-a10c-0e119eda0466-14",
-        "image": "/home/user/no_code-Projects/manuvo/videos/story-sondaggio-attesa/review/latest/frame-14-at-9.9s.png",
-        "time": 9.9,
-        "metadata": {
-          "width": 1080,
-          "height": 1920,
-          "zoomScale": 1,
-          "browserGpuMode": "auto",
-          "warnings": [],
-          "partial": false
-        },
-        "createdAt": 1792357074270,
-        "contentHash": "9bb3f3225a1444d1f8dee97d1abeb0519a041ad4608008b2b46017404f6b0563",
-        "revision": null,
-        "inputFingerprint": "971e776cc6cf9691749b9b01f6251d277346cd35084d06771e337f96fbc5fdce",
+        "inputFingerprint": "d21d402eeae5a3729348f1e0d14fc007720f07dd27e732805a39c152f97a85e0",
         "inputScope": "local-project-files",
         "attribution": "inputs-changed"
       }

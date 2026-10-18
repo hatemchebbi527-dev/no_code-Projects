@@ -17,7 +17,7 @@
     <script src="assets/logo-mark-data.js"></script>
     <script src="cues.js"></script>
     <style>
-      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage for titles, Geist for UI, Geist Mono for the HUD. */
+      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage for titles, Geist for UI. */
       @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
       @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
       @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
@@ -39,7 +39,7 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1080" data-height="1920">
-      <!-- Layers, bottom to top: 3D > scrims > shockwave > words > wipe > vignette + grain > HUD. -->
+      <!-- Layers, bottom to top: 3D > scrims > shockwave > words > wipe > vignette + grain. -->
       <div id="cam">
         <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
         <div id="scrim-top" data-layout-ignore></div>
@@ -65,7 +65,6 @@
       <div id="wipe" class="full" data-layout-ignore style="visibility:hidden"></div>
       <div id="vignette" class="full" data-layout-ignore></div>
       <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%;mix-blend-mode:overlay"></canvas>
-      <div id="hud-layer" class="full" data-layout-ignore></div>
       <!-- Three.js and add-ons are ES modules: they hand themselves to the kit, then the film starts. -->
       <script type="importmap">
         { "imports": { "three": "./vendor/three/three.module.min.js" } }
@@ -92,7 +91,7 @@
         // The brand signature: a sixth of a turn in 480 ms, stopping dead.
         const SIXTH = PF.ease("cubic-bezier(.16,1,.3,1)");
         const TURN = Math.PI / 3;
-        let st, hud, LOGO = null;
+        let st, LOGO = null;
         const S = {};
 
         /* The scene colour at time t: hard cuts on the downbeats, one flood, one iris. */
@@ -127,11 +126,6 @@
 
         function setup() {
           document.querySelectorAll(".head").forEach((el) => fit(el));
-          // The viewfinder frames the content zone only, so the poll band stays clean.
-          hud = PF.hud($("#hud-layer"), {
-            size: 22, font: "'Geist Mono', monospace", bracket: 30,
-            top: CUES.safe.top - 48, bottom: H - CUES.sticker.top - 48 + 110, color: "rgba(250,248,244,.7)",
-          });
           st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.85, radius: 0.6, threshold: 1.0 }, exposure: 0.95 });
           const THREE = st.THREE, A = window.THREE_ADDONS;
           // The composer's OutputPass tone-maps the whole frame: no tone mapping keeps the swatches exact.
@@ -309,14 +303,11 @@
             PF.css(ring, { left: (W / 2 - rg.r) + "px", top: (cy - rg.r) + "px", width: rg.r * 2 + "px", height: rg.r * 2 + "px", opacity: rg.opacity, borderColor: bg === C.coral ? C.ink : C.coral, borderWidth: Math.max(2, 7 * rg.opacity) + "px" });
           }
 
-          /* One shake on the punch. The HUD never shakes. */
+          /* One shake on the punch. */
           const sh = PF.shake(t, [at([3, 1])], { amp: 16, decay: 0.3, freq: 22, rot: 0.5 });
           PF.css($("#cam"), { transform: `translate(${sh.x.toFixed(2)}px, ${sh.y.toFixed(2)}px) rotate(${sh.r.toFixed(3)}deg)` });
 
-          /* Viewfinder, grain, vignette. */
-          hud.color(onDark ? "rgba(250,248,244,.7)" : "rgba(27,30,36,.6)");
-          const chapter = t < at([3, 1]) ? "01 — Attesa" : t < at([4, 1]) ? "02 — Mai arrivato" : t < at([5, 1]) ? "03 — Domanda" : "04 — Manuvo";
-          hud.set({ tl: chapter, tr: PF.timecode(t, 30), bl: "Rimini", br: "Sondaggio" }, t);
+          /* Grain and vignette: no viewfinder, the question owns the frame. */
           PF.grain($("#grain"), t, { alpha: 0.05 });
           PF.css($("#vignette"), { background: PF.vignette(0.3, onDark ? "0,0,0" : "110,22,24") });
 
