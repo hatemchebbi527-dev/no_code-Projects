@@ -56,7 +56,9 @@ Avvia ricerca  /  Ogni lunedi 08:30
   → Estrai risultati              rattache settore + citta à chaque fiche
   → Solo attive                   retire les activités fermées
   → Dedup intra-run               retire les doublons du run (place_id + nom normalisé)
-  → Limite per run                plafond de 40 fiches par run
+                                  puis pioche à tour de rôle dans chaque recherche
+                                  jusqu'à MAX_PER_RUN, pour couvrir tous les métiers
+  → Limite per run                garde-fou à 500 fiches
   → Uno alla volta                boucle, 1 fiche à la fois
        → Google Places - Dettagli téléphone, site, adresse, note, lien Maps
        → Verifica duplicato Notion recherche par Place ID OU par Nom exact
@@ -83,14 +85,18 @@ Le scrape du site cherche aussi le numéro de P.IVA et le note dans la colonne N
 
 ## Régler le volume et le coût
 
-Un run = `nombre de comuni x nombre de métiers` appels Text Search, puis au maximum `Limite per run` appels Place Details.
+Un run = `nombre de comuni x nombre de métiers` appels Text Search, puis au maximum `MAX_PER_RUN` appels Place Details.
 
 Réglage livré : 3 comuni x 6 métiers = 18 recherches, plafonné à 40 fiches traitées.
+
+**Le plafond se répartit entre toutes les recherches.** `Dedup intra-run` pioche à tour de rôle une fiche dans chaque couple métier x comune. Sans ça, le plafond serait mangé par les premières recherches et les derniers métiers n'entreraient jamais dans le run. Avec 12 métiers x 3 comuni et un plafond de 40, tu obtiens 3 ou 4 fiches par métier et les 36 recherches sont représentées.
+
+Garde le rapport en tête : **plafond divisé par nombre de recherches = fiches par recherche**. 36 recherches avec un plafond de 40, c'est une fiche par recherche. Pour creuser un métier, réduis le nombre de recherches plutôt que d'augmenter le plafond.
 
 | Levier | Où |
 |--------|-----|
 | Comuni et métiers | `Config - Zone e mestieri`, listes `COMUNI` et `MESTIERI` (lignes commentées prêtes à décommenter) |
-| Fiches traitées par run | `Limite per run`, champ `maxItems` |
+| Fiches traitées par run | `Dedup intra-run`, constante `MAX_PER_RUN` (le nœud `Limite per run` n'est qu'un garde-fou à 500) |
 | Sévérité du filtre | `Prepara + Pre-filtro`, liste `ESCLUDI` et seuil `numRecensioni >= 3` |
 | Modèle Claude | corps du nœud `Claude - Qualifica e messaggio` |
 
@@ -111,6 +117,8 @@ Le nœud Claude envoie aussi `fallbacks: "default"` avec l'en-tête `anthropic-b
 | Erreur sur `/v1/databases/.../query` qui parle de `data_source` | Ton n8n envoie une version d'API Notion récente. Remplace l'URL du nœud `Verifica duplicato Notion` par `https://api.notion.com/v1/data_sources/a8ecb59e-bb66-45d8-9f94-09729be38ef1/query`. |
 | `REQUEST_DENIED` sur Google Places | La clé n'a pas accès à l'API Places legacy. Dans Google Cloud, active *Places API*, ou migre les deux nœuds vers *Places API (New)* : `POST https://places.googleapis.com/v1/places:searchText` avec l'en-tête `X-Goog-FieldMask`. |
 | Beaucoup de fiches en `Scartato` | Normal au début : le filtre retire les activités sans contact et les enseignes. Regarde le champ `motivo` du nœud `Scartato` pour voir ce qui tombe. |
+| Un seul métier ou une seule ville dans Notion | Le plafond a été atteint avant d'arriver aux autres recherches. Vérifie que `Dedup intra-run` contient bien la répartition à tour de rôle, et lis son log : `X in entrata, Y unici, Z trattati, ripartiti su N ricerche`. |
+| La même fiche créée plusieurs fois dans un run | L'index de Notion met quelques secondes à voir une page créée, donc `Verifica duplicato Notion` ne la voit pas encore. Le filet de sécurité est dans `Prepara + Pre-filtro` (liste `sd.trattati`), remis à zéro par `Config - Zone e mestieri`. |
 | `motivo` contient « parsing fallito » | Claude n'a pas renvoyé de JSON propre. La fiche est quand même créée, avec `Punteggio IA` à `Medio`. |
 | Le compteur du `Riepilogo` est faux | Les compteurs sont remis à zéro par `Dedup intra-run`. Lancer la boucle sans passer par ce nœud fausse le total. |
 

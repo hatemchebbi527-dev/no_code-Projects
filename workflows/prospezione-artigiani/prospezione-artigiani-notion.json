@@ -155,7 +155,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Toglie i doppioni interni: la stessa attivita puo uscire in piu mestieri\n// o piu comuni. La memoria sta nella static data e non in una variabile\n// locale, cosi regge anche se questo nodo viene eseguito piu volte nella\n// stessa run (altrimenti ogni esecuzione ripartirebbe da zero).\nconst sd = $getWorkflowStaticData('global');\nif (!sd.visti) sd.visti = {};\nconst visti = sd.visti;\n\nfunction norm(s) {\n  return (s || '')\n    .toLowerCase()\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\nconst entrati = $input.all();\nconst out = [];\nfor (const item of entrati) {\n  const perId = item.json.place_id || '';\n  const perNome = norm(item.json.name);\n  if (perId && visti['id:' + perId]) continue;\n  if (perNome && visti['nome:' + perNome]) continue;\n  if (perId) visti['id:' + perId] = true;\n  if (perNome) visti['nome:' + perNome] = true;\n  out.push(item);\n}\n\nconsole.log('Dedup intra-run: ' + entrati.length + ' in entrata, ' + out.length + ' in uscita');\nreturn out;"
+        "jsCode": "// Toglie i doppioni interni: la stessa attivita puo uscire in piu mestieri\n// o piu comuni. La memoria sta nella static data e non in una variabile\n// locale, cosi regge anche se questo nodo viene eseguito piu volte nella\n// stessa run (altrimenti ogni esecuzione ripartirebbe da zero).\nconst sd = $getWorkflowStaticData('global');\nif (!sd.visti) sd.visti = {};\nconst visti = sd.visti;\n\n// Quante schede trattare al massimo in una run. E QUI che si regola il\n// volume, non nel nodo 'Limite per run' (che e solo una rete di sicurezza).\n// Ogni scheda costa 1 chiamata Place Details, a volte uno scrape del sito,\n// e 1 chiamata a Claude.\nconst MAX_PER_RUN = 40;\n\nfunction norm(s) {\n  return (s || '')\n    .toLowerCase()\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\n// 1. Togli i doppioni interni\nconst entrati = $input.all();\nconst unici = [];\nfor (const item of entrati) {\n  const perId = item.json.place_id || '';\n  const perNome = norm(item.json.name);\n  if (perId && visti['id:' + perId]) continue;\n  if (perNome && visti['nome:' + perNome]) continue;\n  if (perId) visti['id:' + perId] = true;\n  if (perNome) visti['nome:' + perNome] = true;\n  unici.push(item);\n}\n\n// 2. Raggruppa per ricerca: un gruppo per mestiere e comune\nconst gruppi = new Map();\nfor (const item of unici) {\n  const chiave = (item.json.settore || '?') + ' | ' + (item.json.citta || '?');\n  if (!gruppi.has(chiave)) gruppi.set(chiave, []);\n  gruppi.get(chiave).push(item);\n}\n\n// 3. Pesca a turno una scheda per gruppo, fino al tetto.\n// Senza questo, il tetto si riempie con le prime ricerche e gli ultimi\n// mestieri non entrano mai nella run.\nconst liste = [...gruppi.values()];\nconst out = [];\nlet giro = 0;\nwhile (out.length < MAX_PER_RUN && liste.some(l => l.length > 0)) {\n  const lista = liste[giro % liste.length];\n  if (lista.length) out.push(lista.shift());\n  giro++;\n}\n\nconsole.log('Dedup intra-run: ' + entrati.length + ' in entrata, ' + unici.length\n  + ' unici, ' + out.length + ' trattati, ripartiti su ' + gruppi.size + ' ricerche');\nreturn out;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -168,7 +168,7 @@
     },
     {
       "parameters": {
-        "maxItems": 40
+        "maxItems": 500
       },
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
@@ -563,7 +563,7 @@
     },
     {
       "parameters": {
-        "content": "## Setup (5 minuti)\n\n**1. Credenziali**\n- `Google Places - Ricerca testo` e `Google Places - Dettagli` : credenziale **Query Auth** gia esistente (Google Places API).\n- `Verifica duplicato Notion` e `Crea in Notion` : scegli la tua credenziale **Notion API** (la stessa sui due nodi).\n- `Claude - Qualifica e messaggio` : credenziale **Header Auth** `x-api-key` (API IA).\n\n**2. Notion**\nLa tabella e gia creata : *CRM Artigiani - Manuvo (Rimini)*.\nCondividila con l'integrazione Notion (**... > Connections > la tua integrazione**), altrimenti l'API risponde 404.\n\n**3. Ricerca**\nComuni e mestieri si cambiano solo nel nodo `Config - Zone e mestieri`.\nIl nodo `Limite per run` ferma la run a 40 schede : alza il numero quando i costi sono chiari.",
+        "content": "## Setup (5 minuti)\n\n**1. Credenziali**\n- `Google Places - Ricerca testo` e `Google Places - Dettagli` : credenziale **Query Auth** gia esistente (Google Places API).\n- `Verifica duplicato Notion` e `Crea in Notion` : scegli la tua credenziale **Notion API** (la stessa sui due nodi).\n- `Claude - Qualifica e messaggio` : credenziale **Header Auth** `x-api-key` (API IA).\n\n**2. Notion**\nLa tabella e gia creata : *CRM Artigiani - Manuvo (Rimini)*.\nCondividila con l'integrazione Notion (**... > Connections > la tua integrazione**), altrimenti l'API risponde 404.\n\n**3. Ricerca**\nComuni e mestieri si cambiano solo nel nodo `Config - Zone e mestieri`.\nIl tetto di schede per run si regola nel nodo `Dedup intra-run`, costante `MAX_PER_RUN`.\nLe schede si pescano a turno fra tutte le ricerche, cosi ogni mestiere e ogni comune entra nella run.",
         "height": 560,
         "width": 520,
         "color": 4
