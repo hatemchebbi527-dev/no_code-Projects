@@ -151,11 +151,22 @@ Le nœud Claude envoie aussi `fallbacks: "default"` avec l'en-tête `anthropic-b
 | Beaucoup de fiches en `Scartato` | Normal au début : le filtre retire les activités sans contact et les enseignes. Regarde le champ `motivo` du nœud `Scartato` pour voir ce qui tombe. |
 | Une seule ville dans Notion | Le plafond a été atteint avant d'arriver aux autres recherches. Vérifie que `Dedup intra-run` contient bien la répartition à tour de rôle, et lis son log : `X in entrata, Y unici, Z trattati, ripartiti su N ricerche`. |
 | `Mestiere sconosciuto` au lancement | `MESTIERE_ATTIVO` n'est pas écrit comme une clé du `CATALOGO`. Le message d'erreur liste les noms valides. |
+| La même fiche créée plusieurs fois, toujours un artisan **qui a un site** | Le piège n8n décrit ci-dessous. `Estrai qualifica` doit vérifier que les données d'une branche parlent bien du `place_id` du tour en cours. |
 | La même fiche créée plusieurs fois dans un run | L'index de Notion met quelques secondes à voir une page créée, donc `Verifica duplicato Notion` ne la voit pas encore. Le filet de sécurité est dans `Prepara + Pre-filtro` (liste `sd.trattati`), remis à zéro par `Config - Zone e mestieri`. |
 | `motivo` contient « parsing fallito » | Claude n'a pas renvoyé de JSON propre. La fiche est quand même créée, avec `Punteggio IA` à `Medio`. |
 | Le compteur du `Riepilogo` est faux | Les compteurs sont remis à zéro par `Dedup intra-run`. Lancer la boucle sans passer par ce nœud fausse le total. |
 
 ---
+
+## Le piège n8n à connaître
+
+`$('Nom du nœud').first()` renvoie **la dernière exécution de ce nœud**, pas forcément celle du tour en cours de la boucle. Quand deux branches se rejoignent (ici `Estrai email + P.IVA` pour les artisans avec site, `Senza sito (niente email)` pour les autres), un tour qui passe par la branche B lit quand même les données laissées par la branche A au tour précédent.
+
+Résultat observé : un artisan avec site était réécrit en boucle dans Notion à la place des artisans sans site qui le suivaient. Même Place ID, mêmes coordonnées, à quelques secondes d'intervalle. La vérification anti-doublon ne pouvait rien voir : elle interrogeait Notion avec le `place_id` du vrai artisan du tour, qui lui n'existait pas encore en base.
+
+La parade est dans `Estrai qualifica` : les données d'une branche ne sont acceptées que si leur `place_id` correspond à celui du tour en cours, donné par `Prepara + Pre-filtro` qui tourne à chaque tour.
+
+À vérifier dans tout workflow où une boucle contient un `IF` dont les deux branches se rejoignent.
 
 ## Après l'import : la suite logique
 
