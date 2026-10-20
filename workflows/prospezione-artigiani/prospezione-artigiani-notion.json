@@ -1,0 +1,914 @@
+{
+  "name": "Prospezione Artigiani - Google Places to Notion",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "avvia-ricerca",
+      "name": "Avvia ricerca"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "weeksInterval": 1,
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 8,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ],
+      "id": "ogni-lunedi-08:30",
+      "name": "Ogni lunedi 08:30"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ============================================================\n// CONFIGURAZIONE DELLA RICERCA\n// Il workflow genera 1 ricerca Google Places per ogni\n// combinazione comune x mestiere. 3 comuni x 6 mestieri = 18 ricerche.\n// Aggiungi o togli righe secondo il budget (vedi README).\n// ============================================================\nconst COMUNI = [\n  { citta: 'Rimini',                    area: 'Rimini, Italia' },\n  { citta: 'Riccione',                  area: 'Riccione, Italia' },\n  { citta: 'Santarcangelo di Romagna',  area: 'Santarcangelo di Romagna, Italia' },\n  // { citta: 'Bellaria-Igea Marina',   area: 'Bellaria-Igea Marina, Italia' },\n  // { citta: 'Cattolica',              area: 'Cattolica, Italia' },\n  // { citta: 'Misano Adriatico',       area: 'Misano Adriatico, Italia' },\n  // { citta: 'Coriano',                area: 'Coriano, Italia' },\n  // { citta: 'Verucchio',              area: 'Verucchio, Italia' },\n];\n\nconst MESTIERI = [\n  { settore: 'Idraulico',                query: 'idraulico' },\n  { settore: 'Elettricista',             query: 'elettricista' },\n  { settore: 'Imbianchino',              query: 'imbianchino' },\n  { settore: 'Fabbro',                   query: 'fabbro' },\n  { settore: 'Falegname',                query: 'falegname' },\n  { settore: 'Termoidraulico / Caldaie', query: 'assistenza caldaie termoidraulico' },\n  // { settore: 'Piastrellista',         query: 'piastrellista' },\n  // { settore: 'Serramentista',         query: 'serramenti e infissi' },\n  // { settore: 'Condizionamento',       query: 'installazione climatizzatori' },\n  // { settore: 'Giardiniere',           query: 'giardiniere manutenzione giardini' },\n  // { settore: 'Muratore',              query: 'muratore ristrutturazioni' },\n  // { settore: 'Antennista',            query: 'antennista' },\n];\n\nconst out = [];\nfor (const c of COMUNI) {\n  for (const m of MESTIERI) {\n    out.push({ json: { query: m.query, settore: m.settore, citta: c.citta, area: c.area } });\n  }\n}\nreturn out;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "config---zone-e-mestieri",
+      "name": "Config - Zone e mestieri"
+    },
+    {
+      "parameters": {
+        "url": "https://maps.googleapis.com/maps/api/place/textsearch/json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json.query }} a {{ $json.area }}"
+            },
+            {
+              "name": "language",
+              "value": "it"
+            },
+            {
+              "name": "region",
+              "value": "it"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 400
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "google-places---ricerca-testo",
+      "name": "Google Places - Ricerca testo",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "5WL3oV8rdHAkwMKA",
+          "name": "Google Places API"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ogni item in entrata = 1 risposta Google Places (1 ricerca).\n// Riattacca a ogni risultato il settore e la citta della ricerca.\nconst items = $input.all();\nconst out = [];\nconst errori = [];\n\nfor (let i = 0; i < items.length; i++) {\n  let cfg = {};\n  try { cfg = $('Config - Zone e mestieri').itemMatching(i).json; }\n  catch (e) { cfg = ($('Config - Zone e mestieri').all()[i] || {}).json || {}; }\n\n  const body = items[i].json || {};\n  if (body.error && !body.results) {\n    errori.push(cfg.query + ' / ' + cfg.citta + ' -> richiesta fallita: ' + JSON.stringify(body.error).slice(0, 160));\n    continue;\n  }\n  if (body.status && body.status !== 'OK' && body.status !== 'ZERO_RESULTS') {\n    errori.push(cfg.query + ' / ' + cfg.citta + ' -> ' + body.status + ' ' + (body.error_message || ''));\n    continue;\n  }\n\n  for (const r of (body.results || [])) {\n    out.push({ json: {\n      place_id:           r.place_id || '',\n      name:               r.name || '',\n      business_status:    r.business_status || 'OPERATIONAL',\n      rating:             (r.rating === undefined || r.rating === null) ? null : Number(r.rating),\n      user_ratings_total: Number(r.user_ratings_total || 0),\n      settore:            cfg.settore || 'Altro',\n      citta:              cfg.citta || 'Altro',\n      area:               cfg.area || '',\n    }});\n  }\n}\n\nif (errori.length) console.log('Ricerche in errore:\\n' + errori.join('\\n'));\nreturn out;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        0
+      ],
+      "id": "estrai-risultati",
+      "name": "Estrai risultati"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f-op-1",
+              "leftValue": "={{ $json.business_status }}",
+              "rightValue": "CLOSED_PERMANENTLY",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "f-op-2",
+              "leftValue": "={{ $json.business_status }}",
+              "rightValue": "CLOSED_TEMPORARILY",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        896,
+        0
+      ],
+      "id": "solo-attive",
+      "name": "Solo attive"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Azzera i contatori della run e togli i doppioni interni\n// (la stessa attivita puo uscire in piu mestieri o piu comuni).\nconst sd = $getWorkflowStaticData('global');\nsd.creati = 0;\nsd.duplicati = 0;\nsd.scartati = 0;\n\nfunction norm(s) {\n  return (s || '')\n    .toLowerCase()\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\nconst visti = new Set();\nconst out = [];\nfor (const item of $input.all()) {\n  const perId = item.json.place_id || '';\n  const perNome = norm(item.json.name);\n  if (perId && visti.has('id:' + perId)) continue;\n  if (perNome && visti.has('nome:' + perNome)) continue;\n  if (perId) visti.add('id:' + perId);\n  if (perNome) visti.add('nome:' + perNome);\n  out.push(item);\n}\nreturn out;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "dedup-intra-run",
+      "name": "Dedup intra-run"
+    },
+    {
+      "parameters": {
+        "maxItems": 40
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        0
+      ],
+      "id": "limite-per-run",
+      "name": "Limite per run"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1568,
+        0
+      ],
+      "id": "uno-alla-volta",
+      "name": "Uno alla volta"
+    },
+    {
+      "parameters": {
+        "url": "https://maps.googleapis.com/maps/api/place/details/json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "place_id",
+              "value": "={{ $json.place_id }}"
+            },
+            {
+              "name": "fields",
+              "value": "place_id,name,formatted_phone_number,international_phone_number,formatted_address,website,rating,user_ratings_total,business_status,url,types"
+            },
+            {
+              "name": "language",
+              "value": "it"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1792,
+        -176
+      ],
+      "id": "google-places---dettagli",
+      "name": "Google Places - Dettagli",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "5WL3oV8rdHAkwMKA",
+          "name": "Google Places API"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/e29b4127-a440-4683-9f62-7d1aef3dfeaf/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ page_size: 1, filter: { or: [ { property: \"Place ID\", rich_text: { equals: $('Uno alla volta').item.json.place_id } }, { property: \"Nome\", title: { equals: ($json.result && $json.result.name) ? $json.result.name : $('Uno alla volta').item.json.name } } ] } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2016,
+        -176
+      ],
+      "id": "verifica-duplicato-notion",
+      "name": "Verifica duplicato Notion",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "if-dup-1",
+              "leftValue": "={{ ($json.results || []).length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2240,
+        -176
+      ],
+      "id": "gia-in-crm?",
+      "name": "Gia in CRM?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nsd.duplicati = (sd.duplicati || 0) + 1;\nconst n = $('Uno alla volta').first().json;\nreturn [{ json: { saltato: true, nome: n.name || '', motivo: 'gia presente in Notion' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2464,
+        -336
+      ],
+      "id": "salta-(duplicato)",
+      "name": "Salta (duplicato)"
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = ($('Google Places - Dettagli').first().json || {}).result || {};\nconst cfg = $('Uno alla volta').first().json || {};\n\nconst nome          = d.name || cfg.name || '';\nconst telefono      = d.formatted_phone_number || d.international_phone_number || '';\nconst sito          = d.website || '';\nconst rating        = (d.rating === undefined || d.rating === null) ? null : Number(d.rating);\nconst numRecensioni = Number(d.user_ratings_total || cfg.user_ratings_total || 0);\nconst indirizzo     = d.formatted_address || '';\nconst placeId       = d.place_id || cfg.place_id || '';\nconst mapsUrl       = d.url || (placeId ? 'https://www.google.com/maps/place/?q=place_id:' + placeId : '');\n\n// Chi NON ci interessa: portali di preventivi, grande distribuzione,\n// utility, associazioni di categoria, enti. Aggiungi quello che vedi passare.\nconst ESCLUDI = [\n  'prontopro', 'instapro', 'habitissimo', 'starofservice', 'wikicasa', 'paginegialle',\n  'pagine gialle', 'leroy merlin', 'bricoman', 'bricocenter', 'obi italia',\n  'mondo convenienza', 'ikea', 'confartigianato', 'camera di commercio',\n  'enel ', 'plenitude', 'engie', 'iren ', 'hera ', 'a2a ', 'comune di', 'manuvo',\n];\nconst low = nome.toLowerCase();\n\nlet scarta = false;\nlet motivoScarto = '';\nif (!telefono && !sito) { scarta = true; motivoScarto = 'nessun contatto utile'; }\nelse if (ESCLUDI.some(e => low.includes(e))) { scarta = true; motivoScarto = 'catena, portale o ente'; }\n\nconst haSito = !!(sito && sito.length > 5);\nconst attivo = numRecensioni >= 3;\n\n// Per un artigiano il telefono vale piu del sito: si contatta per telefono o WhatsApp.\nconst priorita = (telefono && attivo) ? 'alta' : (telefono || attivo) ? 'media' : 'bassa';\n\nreturn [{ json: {\n  place_id: placeId, nome, telefono, sito, indirizzo, rating, numRecensioni, mapsUrl,\n  settore: cfg.settore || 'Altro',\n  citta: cfg.citta || 'Altro',\n  haSito, attivo, scarta, motivoScarto, priorita,\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2464,
+        -112
+      ],
+      "id": "prepara-+-pre-filtro",
+      "name": "Prepara + Pre-filtro"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "if-sito-1",
+              "leftValue": "={{ $json.haSito }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2688,
+        -112
+      ],
+      "id": "ha-sito-web?",
+      "name": "Ha sito web?"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.sito }}",
+        "options": {
+          "redirect": {
+            "redirect": {
+              "maxRedirects": 3
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 8000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2912,
+        -224
+      ],
+      "id": "scrape-sito-per-email",
+      "name": "Scrape sito per email",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const prev = $('Ha sito web?').first().json;\nconst resp = $input.first().json;\nconst html = (typeof resp === 'string')\n  ? resp\n  : (resp.data || resp.body || resp.html || '');\n\nconst vuoto = { ...prev, emailPrincipale: '', emailTrovate: '', partitaIva: '' };\nif (!html || html.length < 100) return [{ json: vuoto }];\n\nconst ESCLUDI = ['example.com', 'sentry', 'wordpress', 'google', 'facebook', 'cookie',\n  'privacy', 'wix', 'test', 'schema.org', 'w3.org', 'jquery', 'bootstrap', 'cloudflare',\n  'jsdelivr', 'unpkg', 'sentry.io', 'godaddy', 'shopify'];\n\nconst emails = new Set();\nlet m;\n\n// 1) link mailto: i piu affidabili\nconst mailto = /mailto:([a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,})/gi;\nwhile ((m = mailto.exec(html)) !== null) emails.add(m[1].toLowerCase());\n\n// 2) testo normale\nconst testo = /[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}/g;\n(html.match(testo) || []).forEach(e => emails.add(e.toLowerCase()));\n\nconst pulite = [...emails].filter(e =>\n  !ESCLUDI.some(x => e.includes(x)) && e.length < 80 && !e.startsWith('.'));\n\nlet dominio = '';\ntry { dominio = new URL(prev.sito).hostname.replace('www.', ''); } catch (e) {}\n\nconst principale = pulite.find(e => dominio && e.includes(dominio)) || pulite[0] || '';\n\n// 3) Partita IVA: segnale forte, su Manuvo l'artigiano si iscrive con la P.IVA\nlet partitaIva = '';\nconst piva = /(?:partita\\s*i\\.?v\\.?a\\.?|p\\.?\\s*iva|c\\.?f\\.?\\s*e\\s*p\\.?\\s*iva|vat)\\D{0,20}(\\d{11})/i.exec(html);\nif (piva) partitaIva = piva[1];\nif (!partitaIva) {\n  const it = /\\bIT\\s?(\\d{11})\\b/.exec(html);\n  if (it) partitaIva = it[1];\n}\n\nreturn [{ json: { ...prev, emailPrincipale: principale, emailTrovate: pulite.slice(0, 5).join(', '), partitaIva } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3136,
+        -224
+      ],
+      "id": "estrai-email-+-p.iva",
+      "name": "Estrai email + P.IVA"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { ...$input.first().json, emailPrincipale: '', emailTrovate: '', partitaIva: '' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3136,
+        -16
+      ],
+      "id": "senza-sito-(niente-email)",
+      "name": "Senza sito (niente email)"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "anthropic-beta",
+              "value": "server-side-fallback-2026-07-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: \"claude-opus-5-5\", max_tokens: 2000, output_config: { effort: \"low\" }, fallbacks: \"default\", messages: [ { role: \"user\", content: `Sei l'assistente di prospezione di Manuvo, il servizio che a Rimini e dintorni mette in contatto i privati con gli artigiani della zona. Devi dire se vale la pena contattare questo artigiano per proporgli di iscriversi.\\n\\nCOME FUNZIONA MANUVO PER L'ARTIGIANO:\\n- Iscrizione gratuita, nessun abbonamento, nessuna commissione sul lavoro.\\n- Il privato pubblica la sua richiesta; l'artigiano vede solo le richieste del suo mestiere e della sua zona.\\n- Sblocca unicamente i contatti che gli interessano, con i crediti (1 credito = 2 euro, da 3 a 5 crediti per contatto).\\n- Massimo 3 artigiani per richiesta, quindi poca concorrenza.\\n- Le richieste sono verificate per SMS: se un contatto risulta falso o irraggiungibile, i crediti vengono rimborsati.\\n\\nCRITERI DI QUALIFICA (mestiere: ${$json.settore}):\\nALTO POTENZIALE: artigiano o piccola impresa indipendente della zona, numero di telefono diretto, 3 o piu recensioni Google, da 1 a 5 collaboratori, lavoro che arriva soprattutto dal passaparola.\\nBASSO POTENZIALE: catena o franchising nazionale, portale o aggregatore di preventivi, grande distribuzione, ente pubblico o associazione di categoria, impresa grande e strutturata (oltre 20 dipendenti), attivita che non e un mestiere artigiano.\\nMEDIO: segnali insufficienti.\\n\\nDATI:\\nNome: ${$json.nome}\\nMestiere: ${$json.settore}\\nComune: ${$json.citta}\\nIndirizzo: ${$json.indirizzo}\\nTelefono: ${$json.telefono || 'non disponibile'}\\nSito: ${$json.sito || 'non disponibile'}\\nEmail: ${$json.emailPrincipale || 'non trovata'}\\nPartita IVA trovata sul sito: ${$json.partitaIva || 'no'}\\nRecensioni Google: ${$json.numRecensioni} | Voto: ${$json.rating || 'n/d'}\\n\\nCOMPITO:\\n1. punteggio: Alto, Medio o Basso\\n2. motivo: una frase sola\\n3. stimaCollaboratori: 1-2, 3-5, 5+ oppure incerto\\n4. prima_riga: la prima riga di un messaggio di primo contatto in italiano, con il Lei, massimo 2 frasi, che parte da un problema concreto del mestiere (periodi in cui il telefono non suona, clienti che chiedono il preventivo e poi scompaiono, lavori troppo lontani che fanno perdere la giornata, dipendere solo dal passaparola). Parole vietate: IA, intelligenza artificiale, algoritmo, piattaforma, app, software, marketplace, lead, CRM, automazione. Nessuno sconto e nessuna promessa di guadagno. Tono diretto, da persona del posto, niente entusiasmo da venditore.\\n\\nRispondi SOLO con questo JSON, senza testo intorno:\\n{\\\"punteggio\\\":\\\"Alto|Medio|Basso\\\",\\\"motivo\\\":\\\"...\\\",\\\"stimaCollaboratori\\\":\\\"...\\\",\\\"prima_riga\\\":\\\"...\\\"}` } ] }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        3360,
+        -112
+      ],
+      "id": "claude---qualifica-e-messaggio",
+      "name": "Claude - Qualifica e messaggio",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "FdONJDewYUhUPDHJ",
+          "name": "API IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Dati del prospect, nell'ordine in cui possono arrivare\nlet prev = {};\ntry { prev = $('Estrai email + P.IVA').first().json; } catch (e) {}\nif (!prev.nome) { try { prev = $('Senza sito (niente email)').first().json; } catch (e) {} }\nif (!prev.nome) { try { prev = $('Prepara + Pre-filtro').first().json; } catch (e) {} }\n\n// La risposta puo contenere blocchi 'thinking' prima del testo: prendi solo i blocchi 'text'.\nconst resp = $input.first().json || {};\nconst blocchi = Array.isArray(resp.content) ? resp.content : [];\nconst raw = blocchi.filter(b => b && b.type === 'text').map(b => b.text || '').join('\\n').trim();\n\nlet data = {};\nlet errore = '';\nlet jsonStr = raw;\nconst a = jsonStr.indexOf('{');\nconst b = jsonStr.lastIndexOf('}');\nif (a !== -1 && b !== -1) jsonStr = jsonStr.slice(a, b + 1);\ntry { data = JSON.parse(jsonStr); }\ncatch (e) { errore = 'parsing fallito: ' + (raw.slice(0, 200) || resp.stop_reason || 'risposta vuota'); }\n\nreturn [{ json: {\n  ...prev,\n  punteggio:          data.punteggio || 'Medio',\n  motivo:             data.motivo || errore || '',\n  stimaCollaboratori: data.stimaCollaboratori || 'incerto',\n  prima_riga:         data.prima_riga || '',\n  errore_qualifica:   errore,\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3584,
+        -112
+      ],
+      "id": "estrai-qualifica",
+      "name": "Estrai qualifica"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "if-score-1",
+              "leftValue": "={{ $json.punteggio }}",
+              "rightValue": "Basso",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "if-score-2",
+              "leftValue": "={{ $json.scarta }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3808,
+        -112
+      ],
+      "id": "punteggio-sufficiente?",
+      "name": "Punteggio sufficiente?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ parent: { database_id: \"e29b4127-a440-4683-9f62-7d1aef3dfeaf\" }, properties: { \"Nome\": { title: [ { text: { content: ($json.nome || 'Senza nome').slice(0, 200) } } ] }, \"Settore\": { select: { name: $json.settore || 'Altro' } }, \"Stato\": { select: { name: 'Da contattare' } }, \"Punteggio IA\": { select: { name: $json.punteggio || 'Medio' } }, \"Priorita\": { select: { name: $json.priorita || 'bassa' } }, \"Telefono\": { phone_number: $json.telefono || null }, \"Email\": { email: $json.emailPrincipale || null }, \"Sito\": { url: $json.sito || null }, \"Indirizzo\": { rich_text: [ { text: { content: ($json.indirizzo || '').slice(0, 1900) } } ] }, \"Citta\": { select: { name: $json.citta || 'Altro' } }, \"Rating Google\": { number: ($json.rating === null || $json.rating === undefined || $json.rating === '') ? null : Number($json.rating) }, \"Recensioni Google\": { number: Number($json.numRecensioni) || 0 }, \"Ha sito\": { checkbox: !!$json.haSito }, \"Accroche\": { rich_text: [ { text: { content: ($json.prima_riga || '').slice(0, 1900) } } ] }, \"Motivo qualifica\": { rich_text: [ { text: { content: ($json.motivo || '').slice(0, 1900) } } ] }, \"Stima collaboratori\": { select: { name: $json.stimaCollaboratori || 'incerto' } }, \"Email trovate\": { rich_text: [ { text: { content: ($json.emailTrovate || '').slice(0, 1900) } } ] }, \"Place ID\": { rich_text: [ { text: { content: $json.place_id || '' } } ] }, \"Google Maps\": { url: $json.mapsUrl || null }, \"Fonte\": { select: { name: 'Google Maps' } }, \"Data inserimento\": { date: { start: $now.toISODate() } }, \"Note\": { rich_text: [ { text: { content: ('P.IVA sul sito: ' + ($json.partitaIva || 'n/d') + ' | Voto: ' + ($json.rating || 'n/d') + '/5 su ' + ($json.numRecensioni || 0) + ' recensioni' + ' | Priorita: ' + ($json.priorita || 'n/d')).slice(0, 1900) } } ] } } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        4032,
+        -224
+      ],
+      "id": "crea-in-notion",
+      "name": "Crea in Notion"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nsd.creati = (sd.creati || 0) + 1;\nconst r = $input.first().json || {};\nreturn [{ json: { creato: true, notion_url: r.url || '', notion_id: r.id || '' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4256,
+        -224
+      ],
+      "id": "conta-creato",
+      "name": "Conta creato"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nsd.scartati = (sd.scartati || 0) + 1;\nconst j = $input.first().json || {};\nreturn [{ json: { scartato: true, nome: j.nome || '', motivo: j.motivoScarto || j.motivo || 'punteggio basso' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4032,
+        -16
+      ],
+      "id": "scartato",
+      "name": "Scartato"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nconst creati = sd.creati || 0;\nconst duplicati = sd.duplicati || 0;\nconst scartati = sd.scartati || 0;\nconst analizzati = creati + duplicati + scartati;\n\nreturn [{ json: {\n  creati, duplicati, scartati, analizzati,\n  messaggio: 'Prospezione artigiani finita. Nuovi in Notion: ' + creati\n    + ' | gia presenti: ' + duplicati\n    + ' | scartati: ' + scartati\n    + ' | analizzati: ' + analizzati,\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1792,
+        160
+      ],
+      "id": "riepilogo",
+      "name": "Riepilogo"
+    },
+    {
+      "parameters": {
+        "content": "## Setup (5 minuti)\n\n**1. Credenziali**\n- `Google Places - Ricerca testo` e `Google Places - Dettagli` : credenziale **Query Auth** gia esistente (Google Places API).\n- `Verifica duplicato Notion` e `Crea in Notion` : scegli la tua credenziale **Notion API** (la stessa sui due nodi).\n- `Claude - Qualifica e messaggio` : credenziale **Header Auth** `x-api-key` (API IA).\n\n**2. Notion**\nLa tabella e gia creata : *CRM Artigiani - Manuvo (Rimini)*.\nCondividila con l'integrazione Notion (**... > Connections > la tua integrazione**), altrimenti l'API risponde 404.\n\n**3. Ricerca**\nComuni e mestieri si cambiano solo nel nodo `Config - Zone e mestieri`.\nIl nodo `Limite per run` ferma la run a 40 schede : alza il numero quando i costi sono chiari.",
+        "height": 560,
+        "width": 520,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        -660
+      ],
+      "id": "sticky-setup",
+      "name": "Setup"
+    },
+    {
+      "parameters": {
+        "content": "## Anti-doppioni, 2 livelli\n\n1. `Dedup intra-run` : la stessa attivita trovata su piu mestieri o comuni passa una volta sola.\n2. `Verifica duplicato Notion` : cerca in Notion per **Place ID** oppure per **Nome** esatto. Se esiste, salta.\n\nNon toccare la colonna **Place ID** in Notion : e la chiave.",
+        "height": 300,
+        "width": 420,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        -620
+      ],
+      "id": "sticky-dedup",
+      "name": "Anti-doppioni"
+    },
+    {
+      "parameters": {
+        "content": "## Qualifica\n\nClaude restituisce : punteggio, motivo, stima collaboratori e la **prima riga** del messaggio di contatto (italiano, con il Lei).\n\nModello : `claude-opus-5-5`. Per una run molto grande passa a `claude-haiku-5-5` nel corpo del nodo.\n\nSolo **Alto** e **Medio** finiscono in Notion, con stato *Da contattare*.",
+        "height": 320,
+        "width": 420,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3400,
+        -600
+      ],
+      "id": "sticky-qualifica",
+      "name": "Qualifica"
+    }
+  ],
+  "connections": {
+    "Avvia ricerca": {
+      "main": [
+        [
+          {
+            "node": "Config - Zone e mestieri",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ogni lunedi 08:30": {
+      "main": [
+        [
+          {
+            "node": "Config - Zone e mestieri",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config - Zone e mestieri": {
+      "main": [
+        [
+          {
+            "node": "Google Places - Ricerca testo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Places - Ricerca testo": {
+      "main": [
+        [
+          {
+            "node": "Estrai risultati",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai risultati": {
+      "main": [
+        [
+          {
+            "node": "Solo attive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Solo attive": {
+      "main": [
+        [
+          {
+            "node": "Dedup intra-run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dedup intra-run": {
+      "main": [
+        [
+          {
+            "node": "Limite per run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limite per run": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Uno alla volta": {
+      "main": [
+        [
+          {
+            "node": "Riepilogo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Places - Dettagli",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Places - Dettagli": {
+      "main": [
+        [
+          {
+            "node": "Verifica duplicato Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verifica duplicato Notion": {
+      "main": [
+        [
+          {
+            "node": "Gia in CRM?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gia in CRM?": {
+      "main": [
+        [
+          {
+            "node": "Salta (duplicato)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepara + Pre-filtro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salta (duplicato)": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepara + Pre-filtro": {
+      "main": [
+        [
+          {
+            "node": "Ha sito web?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ha sito web?": {
+      "main": [
+        [
+          {
+            "node": "Scrape sito per email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Senza sito (niente email)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape sito per email": {
+      "main": [
+        [
+          {
+            "node": "Estrai email + P.IVA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai email + P.IVA": {
+      "main": [
+        [
+          {
+            "node": "Claude - Qualifica e messaggio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senza sito (niente email)": {
+      "main": [
+        [
+          {
+            "node": "Claude - Qualifica e messaggio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude - Qualifica e messaggio": {
+      "main": [
+        [
+          {
+            "node": "Estrai qualifica",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai qualifica": {
+      "main": [
+        [
+          {
+            "node": "Punteggio sufficiente?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Punteggio sufficiente?": {
+      "main": [
+        [
+          {
+            "node": "Crea in Notion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Scartato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crea in Notion": {
+      "main": [
+        [
+          {
+            "node": "Conta creato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conta creato": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scartato": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "792a7e5f7ecc84953d0cdcd8f731195497a0fac92bbb671cb4a78acdf2435f68"
+  }
+}
