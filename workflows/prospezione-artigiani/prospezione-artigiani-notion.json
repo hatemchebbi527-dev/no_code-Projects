@@ -39,7 +39,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Azzera lo stato della run: contatori e memoria anti-doppione.\n// Questo nodo gira una volta sola per esecuzione, quindi e il posto giusto\n// per il reset. Metterlo piu avanti lo farebbe ripartire a meta run.\nconst sd = $getWorkflowStaticData('global');\nsd.creati = 0;\nsd.duplicati = 0;\nsd.scartati = 0;\nsd.visti = {};     // place_id e nomi gia selezionati\nsd.trattati = {};  // place_id gia arrivati fino a Notion in questa run\n\n// ============================================================\n// UN MESTIERE ALLA VOLTA, SU TUTTI I COMUNI QUI SOTTO.\n// Cambia MESTIERE_ATTIVO e rilancia: ogni run scava a fondo\n// un mestiere invece di sfiorarne dodici.\n// Il nome deve essere scritto come nella colonna Settore di Notion.\n// ============================================================\nconst MESTIERE_ATTIVO = 'Idraulico';\n\nconst COMUNI = [\n  { citta: 'Rimini',                    area: 'Rimini, Italia' },\n  { citta: 'Riccione',                  area: 'Riccione, Italia' },\n  { citta: 'Santarcangelo di Romagna',  area: 'Santarcangelo di Romagna, Italia' },\n  // { citta: 'Bellaria-Igea Marina',   area: 'Bellaria-Igea Marina, Italia' },\n  // { citta: 'Cattolica',              area: 'Cattolica, Italia' },\n  // { citta: 'Misano Adriatico',       area: 'Misano Adriatico, Italia' },\n  // { citta: 'Coriano',                area: 'Coriano, Italia' },\n  // { citta: 'Verucchio',              area: 'Verucchio, Italia' },\n];\n\n// Nome del settore in Notion  ->  parole cercate su Google.\n// Ritocca la parte destra se un mestiere rende male; la sinistra deve\n// restare identica all'opzione della colonna Settore.\nconst CATALOGO = {\n  'Idraulico':                'idraulico',\n  'Elettricista':             'elettricista',\n  'Imbianchino':              'imbianchino',\n  'Fabbro':                   'fabbro',\n  'Falegname':                'falegname',\n  'Termoidraulico / Caldaie': 'assistenza caldaie termoidraulico',\n  'Piastrellista':            'piastrellista',\n  'Serramentista':            'serramenti e infissi',\n  'Condizionamento':          'installazione climatizzatori',\n  'Giardiniere':              'giardiniere manutenzione giardini',\n  'Muratore':                 'muratore ristrutturazioni',\n  'Antennista':               'antennista',\n};\n\nconst query = CATALOGO[MESTIERE_ATTIVO];\nif (!query) {\n  throw new Error('Mestiere sconosciuto: \"' + MESTIERE_ATTIVO + '\". Scegli fra: '\n    + Object.keys(CATALOGO).join(', '));\n}\n\n// Una ricerca per comune, tutte sullo stesso mestiere.\nreturn COMUNI.map(c => ({\n  json: { query, settore: MESTIERE_ATTIVO, citta: c.citta, area: c.area },\n}));"
+        "jsCode": "// Azzera lo stato della run: contatori e memoria anti-doppione.\n// Questo nodo gira una volta sola per esecuzione, quindi e il posto giusto\n// per il reset. Metterlo piu avanti lo farebbe ripartire a meta run.\nconst sd = $getWorkflowStaticData('global');\nsd.creati = 0;\nsd.duplicati = 0;\nsd.scartati = 0;\nsd.visti = {};     // place_id e nomi gia selezionati\nsd.trattati = {};  // place_id gia arrivati fino a Notion in questa run\nsd.risultati = [];      // risultati grezzi raccolti pagina per pagina\nsd.erroriRicerca = [];  // ricerche o pagine fallite, mostrate alla fine\nsd.pagineLette = 0;\nsd.paginaCorrente = 0;\n\n// ============================================================\n// UN MESTIERE ALLA VOLTA, SU TUTTI I COMUNI QUI SOTTO.\n// Cambia MESTIERE_ATTIVO e rilancia: ogni run scava a fondo\n// un mestiere invece di sfiorarne dodici.\n// Il nome deve essere scritto come nella colonna Settore di Notion.\n// ============================================================\nconst MESTIERE_ATTIVO = 'Idraulico';\n\nconst COMUNI = [\n  { citta: 'Rimini',                    area: 'Rimini, Italia' },\n  { citta: 'Riccione',                  area: 'Riccione, Italia' },\n  { citta: 'Santarcangelo di Romagna',  area: 'Santarcangelo di Romagna, Italia' },\n  // { citta: 'Bellaria-Igea Marina',   area: 'Bellaria-Igea Marina, Italia' },\n  // { citta: 'Cattolica',              area: 'Cattolica, Italia' },\n  // { citta: 'Misano Adriatico',       area: 'Misano Adriatico, Italia' },\n  // { citta: 'Coriano',                area: 'Coriano, Italia' },\n  // { citta: 'Verucchio',              area: 'Verucchio, Italia' },\n];\n\n// Nome del settore in Notion  ->  parole cercate su Google.\n// Ritocca la parte destra se un mestiere rende male; la sinistra deve\n// restare identica all'opzione della colonna Settore.\nconst CATALOGO = {\n  'Idraulico':                'idraulico',\n  'Elettricista':             'elettricista',\n  'Imbianchino':              'imbianchino',\n  'Fabbro':                   'fabbro',\n  'Falegname':                'falegname',\n  'Termoidraulico / Caldaie': 'assistenza caldaie termoidraulico',\n  'Piastrellista':            'piastrellista',\n  'Serramentista':            'serramenti e infissi',\n  'Condizionamento':          'installazione climatizzatori',\n  'Giardiniere':              'giardiniere manutenzione giardini',\n  'Muratore':                 'muratore ristrutturazioni',\n  'Antennista':               'antennista',\n};\n\nconst query = CATALOGO[MESTIERE_ATTIVO];\nif (!query) {\n  throw new Error('Mestiere sconosciuto: \"' + MESTIERE_ATTIVO + '\". Scegli fra: '\n    + Object.keys(CATALOGO).join(', '));\n}\n\n// Una ricerca per comune, tutte sullo stesso mestiere.\nreturn COMUNI.map(c => ({\n  json: { query, settore: MESTIERE_ATTIVO, citta: c.citta, area: c.area },\n}));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -52,40 +52,45 @@
     },
     {
       "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "ricerca-per-comune",
+      "name": "Ricerca per comune"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Inizio di una nuova ricerca: azzera il contatore delle pagine.\n// La prima chiamata parte senza pagetoken.\nconst sd = $getWorkflowStaticData('global');\nsd.paginaCorrente = 0;\nreturn [{ json: { ...$input.first().json, pagetoken: '' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        208
+      ],
+      "id": "inizio-ricerca-comune",
+      "name": "Inizio ricerca comune"
+    },
+    {
+      "parameters": {
         "url": "https://maps.googleapis.com/maps/api/place/textsearch/json",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpQueryAuth",
         "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "query",
-              "value": "={{ $json.query }} a {{ $json.area }}"
-            },
-            {
-              "name": "language",
-              "value": "it"
-            },
-            {
-              "name": "region",
-              "value": "it"
-            }
-          ]
-        },
-        "options": {
-          "batching": {
-            "batch": {
-              "batchSize": 1,
-              "batchInterval": 400
-            }
-          }
-        }
+        "specifyQuery": "json",
+        "jsonQuery": "={{ JSON.stringify($json.pagetoken ? { pagetoken: $json.pagetoken, language: 'it' } : { query: $json.query + ' a ' + $json.area, language: 'it', region: 'it' }) }}",
+        "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        448,
-        0
+        672,
+        208
       ],
       "id": "google-places---ricerca-testo",
       "name": "Google Places - Ricerca testo",
@@ -99,7 +104,69 @@
     },
     {
       "parameters": {
-        "jsCode": "// Ogni item in entrata = 1 risposta Google Places (1 ricerca).\n// Riattacca a ogni risultato il settore e la citta della ricerca.\nconst items = $input.all();\nconst out = [];\nconst errori = [];\n\nfor (let i = 0; i < items.length; i++) {\n  let cfg = {};\n  try { cfg = $('Config - Zone e mestieri').itemMatching(i).json; }\n  catch (e) { cfg = ($('Config - Zone e mestieri').all()[i] || {}).json || {}; }\n\n  const body = items[i].json || {};\n  if (body.error && !body.results) {\n    errori.push(cfg.query + ' / ' + cfg.citta + ' -> richiesta fallita: ' + JSON.stringify(body.error).slice(0, 160));\n    continue;\n  }\n  if (body.status && body.status !== 'OK' && body.status !== 'ZERO_RESULTS') {\n    errori.push(cfg.query + ' / ' + cfg.citta + ' -> ' + body.status + ' ' + (body.error_message || ''));\n    continue;\n  }\n\n  for (const r of (body.results || [])) {\n    out.push({ json: {\n      place_id:           r.place_id || '',\n      name:               r.name || '',\n      business_status:    r.business_status || 'OPERATIONAL',\n      rating:             (r.rating === undefined || r.rating === null) ? null : Number(r.rating),\n      user_ratings_total: Number(r.user_ratings_total || 0),\n      settore:            cfg.settore || 'Altro',\n      citta:              cfg.citta || 'Altro',\n      area:               cfg.area || '',\n    }});\n  }\n}\n\nif (errori.length) console.log('Ricerche in errore:\\n' + errori.join('\\n'));\nreturn out;"
+        "jsCode": "// Google serve 20 risultati per pagina e non va oltre 3 pagine (60 risultati).\nconst MAX_PAGINE = 3;\n\nconst sd = $getWorkflowStaticData('global');\nif (!sd.risultati) sd.risultati = [];\nif (!sd.erroriRicerca) sd.erroriRicerca = [];\n\nconst cfg = $('Ricerca per comune').first().json || {};\nconst body = $input.first().json || {};\n\nsd.paginaCorrente = (sd.paginaCorrente || 0) + 1;\nsd.pagineLette = (sd.pagineLette || 0) + 1;\n\nfunction fermati(motivo) {\n  sd.erroriRicerca.push(cfg.query + ' / ' + cfg.citta + ' pagina '\n    + sd.paginaCorrente + ' -> ' + motivo);\n  return [{ json: { ...cfg, pagetoken: '', altraPagina: false } }];\n}\n\nif (body.error && !body.results) {\n  return fermati('richiesta fallita: ' + JSON.stringify(body.error).slice(0, 160));\n}\nif (body.status && body.status !== 'OK' && body.status !== 'ZERO_RESULTS') {\n  return fermati(body.status + ' ' + (body.error_message || ''));\n}\n\nfor (const r of (body.results || [])) {\n  sd.risultati.push({\n    place_id:           r.place_id || '',\n    name:               r.name || '',\n    business_status:    r.business_status || 'OPERATIONAL',\n    rating:             (r.rating === undefined || r.rating === null) ? null : Number(r.rating),\n    user_ratings_total: Number(r.user_ratings_total || 0),\n    settore:            cfg.settore || 'Altro',\n    citta:              cfg.citta || 'Altro',\n    area:               cfg.area || '',\n  });\n}\n\nconst token = body.next_page_token || '';\nconst altraPagina = !!token && sd.paginaCorrente < MAX_PAGINE;\n\nconsole.log(cfg.citta + ' pagina ' + sd.paginaCorrente + ': '\n  + (body.results || []).length + ' risultati'\n  + (altraPagina ? ', continua' : ', fine'));\n\nreturn [{ json: { ...cfg, pagetoken: altraPagina ? token : '', altraPagina } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        208
+      ],
+      "id": "accumula-pagina",
+      "name": "Accumula pagina"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "if-pag-1",
+              "leftValue": "={{ $json.altraPagina }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1120,
+        208
+      ],
+      "id": "altra-pagina?",
+      "name": "Altra pagina?"
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "seconds"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        384
+      ],
+      "id": "attesa-google",
+      "name": "Attesa Google"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Tutte le pagine sono state raccolte in 'Accumula pagina'.\nconst sd = $getWorkflowStaticData('global');\nconst raccolti = sd.risultati || [];\n\nif (sd.erroriRicerca && sd.erroriRicerca.length) {\n  console.log('Ricerche o pagine in errore:\\n' + sd.erroriRicerca.join('\\n'));\n}\nconsole.log('Pagine lette: ' + (sd.pagineLette || 0)\n  + ', risultati grezzi: ' + raccolti.length);\n\nreturn raccolti.map(r => ({ json: r }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -637,6 +704,35 @@
       "main": [
         [
           {
+            "node": "Ricerca per comune",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ricerca per comune": {
+      "main": [
+        [
+          {
+            "node": "Estrai risultati",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Inizio ricerca comune",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inizio ricerca comune": {
+      "main": [
+        [
+          {
             "node": "Google Places - Ricerca testo",
             "type": "main",
             "index": 0
@@ -648,7 +744,47 @@
       "main": [
         [
           {
-            "node": "Estrai risultati",
+            "node": "Accumula pagina",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Accumula pagina": {
+      "main": [
+        [
+          {
+            "node": "Altra pagina?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Altra pagina?": {
+      "main": [
+        [
+          {
+            "node": "Attesa Google",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ricerca per comune",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attesa Google": {
+      "main": [
+        [
+          {
+            "node": "Google Places - Ricerca testo",
             "type": "main",
             "index": 0
           }

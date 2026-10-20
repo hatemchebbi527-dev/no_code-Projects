@@ -52,8 +52,11 @@ Laisse `Limite per run` à 40, réduis `Config - Zone e mestieri` à 1 comune et
 ```
 Avvia ricerca  /  Ogni lunedi 08:30
   → Config - Zone e mestieri      1 recherche par comune, sur le métier actif
-  → Google Places - Ricerca testo text search, 1 appel par item
-  → Estrai risultati              rattache settore + citta à chaque fiche
+  → Ricerca per comune            boucle, 1 comune à la fois
+       → Google Places · Ricerca  page 1, puis pages 2 et 3 via next_page_token
+       → Accumula pagina          empile les résultats, rattache settore + citta
+       → Altra pagina ?           oui → Attesa Google (3 s) → page suivante
+  → Estrai résultats              sort les 60 résultats max par comune
   → Solo attive                   retire les activités fermées
   → Dedup intra-run               retire les doublons du run (place_id + nom normalisé)
                                   puis pioche à tour de rôle dans chaque recherche
@@ -97,7 +100,9 @@ Les 12 métiers disponibles sont dans la constante `CATALOGO` juste en dessous. 
 
 **Le plafond se répartit entre les comuni.** `Dedup intra-run` pioche à tour de rôle une fiche dans chaque recherche. Avec 3 comuni et un plafond de 40, tu obtiens une douzaine d'artisans par ville sur le métier du jour. Sans cette répartition, Rimini mangerait tout le plafond et Santarcangelo n'entrerait jamais.
 
-Google renvoie au maximum 20 résultats par recherche, donc 3 comuni plafonnent à 60 candidats bruts par métier. Si tu veux descendre plus bas que ça, il faut ajouter la pagination (`next_page_token`), qui monte à 60 résultats par recherche.
+**La pagination est active.** Google sert 20 résultats par page et jusqu'à 3 pages, donc 60 résultats par recherche et 180 candidats bruts par métier sur 3 comuni. La boucle réclame les pages suivantes tant que Google renvoie un `next_page_token`, avec une attente de 3 secondes entre deux pages : ce jeton n'est pas valide tout de suite, sans l'attente la page 2 répond `INVALID_REQUEST`.
+
+Conséquence sur le plafond : avec 180 candidats bruts et `MAX_PER_RUN` à 40, tu ne traites qu'une fiche sur quatre. Monte `MAX_PER_RUN` à 100 ou 120 pour profiter vraiment de la pagination, en gardant en tête que chaque fiche coûte un appel Place Details et un appel à Claude.
 
 ### Tour des 12 métiers
 
@@ -140,6 +145,8 @@ Le nœud Claude envoie aussi `fallbacks: "default"` avec l'en-tête `anthropic-b
 | `404 object_not_found` sur un nœud Notion | La table n'est pas partagée avec l'intégration. Voir l'étape 3. |
 | `validation_error` sur `Crea in Notion` | Une colonne a été renommée dans Notion. Les noms du corps JSON doivent correspondre au caractère près, accents compris (`Priorita` et `Citta` sont sans accent). |
 | Erreur sur `/v1/databases/.../query` qui parle de `data_source` | Ton n8n envoie une version d'API Notion récente. Remplace l'URL du nœud `Verifica duplicato Notion` par `https://api.notion.com/v1/data_sources/a8ecb59e-bb66-45d8-9f94-09729be38ef1/query`. |
+| `INVALID_REQUEST` sur la page 2 ou 3 | Le `next_page_token` a été utilisé trop tôt. Augmente l'attente du nœud `Attesa Google` de 3 à 5 secondes. |
+| La recherche s'arrête à 20 résultats par comune | Google n'avait pas de `next_page_token` à donner : il n'y a pas plus d'artisans de ce métier dans cette ville. Le log de `Accumula pagina` dit `pagina 1 : N risultati, fine`. |
 | `REQUEST_DENIED` sur Google Places | La clé n'a pas accès à l'API Places legacy. Dans Google Cloud, active *Places API*, ou migre les deux nœuds vers *Places API (New)* : `POST https://places.googleapis.com/v1/places:searchText` avec l'en-tête `X-Goog-FieldMask`. |
 | Beaucoup de fiches en `Scartato` | Normal au début : le filtre retire les activités sans contact et les enseignes. Regarde le champ `motivo` du nœud `Scartato` pour voir ce qui tombe. |
 | Une seule ville dans Notion | Le plafond a été atteint avant d'arriver aux autres recherches. Vérifie que `Dedup intra-run` contient bien la répartition à tour de rôle, et lis son log : `X in entrata, Y unici, Z trattati, ripartiti su N ricerche`. |
