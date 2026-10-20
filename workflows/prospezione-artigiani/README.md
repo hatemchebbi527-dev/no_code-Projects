@@ -51,7 +51,7 @@ Laisse `Limite per run` à 40, réduis `Config - Zone e mestieri` à 1 comune et
 
 ```
 Avvia ricerca  /  Ogni lunedi 08:30
-  → Config - Zone e mestieri      1 item par combinaison comune x métier
+  → Config - Zone e mestieri      1 recherche par comune, sur le métier actif
   → Google Places - Ricerca testo text search, 1 appel par item
   → Estrai risultati              rattache settore + citta à chaque fiche
   → Solo attive                   retire les activités fermées
@@ -85,17 +85,42 @@ Le scrape du site cherche aussi le numéro de P.IVA et le note dans la colonne N
 
 ## Régler le volume et le coût
 
-Un run = `nombre de comuni x nombre de métiers` appels Text Search, puis au maximum `MAX_PER_RUN` appels Place Details.
+**Le workflow traite un métier par run**, sur tous les comuni de la liste. Un run = autant d'appels Text Search que de comuni (3 par défaut), puis au maximum `MAX_PER_RUN` appels Place Details.
 
-Réglage livré : 3 comuni x 6 métiers = 18 recherches, plafonné à 40 fiches traitées.
+Pour changer de métier, une seule ligne dans `Config - Zone e mestieri` :
 
-**Le plafond se répartit entre toutes les recherches.** `Dedup intra-run` pioche à tour de rôle une fiche dans chaque couple métier x comune. Sans ça, le plafond serait mangé par les premières recherches et les derniers métiers n'entreraient jamais dans le run. Avec 12 métiers x 3 comuni et un plafond de 40, tu obtiens 3 ou 4 fiches par métier et les 36 recherches sont représentées.
+```js
+const MESTIERE_ATTIVO = 'Idraulico';
+```
 
-Garde le rapport en tête : **plafond divisé par nombre de recherches = fiches par recherche**. 36 recherches avec un plafond de 40, c'est une fiche par recherche. Pour creuser un métier, réduis le nombre de recherches plutôt que d'augmenter le plafond.
+Les 12 métiers disponibles sont dans la constante `CATALOGO` juste en dessous. Le nom doit être écrit exactement comme l'option de la colonne Settore dans Notion : en cas de faute de frappe, le workflow s'arrête tout de suite avec la liste des noms valides, plutôt que de tourner dans le vide.
+
+**Le plafond se répartit entre les comuni.** `Dedup intra-run` pioche à tour de rôle une fiche dans chaque recherche. Avec 3 comuni et un plafond de 40, tu obtiens une douzaine d'artisans par ville sur le métier du jour. Sans cette répartition, Rimini mangerait tout le plafond et Santarcangelo n'entrerait jamais.
+
+Google renvoie au maximum 20 résultats par recherche, donc 3 comuni plafonnent à 60 candidats bruts par métier. Si tu veux descendre plus bas que ça, il faut ajouter la pagination (`next_page_token`), qui monte à 60 résultats par recherche.
+
+### Tour des 12 métiers
+
+Un métier par run, à cocher au fur et à mesure :
+
+```
+[ ] Idraulico              [ ] Piastrellista
+[ ] Elettricista           [ ] Serramentista
+[ ] Imbianchino            [ ] Condizionamento
+[ ] Fabbro                 [ ] Giardiniere
+[ ] Falegname              [ ] Muratore
+[ ] Termoidraulico / Caldaie   [ ] Antennista
+```
+
+Le dédoublonnage étant sur le Place ID, un artisan déjà en base ne ressortira pas quand deux métiers se recouvrent (un termoidraulico trouvé en idraulico, par exemple).
+
+Le trigger `Ogni lunedi 08:30` relancerait toujours le métier actif au moment où tu l'actives. Tant que tu fais le tour à la main, laisse-le désactivé.
 
 | Levier | Où |
 |--------|-----|
-| Comuni et métiers | `Config - Zone e mestieri`, listes `COMUNI` et `MESTIERI` (lignes commentées prêtes à décommenter) |
+| Métier du run | `Config - Zone e mestieri`, constante `MESTIERE_ATTIVO` |
+| Comuni | `Config - Zone e mestieri`, liste `COMUNI` (5 lignes commentées prêtes à décommenter) |
+| Mots cherchés pour un métier | `Config - Zone e mestieri`, partie droite du `CATALOGO` |
 | Fiches traitées par run | `Dedup intra-run`, constante `MAX_PER_RUN` (le nœud `Limite per run` n'est qu'un garde-fou à 500) |
 | Sévérité du filtre | `Prepara + Pre-filtro`, liste `ESCLUDI` et seuil `numRecensioni >= 3` |
 | Modèle Claude | corps du nœud `Claude - Qualifica e messaggio` |
@@ -117,7 +142,8 @@ Le nœud Claude envoie aussi `fallbacks: "default"` avec l'en-tête `anthropic-b
 | Erreur sur `/v1/databases/.../query` qui parle de `data_source` | Ton n8n envoie une version d'API Notion récente. Remplace l'URL du nœud `Verifica duplicato Notion` par `https://api.notion.com/v1/data_sources/a8ecb59e-bb66-45d8-9f94-09729be38ef1/query`. |
 | `REQUEST_DENIED` sur Google Places | La clé n'a pas accès à l'API Places legacy. Dans Google Cloud, active *Places API*, ou migre les deux nœuds vers *Places API (New)* : `POST https://places.googleapis.com/v1/places:searchText` avec l'en-tête `X-Goog-FieldMask`. |
 | Beaucoup de fiches en `Scartato` | Normal au début : le filtre retire les activités sans contact et les enseignes. Regarde le champ `motivo` du nœud `Scartato` pour voir ce qui tombe. |
-| Un seul métier ou une seule ville dans Notion | Le plafond a été atteint avant d'arriver aux autres recherches. Vérifie que `Dedup intra-run` contient bien la répartition à tour de rôle, et lis son log : `X in entrata, Y unici, Z trattati, ripartiti su N ricerche`. |
+| Une seule ville dans Notion | Le plafond a été atteint avant d'arriver aux autres recherches. Vérifie que `Dedup intra-run` contient bien la répartition à tour de rôle, et lis son log : `X in entrata, Y unici, Z trattati, ripartiti su N ricerche`. |
+| `Mestiere sconosciuto` au lancement | `MESTIERE_ATTIVO` n'est pas écrit comme une clé du `CATALOGO`. Le message d'erreur liste les noms valides. |
 | La même fiche créée plusieurs fois dans un run | L'index de Notion met quelques secondes à voir une page créée, donc `Verifica duplicato Notion` ne la voit pas encore. Le filet de sécurité est dans `Prepara + Pre-filtro` (liste `sd.trattati`), remis à zéro par `Config - Zone e mestieri`. |
 | `motivo` contient « parsing fallito » | Claude n'a pas renvoyé de JSON propre. La fiche est quand même créée, avec `Punteggio IA` à `Medio`. |
 | Le compteur du `Riepilogo` est faux | Les compteurs sont remis à zéro par `Dedup intra-run`. Lancer la boucle sans passer par ce nœud fausse le total. |
