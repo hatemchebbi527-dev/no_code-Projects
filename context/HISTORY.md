@@ -7,6 +7,20 @@
 
 ---
 
+## 2026-10-20
+
+### Manuvo : workflow de prospection artigiani (Google Places vers Notion)
+- Création d'un **CRM Notion « CRM Artigiani — Manuvo (Rimini) »** (25 colonnes, dont 22 remplies automatiquement) et du workflow n8n `workflows/prospezione-artigiani/prospezione-artigiani-notion.json` qui l'alimente. Objectif : recruter les artisans côté offre de Manuvo, pas vendre de l'automatisation.
+- Chaîne : Google Places text search (1 recherche par comune × métier) vers Place Details vers scrape du site (emails + **P.IVA**) vers qualification Claude vers création de la fiche Notion avec le statut « Da contattare ».
+- Trois choix structurants, différents du workflow de prospection Airtable fait pour AutomaIA :
+  - un seul nœud Config génère toutes les recherches, au lieu de branches dupliquées par secteur ;
+  - l'anti-doublon s'appuie sur le **place_id** et non sur le nom, plus une requête Notion sur Place ID ou Nom ;
+  - la priorité se calcule sur le **téléphone** et les avis, parce qu'un artisan se contacte par téléphone ou WhatsApp.
+- Correctif appliqué au parsing de la réponse Claude : le premier bloc de contenu peut être un bloc `thinking`, donc il faut filtrer sur `type === 'text'`. **Le workflow email existant a le même défaut et reste à corriger.**
+- Mise en place de la connexion Notion côté n8n : jeton d'API (pas OAuth), droits lire + mettre à jour + insérer, et surtout **partage explicite de la base avec la connexion** (les autorisations ne donnent accès à aucune page par elles-mêmes).
+- **Premier run réel validé** : 2 idraulici de Rimini insérés, dont un avec sa P.IVA récupérée sur son site. Un bug trouvé en relisant les données (fragment d'email tronqué à côté de l'adresse complète) et corrigé.
+- Reste à faire : second run identique pour prouver l'anti-doublon, montée en volume, activation du trigger hebdomadaire, puis les deux briques qui ferment la boucle (envoi du premier contact, relance J+4).
+
 ## 2026-10-04
 
 ### Manuvo : production vidéo de marque (skill brand-motion-design)
