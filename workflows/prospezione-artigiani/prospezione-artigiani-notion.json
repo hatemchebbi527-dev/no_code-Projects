@@ -83,7 +83,7 @@
         "genericAuthType": "httpQueryAuth",
         "sendQuery": true,
         "specifyQuery": "json",
-        "jsonQuery": "={{ JSON.stringify(Object.assign({ query: $json.query + ' a ' + $json.area, language: 'it', region: 'it' }, $json.pagetoken ? { pagetoken: $json.pagetoken } : {} )) }}",
+        "jsonQuery": "={{ JSON.stringify($json.pagetoken ? { query: $json.query + ' a ' + $json.area, language: 'it', region: 'it', pagetoken: $json.pagetoken } : { query: $json.query + ' a ' + $json.area, language: 'it', region: 'it' }) }}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
