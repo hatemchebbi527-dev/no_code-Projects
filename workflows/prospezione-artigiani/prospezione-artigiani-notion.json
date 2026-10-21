@@ -604,7 +604,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const sd = $getWorkflowStaticData('global');\nsd.scartati = (sd.scartati || 0) + 1;\nconst j = $input.first().json || {};\nreturn [{ json: { scartato: true, nome: j.nome || '', motivo: j.motivoScarto || j.motivo || 'punteggio basso' } }];"
+        "jsCode": "// Tiene il conto dei motivi di scarto: senza questo non si sa mai\n// perche una run trova poco.\nconst sd = $getWorkflowStaticData('global');\nsd.scartati = (sd.scartati || 0) + 1;\nif (!sd.motiviScarto) sd.motiviScarto = {};\n\nconst j = $input.first().json || {};\nconst motivo = j.motivoScarto\n  || (j.punteggio === 'Basso' ? 'punteggio Basso' : 'altro');\nsd.motiviScarto[motivo] = (sd.motiviScarto[motivo] || 0) + 1;\n\nreturn [{ json: { scartato: true, nome: j.nome || '', motivo } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -617,7 +617,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const sd = $getWorkflowStaticData('global');\nconst creati = sd.creati || 0;\nconst duplicati = sd.duplicati || 0;\nconst scartati = sd.scartati || 0;\nconst analizzati = creati + duplicati + scartati;\n\nreturn [{ json: {\n  creati, duplicati, scartati, analizzati,\n  messaggio: 'Prospezione artigiani finita. Nuovi in Notion: ' + creati\n    + ' | gia presenti: ' + duplicati\n    + ' | scartati: ' + scartati\n    + ' | analizzati: ' + analizzati,\n}}];"
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nconst creati = sd.creati || 0;\nconst duplicati = sd.duplicati || 0;\nconst scartati = sd.scartati || 0;\nconst analizzati = creati + duplicati + scartati;\n\nconst motivi = sd.motiviScarto || {};\nconst dettaglioScarti = Object.keys(motivi).length\n  ? Object.keys(motivi).map(m => m + ': ' + motivi[m]).join(' | ')\n  : 'nessuno';\n\nconst messaggio = 'Prospezione artigiani finita. Nuovi in Notion: ' + creati\n  + ' | gia presenti: ' + duplicati\n  + ' | scartati: ' + scartati\n  + ' | analizzati: ' + analizzati;\n\nconsole.log(messaggio);\nconsole.log('Motivi di scarto -> ' + dettaglioScarti);\nconsole.log('Pagine Google lette: ' + (sd.pagineLette || 0)\n  + ' | risultati grezzi: ' + ((sd.risultati || []).length));\n\nreturn [{ json: {\n  creati, duplicati, scartati, analizzati,\n  motiviScarto: motivi,\n  pagineLette: sd.pagineLette || 0,\n  risultatiGrezzi: (sd.risultati || []).length,\n  messaggio,\n  dettaglioScarti,\n}}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
