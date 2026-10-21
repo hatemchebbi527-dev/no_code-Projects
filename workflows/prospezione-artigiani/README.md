@@ -102,7 +102,9 @@ Les 12 métiers disponibles sont dans la constante `CATALOGO` juste en dessous. 
 
 **La pagination est active.** Google sert 20 résultats par page et jusqu'à 3 pages, donc 60 résultats par recherche et 180 candidats bruts par métier sur 3 comuni. La boucle réclame les pages suivantes tant que Google renvoie un `next_page_token`.
 
-Ce jeton n'est pas valide immédiatement après son émission, et le délai varie. Deux protections : une attente de 6 secondes avant chaque page suivante, et, si Google répond quand même `INVALID_REQUEST`, jusqu'à 2 nouvelles tentatives avec le même jeton. Sans ce rattrapage, une page refusée faisait perdre tout le reste du comune en silence, ce qui ressemble à « il n'y a plus d'artisans ».
+La requête de pagination envoie **la recherche complète plus le `pagetoken`**. La documentation dit que les autres paramètres sont ignorés quand un `pagetoken` est fourni, mais en envoyant le `pagetoken` seul l'API legacy répond `INVALID_REQUEST`, même après 18 secondes d'attente.
+
+Deux protections en plus : une attente de 6 secondes avant chaque page suivante, car le jeton n'est pas valide immédiatement, et jusqu'à 2 nouvelles tentatives avec le même jeton si Google refuse quand même. Sans ce rattrapage, une page refusée fait perdre tout le reste du comune en silence, ce qui ressemble à « il n'y a plus d'artisans ».
 
 Conséquence sur le plafond : avec 180 candidats bruts et `MAX_PER_RUN` à 40, tu ne traites qu'une fiche sur quatre. Monte `MAX_PER_RUN` à 100 ou 120 pour profiter vraiment de la pagination, en gardant en tête que chaque fiche coûte un appel Place Details et un appel à Claude.
 
