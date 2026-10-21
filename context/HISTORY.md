@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-10-21
+
+### Manuvo : workflow de prospection stabilisé, 98 artisans en base
+- Le workflow `prospezione-artigiani` est **opérationnel et validé en production**. Base Notion : **98 artisans uniques, zéro doublon, 50 notés Alto** (Falegname 38, Imbianchino 32, Idraulico 15, Elettricista 13). 100 % des fiches ont un téléphone.
+- **Quatre bugs réels corrigés**, dont trois dans le code livré par Claude. Ils valent d'être retenus, les deux premiers se présentaient tous les deux comme « des doublons » :
+  1. **Le plafond tronquait au lieu de répartir.** Un `Limit` posé sur une liste triée par recherche ne plafonne pas, il coupe : les 40 premiers éléments étaient les deux premières recherches, et 34 recherches sur 36 ne passaient jamais. Le dédoublonnage pioche désormais à tour de rôle dans chaque couple métier x comune.
+  2. **Fuite de données entre deux tours de boucle.** `$('Nœud').first()` renvoie la dernière exécution du nœud, pas celle du tour en cours. Quand un `IF` a deux branches qui se rejoignent, un tour passé par la branche B lit les données laissées par la branche A au tour précédent, et le même artisan était réécrit en boucle. Parade : n'accepter les données d'une branche que si leur `place_id` est celui du tour. **Le workflow email existant a le même enchaînement et reste à vérifier.**
+  3. **Pagination Google refusée.** Envoyer `pagetoken` seul donne `INVALID_REQUEST` sur l'API Places legacy, malgré la documentation. Il faut renvoyer la recherche complète plus le `pagetoken`, avec une attente de 6 s et jusqu'à 2 réessais.
+  4. **`Object.assign` indisponible** dans le moteur d'expressions n8n : l'expression plantait et aucune requête ne partait. S'en tenir à `JSON.stringify` et à des littéraux.
+- **Leçon de méthode** : les trois diagnostics justes sont venus de la lecture des données (sortie du `Riepilogo`, panneau INPUT des nœuds, requêtes SQL sur la base Notion), jamais du raisonnement seul. Deux correctifs ont été posés sur des symptômes avant d'avoir la cause. Le workflow journalise maintenant les motifs de rejet, les pages lues et les erreurs de recherche, pour que chaque run s'explique tout seul.
+- Reste à faire : repasser Idraulico et Elettricista (antérieurs aux deux correctifs), finir le tour des 12 métiers, puis brancher l'envoi du premier contact et la relance J+4.
+
 ## 2026-10-20
 
 ### Manuvo : workflow de prospection artigiani (Google Places vers Notion)
