@@ -224,7 +224,7 @@ Tout est vrai le premier jour : paiements actifs, vérification SMS en place, P.
 | — | 💳 Vérifier les premiers encaissements avec Fiscozen | 5 févr |
 | 35 | ⚖️ Arbitrage budget pub (J+14 de Google) | 8 févr |
 | 36 | ▶️ Meta Artigiani ON — conditionnel | 8 févr |
-| 37 | Parrainage artisan « 5 crediti per te » (au parrain seulement, le filleul a ses 5 de bienvenue) | 11 févr |
+| 37 | Parrainage artisan « 5 crediti per te » (au parrain seulement, le filleul a ses 5 de bienvenue) — **mécanisme codé, reste à annoncer** | 11 févr |
 | 38 | Preuve sociale : compteurs publics | 15 févr |
 
 ### Phase 5 · Mesure et vague 2 — lun 22 févr → lun 29 mars

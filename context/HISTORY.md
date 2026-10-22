@@ -25,6 +25,19 @@
 
 ---
 
+## 2026-10-23
+
+### Manuvo : mécanisme de parrainage artisan implémenté
+- Constat de départ : les 5 crédits de bienvenue existaient déjà dans le code (`WELCOME_CREDITS = 5` dans `src/lib/constants.ts`, versés à l'inscription et tracés en `BONUS`), mais **aucun mécanisme de parrainage**, ni en base, ni dans le formulaire, ni au backlog. L'étape 37 n'était donc pas exécutable
+- Option retenue par Hatem : **crédit versé à l'inscription du filleul, avec plafond**
+- Implémenté : auto-relation `referredById` sur `User` + migration `20261023000000_add_referral` ; le code d'invitation est le **matricule du parrain** (ART-0001), déjà unique et déjà affiché, donc rien à générer ; champ « Codice invito » facultatif à l'inscription, prérempli par `/signup?ref=ART-0001` ; `parseMatricule()` accepte ART-0001, art 1, 0001 ou 1
+- Garde-fous : code inconnu ou mal formé refusé avec un message clair, auto-parrainage bloqué par email et par P.IVA, plafond de 3 parrainages récompensés sur 30 jours glissants. Au-delà du plafond l'attribution est quand même enregistrée (elle alimente le KPI « ≥ 20 % des inscrits venus du parrainage ») mais les crédits ne sont pas versés : le filleul n'est jamais pénalisé pour le quota de son parrain
+- Le crédit du parrain et la création du filleul sont dans la même transaction Prisma, tracés en `BONUS` avec `reference: "referral:<id du filleul>"`, donc exclus du chiffre d'affaires comme les crédits de bienvenue
+- Côté interface : carte « Invita un collega » dans l'espace crédits (code, lien prêt à copier, compteur de filleuls, rappel du plafond), et colonne `parraine_par` dans la liste et l'export CSV admin. Traductions ajoutées dans les 5 langues
+- Vérifié : `prisma generate` passe, `npm run lint` ne laisse que les 3 problèmes préexistants, `npm run build` sort en exit 0 et `tsc --noEmit` est propre après la génération des types
+
+---
+
 ## 2026-10-04
 
 ### Manuvo : production vidéo de marque (skill brand-motion-design)

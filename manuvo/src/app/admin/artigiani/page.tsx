@@ -40,6 +40,7 @@ export default async function AdminArtisansPage() {
     trades: splitTrades(a.categories),
     credits: a.credits,
     createdAt: a.createdAt.toISOString(),
+    referredBy: a.referredBy?.matricule ?? null,
   }));
 
   // Lignes d'affichage avec les stats (note moyenne + badge), jointes par id artisan.

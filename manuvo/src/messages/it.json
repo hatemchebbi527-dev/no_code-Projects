@@ -87,7 +87,9 @@
     "have_account": "Hai gia un account?",
     "login_link": "Accedi",
     "piva": "Partita IVA",
-    "piva_hint": "11 cifre. Necessaria per ricevere i crediti di benvenuto."
+    "piva_hint": "11 cifre. Necessaria per ricevere i crediti di benvenuto.",
+    "ref": "Codice invito (facoltativo)",
+    "ref_hint": "Il codice di un collega già su Manuvo (ART-0001). Lui riceve 5 crediti, lei parte con i suoi 5 crediti di benvenuto."
   },
   "authErrors": {
     "missing": "Inserisci email e password.",
@@ -103,7 +105,10 @@
     "created_login_failed": "Account creato ma login fallito. Prova ad accedere.",
     "piva_required": "Inserisci la tua Partita IVA.",
     "piva_invalid": "Partita IVA non valida. Controlla le 11 cifre.",
-    "piva_exists": "Questa Partita IVA è già registrata."
+    "piva_exists": "Questa Partita IVA è già registrata.",
+    "ref_invalid": "Codice invito non valido. Usa il formato ART-0001.",
+    "ref_unknown": "Codice invito inesistente. Controlla con il collega che ti ha invitato.",
+    "ref_self": "Non puoi invitare te stesso."
   },
   "dashboard": {
     "title": "Bacheca richieste",
@@ -163,7 +168,15 @@
     "canceled": "Pagamento annullato.",
     "secure_note": "Pagamento sicuro tramite Stripe. 1 credito = {eur} €.",
     "bonus_badge": "+{n} offerti",
-    "total_credits": "{n} crediti totali"
+    "total_credits": "{n} crediti totali",
+    "invite_title": "Invita un collega",
+    "invite_body": "Chi si iscrive con il suo codice le fa guadagnare 5 crediti. Lui parte con i suoi 5 crediti di benvenuto.",
+    "invite_code": "Il suo codice",
+    "invite_link": "Link da inviare",
+    "invite_copy": "Copia il link",
+    "invite_copied": "Link copiato",
+    "invite_cap": "Massimo 3 inviti premiati ogni 30 giorni.",
+    "invite_count": "Colleghi già iscritti con il suo codice: {count}"
   },
   "transactions": {
     "purchase": "Ricarica crediti",

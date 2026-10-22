@@ -9,6 +9,12 @@ export const MAX_UNLOCKS_PER_LEAD = 3; // plafond d'artisans par demande
 // Credits offerts a l'inscription (lancement). 1 credit = 2 EUR, un contact coute 3-5 credits.
 // Verrouille une seule fois par Partita IVA (voir registerArtisan) pour eviter le farming.
 export const WELCOME_CREDITS = 5;
+// Parrainage : credits verses au PARRAIN seulement, quand son filleul s'inscrit.
+// Le filleul recoit ses WELCOME_CREDITS comme tout le monde, sans cumul : 5 credits
+// est le point d'entree unique quelle que soit la source d'inscription.
+export const REFERRAL_CREDITS = 5;
+// Plafond anti-abus : au-dela, l'attribution est enregistree mais les credits ne sont pas verses.
+export const REFERRALS_PER_MONTH_CAP = 3;
 
 // ---- Roles ----
 export const ROLES = ["ARTIGIANO", "ADMIN"] as const;
@@ -92,6 +98,15 @@ export function creditsToEur(credits: number): number {
 // Matricule public d'un artisan : ART-0001, ART-0042, ...
 export function formatMatricule(matricule: number): string {
   return `ART-${String(matricule).padStart(4, "0")}`;
+}
+
+// Lit un code d'invitation saisi a la main : "ART-0001", "art 1", "0001" ou "1".
+// Renvoie le numero de matricule, ou null si la saisie n'en est pas un.
+export function parseMatricule(raw: string): number | null {
+  const digits = raw.replace(/\s/g, "").replace(/^ART-?/i, "");
+  if (!/^\d{1,9}$/.test(digits)) return null;
+  const n = Number(digits);
+  return n > 0 ? n : null;
 }
 
 export function clampLeadCost(cost: number): number {

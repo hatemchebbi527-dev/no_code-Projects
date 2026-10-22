@@ -87,7 +87,9 @@
     "have_account": "Haben Sie schon ein Konto?",
     "login_link": "Anmelden",
     "piva": "USt-IdNr. (Partita IVA)",
-    "piva_hint": "11 Ziffern. Erforderlich, um Ihre Willkommensguthaben zu erhalten."
+    "piva_hint": "11 Ziffern. Erforderlich, um Ihre Willkommensguthaben zu erhalten.",
+    "ref": "Einladungscode (optional)",
+    "ref_hint": "Der Code eines Kollegen, der schon bei Manuvo ist (ART-0001). Er erhält 5 Guthaben, Sie starten mit Ihren eigenen 5 Willkommensguthaben."
   },
   "authErrors": {
     "missing": "E-Mail und Passwort eingeben.",
@@ -103,7 +105,10 @@
     "created_login_failed": "Konto erstellt, aber Anmeldung fehlgeschlagen. Bitte anmelden.",
     "piva_required": "Geben Sie Ihre USt-IdNr. (Partita IVA) ein.",
     "piva_invalid": "Ungültige USt-IdNr. (Partita IVA). Prüfen Sie die 11 Ziffern.",
-    "piva_exists": "Diese USt-IdNr. ist bereits registriert."
+    "piva_exists": "Diese USt-IdNr. ist bereits registriert.",
+    "ref_invalid": "Ungültiger Einladungscode. Bitte im Format ART-0001 eingeben.",
+    "ref_unknown": "Unbekannter Einladungscode. Bitte beim einladenden Kollegen nachfragen.",
+    "ref_self": "Sie können sich nicht selbst einladen."
   },
   "dashboard": {
     "title": "Anfragen-Board",
@@ -163,7 +168,15 @@
     "canceled": "Zahlung abgebrochen.",
     "secure_note": "Sichere Zahlung über Stripe. 1 Credit = {eur} €.",
     "bonus_badge": "+{n} gratis",
-    "total_credits": "{n} Credits gesamt"
+    "total_credits": "{n} Credits gesamt",
+    "invite_title": "Kollegen einladen",
+    "invite_body": "Jede Anmeldung mit Ihrem Code bringt Ihnen 5 Guthaben. Der Kollege startet mit seinen eigenen 5 Willkommensguthaben.",
+    "invite_code": "Ihr Code",
+    "invite_link": "Link zum Teilen",
+    "invite_copy": "Link kopieren",
+    "invite_copied": "Link kopiert",
+    "invite_cap": "Maximal 3 belohnte Einladungen alle 30 Tage.",
+    "invite_count": "Mit Ihrem Code angemeldete Kollegen: {count}"
   },
   "transactions": {
     "purchase": "Credit-Aufladung",
