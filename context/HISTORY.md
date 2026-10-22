@@ -15,6 +15,7 @@
 - **Le Google Sheet « liste des 60 » est abandonné.** Les références au Sheet et à la « colonne pré-accord » ont été remplacées par le CRM dans `manuvo/ROADMAP.md` et dans cinq pages du calendrier Notion (étapes 3, 6a, 6b sem. 1 et sem. 3, 8b)
 - Correction de séquencement : l'étape 6a (premiers messages, 16 oct) demandait de noter les réponses dans une base que l'étape 3 ne créait que le 19 oct. L'étape 3 est avancée au 15 oct, avant la première vague
 - Offre d'amorçage tranchée (étape 8) : **5 crediti offerts** par artisan inscrit, soit 10 € de valeur. Avec un déblocage à 3-5 crédits, cela couvre **un seul contact**, quatre à cinq fois moins que le repère initial de l'étape (« de quoi débloquer 4 à 5 clients »). Coût pour 40 artisans : 400 € de revenu non encaissé, 0 € de trésorerie. Point de vigilance consigné sur la page Notion de l'étape 8 : si le taux de rachat décroche, c'est ce nombre qu'il faut bouger en premier, pas le prix du crédit
+- Parrainage artisan (étape 37) aligné dans la foulée : « 5 crediti a te, 5 a lui » au lieu de 10 + 10. Un artisan parrainé cumule encore 5 + 5 = 10 crédits contre 5 pour un pré-inscrit de la chauffe ; deux façons de fermer l'écart sont notées sur la page de l'étape 37
 - Ajouté au CRM pour l'étape 8b : l'option `Pre-iscritto` dans Stato (entre Interessato et Iscritto Manuvo) et la case `Richiamato gennaio` pour le sprint de conversion du 4 au 21 janvier. Les options existantes ont gardé leurs identifiants, aucune fiche n'a perdu sa valeur
 
 ### Manuvo : Story sondage Instagram

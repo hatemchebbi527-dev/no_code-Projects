@@ -10,7 +10,7 @@
 - **Site** : https://manuvo.automa-ia.net
 - **Jour J : vendredi 22 janvier 2027**
 - Version 5, 14 octobre 2026 : P.IVA en janvier 2027 (régime forfettario), lancement unique le 22 janvier
-- Révision du 22 octobre 2026 : étape 3 avancée au 15 oct, liste des 60 remplacée par le CRM Notion, et offre d'amorçage tranchée à **5 crediti**
+- Révision du 22 octobre 2026 : étape 3 avancée au 15 oct, liste des 60 remplacée par le CRM Notion, et offre d'amorçage tranchée à **5 crediti** (parrainage aligné à 5 + 5)
 
 ---
 
@@ -224,7 +224,7 @@ Tout est vrai le premier jour : paiements actifs, vérification SMS en place, P.
 | — | 💳 Vérifier les premiers encaissements avec Fiscozen | 5 févr |
 | 35 | ⚖️ Arbitrage budget pub (J+14 de Google) | 8 févr |
 | 36 | ▶️ Meta Artigiani ON — conditionnel | 8 févr |
-| 37 | Parrainage artisan « 10 crediti a te, 10 a lui » | 11 févr |
+| 37 | Parrainage artisan « 5 crediti a te, 5 a lui » | 11 févr |
 | 38 | Preuve sociale : compteurs publics | 15 févr |
 
 ### Phase 5 · Mesure et vague 2 — lun 22 févr → lun 29 mars
