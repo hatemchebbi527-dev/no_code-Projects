@@ -100,8 +100,8 @@ janvier, juste avant l'ouverture.
 | # | Étape | Date | Type |
 |---|---|---|---|
 | 4 | Rejoindre 7 groupes Facebook locaux | 14 oct | En ligne |
+| 3 | Base d'artisans (60 lignes : Maps, Pagine Gialle, groupes) | 15 oct | Bureau |
 | 6a | **Prospection artisans par message : 15 par semaine** | 16, 23, 30 oct | En ligne |
-| 3 | Liste de 60 artisans (Maps, Pagine Gialle, groupes) | 19 oct | Bureau |
 | 10 | Répondre aux « cerco idraulico » dans les groupes | 19, 26 oct · 2 nov | En ligne |
 | 11a | Préparer le compte Twilio (création, crédit de 20 €, lecture des exigences italiennes) | 20 oct | Technique |
 | 14 | Meta Pixel actif, 3 events vérifiés | 22 oct | Technique |
