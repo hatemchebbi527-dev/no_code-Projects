@@ -114,7 +114,7 @@ janvier, juste avant l'ouverture.
 | 18 | 6 créas publicitaires | 30 oct | Pub |
 | 16 | Nettoyage de la base + retrait de l'outil d'avis test | 2 nov | Technique |
 | 16b | Masquer le badge « Contatto verificato » tant que Twilio n'est pas live | 2 nov | Technique |
-| 8b | **Ouvrir la pré-inscription dans le CRM** (`Pre-iscritto` + `Richiamato gennaio` en place, reste le message type) | 2 nov | Terrain |
+| 8b | **Ouvrir la pré-inscription dans le CRM** (`Pre-iscritto` + `Richiamato gennaio` en place, messages types dans `SOCIAL.md`) | 2 nov | Terrain |
 | 19 | Tableau UTM figé | 3 nov | Pub |
 | 9 | Contenu : 3 posts par semaine, CTA doux | 14 oct → 2 nov | Contenu |
 

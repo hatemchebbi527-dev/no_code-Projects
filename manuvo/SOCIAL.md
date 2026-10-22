@@ -89,6 +89,96 @@ Mix par post : 3-4 locaux + 3-4 métier + 1 marque.
 
 ---
 
+## Messages de prospection artisans — pré-inscription (étape 8b)
+
+> Vouvoiement (**Lei**) partout, contrairement aux posts qui tutoient.
+> ⚠️ Tant que l'étape 8 n'a pas fixé l'offre d'amorçage, **aucun nombre de crédits** : dire « crediti offerti », sans chiffre.
+> ⚠️ Interdits tant que ce n'est pas vrai : la vérification SMS (Twilio), la P.IVA enregistrée, et toute promesse sur le volume de demandes.
+
+### 1. Terrain, à l'oral (30 secondes)
+```
+Buongiorno, sono Hatem, sto lanciando Manuvo qui a Rimini: i privati
+pubblicano la loro richiesta, e gli artigiani della zona ricevono solo
+quelle del proprio mestiere.
+
+Apriamo il 22 gennaio. Non le chiedo di iscriversi oggi, le chiedo solo
+di mettere il suo nome in lista: chi è in lista riceve i primi crediti
+offerti e vede le richieste prima degli altri.
+
+La richiamo a inizio gennaio, due minuti e la iscrivo. Le va?
+```
+
+### 2. WhatsApp
+```
+Buongiorno [Nome], sono Hatem di Manuvo.
+
+Apriamo il 22 gennaio a Rimini: una piattaforma dove i privati pubblicano
+le loro richieste e gli artigiani ricevono solo quelle del proprio
+mestiere e della propria zona. Nessun abbonamento, si pagano solo i
+contatti che interessano.
+
+Non le chiedo di iscriversi adesso, le chiedo solo di entrare in lista:
+i primi in lista ricevono crediti offerti e vedono le richieste prima
+degli altri.
+
+La richiamo a inizio gennaio, due minuti e la iscrivo. Posso metterla
+in lista?
+```
+
+### 3. Confirmation, dans la minute qui suit le oui
+```
+Perfetto [Nome], l'ho messa in lista come [mestiere] su [zona].
+Adesso non deve fare altro.
+
+La richiamo nella prima settimana di gennaio per attivare l'account
+prima dell'apertura del 22. Buon lavoro.
+```
+
+### 4. Relance J+4, sans réponse
+```
+Buongiorno [Nome], le avevo scritto per Manuvo, che apre il 22 gennaio
+a Rimini.
+
+Le tengo il posto in lista ancora qualche giorno: basta un sì, senza
+impegno e senza costi.
+
+Se non le interessa me lo dica pure, non la disturbo più.
+```
+
+### 5. Janvier, onze jours avant l'ouverture (étape 43)
+**A. Artisan déjà inscrit**
+```
+Buongiorno [nome], ci siamo: Manuvo apre venerdì 22 gennaio a Rimini.
+Il suo account è già pronto con i crediti offerti. Da venerdì riceverà
+le richieste del suo mestiere nella sua zona.
+```
+**B. Pré-inscrit pas encore converti** (il n'a pas de compte)
+```
+Buongiorno [nome], ci siamo: Manuvo apre venerdì 22 gennaio a Rimini.
+L'avevo messa in lista a [mese]: mi bastano due minuti al telefono per
+attivarle l'account con i crediti offerti, prima dell'apertura.
+Quando la chiamo?
+```
+
+### Objections
+| Objection | Réponse |
+|---|---|
+| « Quanto costa? » | *Iscriversi è gratis. Si pagano solo i contatti che decide di sbloccare, e i primi crediti glieli offro io. Nessun abbonamento.* |
+| « Mi mandi le info » | *Volentieri. Intanto la metto in lista così non perde i crediti offerti: mi bastano nome e mestiere.* |
+| « Adesso non ho tempo » | *Bastano dieci secondi, non deve fare nulla. Metto il suo nome e la richiamo a gennaio.* |
+| « Ho già troppo lavoro » | *Allora la metto in lista e a gennaio sceglie lei se accettare richieste o no. Se non le vuole, non le arriva niente.* |
+
+### Ce qu'on note dans le CRM Artigiani après chaque contact
+| Situation | Stato | Autres champs |
+|---|---|---|
+| Accord donné | `Pre-iscritto` | `Ultimo contatto`, `Contattato` ✓, métier et zone vérifiés |
+| Intéressé, veut réfléchir | `Interessato` | `Ultimo contatto`, note de sa demande |
+| Pas de réponse au 1er message | `Contattato` | `Follow-up J+4` ✓ |
+| Refus clair | `Non interessato` | `Ultimo contatto`, motif en note |
+| Rappelé en janvier | — | `Richiamato gennaio` ✓ |
+
+---
+
 ## Légendes de lancement (italien, prêtes à coller)
 
 ### J1 — Lun · Annonce (tous réseaux)
