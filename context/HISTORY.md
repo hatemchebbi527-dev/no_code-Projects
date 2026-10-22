@@ -7,6 +7,22 @@
 
 ---
 
+## 2026-10-22
+
+### Prospection artisans Manuvo : workflow n8n + CRM Notion
+- Hatem a construit lui-même la prospection artisans : un workflow n8n qui interroge Google Places, fait qualifier chaque fiche par Claude (Punteggio IA, Motivo qualifica, Accroche) et écrit dans le CRM Notion « CRM Artigiani — Manuvo (Rimini) », avec le Place ID comme clé anti-doublon
+- L'avancement de chaque artisan vit dans la propriété **Stato** : Nuovo, Da contattare, Contattato, Interessato, Iscritto Manuvo, Non interessato, complétée par Contattato, Ultimo contatto et Follow-up J+4
+- **Le Google Sheet « liste des 60 » est abandonné.** Les références au Sheet et à la « colonne pré-accord » ont été remplacées par le CRM dans `manuvo/ROADMAP.md` et dans cinq pages du calendrier Notion (étapes 3, 6a, 6b sem. 1 et sem. 3, 8b)
+- Correction de séquencement : l'étape 6a (premiers messages, 16 oct) demandait de noter les réponses dans une base que l'étape 3 ne créait que le 19 oct. L'étape 3 est avancée au 15 oct, avant la première vague
+- Reste à faire dans le CRM pour l'étape 8b : ajouter l'option `Pre-iscritto` dans Stato et une case `Richiamato gennaio` pour le sprint de conversion de janvier
+
+### Manuvo : Story sondage Instagram
+- Carte de Story 9:16 muette (10 s, 60 fps) portant « Quante volte hai aspettato un artigiano che non è mai arrivato ? », avec la bande y=1150 à 1500 laissée vide pour le sticker sondage. Master sans aucune piste audio, le propriétaire ajoute une musique de la librairie Instagram
+- Le viseur HUD a été retiré à la demande de Hatem (« supprime le cadre qui entoure le message »), d'où un rendu v2
+- Source dans `manuvo/videos/story-sondaggio-attesa/`, film ajouté à la table Films de `manuvo/videos/BRAND.md`
+
+---
+
 ## 2026-10-04
 
 ### Manuvo : production vidéo de marque (skill brand-motion-design)

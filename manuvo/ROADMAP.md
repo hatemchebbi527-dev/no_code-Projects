@@ -5,10 +5,12 @@
 > Rien d'autre ne fait foi : ni les artifacts, ni `SOCIAL.md`, ni une note ailleurs.
 
 - **Calendrier opérationnel (Notion)** : « 📅 Calendrier Marketing Manuvo — itinéraire unique »
+- **CRM artisans (Notion)** : « CRM Artigiani — Manuvo (Rimini) », alimenté par un workflow n8n (Google Places → qualification Claude → Notion). C'est lui qui porte l'état de chaque artisan, pas un Google Sheet.
 - **Zone vague 1** : Rimini + 20 km · **Langue** : italien (tu) · **Handle** : `manuvo.it`
 - **Site** : https://manuvo.automa-ia.net
 - **Jour J : vendredi 22 janvier 2027**
 - Version 5, 14 octobre 2026 : P.IVA en janvier 2027 (régime forfettario), lancement unique le 22 janvier
+- Révision du 22 octobre 2026 : étape 3 avancée au 15 oct, et la liste des 60 remplacée par le CRM Notion
 
 ---
 
@@ -28,6 +30,7 @@ plus des plannings :
 | Artifact « Manuvo · Volantini A5 » | Flyers, utilisés aux étapes 5a et 5b |
 | `SOCIAL.md` | Légendes italiennes + journal de publication |
 | `MARKETING.md` | Pixel Meta + convention UTM |
+| CRM Artigiani (Notion) | État de chaque artisan : qualification, contact, intérêt, inscription |
 | **`ROADMAP.md` (ce fichier)** | **L'ordre des opérations** |
 
 ## 2. Les 3 principes qui tranchent tous les arbitrages
@@ -100,7 +103,7 @@ janvier, juste avant l'ouverture.
 | # | Étape | Date | Type |
 |---|---|---|---|
 | 4 | Rejoindre 7 groupes Facebook locaux | 14 oct | En ligne |
-| 3 | Base d'artisans (60 lignes : Maps, Pagine Gialle, groupes) | 15 oct | Bureau |
+| 3 | Remplir le CRM Artigiani jusqu'à 60 lignes (workflow n8n + ajouts manuels) | 15 oct | Bureau |
 | 6a | **Prospection artisans par message : 15 par semaine** | 16, 23, 30 oct | En ligne |
 | 10 | Répondre aux « cerco idraulico » dans les groupes | 19, 26 oct · 2 nov | En ligne |
 | 11a | Préparer le compte Twilio (création, crédit de 20 €, lecture des exigences italiennes) | 20 oct | Technique |
@@ -111,7 +114,7 @@ janvier, juste avant l'ouverture.
 | 18 | 6 créas publicitaires | 30 oct | Pub |
 | 16 | Nettoyage de la base + retrait de l'outil d'avis test | 2 nov | Technique |
 | 16b | Masquer le badge « Contatto verificato » tant que Twilio n'est pas live | 2 nov | Technique |
-| 8b | **Mettre en place la liste de pré-inscription artisans** (Sheet + message type) | 2 nov | Terrain |
+| 8b | **Ouvrir la pré-inscription dans le CRM** (statut dédié + message type) | 2 nov | Terrain |
 | 19 | Tableau UTM figé | 3 nov | Pub |
 | 9 | Contenu : 3 posts par semaine, CTA doux | 14 oct → 2 nov | Contenu |
 
@@ -331,7 +334,7 @@ dépasser 12 contacts par semaine.
 - [ ] Répondre à tous les commentaires et DM sous 2 h
 - [ ] 3 messages de prospection artisan (Instagram, groupes, WhatsApp)
 - [ ] Commenter 5 posts de comptes ou groupes locaux de Rimini
-- [ ] 5 min : mettre à jour la liste des 60
+- [ ] 5 min : mettre à jour le CRM Artigiani (Stato, Ultimo contatto, Follow-up J+4)
 
 **Au retour, 6 nov au 18 déc (45 min, terrain au rythme calme)**
 - [ ] 2 à 3 contacts d'artisans par jour pour la pré-inscription
