@@ -14,7 +14,7 @@
 - L'avancement de chaque artisan vit dans la propriété **Stato** : Nuovo, Da contattare, Contattato, Interessato, Iscritto Manuvo, Non interessato, complétée par Contattato, Ultimo contatto et Follow-up J+4
 - **Le Google Sheet « liste des 60 » est abandonné.** Les références au Sheet et à la « colonne pré-accord » ont été remplacées par le CRM dans `manuvo/ROADMAP.md` et dans cinq pages du calendrier Notion (étapes 3, 6a, 6b sem. 1 et sem. 3, 8b)
 - Correction de séquencement : l'étape 6a (premiers messages, 16 oct) demandait de noter les réponses dans une base que l'étape 3 ne créait que le 19 oct. L'étape 3 est avancée au 15 oct, avant la première vague
-- Reste à faire dans le CRM pour l'étape 8b : ajouter l'option `Pre-iscritto` dans Stato et une case `Richiamato gennaio` pour le sprint de conversion de janvier
+- Ajouté au CRM pour l'étape 8b : l'option `Pre-iscritto` dans Stato (entre Interessato et Iscritto Manuvo) et la case `Richiamato gennaio` pour le sprint de conversion du 4 au 21 janvier. Les options existantes ont gardé leurs identifiants, aucune fiche n'a perdu sa valeur
 
 ### Manuvo : Story sondage Instagram
 - Carte de Story 9:16 muette (10 s, 60 fps) portant « Quante volte hai aspettato un artigiano che non è mai arrivato ? », avec la bande y=1150 à 1500 laissée vide pour le sticker sondage. Master sans aucune piste audio, le propriétaire ajoute une musique de la librairie Instagram
