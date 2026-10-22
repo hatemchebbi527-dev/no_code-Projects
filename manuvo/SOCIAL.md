@@ -92,7 +92,8 @@ Mix par post : 3-4 locaux + 3-4 métier + 1 marque.
 ## Messages de prospection artisans — pré-inscription (étape 8b)
 
 > Vouvoiement (**Lei**) partout, contrairement aux posts qui tutoient.
-> ⚠️ Tant que l'étape 8 n'a pas fixé l'offre d'amorçage, **aucun nombre de crédits** : dire « crediti offerti », sans chiffre.
+> **Offre d'amorçage tranchée le 22 oct 2026 : 5 crediti offerti**, soit 10 € de valeur, de quoi débloquer **un** contact (un déblocage coûte 3 à 5 crédits).
+> ⚠️ Ne jamais laisser entendre que 5 crédits couvrent plusieurs contacts : ils en couvrent un.
 > ⚠️ Interdits tant que ce n'est pas vrai : la vérification SMS (Twilio), la P.IVA enregistrée, et toute promesse sur le volume de demandes.
 
 ### 1. Terrain, à l'oral (30 secondes)
@@ -102,8 +103,9 @@ pubblicano la loro richiesta, e gli artigiani della zona ricevono solo
 quelle del proprio mestiere.
 
 Apriamo il 22 gennaio. Non le chiedo di iscriversi oggi, le chiedo solo
-di mettere il suo nome in lista: chi è in lista riceve i primi crediti
-offerti e vede le richieste prima degli altri.
+di mettere il suo nome in lista: chi è in lista riceve 5 crediti offerti,
+abbastanza per sbloccare il suo primo contatto, e vede le richieste prima
+degli altri.
 
 La richiamo a inizio gennaio, due minuti e la iscrivo. Le va?
 ```
@@ -118,8 +120,8 @@ mestiere e della propria zona. Nessun abbonamento, si pagano solo i
 contatti che interessano.
 
 Non le chiedo di iscriversi adesso, le chiedo solo di entrare in lista:
-i primi in lista ricevono crediti offerti e vedono le richieste prima
-degli altri.
+i primi in lista ricevono 5 crediti offerti, abbastanza per sbloccare il
+primo contatto, e vedono le richieste prima degli altri.
 
 La richiamo a inizio gennaio, due minuti e la iscrivo. Posso metterla
 in lista?
@@ -127,8 +129,8 @@ in lista?
 
 ### 3. Confirmation, dans la minute qui suit le oui
 ```
-Perfetto [Nome], l'ho messa in lista come [mestiere] su [zona].
-Adesso non deve fare altro.
+Perfetto [Nome], l'ho messa in lista come [mestiere] su [zona], con i
+5 crediti offerti. Adesso non deve fare altro.
 
 La richiamo nella prima settimana di gennaio per attivare l'account
 prima dell'apertura del 22. Buon lavoro.
@@ -149,22 +151,22 @@ Se non le interessa me lo dica pure, non la disturbo più.
 **A. Artisan déjà inscrit**
 ```
 Buongiorno [nome], ci siamo: Manuvo apre venerdì 22 gennaio a Rimini.
-Il suo account è già pronto con i crediti offerti. Da venerdì riceverà
+Il suo account è già pronto con i 5 crediti offerti. Da venerdì riceverà
 le richieste del suo mestiere nella sua zona.
 ```
 **B. Pré-inscrit pas encore converti** (il n'a pas de compte)
 ```
 Buongiorno [nome], ci siamo: Manuvo apre venerdì 22 gennaio a Rimini.
 L'avevo messa in lista a [mese]: mi bastano due minuti al telefono per
-attivarle l'account con i crediti offerti, prima dell'apertura.
+attivarle l'account con i 5 crediti offerti, prima dell'apertura.
 Quando la chiamo?
 ```
 
 ### Objections
 | Objection | Réponse |
 |---|---|
-| « Quanto costa? » | *Iscriversi è gratis. Si pagano solo i contatti che decide di sbloccare, e i primi crediti glieli offro io. Nessun abbonamento.* |
-| « Mi mandi le info » | *Volentieri. Intanto la metto in lista così non perde i crediti offerti: mi bastano nome e mestiere.* |
+| « Quanto costa? » | *Iscriversi è gratis. Si pagano solo i contatti che decide di sbloccare, e i primi 5 crediti glieli offro io: il primo contatto non le costa niente. Nessun abbonamento.* |
+| « Mi mandi le info » | *Volentieri. Intanto la metto in lista così non perde i 5 crediti offerti: mi bastano nome e mestiere.* |
 | « Adesso non ho tempo » | *Bastano dieci secondi, non deve fare nulla. Metto il suo nome e la richiamo a gennaio.* |
 | « Ho già troppo lavoro » | *Allora la metto in lista e a gennaio sceglie lei se accettare richieste o no. Se non le vuole, non le arriva niente.* |
 

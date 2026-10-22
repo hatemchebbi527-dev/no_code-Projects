@@ -10,7 +10,7 @@
 - **Site** : https://manuvo.automa-ia.net
 - **Jour J : vendredi 22 janvier 2027**
 - Version 5, 14 octobre 2026 : P.IVA en janvier 2027 (régime forfettario), lancement unique le 22 janvier
-- Révision du 22 octobre 2026 : étape 3 avancée au 15 oct, et la liste des 60 remplacée par le CRM Notion
+- Révision du 22 octobre 2026 : étape 3 avancée au 15 oct, liste des 60 remplacée par le CRM Notion, et offre d'amorçage tranchée à **5 crediti**
 
 ---
 
@@ -109,7 +109,7 @@ janvier, juste avant l'ouverture.
 | 11a | Préparer le compte Twilio (création, crédit de 20 €, lecture des exigences italiennes) | 20 oct | Technique |
 | 14 | Meta Pixel actif, 3 events vérifiés | 22 oct | Technique |
 | 11b | **Basculer le code SMS sur Twilio Verify** | 23 oct | Technique |
-| 8 | Définir l'offre d'amorçage : crédits offerts aux premiers inscrits | 26 oct | Décision |
+| 8 | ~~Définir l'offre d'amorçage~~ **tranché le 22 oct : 5 crediti offerts (10 €, 1 contact)** | 22 oct | Décision |
 | 17 | Comptes pub prêts, 3 campagnes en pause | 28 oct | Pub |
 | 18 | 6 créas publicitaires | 30 oct | Pub |
 | 16 | Nettoyage de la base + retrait de l'outil d'avis test | 2 nov | Technique |
