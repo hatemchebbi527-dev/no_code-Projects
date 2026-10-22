@@ -5,7 +5,7 @@
 > Rien d'autre ne fait foi : ni les artifacts, ni `SOCIAL.md`, ni une note ailleurs.
 
 - **Calendrier opérationnel (Notion)** : « 📅 Calendrier Marketing Manuvo — itinéraire unique »
-- **CRM artisans (Notion)** : « CRM Artigiani — Manuvo (Rimini) », alimenté par un workflow n8n (Google Places → qualification Claude → Notion). C'est lui qui porte l'état de chaque artisan, pas un Google Sheet.
+- **CRM artisans (Notion)** : « CRM Artigiani — Manuvo (Rimini) », alimenté par le workflow n8n « prospezione artigiani V4 - Google places to Notion » (Google Places → qualification Claude → Notion). C'est lui qui porte l'état de chaque artisan, pas un Google Sheet.
 - **Zone vague 1** : Rimini + 20 km · **Langue** : italien (tu) · **Handle** : `manuvo.it`
 - **Site** : https://manuvo.automa-ia.net
 - **Jour J : vendredi 22 janvier 2027**
@@ -103,7 +103,7 @@ janvier, juste avant l'ouverture.
 | # | Étape | Date | Type |
 |---|---|---|---|
 | 4 | Rejoindre 7 groupes Facebook locaux | 14 oct | En ligne |
-| 3 | Remplir le CRM Artigiani jusqu'à 60 lignes (workflow n8n + ajouts manuels) | 15 oct | Bureau |
+| 3 | Remplir le CRM Artigiani jusqu'à 60 lignes (workflow `prospezione artigiani V4` + ajouts manuels) | 15 oct | Bureau |
 | 6a | **Prospection artisans par message : 15 par semaine** | 16, 23, 30 oct | En ligne |
 | 10 | Répondre aux « cerco idraulico » dans les groupes | 19, 26 oct · 2 nov | En ligne |
 | 11a | Préparer le compte Twilio (création, crédit de 20 €, lecture des exigences italiennes) | 20 oct | Technique |

@@ -10,7 +10,7 @@
 ## 2026-10-22
 
 ### Prospection artisans Manuvo : workflow n8n + CRM Notion
-- Hatem a construit lui-même la prospection artisans : un workflow n8n qui interroge Google Places, fait qualifier chaque fiche par Claude (Punteggio IA, Motivo qualifica, Accroche) et écrit dans le CRM Notion « CRM Artigiani — Manuvo (Rimini) », avec le Place ID comme clé anti-doublon
+- Hatem a construit lui-même la prospection artisans : le workflow n8n « prospezione artigiani V4 - Google places to Notion », qui interroge Google Places, fait qualifier chaque fiche par Claude (Punteggio IA, Motivo qualifica, Accroche) et écrit dans le CRM Notion « CRM Artigiani — Manuvo (Rimini) », avec le Place ID comme clé anti-doublon
 - L'avancement de chaque artisan vit dans la propriété **Stato** : Nuovo, Da contattare, Contattato, Interessato, Iscritto Manuvo, Non interessato, complétée par Contattato, Ultimo contatto et Follow-up J+4
 - **Le Google Sheet « liste des 60 » est abandonné.** Les références au Sheet et à la « colonne pré-accord » ont été remplacées par le CRM dans `manuvo/ROADMAP.md` et dans cinq pages du calendrier Notion (étapes 3, 6a, 6b sem. 1 et sem. 3, 8b)
 - Correction de séquencement : l'étape 6a (premiers messages, 16 oct) demandait de noter les réponses dans une base que l'étape 3 ne créait que le 19 oct. L'étape 3 est avancée au 15 oct, avant la première vague
