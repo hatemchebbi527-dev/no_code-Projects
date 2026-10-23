@@ -847,5 +847,16 @@
         "attribution": "inputs-changed"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "c090a713-2516-411b-83f5-ecb6ea77deb1",
+      "completedAt": 1792791155529,
+      "output": "/home/user/no_code-Projects/manuvo/videos/story-quiz-artigiani-reale/out/manuvo-story-quiz-artigiani-reale/v1/_master.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }
