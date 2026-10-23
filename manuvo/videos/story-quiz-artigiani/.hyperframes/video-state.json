@@ -1105,5 +1105,16 @@
         "attribution": "inputs-changed"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "8407c540-e1ea-4292-895a-afcaed61a078",
+      "completedAt": 1792788412371,
+      "output": "/home/user/no_code-Projects/manuvo/videos/story-quiz-artigiani/out/manuvo-story-quiz-artigiani/v1/_master.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }
