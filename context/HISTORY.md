@@ -27,6 +27,13 @@
 
 ## 2026-10-23
 
+### Manuvo : les previews Vercel migraient la base de production
+- Découvert en vérifiant l'application de la migration `add_referral` : elle était entrée en base le **22 octobre à 22:18:04 UTC**, soit **35 secondes après le push** du commit, et seize heures avant le merge de la PR. L'intégration Git de Vercel était connectée en parallèle du workflow GitHub Actions, et `DATABASE_URL` était la même en Preview et en Production : chaque build de preview exécutait donc `prisma migrate deploy` sur la base de production
+- Sans dégât ici (migration purement additive), mais une suppression ou un renommage de colonne aurait cassé la production avant toute relecture
+- Correctif appliqué dans `manuvo/vercel.json` plutôt que dans l'interface Vercel, parce que `ignoreCommand` prime sur le champ « Ignored Build Step » : `if [ "$VERCEL_ENV" != "production" ]; then exit 0; fi` saute tout build non-production avant que `vercel-build` ne puisse toucher la base. Contrepartie assumée : plus d'URL de preview, on teste en local
+- Règle écrite dans `manuvo/docs/DEPLOIEMENT.md` : chaîne de déploiement complète, checklist avant une migration destructive, et la façon de vérifier qu'une migration est passée (le log dit `No pending migrations to apply` quand elle l'était déjà, la base est la seule source de vérité)
+- À faire un jour pour récupérer les previews : une base Neon séparée pour l'environnement Preview
+
 ### Manuvo : mécanisme de parrainage artisan implémenté
 - Constat de départ : les 5 crédits de bienvenue existaient déjà dans le code (`WELCOME_CREDITS = 5` dans `src/lib/constants.ts`, versés à l'inscription et tracés en `BONUS`), mais **aucun mécanisme de parrainage**, ni en base, ni dans le formulaire, ni au backlog. L'étape 37 n'était donc pas exécutable
 - Option retenue par Hatem : **crédit versé à l'inscription du filleul, avec plafond**
