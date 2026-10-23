@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Manuvo · Story quiz: l'artigiano piu difficile</title>
+    <!-- Vendored runtimes: nothing loads from the network at render time. -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/words.js"></script>
+    <script src="kit/draw.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-mark-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage for titles, Geist for UI. */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1e24; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1e24; color: #faf8f4; font-family: "Geist", sans-serif; }
+      .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      #cam { position: absolute; inset: 0; }
+      /* Slammed lines: the Manuvo display face, 800, uppercase, tight. */
+      .head { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Bricolage", sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.025em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .handle { font-family: "Geist", sans-serif; font-weight: 700; text-transform: none; letter-spacing: -0.01em; }
+      #ring { position: absolute; border-radius: 50%; border: 6px solid #faf8f4; visibility: hidden; }
+      /* Scrims in the scene colour: the words always sit on clean colour, and the
+         quiz band stays a flat slab for the whole film whatever the 3D does. */
+      #scrim-top, #scrim-bot { position: absolute; left: 0; width: 1080px; }
+      #scrim-top { top: 0; height: 820px; }
+      #scrim-bot { top: 1000px; height: 920px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1080" data-height="1920">
+      <!-- Layers, bottom to top: 3D > scrims > shockwave > words > wipe > vignette + grain. -->
+      <div id="cam">
+        <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
+        <div id="scrim-top" data-layout-ignore></div>
+        <div id="scrim-bot" data-layout-ignore></div>
+        <div id="ring" data-layout-ignore></div>
+        <div id="words" class="full">
+          <!-- 01 Secondo te (ink): one or two giant lines, the persona keeps the lower frame. -->
+          <div id="w1" class="head" style="top:340px;font-size:124px;color:#faf8f4">Secondo te</div>
+          <div id="w2a" class="head" style="top:296px;font-size:112px;color:#faf8f4">Qual è</div>
+          <div id="w2b" class="head" style="top:412px;font-size:112px;color:#FF5758">l'artigiano</div>
+          <!-- 02 Piu difficile (coral): the punch, in ink. -->
+          <div id="w3a" class="head" style="top:292px;font-size:124px;color:#1b1e24">più difficile</div>
+          <div id="w3b" class="head" style="top:420px;font-size:124px;color:#1b1e24">da trovare</div>
+          <!-- 03 A Rimini? (cream): the place, alone and giant. -->
+          <div id="w4" class="head" style="top:320px;font-size:176px;color:#FF5758">a Rimini?</div>
+          <!-- 04 Vota → 05 Manuvo: the recap and the CTA that hold to the end. -->
+          <div id="r1" class="head" data-layout-allow-occlusion style="top:300px;font-size:60px;color:#1b1e24">L'artigiano più difficile</div>
+          <div id="r2" class="head" data-layout-allow-occlusion style="top:374px;font-size:60px;color:#1b1e24">da trovare a Rimini?</div>
+          <div id="cta" class="head" data-layout-allow-occlusion style="top:470px;font-size:46px;color:#1b1e24">Vota qui sotto e scrivimi perché</div>
+          <!-- The signature sits below the quiz band, never inside it. -->
+          <div id="pill" class="head" style="top:1655px;font-size:52px"><span class="handle" style="color:#FF5758;background:#1b1e24;border-radius:999px;padding:8px 34px 12px">@manuvo.it</span></div>
+        </div>
+      </div>
+      <div id="wipe" class="full" data-layout-ignore style="visibility:hidden"></div>
+      <div id="vignette" class="full" data-layout-ignore></div>
+      <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%;mix-blend-mode:overlay"></canvas>
+      <!-- Three.js and add-ons are ES modules: they hand themselves to the kit, then the film starts. -->
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "./vendor/three/addons/postprocessing/EffectComposer.js";
+        import { RenderPass } from "./vendor/three/addons/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "./vendor/three/addons/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "./vendor/three/addons/postprocessing/OutputPass.js";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment, SVGLoader };
+        PF.signal("three").resolve();
+      </script>
+      <script>
+        const $ = (s) => document.querySelector(s);
+        const W = CUES.width, H = CUES.height;
+        const b = PF.grid(CUES.grid);
+        const at = (a) => b(a[0], a[1], a[2] || 0);
+        const BEAT = 60 / CUES.grid.bpm;
+        // Manuvo palette (manuvo/src/app/globals.css). Nothing outside it.
+        const C = { cream: "#faf8f4", ink: "#1b1e24", coral: "#FF5758", coralText: "#C6383A", deep: "#6E1618" };
+        // The brand signature: a sixth of a turn in 480 ms, stopping dead.
+        const SIXTH = PF.ease("cubic-bezier(.16,1,.3,1)");
+        const TURN = Math.PI / 3;
+        let st;
+        const S = {};
+
+        /* The scene colour at time t: hard cuts on the downbeats, one flood, one iris. */
+        function bgAt(t) {
+          if (t < at([3, 1])) return C.ink;
+          if (t < at([4, 1])) return C.cream;
+          if (t < at([5, 1])) return C.ink;
+          if (t < at([6, 1])) return C.cream;
+          return C.coral;
+        }
+        /* Sixths of a turn accumulated by t: each one lands on a beat and stops dead. */
+        function sixths(t, cues) {
+          let a = 0;
+          for (const u of cues) a += SIXTH(PF.progress(t, u, 0.48));
+          return a * TURN;
+        }
+        /* Which of the four tokens is lit: one per beat, all film long. */
+        function activeToken(t) {
+          return Math.max(0, Math.floor((t - at([1, 1])) / BEAT)) % 4;
+        }
+        function unlit(mesh) { mesh.material.toneMapped = false; return mesh; }
+        function flat(hex) { return new st.THREE.MeshBasicMaterial({ color: hex, toneMapped: false, fog: false }); }
+        /* Shrink a line until it fits the safe width (measured after the fonts load). */
+        function fit(el, max = 860) {
+          PF.show(el, true);
+          const r = document.createRange(); r.selectNodeContents(el);
+          const w = r.getBoundingClientRect().width;
+          if (w > max) el.style.fontSize = (parseFloat(el.style.fontSize) * max / w).toFixed(1) + "px";
+          PF.show(el, false);
+        }
+
+        /* ---- the persona: a clay bust, built from spheres and capsules ---- */
+        function buildPersona(THREE, scene) {
+          const g = new THREE.Group();
+          S.skin = PF.three.mat("satin", C.cream);
+          S.suit = PF.three.mat("satin", C.coral);
+          S.ink = flat(C.ink);
+
+          const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.5, 0.5, 10, 32), S.suit);
+          body.position.y = 0.35;
+          const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.22, 0.2, 24), S.skin);
+          neck.position.y = 1.08;
+          const head = new THREE.Group();
+          const skull = new THREE.Mesh(new THREE.SphereGeometry(0.6, 56, 40), S.skin);
+          skull.scale.set(1, 0.97, 0.94);
+          const nose = new THREE.Mesh(new THREE.SphereGeometry(0.085, 28, 20), S.skin);
+          nose.position.set(0, -0.08, 0.57);
+          // Eyes, brows and mouth: flat ink, so they stay graphic at story size.
+          S.eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.115, 28, 20), S.ink);
+          S.eyeL.position.set(-0.2, 0.06, 0.5); S.eyeL.scale.z = 0.5;
+          S.eyeR = S.eyeL.clone(); S.eyeR.position.x = 0.2;
+          S.browL = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.065, 0.05), S.ink);
+          S.browL.position.set(-0.2, 0.27, 0.46); S.browL.rotation.z = 0.17;
+          S.browR = S.browL.clone(); S.browR.position.x = 0.2; S.browR.rotation.z = -0.17;
+          S.mouth = new THREE.Mesh(new THREE.SphereGeometry(0.12, 32, 24), S.ink);
+          S.mouth.position.set(0, -0.26, 0.48); S.mouth.scale.set(1.05, 0.4, 0.45);
+          const earL = new THREE.Mesh(new THREE.SphereGeometry(0.13, 24, 18), S.skin);
+          earL.position.set(-0.57, -0.02, 0); earL.scale.z = 0.7;
+          const earR = earL.clone(); earR.position.x = 0.57;
+          head.add(skull, nose, earL, earR, S.eyeL, S.eyeR, S.browL, S.browR, S.mouth);
+          head.position.y = 1.68;
+          S.head = head;
+
+          // One arm on a shoulder pivot: hangs down, comes up with the index finger on the question.
+          const arm = new THREE.Group();
+          arm.position.set(0.52, 0.92, 0.1);
+          const limb = new THREE.Mesh(new THREE.CapsuleGeometry(0.13, 0.42, 8, 24), S.suit);
+          limb.position.y = 0.34;
+          const hand = new THREE.Mesh(new THREE.SphereGeometry(0.2, 36, 26), S.skin);
+          hand.position.set(0.03, 0.73, 0.02);
+          const index = new THREE.Mesh(new THREE.CapsuleGeometry(0.07, 0.26, 8, 20), S.skin);
+          index.position.set(0.06, 1.06, 0.05);
+          arm.add(limb, hand, index);
+          S.arm = arm;
+          const armL = new THREE.Group();
+          armL.position.set(-0.52, 0.92, 0.1);
+          armL.rotation.z = 2.58;
+          const limbL = limb.clone(); armL.add(limbL);
+          const handL = hand.clone(); handL.position.set(-0.03, 0.73, 0.02); armL.add(handL);
+
+          g.add(body, neck, head, arm, armL);
+          scene.add(g);
+          return g;
+        }
+
+        /* ---- the four options, without a word: hexagon tokens taking turns ---- */
+        function buildTokens(THREE, scene) {
+          const ring = new THREE.Group();
+          ring.position.set(0, 1.75, 0);
+          ring.rotation.x = -0.3;
+          S.tokens = [];
+          for (let i = 0; i < 4; i++) {
+            const slot = new THREE.Group();
+            const spin = new THREE.Group();
+            const cap = flat(C.cream);
+            const side = PF.three.mat("gloss", C.deep);
+            const hex = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.08, 6, 1), [side, cap, cap]);
+            hex.rotation.x = Math.PI / 2;
+            spin.add(hex);
+            slot.add(spin);
+            ring.add(slot);
+            S.tokens.push({ slot, spin, cap, side, a: (i / 4) * Math.PI * 2 });
+          }
+          scene.add(ring);
+          return ring;
+        }
+
+        function setup() {
+          document.querySelectorAll(".head").forEach((el) => fit(el));
+          st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.4, radius: 0.6, threshold: 1.3 }, exposure: 0.98 });
+          const THREE = st.THREE, A = window.THREE_ADDONS;
+          // The composer's OutputPass tone-maps the whole frame: no tone mapping keeps the swatches exact.
+          st.renderer.toneMapping = THREE.NoToneMapping;
+
+          const s = st.newScene();
+          s.background = new THREE.Color(C.ink);
+          s.fog = new THREE.Fog(C.ink, 12, 40);
+          s.environmentIntensity = 0.45;
+          PF.three.lights(st, { scene: s, ground: C.ink, fill: 0.6, key: 1.32, keyPos: [-5, 7, 8] });
+          S.front = new THREE.DirectionalLight(0xffffff, 0.5);
+          S.front.position.set(2.5, 1.5, 9);
+          s.add(S.front);
+          S.s = s;
+
+          S.persona = buildPersona(THREE, s);
+          S.ringGroup = buildTokens(THREE, s);
+
+          S.dust = PF.three.particles(st, 380, {
+            scene: s, size: 0.05, color: (i) => (i % 5 ? C.cream : C.coral),
+            pos: (i, t, o) => { const r = PF.random(i * 17 + 3); o.x = (r() - 0.5) * 17; o.y = -6 + ((r() * 15 + t * (0.45 + r() * 0.55)) % 15); o.z = -1.5 - r() * 11; },
+          });
+          unlit(S.dust.points);
+
+          /* The lockup: manuvo/public/logo-mark.svg extruded, reversed cream on coral.
+             The mark alone: the wordmark is carried by the @manuvo.it pill below. */
+          const svg = new A.SVGLoader().parse(window.MANUVO_MARK_SVG);
+          const shapes = [];
+          svg.paths.forEach((p) => {
+            const f = (p.userData.style.fill || "").replace(/\s/g, "");
+            if (f === "rgb(255,87,88)" || f.toLowerCase() === "#ff5758") shapes.push(...A.SVGLoader.createShapes(p));
+          });
+          const geo = new THREE.ExtrudeGeometry(shapes, { depth: 40, bevelEnabled: true, bevelThickness: 6, bevelSize: 4, bevelSegments: 4, curveSegments: 24 });
+          geo.computeBoundingBox();
+          const bb = geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+          geo.translate(-cx, -cy, -20);
+          const k = 1.32 / (bb.max.x - bb.min.x);
+          S.logoFace = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false, transparent: true });
+          S.logoSide = PF.three.mat("gloss", C.deep, { transparent: true });
+          S.logo = new THREE.Mesh(geo, [S.logoFace, S.logoSide]);
+          S.logo.scale.set(k, -k, k);
+          S.logoGroup = new THREE.Group();
+          S.logoGroup.add(S.logo);
+          S.logoGroup.position.set(0, 1.66, 0);
+          s.add(S.logoGroup);
+        }
+
+        function draw(t) {
+          const bg = bgAt(t);
+          const onDark = bg === C.ink || bg === C.coral;
+          const coralBg = bg === C.coral, creamBg = bg === C.cream;
+          const s = S.s;
+          st.use(s);
+          s.background.set(bg);
+          s.fog.color.set(bg);
+
+          /* Clay colours per chapter: the bust always holds against the background. */
+          S.skin.color.set(C.coral);
+          // On ink the bust is coral too: one clean silhouette instead of a white glare.
+          S.suit.color.set(creamBg ? C.ink : C.coral);
+          S.front.intensity = creamBg ? 0.12 : 0.62;
+
+          /* The persona turns to camera a sixth at a time (it is already turning on frame 0). */
+          const turnIn = sixths(t, [-0.25, at([1, 3])]);
+          const turnOut = sixths(t, [at([6, 1])]);
+          S.persona.rotation.y = -2 * TURN + turnIn - turnOut;
+          // Leans in on the second half of bar 1, then breathes.
+          const lean = PF.bezier(0.3, 0, 0.3, 1)(PF.progress(t, at([1, 3]), 0.6));
+          S.persona.position.set(0, 0, PF.lerp(-0.45, 0.2, lean));
+          S.persona.scale.setScalar(1 + 0.012 * Math.sin(t * 1.9));
+          S.head.rotation.z = 0.13 * PF.bezier(0.3, 0, 0.3, 1)(PF.progress(t, at([4, 2]), 0.5));
+          S.head.position.y = 1.68 + 0.009 * Math.sin(t * 1.9 + 0.5);
+
+          /* The face: eyes widen and the mouth opens on the punch, two blinks for life. */
+          const wide = Math.max(PF.ring(t, at([1, 1]), { length: 0.7, to: 1 }).opacity, PF.ring(t, at([3, 1]), { length: 0.9, to: 1 }).opacity);
+          let lid = 1 + 0.4 * wide;
+          for (const bl of [at([2, 2]), at([5, 2])]) {
+            const u = PF.progress(t, bl, 0.16);
+            if (u > 0 && u < 1) lid *= 1 - 0.9 * Math.sin(u * Math.PI);
+          }
+          S.eyeL.scale.y = S.eyeR.scale.y = lid;
+          const brow = 0.27 + 0.07 * wide;
+          S.browL.position.y = S.browR.position.y = brow;
+          S.mouth.scale.y = 0.4 + 0.55 * wide;
+
+          /* The arm: hangs, comes up with the index finger on the punch, points down on the CTA. */
+          const up = PF.step(t - at([3, 1]), { stiffness: 52, damping: 14 });
+          const down = PF.bezier(0.4, 0, 0.3, 1)(PF.progress(t, at([5, 1]), 0.45));
+          S.arm.rotation.z = PF.lerp(PF.lerp(-2.58, -0.34, up), -2.78, down);
+
+          /* The four options take turns, one per beat: which one, never an answer. */
+          const act = activeToken(t);
+          const orbit = -t * 0.2;
+          S.ringGroup.rotation.y = orbit;
+          S.tokens.forEach((tk, i) => {
+            const a = tk.a;
+            tk.slot.position.set(Math.cos(a) * 1.35, 0, Math.sin(a) * 1.35);
+            tk.slot.rotation.y = -orbit;
+            // Each hexagon only ever turns a sixth, on the beat it lights up.
+            const steps = [];
+            for (let n = 0; n < 32; n++) { const u = at([1, 1]) + n * BEAT; if (n % 4 === i && u <= t) steps.push(u); }
+            tk.spin.rotation.z = sixths(t, steps);
+            const lit = i === act;
+            const pulse = lit ? PF.bezier(0.2, 0, 0.3, 1)(PF.progress(t, at([1, 1]) + Math.floor((t - at([1, 1])) / BEAT) * BEAT, 0.3)) : 0;
+            tk.cap.color.set(lit ? C.coral : creamBg ? C.ink : C.cream);
+            tk.cap.toneMapped = false;
+            tk.side.color.set(creamBg ? C.ink : C.deep);
+            tk.slot.scale.setScalar(PF.lerp(0.86, 1.22, lit ? 0.4 + 0.6 * pulse : 0));
+          });
+
+          /* The persona hands the frame to the lockup: he turns away and shrinks out. */
+          const out = PF.progress(t, at([6, 1]), 0.4);
+          const ps = PF.lerp(1, 0.18, PF.bezier(0.5, 0, 0.9, 0.2)(out));
+          S.persona.scale.multiplyScalar(ps);
+          S.ringGroup.scale.setScalar(ps);
+          S.persona.visible = S.ringGroup.visible = out < 1;
+          S.dust.update(t);
+
+          /* The lockup rises in his slot and lands with the sixth of a turn. */
+          const lu = PF.step(t - at([6, 1]), { stiffness: 46, damping: 13 });
+          const turn = SIXTH(PF.progress(t, at([6, 1]), 0.48));
+          const click = PF.progress(t, at([6, 3]), 0.34);
+          const pop = click > 0 && click < 1 ? Math.sin(click * Math.PI) * 0.05 : 0;
+          S.logoGroup.visible = t >= at([6, 1]) - 0.02;
+          S.logoGroup.scale.setScalar(PF.lerp(0.6, 1, lu) + pop);
+          S.logoGroup.rotation.set(0, PF.lerp(-0.7, 0, lu), PF.lerp(-TURN, 0, turn));
+          S.logoFace.opacity = S.logoSide.opacity = lu;
+
+          /* Camera: a new framing every two beats, each with a small drift. */
+          PF.three.shots(st.camera, t, [
+            { at: b(1, 1), azimuth: -14, elevation: 6, radius: 8.4, target: [0, 0.86, 0], drift: { azimuth: 7, radius: -0.45 } },
+            { at: b(1, 3), azimuth: 9, elevation: -4, radius: 7.8, target: [0, 0.89, 0], drift: { azimuth: -5 } },
+            { at: b(2, 1), azimuth: -8, elevation: 9, radius: 7.7, target: [0, 0.9, 0], drift: { azimuth: 6, elevation: -4 } },
+            { at: b(2, 3), azimuth: 14, elevation: 2, radius: 8.0, target: [0.05, 0.87, 0], drift: { azimuth: -8 } },
+            { at: b(3, 1), azimuth: 0, elevation: 0, radius: 8.2, target: [0, 0.87, 0], drift: { radius: -0.45 } },
+            { at: b(3, 3), azimuth: -11, elevation: 5, radius: 7.5, target: [0.12, 0.94, 0], drift: { azimuth: 6 } },
+            { at: b(4, 1), azimuth: 6, elevation: -4, radius: 8.3, target: [0, 0.86, 0], drift: { azimuth: -4 } },
+            { at: b(4, 3), azimuth: -6, elevation: 7, radius: 7.8, target: [0, 0.9, 0], drift: { azimuth: 4 } },
+            { at: b(5, 1), azimuth: 0, elevation: 0, radius: 8.0, target: [0, 0.85, 0], drift: { radius: -0.28 } },
+            { at: b(6, 1), azimuth: 0, elevation: 0, radius: 7.9, target: [0, 0.85, 0], drift: { radius: -0.2 } },
+          ]);
+
+          /* Words: one idea at a time, then the recap and CTA that hold to the end. */
+          const slam = (el, cue, win, o) => {
+            const on = t >= cue && t < cue + win;
+            PF.show(el, on);
+            if (on) PF.slamStyle(el, PF.slam(t, cue, o || { from: 1.3, length: 0.2, blur: 16 }));
+          };
+          slam($("#w1"), b(1, 1), at([2, 1]) - b(1, 1));
+          slam($("#w2a"), b(2, 1), at([3, 1]) - 0.18 - b(2, 1));
+          slam($("#w2b"), b(2, 3), at([3, 1]) - 0.18 - b(2, 3));
+          slam($("#w3a"), b(3, 1), at([4, 1]) - b(3, 1));
+          slam($("#w3b"), b(3, 3), at([4, 1]) - b(3, 3));
+          slam($("#w4"), b(4, 1), at([5, 1]) - 0.12 - b(4, 1), { from: 1.4, length: 0.22, blur: 20 });
+          // The recap and the CTA appear once and then never move again.
+          [["#r1", b(5, 1)], ["#r2", b(5, 1, 0.5)], ["#cta", b(5, 3)], ["#pill", b(6, 3)]].forEach(([sel, cue]) => {
+            const el = $(sel), on = t >= cue;
+            PF.show(el, on);
+            if (on) PF.slamStyle(el, PF.slam(t, cue, { from: 1.14, length: 0.2, blur: 10 }));
+          });
+
+          /* Scrims in the scene colour: words on clean colour, quiz band a flat slab. */
+          const solid = PF.lerp(566, 520, PF.bezier(0.4, 0, 0.3, 1)(PF.progress(t, at([5, 1]), 0.4)));
+          PF.css($("#scrim-top"), { background: `linear-gradient(to bottom, ${bg} 0%, ${bg} ${(solid / 820 * 100).toFixed(1)}%, rgba(0,0,0,0) 100%)` });
+          // Solid from y=1000 down, all film long: the quiz sticker always lands on flat colour.
+          PF.css($("#scrim-bot"), { background: bg });
+
+          /* One flood on the punch, one iris into the vote. */
+          const wipe = $("#wipe");
+          const fl = PF.progress(t, at([3, 1]) - 0.17, 0.3);
+          const ir1 = PF.progress(t, at([5, 1]) - 0.1, 0.42), ir2 = PF.progress(t, at([6, 1]) - 0.1, 0.42);
+          if (fl > 0 && fl < 1) {
+            PF.show(wipe, true); PF.css(wipe, { background: C.cream, clipPath: null });
+            PF.flood(wipe, PF.bezier(0.7, 0, 0.2, 1)(fl), "up");
+          } else if (ir1 > 0 && ir1 < 1) {
+            PF.show(wipe, true); PF.css(wipe, { background: C.cream });
+            PF.iris(wipe, PF.bezier(0.6, 0, 0.25, 1)(ir1), W / 2, 820, W, H);
+          } else if (ir2 > 0 && ir2 < 1) {
+            PF.show(wipe, true); PF.css(wipe, { background: C.coral });
+            PF.iris(wipe, PF.bezier(0.6, 0, 0.25, 1)(ir2), W / 2, 790, W, H);
+          } else PF.show(wipe, false);
+
+          /* One shockwave on the punch, one on the landing. Never looping. */
+          const ringEl = $("#ring");
+          const rg = PF.ring(t, at([3, 1]), { length: 0.62, to: 860 });
+          const rg2 = PF.ring(t, at([6, 3]), { length: 0.6, to: 700 });
+          const r = rg.opacity > 0 ? rg : rg2;
+          PF.show(ringEl, r.opacity > 0);
+          if (r.opacity > 0) {
+            const cy = 820;
+            PF.css(ringEl, { left: (W / 2 - r.r) + "px", top: (cy - r.r) + "px", width: r.r * 2 + "px", height: r.r * 2 + "px", opacity: r.opacity, borderColor: coralBg ? C.ink : C.coral, borderWidth: Math.max(2, 7 * r.opacity) + "px" });
+          }
+
+          /* One shake on the punch. */
+          const sh = PF.shake(t, [at([3, 1])], { amp: 15, decay: 0.3, freq: 22, rot: 0.5 });
+          PF.css($("#cam"), { transform: `translate(${sh.x.toFixed(2)}px, ${sh.y.toFixed(2)}px) rotate(${sh.r.toFixed(3)}deg)` });
+
+          /* Grain and vignette: no viewfinder, the persona and the question own the frame. */
+          PF.grain($("#grain"), t, { alpha: 0.05 });
+          PF.css($("#vignette"), { background: PF.vignette(0.22, onDark ? "0,0,0" : "110,22,24") });
+
+          st.render();
+        }
+
+        PF.film({
+          duration: CUES.duration, setup, draw,
+          waitFor: [PF.signal("three")],
+          register: (tl) => { window.__timelines["main"] = tl; },
+        });
+      </script>
+    </div>
+  </body>
+</html>
