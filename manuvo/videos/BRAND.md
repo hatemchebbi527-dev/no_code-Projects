@@ -20,10 +20,15 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 
 - Story quiz / sondage (brief du 2026-10-23) : le persona est un **personnage clay 3D construit en code** (pas de média généré, pas de visage photoréaliste), et les options d'un sticker quiz ne sont **jamais gravées** dans la vidéo, elles restent dans le sticker. La vidéo porte le persona, la question et le CTA.
 
+- Story quiz artigiani (2026-10-23, après visionnage de la version clay) : le propriétaire veut un **persona réel généré avec Kling**, pas un personnage clay. Pour ce type de film : plan **plein cadre**, le sticker se pose **sur** la vidéo, et la vidéo reste **muette** (texte gravé, musique ajoutée sur Instagram).
+
 ## Chosen by Claude (the owner can overrule)
 - 2026-10-01: colour rhythm ink / cream / ink / coral (drop) / cream (lockup); HUD labels in Italian; red-900 `#C6383A` for coral text on cream (contrast), coral `#FF5758` for shapes and text on ink.
 - 2026-10-01: 10 bars (17.1 s) instead of 15 s so every line holds long enough to read.
 - 2026-10-23: **le clay crème ne tient pas sous la lumière** (il vire au gris, ou brûle en blanc si on monte la clé). Le persona est donc corail, et le rythme des fonds évite le corail tant qu'il est à l'image : ink / crème / ink / crème / corail, le corail étant gardé pour le lockup. Une lumière frontale ne monte que sur les scènes sombres (`S.front`, 0.62 sur ink, 0.12 sur crème).
+- 2026-10-23: **Kling cadre toujours le visage vers le milieu bas** du 9:16, même quand le prompt impose des proportions (4 passes, 16 crédits, pour le vérifier). Plutôt que de recadrer dur et de perdre le décor, la mise en page s'inverse : **sticker en haut dans le ciel, visage au milieu intact, typo en bas** sur un pied sombre. Conséquence : le CTA dit « VOTA QUI SOPRA », pas « qui sotto ».
+- 2026-10-23: sur un plan réel, aucun étalonnage. Seuls deux calques de lisibilité (lavis crème en haut, pied sombre en bas), conformément à `/media-use`.
+- 2026-10-23: ne pas ajouter de travelling dans le montage quand le plan Kling en a déjà un : le visage sort de sa zone.
 - 2026-10-23: texte de rappel et CTA en **ink sur corail** (le crème sur corail ne fait que 2,95:1, sous le seuil 3:1).
 
 ## Films
@@ -32,6 +37,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 | `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft); final v1 (2026-10-01): 60 fps, blur 2, 17.15 s, -14.7 LUFS, `out/manuvo-teaser-phase0/v1/` (+ `-social.mp4` at 11 Mbps, 23 MB) |
 | `presentazione-9x16` / `presentazione-16x9` | Product presentation (both audiences, CTA Pubblica gratis) | 2026-10-02 | v1 flat 2D → owner: "more creative" → clay 3D (carousel style); owner: "remove the music, I add it on the platforms" (sfx kept) |
 | `story-sondaggio-attesa` | Carte de Story Instagram avec sondage (artigiani / privati, phase de chauffe) | 2026-10-18 | final v1 (2026-10-18) : 1080x1920, 60 fps, blur 4, 10,000 s, **aucune piste audio** (le propriétaire ajoute une musique de la librairie IG) ; bande y=1150 à 1500 laissée vide pour le sticker sondage ; lockup depuis `logo-mark.svg` (le wordmark du logo complet rend flou à cette taille) ; owner : "supprime le cadre qui entoure le message" → viseur HUD retiré en v2 ; `out/manuvo-story-sondaggio-attesa/v2/` : master 8,96 Mo + poster (ARRIVATO?) |
+| `story-quiz-artigiani-reale` | Carte de Story Instagram avec sticker quiz, **version réelle** (remplace la version clay) | 2026-10-23 | plan Kling 10 s (femme dans une rue de Rimini à l'heure dorée, regard caméra, muette) : image `kling-image-v3_0_omni` 9:16 2k, 4 passes = 16 crédits ; plan `kling-video-v3_0_turbo` 9:16 1080p 10 s = 100 crédits. Mise en page inversée : sticker en haut, visage au milieu, typo en bas, CTA « VOTA QUI SOPRA » |
 | `story-quiz-artigiani` | Carte de Story Instagram avec sticker quiz (phase de chauffe) | 2026-10-23 | persona clay 3D corail (tête, mains) qui pose la question et lève l'index, 4 jetons hexagonaux qui s'allument un par temps pour évoquer les 4 métiers sans les écrire ; bande y=1020 à 1620 laissée plate pour le sticker quiz, pill @manuvo.it **sous** la bande ; 12,0 s, 7 barres à 140 BPM, aucune piste audio |
 | `problema-n1` | Problem / solution teaser (pillar trust: SMS verification vs fake contacts), owner's brief | 2026-10-04 | final v1 (2026-10-04): 60 fps, blur 2, 20.0 s, -13.8 LUFS, colours verified exact (grain in overlay); `out/manuvo-problema-n1/v1/`: master, `-social` (10 Mbps), `-sfx-only` (+ social), `-story-6s` (14 to 20 s), poster (hook) |
 
