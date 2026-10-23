@@ -2,6 +2,9 @@
 
 Guide opérationnel pour le suivi des conversions (Meta Pixel) et la convention de liens (UTM).
 
+> ⚠️ **Quand allumer quelle campagne, avec quel budget : voir `ROADMAP.md` (itinéraire unique).**
+> Ce fichier ne traite que la mesure et les liens. Rappel de l'ordre : Google Search Privati (25 janv 2027) → Meta Privati (27 janv) → Meta Artigiani (8 févr, conditionnel) → Google Artigiani jamais. Aucun euro de pub avant le 25 janvier.
+
 ---
 
 ## 1. Meta Pixel
@@ -74,4 +77,4 @@ https://manuvo.automa-ia.net/signup?utm_source=instagram&utm_medium=social&utm_c
 
 - Brancher `Purchase` sur le flux d'achat de crédits (avec Stripe Live).
 - (Optionnel) Meta Conversions API (CAPI) côté serveur pour fiabiliser le suivi malgré les bloqueurs de pub.
-- Visuels d'annonces + textes d'annonces + plan de posts réseaux sociaux.
+- Visuels d'annonces (les kits ne contiennent que les textes) — étape 18 de `ROADMAP.md`.

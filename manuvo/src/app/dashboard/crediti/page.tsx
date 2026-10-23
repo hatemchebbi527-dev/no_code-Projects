@@ -6,8 +6,11 @@ import {
   getUserBalance,
   getUserTransactions,
 } from "@/lib/credits";
+import { prisma } from "@/lib/prisma";
+import { formatMatricule } from "@/lib/constants";
 import { RechargePanel } from "./RechargePanel";
 import { TransactionList } from "./TransactionList";
+import { InviteCard } from "./InviteCard";
 
 export default async function CreditiPage({
   searchParams,
@@ -21,10 +24,12 @@ export default async function CreditiPage({
   const sp = await searchParams;
   const status = sp.paid ? "paid" : sp.canceled ? "canceled" : undefined;
 
-  const [credits, packs, transactions] = await Promise.all([
+  const [credits, packs, transactions, me, referralCount] = await Promise.all([
     getUserBalance(userId),
     getActivePacks(),
     getUserTransactions(userId, 30),
+    prisma.user.findUnique({ where: { id: userId }, select: { matricule: true } }),
+    prisma.user.count({ where: { referredById: userId } }),
   ]);
 
   return (
@@ -50,6 +55,8 @@ export default async function CreditiPage({
           popular: p.popular,
         }))}
       />
+
+      {me && <InviteCard code={formatMatricule(me.matricule)} count={referralCount} />}
 
       <h2 className="mt-10 mb-2 text-lg font-semibold">{t("history")}</h2>
       <div className="rounded-2xl border border-neutral-200 bg-white p-4">

@@ -13,6 +13,7 @@ type Row = {
   trades: string[];
   credits: number;
   createdAt: string;
+  referredBy: number | null; // matricule du parrain, null si inscription directe
 };
 
 function csvCell(value: string): string {
@@ -33,6 +34,7 @@ export function ExportButton({ rows, label }: { rows: Row[]; label: string }) {
       "metiers",
       "credits",
       "inscription",
+      "parraine_par",
     ];
     const lines = rows.map((r) =>
       [
@@ -46,6 +48,7 @@ export function ExportButton({ rows, label }: { rows: Row[]; label: string }) {
         r.trades.join(" ; "),
         String(r.credits),
         new Date(r.createdAt).toISOString().slice(0, 10),
+        r.referredBy === null ? "" : formatMatricule(r.referredBy),
       ]
         .map(csvCell)
         .join(",")

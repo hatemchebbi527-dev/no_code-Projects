@@ -1,8 +1,9 @@
 "use client";
 
 // Manuvo - registrazione artigiano (con mestieri e zona).
-import { useActionState } from "react";
+import { Suspense, useActionState, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { registerArtisan, type AuthState } from "../actions";
 import { CATEGORIES, COUNTRIES } from "@/lib/constants";
@@ -24,7 +25,16 @@ function LegalConsent() {
   );
 }
 
+// useSearchParams impose une frontiere Suspense : le formulaire est isole dedans.
 export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="w-full max-w-sm" />}>
+      <SignupForm />
+    </Suspense>
+  );
+}
+
+function SignupForm() {
   const t = useTranslations("signup");
   const tc = useTranslations("categories");
   const locale = useLocale();
@@ -32,6 +42,9 @@ export default function SignupPage() {
     registerArtisan,
     undefined,
   );
+  // Code de parrainage : prerempli depuis /signup?ref=ART-0001, sinon saisi a la main.
+  const searchParams = useSearchParams();
+  const [ref, setRef] = useState(() => (searchParams.get("ref") ?? "").trim());
 
   const input =
     "rounded-lg border border-neutral-300 px-3 py-2.5 outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600/20";
@@ -96,6 +109,18 @@ export default function SignupPage() {
             placeholder="12345678901"
           />
           <span className="text-xs text-neutral-500">{t("piva_hint")}</span>
+        </label>
+
+        <label className="flex flex-col gap-1.5">
+          <span className="text-sm font-medium">{t("ref")}</span>
+          <input
+            name="ref"
+            className={input}
+            placeholder="ART-0001"
+            value={ref}
+            onChange={(e) => setRef(e.target.value)}
+          />
+          <span className="text-xs text-neutral-500">{t("ref_hint")}</span>
         </label>
 
         <fieldset className="flex flex-col gap-2">

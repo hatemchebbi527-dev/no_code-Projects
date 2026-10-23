@@ -4,7 +4,16 @@ Plan organique pour Instagram, TikTok, Facebook, LinkedIn. Deux publics : **priv
 
 Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 
-> Rappel : le vrai lancement (grosse pousse + pubs) attend Twilio + Stripe live. La Phase 0 (chauffe organique) est en cours.
+> ⚠️ **L'ordre des opérations et toutes les dates vivent dans `ROADMAP.md` + le calendrier Notion « 📅 Calendrier Marketing Manuvo — itinéraire unique ».**
+> Ce fichier ne garde que les **légendes italiennes** et le **journal de publication**. Ne plus y planifier de dates.
+>
+> Jour J = **vendredi 22 janvier 2027**. La P.IVA s'ouvre en janvier 2027 (régime forfettario, 5 ans à 5 %), et Stripe comme Twilio en dépendent : d'où un lancement unique en janvier, où tout est vrai le premier jour. Campagnes payantes : Google Search Privati le 25 janv, Meta Privati le 27 janv.
+>
+> 🧳 **Déplacement du 14 oct au 5 nov** : contenu normal (3 posts/semaine, Stories), zéro terrain.
+> 📋 **6 nov → 18 déc** : le terrain sert à la **pré-inscription** des artisans, pas à leur inscription. Objectif 50 pré-inscrits.
+> 🚀 **4 → 21 janv** : sprint de conversion, P.IVA, Stripe, Twilio, puis lancement.
+>
+> ⚠️ Les légendes qui annoncent « contatti verificati via SMS » ne sortent que si Twilio est en production. Sinon, version B : remboursement des crédits, recensioni reali, P.IVA registrata, 3 artigiani max.
 
 ---
 
@@ -14,8 +23,9 @@ Handle : `manuvo.it` · Site : `https://manuvo.automa-ia.net`
 |------|-----------|------|--------|
 | 01 oct | FB | Teaser « Sta per arrivare qualcosa per Rimini 👀 » | ✅ Publié — 200+ vues |
 | 01 oct | IG Reel + TikTok | Même vidéo teaser | ✅ Publié |
-| 06 oct | IG carousel + FB | « Chi siamo » (Canva) | ⏳ À publier lundi |
-| 07 oct | TikTok + IG Reel | « Il problema n°1 » (motion design) | ⏳ À produire + publier mercredi |
+| 06 oct | IG carousel + FB | « Chi siamo » (Canva) | ✅ Publié |
+| 07 oct | TikTok + IG Reel | « Il problema n°1 » (motion design) | ✅ Publié |
+| 10-11 oct | IG Stories | Sondage + Story Manuvo | ✅ Publié |
 
 ---
 
@@ -30,7 +40,9 @@ Règle de production : **1 vidéo tournée = 4 posts** (TikTok, Reel IG, Reel FB
 
 ---
 
-## Phase 0 — Chauffe (2 semaines avant le lancement) — 3 posts/sem
+## Phase 0 — Chauffe (12 oct → 1 nov) — 3 posts/sem
+
+> Planning à jour : calendrier Notion. Le tableau ci-dessous est l'historique de la première semaine.
 
 | Jour | Réseau | Format | Idée | Statut |
 |------|--------|--------|------|--------|
@@ -40,7 +52,7 @@ Règle de production : **1 vidéo tournée = 4 posts** (TikTok, Reel IG, Reel FB
 
 ---
 
-## Phase 1 — Semaine de lancement (jour par jour)
+## Phase 1 — Semaine de lancement (22 → 28 janv 2027, jour par jour)
 
 Légendes complètes ci-dessous (section « Légendes de lancement »).
 
@@ -74,6 +86,98 @@ Légendes complètes ci-dessous (section « Légendes de lancement »).
 #casarimini #ristrutturazione #romagna #serviziolocale #manuvo
 ```
 Mix par post : 3-4 locaux + 3-4 métier + 1 marque.
+
+---
+
+## Messages de prospection artisans — pré-inscription (étape 8b)
+
+> Vouvoiement (**Lei**) partout, contrairement aux posts qui tutoient.
+> **Offre d'amorçage tranchée le 22 oct 2026 : 5 crediti offerti**, soit 10 € de valeur, de quoi débloquer **un** contact (un déblocage coûte 3 à 5 crédits).
+> ⚠️ Ne jamais laisser entendre que 5 crédits couvrent plusieurs contacts : ils en couvrent un.
+> ⚠️ Interdits tant que ce n'est pas vrai : la vérification SMS (Twilio), la P.IVA enregistrée, et toute promesse sur le volume de demandes.
+
+### 1. Terrain, à l'oral (30 secondes)
+```
+Buongiorno, sono Hatem, sto lanciando Manuvo qui a Rimini: i privati
+pubblicano la loro richiesta, e gli artigiani della zona ricevono solo
+quelle del proprio mestiere.
+
+Apriamo il 22 gennaio. Non le chiedo di iscriversi oggi, le chiedo solo
+di mettere il suo nome in lista: chi è in lista riceve 5 crediti offerti,
+abbastanza per sbloccare il suo primo contatto, e vede le richieste prima
+degli altri.
+
+La richiamo a inizio gennaio, due minuti e la iscrivo. Le va?
+```
+
+### 2. WhatsApp
+```
+Buongiorno [Nome], sono Hatem di Manuvo.
+
+Apriamo il 22 gennaio a Rimini: una piattaforma dove i privati pubblicano
+le loro richieste e gli artigiani ricevono solo quelle del proprio
+mestiere e della propria zona. Nessun abbonamento, si pagano solo i
+contatti che interessano.
+
+Non le chiedo di iscriversi adesso, le chiedo solo di entrare in lista:
+i primi in lista ricevono 5 crediti offerti, abbastanza per sbloccare il
+primo contatto, e vedono le richieste prima degli altri.
+
+La richiamo a inizio gennaio, due minuti e la iscrivo. Posso metterla
+in lista?
+```
+
+### 3. Confirmation, dans la minute qui suit le oui
+```
+Perfetto [Nome], l'ho messa in lista come [mestiere] su [zona], con i
+5 crediti offerti. Adesso non deve fare altro.
+
+La richiamo nella prima settimana di gennaio per attivare l'account
+prima dell'apertura del 22. Buon lavoro.
+```
+
+### 4. Relance J+4, sans réponse
+```
+Buongiorno [Nome], le avevo scritto per Manuvo, che apre il 22 gennaio
+a Rimini.
+
+Le tengo il posto in lista ancora qualche giorno: basta un sì, senza
+impegno e senza costi.
+
+Se non le interessa me lo dica pure, non la disturbo più.
+```
+
+### 5. Janvier, onze jours avant l'ouverture (étape 43)
+**A. Artisan déjà inscrit**
+```
+Buongiorno [nome], ci siamo: Manuvo apre venerdì 22 gennaio a Rimini.
+Il suo account è già pronto con i 5 crediti offerti. Da venerdì riceverà
+le richieste del suo mestiere nella sua zona.
+```
+**B. Pré-inscrit pas encore converti** (il n'a pas de compte)
+```
+Buongiorno [nome], ci siamo: Manuvo apre venerdì 22 gennaio a Rimini.
+L'avevo messa in lista a [mese]: mi bastano due minuti al telefono per
+attivarle l'account con i 5 crediti offerti, prima dell'apertura.
+Quando la chiamo?
+```
+
+### Objections
+| Objection | Réponse |
+|---|---|
+| « Quanto costa? » | *Iscriversi è gratis. Si pagano solo i contatti che decide di sbloccare, e i primi 5 crediti glieli offro io: il primo contatto non le costa niente. Nessun abbonamento.* |
+| « Mi mandi le info » | *Volentieri. Intanto la metto in lista così non perde i 5 crediti offerti: mi bastano nome e mestiere.* |
+| « Adesso non ho tempo » | *Bastano dieci secondi, non deve fare nulla. Metto il suo nome e la richiamo a gennaio.* |
+| « Ho già troppo lavoro » | *Allora la metto in lista e a gennaio sceglie lei se accettare richieste o no. Se non le vuole, non le arriva niente.* |
+
+### Ce qu'on note dans le CRM Artigiani après chaque contact
+| Situation | Stato | Autres champs |
+|---|---|---|
+| Accord donné | `Pre-iscritto` | `Ultimo contatto`, `Contattato` ✓, métier et zone vérifiés |
+| Intéressé, veut réfléchir | `Interessato` | `Ultimo contatto`, note de sa demande |
+| Pas de réponse au 1er message | `Contattato` | `Follow-up J+4` ✓ |
+| Refus clair | `Non interessato` | `Ultimo contatto`, motif en note |
+| Rappelé en janvier | — | `Richiamato gennaio` ✓ |
 
 ---
 

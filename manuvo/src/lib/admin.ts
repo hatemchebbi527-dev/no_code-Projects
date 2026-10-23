@@ -76,6 +76,8 @@ export async function getArtisans() {
       categories: true,
       credits: true,
       createdAt: true,
+      // Parrainage : qui a amene cet artisan (null si inscription directe).
+      referredBy: { select: { matricule: true } },
     },
   });
 }

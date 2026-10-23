@@ -87,7 +87,9 @@
     "have_account": "Already have an account?",
     "login_link": "Log in",
     "piva": "VAT number (Partita IVA)",
-    "piva_hint": "11 digits. Required to receive your welcome credits."
+    "piva_hint": "11 digits. Required to receive your welcome credits.",
+    "ref": "Invite code (optional)",
+    "ref_hint": "The code of a colleague already on Manuvo (ART-0001). They get 5 credits, you start with your own 5 welcome credits."
   },
   "authErrors": {
     "missing": "Enter email and password.",
@@ -103,7 +105,10 @@
     "created_login_failed": "Account created but login failed. Please log in.",
     "piva_required": "Enter your VAT number (Partita IVA).",
     "piva_invalid": "Invalid VAT number (Partita IVA). Check the 11 digits.",
-    "piva_exists": "This VAT number is already registered."
+    "piva_exists": "This VAT number is already registered.",
+    "ref_invalid": "Invalid invite code. Use the ART-0001 format.",
+    "ref_unknown": "Unknown invite code. Check it with the colleague who invited you.",
+    "ref_self": "You cannot invite yourself."
   },
   "dashboard": {
     "title": "Requests board",
@@ -163,7 +168,15 @@
     "canceled": "Payment canceled.",
     "secure_note": "Secure payment via Stripe. 1 credit = €{eur}.",
     "bonus_badge": "+{n} free",
-    "total_credits": "{n} credits total"
+    "total_credits": "{n} credits total",
+    "invite_title": "Invite a colleague",
+    "invite_body": "Anyone who signs up with your code earns you 5 credits. They start with their own 5 welcome credits.",
+    "invite_code": "Your code",
+    "invite_link": "Link to share",
+    "invite_copy": "Copy link",
+    "invite_copied": "Link copied",
+    "invite_cap": "Up to 3 rewarded invites every 30 days.",
+    "invite_count": "Colleagues signed up with your code: {count}"
   },
   "transactions": {
     "purchase": "Credit top-up",

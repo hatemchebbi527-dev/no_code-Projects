@@ -15,7 +15,10 @@ import {
   normalizePiva,
   isValidPhone,
   normalizePhone,
+  parseMatricule,
   WELCOME_CREDITS,
+  REFERRAL_CREDITS,
+  REFERRALS_PER_MONTH_CAP,
   type CountryCode,
 } from "@/lib/constants";
 import { sendEmail, resetPasswordHtml } from "@/lib/email";
@@ -89,6 +92,8 @@ export async function registerArtisan(
   const phone = normalizePhone(String(formData.get("phone") ?? ""));
   // Metiers : liste de cases cochees, on ne garde que les codes valides et uniques.
   const categories = [...new Set(formData.getAll("categories").map(String))].filter(isCategory);
+  // Code de parrainage facultatif : le matricule du parrain (ART-0001).
+  const refRaw = String(formData.get("ref") ?? "").trim();
 
   if (!name || !email || !password) {
     return { error: t("required") };
@@ -129,30 +134,85 @@ export async function registerArtisan(
     return { error: t("piva_exists") };
   }
 
+  // Parrainage : on resout le parrain avant de creer le compte, pour pouvoir
+  // refuser un code inexistant plutot que de le perdre en silence.
+  let referrer: { id: string; piva: string | null; email: string; role: string } | null = null;
+  if (refRaw) {
+    const matricule = parseMatricule(refRaw);
+    if (matricule === null) {
+      return { error: t("ref_invalid") };
+    }
+    referrer = await prisma.user.findUnique({
+      where: { matricule },
+      select: { id: true, piva: true, email: true, role: true },
+    });
+    if (!referrer || referrer.role !== "ARTIGIANO") {
+      return { error: t("ref_unknown") };
+    }
+    // Auto-parrainage : meme email ou meme P.IVA que le compte en cours de creation.
+    if (referrer.email === email || (referrer.piva !== null && referrer.piva === piva)) {
+      return { error: t("ref_self") };
+    }
+  }
+
+  // Plafond anti-abus : au-dela de REFERRALS_PER_MONTH_CAP filleuls sur 30 jours,
+  // l'attribution reste enregistree (elle alimente le KPI parrainage) mais les
+  // credits ne sont pas verses. Le filleul n'est jamais penalise pour le quota du parrain.
+  let rewardReferrer = false;
+  if (referrer) {
+    const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const recent = await prisma.user.count({
+      where: { referredById: referrer.id, createdAt: { gte: since } },
+    });
+    rewardReferrer = recent < REFERRALS_PER_MONTH_CAP;
+  }
+
   const passwordHash = await bcrypt.hash(password, 10);
+  const referrerId = referrer?.id ?? null;
   try {
-    await prisma.user.create({
-      data: {
-        email,
-        passwordHash,
-        role: "ARTIGIANO",
-        name,
-        piva,
-        phone,
-        city: city || null,
-        country,
-        categories: categories.join(","),
-        credits: WELCOME_CREDITS,
-        // Credits de bienvenue traces comme BONUS (exclus du chiffre d'affaires).
-        transactions: {
-          create: {
-            type: "BONUS",
-            credits: WELCOME_CREDITS,
-            amountEur: 0,
-            reference: "welcome",
+    await prisma.$transaction(async (tx) => {
+      const created = await tx.user.create({
+        data: {
+          email,
+          passwordHash,
+          role: "ARTIGIANO",
+          name,
+          piva,
+          phone,
+          city: city || null,
+          country,
+          categories: categories.join(","),
+          credits: WELCOME_CREDITS,
+          referredById: referrerId,
+          // Credits de bienvenue traces comme BONUS (exclus du chiffre d'affaires).
+          transactions: {
+            create: {
+              type: "BONUS",
+              credits: WELCOME_CREDITS,
+              amountEur: 0,
+              reference: "welcome",
+            },
           },
         },
-      },
+        select: { id: true },
+      });
+
+      if (referrerId && rewardReferrer) {
+        // Le credit tombe a l'inscription du filleul, pas a son premier achat.
+        await tx.user.update({
+          where: { id: referrerId },
+          data: { credits: { increment: REFERRAL_CREDITS } },
+        });
+        await tx.creditTransaction.create({
+          data: {
+            userId: referrerId,
+            type: "BONUS",
+            credits: REFERRAL_CREDITS,
+            amountEur: 0,
+            reference: `referral:${created.id}`,
+          },
+        });
+      }
     });
   } catch (error) {
     // Course entre deux inscriptions simultanees avec la meme P.IVA/email : l'index unique tranche.

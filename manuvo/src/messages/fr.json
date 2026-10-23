@@ -87,7 +87,9 @@
     "have_account": "Vous avez déjà un compte ?",
     "login_link": "Se connecter",
     "piva": "Numéro de TVA (Partita IVA)",
-    "piva_hint": "11 chiffres. Nécessaire pour recevoir vos crédits de bienvenue."
+    "piva_hint": "11 chiffres. Nécessaire pour recevoir vos crédits de bienvenue.",
+    "ref": "Code d'invitation (facultatif)",
+    "ref_hint": "Le code d'un confrère déjà sur Manuvo (ART-0001). Il reçoit 5 crédits, vous démarrez avec vos 5 crédits de bienvenue."
   },
   "authErrors": {
     "missing": "Saisissez email et mot de passe.",
@@ -103,7 +105,10 @@
     "created_login_failed": "Compte créé mais connexion échouée. Veuillez vous connecter.",
     "piva_required": "Saisissez votre numéro de TVA (Partita IVA).",
     "piva_invalid": "Numéro de TVA (Partita IVA) non valide. Vérifiez les 11 chiffres.",
-    "piva_exists": "Ce numéro de TVA est déjà enregistré."
+    "piva_exists": "Ce numéro de TVA est déjà enregistré.",
+    "ref_invalid": "Code d'invitation invalide. Utilisez le format ART-0001.",
+    "ref_unknown": "Code d'invitation inconnu. Vérifiez-le avec le confrère qui vous a invité.",
+    "ref_self": "Vous ne pouvez pas vous inviter vous-même."
   },
   "dashboard": {
     "title": "Tableau des demandes",
@@ -163,7 +168,15 @@
     "canceled": "Paiement annulé.",
     "secure_note": "Paiement sécurisé via Stripe. 1 crédit = {eur} €.",
     "bonus_badge": "+{n} offerts",
-    "total_credits": "{n} crédits au total"
+    "total_credits": "{n} crédits au total",
+    "invite_title": "Inviter un confrère",
+    "invite_body": "Toute inscription avec votre code vous rapporte 5 crédits. Il démarre avec ses 5 crédits de bienvenue.",
+    "invite_code": "Votre code",
+    "invite_link": "Lien à envoyer",
+    "invite_copy": "Copier le lien",
+    "invite_copied": "Lien copié",
+    "invite_cap": "3 parrainages récompensés maximum tous les 30 jours.",
+    "invite_count": "Confrères inscrits avec votre code : {count}"
   },
   "transactions": {
     "purchase": "Recharge de crédits",
