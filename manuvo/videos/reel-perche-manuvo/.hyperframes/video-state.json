@@ -893,5 +893,16 @@
         "attribution": "inputs-changed"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "552b8ac0-5dc0-4869-b152-0349427a677d",
+      "completedAt": 1792865958975,
+      "output": "/home/user/no_code-Projects/manuvo/videos/reel-perche-manuvo/out/manuvo-reel-perche-manuvo/v1/_master.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }
