@@ -16,7 +16,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 
 - Music on presentation films: none in the file (the owner adds trending audio per platform); keep sound effects quiet.
 - Music on short warm-up films written by the owner (brief "Il problema n°1", 2026-10-04): hip-hop / punchy beat, cut every 2 beats, no voice, every line burned in (4 to 6 words per shot). Deliver also an sfx-only copy so trending audio can be used instead.
-- **Pas de viseur HUD (choix permanent, 2026-10-24).** Demandé deux fois : « supprime le cadre qui entoure le message » (`story-sondaggio-attesa`, 2026-10-18) puis « supprime le cadre dans la vidéo et le chrono » (`artigiani-max3`). Donc, dans tout nouveau film : **pas de crochets de coin et pas de timecode**. Les libellés de coin (chapitre, `● REC`, `Rimini · Romagna`) restent, discrets, tant qu'il ne demande pas le contraire. Mise en œuvre : appeler `PF.hud` puis retirer les enfants qui portent une bordure, et laisser le slot `br` vide.
+- **Aucun viseur, aucun habillage (choix permanent, 2026-10-24).** Demandé trois fois : « supprime le cadre qui entoure le message » (`story-sondaggio-attesa`, 2026-10-18), puis « supprime le cadre dans la vidéo et le chrono », puis « supprime aussi les libellés » (`artigiani-max3`). Donc, dans tout nouveau film : **pas de `PF.hud` du tout**. Ni crochets de coin, ni timecode, ni libellé de chapitre, ni `● REC`, ni mention de ville. Le cadre ne porte que le film : l'image 3D, les mots et le lockup. Ne pas reproposer d'habillage de viseur.
 - Logo on coral: reversed cream, as the app does on coral (`ComingSoon.tsx`: `brightness-0 invert`).
 
 ## Chosen by Claude (the owner can overrule)

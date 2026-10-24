@@ -16,7 +16,7 @@
     <script src="assets/logo-data.js"></script>
     <script src="cues.js"></script>
     <style>
-      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage Grotesque for titles, Geist for UI, Geist Mono for the HUD. */
+      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage Grotesque for titles, Geist for UI, Geist Mono for the tally in 02. */
       @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
       @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
       @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
@@ -79,7 +79,6 @@
       </div>
       <div id="vignette" class="full" data-layout-ignore></div>
       <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%"></canvas>
-      <div id="hud-layer" class="full" data-layout-ignore></div>
       <!-- Three.js and add-ons are ES modules: they hand themselves to the kit, then the film starts. -->
       <script type="importmap">
         { "imports": { "three": "./vendor/three/three.module.min.js" } }
@@ -142,8 +141,7 @@
       const AVVITA = PF.ease("cubic-bezier(.16,1,.3,1)"), CLICK = PF.ease("cubic-bezier(.34,1.4,.64,1)");
       const TAGLIO = b(5, 3);   // the dry cut onto MASSIMO 3.
       const CREDITI = b(10, 1); // the hard cut from cream to ink
-      const LABEL = ["01 — Il contatto", "02 — Il dubbio", "03 — Il taglio", "04 — Max 3", "05 — 5 crediti", "06 — Manuvo"];
-      let st, hud, S = {};
+      let st, S = {};
 
       /* ---------- helpers ---------- */
       function sceneAt(t) { let k = 0; SC.forEach((s, i) => { if (t >= s.from) k = i; }); return k; }
@@ -221,10 +219,8 @@
       }
 
       function setup() {
-        hud = PF.hud($("#hud-layer"), { size: 22, top: CUES.safe.top - 60, bottom: CUES.safe.bottom - 60, color: "rgba(250,248,244,.75)" });
-        // Owner, 2026-10-24: no frame, no timecode. Drop the four corner
-        // brackets and keep the labels (the br slot stays empty in draw).
-        [...hud.el.children].filter((c) => /border/.test(c.getAttribute("style") || "")).forEach((c) => c.remove());
+        // Owner, 2026-10-24: no viewfinder at all. No corner brackets, no
+        // timecode, no chapter labels: the frame carries only the film.
         // Rich 3D: env map, bloom only above 1.0 (the glow material), fov 50 for 9:16.
         st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.85, radius: 0.6, threshold: 1.0 }, exposure: 0.95 });
         const THREE = st.THREE, A = window.THREE_ADDONS;
@@ -566,7 +562,6 @@
           PF.css($("#scrim"), { background: `linear-gradient(180deg, rgba(${rgb},.96) 0%, rgba(${rgb},.92) 34%, rgba(${rgb},.55) 46%, rgba(${rgb},0) 56%)` });
         }
         PF.css($("#vignette"), { background: PF.vignette(bg === C.cream ? 0.1 : 0.3, bg === C.coral ? "110,22,24" : "0,0,0") });
-        hud.set({ tl: LABEL[k], tr: k < 3 ? "● REC" : "Manuvo", bl: "Rimini · Romagna", br: "" }, t);
         PF.grain($("#grain"), t, { alpha: 0.07 });
       }
 

@@ -17,7 +17,7 @@ Decided: 1080x1920, 60 fps, 12 bars at 144 BPM = 20.000 s. **No music track in t
 <direction>
 Crowded and anxious at first (one contact, many hands), then cut, then clean and generous.
 The message, in three statements: 1. Paghi un contatto e non sai in quanti l'hanno avuto. 2. Su Manuvo, massimo 3 artigiani per richiesta, del tuo mestiere e della tua zona. 3. Zero abbonamenti, e 5 crediti in regalo per il tuo primo contatto.
-A camera cut every two beats, giant slammed type, a colour flip per chapter, the hexagon turning a sixth of a turn on the beat. **No viewfinder frame and no timecode** (owner, standing choice in BRAND.md): the corner brackets are removed and the `br` slot stays empty; only the discreet corner labels remain.
+A camera cut every two beats, giant slammed type, a colour flip per chapter, the hexagon turning a sixth of a turn on the beat. **No viewfinder at all** (owner, standing choice in BRAND.md): no corner brackets, no timecode, no chapter labels. `PF.hud` is not called; the frame carries only the film.
 Words on screen: PAGHI UN CONTATTO. / IN QUANTI L'HANNO AVUTO? / CINQUE? DIECI? QUINDICI? / NON LO SAI. / MASSIMO 3. / SU MANUVO MAX 3 PER RICHIESTA. / IL TUO MESTIERE. LA TUA ZONA. ZERO ABBONAMENTI. / UNA CHANCE VERA. / 5 CREDITI IN REGALO. Per 1 contatto. / PRESTO A RIMINI · @manuvo.it
 </direction>
 
