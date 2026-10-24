@@ -222,6 +222,9 @@
 
       function setup() {
         hud = PF.hud($("#hud-layer"), { size: 22, top: CUES.safe.top - 60, bottom: CUES.safe.bottom - 60, color: "rgba(250,248,244,.75)" });
+        // Owner, 2026-10-24: no frame, no timecode. Drop the four corner
+        // brackets and keep the labels (the br slot stays empty in draw).
+        [...hud.el.children].filter((c) => /border/.test(c.getAttribute("style") || "")).forEach((c) => c.remove());
         // Rich 3D: env map, bloom only above 1.0 (the glow material), fov 50 for 9:16.
         st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.85, radius: 0.6, threshold: 1.0 }, exposure: 0.95 });
         const THREE = st.THREE, A = window.THREE_ADDONS;
@@ -563,7 +566,7 @@
           PF.css($("#scrim"), { background: `linear-gradient(180deg, rgba(${rgb},.96) 0%, rgba(${rgb},.92) 34%, rgba(${rgb},.55) 46%, rgba(${rgb},0) 56%)` });
         }
         PF.css($("#vignette"), { background: PF.vignette(bg === C.cream ? 0.1 : 0.3, bg === C.coral ? "110,22,24" : "0,0,0") });
-        hud.set({ tl: LABEL[k], tr: k < 3 ? "● REC" : "Manuvo", bl: "Rimini · Romagna", br: PF.timecode(t, 30) }, t);
+        hud.set({ tl: LABEL[k], tr: k < 3 ? "● REC" : "Manuvo", bl: "Rimini · Romagna", br: "" }, t);
         PF.grain($("#grain"), t, { alpha: 0.07 });
       }
 
