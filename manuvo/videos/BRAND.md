@@ -19,6 +19,8 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 - Logo on coral: reversed cream, as the app does on coral (`ComingSoon.tsx`: `brightness-0 invert`).
 
 ## Chosen by Claude (the owner can overrule)
+- 2026-10-24: **never assert a fact about a competitor in a film.** The owner's brief for `artigiani-max3` said other platforms resell the same contact to ten artisans. That is unprovable and exposes Manuvo to a comparative-disparagement claim, so the film asks the artisan instead ("In quanti l'hanno avuto?" → "Non lo sai."). The feeling is recognised, nothing is asserted. Applies to every future film and caption.
+- 2026-10-24: text on coral is ink `#1b1e24` (as `problema-n1` set); cream on coral is reserved for a single punchline per film.
 - 2026-10-01: colour rhythm ink / cream / ink / coral (drop) / cream (lockup); HUD labels in Italian; red-900 `#C6383A` for coral text on cream (contrast), coral `#FF5758` for shapes and text on ink.
 - 2026-10-01: 10 bars (17.1 s) instead of 15 s so every line holds long enough to read.
 
@@ -28,6 +30,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 | `teaser-phase0` | Brand teaser (SOCIAL.md Phase 0, Post 2) | 2026-10-01 | v1 trap draft: "change the music for suspense" → suspense bed synced to the picture (v2 draft); final v1 (2026-10-01): 60 fps, blur 2, 17.15 s, -14.7 LUFS, `out/manuvo-teaser-phase0/v1/` (+ `-social.mp4` at 11 Mbps, 23 MB) |
 | `presentazione-9x16` / `presentazione-16x9` | Product presentation (both audiences, CTA Pubblica gratis) | 2026-10-02 | v1 flat 2D → owner: "more creative" → clay 3D (carousel style); owner: "remove the music, I add it on the platforms" (sfx kept) |
 | `story-sondaggio-attesa` | Carte de Story Instagram avec sondage (artigiani / privati, phase de chauffe) | 2026-10-18 | final v1 (2026-10-18) : 1080x1920, 60 fps, blur 4, 10,000 s, **aucune piste audio** (le propriétaire ajoute une musique de la librairie IG) ; bande y=1150 à 1500 laissée vide pour le sticker sondage ; lockup depuis `logo-mark.svg` (le wordmark du logo complet rend flou à cette taille) ; owner : "supprime le cadre qui entoure le message" → viseur HUD retiré en v2 ; `out/manuvo-story-sondaggio-attesa/v2/` : master 8,96 Mo + poster (ARRIVATO?) |
+| `artigiani-max3` | Teaser artigiani (pilier 4 : l'offre), brief du propriétaire, Phase 0 | 2026-10-24 | v1 (2026-10-24) : 1080x1920, 60 fps, blur 2, 20,0 s, **aucune piste musicale** (SFX seuls, le propriétaire ajoute l'audio tendance), hook reformulé en question (voir ci-dessus), claims limités à max 3 / mestiere / zona / zero abbonamenti / 5 crediti = 1 contatto ; `out/manuvo-artigiani-max3/v1/` + `CAPTIONS.md` (4 légendes) |
 | `problema-n1` | Problem / solution teaser (pillar trust: SMS verification vs fake contacts), owner's brief | 2026-10-04 | final v1 (2026-10-04): 60 fps, blur 2, 20.0 s, -13.8 LUFS, colours verified exact (grain in overlay); `out/manuvo-problema-n1/v1/`: master, `-social` (10 Mbps), `-sfx-only` (+ social), `-story-6s` (14 to 20 s), poster (hook) |
 
 ## Assets on file (reusable across films)
@@ -77,4 +80,7 @@ Sources: codebase `manuvo/` (`src/app/globals.css`, `src/app/layout.tsx`, `publi
 - Renders in `out/` (gitignored), review stills in `review/` (gitignored).
 - Trap found: with the bloom composer, `material.toneMapped = false` is ignored (the OutputPass tone-maps the whole frame). Use `renderer.toneMapping = NoToneMapping` so cream and coral stay exact.
 - Trap found: a lit glossy prism on cream or ink reads grey or pink (env + specular). Caps as unlit exact swatches, sides glossy (the logo recipe). The film now blends the grain with `mix-blend-mode: overlay`.
+- Trap found: the wipe layer must live **inside** `#cam`, under `#words`. Above the words, an iris or a flood truncates a headline mid-letter (it cut "MAX 3" in half) and `check` reports it as `text_occluded`.
+- Trap found: in 9:16 the camera `target` sits **above** the subject so the subject reads low in frame and the words get clean colour on top. Backwards, the ink prism landed under the ink headline and "UNA CHANCE" was invisible at 1.18:1. Headlines over wide shots only, plus a `#scrim` gradient of the scene colour wherever the subject crosses the headline band.
+- Trap found: `check` Craft enforces a reading floor (0.5 s + 0.3 s a word, 2 s for the closing line). Lines that flash one at a time fail it; stacking a list of three promises so they hold together passes and reads better.
 - Trap found: the grain canvas (normal blend, mid-grey, 4 to 6 % opacity) pulls every colour toward grey by 4 to 10 levels (coral #FF5758 decodes about 245,88,90; cream about 245,241,238). For exact swatches, blend the grain with `mix-blend-mode: overlay` or lower it.

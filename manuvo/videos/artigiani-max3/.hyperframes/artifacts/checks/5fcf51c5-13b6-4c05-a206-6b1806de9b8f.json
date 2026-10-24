@@ -1,0 +1,677 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "composition_file_too_large",
+        "severity": "warning",
+        "message": "This HTML composition file has 553 lines. Smaller sub-compositions are easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/no_code-Projects/manuvo/videos/artigiani-max3/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Split coherent scenes or layers into separate .html files under compositions/, then mount them from the parent with data-composition-src so each file stays small enough to inspect, revise, and validate independently."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 7,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[.WebGL-0x247c024d7c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "20",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 0,
+        "url": "http://127.0.0.1:37025/"
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[.WebGL-0x247c024d7c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "20",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 1.111,
+        "url": "http://127.0.0.1:37025/"
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[.WebGL-0x247c024d7c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "20",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 1.111,
+        "url": "http://127.0.0.1:37025/"
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[.WebGL-0xe5c00172c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "20",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 3.333,
+        "url": "http://127.0.0.1:37025/"
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[.WebGL-0xe5c00172c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "20",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 3.333,
+        "url": "http://127.0.0.1:37025/"
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[.WebGL-0xe5c00172c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "20",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 5.556,
+        "url": "http://127.0.0.1:37025/"
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[.WebGL-0x247c024d7c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "20",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 7.778,
+        "url": "http://127.0.0.1:37025/"
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 8,
+    "findings": [
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 4.25,
+        "selector": "#w2a",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 55.77,
+          "top": 333.41,
+          "right": 964.22,
+          "bottom": 596.59,
+          "width": 908.45,
+          "height": 263.18
+        },
+        "containerSelector": "#w2b",
+        "text": "CINQUE?",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 55.77,
+          "y": 333.41,
+          "width": 908.45,
+          "height": 263.18
+        },
+        "firstSeen": 4.25,
+        "lastSeen": 4.25,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          4.25
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 5.875,
+        "selector": "#w2c",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 60.3,
+          "top": 338.52,
+          "right": 959.7,
+          "bottom": 565.45,
+          "width": 899.4,
+          "height": 226.93
+        },
+        "containerSelector": "#w2d",
+        "text": "QUINDICI?",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 60.3,
+          "y": 338.52,
+          "width": 899.4,
+          "height": 226.93
+        },
+        "firstSeen": 5.875,
+        "lastSeen": 5.875,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          5.875
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 10.875,
+        "selector": "#w4d",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 60.15,
+          "top": 347.57,
+          "right": 959.83,
+          "bottom": 478.41,
+          "width": 899.68,
+          "height": 130.84
+        },
+        "containerSelector": "#w4e",
+        "text": "IL TUO MESTIERE.",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 60.15,
+          "y": 347.57,
+          "width": 899.68,
+          "height": 130.84
+        },
+        "firstSeen": 10.875,
+        "lastSeen": 10.875,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          10.875
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 11.75,
+        "selector": "#w4e",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 50.45,
+          "top": 342.35,
+          "right": 969.54,
+          "bottom": 513.63,
+          "width": 919.09,
+          "height": 171.28
+        },
+        "containerSelector": "#w4f",
+        "text": "LA TUA ZONA.",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 50.45,
+          "y": 342.35,
+          "width": 919.09,
+          "height": 171.28
+        },
+        "firstSeen": 11.75,
+        "lastSeen": 11.75,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          11.75
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 13.375,
+        "selector": "#w4f",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 60.39,
+          "top": 349.85,
+          "right": 959.61,
+          "bottom": 455.13,
+          "width": 899.22,
+          "height": 105.28
+        },
+        "containerSelector": "#w5a",
+        "text": "ZERO ABBONAMENTI.",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 60.39,
+          "y": 349.85,
+          "width": 899.22,
+          "height": 105.28
+        },
+        "firstSeen": 13.375,
+        "lastSeen": 13.375,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          13.375
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 16.667,
+        "selector": "#w5c",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 69.98,
+          "top": 300,
+          "right": 950,
+          "bottom": 535,
+          "width": 880.02,
+          "height": 235
+        },
+        "containerSelector": "#wipe",
+        "text": "5 crediti",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.59,
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 69.98,
+          "y": 300,
+          "width": 880.02,
+          "height": 235
+        },
+        "firstSeen": 16.667,
+        "lastSeen": 16.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          16.667
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 16.667,
+        "selector": "#w5d",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 69.89,
+          "top": 535,
+          "right": 950.11,
+          "bottom": 735,
+          "width": 880.22,
+          "height": 200
+        },
+        "containerSelector": "#wipe",
+        "text": "in regalo.",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 69.89,
+          "y": 535,
+          "width": 880.22,
+          "height": 200
+        },
+        "firstSeen": 16.667,
+        "lastSeen": 16.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          16.667
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 16.667,
+        "selector": "#w5e",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 70.19,
+          "top": 764,
+          "right": 949.81,
+          "bottom": 821,
+          "width": 879.63,
+          "height": 57
+        },
+        "containerSelector": "#wipe",
+        "text": "Bastano per sbloccare il tuo primo contatto.",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70.19,
+          "y": 764,
+          "width": 879.63,
+          "height": 57
+        },
+        "firstSeen": 16.667,
+        "lastSeen": 16.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          16.667
+        ]
+      }
+    ],
+    "duration": 20,
+    "samples": [
+      1.111,
+      3.333,
+      5.556,
+      7.778,
+      10,
+      12.222,
+      14.444,
+      16.667,
+      18.889
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 8,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 1.18:1; WCAG AA requires 3:1.",
+        "text": "Una chance",
+        "fg": "rgb(27,30,36)",
+        "bg": "rgb(9,11,16)",
+        "ratio": 1.18,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(91,94,98)",
+        "large": true,
+        "selector": "#w5a",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 60,
+          "y": 320,
+          "width": 900,
+          "height": 136.59375
+        },
+        "time": 14.444,
+        "times": [
+          14.444
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.9:1; WCAG AA requires 3:1.",
+        "text": "Presto a Rimini",
+        "fg": "rgb(250,248,244)",
+        "bg": "rgb(242,102,94)",
+        "ratio": 2.9,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(72,71,70)",
+        "large": true,
+        "selector": "#w6a",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 60,
+          "y": 1180,
+          "width": 900,
+          "height": 104
+        },
+        "time": 18.889,
+        "times": [
+          18.889
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      1.111,
+      5.556,
+      10,
+      14.444,
+      18.889
+    ],
+    "checked": 11,
+    "passed": 9
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 5,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"Non lo sai.\" (3 words) is on screen 0.87 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "Non lo sai.",
+        "selector": "#w2d",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 40.53,
+          "y": 337.67,
+          "width": 938.94,
+          "height": 200.61999999999995
+        },
+        "time": 5.867,
+        "words": 3,
+        "seconds": 0.867,
+        "floorSeconds": 1.05
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"Il tuo mestiere.\" (3 words) is on screen 0.87 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "Il tuo mestiere.",
+        "selector": "#w4d",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 72.08,
+          "y": 349.32,
+          "width": 875.83,
+          "height": 127.37
+        },
+        "time": 10.039,
+        "words": 3,
+        "seconds": 0.867,
+        "floorSeconds": 1.05
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"La tua zona.\" (3 words) is on screen 0.87 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "La tua zona.",
+        "selector": "#w4e",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 20.79,
+          "y": 336.8,
+          "width": 978.4,
+          "height": 182.33999999999997
+        },
+        "time": 10.867,
+        "words": 3,
+        "seconds": 0.867,
+        "floorSeconds": 1.05
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"Bastano per sbloccare il tuo primo contatto.\" (7 words) is on screen 1.10 s (±0.01 s), under its 1.95 s floor: hold it about 0.5 s + 0.3 s a word (2.60 s here) before it leaves or changes; see references/motion.md.",
+        "text": "Bastano per sbloccare il tuo primo contatto.",
+        "selector": "#w5e",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70.19,
+          "y": 766.67,
+          "width": 879.6199999999999,
+          "height": 57
+        },
+        "time": 15.672,
+        "words": 7,
+        "seconds": 1.102,
+        "floorSeconds": 1.95
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"@manuvo.it\" (2 words) is on screen 1.60 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "@manuvo.it",
+        "selector": "#w6b",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 294.94,
+          "y": 1317.23,
+          "width": 430.11999999999995,
+          "height": 98
+        },
+        "time": 18.406,
+        "words": 2,
+        "seconds": 1.598,
+        "floorSeconds": 2
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 160
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}
