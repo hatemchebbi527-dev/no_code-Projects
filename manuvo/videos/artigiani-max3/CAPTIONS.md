@@ -37,10 +37,10 @@ Su Manuvo la risposta è semplice: massimo 3 artigiani per richiesta.
 Ricevi solo le richieste del tuo mestiere e della tua zona.
 Nessun abbonamento.
 
-Apriamo presto a Rimini. In lista d'attesa trovi 5 crediti in regalo,
-quanto basta per il tuo primo contatto.
+Apriamo presto a Rimini. Chi entra in lista adesso parte con 5 crediti
+in regalo, quanto basta per il suo primo contatto.
 
-Link in bio 👉 @manuvo.it
+Sei artigiano in zona? Scrivimi il tuo mestiere in DM e ti metto in lista.
 ```
 
 `#artigianirimini #Rimini #Riccione #romagna #idraulico #imbianchino #ristrutturazione #serviziolocale #manuvo`
@@ -85,6 +85,13 @@ Sei artigiano a Rimini? 👇
 Sticker : sondage ou question ouverte, « Quale mestiere fai? ».
 
 ---
+
+## Pourquoi un CTA en commentaire ou DM, et pas un lien
+
+La liste d'attente du site est générique (email + langue) : elle ne distingue pas
+un artisan d'un particulier. Un commentaire ou un DM avec le métier est
+qualifiable immédiatement et alimente le CRM Artigiani Notion, qui porte l'état
+de chaque artisan. C'est aussi ce que fait déjà ton script terrain.
 
 ## Note de production
 
