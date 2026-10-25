@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Manuvo · I mestieri, davvero</title>
+    <!-- Vendored runtimes: nothing loads from the network at render time. -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/words.js"></script>
+    <script src="kit/draw.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (manuvo/src/app/layout.tsx). */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1e24; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1e24; color: #faf8f4; font-family: "Geist", sans-serif; }
+      .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      /* The footage fills the frame; the framework owns its playback. */
+      #clip { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      .head { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Bricolage", sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.025em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .note { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Geist", sans-serif; font-weight: 500; text-transform: none; letter-spacing: -0.005em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .handle { font-weight: 700; }
+      /* The trade name: a quiet tag low in frame, on its own coral rule. */
+      .trade { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Geist Mono", monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; white-space: nowrap; visibility: hidden; }
+      #ring { position: absolute; border-radius: 50%; border: 6px solid #faf8f4; visibility: hidden; }
+      #grain { mix-blend-mode: overlay; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      <!-- NON-NEGOTIABLE: the video is a DIRECT child of the composition root,
+           muted and inline, or the runtime never seeks it and it renders black. -->
+      <video id="clip" class="clip" src="assets/clip.mp4" data-start="0" data-duration="15.0417" data-track-index="0" muted playsinline></video>
+      <!-- Everything else sits over the footage. -->
+      <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
+      <div id="ring" data-layout-ignore></div>
+      <div id="scrimTop" class="full" data-layout-ignore></div>
+      <div id="scrimBot" class="full" data-layout-ignore></div>
+      <div id="rule" data-layout-ignore style="position:absolute;height:5px;background:#FF5758;visibility:hidden"></div>
+      <div id="words" class="full">
+        <!-- Hook, over the top scrim -->
+        <div id="w1a" class="head" style="top:300px;font-size:128px;color:#faf8f4">In casa c'è</div>
+        <div id="w1b" class="head" style="top:440px;font-size:150px;color:#FF5758">sempre qualcosa.</div>
+        <!-- One trade tag per shot, low in frame -->
+        <div id="t1" class="trade" data-layout-allow-overlap style="top:1330px;font-size:76px;color:#faf8f4">Idraulico</div>
+        <div id="t2" class="trade" data-layout-allow-overlap style="top:1330px;font-size:76px;color:#faf8f4">Elettricista</div>
+        <div id="t3" class="trade" data-layout-allow-overlap style="top:1330px;font-size:76px;color:#faf8f4">Imbianchino</div>
+        <div id="t4" class="trade" data-layout-allow-overlap style="top:1330px;font-size:76px;color:#faf8f4">Falegname</div>
+        <!-- The message, over the top scrim, on the last shot -->
+        <div id="w2a" class="head" style="top:300px;font-size:230px;color:#faf8f4">40 mestieri.</div>
+        <div id="w2b" class="note" style="top:524px;font-size:64px;color:#faf8f4">Tutti della tua zona.</div>
+        <!-- Lockup -->
+        <div id="w3a" class="note" style="top:1100px;font-size:62px;color:#1b1e24">Pubblichi gratis, senza registrarti.</div>
+        <div id="w3b" class="head" style="top:1216px;font-size:100px;color:#1b1e24">Presto a Rimini</div>
+        <div id="w3c" class="note handle" style="top:1348px;font-size:74px;color:#1b1e24">@manuvo.it</div>
+      </div>
+      <div id="vignette" class="full" data-layout-ignore></div>
+      <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%"></canvas>
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "./vendor/three/addons/postprocessing/EffectComposer.js";
+        import { RenderPass } from "./vendor/three/addons/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "./vendor/three/addons/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "./vendor/three/addons/postprocessing/OutputPass.js";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        import { MeshSurfaceSampler } from "./vendor/three/addons/math/MeshSurfaceSampler.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment, SVGLoader, MeshSurfaceSampler };
+        PF.signal("three").resolve();
+      </script>
+      <!-- pf:audio -->
+      <audio id="pf-sfx-01-tick" src="assets/audio/sfx/tick.wav" data-start="0.4166" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-02-tick" src="assets/audio/sfx/tick.wav" data-start="0.8332" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-03-pop" src="assets/audio/sfx/pop.wav" data-start="1.2497" data-duration="0.0900" data-track-index="20" data-volume="0.24"></audio>
+      <audio id="pf-sfx-04-pop" src="assets/audio/sfx/pop.wav" data-start="3.3330" data-duration="0.0900" data-track-index="20" data-volume="0.26"></audio>
+      <audio id="pf-sfx-05-pop" src="assets/audio/sfx/pop.wav" data-start="7.0830" data-duration="0.0900" data-track-index="20" data-volume="0.26"></audio>
+      <audio id="pf-sfx-06-pop" src="assets/audio/sfx/pop.wav" data-start="11.2497" data-duration="0.0900" data-track-index="20" data-volume="0.26"></audio>
+      <audio id="pf-sfx-07-thud" src="assets/audio/sfx/thud.wav" data-start="12.0810" data-duration="0.4000" data-track-index="20" data-volume="0.35"></audio>
+      <audio id="pf-sfx-08-tick" src="assets/audio/sfx/tick.wav" data-start="12.9166" data-duration="0.0500" data-track-index="20" data-volume="0.26"></audio>
+      <audio id="pf-sfx-09-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="14.6765" data-duration="0.6000" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-10-chime" src="assets/audio/sfx/chime.wav" data-start="15.8286" data-duration="1.4000" data-track-index="20" data-volume="0.4"></audio>
+      <audio id="pf-sfx-11-tick" src="assets/audio/sfx/tick.wav" data-start="16.2499" data-duration="0.0500" data-track-index="21" data-volume="0.28"></audio>
+      <audio id="pf-sfx-12-tick" src="assets/audio/sfx/tick.wav" data-start="17.0832" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-13-pop" src="assets/audio/sfx/pop.wav" data-start="17.9164" data-duration="0.0900" data-track-index="20" data-volume="0.3"></audio>
+      <!-- /pf:audio -->
+    </div>
+    <script>
+      const b = PF.grid(CUES.grid);
+      const $ = PF.$;
+      const W = CUES.width, H = CUES.height;
+      const C = { cream: "#faf8f4", ink: "#1b1e24", coral: "#FF5758", coralText: "#C6383A", deep: "#6E1618" };
+      const AVVITA = PF.ease("cubic-bezier(.16,1,.3,1)");
+      const LOCK = b(10, 1); // the footage ends, the Manuvo lockup takes the frame
+      let st, S = {};
+
+      /* ---------- helpers ---------- */
+      function slam(id, t, on, off, from = 1.3) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.12;
+        PF.show(el, live);
+        if (!live) return;
+        const s = PF.slam(t, on, { from, length: 0.2, blur: 16 });
+        const leave = PF.clamp01((t - off) / 0.12);
+        PF.css(el, {
+          transform: `scale(${(s.scale * (1 + leave * 0.08)).toFixed(4)})`,
+          opacity: (s.opacity * (1 - leave)).toFixed(3),
+          filter: s.blur + leave * 14 > 0.05 ? `blur(${(s.blur + leave * 14).toFixed(2)}px)` : "none",
+        });
+      }
+      function rise(id, t, on, off, dy = 26) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.16;
+        PF.show(el, live);
+        if (!live) return;
+        const e = AVVITA(PF.clamp01((t - on) / 0.42));
+        const leave = PF.clamp01((t - off) / 0.16);
+        PF.css(el, { transform: `translateY(${((1 - e) * dy).toFixed(2)}px)`, opacity: (e * (1 - leave)).toFixed(3) });
+      }
+      function unlit(mesh) { mesh.material.toneMapped = false; return mesh; }
+      function fit(el, max = 880) {
+        PF.show(el, true);
+        const r = document.createRange(); r.selectNodeContents(el);
+        const w = r.getBoundingClientRect().width;
+        if (w > max) el.style.fontSize = (parseFloat(el.style.fontSize) * max / w).toFixed(1) + "px";
+        PF.show(el, false);
+      }
+
+      // Each trade tag lives safely inside its own shot of the footage.
+      const TRADES = [
+        { id: "#t1", on: b(1, 4), off: 3.15 },
+        { id: "#t2", on: b(3, 2), off: 7.0 },
+        { id: "#t3", on: b(5, 3), off: 11.25 },
+        { id: "#t4", on: b(8, 1), off: b(9, 4) },
+      ];
+
+      function setup() {
+        st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.8, radius: 0.55, threshold: 1.1 }, exposure: 0.92 });
+        const THREE = st.THREE, A = window.THREE_ADDONS;
+
+        /* The lockup scene: particles converge into the Manuvo logo on coral. */
+        S.s = st.newScene();
+        S.s.background = new THREE.Color(C.coral);
+        S.s.fog = new THREE.Fog(C.coral, 9, 34);
+        S.s.environmentIntensity = 0.5;
+        PF.three.lights(st, { scene: S.s, ground: C.coral, fill: 0.5, key: 1.5, keyPos: [-4, 8, 6] });
+
+        const svg = new A.SVGLoader().parse(window.MANUVO_LOGO_SVG);
+        const shapes = [];
+        svg.paths.forEach((p) => { const f = (p.userData.style.fill || "").replace(/\s/g, ""); if (f === "rgb(255,87,88)" || f.toLowerCase() === "#ff5758") shapes.push(...A.SVGLoader.createShapes(p)); });
+        const geo = new THREE.ExtrudeGeometry(shapes, { depth: 40, bevelEnabled: true, bevelThickness: 6, bevelSize: 4, bevelSegments: 4, curveSegments: 24 });
+        geo.computeBoundingBox();
+        const bb = geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+        geo.translate(-cx, -cy, -20);
+        const k = 2.15 / (bb.max.x - bb.min.x);
+        // Reversed mark (cream on coral), as the app does on coral.
+        S.logoFace = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false, transparent: true });
+        S.logoSide = PF.three.mat("gloss", C.deep, { transparent: true });
+        S.logo = new THREE.Mesh(geo, [S.logoFace, S.logoSide]);
+        S.logo.scale.set(k, -k, k);
+        S.logoGroup = new THREE.Group(); S.logoGroup.add(S.logo); S.s.add(S.logoGroup);
+        const flat = new THREE.ShapeGeometry(shapes, 12); flat.translate(-cx, -cy, 0);
+        const sampler = new A.MeshSurfaceSampler(new THREE.Mesh(flat)).setRandomGenerator(PF.random(5)).build();
+        const v = new THREE.Vector3();
+        S.target = [];
+        for (let i = 0; i < 2600; i++) { sampler.sample(v); S.target.push({ x: v.x * k, y: -v.y * k }); }
+        S.swarm = PF.three.particles(st, S.target.length, {
+          scene: S.s, size: 0.075, color: (i) => (i % 9 === 0 ? C.deep : C.cream),
+          pos: (i, t, o) => {
+            const r = PF.random(i * 17 + 2);
+            const a = r() * Math.PI * 2, e = (r() - 0.5) * Math.PI, R = 2.5 + r() * 5, delay = r();
+            const spin = a + (t - LOCK) * 0.6;
+            const sx = R * Math.cos(e) * Math.cos(spin), sy = R * Math.sin(e) * 0.9, sz = R * Math.cos(e) * Math.sin(spin) - 1.5;
+            const u = PF.step(t - LOCK + 0.25 - delay * 0.45, { stiffness: 60, damping: 12 });
+            const g = S.target[i];
+            o.x = PF.lerp(sx, g.x, u); o.y = PF.lerp(sy, g.y, u); o.z = PF.lerp(sz, 0.12, u);
+          },
+        });
+        unlit(S.swarm.points);
+        S.logoGroup.add(S.swarm.points);
+        S.dust = PF.three.particles(st, 220, {
+          scene: S.s, size: 0.06, color: (i) => (i % 3 ? C.cream : C.deep),
+          pos: (i, t, o) => { const r = PF.random(i * 37 + 6); o.x = (r() - 0.5) * 12; o.y = 6 - ((r() * 12 + t * (0.3 + r() * 0.4)) % 12); o.z = -3 - r() * 8; },
+        });
+        unlit(S.dust.points);
+
+        ["#w1a", "#w1b", "#t1", "#t2", "#t3", "#t4", "#w2a", "#w2b", "#w3a", "#w3b", "#w3c"].forEach((id) => fit($(id)));
+        $("#vignette").style.background = PF.vignette(0.22, "0,0,0");
+        PF.debug({ grid: b, safe: CUES.safe });
+      }
+
+      function draw(t) {
+        const lock = t >= LOCK;
+
+        /* ---------- the lockup canvas only exists after the footage ---------- */
+        PF.show($("#three"), lock);
+        if (lock) {
+          st.use(S.s);
+          const solid = PF.clamp01(PF.progress(t, b(10, 3), 0.42));
+          S.swarm.update(t);
+          S.swarm.points.material.opacity = 1 - solid;
+          S.swarm.points.visible = solid < 1;
+          S.logo.visible = solid > 0;
+          S.logoFace.opacity = solid;
+          S.logoSide.opacity = solid;
+          const settle = AVVITA(PF.clamp01(PF.progress(t, b(10, 3), 0.8)));
+          S.logoGroup.position.set(0, PF.lerp(0, 0.55, settle), 0);
+          S.logoGroup.rotation.y = (1 - settle) * 0.22;
+          S.dust.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: LOCK, azimuth: -14, elevation: 8, radius: 8.0, target: [0, -0.8, 0], drift: { azimuth: 6, radius: -1.0 } },
+            { at: b(10, 3), azimuth: 0, elevation: 2, radius: 6.6, target: [0, -0.55, 0], drift: { radius: -0.3 } },
+            { at: b(11, 2), azimuth: 4, elevation: 1, radius: 6.5, target: [0, -0.55, 0], drift: { azimuth: -3 } },
+          ]);
+          st.render();
+          const ring = PF.ring(t, b(10, 3), { length: 0.7, from: 90, to: 760 });
+          PF.show($("#ring"), ring.opacity > 0.01);
+          PF.css($("#ring"), { left: `${540 - ring.r}px`, top: `${700 - ring.r}px`, width: `${ring.r * 2}px`, height: `${ring.r * 2}px`, opacity: ring.opacity.toFixed(3), borderWidth: `${ring.width.toFixed(1)}px` });
+        } else PF.show($("#ring"), false);
+
+        /* ---------- scrims: the footage is bright, the type needs a ground ---------- */
+        // Top band: only while the hook or the message is up.
+        const topOn = !lock && ((t >= b(1, 2) - 0.2 && t < b(2, 3) + 0.4) || (t >= b(8, 2) - 0.2 && t < b(9, 4) + 0.3));
+        PF.show($("#scrimTop"), topOn);
+        if (topOn) {
+          const a = PF.clamp01(Math.min(PF.progress(t, b(1, 2) - 0.2, 0.3), 1)) * 0 + 0.92;
+          PF.css($("#scrimTop"), { background: `linear-gradient(180deg, rgba(27,30,36,${a}) 0%, rgba(27,30,36,${a * 0.95}) 30%, rgba(27,30,36,.45) 42%, rgba(27,30,36,0) 52%)` });
+        }
+        // Bottom band: under the trade tag, for the whole footage.
+        PF.show($("#scrimBot"), !lock);
+        if (!lock) PF.css($("#scrimBot"), { background: "linear-gradient(0deg, rgba(27,30,36,.96) 0%, rgba(27,30,36,.93) 22%, rgba(27,30,36,.6) 32%, rgba(27,30,36,0) 44%)" });
+
+        /* ---------- words ---------- */
+        slam("#w1a", t, b(1, 2), b(2, 3));
+        slam("#w1b", t, b(1, 3), b(2, 3), 1.4);
+        TRADES.forEach((x) => rise(x.id, t, x.on, x.off, 22));
+        slam("#w2a", t, b(8, 2), b(9, 4), 1.5);
+        rise("#w2b", t, b(8, 4), b(9, 4));
+        rise("#w3a", t, b(10, 4), CUES.duration);
+        slam("#w3b", t, b(11, 2), CUES.duration, 1.22);
+        rise("#w3c", t, b(11, 4), CUES.duration, 18);
+
+        // A coral rule under the live trade tag, drawn from the centre out.
+        const live = TRADES.find((x) => t >= x.on && t < x.off);
+        PF.show($("#rule"), !!live);
+        if (live) {
+          const p = AVVITA(PF.clamp01((t - live.on) / 0.5)) * (1 - PF.clamp01((t - live.off) / 0.16));
+          const w = 150 * p;
+          PF.css($("#rule"), { left: `${510 - w / 2}px`, top: "1450px", width: `${w.toFixed(1)}px`, opacity: p.toFixed(3) });
+        }
+
+        PF.css($("#vignette"), { background: PF.vignette(lock ? 0.3 : 0.22, lock ? "110,22,24" : "0,0,0") });
+        PF.grain($("#grain"), t, { alpha: 0.05 });
+      }
+
+      PF.film({
+        duration: CUES.duration,
+        setup,
+        draw,
+        waitFor: [PF.signal("three")],
+        register: (tl) => {
+          window.__timelines["main"] = tl;
+        },
+      });
+    </script>
+  </body>
+</html>

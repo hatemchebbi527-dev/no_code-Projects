@@ -1,0 +1,7 @@
+renders/
+snapshots/
+review/
+out/
+node_modules/
+assets/audio/licensed/
+.hyperframes/
