@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Manuvo · Una casa, 40 mestieri</title>
+    <!-- Vendored runtimes: nothing loads from the network at render time. -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/words.js"></script>
+    <script src="kit/draw.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (manuvo/src/app/layout.tsx): Bricolage Grotesque for titles, Geist for UI. */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1e24; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1e24; color: #faf8f4; font-family: "Geist", sans-serif; }
+      .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      #cam { position: absolute; inset: 0; }
+      /* Giant slammed lines: the Manuvo display face, 800, uppercase, tight. */
+      .head { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Bricolage", sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.025em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .note { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Geist", sans-serif; font-weight: 500; text-transform: none; letter-spacing: -0.005em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .handle { font-weight: 700; }
+      /* The trade name that rides each marker: HUD face, tracked, small. */
+      .trade { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Geist Mono", monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; visibility: hidden; }
+      #ring { position: absolute; border-radius: 50%; border: 6px solid #faf8f4; visibility: hidden; }
+      /* Grain blended in overlay so cream and coral decode exact (BRAND.md trap). */
+      #grain { mix-blend-mode: overlay; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18.3333" data-width="1080" data-height="1920">
+      <!-- Layers, bottom to top: camera wrapper (3D canvas, scrim, wipe, words) > vignette and grain.
+           No viewfinder: no brackets, no timecode, no chapter labels (BRAND.md standing choice). -->
+      <div id="cam">
+        <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
+        <div id="ring" data-layout-ignore></div>
+        <div id="scrim" class="full" data-layout-ignore></div>
+        <div id="wipe" class="full" data-layout-ignore></div>
+        <div id="words" class="full">
+          <!-- 01 La casa (ink) -->
+          <div id="w1a" class="head" style="top:300px;font-size:142px;color:#faf8f4">In casa c'è</div>
+          <div id="w1b" class="head" style="top:452px;font-size:168px;color:#FF5758">sempre qualcosa.</div>
+          <!-- 02 I problemi (ink) : one trade name at a time, same slot -->
+          <div id="t1" class="trade" data-layout-allow-overlap style="top:360px;font-size:86px;color:#FF5758">Idraulico</div>
+          <div id="t2" class="trade" data-layout-allow-overlap style="top:360px;font-size:86px;color:#FF5758">Elettricista</div>
+          <div id="t3" class="trade" data-layout-allow-overlap style="top:360px;font-size:86px;color:#FF5758">Imbianchino</div>
+          <div id="t4" class="trade" data-layout-allow-overlap style="top:360px;font-size:86px;color:#FF5758">Caldaia</div>
+          <div id="t5" class="trade" data-layout-allow-overlap style="top:360px;font-size:86px;color:#FF5758">Fabbro</div>
+          <div id="t6" class="trade" data-layout-allow-overlap style="top:360px;font-size:86px;color:#FF5758">Giardinaggio</div>
+          <!-- 03 Quaranta (coral) -->
+          <div id="w3a" class="head" style="top:330px;font-size:300px;color:#1b1e24">40</div>
+          <div id="w3b" class="head" style="top:650px;font-size:150px;color:#1b1e24">mestieri.</div>
+          <!-- 04 Come funziona -->
+          <div id="w4a" class="head" style="top:320px;font-size:138px;color:#1b1e24">Pubblichi gratis.</div>
+          <div id="w4b" class="head" style="top:566px;font-size:138px;color:#1b1e24">Ti contattano loro.</div>
+          <div id="w4c" class="head" style="top:716px;font-size:138px;color:#1b1e24">Fino a 3 preventivi.</div>
+          <div id="w4d" class="note" style="top:472px;font-size:58px;color:#1b1e24">Senza registrarti.</div>
+          <!-- 05 Manuvo (coral) -->
+          <div id="w5a" class="head" style="top:1180px;font-size:104px;color:#1b1e24">Presto a Rimini</div>
+          <div id="w5b" class="note handle" style="top:1316px;font-size:76px;color:#1b1e24">@manuvo.it</div>
+        </div>
+      </div>
+      <div id="vignette" class="full" data-layout-ignore></div>
+      <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%"></canvas>
+      <!-- Three.js and add-ons are ES modules: they hand themselves to the kit, then the film starts. -->
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "./vendor/three/addons/postprocessing/EffectComposer.js";
+        import { RenderPass } from "./vendor/three/addons/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "./vendor/three/addons/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "./vendor/three/addons/postprocessing/OutputPass.js";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        import { MeshSurfaceSampler } from "./vendor/three/addons/math/MeshSurfaceSampler.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment, SVGLoader, MeshSurfaceSampler };
+        PF.signal("three").resolve();
+      </script>
+      <!-- pf:audio -->
+      <audio id="pf-sfx-01-thud" src="assets/audio/sfx/thud.wav" data-start="0.0000" data-duration="0.4000" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-02-tick" src="assets/audio/sfx/tick.wav" data-start="0.4166" data-duration="0.0500" data-track-index="20" data-volume="0.25"></audio>
+      <audio id="pf-sfx-03-pop" src="assets/audio/sfx/pop.wav" data-start="1.2497" data-duration="0.0900" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-04-tick" src="assets/audio/sfx/tick.wav" data-start="1.6666" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-05-tick" src="assets/audio/sfx/tick.wav" data-start="2.0832" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-06-pop" src="assets/audio/sfx/pop.wav" data-start="3.3330" data-duration="0.0900" data-track-index="20" data-volume="0.32"></audio>
+      <audio id="pf-sfx-07-pop" src="assets/audio/sfx/pop.wav" data-start="4.1664" data-duration="0.0900" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-08-pop" src="assets/audio/sfx/pop.wav" data-start="4.9997" data-duration="0.0900" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-09-pop" src="assets/audio/sfx/pop.wav" data-start="5.8330" data-duration="0.0900" data-track-index="20" data-volume="0.28"></audio>
+      <audio id="pf-sfx-10-pop" src="assets/audio/sfx/pop.wav" data-start="6.6664" data-duration="0.0900" data-track-index="20" data-volume="0.28"></audio>
+      <audio id="pf-sfx-11-pop" src="assets/audio/sfx/pop.wav" data-start="7.4997" data-duration="0.0900" data-track-index="20" data-volume="0.26"></audio>
+      <audio id="pf-sfx-12-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="8.0098" data-duration="0.6000" data-track-index="20" data-volume="0.4"></audio>
+      <audio id="pf-sfx-13-thud" src="assets/audio/sfx/thud.wav" data-start="9.9977" data-duration="0.4000" data-track-index="20" data-volume="0.4"></audio>
+      <audio id="pf-sfx-14-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="11.3432" data-duration="0.6000" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-15-tick" src="assets/audio/sfx/tick.wav" data-start="12.4999" data-duration="0.0500" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-16-chime" src="assets/audio/sfx/chime.wav" data-start="13.3286" data-duration="1.4000" data-track-index="20" data-volume="0.35"></audio>
+      <audio id="pf-sfx-17-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="14.4682" data-duration="0.6000" data-track-index="21" data-volume="0.25"></audio>
+      <audio id="pf-sfx-18-chime" src="assets/audio/sfx/chime.wav" data-start="15.8286" data-duration="1.4000" data-track-index="20" data-volume="0.4"></audio>
+      <audio id="pf-sfx-19-tick" src="assets/audio/sfx/tick.wav" data-start="16.2499" data-duration="0.0500" data-track-index="21" data-volume="0.3"></audio>
+      <audio id="pf-sfx-20-pop" src="assets/audio/sfx/pop.wav" data-start="17.0830" data-duration="0.0900" data-track-index="21" data-volume="0.3"></audio>
+      <!-- /pf:audio -->
+    </div>
+    <script>
+      const b = PF.grid(CUES.grid);
+      const $ = PF.$;
+      const W = CUES.width, H = CUES.height;
+      // Manuvo palette (manuvo/src/app/globals.css). Coral is the one highlight.
+      const C = { cream: "#faf8f4", ink: "#1b1e24", coral: "#FF5758", coralText: "#C6383A", deep: "#6E1618" };
+      const at = (c) => b(c[0], c[1] || 1, c[2] || 0);
+      const SC = CUES.scenes.map((s) => ({ name: s.name, from: at(s.from), to: at(s.to) }));
+      // Avvita (enter) and click (success) from the Manuvo motion identity.
+      const AVVITA = PF.ease("cubic-bezier(.16,1,.3,1)"), CLICK = PF.ease("cubic-bezier(.34,1.4,.64,1)");
+      const QUARANTA = b(6, 1);   // the flip to coral and the field of 40
+      const PREVENTIVI = b(9, 1); // the cream flood
+      let st, S = {};
+
+      /* ---------- helpers ---------- */
+      function sceneAt(t) { let k = 0; SC.forEach((s, i) => { if (t >= s.from) k = i; }); return k; }
+      function slam(id, t, on, off, from = 1.3) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.12;
+        PF.show(el, live);
+        if (!live) return;
+        const s = PF.slam(t, on, { from, length: 0.2, blur: 16 });
+        const leave = PF.clamp01((t - off) / 0.12);
+        PF.css(el, {
+          transform: `scale(${(s.scale * (1 + leave * 0.08)).toFixed(4)})`,
+          opacity: (s.opacity * (1 - leave)).toFixed(3),
+          filter: s.blur + leave * 14 > 0.05 ? `blur(${(s.blur + leave * 14).toFixed(2)}px)` : "none",
+        });
+      }
+      function rise(id, t, on, off, dy = 26) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.16;
+        PF.show(el, live);
+        if (!live) return;
+        const e = AVVITA(PF.clamp01((t - on) / 0.42));
+        const leave = PF.clamp01((t - off) / 0.16);
+        PF.css(el, { transform: `translateY(${((1 - e) * dy).toFixed(2)}px)`, opacity: (e * (1 - leave)).toFixed(3) });
+      }
+      function scene(bg, far = 34) {
+        const THREE = st.THREE, s = st.newScene();
+        s.background = new THREE.Color(bg);
+        s.fog = new THREE.Fog(bg, 9, far);
+        s.environmentIntensity = 0.42;
+        PF.three.lights(st, { scene: s, ground: bg, fill: 0.42, key: 1.25, keyPos: [-3.2, 7, 7.5] });
+        return s;
+      }
+      function unlit(mesh) { mesh.material.toneMapped = false; return mesh; }
+      function fit(el, max = 880) {
+        PF.show(el, true);
+        const r = document.createRange(); r.selectNodeContents(el);
+        const w = r.getBoundingClientRect().width;
+        if (w > max) el.style.fontSize = (parseFloat(el.style.fontSize) * max / w).toFixed(1) + "px";
+        PF.show(el, false);
+      }
+      // A hexagon token (the brand element): exact-swatch caps, glossy sides.
+      function hexToken(r, thick, capHex, sideHex) {
+        const THREE = st.THREE;
+        const cap = new THREE.MeshBasicMaterial({ color: capHex, toneMapped: false, fog: false });
+        return new THREE.Mesh(new THREE.CylinderGeometry(r, r, thick, 6, 1), [PF.three.mat("gloss", sideHex), cap, cap]);
+      }
+
+      // The six problems, placed on the house. x,y,z are local to the house group.
+      const MARKERS = [
+        { id: "#t1", on: [3, 1], p: [-0.42, -0.78, 1.35] }, // idraulico, kitchen wall, low left
+        { id: "#t2", on: [3, 3], p: [1.52, 0.05, 1.35] },   // elettricista, wall right of the windows
+        { id: "#t3", on: [4, 1], p: [-0.2, 0.75, 1.35] },   // imbianchino, upper wall
+        { id: "#t4", on: [4, 3], p: [0.62, -0.88, 1.35] },  // caldaia, wall below the right window
+        { id: "#t5", on: [5, 1], p: [-1.4, 0.1, 1.35] },    // fabbro, the door
+        { id: "#t6", on: [5, 3], p: [0.3, -1.35, 2.2] },    // giardinaggio, the garden, in front
+      ];
+
+      function setup() {
+        // Rich 3D: env map, bloom only above 1.0 (the glow material), fov 50 for 9:16.
+        st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.75, radius: 0.5, threshold: 1.18 }, exposure: 0.88 });
+        const THREE = st.THREE, A = window.THREE_ADDONS;
+
+        /* 01 + 02 La casa: one house, shared by the hook and the six problems. */
+        S.s1 = scene(C.ink, 40);
+        S.house = new THREE.Group();
+        S.s1.add(S.house);
+        // Body and roof: glossy cream walls, ink roof, so coral stays the one highlight.
+        const body = new THREE.Mesh(new THREE.BoxGeometry(3.4, 2.4, 2.6), PF.three.mat("gloss", C.cream));
+        body.position.y = -0.1;
+        S.house.add(body);
+        const roof = new THREE.Mesh(new THREE.CylinderGeometry(1.96, 1.96, 2.78, 3, 1), PF.three.mat("gloss", C.ink));
+        roof.rotation.set(-Math.PI / 2, 0, 0); // apex up: +PI/2 would point it into the ground
+        roof.scale.z = 0.58;                   // local Z becomes world height: flattens the pitch
+        roof.position.y = 1.67;
+        S.house.add(roof);
+        // The ground slab the house sits on.
+        const slab = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.3, 4.2), PF.three.mat("gloss", C.ink));
+        slab.position.y = -1.45;
+        S.house.add(slab);
+        // Windows: unlit cream panes that warm up one by one.
+        S.windows = [[-1.05, 0.45], [0.1, 0.45], [1.15, 0.45], [-1.05, -0.5], [1.15, -0.5]].map(([x, y], i) => {
+          const m = new THREE.Mesh(new THREE.PlaneGeometry(0.62, 0.52), new THREE.MeshBasicMaterial({ color: C.ink, toneMapped: false, transparent: true, opacity: 0 }));
+          m.position.set(x, y, 1.31);
+          S.house.add(m);
+          return { m, on: b(1, 2) + i * 0.16 };
+        });
+        // The door, in ink, where the fabbro marker lands.
+        const door = new THREE.Mesh(new THREE.PlaneGeometry(0.56, 1.0), new THREE.MeshBasicMaterial({ color: C.ink, toneMapped: false }));
+        door.position.set(-1.4, -0.62, 1.31);
+        S.house.add(door);
+        // The six coral markers: a glow bead with a ring that expands once.
+        S.markers = MARKERS.map((m, i) => {
+          const g = new THREE.Group();
+          const bead = new THREE.Mesh(new THREE.SphereGeometry(0.085, 32, 24), PF.three.mat("glow", C.coral));
+          const ring = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.028, 12, 48), new THREE.MeshBasicMaterial({ color: C.coral, toneMapped: false, transparent: true }));
+          g.add(bead, ring);
+          g.position.set(m.p[0], m.p[1], m.p[2]);
+          S.house.add(g);
+          return { g, bead, ring, on: at(m.on), id: m.id, i };
+        });
+        S.dust1 = PF.three.particles(st, 380, {
+          scene: S.s1, size: 0.05, color: (i) => (i % 4 ? C.cream : C.coral),
+          pos: (i, t, o) => { const r = PF.random(i * 13 + 1); o.x = (r() - 0.5) * 14; o.y = -5 + ((r() * 11 + t * (0.35 + r() * 0.45)) % 11); o.z = -2 - r() * 9; },
+        });
+        unlit(S.dust1.points);
+
+        /* 03 Quaranta: the markers multiply into a field of 40 cream hexagons. */
+        S.s3 = scene(C.coral, 38);
+        S.field = [];
+        for (let i = 0; i < 40; i++) {
+          const col = i % 5, row = Math.floor(i / 5);
+          const m = hexToken(0.42, 0.16, C.cream, C.coralText);
+          m.rotation.x = Math.PI / 2;
+          S.s3.add(m);
+          const r = PF.random(i * 19 + 3);
+          S.field.push({ m, col, row, delay: r() * 0.5, i });
+        }
+        S.dust3 = PF.three.particles(st, 240, {
+          scene: S.s3, size: 0.05, color: (i) => (i % 3 ? C.cream : C.deep),
+          pos: (i, t, o) => { const r = PF.random(i * 29 + 5); o.x = (r() - 0.5) * 13; o.y = 5 - ((r() * 11 + t * (0.3 + r() * 0.4)) % 11); o.z = -3 - r() * 8; },
+        });
+        unlit(S.dust3.points);
+
+        /* 04 Come funziona: the field collapses to three tokens (coral, then cream). */
+        S.s4a = scene(C.coral, 36);
+        S.tokensA = [0, 1, 2].map((i) => {
+          const m = hexToken(0.62, 0.22, C.cream, C.coralText);
+          m.rotation.x = Math.PI / 2;
+          S.s4a.add(m);
+          return m;
+        });
+        S.s4b = scene(C.cream, 36);
+        S.tokensB = [0, 1, 2].map((i) => {
+          const m = hexToken(0.62, 0.22, C.coral, C.coralText);
+          m.rotation.x = Math.PI / 2;
+          S.s4b.add(m);
+          return m;
+        });
+
+        /* 05 Manuvo: particles converge into the logo, then the extruded logo. */
+        S.s5 = scene(C.coral);
+        const svg = new A.SVGLoader().parse(window.MANUVO_LOGO_SVG);
+        const shapes = [];
+        svg.paths.forEach((p) => { const f = (p.userData.style.fill || "").replace(/\s/g, ""); if (f === "rgb(255,87,88)" || f.toLowerCase() === "#ff5758") shapes.push(...A.SVGLoader.createShapes(p)); });
+        const geo = new THREE.ExtrudeGeometry(shapes, { depth: 40, bevelEnabled: true, bevelThickness: 6, bevelSize: 4, bevelSegments: 4, curveSegments: 24 });
+        geo.computeBoundingBox();
+        const bb = geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+        geo.translate(-cx, -cy, -20);
+        const k = 2.15 / (bb.max.x - bb.min.x);
+        // Reversed mark (cream on coral), as the app does on coral (ComingSoon.tsx).
+        S.logoFace = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false, transparent: true });
+        S.logoSide = PF.three.mat("gloss", C.deep, { transparent: true });
+        S.logo = new THREE.Mesh(geo, [S.logoFace, S.logoSide]);
+        S.logo.scale.set(k, -k, k);
+        S.logoGroup = new THREE.Group(); S.logoGroup.add(S.logo); S.s5.add(S.logoGroup);
+        const flat = new THREE.ShapeGeometry(shapes, 12); flat.translate(-cx, -cy, 0);
+        const sampler = new A.MeshSurfaceSampler(new THREE.Mesh(flat)).setRandomGenerator(PF.random(5)).build();
+        const v = new THREE.Vector3();
+        S.target = [];
+        for (let i = 0; i < 2600; i++) { sampler.sample(v); S.target.push({ x: v.x * k, y: -v.y * k }); }
+        S.swarm = PF.three.particles(st, S.target.length, {
+          scene: S.s5, size: 0.075, color: (i) => (i % 9 === 0 ? C.deep : C.cream),
+          pos: (i, t, o) => {
+            const r = PF.random(i * 17 + 2);
+            const a = r() * Math.PI * 2, e = (r() - 0.5) * Math.PI, R = 2.5 + r() * 5, delay = r();
+            const spin = a + (t - b(10, 1)) * 0.6;
+            const sx = R * Math.cos(e) * Math.cos(spin), sy = R * Math.sin(e) * 0.9, sz = R * Math.cos(e) * Math.sin(spin) - 1.5;
+            const u = PF.step(t - b(10, 1) + 0.25 - delay * 0.45, { stiffness: 60, damping: 12 });
+            const g = S.target[i];
+            o.x = PF.lerp(sx, g.x, u); o.y = PF.lerp(sy, g.y, u); o.z = PF.lerp(sz, 0.12, u);
+          },
+        });
+        unlit(S.swarm.points);
+        S.logoGroup.add(S.swarm.points);
+        S.dust5 = PF.three.particles(st, 220, {
+          scene: S.s5, size: 0.06, color: (i) => (i % 3 ? C.cream : C.deep),
+          pos: (i, t, o) => { const r = PF.random(i * 37 + 6); o.x = (r() - 0.5) * 12; o.y = 6 - ((r() * 12 + t * (0.3 + r() * 0.4)) % 12); o.z = -3 - r() * 8; },
+        });
+        unlit(S.dust5.points);
+
+        ["#w1a", "#w1b", "#t1", "#t2", "#t3", "#t4", "#t5", "#t6", "#w3a", "#w3b", "#w4a", "#w4b", "#w4c", "#w4d", "#w5a", "#w5b"].forEach((id) => fit($(id)));
+        $("#vignette").style.background = PF.vignette(0.3, "0,0,0");
+        PF.debug({ grid: b, safe: CUES.safe });
+      }
+
+      function draw(t) {
+        const k = sceneAt(t);
+        let bg = C.ink;
+
+        /* ---------- 01 + 02 La casa et les problemi ---------- */
+        if (k === 0 || k === 1) {
+          st.use(S.s1);
+          // The house turns out of the dark and keeps drifting.
+          const turn = AVVITA(PF.clamp01(PF.progress(t, 0, 1.6)));
+          S.house.rotation.y = PF.lerp(-0.9, 0.18, turn) + Math.sin(t * 0.22) * 0.05;
+          S.house.position.y = PF.lerp(-1.4, 0, turn);
+          S.windows.forEach((w) => {
+            const u = CLICK(PF.clamp01(PF.progress(t, w.on, 0.34)));
+            w.m.material.opacity = u;
+          });
+          S.markers.forEach((m) => {
+            const u = PF.step(t - m.on, { stiffness: 90, damping: 13 });
+            m.g.visible = u > 0.002;
+            m.g.scale.setScalar(u);
+            // The bead keeps a slow pulse once it has landed.
+            const pulse = 1 + 0.16 * Math.sin((t - m.on) * 7.2);
+            m.bead.scale.setScalar(u > 0.9 ? pulse : 1);
+            // One ring expands and fades on arrival.
+            const rp = PF.clamp01(PF.progress(t, m.on, 0.6));
+            m.ring.scale.setScalar(0.6 + rp * 2.4);
+            m.ring.material.opacity = (1 - rp) * 0.8;
+            m.g.lookAt(st.camera.position);
+          });
+          S.dust1.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: 0, azimuth: -34, elevation: 16, radius: 10.5, target: [0, 1.6, 0], drift: { azimuth: 12, radius: -1.2 } },
+            { at: b(1, 3), azimuth: -8, elevation: 10, radius: 8.2, target: [0, 1.3, 0], drift: { azimuth: -6 } },
+            { at: b(2, 1), azimuth: 16, elevation: 20, radius: 9.6, target: [0, 1.8, 0], drift: { radius: -0.8 } },
+            { at: b(2, 3), azimuth: -4, elevation: 12, radius: 8.0, target: [0, 1.5, 0], drift: { azimuth: 8 } },
+            { at: b(3, 1), azimuth: -24, elevation: 10, radius: 8.0, target: [-0.6, 1.1, 0.4], drift: { azimuth: 7 } },
+            { at: b(3, 3), azimuth: 18, elevation: 8, radius: 7.6, target: [0.7, 1.3, 0.4], drift: { azimuth: -6 } },
+            { at: b(4, 1), azimuth: -6, elevation: 16, radius: 8.2, target: [0, 1.8, 0.4], drift: { elevation: -4 } },
+            { at: b(4, 3), azimuth: 20, elevation: 6, radius: 7.8, target: [0.6, 1.0, 0.4], drift: { azimuth: -8 } },
+            { at: b(5, 1), azimuth: -26, elevation: 10, radius: 7.6, target: [-0.8, 1.2, 0.4], drift: { azimuth: 9 } },
+            { at: b(5, 3), azimuth: 0, elevation: 18, radius: 11.5, target: [0, 1.5, 0], drift: { radius: -1.4 } },
+          ]);
+        }
+
+        /* ---------- 03 Quaranta ---------- */
+        if (k === 2) {
+          bg = C.coral;
+          st.use(S.s3);
+          S.field.forEach((f) => {
+            const u = PF.step(t - QUARANTA - f.delay, { stiffness: 70, damping: 14 });
+            f.m.visible = u > 0.002;
+            // Five columns, eight rows, settling from scattered depth into a grid.
+            const gx = (f.col - 2) * 1.08, gy = 3.5 - f.row * 1.0;
+            const r = PF.random(f.i * 23 + 7);
+            const sx = (r() - 0.5) * 9, sy = (r() - 0.5) * 9, sz = -5 - r() * 7;
+            f.m.position.set(PF.lerp(sx, gx, u), PF.lerp(sy, gy, u), PF.lerp(sz, 0, u));
+            f.m.rotation.y = (1 - u) * 2.2;
+            // The field breathes once the grid is formed.
+            const br = 1 + 0.05 * Math.sin((t - QUARANTA) * 3 + f.i * 0.35) * u;
+            f.m.scale.setScalar(br);
+          });
+          S.dust3.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: QUARANTA, azimuth: -12, elevation: 6, radius: 11.5, target: [0, 2.8, 0], drift: { azimuth: 8, radius: -1.4 } },
+            { at: b(6, 3), azimuth: 10, elevation: -2, radius: 9.0, target: [0, 2.2, 0], drift: { azimuth: -7 } },
+            { at: b(7, 1), azimuth: -6, elevation: 8, radius: 10.6, target: [0, 2.6, 0], drift: { radius: -1.0 } },
+            { at: b(7, 3), azimuth: 14, elevation: 2, radius: 9.4, target: [0, 2.4, 0], drift: { azimuth: -6 } },
+          ]);
+        }
+
+        /* ---------- 04 Come funziona ---------- */
+        if (k === 3) {
+          const second = t >= PREVENTIVI;
+          bg = second ? C.cream : C.coral;
+          st.use(second ? S.s4b : S.s4a);
+          const toks = second ? S.tokensB : S.tokensA;
+          const s0 = second ? PREVENTIVI : b(8, 1);
+          toks.forEach((m, i) => {
+            const u = PF.step(t - s0 - i * 0.09, { stiffness: 80, damping: 14 });
+            m.visible = u > 0.002;
+            m.position.set((i - 1) * 1.55 * u, PF.lerp(-3.2, 0, u), 0);
+            // A sixth of a turn together on beat 3, stopping dead.
+            const turn = AVVITA(PF.progress(t, s0 + 2 * b.beat, 0.48));
+            m.rotation.y = (1 - u) * 1.3 + turn * (Math.PI / 3);
+          });
+          PF.three.shots(st.camera, t, [
+            { at: b(8, 1), azimuth: -18, elevation: 12, radius: 8.0, target: [0, 2.0, 0], drift: { azimuth: 8, radius: -0.6 } },
+            { at: b(8, 3), azimuth: 14, elevation: 6, radius: 6.8, target: [0, 1.7, 0], drift: { azimuth: -7 } },
+            { at: PREVENTIVI, azimuth: -14, elevation: 14, radius: 7.6, target: [0, 2.1, 0], drift: { azimuth: 7 } },
+            { at: b(9, 3), azimuth: 16, elevation: 8, radius: 6.6, target: [0, 1.8, 0], drift: { azimuth: -8 } },
+          ]);
+        }
+
+        /* ---------- 05 Manuvo ---------- */
+        if (k === 4) {
+          bg = C.coral;
+          st.use(S.s5);
+          const solid = PF.clamp01(PF.progress(t, b(10, 3), 0.42));
+          S.swarm.update(t);
+          S.swarm.points.material.opacity = 1 - solid;
+          S.swarm.points.visible = solid < 1;
+          S.logo.visible = solid > 0;
+          S.logoFace.opacity = solid;
+          S.logoSide.opacity = solid;
+          const settle = AVVITA(PF.clamp01(PF.progress(t, b(10, 3), 0.8)));
+          S.logoGroup.position.set(0, PF.lerp(0, 0.5, settle), 0);
+          S.logoGroup.rotation.y = (1 - settle) * 0.22;
+          S.dust5.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: b(10, 1), azimuth: -14, elevation: 8, radius: 8.0, target: [0, -0.7, 0], drift: { azimuth: 6, radius: -1.0 } },
+            { at: b(10, 3), azimuth: 0, elevation: 2, radius: 6.6, target: [0, -0.45, 0], drift: { radius: -0.3 } },
+            { at: b(11, 2), azimuth: 4, elevation: 1, radius: 6.5, target: [0, -0.45, 0], drift: { azimuth: -3 } },
+          ]);
+          const ring = PF.ring(t, b(10, 3), { length: 0.7, from: 90, to: 760 });
+          PF.show($("#ring"), ring.opacity > 0.01);
+          PF.css($("#ring"), { left: `${540 - ring.r}px`, top: `${720 - ring.r}px`, width: `${ring.r * 2}px`, height: `${ring.r * 2}px`, opacity: ring.opacity.toFixed(3), borderWidth: `${ring.width.toFixed(1)}px` });
+        } else PF.show($("#ring"), false);
+
+        st.render();
+
+        /* ---------- words ---------- */
+        slam("#w1a", t, b(2, 1), b(3, 1) - 0.14);
+        slam("#w1b", t, b(2, 2), b(3, 1) - 0.14, 1.45);
+        // One trade name at a time, each holding until the next lands.
+        S.markers.forEach((m, i) => {
+          const next = i < S.markers.length - 1 ? S.markers[i + 1].on : QUARANTA;
+          slam(m.id, t, m.on, next - 0.1, 1.22);
+        });
+        slam("#w3a", t, b(7, 1), b(8, 1) - 0.14, 1.6);
+        slam("#w3b", t, b(7, 1) + 0.12, b(8, 1) - 0.14, 1.35);
+        slam("#w4a", t, b(8, 1), b(10, 1) - 0.14);
+        slam("#w4b", t, b(8, 3), b(10, 1) - 0.14);
+        slam("#w4c", t, PREVENTIVI, b(10, 1) - 0.14);
+        rise("#w4d", t, b(8, 1) + 0.2, b(10, 1) - 0.14);
+        slam("#w5a", t, b(10, 3) + 0.1, CUES.duration);
+        rise("#w5b", t, b(10, 4), CUES.duration, 20);
+
+        /* ---------- shake, scrim, wipes, grade ---------- */
+        const shake = PF.shake(t, [QUARANTA, b(7, 1)].map((x) => ({ at: x, amount: 14 })));
+        PF.css($("#cam"), { transform: `translate(${shake.x.toFixed(2)}px,${shake.y.toFixed(2)}px)` });
+
+        // A scrim behind the headline band wherever the subject is dense under the words.
+        const scrimOn = k === 1 || k === 2 || (k === 3 && t < PREVENTIVI);
+        PF.show($("#scrim"), scrimOn);
+        if (scrimOn) {
+          const rgb = bg === C.coral ? "255,87,88" : "27,30,36";
+          // The field of 40 reaches higher than the house, so its band runs deeper.
+          const deep = k === 2;
+          PF.css($("#scrim"), { background: deep
+            ? `linear-gradient(180deg, rgba(${rgb},.98) 0%, rgba(${rgb},.96) 38%, rgba(${rgb},.72) 48%, rgba(${rgb},0) 62%)`
+            : `linear-gradient(180deg, rgba(${rgb},.95) 0%, rgba(${rgb},.9) 32%, rgba(${rgb},.5) 44%, rgba(${rgb},0) 54%)` });
+        }
+
+        const wipe = $("#wipe");
+        const WIPES = [
+          { at: QUARANTA, kind: "iris", color: C.coral, y: 900, length: 0.44 },
+          { at: PREVENTIVI, kind: "up", color: C.cream, length: 0.4 },
+          { at: b(9, 4, 0.5), kind: "iris", color: C.coral, y: 1180, length: 0.42 },
+        ];
+        const T0 = WIPES.find((x) => t >= x.at && t < x.at + x.length);
+        PF.show(wipe, !!T0);
+        if (T0) {
+          const p = PF.clamp01((t - T0.at) / T0.length);
+          PF.css(wipe, { background: T0.color });
+          if (T0.kind === "iris") PF.iris(wipe, p, 540, T0.y, W, H); else PF.flood(wipe, p, T0.kind);
+        }
+
+        PF.css($("#vignette"), { background: PF.vignette(bg === C.cream ? 0.1 : 0.3, bg === C.coral ? "110,22,24" : "0,0,0") });
+        PF.grain($("#grain"), t, { alpha: 0.07 });
+      }
+
+      PF.film({
+        duration: CUES.duration,
+        setup,
+        draw,
+        waitFor: [PF.signal("three")],
+        // Registered only after setup and the clock are built (fonts first).
+        register: (tl) => {
+          window.__timelines["main"] = tl;
+        },
+      });
+    </script>
+  </body>
+</html>
