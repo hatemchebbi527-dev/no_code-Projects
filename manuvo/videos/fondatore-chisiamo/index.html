@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Manuvo · Chi siamo</title>
+    <!-- Vendored runtimes: nothing loads from the network at render time. -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="kit/film.js"></script>
+    <script src="kit/motion.js"></script>
+    <script src="kit/words.js"></script>
+    <script src="kit/draw.js"></script>
+    <script src="kit/fx.js"></script>
+    <script src="kit/three.js"></script>
+    <script src="kit/debug.js"></script>
+    <script src="assets/logo-data.js"></script>
+    <script src="cues.js"></script>
+    <style>
+      /* Manuvo fonts (manuvo/src/app/layout.tsx). */
+      @font-face { font-family: "Bricolage"; src: url("assets/fonts/BricolageGrotesque.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: "Geist"; src: url("assets/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1e24; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1e24; color: #faf8f4; font-family: "Geist", sans-serif; }
+      .full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      /* Footage fills the frame; the framework owns playback of any <video>. */
+      .shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      /* Placeholder card, shown until the real clip is dropped in. */
+      .ph { display: grid; place-items: start center; padding-top: 520px; background: #23272f; }
+      .ph b { font-family: "Geist Mono", monospace; font-weight: 700; font-size: 44px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,248,244,.42); }
+      .ph i { font-style: normal; font-family: "Geist", sans-serif; font-size: 34px; color: rgba(250,248,244,.3); margin-top: 18px; max-width: 760px; text-align: center; line-height: 1.35; }
+      /* Subtitles: the founder's own words, low in frame, over an ink scrim. */
+      .sub { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Geist", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.26; letter-spacing: -0.005em; visibility: hidden; transform-origin: 50% 50%; }
+      .head { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Bricolage", sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.025em; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      .note { position: absolute; left: 60px; right: 120px; text-align: center; font-family: "Geist", sans-serif; font-weight: 700; white-space: nowrap; visibility: hidden; transform-origin: 50% 50%; }
+      #ring { position: absolute; border-radius: 50%; border: 6px solid #faf8f4; visibility: hidden; }
+      #grain { mix-blend-mode: overlay; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25" data-width="1080" data-height="1920">
+      <!--
+        THE FOUR SHOTS. Each placeholder below is replaced by a <video> that must
+        be a DIRECT CHILD of this root, muted and inline, or the runtime never
+        seeks it and it renders black:
+
+          <video id="shot1" class="clip shot" src="assets/shot1.mp4"
+                 data-start="0" data-duration="5" data-track-index="0" muted playsinline></video>
+
+        shot1 0-5s   Kling   le fondateur s'assoit, ouvre un carnet
+        shot2 5-10s  Kling   gros plan des mains, il écrit et barre une ligne
+        shot3 10-15s RÉEL    capture d'écran de manuvo.automa-ia.net
+        shot4 15-20s owner   Rimini, sinon Kling
+      -->
+      <div id="shot1" class="clip shot ph" data-layout-ignore data-start="0" data-duration="5" data-track-index="0"><b>Plan 1 · Kling</b><i>Il fondatore si siede e apre un quaderno, di spalle</i></div>
+      <div id="shot2" class="clip shot ph" data-layout-ignore data-start="5" data-duration="5" data-track-index="0"><b>Plan 2 · Kling</b><i>Primo piano delle mani che scrivono e cancellano una riga</i></div>
+      <div id="shot3" class="clip shot ph" data-layout-ignore data-start="10" data-duration="5" data-track-index="0"><b>Plan 3 · Reale</b><i>Schermata del sito Manuvo, ripresa dal telefono</i></div>
+      <div id="shot4" class="clip shot ph" data-layout-ignore data-start="15" data-duration="5" data-track-index="0"><b>Plan 4 · Rimini</b><i>Una via residenziale nel tardo pomeriggio</i></div>
+      <!-- Everything else sits over the footage. -->
+      <canvas id="three" data-layout-allow-overflow width="1080" height="1920" class="full"></canvas>
+      <div id="ring" data-layout-ignore></div>
+      <div id="scrimBot" class="full" data-layout-ignore></div>
+      <div id="wipe" class="full" data-layout-ignore></div>
+      <div id="words" class="full">
+        <!-- Subtitles: the caption's own words, split in four. Times are PROVISIONAL
+             and get recut on the founder's recorded voice. -->
+        <div id="s1" class="sub" data-layout-allow-overlap style="top:1330px;color:#faf8f4">Ciao, sono il fondatore di Manuvo.</div>
+        <div id="s2" class="sub" data-layout-allow-overlap style="top:1300px;color:#faf8f4">Sto costruendo una piattaforma per trovare<br />artigiani verificati a Rimini,</div>
+        <div id="s3" class="sub" data-layout-allow-overlap style="top:1330px;color:#faf8f4">perché ho vissuto il problema sulla mia pelle.</div>
+        <div id="s4" class="sub" data-layout-allow-overlap style="top:1300px;color:#faf8f4">Stiamo per lanciare.<br />Seguici per scoprire di più.</div>
+        <!-- Lockup -->
+        <div id="w5a" class="head" style="top:1216px;font-size:96px;color:#1b1e24">Stiamo per lanciare</div>
+        <div id="w5b" class="note" style="top:1348px;font-size:74px;color:#1b1e24">@manuvo.it</div>
+      </div>
+      <div id="vignette" class="full" data-layout-ignore></div>
+      <canvas id="grain" class="full" width="540" height="960" data-layout-ignore style="width:100%;height:100%"></canvas>
+      <script type="importmap">
+        { "imports": { "three": "./vendor/three/three.module.min.js" } }
+      </script>
+      <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "./vendor/three/addons/postprocessing/EffectComposer.js";
+        import { RenderPass } from "./vendor/three/addons/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "./vendor/three/addons/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "./vendor/three/addons/postprocessing/OutputPass.js";
+        import { RoomEnvironment } from "./vendor/three/addons/environments/RoomEnvironment.js";
+        import { SVGLoader } from "./vendor/three/addons/loaders/SVGLoader.js";
+        import { MeshSurfaceSampler } from "./vendor/three/addons/math/MeshSurfaceSampler.js";
+        window.THREE = THREE;
+        window.THREE_ADDONS = { EffectComposer, RenderPass, UnrealBloomPass, OutputPass, RoomEnvironment, SVGLoader, MeshSurfaceSampler };
+        PF.signal("three").resolve();
+      </script>
+      <!-- pf:audio -->
+      <audio id="pf-sfx-01-pop" src="assets/audio/sfx/pop.wav" data-start="4.9997" data-duration="0.0900" data-track-index="20" data-volume="0.22"></audio>
+      <audio id="pf-sfx-02-pop" src="assets/audio/sfx/pop.wav" data-start="9.9997" data-duration="0.0900" data-track-index="20" data-volume="0.22"></audio>
+      <audio id="pf-sfx-03-pop" src="assets/audio/sfx/pop.wav" data-start="14.9997" data-duration="0.0900" data-track-index="20" data-volume="0.22"></audio>
+      <audio id="pf-sfx-04-whoosh" src="assets/audio/sfx/whoosh.wav" data-start="19.6765" data-duration="0.6000" data-track-index="20" data-volume="0.3"></audio>
+      <audio id="pf-sfx-05-chime" src="assets/audio/sfx/chime.wav" data-start="20.8286" data-duration="1.4000" data-track-index="20" data-volume="0.38"></audio>
+      <audio id="pf-sfx-06-tick" src="assets/audio/sfx/tick.wav" data-start="21.6666" data-duration="0.0500" data-track-index="21" data-volume="0.28"></audio>
+      <audio id="pf-sfx-07-pop" src="assets/audio/sfx/pop.wav" data-start="22.4997" data-duration="0.0900" data-track-index="20" data-volume="0.28"></audio>
+      <!-- /pf:audio -->
+    </div>
+    <script>
+      const b = PF.grid(CUES.grid);
+      const $ = PF.$;
+      const W = CUES.width, H = CUES.height;
+      const C = { cream: "#faf8f4", ink: "#1b1e24", coral: "#FF5758", coralText: "#C6383A", deep: "#6E1618" };
+      const AVVITA = PF.ease("cubic-bezier(.16,1,.3,1)");
+      const LOCK = b(13, 1); // the footage ends, the Manuvo lockup takes the frame
+      let st, S = {};
+
+      /* ---------- helpers ---------- */
+      function slam(id, t, on, off, from = 1.3) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.12;
+        PF.show(el, live);
+        if (!live) return;
+        const s = PF.slam(t, on, { from, length: 0.2, blur: 16 });
+        const leave = PF.clamp01((t - off) / 0.12);
+        PF.css(el, {
+          transform: `scale(${(s.scale * (1 + leave * 0.08)).toFixed(4)})`,
+          opacity: (s.opacity * (1 - leave)).toFixed(3),
+          filter: s.blur + leave * 14 > 0.05 ? `blur(${(s.blur + leave * 14).toFixed(2)}px)` : "none",
+        });
+      }
+      // A subtitle: it rises quietly and leaves quietly. No slam on spoken words.
+      function sub(id, t, on, off, dy = 18) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.2;
+        PF.show(el, live);
+        if (!live) return;
+        const e = AVVITA(PF.clamp01((t - on) / 0.34));
+        const leave = PF.clamp01((t - off) / 0.2);
+        PF.css(el, { transform: `translateY(${((1 - e) * dy).toFixed(2)}px)`, opacity: (e * (1 - leave)).toFixed(3) });
+      }
+      function rise(id, t, on, off, dy = 24) {
+        const el = $(id);
+        const live = t >= on && t < off + 0.16;
+        PF.show(el, live);
+        if (!live) return;
+        const e = AVVITA(PF.clamp01((t - on) / 0.42));
+        const leave = PF.clamp01((t - off) / 0.16);
+        PF.css(el, { transform: `translateY(${((1 - e) * dy).toFixed(2)}px)`, opacity: (e * (1 - leave)).toFixed(3) });
+      }
+      function unlit(mesh) { mesh.material.toneMapped = false; return mesh; }
+      function fit(el, max = 880) {
+        PF.show(el, true);
+        const r = document.createRange(); r.selectNodeContents(el);
+        const w = r.getBoundingClientRect().width;
+        if (w > max) el.style.fontSize = (parseFloat(el.style.fontSize) * max / w).toFixed(1) + "px";
+        PF.show(el, false);
+      }
+
+      // Subtitle timing. PROVISIONAL: recut on the founder's recorded voice.
+      const SUBS = [
+        { id: "#s1", on: b(1, 3), off: b(3, 4) },
+        { id: "#s2", on: b(4, 2), off: b(6, 4) },
+        { id: "#s3", on: b(7, 2), off: b(9, 4) },
+        { id: "#s4", on: b(10, 2), off: b(12, 4) },
+      ];
+
+      function setup() {
+        st = PF.three.stage($("#three"), { width: W, height: H, fov: 50, env: true, bloom: { strength: 0.8, radius: 0.55, threshold: 1.1 }, exposure: 0.92 });
+        const THREE = st.THREE, A = window.THREE_ADDONS;
+
+        /* The lockup scene: particles converge into the Manuvo logo on coral. */
+        S.s = st.newScene();
+        S.s.background = new THREE.Color(C.coral);
+        S.s.fog = new THREE.Fog(C.coral, 9, 34);
+        S.s.environmentIntensity = 0.5;
+        PF.three.lights(st, { scene: S.s, ground: C.coral, fill: 0.5, key: 1.5, keyPos: [-4, 8, 6] });
+
+        const svg = new A.SVGLoader().parse(window.MANUVO_LOGO_SVG);
+        const shapes = [];
+        svg.paths.forEach((p) => { const f = (p.userData.style.fill || "").replace(/\s/g, ""); if (f === "rgb(255,87,88)" || f.toLowerCase() === "#ff5758") shapes.push(...A.SVGLoader.createShapes(p)); });
+        const geo = new THREE.ExtrudeGeometry(shapes, { depth: 40, bevelEnabled: true, bevelThickness: 6, bevelSize: 4, bevelSegments: 4, curveSegments: 24 });
+        geo.computeBoundingBox();
+        const bb = geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+        geo.translate(-cx, -cy, -20);
+        const k = 2.15 / (bb.max.x - bb.min.x);
+        // Reversed mark (cream on coral), as the app does on coral.
+        S.logoFace = new THREE.MeshBasicMaterial({ color: C.cream, toneMapped: false, fog: false, transparent: true });
+        S.logoSide = PF.three.mat("gloss", C.deep, { transparent: true });
+        S.logo = new THREE.Mesh(geo, [S.logoFace, S.logoSide]);
+        S.logo.scale.set(k, -k, k);
+        S.logoGroup = new THREE.Group(); S.logoGroup.add(S.logo); S.s.add(S.logoGroup);
+        const flat = new THREE.ShapeGeometry(shapes, 12); flat.translate(-cx, -cy, 0);
+        const sampler = new A.MeshSurfaceSampler(new THREE.Mesh(flat)).setRandomGenerator(PF.random(5)).build();
+        const v = new THREE.Vector3();
+        S.target = [];
+        for (let i = 0; i < 2600; i++) { sampler.sample(v); S.target.push({ x: v.x * k, y: -v.y * k }); }
+        S.swarm = PF.three.particles(st, S.target.length, {
+          scene: S.s, size: 0.075, color: (i) => (i % 9 === 0 ? C.deep : C.cream),
+          pos: (i, t, o) => {
+            const r = PF.random(i * 17 + 2);
+            const a = r() * Math.PI * 2, e = (r() - 0.5) * Math.PI, R = 2.5 + r() * 5, delay = r();
+            const spin = a + (t - LOCK) * 0.6;
+            const sx = R * Math.cos(e) * Math.cos(spin), sy = R * Math.sin(e) * 0.9, sz = R * Math.cos(e) * Math.sin(spin) - 1.5;
+            const u = PF.step(t - LOCK + 0.25 - delay * 0.45, { stiffness: 60, damping: 12 });
+            const g = S.target[i];
+            o.x = PF.lerp(sx, g.x, u); o.y = PF.lerp(sy, g.y, u); o.z = PF.lerp(sz, 0.12, u);
+          },
+        });
+        unlit(S.swarm.points);
+        S.logoGroup.add(S.swarm.points);
+        S.dust = PF.three.particles(st, 220, {
+          scene: S.s, size: 0.06, color: (i) => (i % 3 ? C.cream : C.deep),
+          pos: (i, t, o) => { const r = PF.random(i * 37 + 6); o.x = (r() - 0.5) * 12; o.y = 6 - ((r() * 12 + t * (0.3 + r() * 0.4)) % 12); o.z = -3 - r() * 8; },
+        });
+        unlit(S.dust.points);
+
+        ["#w5a", "#w5b"].forEach((id) => fit($(id)));
+        $("#vignette").style.background = PF.vignette(0.22, "0,0,0");
+        PF.debug({ grid: b, safe: CUES.safe });
+      }
+
+      function draw(t) {
+        const lock = t >= LOCK;
+
+        /* ---------- the lockup canvas only exists after the footage ---------- */
+        PF.show($("#three"), lock);
+        if (lock) {
+          st.use(S.s);
+          const solid = PF.clamp01(PF.progress(t, b(13, 3), 0.42));
+          S.swarm.update(t);
+          S.swarm.points.material.opacity = 1 - solid;
+          S.swarm.points.visible = solid < 1;
+          S.logo.visible = solid > 0;
+          S.logoFace.opacity = solid;
+          S.logoSide.opacity = solid;
+          const settle = AVVITA(PF.clamp01(PF.progress(t, b(13, 3), 0.8)));
+          S.logoGroup.position.set(0, PF.lerp(0, 0.55, settle), 0);
+          S.logoGroup.rotation.y = (1 - settle) * 0.22;
+          S.dust.update(t);
+          PF.three.shots(st.camera, t, [
+            { at: LOCK, azimuth: -14, elevation: 8, radius: 8.0, target: [0, -0.8, 0], drift: { azimuth: 6, radius: -1.0 } },
+            { at: b(13, 3), azimuth: 0, elevation: 2, radius: 6.6, target: [0, -0.55, 0], drift: { radius: -0.3 } },
+            { at: b(14, 3), azimuth: 4, elevation: 1, radius: 6.5, target: [0, -0.55, 0], drift: { azimuth: -3 } },
+          ]);
+          st.render();
+          const ring = PF.ring(t, b(13, 3), { length: 0.7, from: 90, to: 760 });
+          PF.show($("#ring"), ring.opacity > 0.01);
+          PF.css($("#ring"), { left: `${540 - ring.r}px`, top: `${700 - ring.r}px`, width: `${ring.r * 2}px`, height: `${ring.r * 2}px`, opacity: ring.opacity.toFixed(3), borderWidth: `${ring.width.toFixed(1)}px` });
+        } else PF.show($("#ring"), false);
+
+        /* ---------- scrim: the footage is unknown, so the subtitles always get a ground ---------- */
+        PF.show($("#scrimBot"), !lock);
+        if (!lock) PF.css($("#scrimBot"), { background: "linear-gradient(0deg, rgba(27,30,36,.96) 0%, rgba(27,30,36,.92) 24%, rgba(27,30,36,.55) 36%, rgba(27,30,36,0) 48%)" });
+
+        /* ---------- subtitles and lockup words ---------- */
+        SUBS.forEach((x) => sub(x.id, t, x.on, x.off));
+        slam("#w5a", t, b(14, 1), CUES.duration, 1.22);
+        rise("#w5b", t, b(14, 3), CUES.duration, 18);
+
+        /* ---------- the cut to the lockup ---------- */
+        const wipe = $("#wipe");
+        const T0 = t >= LOCK - 0.42 && t < LOCK ? { at: LOCK - 0.42, length: 0.42 } : null;
+        PF.show(wipe, !!T0);
+        if (T0) {
+          const p = PF.clamp01((t - T0.at) / T0.length);
+          PF.css(wipe, { background: C.coral });
+          PF.iris(wipe, p, 540, 1180, W, H);
+        }
+
+        PF.css($("#vignette"), { background: PF.vignette(lock ? 0.3 : 0.22, lock ? "110,22,24" : "0,0,0") });
+        PF.grain($("#grain"), t, { alpha: 0.05 });
+      }
+
+      PF.film({
+        duration: CUES.duration,
+        setup,
+        draw,
+        waitFor: [PF.signal("three")],
+        register: (tl) => {
+          window.__timelines["main"] = tl;
+        },
+      });
+    </script>
+  </body>
+</html>
