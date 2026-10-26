@@ -108,13 +108,57 @@
   - **Erreur "JSON parameter needs to be valid JSON"** sur le node Claude : `=` en double au collage dans un champ déjà en mode Expression.
   - **Prompt image amélioré** : décor adapté au métier de l'idée, variété de cadrage/sujet, fin du cliché "homme assis au bureau" par défaut.
 - SÉCURITÉ : token Facebook qui avait été exposé en clair → régénéré (token de Page longue durée), à conserver uniquement dans la credential n8n.
+## 2026-07-09
+
+### Prospezione Automatica : workflow construit, testé, FONCTIONNEL
+- Workflow n8n complet construit et validé en conditions réelles sur "commercialista, Rimini" : 20 studios trouvés (Google Places), 3 déjà dans le CRM correctement filtrés, 18 nouveaux qualifiés et créés dans Airtable (mix Alto/Medio, aucun Basso ce lot, expliqué par le fait que les 2 candidats évidents à un score bas - Deloitte, STUCOMAS 5 associés - étaient déjà dans le CRM donc filtrés avant qualification).
+- Décision de conception importante (demandée par Hatem en cours de build) : la qualification IA n'utilise PLUS le contenu/sentiment des avis clients (feedback sur le commercialiste ne prédit rien sur le fit prospect). Recentré sur des critères structurels : nombre de professionnels nommés dans le nom du studio, marque nationale/multinationale à exclure, nombre d'avis comme simple indice de visibilité. Node "Prepara testo recensioni" simplifié en "Prepara dati qualifica" (reviews retirées du pipeline).
+- 3 bugs réels rencontrés et résolus en direct :
+  1. 403 Airtable sur l'opération Search : le token PAT avait write mais pas data.records:read (write seul suffisait jusque-là car jamais de lecture demandée). Scope ajouté.
+  2. Dédoublonnage à 100% faux positif : 8 fiches du CRM avaient un champ Nome vide (seul Contatto rempli) ; la fonction Airtable FIND("", X) renvoie toujours 1, donc ces fiches vides matchaient systématiquement. Formule corrigée avec un garde AND({Nome} != "", ...).
+  3. Erreur "Sito expects a array" : champ Airtable créé par erreur en type Multiple select au lieu de URL. Type corrigé dans Airtable, puis cache de schéma n8n à rafraîchir côté node (bug classique de resource mapper n8n qui ne revalide pas le type automatiquement).
+- Nettoyage post-run : 12 fiches sur 18 avaient le champ Sito dédié vide (créées avant la prise d'effet du rafraîchissement de schéma, alors que l'URL était déjà présente dans le texte de Note) ; backfill fait directement via l'accès Airtable, à partir des URLs déjà présentes dans Note.
+- Réutilisable sur d'autres secteurs (avvocato, notaio) en changeant un seul node de config (Settore).
+
+### Prospezione Automatica : workflow de sourcing + qualification de leads conçu
+- Spécification complète créée dans agence-ia/automations/prospezione-automatica/README.md : workflow n8n (14 nodes) qui cherche des studios via l'API Google Places (annuaire d'entreprises public), les qualifie avec Claude (punteggio Alto/Medio/Basso + accroche italienne "Lei" générée), vérifie les doublons dans le CRM Airtable avant création, et boucle sur toute la liste.
+- Décision de conception assumée : PAS de scraping LinkedIn automatique (viole les CGU, risque de bannissement de compte). Le contact humain sur LinkedIn reste manuel, comme pour les 7 premiers prospects. L'automatisation couvre uniquement la découverte + qualification (données professionnelles publiques Google), pas le contact.
+- Qualification basée sur les avis Google (texte des reviews) plutôt que sur du scraping de site web : plus robuste, pas de dépendance à la structure de chaque site.
+- Réutilisable pour d'autres secteurs (avvocato, notaio) en changeant un seul node de config.
+- Reste à faire côté Hatem : créer une clé Google Places API (Google Cloud), créer la credential Query Auth dans n8n, construire les 14 nodes, tester sur "commercialista Rimini".
+
+### Jalon : Semaines 1-3 du plan bouclées + 3 actifs en production
+- Synthèse de la session (travaux détaillés dans les entrées du 24/06 ci-dessous) : les Semaines 1 à 3 du plan 30 jours sont terminées (J15 exécuté, J16 CRM, J17 moteur de contenu ; J18 écarté ; J19/20/21 faits). Semaine 4 entamée (J24/25/26 faits).
+- Trois actifs concrets désormais EN PRODUCTION : (1) site AutomaIA déployé sur Vercel et public, (2) CRM Airtable qui se remplit seul depuis le formulaire du site, (3) moteur de contenu n8n qui publie automatiquement sur LinkedIn + Facebook + Instagram à partir d'une idée.
+- Contexte mis à jour : CONTEXT.md (projets en cours, prix figés, nouveaux livrables proposition + objections, Page LinkedIn Automa IA, liste d'outils enrichie : Airtable, API Claude, Vercel, Canva, OpenAI).
+- Reste sur le plan : Semaine 4 (entraînement objections J26, J22 outbound, J23 audit, J27 onboarding, J28 bilan, J29-30 relances). Aucun jour en attente sur les Semaines 1 à 3.
+- Tâches techniques en suspens : mettre à jour n8n (débloquera l'image sur LinkedIn et évitera les décalages de version d'API) ; régénération du token n8n déjà faite (sécurité close).
 
 ## 2026-06-24
+
+### Jour 17 (déclinaison de contenu) : FAIT, workflow n8n construit et testé
+- Workflow "Declinazione Contenuti" construit dans n8n et testé de bout en bout : Manual Trigger → Set (variable idea) → HTTP Request Claude (node copié de l'assistant emails pour réutiliser l'auth) → Code parsing JSON. 1 idée produit bien 3 posts LinkedIn/Instagram/Facebook en italien. Critère "fait" atteint.
+- Offre vendable documentée dans agence-ia/automations/jour17-declinazione-contenuti/README.md (prompt + workflow + exemple). TikTok écarté (décision 19/06).
+- 2 ajustements qualité après 1er test : 1) Instagram sortait les "\n" en toutes lettres → fonction clean() ajoutée dans le node Code (replace des \n littéraux par de vrais retours à la ligne) + règle dans le prompt ; 2) Claude écrivait en "voi", or la marque est en "Lei" → décision Hatem : "Lei" partout (réseaux compris), règle "Lei singulier obligatoire" ajoutée au prompt.
+- Réflexe métier : un livrable IA = prompt (le savoir-faire) + automatisation (le moteur). Service facturable à un cabinet.
+- Publication multi-plateformes : branchement des nodes de publication de Hatem (Générer image OpenAI → Upload ImgBB → Facebook + Instagram via Graph API) sur la sortie du node Code. Texte récupéré par nom de node (`$('Code').item.json.facebook/instagram`) pour survivre aux nodes image qui écrasent $json.
+- LinkedIn auto reporté : l'automatisation LinkedIn bloque car la credential n8n réclame un scope LinkedIn déprécié (r_emailaddress) que LinkedIn n'accorde plus. Posting Page entreprise nécessiterait en plus w_organization_social (Community Management API, validation LinkedIn). Décision : LinkedIn à la main pour l'instant ; auto à régler plus tard (mise à jour n8n, ou HTTP Request + Generic OAuth2 scope w_member_social, profil perso).
+- Qualité : Haiku produisait des fautes inacceptables pour du contenu public (mots en anglais "under control", hashtag en français "#Comptabile", "#AutomalA" mal orthographié). Correctif retenu : passage à Sonnet (claude-sonnet-4-6) + règles strictes ajoutées au prompt (LANGUE italien uniquement, hashtags sans accents/fautes/mots inventés). Sonnet produit désormais des textes propres et publiables. Règle d'or rappelée : toujours relire avant de publier du contenu de marque.
+- Faux problème des "\n" élucidé : les données sont propres (vrais sauts de ligne), c'est la VUE TABLE de n8n qui affiche/copie les retours à la ligne sous forme de "\n". Vérifié par témoin JS (ig.includes("\\n") = false) et expliqué : LinkedIn (bloc unique) n'affiche aucun "\n", IG/FB (multi-paragraphes) en affichent, ce qui prouve que ce sont de vrais sauts de ligne. Nettoyage robuste dans le node Code via split("\\n").join("\n").
+- Workflow Declinazione Contenuti FONCTIONNEL de bout en bout : génération 3 posts propres → publication auto sur les 3 plateformes. Facebook + Instagram avec image (chaîne OpenAI image → ImgBB → Graph API). LinkedIn en texte, premier post publié avec succès.
+- LinkedIn automatisé (résolu) : le node LinkedIn natif de n8n 2.4.4 est cassé (scopes dépréciés r_emailaddress via toggle "Legacy", puis version d'API morte 20250401 même en texte). Contournement retenu et fonctionnel : credential LinkedIn OAuth2 connectée (Legacy OFF, Organization Support OFF, scopes openid/profile/w_member_social, app avec produits "Share on LinkedIn" + "Sign In OpenID Connect", profil perso), puis 2 nodes HTTP Request : GET /v2/userinfo (récupère le `sub`) → POST /v2/ugcPosts (author urn:li:person:{sub}, texte depuis le node Code, shareMediaCategory NONE). Astuce débogage : référencer le node par son nom EXACT (espace inclus, ex "Code ") ou glisser le champ depuis le panneau ; pour le sub, $json.sub car node précédent direct.
+- IMAGE LinkedIn encore à faire : bloquée par la version d'API du node natif. Vraie solution durable = METTRE À JOUR n8n (le node récent gère l'image + une version d'API valide). Tâche séparée pour plus tard.
+
+### Site AutomaIA déployé en ligne sur Vercel
+- Le site Next.js (agence-ia/site/automaia-web) est désormais déployé sur Vercel et public. Le formulaire de contact en production crée bien une fiche dans le CRM Airtable (testé : lead réel arrivé dans la table Prospects). Chaîne d'acquisition complète et publique : visiteur → formulaire site en ligne → webhook n8n → CRM Airtable.
+- Décision git : branche claude/magical-mendel-enfcp3 fusionnée dans main (fast-forward, 85 commits, autorisé explicitement par Hatem) car le site n'existait que sur la branche et Vercel lit la branche par défaut. main est maintenant le code de référence ; Vercel déploie main. Suite du dev sur branche, à refusionner dans main pour publier.
+- Config Vercel : Root Directory = agence-ia/site/automaia-web (monorepo), variable NEXT_PUBLIC_N8N_WEBHOOK_URL reportée dans les env vars Vercel (sinon le formulaire en prod enverrait dans le vide).
+- Build vérifié OK avant déploiement (next build, 6 pages statiques).
 
 ### Jour 16 (Airtable comme CRM) : FAIT ET BRANCHÉ DE BOUT EN BOUT
 - Flux complet fonctionnel : formulaire du site AutomaIA → webhook n8n (nouveau workflow "Sito - Nuovo Lead", path /webhook/nuovo-lead) → node Airtable Create → ligne dans la table Prospects. CRM qui se remplit tout seul, validé par soumissions réelles.
 - Base CRM créée : `AutomaIA - CRM Prospect` (app2s4sQDVTe8ESGZ), table `Prospects` (tbl2D8SoJfW5RbbX9), 9 champs niche libéraux italiens. 2 fiches d'exemple conservées (Studio Bianchi, Studio Verdi), tests nettoyés.
-- Côté site : variable NEXT_PUBLIC_N8N_WEBHOOK_URL configurée dans .env.local (automaia-web) pointant vers le webhook n8n. Site en local pour l'instant (penser à reporter la variable sur l'hébergeur le jour du déploiement).
+- Côté site : variable NEXT_PUBLIC_N8N_WEBHOOK_URL configurée dans .env.local (automaia-web) pointant vers le webhook n8n. (Site désormais déployé sur Vercel, voir entrée dédiée plus haut, variable reportée sur Vercel.)
 - Débogage de bout en bout (vrai entraînement) : 1) variable NEXT_PUBLIC lue au démarrage uniquement (redémarrer npm run dev) ; 2) piège Notepad .env.local.txt ; 3) workflow actif = exécutions visibles dans l'onglet Executions, pas sur le canvas ; 4) token Airtable 403 résolu en RÉGÉNÉRANT le token (la credential n8n gardait une ancienne valeur ; modifier les permissions ne suffit pas, il faut resynchroniser la valeur dans n8n). Scopes requis : data.records:write (+ read/schema par sécurité) + accès explicite à la base.
 - Doc : agence-ia/automations/jour16-crm-airtable/README.md.
 
