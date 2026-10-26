@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 # Installe ou met a jour OpenMontage (studio video agentique, AGPLv3).
-# Usage : bash scripts/install-openmontage.sh
+#
+# Usage :
+#   bash scripts/install-openmontage.sh
+#   OPENMONTAGE_DIR=~/OpenMontage bash scripts/install-openmontage.sh
+#
+# OPENMONTAGE_DIR choisit ou installer OpenMontage. Par defaut : le dossier
+# OpenMontage/ a la racine du depot, deja ignore par .gitignore. Sous WSL,
+# une cible dans le home Linux (~/OpenMontage) rend pip et npm nettement plus
+# rapides qu'un chemin /mnt/c, au prix d'une installation hors du depot.
 set -euo pipefail
 
 REPO_URL="https://github.com/calesthio/OpenMontage.git"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-TARGET="$ROOT/OpenMontage"
+TARGET="${OPENMONTAGE_DIR:-$ROOT/OpenMontage}"
+TARGET="${TARGET/#\~/$HOME}"                 # accepte ~ meme entre quotes
+case "$TARGET" in /*) ;; *) TARGET="$PWD/$TARGET" ;; esac   # force un chemin absolu
 
 say() { printf '\n==> %s\n' "$1"; }
 die() { printf '\nERREUR : %s\n' "$1" >&2; exit 1; }
@@ -30,6 +40,7 @@ NODE_MAJOR="$(node -p 'process.versions.node.split(".")[0]')"
 printf '    python  : %s (%s)\n' "$PY" "$("$PY" -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')"
 printf '    node    : %s\n' "$(node --version)"
 printf '    ffmpeg  : %s\n' "$(ffmpeg -version 2>/dev/null | head -1 | cut -d' ' -f3)"
+printf '    cible   : %s\n' "$TARGET"
 
 if [ -d "$TARGET/.git" ]; then
   say "OpenMontage deja present, mise a jour"
