@@ -7,6 +7,20 @@
 
 ---
 
+## 2026-10-26
+
+### OpenMontage ajouté à la stack : production vidéo agentique
+- Le lien transmis (fichier Drive « STUDIO — OpenMontage, i link del video ») n'était pas un skill Claude Code mais une note pointant vers **OpenMontage** (github.com/calesthio/OpenMontage, licence AGPLv3), un projet complet Python + Node de 164 Mo qui transforme Claude Code en studio de production vidéo. Il ne s'installe pas dans `.claude/skills/`, il se clone comme projet autonome et se pilote en ouvrant Claude Code **dans** son dossier
+- Pipeline unique pour tous les formats : `research -> proposal -> script -> scene_plan -> assets -> edit -> compose`, avec arrêt et demande de validation à chaque choix créatif. 11 pipelines disponibles, dont Animated Explainer, Cinematic, Clip Factory, Documentary Montage, Screen Demo et Localization & Dub
+- Kit d'installation persistant écrit dans le workspace : `scripts/install-openmontage.sh` (clone ou met à jour, vérifie Python 3.10+, Node 18+ et FFmpeg, lance `make setup`), `docs/OPENMONTAGE.md` (guide FR, coûts, prompts testés, limites) et le skill `.claude/skills/video-openmontage/` qui route toute demande vidéo vers le bon pipeline et annonce le coût avant de produire. Le dossier `OpenMontage/` lui-même est en `.gitignore` : projet externe de 164 Mo, réinstallable par script
+- **Chemin à 0 euro confirmé** : voix off Piper TTS hors ligne, images Pexels / Unsplash / Pixabay (clés développeur gratuites), vraies séquences vidéo depuis Archive.org, NASA et Wikimedia Commons, composition Remotion ou HyperFrames, sous-titres mot à mot et encodage FFmpeg. Pour obtenir de la vraie vidéo et pas des photos animées, il faut demander un *documentary montage* avec `use real footage only`
+- Chemin payant : les courts-métrages d'exemple du dépôt ont coûté de 1,33 à environ 5 dollars de génération chacun. Toutes les clés API sont facultatives, le système estime le coût avant de lancer et accepte un plafond de dépense. Ordre d'ajout retenu par qualité/prix : Pexels et Pixabay (gratuites), puis `FAL_KEY`, puis `GOOGLE_API_KEY`, puis `ELEVENLABS_API_KEY`
+- **L'installation des dépendances n'a pas été faite** : `make setup` a été bloqué par le classifieur de sécurité (exécution de code externe téléchargé). Sans conséquence, parce qu'une session cloud tourne dans un conteneur éphémère sans GPU où les rendus seraient perdus de toute façon. OpenMontage doit tourner en local, via le script d'installation
+- Règle de partage écrite avec le skill `brand-motion-design` déjà présent : film de marque court à partir du logo et des visuels d'un client, sans installation, `brand-motion-design` ; production longue avec voix off, recherche et archives, OpenMontage
+- Piste de monétisation identifiée comme la plus rapide à vendre sans portfolio étoffé : le pipeline **Clip Factory**, le client fournit un webinaire ou un podcast et reçoit 15 à 20 shorts verticaux sous-titrés, coût de génération quasi nul. Suivi par Screen Demo (démo produit) et Localization & Dub (doublage italien, pertinent sur le marché de Rimini)
+
+---
+
 ## 2026-10-22
 
 ### Prospection artisans Manuvo : workflow n8n + CRM Notion
