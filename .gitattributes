@@ -1,0 +1,6 @@
+# Normalisation des fins de ligne (core.autocrlf=true cassait les scripts sous Linux/WSL).
+* text=auto
+
+# Les scripts shell doivent rester en LF : bash sous Linux refuse les CRLF
+# (`set -euo pipefail\r` -> "set: pipefail: invalid option name").
+*.sh text eol=lf
