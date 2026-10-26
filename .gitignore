@@ -25,3 +25,6 @@ venv/
 # Systeme
 .DS_Store
 Thumbs.db
+
+# OpenMontage (projet externe AGPLv3, 164 Mo, reinstallable via scripts/install-openmontage.sh)
+/OpenMontage/

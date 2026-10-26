@@ -124,6 +124,14 @@ Skill de veille intelligente qui filtre les actualités selon mon contexte perso
 
 L'avantage : pas de bruit. Seulement ce qui me concerne vraiment, vu mes objectifs et projets actuels.
 
+### video-openmontage
+
+Skill de production vidéo qui pilote OpenMontage (projet open source installé dans `OpenMontage/`).
+Activée quand je demande une vidéo, un Reel, un TikTok, un explainer, une démo produit, le découpage
+d'une vidéo longue en shorts, ou un doublage. Choisit le pipeline, annonce le coût et privilégie
+le chemin gratuit. Guide complet dans `docs/OPENMONTAGE.md`, installation via
+`bash scripts/install-openmontage.sh`.
+
 ---
 
 ## Getting Started
