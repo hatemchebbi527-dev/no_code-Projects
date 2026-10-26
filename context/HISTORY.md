@@ -21,24 +21,6 @@
 
 ---
 
-## 2026-10-22
-
-### Prospection artisans Manuvo : workflow n8n + CRM Notion
-- Hatem a construit lui-même la prospection artisans : le workflow n8n « prospezione artigiani V4 - Google places to Notion », qui interroge Google Places, fait qualifier chaque fiche par Claude (Punteggio IA, Motivo qualifica, Accroche) et écrit dans le CRM Notion « CRM Artigiani — Manuvo (Rimini) », avec le Place ID comme clé anti-doublon
-- L'avancement de chaque artisan vit dans la propriété **Stato** : Nuovo, Da contattare, Contattato, Interessato, Iscritto Manuvo, Non interessato, complétée par Contattato, Ultimo contatto et Follow-up J+4
-- **Le Google Sheet « liste des 60 » est abandonné.** Les références au Sheet et à la « colonne pré-accord » ont été remplacées par le CRM dans `manuvo/ROADMAP.md` et dans cinq pages du calendrier Notion (étapes 3, 6a, 6b sem. 1 et sem. 3, 8b)
-- Correction de séquencement : l'étape 6a (premiers messages, 16 oct) demandait de noter les réponses dans une base que l'étape 3 ne créait que le 19 oct. L'étape 3 est avancée au 15 oct, avant la première vague
-- Offre d'amorçage tranchée (étape 8) : **5 crediti offerts** par artisan inscrit, soit 10 € de valeur. Avec un déblocage à 3-5 crédits, cela couvre **un seul contact**, quatre à cinq fois moins que le repère initial de l'étape (« de quoi débloquer 4 à 5 clients »). Coût pour 40 artisans : 400 € de revenu non encaissé, 0 € de trésorerie. Point de vigilance consigné sur la page Notion de l'étape 8 : si le taux de rachat décroche, c'est ce nombre qu'il faut bouger en premier, pas le prix du crédit
-- Parrainage artisan (étape 37) arbitré dans la foulée : **5 crediti au parrain seulement**, au lieu de « 10 a te, 10 a lui ». Le filleul reçoit ses 5 crediti de bienvenue comme tout le monde, sans cumul. 5 crediti devient le point d'entrée unique quelle que soit la source d'inscription, donc la promesse faite aux pré-inscrits de la chauffe tient sans exception. Règle de déclenchement consignée : le crédit tombe à l'inscription du filleul, pas à son premier achat
-- Ajouté au CRM pour l'étape 8b : l'option `Pre-iscritto` dans Stato (entre Interessato et Iscritto Manuvo) et la case `Richiamato gennaio` pour le sprint de conversion du 4 au 21 janvier. Les options existantes ont gardé leurs identifiants, aucune fiche n'a perdu sa valeur
-
-### Manuvo : Story sondage Instagram
-- Carte de Story 9:16 muette (10 s, 60 fps) portant « Quante volte hai aspettato un artigiano che non è mai arrivato ? », avec la bande y=1150 à 1500 laissée vide pour le sticker sondage. Master sans aucune piste audio, le propriétaire ajoute une musique de la librairie Instagram
-- Le viseur HUD a été retiré à la demande de Hatem (« supprime le cadre qui entoure le message »), d'où un rendu v2
-- Source dans `manuvo/videos/story-sondaggio-attesa/`, film ajouté à la table Films de `manuvo/videos/BRAND.md`
-
----
-
 ## 2026-10-23
 
 ### Manuvo : les previews Vercel migraient la base de production
@@ -56,6 +38,24 @@
 - Le crédit du parrain et la création du filleul sont dans la même transaction Prisma, tracés en `BONUS` avec `reference: "referral:<id du filleul>"`, donc exclus du chiffre d'affaires comme les crédits de bienvenue
 - Côté interface : carte « Invita un collega » dans l'espace crédits (code, lien prêt à copier, compteur de filleuls, rappel du plafond), et colonne `parraine_par` dans la liste et l'export CSV admin. Traductions ajoutées dans les 5 langues
 - Vérifié : `prisma generate` passe, `npm run lint` ne laisse que les 3 problèmes préexistants, `npm run build` sort en exit 0 et `tsc --noEmit` est propre après la génération des types
+
+---
+
+## 2026-10-22
+
+### Prospection artisans Manuvo : workflow n8n + CRM Notion
+- Hatem a construit lui-même la prospection artisans : le workflow n8n « prospezione artigiani V4 - Google places to Notion », qui interroge Google Places, fait qualifier chaque fiche par Claude (Punteggio IA, Motivo qualifica, Accroche) et écrit dans le CRM Notion « CRM Artigiani — Manuvo (Rimini) », avec le Place ID comme clé anti-doublon
+- L'avancement de chaque artisan vit dans la propriété **Stato** : Nuovo, Da contattare, Contattato, Interessato, Iscritto Manuvo, Non interessato, complétée par Contattato, Ultimo contatto et Follow-up J+4
+- **Le Google Sheet « liste des 60 » est abandonné.** Les références au Sheet et à la « colonne pré-accord » ont été remplacées par le CRM dans `manuvo/ROADMAP.md` et dans cinq pages du calendrier Notion (étapes 3, 6a, 6b sem. 1 et sem. 3, 8b)
+- Correction de séquencement : l'étape 6a (premiers messages, 16 oct) demandait de noter les réponses dans une base que l'étape 3 ne créait que le 19 oct. L'étape 3 est avancée au 15 oct, avant la première vague
+- Offre d'amorçage tranchée (étape 8) : **5 crediti offerts** par artisan inscrit, soit 10 € de valeur. Avec un déblocage à 3-5 crédits, cela couvre **un seul contact**, quatre à cinq fois moins que le repère initial de l'étape (« de quoi débloquer 4 à 5 clients »). Coût pour 40 artisans : 400 € de revenu non encaissé, 0 € de trésorerie. Point de vigilance consigné sur la page Notion de l'étape 8 : si le taux de rachat décroche, c'est ce nombre qu'il faut bouger en premier, pas le prix du crédit
+- Parrainage artisan (étape 37) arbitré dans la foulée : **5 crediti au parrain seulement**, au lieu de « 10 a te, 10 a lui ». Le filleul reçoit ses 5 crediti de bienvenue comme tout le monde, sans cumul. 5 crediti devient le point d'entrée unique quelle que soit la source d'inscription, donc la promesse faite aux pré-inscrits de la chauffe tient sans exception. Règle de déclenchement consignée : le crédit tombe à l'inscription du filleul, pas à son premier achat
+- Ajouté au CRM pour l'étape 8b : l'option `Pre-iscritto` dans Stato (entre Interessato et Iscritto Manuvo) et la case `Richiamato gennaio` pour le sprint de conversion du 4 au 21 janvier. Les options existantes ont gardé leurs identifiants, aucune fiche n'a perdu sa valeur
+
+### Manuvo : Story sondage Instagram
+- Carte de Story 9:16 muette (10 s, 60 fps) portant « Quante volte hai aspettato un artigiano che non è mai arrivato ? », avec la bande y=1150 à 1500 laissée vide pour le sticker sondage. Master sans aucune piste audio, le propriétaire ajoute une musique de la librairie Instagram
+- Le viseur HUD a été retiré à la demande de Hatem (« supprime le cadre qui entoure le message »), d'où un rendu v2
+- Source dans `manuvo/videos/story-sondaggio-attesa/`, film ajouté à la table Films de `manuvo/videos/BRAND.md`
 
 ---
 
