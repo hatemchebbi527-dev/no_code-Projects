@@ -8,7 +8,8 @@ pour demander validation.
 
 - Dépôt : https://github.com/calesthio/OpenMontage
 - Site : https://openmontage.video
-- Installé ici dans `OpenMontage/` (ignoré par git, voir `.gitignore`)
+- Emplacement par défaut : `OpenMontage/` à la racine du dépôt (ignoré par git, voir `.gitignore`)
+- Emplacement libre via `OPENMONTAGE_DIR` (section 1). Sous WSL, le home Linux est nettement plus rapide
 
 ---
 
@@ -21,13 +22,69 @@ bash scripts/install-openmontage.sh
 Le script vérifie les prérequis, clone ou met à jour le dépôt, lance `make setup` et crée le
 fichier `.env`. Comptez 5 à 15 minutes la première fois.
 
+### Choisir l'emplacement
+
+Par défaut l'installation va dans `OpenMontage/` à la racine du dépôt. La variable
+`OPENMONTAGE_DIR` permet de la placer ailleurs :
+
+```bash
+OPENMONTAGE_DIR=~/OpenMontage bash scripts/install-openmontage.sh
+```
+
+Le tilde est accepté même entre quotes, un chemin relatif est rendu absolu, et la cible retenue
+s'affiche dans la vérification des prérequis.
+
+**Sous WSL, préférer le home Linux.** Un chemin sous `/mnt/c` passe par le système de fichiers
+9P, qui rend `pip` et `npm` nettement plus lents. Contrepartie : l'installation vit hors du
+dépôt, donc la ligne `/OpenMontage/` du `.gitignore` ne s'applique plus.
+
 **Prérequis** (le script bloque s'il en manque un) :
 
-| Outil | Version | Installation macOS | Installation Debian/Ubuntu |
+| Outil | Version | macOS | Debian/Ubuntu et WSL |
 |---|---|---|---|
-| Python | 3.10+ | `brew install python` | `sudo apt install python3` |
-| Node.js | 18+ | `brew install node` | via [nodejs.org](https://nodejs.org/) |
+| Python | 3.10+ | `brew install python` | `sudo apt install python3 python3-venv python3-pip` |
+| Node.js | 18+ pour le script, **22+ pour HyperFrames** | `brew install node` | voir ci-dessous |
 | FFmpeg | toute | `brew install ffmpeg` | `sudo apt install ffmpeg` |
+| make | toute | fourni avec les Xcode CLT | `sudo apt install make` |
+
+### Le piège Node : 18 suffit au script, pas à HyperFrames
+
+Le script se contente de Node 18, mais le moteur de rendu HyperFrames exige **Node 22 ou plus**.
+Avec Node 18, `make setup` se termine sans erreur et saute silencieusement l'étape HyperFrames :
+
+```
+[skip] HyperFrames cache-warm failed
+HyperFrames runtime_available=False
+note: node major version 18 < required 22
+```
+
+Ubuntu 24.04 ne fournit que Node 18.19 par apt. Deux solutions :
+
+- installer Node 22 depuis l'archive officielle dans le home, sans toucher au Node système :
+  prendre `node-v22.x-linux-x64.tar.xz` sur [nodejs.org/dist](https://nodejs.org/dist/),
+  vérifier le `SHASUMS256.txt`, extraire, puis ajouter à `~/.bashrc` la ligne
+  `export PATH="$HOME/.local/opt/node22/bin:$PATH"`
+- ou passer par un gestionnaire de versions (nvm, fnm)
+
+Contrôler ensuite avec `make hyperframes-doctor`, qui doit afficher `runtime_available: true`.
+Attention : ce PATH n'est chargé que dans un shell interactif, donc un `wsl -- commande` lancé
+depuis Windows retombe sur le Node système.
+
+### Rendu local sous WSL : deux dépendances de plus
+
+Le rendu local a besoin de Chrome Headless Shell, que HyperFrames télécharge lui-même. Mais une
+WSL minimale n'a ni de quoi l'extraire, ni ses bibliothèques de démarrage :
+
+```bash
+sudo apt install -y unzip
+sudo apt install -y libnss3 libnspr4 libatk1.0-0t64 libatk-bridge2.0-0t64 \
+  libcups2t64 libdrm2 libxkbcommon0 libatspi2.0-0t64 libxcomposite1 \
+  libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2t64
+npx hyperframes browser ensure
+```
+
+Sur Ubuntu 24.04 plusieurs de ces paquets portent le suffixe `t64` (transition 64 bits) : les
+noms sans suffixe que suggère le doctor n'existent plus.
 
 ## 2. Utilisation
 
@@ -35,6 +92,15 @@ OpenMontage se pilote en ouvrant Claude Code **à l'intérieur** du dossier, pas
 
 ```bash
 cd OpenMontage && claude
+```
+
+Si l'installation a été placée ailleurs via `OPENMONTAGE_DIR`, ouvrir Claude Code depuis ce
+dossier. Sous WSL, depuis un terminal Linux et non depuis Windows, pour que le PATH de Node 22
+soit chargé :
+
+```bash
+wsl -d Ubuntu
+cd ~/OpenMontage && claude
 ```
 
 Puis décrire la vidéo en langage naturel, en anglais de préférence (les skills du projet sont
@@ -45,7 +111,7 @@ Make a 45-second animated explainer about why the sky is blue
 ```
 
 Le tableau de bord local **Backlot** s'ouvre automatiquement et montre l'avancement du
-pipeline en direct. Les rendus arrivent dans `OpenMontage/projects/<nom-du-projet>/renders/final.mp4`.
+pipeline en direct. Les rendus arrivent dans `<dossier OpenMontage>/projects/<nom-du-projet>/renders/final.mp4`.
 
 ## 3. Coût réel
 
@@ -155,6 +221,8 @@ Avant de vendre, produire 2 ou 3 pièces de démonstration pour le portfolio ave
   sont plus fiables en anglais.
 - **Sans clé payante** : pas de génération de plans vidéo originaux, uniquement des images
   animées ou de vraies archives libres récupérées puis montées.
+- **Node 22 requis par HyperFrames** : avec Node 18, `make setup` réussit mais le rendu
+  HyperFrames reste indisponible, sans erreur bloquante. Voir section 1.
 
 ## 8. Recoupement avec le skill `brand-motion-design`
 
