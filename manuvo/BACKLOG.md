@@ -52,7 +52,9 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - [x] Pixel branché dans le code (2026-09-25), piloté par `NEXT_PUBLIC_META_PIXEL_ID` (inactif tant que la variable n'est pas définie). Événements : `PageView` (toutes pages), `Lead` (publication d'une demande), `CompleteRegistration` (inscription artisan).
   - [x] Convention UTM documentée + instructions de setup dans `MARKETING.md`.
   - [x] Correction (2026-10-28) : `CompleteRegistration` était perdu silencieusement. Les effets des composants enfants s'exécutent avant ceux du layout, donc l'événement partait avant que `window.fbq` n'existe. Le chargement du Pixel est désormais idempotent dans `src/lib/pixel.ts` et déclenché aussi par `trackPixel`.
-  - [ ] Reste (action manuelle, hors code) : créer le Pixel dans Meta Events Manager, coller l'ID dans `NEXT_PUBLIC_META_PIXEL_ID` sur Vercel (Production + Preview, **sans** Sensitive), redéployer, puis valider les 3 événements avec Meta Pixel Helper (checklist dans `MARKETING.md`).
+  - [x] Pixel activé en production (2026-10-28) : dataset Meta `1481208763866288`, variable définie sur Vercel (Production + Preview, non Sensitive), redéployé. `PageView` vérifié en production. Événements automatiques de Meta laissés sur OFF pour éviter les doublons avec les événements codés.
+  - [x] Domaine `automa-ia.net` vérifié côté Meta (2026-10-28) via enregistrement TXT. Le DNS est chez **Wix** (registrar et hébergeur de zone), pas chez OVH. Détails dans `MARKETING.md` section 2.
+  - [ ] Reste : vérifier `Lead` et `CompleteRegistration` **le jour du lancement**. Tant que `COMING_SOON=1`, `/pubblica` et `/signup` sont redirigés vers `/` (`src/auth.config.ts`), et aucune preview Vercel n'est construite (`vercel.json`). Checklist de lancement dans `MARKETING.md` section 3.
   - [ ] Reste : événement `Purchase` sur l'achat de crédits (à faire avec Stripe Live).
   - [ ] Optionnel : Meta Conversions API (CAPI) serveur pour fiabiliser le suivi.
 
