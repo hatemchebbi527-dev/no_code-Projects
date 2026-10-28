@@ -16,18 +16,33 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
+// respondWith() esige una Response: caches.match() restituisce undefined
+// quando la risorsa non e in cache, e undefined fa lanciare
+// "Failed to convert value to 'Response'". Questa risposta chiude il buco.
+const offlineFallback = () =>
+  new Response("", { status: 503, statusText: "Service Unavailable" });
+
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
 
+  // Richieste verso altre origini (Meta Pixel, font...): lasciamo fare al
+  // browser. Il service worker non ha niente da aggiungere e intercettarle
+  // rischia solo di romperle.
+  if (new URL(req.url).origin !== self.location.origin) return;
+
   // Navigazioni: rete, fallback pagina offline.
   if (req.mode === "navigate") {
-    event.respondWith(fetch(req).catch(() => caches.match(OFFLINE_URL)));
+    event.respondWith(
+      fetch(req).catch(async () => (await caches.match(OFFLINE_URL)) || offlineFallback()),
+    );
     return;
   }
 
   // Altre risorse GET: rete, fallback eventuale cache.
-  event.respondWith(fetch(req).catch(() => caches.match(req)));
+  event.respondWith(
+    fetch(req).catch(async () => (await caches.match(req)) || offlineFallback()),
+  );
 });
 
 // Web Push: mostra la notifica ricevuta.
