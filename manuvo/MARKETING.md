@@ -32,9 +32,30 @@ Tant qu'elle n'est pas définie, le Pixel ne charge pas (zéro impact).
    - Value : ton ID
    - Environnements : Production (+ Preview pour tester)
    - **Ne pas** cocher Sensitive (un ID de Pixel est public).
-4. Redéploie. Vérifie avec l'extension **Meta Pixel Helper** (Chrome) que `PageView` remonte.
+4. **Redéploie** (obligatoire) : `NEXT_PUBLIC_*` est injecté dans le bundle **au moment du build**.
+   Ajouter la variable sans redéployer ne change rien, l'ancien build reste servi sans Pixel.
 
 > Remarque : l'ID de Pixel est une donnée publique, exposée au navigateur. Ce n'est pas un secret.
+
+### Vérification avec Meta Pixel Helper (Chrome)
+
+Installe l'extension **Meta Pixel Helper**, puis parcours les 3 parcours. L'icône doit afficher ton ID de Pixel et les événements suivants :
+
+| # | Parcours à faire | Événement attendu |
+|---|------------------|-------------------|
+| 1 | Ouvrir `https://manuvo.automa-ia.net`, puis cliquer vers une autre page | `PageView` (un par page, navigation interne incluse) |
+| 2 | `/pubblica` → remplir la demande, vérifier le téléphone, publier | `Lead` (au message de succès) |
+| 3 | `/signup` → inscrire un artisan test jusqu'à l'arrivée sur `/dashboard` | `CompleteRegistration` (une seule fois, à l'arrivée) |
+
+Tests à faire en navigation **normale** (pas en navigation privée) et **sans bloqueur de pub**, sinon `fbevents.js` est bloqué et rien ne remonte.
+
+Si rien n'apparaît, dans cet ordre :
+1. Console du navigateur : `window.fbq` doit exister. Sinon la variable n'est pas dans le build → vérifier Vercel puis **redéployer**.
+2. Vercel → Deployments → dernier déploiement → onglet Environment Variables : `NEXT_PUBLIC_META_PIXEL_ID` doit y figurer.
+3. Si `Sensitive` a été coché par erreur : la variable n'est pas exposée au client. Supprime-la et recrée-la sans Sensitive.
+4. Events Manager → Test des événements : les événements arrivent avec quelques minutes de décalage côté tableau de bord, Pixel Helper est immédiat.
+
+Pour tester sur une Preview avant la production, la variable doit aussi être cochée sur l'environnement **Preview** (sinon le Pixel reste inactif sur les previews).
 
 ---
 
