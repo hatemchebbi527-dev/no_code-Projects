@@ -127,9 +127,20 @@ Les trois coexistent. **Ne jamais supprimer le SPF** : les emails `@automa-ia.ne
 https://dns.google/resolve?name=automa-ia.net&type=TXT
 ```
 
-### Rappels ICANN
+### Emails ICANN : savoir lequel est urgent
 
-Wix envoie périodiquement des demandes de confirmation des coordonnées du titulaire. **Sans confirmation, le domaine peut être suspendu**, ce qui couperait le site vitrine, Manuvo et les emails `@automa-ia.net` d'un coup. Ne pas laisser ces emails non lus.
+Wix envoie deux types d'emails sur les coordonnées du titulaire. Ils se ressemblent, mais un seul engage une suspension.
+
+| Email | Quand | Action |
+|-------|-------|--------|
+| « **Conferma** i dettagli di contatto del tuo dominio » | à l'enregistrement du domaine, ou après un changement de nom ou d'email du titulaire | **cliquer Conferma sous 14 jours**, sinon le domaine est suspendu |
+| « **Controlla** le informazioni di contatto del tuo dominio » | rappel annuel (WHOIS Data Reminder Policy) | aucune, sauf si une information est fausse. L'email le dit lui-même : « se le informazioni sono corrette, non c'è niente che devi fare » |
+
+Une suspension couperait le site vitrine, Manuvo et les emails `@automa-ia.net` d'un coup. En cas de doute sur l'état du domaine, le test le plus simple reste de vérifier qu'il résout et que le site répond.
+
+L'email de contact WHOIS doit rester une adresse **hors** de ce domaine : si `automa-ia.net` tombe, une adresse `@automa-ia.net` ne recevrait plus rien.
+
+Modifier les coordonnées : `https://manage.wix.com/account/domains` → **Azioni** → informations de contact. Changer le nom ou l'email du titulaire déclenche une nouvelle confirmation et un blocage de transfert de 60 jours imposé par ICANN.
 
 ---
 
