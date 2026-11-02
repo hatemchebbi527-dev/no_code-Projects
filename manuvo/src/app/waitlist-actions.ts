@@ -4,6 +4,7 @@
 // NB : un fichier "use server" ne peut exporter QUE des fonctions async.
 import { getLocale } from "next-intl/server";
 import { addToWaitlist } from "@/lib/waitlist";
+import { getUtm } from "@/lib/utm";
 
 export async function joinWaitlist(
   _prev: { ok?: boolean; error?: string } | undefined,
@@ -11,6 +12,6 @@ export async function joinWaitlist(
 ): Promise<{ ok?: boolean; error?: string } | undefined> {
   const email = String(formData.get("email") ?? "");
   const lang = await getLocale();
-  const res = await addToWaitlist(email, lang);
+  const res = await addToWaitlist(email, lang, await getUtm());
   return res.ok ? { ok: true } : { error: res.error };
 }

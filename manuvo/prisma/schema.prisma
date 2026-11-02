@@ -30,6 +30,11 @@ model User {
   // Parrainage : le code d'invitation est le matricule du parrain (ART-0001).
   // Renseigne une seule fois a l'inscription, jamais modifiable ensuite.
   referredById String?
+  // Attribution marketing (parametres utm_* au moment de la conversion)
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  utmContent   String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -122,6 +127,12 @@ model Lead {
   status       String   @default("OPEN") // OPEN | CLOSED
   unlocksCount Int      @default(0) // nb d'artisans ayant debloque
   maxUnlocks   Int      @default(3) // plafond : 3 artisans max par demande
+
+  // Attribution marketing (parametres utm_* au moment de la conversion)
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  utmContent   String?
 
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -235,6 +246,10 @@ model Waitlist {
   id        String   @id @default(cuid())
   email     String   @unique
   lang      String   @default("it")
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
   createdAt DateTime @default(now())
 
   @@index([createdAt])

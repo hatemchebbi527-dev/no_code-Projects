@@ -7,6 +7,7 @@ import { headers } from "next/headers";
 import { getTranslations, getLocale } from "next-intl/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { getUtm } from "@/lib/utm";
 import { signIn, signOut } from "@/auth";
 import {
   COUNTRIES,
@@ -169,10 +170,12 @@ export async function registerArtisan(
 
   const passwordHash = await bcrypt.hash(password, 10);
   const referrerId = referrer?.id ?? null;
+  const utm = await getUtm();
   try {
     await prisma.$transaction(async (tx) => {
       const created = await tx.user.create({
         data: {
+          ...utm,
           email,
           passwordHash,
           role: "ARTIGIANO",

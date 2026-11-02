@@ -3,6 +3,7 @@
 // Manuvo - creazione di una richiesta da parte di un privato (senza account).
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
+import { getUtm } from "@/lib/utm";
 import { notifyMatchingArtisans, notifyAdmins } from "@/lib/notifications";
 import {
   CATEGORIES,
@@ -67,8 +68,10 @@ export async function createLead(
     return { error: t("email") };
   }
 
+  const utm = await getUtm();
   const lead = await prisma.lead.create({
     data: {
+      ...utm,
       category,
       country,
       city,
