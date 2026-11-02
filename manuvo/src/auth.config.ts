@@ -22,7 +22,9 @@ export const authConfig = {
         process.env.COMING_SOON === "1" &&
         (path.startsWith("/pubblica") || path.startsWith("/categorie") || path === "/signup")
       ) {
-        return Response.redirect(new URL("/", nextUrl));
+        const url = new URL("/", nextUrl);
+        url.search = nextUrl.search; // conserve les utm_...
+        return Response.redirect(url);
       }
 
       if (path.startsWith("/admin")) {
