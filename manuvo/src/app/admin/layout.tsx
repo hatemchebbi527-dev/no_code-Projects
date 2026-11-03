@@ -21,6 +21,15 @@ const NAV_MESSAGGI: Record<Locale, string> = {
   ar: "الرسائل",
 };
 
+// Libelle de nav "Lista d'attesa" (inline, 5 langues).
+const NAV_WAITLIST: Record<Locale, string> = {
+  it: "Lista d'attesa",
+  fr: "Liste d'attente",
+  en: "Waitlist",
+  de: "Warteliste",
+  ar: "قائمة الانتظار",
+};
+
 export default async function AdminLayout({
   children,
 }: {
@@ -56,7 +65,11 @@ export default async function AdminLayout({
         </div>
       </header>
       <main className="mx-auto max-w-5xl px-5 py-8">
-        <AdminNav messaggiLabel={NAV_MESSAGGI[locale]} messaggiUnread={msgUnread} />
+        <AdminNav
+          messaggiLabel={NAV_MESSAGGI[locale]}
+          messaggiUnread={msgUnread}
+          waitlistLabel={NAV_WAITLIST[locale]}
+        />
         {children}
       </main>
     </div>

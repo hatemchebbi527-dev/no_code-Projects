@@ -20,9 +20,11 @@ async function fetchMsgUnread(): Promise<number | null> {
 export function AdminNav({
   messaggiLabel,
   messaggiUnread = 0,
+  waitlistLabel,
 }: {
   messaggiLabel: string;
   messaggiUnread?: number;
+  waitlistLabel: string;
 }) {
   const t = useTranslations("admin");
   const pathname = usePathname();
@@ -65,6 +67,7 @@ export function AdminNav({
     { href: "/admin/bozze", label: t("nav_bozze"), badge: 0 },
     { href: "/admin/rimborsi", label: t("nav_rimborsi"), badge: 0 },
     { href: "/admin/messaggi", label: messaggiLabel, badge: msgCount },
+    { href: "/admin/lista-attesa", label: waitlistLabel, badge: 0 },
   ];
 
   return (
