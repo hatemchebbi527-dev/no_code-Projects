@@ -14,6 +14,8 @@ import { HOW_PHOTO } from "@/lib/how-photos";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 import { COMING_SOON } from "@/lib/waitlist";
 import { ComingSoon } from "./ComingSoon";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
 const LEGAL_LINKS: LegalSlug[] = ["privacy", "termini", "cookie", "note"];
 
@@ -226,6 +228,10 @@ export default async function Home() {
     : "it";
   // Mode « coming soon » (pre-lancement) : page de capture d'email au lieu de la landing.
   if (COMING_SOON) {
+    // Admin connecte (ex. app installee sur l'ecran d'accueil, qui s'ouvre sur "/") :
+    // on l'envoie directement au panneau admin au lieu de la page coming soon.
+    const session = await auth();
+    if (session?.user?.role === "ADMIN") redirect("/admin");
     return <ComingSoon locale={locale0} />;
   }
 

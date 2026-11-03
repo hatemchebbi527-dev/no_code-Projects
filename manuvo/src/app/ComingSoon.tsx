@@ -2,6 +2,7 @@
 
 // Manuvo - page « coming soon » (pre-lancement) : hero + capture d'email (waitlist).
 import { useActionState } from "react";
+import Link from "next/link";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type { Locale } from "@/lib/constants";
 import { joinWaitlist } from "./waitlist-actions";
@@ -13,6 +14,14 @@ const SOCIAL = {
   facebook: "https://www.facebook.com/manuvo.it",
   instagram: "https://www.instagram.com/manuvo.it",
   tiktok: "https://www.tiktok.com/@manuvo.it",
+};
+
+const LOGIN_LABEL: Record<string, string> = {
+  it: "Area riservata",
+  fr: "Espace réservé",
+  en: "Sign in",
+  de: "Anmelden",
+  ar: "تسجيل الدخول",
 };
 
 type Strings = {
@@ -177,6 +186,13 @@ export function ComingSoon({ locale }: { locale: Locale }) {
             </svg>
           </a>
         </div>
+        {/* Acces discret a la connexion (app installee : pas de barre d'adresse). */}
+        <Link
+          href="/login"
+          className="mt-10 inline-block text-xs font-medium text-white/60 underline-offset-4 hover:text-white hover:underline"
+        >
+          {LOGIN_LABEL[locale] ?? LOGIN_LABEL.it}
+        </Link>
       </main>
     </div>
   );
