@@ -7,6 +7,21 @@
 
 ---
 
+## 2026-11-03
+
+### Manuvo : lancement fixé au 22 janvier 2027
+- **Décision stratégique** : le lancement passe du 4 décembre au **vendredi 22 janvier 2027**, pour ouvrir la P.IVA le 4 janvier et ne pas perdre une année du régime forfettario à 5 %
+- Calendrier marketing Notion recalé : pré-inscriptions artisans (et non inscriptions) jusqu'au 18 décembre avec objectif de 50, fêtes en rythme réduit, flyers privati distribués les 9, 16 et 20 janvier, date publique annoncée le 13 janvier, légendes de novembre réécrites (« a gennaio », sans date ni promesse SMS)
+- Plan Twilio : étapes 11a, 11b et 11c reportées du 5 au 7 janvier. Pour réduire le risque, ajout d'un mini-test Verify le 12 novembre, du dossier Sender ID le 7 décembre et d'une version B sans SMS le 14 décembre
+
+### Manuvo : nettoyage avant lancement (étape 16) et liste d'attente
+- Outil admin « +3 avis test » / « Reset test » supprimé du code
+- Base Neon vidée de toute l'activité de démo (sauvegarde : branche `br-holy-moon`, 30 jours). 7 comptes de test supprimés, dont `admin@manuvo.app` qui avait le mot de passe par défaut écrit dans le code. Seul admin restant : `info@automa-ia.net`, avec ADMIN_EMAIL et ADMIN_PASSWORD ajoutés dans Vercel
+- Liste d'attente : 1 inscrit de test supprimé, **2 vrais inscrits** conservés
+- Nouvelles fonctions : notification admin (email + push) à chaque nouvelle inscription en liste d'attente, page admin « Lista d'attesa », et accès admin depuis l'app installée sur iPhone en mode coming soon
+
+---
+
 ## 2026-10-22
 
 ### Prospection artisans Manuvo : workflow n8n + CRM Notion
