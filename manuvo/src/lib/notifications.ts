@@ -152,3 +152,59 @@ export async function markAllRead(userId: string): Promise<void> {
     data: { readAt: new Date() },
   });
 }
+
+// Avvisa gli admin (email + push) di ogni NUOVA iscrizione alla lista d'attente,
+// per sapere subito chi si iscrive durante il "coming soon".
+// Best effort: non deve mai bloccare l'iscrizione del visitatore.
+export async function notifyAdminsWaitlistSignup(params: {
+  email: string;
+  lang: string;
+  utmSource?: string | null;
+  utmCampaign?: string | null;
+  baseUrl: string;
+}): Promise<void> {
+  const admins = await prisma.user.findMany({
+    where: { role: "ADMIN" },
+    select: { id: true, email: true },
+  });
+  if (admins.length === 0) return;
+
+  const total = await prisma.waitlist.count();
+  const esc = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const source = [params.utmSource, params.utmCampaign].filter(Boolean).join(" / ");
+
+  const html = adminNoticeHtml({
+    title: "Nuova iscrizione alla lista d'attesa",
+    lines: [
+      `<b>Email:</b> ${esc(params.email)}`,
+      `<b>Lingua:</b> ${esc(params.lang)}`,
+      `<b>Provenienza:</b> ${source ? esc(source) : "diretta / sconosciuta"}`,
+      `<b>Totale iscritti:</b> ${total}`,
+    ],
+    button: "Apri Manuvo",
+    url: `${params.baseUrl}/admin`,
+  });
+
+  await Promise.all(
+    admins
+      .filter((a) => a.email)
+      .map((a) =>
+        sendEmail({
+          to: a.email,
+          subject: `Manuvo · Nuovo iscritto in lista d'attesa (${total})`,
+          html,
+        }),
+      ),
+  );
+
+  await Promise.all(
+    admins.map((a) =>
+      sendPushToUser(a.id, {
+        title: "Manuvo",
+        body: `Nuovo iscritto in lista d'attesa: ${params.email}`,
+        url: "/admin",
+      }),
+    ),
+  );
+}
