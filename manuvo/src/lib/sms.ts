@@ -39,3 +39,15 @@ export async function sendSms(to: string, body: string): Promise<SmsResult> {
     return { ok: false };
   }
 }
+
+// Vero solo se il provider SMS e configurato in questo ambiente.
+// Le variabili sono lette a ogni chiamata, quindi il giorno in cui Twilio e
+// attivo su Vercel il badge "Contatto verificato" torna da solo, senza
+// toccare il codice (tappa 16b della roadmap).
+export function isSmsProviderLive(): boolean {
+  return Boolean(
+    process.env.TWILIO_ACCOUNT_SID &&
+      process.env.TWILIO_AUTH_TOKEN &&
+      process.env.TWILIO_FROM,
+  );
+}
