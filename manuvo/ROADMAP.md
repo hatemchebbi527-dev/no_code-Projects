@@ -112,8 +112,8 @@ janvier, juste avant l'ouverture.
 | 8 | ~~Définir l'offre d'amorçage~~ **tranché le 22 oct : 5 crediti offerts (10 €, 1 contact)** | 22 oct | Décision |
 | 17 | Comptes pub prêts, 3 campagnes en pause | 28 oct | Pub |
 | 18 | 6 créas publicitaires | 30 oct | Pub |
-| 16 | Nettoyage de la base + retrait de l'outil d'avis test | 2 nov | Technique |
-| 16b | Masquer le badge « Contatto verificato » tant que Twilio n'est pas live | 2 nov | Technique |
+| 16 | ~~Nettoyage de la base + retrait de l'outil d'avis test~~ **fait le 3 nov, liste d'attente nettoyée le 4 nov : 2 vrais inscrits** | 2 nov | Technique |
+| 16b | ~~Masquer le badge « Contatto verificato » tant que Twilio n'est pas live~~ **fait le 4 nov : conditionné à `isSmsProviderLive()`, revient seul avec les clés Twilio** | 2 nov | Technique |
 | 8b | **Ouvrir la pré-inscription dans le CRM** (`Pre-iscritto` + `Richiamato gennaio` en place, messages types dans `SOCIAL.md`) | 2 nov | Terrain |
 | 19 | Tableau UTM figé | 3 nov | Pub |
 | 9 | Contenu : 3 posts par semaine, CTA doux | 14 oct → 2 nov | Contenu |

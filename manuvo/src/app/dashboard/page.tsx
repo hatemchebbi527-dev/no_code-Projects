@@ -13,6 +13,7 @@ import { UnlockButton } from "./UnlockButton";
 import { ReportContactButton } from "./ReportContactButton";
 import { RequestReviewButton } from "./RequestReviewButton";
 import { PixelEvent } from "@/components/PixelEvent";
+import { isSmsProviderLive } from "@/lib/sms";
 
 export default async function DashboardPage({
   searchParams,
@@ -32,6 +33,10 @@ export default async function DashboardPage({
   const tc = await getTranslations("common");
   const tCat = await getTranslations("categories");
   const tUrg = await getTranslations("urgency");
+
+  // Tappa 16b : il badge "Contatto verificato" appare solo se gli SMS partono
+  // davvero. In modalita dev nessun numero e verificato, quindi niente promessa falsa.
+  const smsLive = isSmsProviderLive();
 
   const trades = await getUserTrades(userId);
   const [credits, available, mine] = await Promise.all([
@@ -114,12 +119,14 @@ export default async function DashboardPage({
               </div>
 
               {/* Rassicurazione anti clients fantomes : ogni richiesta pubblicata ha il numero verificato via SMS. */}
-              <span className="inline-flex w-fit items-center gap-1.5 rounded-lg bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                {t("contact_verified")}
-              </span>
+              {smsLive && (
+                <span className="inline-flex w-fit items-center gap-1.5 rounded-lg bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  {t("contact_verified")}
+                </span>
+              )}
 
               <div className="mt-1 flex items-center justify-between border-t border-dashed border-neutral-200 pt-3">
                 <span className="flex items-center gap-1.5 text-xs text-neutral-400">
