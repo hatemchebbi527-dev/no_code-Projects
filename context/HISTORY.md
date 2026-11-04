@@ -7,6 +7,13 @@
 
 ---
 
+## 2026-11-04
+
+### Manuvo : étapes 16 et 16b closes
+- **Liste d'attente nettoyée** : Hatem a supprimé lui-même les inscriptions de test créées la veille en vérifiant la page admin « Lista d'attesa ». Il ne reste que les **2 vrais inscrits**. L'étape 16 est terminée
+- **Étape 16b faite** : le badge « Contatto verificato » de la bacheca n'apparaît plus que si le provider SMS est réellement configuré. Nouveau helper `isSmsProviderLive()` dans `manuvo/src/lib/sms.ts`, lu à chaque rendu par `manuvo/src/app/dashboard/page.tsx`. Tant que `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` et `TWILIO_FROM` manquent dans Vercel, `sendSms()` reste en mode dev, aucun numéro n'est vraiment vérifié, donc le badge se tait. Le jour où les clés sont posées, il revient seul, sans redéploiement de code
+- Pourquoi c'était urgent : Twilio Verify est reporté aux 5-7 janvier alors que le lancement est le 22 janvier. Le badge serait parti en production en promettant une vérification inexistante, sur le premier argument de confiance de la plateforme
+
 ## 2026-11-03
 
 ### Manuvo : lancement fixé au 22 janvier 2027
