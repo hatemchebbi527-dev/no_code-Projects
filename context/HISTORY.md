@@ -9,6 +9,13 @@
 
 ## 2026-11-04
 
+### Manuvo : le code de vérification SMS s'affichait à l'écran
+- Test de bout en bout du formulaire public, fait en local sur une vraie base Postgres et dans un vrai navigateur, dans la configuration exacte de la production (aucune variable Twilio). Verdict : **un particulier n'était pas bloqué**, le parcours complet marchait, demande créée en base
+- **Mais la vérification ne protégeait rien** : sans provider SMS, `startPhoneVerification()` renvoyait le code à 6 chiffres au navigateur et le formulaire l'affichait (« Modalità dev, codice: … »). N'importe qui pouvait donc saisir le numéro d'un tiers, lire le code à l'écran et publier une demande à son nom, avec des artisans payant 4 crédits pour appeler quelqu'un qui n'a rien demandé
+- Non exploitable sur le moment : `src/auth.config.ts` redirige `/pubblica`, `/categorie` et `/signup` vers l'accueil tant que `COMING_SOON=1`, vérifié en production. Le trou se serait ouvert le jour du retrait du drapeau, soit le jour du lancement
+- **Option retenue (1 sur 3) : bloquer plutôt que laisser passer.** Garde dans `startPhoneVerification()` : en production sans provider SMS, la vérification est refusée avec l'erreur `sms_unavailable`, avant même de créer un code et de consommer le quota du numéro. Message ajouté dans les 5 langues. Conséquence assumée : si Twilio n'est pas live, le formulaire public se bloque au lieu d'accepter des demandes non vérifiées. Un formulaire bloqué se voit tout de suite, un faux lead se découvre après qu'un artisan a payé
+- Vérifié sur les trois configurations : production sans Twilio (refus, aucun code, aucune ligne en base), développement sans Twilio (code toujours affiché, tests locaux intacts), production avec clés Twilio (le garde se lève, l'envoi réel est tenté)
+
 ### Manuvo : étapes 16 et 16b closes
 - **Liste d'attente nettoyée** : Hatem a supprimé lui-même les inscriptions de test créées la veille en vérifiant la page admin « Lista d'attesa ». Il ne reste que les **2 vrais inscrits**. L'étape 16 est terminée
 - **Étape 16b faite** : le badge « Contatto verificato » de la bacheca n'apparaît plus que si le provider SMS est réellement configuré. Nouveau helper `isSmsProviderLive()` dans `manuvo/src/lib/sms.ts`, lu à chaque rendu par `manuvo/src/app/dashboard/page.tsx`. Tant que `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` et `TWILIO_FROM` manquent dans Vercel, `sendSms()` reste en mode dev, aucun numéro n'est vraiment vérifié, donc le badge se tait. Le jour où les clés sont posées, il revient seul, sans redéploiement de code

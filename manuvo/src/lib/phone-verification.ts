@@ -4,7 +4,7 @@
 import crypto from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { validatePhone } from "@/lib/phone";
-import { sendSms } from "@/lib/sms";
+import { sendSms, isSmsProviderLive } from "@/lib/sms";
 import type { CountryCode } from "@/lib/constants";
 
 const CODE_TTL_MIN = 10; // validite du code envoye
@@ -17,11 +17,17 @@ function hashCode(phone: string, code: string): string {
   return crypto.createHash("sha256").update(`${phone}:${code}`).digest("hex");
 }
 
-export type StartError = "invalid_phone" | "rate_limited" | "sms_failed";
+export type StartError =
+  | "invalid_phone"
+  | "rate_limited"
+  | "sms_failed"
+  | "sms_unavailable";
 export type StartResult = { ok: true; devCode?: string } | { ok: false; error: StartError };
 
 // Genere un code, l'enregistre hashe et l'envoie par SMS. En mode dev (pas de
 // provider), devCode contient le code pour pouvoir tester sans SMS reel.
+// En production devCode n'est jamais renvoye : le garde ci-dessous refuse la
+// verification avant meme de creer un code quand aucun provider n'est actif.
 export async function startPhoneVerification(
   rawPhone: string,
   country: CountryCode,
@@ -29,6 +35,15 @@ export async function startPhoneVerification(
   const v = validatePhone(rawPhone, country);
   if (!v.ok) return { ok: false, error: "invalid_phone" };
   const phone = v.e164;
+
+  // In produzione senza provider SMS la verifica non prova nulla : il codice
+  // sarebbe mostrato a schermo, quindi chiunque potrebbe "verificare" il numero
+  // di un altro e pubblicare a suo nome. Si blocca qui, prima di creare un
+  // codice e di consumare il quota del numero.
+  if (process.env.NODE_ENV === "production" && !isSmsProviderLive()) {
+    console.error("[verify] provider SMS non configurato in produzione: verifica rifiutata");
+    return { ok: false, error: "sms_unavailable" };
+  }
 
   const hourAgo = new Date(Date.now() - 60 * 60 * 1000);
   const recent = await prisma.phoneVerification.count({
