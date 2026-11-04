@@ -423,6 +423,7 @@
     "invalid_phone": "Numéro de téléphone invalide.",
     "rate_limited": "Trop de tentatives. Réessaie dans quelques minutes.",
     "sms_failed": "Échec de l'envoi du SMS. Réessaie.",
+    "sms_unavailable": "Vérification du numéro momentanément indisponible. Réessaie plus tard.",
     "no_code": "Aucun code actif. Demandes-en un nouveau.",
     "code_expired": "Code expiré. Demandes-en un nouveau.",
     "too_many_attempts": "Trop d'essais. Demande un nouveau code.",
