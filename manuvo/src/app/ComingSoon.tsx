@@ -41,7 +41,7 @@ const S: Record<Locale, Strings> = {
   it: {
     badge: "In arrivo a Rimini",
     title: "Presto a Rimini.",
-    subtitle: "La piattaforma che collega privati e artigiani di fiducia. Contatti verificati via SMS, recensioni reali, zero numeri falsi.",
+    subtitle: "La piattaforma che collega privati e artigiani di fiducia. Artigiani della tua zona, recensioni reali, contatto diretto.",
     cta: "Lascia la tua email: sarai tra i primi ad accedere al lancio.",
     placeholder: "La tua email",
     button: "Avvisami al lancio",
@@ -53,7 +53,7 @@ const S: Record<Locale, Strings> = {
   fr: {
     badge: "Bientôt à Rimini",
     title: "Bientôt à Rimini.",
-    subtitle: "La plateforme qui relie particuliers et artisans de confiance. Contacts vérifiés par SMS, avis réels, zéro faux numéro.",
+    subtitle: "La plateforme qui relie particuliers et artisans de confiance. Des artisans près de chez toi, des avis réels, un contact direct.",
     cta: "Laisse ton email : tu seras parmi les premiers au lancement.",
     placeholder: "Ton email",
     button: "Préviens-moi au lancement",
@@ -65,7 +65,7 @@ const S: Record<Locale, Strings> = {
   en: {
     badge: "Coming soon to Rimini",
     title: "Coming soon to Rimini.",
-    subtitle: "The platform connecting people with trusted local artisans. SMS-verified contacts, real reviews, zero fake numbers.",
+    subtitle: "The platform connecting people with trusted local artisans. Artisans near you, real reviews, direct contact.",
     cta: "Leave your email to be among the first at launch.",
     placeholder: "Your email",
     button: "Notify me at launch",
@@ -77,7 +77,7 @@ const S: Record<Locale, Strings> = {
   de: {
     badge: "Demnächst in Rimini",
     title: "Demnächst in Rimini.",
-    subtitle: "Die Plattform, die Privatleute mit vertrauenswürdigen Handwerkern verbindet. SMS-verifizierte Kontakte, echte Bewertungen, keine Fake-Nummern.",
+    subtitle: "Die Plattform, die Privatleute mit vertrauenswürdigen Handwerkern verbindet. Handwerker aus deiner Nähe, echte Bewertungen, direkter Kontakt.",
     cta: "Hinterlasse deine E-Mail und sei beim Start unter den Ersten.",
     placeholder: "Deine E-Mail",
     button: "Beim Start benachrichtigen",
@@ -89,7 +89,7 @@ const S: Record<Locale, Strings> = {
   ar: {
     badge: "قريباً في ريميني",
     title: "قريباً في ريميني.",
-    subtitle: "المنصة التي تربط الأفراد بحرفيين موثوقين. جهات اتصال موثّقة عبر SMS، تقييمات حقيقية، بلا أرقام مزيفة.",
+    subtitle: "المنصة التي تربط الأفراد بحرفيين موثوقين. حرفيون في منطقتك، تقييمات حقيقية، تواصل مباشر.",
     cta: "اترك بريدك الإلكتروني لتكون من الأوائل عند الإطلاق.",
     placeholder: "بريدك الإلكتروني",
     button: "أبلغني عند الإطلاق",
