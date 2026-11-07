@@ -110,7 +110,8 @@ janvier, juste avant l'ouverture.
 | 14 | Meta Pixel actif, 3 events vérifiés | 22 oct | Technique |
 | 11b | **Basculer le code SMS sur Twilio Verify** | 23 oct | Technique |
 | 8 | ~~Définir l'offre d'amorçage~~ **tranché le 22 oct : 5 crediti offerts (10 €, 1 contact)** | 22 oct | Décision |
-| 17, 18 | ⏳ **Non fait, reporté au Bloc D** (comptes pub prêts + 6 créas) : aucun euro de pub avant le 25 janv, et les créas dépendent de deux inconnues, Twilio au 12 nov et le compteur d'artisans à la Porte 1 | ~~28 et 30 oct~~ → 12 et 19 janv | Pub |
+| 17a | ~~Compte publicitaire Meta prêt~~ **fait le 7 nov** : portefeuille business « Manuvo » déjà en place, compte publicitaire créé dedans (il n'y en avait aucun). Avancé exprès : vérification d'identité, validation du moyen de paiement et plafond de dépense d'un compte neuf prennent des jours, à ne pas découvrir en janvier | ~~28 oct~~ → 7 nov | Pub |
+| 17b, 18 | ⏳ **Non fait, reporté au Bloc D** (3 campagnes en pause + 6 créas) : aucun euro de pub avant le 25 janv, et les créas dépendent de deux inconnues, Twilio au 12 nov et le compteur d'artisans à la Porte 1 | ~~28 et 30 oct~~ → 12 et 19 janv | Pub |
 | 16 | ~~Nettoyage de la base + retrait de l'outil d'avis test~~ **fait le 3 nov, liste d'attente nettoyée le 4 nov : 2 vrais inscrits** | 2 nov | Technique |
 | 16b | ~~Masquer le badge « Contatto verificato » tant que Twilio n'est pas live~~ **fait le 4 nov : conditionné à `isSmsProviderLive()`, revient seul avec les clés Twilio** | 2 nov | Technique |
 | 8b | **Ouvrir la pré-inscription dans le CRM** (`Pre-iscritto` + `Richiamato gennaio` en place, messages types dans `SOCIAL.md`) | 2 nov | Terrain |
@@ -175,7 +176,7 @@ fermés, artisans en congé. Rien d'autre : c'est une pause décidée, pas un tr
 | 6c | Closing final des pré-inscrits restants | 18 janv |
 | 20 | Post fondateur « perché ho creato Manuvo » | 18 janv |
 | 7e | Dernier passage grossistes | 19 janv |
-| 17 | **Comptes pub prêts, 3 campagnes en pause** : portefeuille d'entreprise Meta avec contrôle total requis, sinon la création échoue sans message clair | 19 janv |
+| 17b | **3 campagnes en pause** : portefeuille et compte publicitaire Meta en place depuis le 7 nov, il reste à monter les campagnes avec les créas de l'étape 18 | 19 janv |
 | 20 | Countdown J-3, J-2, J-1 | 19, 20, 21 janv |
 | **🚦** | **PORTE 2 — Go/No-Go lancement** | **21 janv** |
 | **🚦** | **Décision promesse SMS : version A ou B** | **21 janv** |
