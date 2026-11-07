@@ -7,6 +7,15 @@
 
 ---
 
+## 2026-11-07
+
+### Manuvo : la roadmap affirmait deux étapes pub qui n'étaient pas faites
+- Point fait sur les **étapes 17 (comptes pub prêts, 3 campagnes en pause) et 18 (6 créas publicitaires)**, portées aux 28 et 30 octobre dans le Bloc B alors que tout le reste du bloc était bouclé
+- **Étape 18 : non faite**, et déjà signalée comme telle à deux endroits (`manuvo/MARKETING.md` section 5 et `manuvo/BACKLOG.md`). Ce qui existe : les textes d'annonces (artifact « Annunci Meta e Google »), 5 slides de carrousel 1080×1350 qui sont du contenu organique de Phase 0 et non des créas, et 6 films de marque. Il manque les visuels carrés et verticaux prêts à uploader
+- **Étape 17 : impossible à vérifier**, aucune trace dans le repo. Windsor.ai n'a qu'un connecteur Instagram branché, sur le compte **`nosy.aicha`** et non `manuvo.it`, donc aucun compte Meta Ads ni Google Ads lisible. À confirmer par Hatem. À reconnecter si le suivi social Manuvo doit passer par là
+- **Correction appliquée** : les deux lignes du Bloc B remplacées par une ligne de renvoi marquée non faite, l'objectif de sortie du bloc ne prétend plus que les campagnes sont construites, et les étapes sont replanifiées dans le Bloc D, l'étape 18 au 12 janvier et l'étape 17 au 19 janvier, donc les créas d'abord puis le montage des campagnes avec elles, avant la Porte 2 du 21 janvier
+- Raison du report plutôt que de l'exécution immédiate : aucun euro de pub avant le 25 janvier, et le contenu des créas dépend de deux inconnues, le sort de Twilio au 12 novembre et le compteur d'artisans à la Porte 1 du 18 décembre. Des créas faites début novembre seraient à refaire
+
 ## 2026-11-04
 
 ### Manuvo : le code de vérification SMS s'affichait à l'écran
