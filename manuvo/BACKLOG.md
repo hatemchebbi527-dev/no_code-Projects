@@ -66,7 +66,7 @@ Statut : `[ ]` à faire · `[~]` en cours · `[x]` fait
   - Skill installée dans le repo (`.claude/skills/brand-motion-design/`, MIT) : films HyperFrames + Three.js, 9:16, musique générée. Profil de marque vidéo : `manuvo/videos/BRAND.md`.
   - [x] Teaser Phase 0 (`manuvo/videos/teaser-phase0/`, 17 s) : v1 livrée.
   - [ ] Suite possible (même série, même HUD et musique) : « Il problema n°1 » (Phase 0, Post 3), annonce J1 « Manuvo è online » au lancement, démo « pubblica in 60s ».
-- [ ] **Régénérer les vrais visuels d'annonces (Meta / Google)**
+- [ ] **Régénérer les vrais visuels d'annonces (Meta / Google)** — étape 18 de `ROADMAP.md`, cible **12 janvier** (reportée du 30 octobre)
   - Images carrées et verticales prêtes à uploader, avec le nouveau logo (hexagone + anuvo), le corail `#FF5758` et le domaine `manuvo.automa-ia.net`
   - Note : les kits d'annonces ne contiennent que les textes et réglages, pas les visuels des créas
 
