@@ -9,6 +9,13 @@
 
 ## 2026-11-07
 
+### Manuvo : Google Ads bloqué, et la promesse SMS réapparue dans un texte généré
+- **Meta terminé (17a)** : compte publicitaire créé et moyen de paiement enregistré le 7 novembre
+- **Google Ads : trois comptes, aucun utilisable.** `312-323-6944` annulé, `231-494-0944` et `787-687-8901` bloqués dans le parcours simplifié de Google, qui ne se termine qu'en lançant une campagne avec un budget. Aucun lien « passer en mode expert » n'est proposé sur les cinq écrans traversés. Sortie prévue : créer un **compte administrateur** puis un compte enfant depuis lui, qui naît en mode expert, ou passer par l'assistance Google gratuite au 800 597 418. Nouvelle étape 17c, cible avant le 7 décembre, à cause de la vérification de l'identité de l'annonceur qui prend des semaines et bloque la diffusion
+- **Offre « dépensez 400 € et recevez 400 € » écartée** : ces crédits imposent de dépenser dans une fenêtre courte, environ 60 jours. Avec 105 €/mois de budget Google, il faudrait près de 4 mois. Le risque n'est pas de rater l'offre mais de gonfler le budget pour la rattraper
+- ⚠️ **La promesse SMS est réapparue** dans la description d'entreprise que Google a générée automatiquement : « contatti verificati tramite SMS » et « rigorosa politica zero reale contro i numeri falsi ». Google compose ce texte à partir du site **et des pages Facebook, Instagram et TikTok**. Le site ne dit plus cela depuis le 4 novembre, donc la source probable est **les bios des réseaux sociaux**, écrites fin septembre avec l'angle confiance. **À vérifier et corriger** sur les trois comptes `manuvo.it` et sur la fiche d'établissement Google
+- Découverte au passage : une **fiche d'établissement Google existe pour Manuvo**. Actif gratuit utile au référencement local à Rimini, à exploiter après le lancement
+
 ### Manuvo : compte publicitaire Meta créé (étape 17a)
 - Vérification faite depuis `business.facebook.com` : le **portefeuille business « Manuvo » existait déjà**, mais il ne contenait **aucun compte publicitaire**, donc aucune campagne. L'hypothèse prudente écrite dans la roadmap était la bonne
 - **Compte publicitaire créé le 7 novembre** dans ce portefeuille. Avancé volontairement du 19 janvier : un compte vide ne coûte rien, mais Meta impose souvent une vérification d'identité, parfois une validation du moyen de paiement de plusieurs jours, et un plafond de dépense sur les comptes neufs. Découvrir ça à trois jours du lancement serait le pire moment
