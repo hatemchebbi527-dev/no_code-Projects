@@ -167,6 +167,7 @@ fermés, artisans en congé. Rien d'autre : c'est une pause décidée, pas un tr
 | 43 | Prévenir les inscrits : on ouvre le 22, vérifier métier, zone et notifications | 11 janv |
 | 18 | **6 créas publicitaires** : visuels carrés et verticaux, Meta et Google (les kits d'annonces n'ont que les textes) | 12 janv |
 | 13b | Inscrire la P.IVA dans les pages légales | 13 janv |
+| 13c | **Renseigner la P.IVA dans la facturation Meta Ads et Google Ads**, avant le premier euro dépensé le 25 janv : une facture déjà émise ne se rectifie pas après coup. ⚠️ En forfettario, l'achat de pub à une entité UE suppose en principe une inscription au VIES et une autoliquidation que tu verses toi-même : **question à poser à Fiscozen** à l'ouverture, ne compte pas sur une économie automatique de 22 % | 13 janv |
 | 20 | **Reel « dal 22 gennaio » : la date devient publique** | 13 janv |
 | 12 | **Stripe en mode Live**, vrai achat testé | 14 janv |
 | 5b | Distribution flyers privati, passage 3 | 14 janv |
