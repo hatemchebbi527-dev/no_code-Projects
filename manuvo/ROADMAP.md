@@ -110,7 +110,7 @@ janvier, juste avant l'ouverture.
 | 14 | Meta Pixel actif, 3 events vérifiés | 22 oct | Technique |
 | 11b | **Basculer le code SMS sur Twilio Verify** | 23 oct | Technique |
 | 8 | ~~Définir l'offre d'amorçage~~ **tranché le 22 oct : 5 crediti offerts (10 €, 1 contact)** | 22 oct | Décision |
-| 17a | ~~Compte publicitaire Meta prêt~~ **fait le 7 nov** : portefeuille business « Manuvo » déjà en place, compte publicitaire créé dedans (il n'y en avait aucun). Avancé exprès : vérification d'identité, validation du moyen de paiement et plafond de dépense d'un compte neuf prennent des jours, à ne pas découvrir en janvier | ~~28 oct~~ → 7 nov | Pub |
+| 17a | ~~Compte publicitaire Meta prêt~~ **fait le 7 nov** : portefeuille business « Manuvo » déjà en place, compte publicitaire créé dedans (il n'y en avait aucun) et moyen de paiement enregistré. Avancé exprès : vérification d'identité, validation du moyen de paiement et plafond de dépense d'un compte neuf prennent des jours, à ne pas découvrir en janvier | ~~28 oct~~ → 7 nov | Pub |
 | 17b, 18 | ⏳ **Non fait, reporté au Bloc D** (3 campagnes en pause + 6 créas) : aucun euro de pub avant le 25 janv, et les créas dépendent de deux inconnues, Twilio au 12 nov et le compteur d'artisans à la Porte 1 | ~~28 et 30 oct~~ → 12 et 19 janv | Pub |
 | 16 | ~~Nettoyage de la base + retrait de l'outil d'avis test~~ **fait le 3 nov, liste d'attente nettoyée le 4 nov : 2 vrais inscrits** | 2 nov | Technique |
 | 16b | ~~Masquer le badge « Contatto verificato » tant que Twilio n'est pas live~~ **fait le 4 nov : conditionné à `isSmsProviderLive()`, revient seul avec les clés Twilio** | 2 nov | Technique |
@@ -136,6 +136,7 @@ pas les inscrire. Rythme calme, 12 contacts par semaine.
 | 7b | Dépôt effectif des 600 flyers artigiani | 13 nov |
 | 5b | Distribution flyers privati, passage 1 | 17 nov |
 | 20 | Contenu de pré-lancement, 3 posts par semaine | 18 nov → 18 déc |
+| 17c | **Compte Google Ads utilisable** : au 7 nov, 3 comptes existent et aucun ne sert (`312-323-6944` annulé, `231-494-0944` et `787-687-8901` coincés dans le parcours simplifié, qui exige de lancer une campagne avec budget pour se terminer). Sortie : créer un **compte administrateur** et un compte enfant depuis lui, né en mode expert, ou appeler l'assistance Google gratuite au **800 597 418** (lun-ven 9h-18h) et demander un compte en mode expert sans campagne. Puis moyen de paiement et ⚠️ **lancer la vérification de l'identité de l'annonceur** : elle prend des semaines et, non faite, empêche la diffusion du 25 janv | avant le 7 déc |
 | 5b | Distribution flyers privati, passage 2 | 1 déc |
 | 7c | Réassort grossistes | 18 déc |
 | **🚦** | **PORTE 1 — bilan terrain avant les fêtes** | **18 déc** |
