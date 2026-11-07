@@ -9,6 +9,15 @@
 
 ## 2026-11-07
 
+### Manuvo : compte publicitaire Meta créé (étape 17a)
+- Vérification faite depuis `business.facebook.com` : le **portefeuille business « Manuvo » existait déjà**, mais il ne contenait **aucun compte publicitaire**, donc aucune campagne. L'hypothèse prudente écrite dans la roadmap était la bonne
+- **Compte publicitaire créé le 7 novembre** dans ce portefeuille. Avancé volontairement du 19 janvier : un compte vide ne coûte rien, mais Meta impose souvent une vérification d'identité, parfois une validation du moyen de paiement de plusieurs jours, et un plafond de dépense sur les comptes neufs. Découvrir ça à trois jours du lancement serait le pire moment
+- Rappel pour plus tard : la **devise et le fuseau horaire d'un compte publicitaire ne se changent jamais** après création, contrairement à son nom
+- L'étape 17 est donc scindée : **17a** (compte prêt) faite le 7 nov, **17b** (3 campagnes en pause) reste au 19 janvier avec les créas de l'étape 18
+- Moyen de paiement : à enregistrer dans Facturation et paiements. Meta fait souvent une autorisation temporaire de quelques centimes et parfois une vérification d'identité, d'où l'intérêt de l'avancer. Rien n'est débité tant qu'aucune campagne ne tourne
+- **Nouvelle étape 13c au 13 janvier** : renseigner la P.IVA dans la facturation Meta Ads et Google Ads, avant le premier euro dépensé le 25 janvier. À vérifier avec Fiscozen, parce qu'en forfettario l'achat de publicité à une entité UE suppose en principe une inscription au VIES et une autoliquidation versée par soi-même, donc sans économie automatique de TVA
+- Reste ouvert : l'état de Google Ads (compte existant, mode expert, campagnes), non vérifié à ce jour
+
 ### Manuvo : la roadmap affirmait deux étapes pub qui n'étaient pas faites
 - Point fait sur les **étapes 17 (comptes pub prêts, 3 campagnes en pause) et 18 (6 créas publicitaires)**, portées aux 28 et 30 octobre dans le Bloc B alors que tout le reste du bloc était bouclé
 - **Étape 18 : non faite**, et déjà signalée comme telle à deux endroits (`manuvo/MARKETING.md` section 5 et `manuvo/BACKLOG.md`). Ce qui existe : les textes d'annonces (artifact « Annunci Meta e Google »), 5 slides de carrousel 1080×1350 qui sont du contenu organique de Phase 0 et non des créas, et 6 films de marque. Il manque les visuels carrés et verticaux prêts à uploader
