@@ -1,0 +1,262 @@
+{
+  "name": "Primo contatto artigiani - bozze Gmail",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "avvia-preparazione",
+      "name": "Avvia preparazione"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/e29b4127-a440-4683-9f62-7d1aef3dfeaf/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ page_size: 100, filter: { and: [ { property: \"Email\", email: { is_not_empty: true } }, { property: \"Contattato\", checkbox: { equals: false } }, { property: \"Stato\", select: { does_not_equal: \"Non interessato\" } } ] } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "notion-prospect-da-contattare",
+      "name": "Notion - Prospect da contattare"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Quanti brouillon preparare in una volta. 67 contatti a 25 al giorno\n// sono tre giorni: non serve di piu, e rileggerne 25 resta fattibile.\nconst MAX_PER_RUN = 25;\n\nfunction testo(prop) {\n  if (!prop) return '';\n  if (prop.type === 'title')     return (prop.title || []).map(t => t.plain_text).join('');\n  if (prop.type === 'rich_text') return (prop.rich_text || []).map(t => t.plain_text).join('');\n  if (prop.type === 'select')    return prop.select ? prop.select.name : '';\n  if (prop.type === 'email')     return prop.email || '';\n  if (prop.type === 'phone_number') return prop.phone_number || '';\n  return '';\n}\n\nconst risposta = $input.first().json || {};\nconst pagine = risposta.results || [];\n\nconst prospect = pagine.map(pg => {\n  const pr = pg.properties || {};\n  return {\n    pageId:    pg.id,\n    nome:      testo(pr['Nome']),\n    email:     testo(pr['Email']),\n    settore:   testo(pr['Settore']),\n    citta:     testo(pr['Citta']),\n    accroche:  testo(pr['Accroche']),\n    punteggio: testo(pr['Punteggio IA']),\n  };\n}).filter(p => p.email && p.nome);\n\n// I migliori per primi: un Alto vale piu di un Medio, a parita si tiene l'ordine.\nconst peso = { 'Alto': 0, 'Medio': 1, 'Basso': 2 };\nprospect.sort((a, b) => (peso[a.punteggio] ?? 3) - (peso[b.punteggio] ?? 3));\n\nconst scelti = prospect.slice(0, MAX_PER_RUN);\n\nconst sd = $getWorkflowStaticData('global');\nsd.bozze = 0;\nsd.errori = [];\n\nconsole.log('Prospect contattabili: ' + prospect.length + ' | bozze da preparare: ' + scelti.length);\nreturn scelti.map(p => ({ json: p }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "estrai-prospect",
+      "name": "Estrai prospect"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        672,
+        0
+      ],
+      "id": "uno-alla-volta",
+      "name": "Uno alla volta"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ============================================================\n// CONFIGURAZIONE DEL MESSAGGIO\n// ============================================================\nconst FIRMA_NOME  = 'Hatem Chebbi';\nconst FIRMA_RUOLO = 'Manuvo';\nconst SITO        = 'https://manuvo.automa-ia.net';\nconst SIGNUP      = 'https://manuvo.automa-ia.net/signup';\nconst MIA_EMAIL   = 'info@automa-ia.net';\n\nconst p = $input.first().json;\n\n// Oggetto sobrio: niente maiuscole urlanti, niente promesse.\nconst oggetto = 'Richieste di lavoro a ' + (p.citta || 'Rimini');\n\n// L'accroche salvata in Notion comincia quasi sempre con \"Buongiorno\".\n// Il saluto c'è già sopra, quindi va tolto: due saluti di fila si vedono\n// lontano un miglio e fanno sembrare il messaggio scritto da una macchina.\nfunction senzaSaluto(t) {\n  return String(t || '')\n    .replace(/^\\s*(buongiorno|buonasera|buondì|salve)\\s*[,.:!]?\\s*/i, '')\n    .trim();\n}\n\nlet apertura = senzaSaluto(p.accroche);\nif (apertura.length > 10) {\n  apertura = apertura.charAt(0).toUpperCase() + apertura.slice(1);\n} else {\n  // Nessuna accroche utilizzabile: si parte con una frase neutra.\n  apertura = 'Le scrivo perché sto cercando artigiani della zona di '\n    + (p.citta || 'Rimini') + ' per un servizio che sto lanciando qui.';\n}\n\nconst corpo = [\n  'Buongiorno,',\n  '',\n  apertura,\n  '',\n  'Mi chiamo ' + FIRMA_NOME + ' e sto lanciando Manuvo a Rimini e dintorni: i privati '\n    + 'pubblicano la loro richiesta, e l\\'artigiano vede solo quelle del suo mestiere e '\n    + 'della sua zona. L\\'iscrizione è gratuita e non c\\'è nessuna commissione sul lavoro: '\n    + 'si pagano solo i contatti che si decide di sbloccare, e al massimo tre artigiani '\n    + 'vedono la stessa richiesta.',\n  '',\n  'Se vuole dare un\\'occhiata: ' + SIGNUP,\n  '',\n  'Le scrivo all\\'indirizzo pubblicato sulla sua scheda Google. Se preferisce non '\n    + 'ricevere altri messaggi da parte mia, basta rispondere \"no grazie\" e non la '\n    + 'disturbo più.',\n  '',\n  'Un saluto,',\n  FIRMA_NOME + ' - ' + FIRMA_RUOLO,\n  SITO + ' - ' + MIA_EMAIL,\n].join('\\n');\n\nreturn [{ json: { ...p, oggetto, corpo } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        160
+      ],
+      "id": "componi-email",
+      "name": "Componi email"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "create",
+        "subject": "={{ $json.oggetto }}",
+        "emailType": "text",
+        "message": "={{ $json.corpo }}",
+        "options": {
+          "sendTo": "={{ $json.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1120,
+        160
+      ],
+      "id": "gmail-crea-bozza",
+      "name": "Gmail - Crea bozza"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $('Componi email').first().json.pageId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: { \"Stato\": { select: { name: 'Contattato' } }, \"Contattato\": { checkbox: true }, \"Ultimo contatto\": { date: { start: $now.toISODate() } } } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1344,
+        160
+      ],
+      "id": "notion-segna-contattato",
+      "name": "Notion - Segna contattato",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nconst p = $('Componi email').first().json;\nconst esito = $input.first().json || {};\n\nif (esito.object === 'error' || esito.error) {\n  sd.errori.push(p.nome + ': Notion non aggiornato');\n} else {\n  sd.bozze = (sd.bozze || 0) + 1;\n}\nreturn [{ json: { nome: p.nome, email: p.email } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1568,
+        160
+      ],
+      "id": "conta-bozza",
+      "name": "Conta bozza"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nconst bozze = sd.bozze || 0;\nconst errori = sd.errori || [];\n\nconst messaggio = bozze + ' bozze pronte in Gmail. Rileggile e inviale una per una.'\n  + (errori.length ? ' Attenzione: ' + errori.length + ' schede non aggiornate in Notion.' : '');\n\nconsole.log(messaggio);\nif (errori.length) console.log(errori.join('\\n'));\n\nreturn [{ json: { bozze, errori, messaggio } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        -160
+      ],
+      "id": "riepilogo",
+      "name": "Riepilogo"
+    },
+    {
+      "parameters": {
+        "content": "## Primo contatto : brouillons a relire\n\nPrepare un brouillon Gmail personnalise par artisan, **sans rien envoyer**.\n\n**Avant de lancer**\n- Credential **Notion API** sur les 2 noeuds Notion.\n- Credential **Gmail OAuth2** sur `Gmail - Crea bozza`.\n- Verifie la signature et les liens dans `Componi email`.\n\n**Qui est selectionne**\nEmail renseignee, `Contattato` decoche, `Stato` different de \"Non interessato\".\nLes `Punteggio IA` = Alto passent en premier. 25 par run (`MAX_PER_RUN`).\n\n**Apres le run**\nLes brouillons sont dans Gmail. Tu relis, tu corriges, tu envoies.\nNotion est deja marque `Contattato` : si tu decides de ne pas envoyer\nun brouillon, decoche la case a la main.",
+        "height": 460,
+        "width": 460,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        -420
+      ],
+      "id": "sticky-a",
+      "name": "Guida"
+    }
+  ],
+  "connections": {
+    "Avvia preparazione": {
+      "main": [
+        [
+          {
+            "node": "Notion - Prospect da contattare",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion - Prospect da contattare": {
+      "main": [
+        [
+          {
+            "node": "Estrai prospect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai prospect": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Uno alla volta": {
+      "main": [
+        [
+          {
+            "node": "Riepilogo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Componi email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Componi email": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Crea bozza",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Crea bozza": {
+      "main": [
+        [
+          {
+            "node": "Notion - Segna contattato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion - Segna contattato": {
+      "main": [
+        [
+          {
+            "node": "Conta bozza",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conta bozza": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "792a7e5f7ecc84953d0cdcd8f731195497a0fac92bbb671cb4a78acdf2435f68"
+  }
+}

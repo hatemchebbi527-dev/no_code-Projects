@@ -1,0 +1,470 @@
+{
+  "name": "Relance J+4 artigiani - bozze Gmail",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "avvia-relance",
+      "name": "Avvia relance"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 1,
+              "triggerAtHour": 9,
+              "triggerAtMinute": 12
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ],
+      "id": "ogni-giorno-09-12",
+      "name": "Ogni giorno 09:12"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/e29b4127-a440-4683-9f62-7d1aef3dfeaf/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ page_size: 100, filter: { and: [ { property: \"Contattato\", checkbox: { equals: true } }, { property: \"Follow-up J+4\", checkbox: { equals: false } }, { property: \"Stato\", select: { equals: \"Contattato\" } }, { property: \"Ultimo contatto\", date: { on_or_before: $now.minus(4, 'days').toISODate() } } ] } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "notion-contattati-da-4-giorni",
+      "name": "Notion - Contattati da 4 giorni"
+    },
+    {
+      "parameters": {
+        "jsCode": "function testo(prop) {\n  if (!prop) return '';\n  if (prop.type === 'title')     return (prop.title || []).map(t => t.plain_text).join('');\n  if (prop.type === 'rich_text') return (prop.rich_text || []).map(t => t.plain_text).join('');\n  if (prop.type === 'select')    return prop.select ? prop.select.name : '';\n  if (prop.type === 'email')     return prop.email || '';\n  return '';\n}\n\nconst pagine = ($input.first().json || {}).results || [];\nconst out = pagine.map(pg => {\n  const pr = pg.properties || {};\n  return { json: {\n    pageId:  pg.id,\n    nome:    testo(pr['Nome']),\n    email:   testo(pr['Email']),\n    citta:   testo(pr['Citta']),\n  }};\n}).filter(i => i.json.email);\n\nconst sd = $getWorkflowStaticData('global');\nsd.relanci = 0;\nsd.risposte = [];\nsd.mai_inviati = [];\n\nconsole.log('Da relanciare, prima delle verifiche Gmail: ' + out.length);\nreturn out;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "estrai-da-relanciare",
+      "name": "Estrai da relanciare"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        672,
+        0
+      ],
+      "id": "uno-alla-volta",
+      "name": "Uno alla volta"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "getAll",
+        "returnAll": false,
+        "limit": 1,
+        "simple": true,
+        "filters": {
+          "q": "=in:sent to:{{ $json.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        896,
+        160
+      ],
+      "id": "gmail-cerca-inviata",
+      "name": "Gmail - Cerca inviata",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "getAll",
+        "returnAll": false,
+        "limit": 3,
+        "simple": true,
+        "filters": {
+          "q": "=from:{{ $('Uno alla volta').first().json.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1120,
+        160
+      ],
+      "id": "gmail-cerca-risposta",
+      "name": "Gmail - Cerca risposta",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Due verifiche prima di relanciare, nell'ordine che conta.\nconst p = $('Uno alla volta').first().json;\nconst sd = $getWorkflowStaticData('global');\n\nconst messaggi = $input.all().map(i => i.json).filter(m => m && m.id);\n\n// La ricerca Gmail e andata in errore: non si relancia al buio.\nconst inviati = $('Gmail - Cerca inviata').first().json;\nif (inviati && inviati.error) {\n  sd.mai_inviati.push(p.nome + ' (verifica Gmail fallita)');\n  return [{ json: { ...p, relanciare: false, motivo: 'verifica fallita' } }];\n}\n\n// Nessuna risposta trovata: si puo relanciare.\nif (messaggi.length === 0) {\n  return [{ json: { ...p, relanciare: true, motivo: 'nessuna risposta' } }];\n}\n\n// Ha risposto: niente relance, e lo si segnala nel riepilogo.\nsd.risposte.push(p.nome + ' <' + p.email + '>');\nreturn [{ json: { ...p, relanciare: false, motivo: 'ha risposto' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1344,
+        160
+      ],
+      "id": "controllo-risposte",
+      "name": "Controllo risposte"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "if-rel-1",
+              "leftValue": "={{ $json.relanciare }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1568,
+        160
+      ],
+      "id": "da-relanciare-",
+      "name": "Da relanciare?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const FIRMA_NOME = 'Hatem Chebbi';\nconst SIGNUP     = 'https://manuvo.automa-ia.net/signup';\n\nconst p = $input.first().json;\n\n// Relance corta: richiama il primo messaggio, non lo ripete.\nconst corpo = [\n  'Buongiorno,',\n  '',\n  'Le avevo scritto qualche giorno fa a proposito di Manuvo, il servizio che mette in '\n    + 'contatto i privati di Rimini e dintorni con gli artigiani della zona.',\n  '',\n  'Capisco che in questo periodo il tempo manchi. Le lascio il link, senza impegno: '\n    + SIGNUP,\n  '',\n  'Se non le interessa, me lo dica pure in una riga e non la disturbo più.',\n  '',\n  'Un saluto,',\n  FIRMA_NOME,\n].join('\\n');\n\nreturn [{ json: { ...p, oggetto: 'Re: ' + (p.oggetto || 'Richieste di lavoro'), corpo } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1792,
+        64
+      ],
+      "id": "componi-relance",
+      "name": "Componi relance"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "create",
+        "subject": "={{ $json.oggetto }}",
+        "emailType": "text",
+        "message": "={{ $json.corpo }}",
+        "options": {
+          "sendTo": "={{ $json.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2016,
+        64
+      ],
+      "id": "gmail-bozza-relance",
+      "name": "Gmail - Bozza relance"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $('Componi relance').first().json.pageId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: { \"Follow-up J+4\": { checkbox: true }, \"Ultimo contatto\": { date: { start: $now.toISODate() } } } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2240,
+        64
+      ],
+      "id": "notion-segna-relanciato",
+      "name": "Notion - Segna relanciato",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nsd.relanci = (sd.relanci || 0) + 1;\nreturn [{ json: { relanciato: true } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2464,
+        64
+      ],
+      "id": "conta-relance",
+      "name": "Conta relance"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $('Controllo risposte').first().json.pageId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: { \"Follow-up J+4\": { checkbox: true } } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1792,
+        288
+      ],
+      "id": "chiudi-senza-relance",
+      "name": "Chiudi senza relance",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sd = $getWorkflowStaticData('global');\nconst relanci = sd.relanci || 0;\nconst risposte = sd.risposte || [];\nconst mai = sd.mai_inviati || [];\n\nconst messaggio = relanci + ' bozze di relance pronte in Gmail.'\n  + (risposte.length ? ' ' + risposte.length + ' hanno gia risposto, da guardare a mano.' : '')\n  + (mai.length ? ' ' + mai.length + ' non verificati.' : '');\n\nconsole.log(messaggio);\nif (risposte.length) console.log('Hanno risposto:\\n' + risposte.join('\\n'));\nif (mai.length) console.log('Non verificati:\\n' + mai.join('\\n'));\n\nreturn [{ json: { relanci, risposte, mai_verificati: mai, messaggio } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        -176
+      ],
+      "id": "riepilogo-relance",
+      "name": "Riepilogo relance"
+    },
+    {
+      "parameters": {
+        "content": "## Relance J+4\n\nTourne tous les jours. Pour chaque artisan contacte il y a 4 jours ou plus :\n\n1. `Gmail - Cerca inviata` : le premier email est-il vraiment parti ?\n2. `Gmail - Cerca risposta` : a-t-il repondu ?\n3. Pas de reponse -> brouillon de relance. Reponse -> on ferme, et le\n   `Riepilogo` donne son nom pour que tu le traites a la main.\n\nSi une recherche Gmail echoue, **aucune relance ne part** : on ne relance\njamais a l'aveugle. Le nom sort dans `mai_verificati`.\n\nUne seule relance par artisan : la case `Follow-up J+4` se coche dans tous\nles cas, donc la fiche ne ressort plus.",
+        "height": 440,
+        "width": 480,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        -440
+      ],
+      "id": "sticky-b",
+      "name": "Guida"
+    }
+  ],
+  "connections": {
+    "Avvia relance": {
+      "main": [
+        [
+          {
+            "node": "Notion - Contattati da 4 giorni",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ogni giorno 09:12": {
+      "main": [
+        [
+          {
+            "node": "Notion - Contattati da 4 giorni",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion - Contattati da 4 giorni": {
+      "main": [
+        [
+          {
+            "node": "Estrai da relanciare",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estrai da relanciare": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Uno alla volta": {
+      "main": [
+        [
+          {
+            "node": "Riepilogo relance",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gmail - Cerca inviata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Cerca inviata": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Cerca risposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Cerca risposta": {
+      "main": [
+        [
+          {
+            "node": "Controllo risposte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Controllo risposte": {
+      "main": [
+        [
+          {
+            "node": "Da relanciare?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Da relanciare?": {
+      "main": [
+        [
+          {
+            "node": "Componi relance",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Chiudi senza relance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Componi relance": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Bozza relance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Bozza relance": {
+      "main": [
+        [
+          {
+            "node": "Notion - Segna relanciato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion - Segna relanciato": {
+      "main": [
+        [
+          {
+            "node": "Conta relance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conta relance": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chiudi senza relance": {
+      "main": [
+        [
+          {
+            "node": "Uno alla volta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "792a7e5f7ecc84953d0cdcd8f731195497a0fac92bbb671cb4a78acdf2435f68"
+  }
+}
