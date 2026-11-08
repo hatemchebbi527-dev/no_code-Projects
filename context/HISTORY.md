@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-11-08
+
+### Climbo : évaluation d'une opportunité white-label pour AutomaIA
+- **Objet** : Climbo (climbo.com) s'est repositionné en « Review Marketing Flywheel™ », un système de 3 agents IA (SEO répond aux avis avec mots-clés locaux, Social transforme les avis en posts IG/FB/TikTok, GEO écrit des articles de blog localisés + suit le ranking sur ChatGPT/Gemini) revendu **sous ma marque**. L'affiliation pure a disparu (page /affiliate en 404) : c'est désormais un modèle white-label revente pur
+- **Modèle économique** : paiement **unique à vie**, clients illimités, **pas d'abonnement**, confirmé par la page de vente italienne. Deux plans : **497 € + 20 %** de commission sur mes abonnements, ou **1497 € + 3 %**. Seuil de bascule calculé : le plan B devient plus rentable au-delà d'environ **5 880 € de CA cumulé** (≈ 5 clients gardés un an). Le choix de plan serait **définitif** (pas d'upgrade A→B ensuite), d'après Hatem
+- **Nouveautés nov 2026** : playground gratuit pour tester avant d'acheter, site d'agence clé-en-main, website-builder sur domaine du client, et surtout **exclusivité territoriale** (être la seule agence à vendre leur système dans sa zone). L'offre se vend via un **appel de 10 min** (closing probable)
+- **Repère de prix client** tiré d'une étude de cas Climbo : une agence facture ses clients **99 à 479 €/mois**. Valide la fourchette de prix envisagée et montre un plafond plus haut
+- **Recommandation Claude** : opportunité jugée cohérente et plus mûre qu'en septembre. **Plan A (497 € + 20 %)** pour limiter le risque tant que le business n'est pas validé. **Ne pas signer pendant l'appel.** Conditions avant tout paiement : (1) tester la **qualité en italien** sur le playground (avis +, avis −, article GEO, changement de ton), (2) valider l'intérêt de **2-3 commerces de Rimini**, (3) obtenir **par écrit** prix exact, commission, et surtout les termes de l'**exclusivité** (zone couverte, contractuelle ou non, dans quel plan, conditions de perte)
+- **Points de vigilance** : le « review gating » reste un risque vs les règles Google (le client mécontent doit pouvoir laisser un avis public quand même) ; qualité IA en italien à prouver ; dépendance au fournisseur, **atténuée** car Hatem garde la propriété des clients et des données à 100 % et peut les migrer
+- **Positionnement** : produit potentiel **distinct** de la niche cœur d'AutomaIA (professions libérales / artisans / Manuvo). Tête de pont envisagée pour Climbo : **hôtellerie et restauration de Rimini**, secteur où Hatem a crédibilité et accès via son poste de réceptionniste
+- **Livrables** : deux PDF d'une page de questions pour l'appel générés, en **français** et en **italien** (dans le scratchpad de session). **Décision non prise, rien acheté à ce jour**
+
 ## 2026-11-07
 
 ### Manuvo : Google Ads bloqué, et la promesse SMS réapparue dans un texte généré
