@@ -7,6 +7,17 @@
 
 ---
 
+## 2026-11-09
+
+### Climbo : précisions produit tirées des captures du site, l'analyse s'affine
+- **Review gating : il n'y en a pas.** Le site affiche « Conforme, senza review gating » : chaque client reçoit la même invitation, aucun filtre sur les mécontents, conforme aux policy Google et au RGPD. **Mon risque n°1 tombe.** À noter : ça **contredit** l'info initiale d'Hatem (gating « utilisé de façon professionnelle ») ; la version actuelle du site est la bonne et la plus sûre. À reconfirmer verbalement sur l'appel
+- **SEO Agent** : confirme explicitement répondre à chaque avis avec « le keyword che posizionano » (mots-clés de ranking). Répond à mon doute sur la première capture où la réponse était générique. À vérifier quand même en italien
+- **Exclusivité clarifiée, et ce n'est PAS ce qu'on croyait.** Ce n'est pas un monopole géographique sur Rimini mais la **réservation de jusqu'à 500 entreprises précises** qu'on sélectionne : une fois bloquées, elles sont invisibles aux autres agences Climbo (« chi seleziona per primo ottiene l'esclusiva »). Donc : (a) 500 cibles suffisent largement à verrouiller un pipeline à Rimini, mais (b) ça ne protège que dans l'écosystème Climbo, pas contre un concurrent hors Climbo ni contre une autre agence Climbo travaillant d'autres entreprises. **Conséquence : l'exclusivité est un outil de réservation de pipeline, pas une raison suffisante de payer le plan 1497 €.** Ne pas se laisser vendre le plan cher « pour l'exclusivité »
+- **Profondeur produit réelle** (bien plus qu'un outil d'avis) : AI ranking sur ChatGPT/Gemini/Perplexity/Grok, analyse des concurrents de la zone, gestion Google Business Profile, dashboard performance Google (clics, appels, itinéraires), automatisations CRM (avis auto post-vente), QR code par employé avec classement, gestion multi-sites pour les chaînes, website-builder sur domaine client, et possibilité de monter un **team d'affiliés** (vendeurs à la commission, coupons + tracking Stripe automatiques)
+- **Rappel du calcul de bascule des plans** : coût A = 497 + 0,20×CA, coût B = 1497 + 0,03×CA ; égalité à 0,17×CA = 1000, soit **CA cumulé ≈ 5 882 €** (≈ 59 mois-clients à 100 €/mois). En dessous le plan A est moins cher, au-dessus le plan B
+- **Verdict affiné** : le doute ne porte plus sur la qualité du concept (jugé solide et conforme sur le papier, bien aligné sur les tendances 2026) mais sur trois choses seulement : **exécution en italien** (à tester sur le playground), **équité des termes écrits** (prix, commission, conditions des 500 cibles), et **ma capacité à vendre/livrer**. Reco inchangée : **plan A**, tester avant de payer
+- **Ajustements des questions d'appel** : bloc exclusivité reformulé (« les 500 cibles, quel plan ? expiration ? remplaçables ? ») et bloc gating transformé en confirmation (« bien zéro filtrage, conforme Google ? »). **PDF italien régénéré** avec ces changements
+
 ## 2026-11-08
 
 ### Climbo : évaluation d'une opportunité white-label pour AutomaIA
