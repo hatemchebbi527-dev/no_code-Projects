@@ -9,9 +9,9 @@ import {
   CATEGORIES,
   COUNTRIES,
   URGENCIES,
-  DEFAULT_LEAD_COST,
   MAX_UNLOCKS_PER_LEAD,
   isCategory,
+  leadCostForCategory,
   type CountryCode,
 } from "@/lib/constants";
 import { validatePhone } from "@/lib/phone";
@@ -80,7 +80,8 @@ export async function createLead(
       contactName,
       contactPhone: phone.display, // numero normalizzato in formato internazionale
       contactEmail: contactEmail || null,
-      creditCost: DEFAULT_LEAD_COST,
+      creditCost: leadCostForCategory(category), // tarif automatique par metier
+
       status: "OPEN",
       unlocksCount: 0,
       maxUnlocks: MAX_UNLOCKS_PER_LEAD,
