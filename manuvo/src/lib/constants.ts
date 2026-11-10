@@ -65,6 +65,66 @@ export const CATEGORIES = [
 ] as const;
 export type Category = (typeof CATEGORIES)[number];
 
+// ---- Tarification automatique du contact par metier ----
+// Le cout d'un contact (en credits) suit la valeur du chantier que l'artisan va
+// signer : plus le devis est gros, plus le lead vaut cher. Calcule a la
+// publication (voir createLead), l'admin peut toujours ajuster un lead precis
+// via le CostStepper. Toute valeur reste dans [MIN_LEAD_COST, MAX_LEAD_COST].
+//   5 = gros ticket (devis de plusieurs centaines a milliers d'EUR)
+//   4 = intervention artisan standard (le socle)
+//   3 = petit ticket, recurrent ou faible marge
+export const LEAD_COST_BY_CATEGORY: Record<Category, number> = {
+  // --- 5 credits : gros chantiers ---
+  ristrutturazione: 5,
+  muratura: 5,
+  cartongessista: 5,
+  caldaia: 5,
+  condizionamento: 5,
+  stufe_camini: 5,
+  levigatura_parquet: 5,
+  sviluppo_web: 5,
+  videomaker: 5,
+  // --- 4 credits : socle ---
+  idraulica: 4,
+  elettricista: 4,
+  imbianchino: 4,
+  falegname: 4,
+  giardinaggio: 4,
+  spazzacamino: 4,
+  elettrodomestici: 4,
+  meccanico: 4,
+  telecamere: 4,
+  antennista: 4,
+  serrature: 4,
+  fabbro: 4,
+  vetraio: 4,
+  tappezziere: 4,
+  derattizzazione: 4,
+  disinfestazione: 4,
+  spurghi: 4,
+  pulizia_cantiere: 4,
+  fotografo: 4,
+  estetista: 4,
+  fisioterapista: 4,
+  // --- 3 credits : petit ticket ---
+  pulizie: 3,
+  trasporti: 3,
+  lavaggio_tappeti: 3,
+  colf: 3,
+  massaggio: 3,
+  personal_trainer: 3,
+  pilates: 3,
+  ripetizioni: 3,
+  dj: 3,
+  autista: 3,
+};
+
+// Cout du contact pour un metier donne, borne par securite dans [MIN, MAX].
+// Si un metier n'est pas encore au bareme, on retombe sur le cout par defaut.
+export function leadCostForCategory(category: Category): number {
+  return clampLeadCost(LEAD_COST_BY_CATEGORY[category] ?? DEFAULT_LEAD_COST);
+}
+
 // ---- Urgence ----
 export const URGENCIES = ["ASAP", "THIS_WEEK", "NOT_URGENT"] as const;
 export type Urgency = (typeof URGENCIES)[number];
