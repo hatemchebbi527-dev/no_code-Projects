@@ -9,6 +9,18 @@
 
 ## 2026-11-12
 
+### Climbo : playground testé en profondeur, italien validé, FEU VERT FRANC
+- Hatem a testé le playground (compte démo Sunny Cafe) et envoyé ~20 captures couvrant tout le produit. Verdict de qualité, composant par composant :
+  - **Articles GEO** : bons. Localisés (nom + ville + quartier + mots-clés, ex. « caffè specialty a New York »), italien correct
+  - **Agent Social** : très bon, surprise. Légendes spécifiques, chaleureuses, naturelles, avec hashtags de marque. Vrai bon copywriting
+  - **Dashboards client** (réputation, collecte d'avis, ranking Maps + IA, performance Google + mots-clés, analyse de sentiment) : excellents, en bon italien, vraie preuve de ROI vendable
+  - **Classifica AI** : suit le ranking sur ChatGPT/Gemini/Perplexity/Grok → identifié comme le meilleur argument de vente 2026
+  - **Classifica Maps + analyse concurrents** : excellent, double usage vente + livraison
+  - **Point faible unique** : réponses aux avis du SEO Agent, génériques, sans mots-clés locaux, une petite faute repérée. **Corrigeable par prompt** (le fondateur a confirmé que la qualité dépend du prompt, modifiable). Réserve mineure : 2 articles GEO quasi-dupliqués le même jour
+- **Précisions du playground** : il ne permet pas de générer de nouveaux avis (juste explorer) ; l'agent ne répond jamais seul à un avis négatif (laisse le choix au gérant) ; données affichées = démo (Sunny Cafe/New York), donc test grandeur nature à refaire sur une vraie entreprise de Rimini
+- **Verdict : feu vert franc.** 5 composants sur 6 bons à excellents, le seul faible étant réglable par prompt. Le risque décisif (italien inutilisable) est définitivement écarté
+- **Reste à faire** : payer les 150 € (promo bloquée, déduits), valider 2-3 commerces de Rimini avant le solde de 847 €, lancer en janvier. **Prompts italiens par secteur à construire par Claude APRÈS la signature et l'accès officiel à la plateforme** (décidé par Hatem : pas maintenant)
+
 ### Climbo : appel téléphonique passé, les 2 contradictions levées, feu vert conditionnel
 - **Appel de vente réalisé.** Toutes les réponses obtenues sur les questions préparées (PDF). Les 2 contradictions décisives sont levées dans le bon sens
 - **Commission : 0 % à vie confirmé.** Prix **promo 997 € one-time** (plus de 497/1497 ni de 20 %/3 %). Seuls coûts : Stripe 2-3 % + usage tokens des clients, déjà couvert par leurs abonnements mensuels. Mon ancien calcul de bascule à 5 880 € est donc sans objet
