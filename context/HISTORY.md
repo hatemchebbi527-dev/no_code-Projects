@@ -7,7 +7,17 @@
 
 ---
 
-## 2026-11-09
+## 2026-11-12
+
+### Climbo : appel téléphonique passé, les 2 contradictions levées, feu vert conditionnel
+- **Appel de vente réalisé.** Toutes les réponses obtenues sur les questions préparées (PDF). Les 2 contradictions décisives sont levées dans le bon sens
+- **Commission : 0 % à vie confirmé.** Prix **promo 997 € one-time** (plus de 497/1497 ni de 20 %/3 %). Seuls coûts : Stripe 2-3 % + usage tokens des clients, déjà couvert par leurs abonnements mensuels. Mon ancien calcul de bascule à 5 880 € est donc sans objet
+- **Review gating : confirmé qu'il n'y en a pas.** Le client mécontent choisit lui-même d'aller sur Google ou de remplir le formulaire privé vers l'administration. Le chemin public reste ouvert à tous = conforme Google/RGPD. Mon risque n°1 est définitivement écarté
+- **Exclusivité confirmée** : 500 cibles, inapprochables par les autres agences dès l'entrée en pipeline. **Peu d'agences Climbo en Italie** (Climbo a démarré aux USA, à peine arrivé en Italie) → Hatem serait un des premiers affiliés italiens, vrai avantage de premier entrant
+- **Propriété** : clients 100 % à Hatem, confirmé
+- **Acompte de 150 €** : à verser **après** le test du playground ; il est **déduit des 997 €** et **bloque la promo**. Pas de date limite ferme confirmée (donc pas de vraie urgence : une date limite non confirmée n'est pas une date limite)
+- **Reste à faire avant tout paiement** : (1) **tester le playground gratuit en italien** (lien reçu) — c'est désormais le SEUL point entre Hatem et le feu vert ; (2) si qualité OK, payer les 150 € (demander s'ils sont remboursables en cas d'abandon) ; (3) valider l'intérêt de 2-3 commerces de Rimini **avant** le solde de 847 € ; (4) lancer en janvier
+- **Reco Claude : feu vert conditionnel.** Deal bon et bien négocié (997 € one-time, 0 % commission, conforme, premier entrant Italie, économie : 997 € récupérés avec ~7 mois d'un seul client à 149 €/mois). La décision finale ne dépend plus que de la qualité réelle des agents IA **en italien**. Hatem doit m'envoyer 2-3 sorties du playground (réponse d'avis + article GEO) pour un jugement objectif « vendable ou générique »
 
 ### Climbo : analyse des 4 vidéos démo officielles, deux contradictions décisives apparaissent
 - Source : 4 vidéos démo italiennes officielles de la chaîne Climbo (publiées 20-26 oct 2026), transcriptions récupérées et analysées : « Demo » (fonctionnement), « Prices » (coûts), « Competition » (exclusivité), « Support »
