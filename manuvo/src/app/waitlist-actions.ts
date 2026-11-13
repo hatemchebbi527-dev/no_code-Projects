@@ -12,6 +12,10 @@ export async function joinWaitlist(
 ): Promise<{ ok?: boolean; error?: string } | undefined> {
   const email = String(formData.get("email") ?? "");
   const lang = await getLocale();
-  const res = await addToWaitlist(email, lang, await getUtm());
+  // Champs professionnel facultatifs (metier + zone). Un particulier les laisse
+  // vides ; addToWaitlist nettoie et ignore les valeurs vides.
+  const mestiere = String(formData.get("mestiere") ?? "");
+  const zona = String(formData.get("zona") ?? "");
+  const res = await addToWaitlist(email, lang, await getUtm(), { mestiere, zona });
   return res.ok ? { ok: true } : { error: res.error };
 }

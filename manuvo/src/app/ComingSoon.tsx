@@ -35,6 +35,11 @@ type Strings = {
   invalid: string;
   generic: string;
   follow: string;
+  proHint: string;
+  mestiereLabel: string;
+  mestierePlaceholder: string;
+  zonaLabel: string;
+  zonaPlaceholder: string;
 };
 
 const S: Record<Locale, Strings> = {
@@ -49,6 +54,11 @@ const S: Record<Locale, Strings> = {
     invalid: "Inserisci un'email valida.",
     generic: "Qualcosa è andato storto. Riprova.",
     follow: "Seguici",
+    proHint: "Sei un professionista? Lascia mestiere e zona (facoltativo)",
+    mestiereLabel: "Il tuo mestiere",
+    mestierePlaceholder: "Es. Idraulico, Elettricista...",
+    zonaLabel: "La tua zona",
+    zonaPlaceholder: "Es. Rimini, Riccione...",
   },
   fr: {
     badge: "Bientôt à Rimini",
@@ -61,6 +71,11 @@ const S: Record<Locale, Strings> = {
     invalid: "Saisis une adresse email valide.",
     generic: "Une erreur est survenue. Réessaie.",
     follow: "Suis-nous",
+    proHint: "Tu es un professionnel ? Indique ton métier et ta zone (facultatif)",
+    mestiereLabel: "Ton métier",
+    mestierePlaceholder: "Ex. Plombier, Électricien...",
+    zonaLabel: "Ta zone",
+    zonaPlaceholder: "Ex. Rimini, Riccione...",
   },
   en: {
     badge: "Coming soon to Rimini",
@@ -73,6 +88,11 @@ const S: Record<Locale, Strings> = {
     invalid: "Enter a valid email.",
     generic: "Something went wrong. Try again.",
     follow: "Follow us",
+    proHint: "Are you a professional? Add your trade and area (optional)",
+    mestiereLabel: "Your trade",
+    mestierePlaceholder: "E.g. Plumber, Electrician...",
+    zonaLabel: "Your area",
+    zonaPlaceholder: "E.g. Rimini, Riccione...",
   },
   de: {
     badge: "Demnächst in Rimini",
@@ -85,6 +105,11 @@ const S: Record<Locale, Strings> = {
     invalid: "Gib eine gültige E-Mail ein.",
     generic: "Etwas ist schiefgelaufen. Versuch es erneut.",
     follow: "Folge uns",
+    proHint: "Bist du Profi? Gib Gewerbe und Gegend an (optional)",
+    mestiereLabel: "Dein Gewerbe",
+    mestierePlaceholder: "z. B. Klempner, Elektriker...",
+    zonaLabel: "Deine Gegend",
+    zonaPlaceholder: "z. B. Rimini, Riccione...",
   },
   ar: {
     badge: "قريباً في ريميني",
@@ -97,6 +122,11 @@ const S: Record<Locale, Strings> = {
     invalid: "أدخل بريداً إلكترونياً صحيحاً.",
     generic: "حدث خطأ ما. حاول مجدداً.",
     follow: "تابعنا",
+    proHint: "هل أنت محترف؟ أضف مهنتك ومنطقتك (اختياري)",
+    mestiereLabel: "مهنتك",
+    mestierePlaceholder: "مثال: سبّاك، كهربائي...",
+    zonaLabel: "منطقتك",
+    zonaPlaceholder: "مثال: ريميني، ريتشوني...",
   },
 };
 
@@ -144,6 +174,30 @@ export function ComingSoon({ locale }: { locale: Locale }) {
                 {isPending ? "..." : s.button}
               </button>
             </div>
+
+            {/* Facoltativi : un professionista lascia mestiere + zona (prepara il
+                lancio). Nessuna etichetta "artigiano" per non escludere trainer,
+                sviluppatori, educatori... Un privato li lascia vuoti. */}
+            <p className="mb-2 mt-5 text-sm font-medium text-white/90">{s.proHint}</p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <input
+                type="text"
+                name="mestiere"
+                maxLength={120}
+                aria-label={s.mestiereLabel}
+                placeholder={s.mestierePlaceholder}
+                className="w-full rounded-xl border-0 px-4 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-white"
+              />
+              <input
+                type="text"
+                name="zona"
+                maxLength={120}
+                aria-label={s.zonaLabel}
+                placeholder={s.zonaPlaceholder}
+                className="w-full rounded-xl border-0 px-4 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-white"
+              />
+            </div>
+
             {errorMsg && <p className="mt-2 text-sm font-medium text-white">{errorMsg}</p>}
           </form>
         )}

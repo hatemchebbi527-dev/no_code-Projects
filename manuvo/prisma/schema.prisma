@@ -246,6 +246,11 @@ model Waitlist {
   id        String   @id @default(cuid())
   email     String   @unique
   lang      String   @default("it")
+  // Facoltativi : un artigiano puo lasciare il suo mestiere e la sua zona
+  // all'iscrizione coming soon, oppure l'admin li compila dal pannello.
+  // Cosi si prepara il lancio senza ricontattare ciascuno.
+  mestiere  String?
+  zona      String?
   utmSource   String?
   utmMedium   String?
   utmCampaign String?
