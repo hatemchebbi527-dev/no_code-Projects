@@ -3,6 +3,7 @@
 import { getLocale } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/constants";
+import { EditableCells } from "./EditableCells";
 
 export const metadata = { title: "Manuvo" };
 export const dynamic = "force-dynamic";
@@ -18,12 +19,16 @@ const L: Record<Locale, {
   source: string;
   date: string;
   direct: string;
+  mestiere: string;
+  zona: string;
+  save: string;
+  saved: string;
 }> = {
-  it: { title: "Lista d'attesa", subtitle: "Iscritti dalla pagina coming soon, dal più recente.", total: "Iscritti", week: "Ultimi 7 giorni", empty: "Nessun iscritto per ora.", email: "Email", lang: "Lingua", source: "Provenienza", date: "Data", direct: "diretta" },
-  fr: { title: "Liste d'attente", subtitle: "Inscrits depuis la page coming soon, du plus récent au plus ancien.", total: "Inscrits", week: "7 derniers jours", empty: "Aucun inscrit pour l'instant.", email: "E-mail", lang: "Langue", source: "Provenance", date: "Date", direct: "directe" },
-  en: { title: "Waitlist", subtitle: "Sign-ups from the coming soon page, newest first.", total: "Sign-ups", week: "Last 7 days", empty: "No sign-ups yet.", email: "Email", lang: "Language", source: "Source", date: "Date", direct: "direct" },
-  de: { title: "Warteliste", subtitle: "Anmeldungen über die Coming-soon-Seite, neueste zuerst.", total: "Anmeldungen", week: "Letzte 7 Tage", empty: "Noch keine Anmeldungen.", email: "E-Mail", lang: "Sprache", source: "Herkunft", date: "Datum", direct: "direkt" },
-  ar: { title: "قائمة الانتظار", subtitle: "المسجلون من صفحة الإطلاق القريب، الأحدث أولاً.", total: "المسجلون", week: "آخر 7 أيام", empty: "لا يوجد مسجلون بعد.", email: "البريد", lang: "اللغة", source: "المصدر", date: "التاريخ", direct: "مباشر" },
+  it: { title: "Lista d'attesa", subtitle: "Iscritti dalla pagina coming soon, dal più recente.", total: "Iscritti", week: "Ultimi 7 giorni", empty: "Nessun iscritto per ora.", email: "Email", lang: "Lingua", source: "Provenienza", date: "Data", direct: "diretta", mestiere: "Mestiere", zona: "Zona", save: "Salva", saved: "Salvato" },
+  fr: { title: "Liste d'attente", subtitle: "Inscrits depuis la page coming soon, du plus récent au plus ancien.", total: "Inscrits", week: "7 derniers jours", empty: "Aucun inscrit pour l'instant.", email: "E-mail", lang: "Langue", source: "Provenance", date: "Date", direct: "directe", mestiere: "Métier", zona: "Zone", save: "Enregistrer", saved: "Enregistré" },
+  en: { title: "Waitlist", subtitle: "Sign-ups from the coming soon page, newest first.", total: "Sign-ups", week: "Last 7 days", empty: "No sign-ups yet.", email: "Email", lang: "Language", source: "Source", date: "Date", direct: "direct", mestiere: "Trade", zona: "Area", save: "Save", saved: "Saved" },
+  de: { title: "Warteliste", subtitle: "Anmeldungen über die Coming-soon-Seite, neueste zuerst.", total: "Anmeldungen", week: "Letzte 7 Tage", empty: "Noch keine Anmeldungen.", email: "E-Mail", lang: "Sprache", source: "Herkunft", date: "Datum", direct: "direkt", mestiere: "Gewerbe", zona: "Gegend", save: "Speichern", saved: "Gespeichert" },
+  ar: { title: "قائمة الانتظار", subtitle: "المسجلون من صفحة الإطلاق القريب، الأحدث أولاً.", total: "المسجلون", week: "آخر 7 أيام", empty: "لا يوجد مسجلون بعد.", email: "البريد", lang: "اللغة", source: "المصدر", date: "التاريخ", direct: "مباشر", mestiere: "المهنة", zona: "المنطقة", save: "حفظ", saved: "تم الحفظ" },
 };
 
 // Lecture hors du rendu (Date.now est impur dans un composant).
@@ -79,6 +84,8 @@ export default async function AdminWaitlistPage() {
               <tr>
                 <th className="px-4 py-3 text-start font-semibold">{t.email}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t.lang}</th>
+                <th className="px-4 py-3 text-start font-semibold">{t.mestiere}</th>
+                <th className="px-4 py-3 text-start font-semibold">{t.zona}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t.source}</th>
                 <th className="px-4 py-3 text-start font-semibold">{t.date}</th>
               </tr>
@@ -92,6 +99,14 @@ export default async function AdminWaitlistPage() {
                     </a>
                   </td>
                   <td className="px-4 py-3 uppercase text-neutral-600">{e.lang}</td>
+                  <td className="px-4 py-3" colSpan={2}>
+                    <EditableCells
+                      id={e.id}
+                      mestiere={e.mestiere}
+                      zona={e.zona}
+                      labels={{ mestierePh: t.mestiere, zonaPh: t.zona, save: t.save, saved: t.saved }}
+                    />
+                  </td>
                   <td className="px-4 py-3 text-neutral-600">{sourceOf(e)}</td>
                   <td className="px-4 py-3 whitespace-nowrap tabular-nums text-neutral-500">
                     {fmt.format(e.createdAt)}
