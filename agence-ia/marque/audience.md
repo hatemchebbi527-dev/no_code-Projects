@@ -2,85 +2,99 @@
 
 > Qui je sers en priorité, quels sont ses problèmes, et le résultat que je lui apporte.
 > Fichier de marque fondateur : tout le reste (voix, offres, site, prospection) en découle.
-> Dernière mise à jour : 2026-07-27
+> Dernière mise à jour : 2026-11-16 (pivot de niche : hôtels et restaurants)
 
 ---
 
 ## Cibles fer de lance (priorité n°1)
 
-**Deux métiers cœur : avocats et comptables (commercialisti). Plus un troisième vertical en ouverture : les cliniche (santé).**
+**Deux métiers cœur : les hôtels et les restaurants de la Riviera romagnole.**
 
-Point commun des studi (avocats, comptables) : leur temps vaut cher (ils facturent à l'heure ou à l'acte), mais ils le gaspillent dans des tâches administratives répétitives qu'une automatisation peut absorber. Chaque heure d'admin récupérée est une heure facturable rendue.
+Point commun : leur chiffre d'affaires dépend directement de leur **réputation en ligne**. Avant de réserver une chambre ou une table, le client compare la note, le nombre d'avis récents et les réponses du gérant sur Google, TripAdvisor et Booking. Une fiche avec peu d'avis, une note moyenne ou des avis sans réponse fait perdre des réservations, chaque jour, sans que le gérant le voie.
 
-Le vertical **cliniche** (cabinets de santé : vétérinaires, dentistes, kinés, cabinets médicaux, poliambulatori) partage exactement cette logique, avec une douleur en plus : les rendez-vous. Il généralise et remplace l'ancienne cible « médecins » en l'élargissant à tout établissement de soins. Porte d'entrée du vertical : les cliniques vétérinaires (segment mal servi, concurrence faible, décideur = le vétérinaire lui-même).
+Pourquoi ce choix (décision du 16 nov 2026) :
+- ce sont les secteurs **les plus dépendants des avis**, donc là où l'offre Climbo apporte le plus de valeur ;
+- **Rimini et la Riviera** concentrent une densité exceptionnelle d'hôtels et de restaurants ;
+- je connais le métier de l'hôtellerie de l'intérieur, ce qui me rend crédible face aux titulaires.
 
 ### Profil type
 
-- **Taille :** petit cabinet (1 à 5 personnes), souvent le professionnel + 1 secrétaire/assistant(e)
-- **Zone :** Italie en priorité, à distance partout (français et anglais en expansion)
-- **Maturité digitale :** faible à moyenne. Ils savent qu'ils devraient se moderniser mais n'ont ni le temps ni les compétences internes
-- **Décideur :** le professionnel lui-même (c'est lui qui paie et qui décide)
+- **Hôtels :** établissements indépendants et familiaux (souvent 10 à 60 chambres, 2 à 4 étoiles), saisonniers ou ouverts à l'année. Les chaînes et grands groupes sont hors cible (outils internes, décision centralisée).
+- **Restaurants :** trattorie, pizzerie, ristoranti, bar et caffè, de 1 à 20 personnes. Les **stabilimenti balneari** (plages privées avec bar/restaurant) sont une extension naturelle.
+- **Zone :** Rimini et la Riviera (Riccione, Cattolica, Misano, Bellaria-Igea Marina, Cesenatico), puis l'Emilia-Romagna. La proximité est un argument fort : je peux passer sur place.
+- **Maturité digitale :** faible à moyenne. Ils savent que les avis comptent mais n'ont pas le temps de s'en occuper.
+- **Décideur :** le titulaire ou le gérant (souvent une affaire de famille).
 
 ---
 
 ## Leurs problèmes (par ordre de douleur)
 
-1. **Administratif répétitif chronophage**
-   Prise de rendez-vous manuelle, relances de clients, rappels de RDV, tri et classement de documents, saisie de données. Du temps non facturable qui s'accumule.
+1. **Pas assez d'avis récents, ou une note qui stagne.**
+   Les clients satisfaits ne pensent pas à laisser un avis ; les mécontents, si. La note ne reflète pas la vraie qualité de l'établissement.
 
-2. **Support et organisation client désordonnés**
-   Pas de vraie vue d'ensemble sur les clients/dossiers. Infos éparpillées entre mails, papiers, tableurs. Pas de CRM adapté.
+2. **Pas le temps de répondre aux avis.**
+   Pendant la saison, personne ne répond. Les avis restent sans réponse, y compris les négatifs, ce qui donne une image de négligence.
 
-3. **Visibilité quasi inexistante**
-   Site vitrine vieux ou absent, présence réseaux sociaux nulle ou abandonnée. Publication manuelle, donc rien n'est publié. Ils dépendent du bouche-à-oreille.
+3. **Invisibles quand on les cherche.**
+   Mal classés sur Google Maps pour « hotel Rimini » ou « ristorante Riccione », et absents des réponses des assistants comme ChatGPT, que les touristes utilisent de plus en plus pour choisir.
 
-4. **Réponses aux mêmes questions, en boucle**
-   Clients qui posent toujours les mêmes questions (tarifs, documents à fournir, délais, horaires). Temps perdu à répondre individuellement.
+4. **Demandes de réservation perdues.**
+   Demandes par email, WhatsApp ou téléphone, souvent hors horaires et en plusieurs langues (allemand, anglais), qui restent sans réponse et partent chez le concurrent ou sur Booking.
+
+5. **Dépendance aux plateformes (OTA).**
+   Booking et consorts prennent une commission sur chaque réservation. Une bonne réputation sur Google aide à capter des réservations directes.
 
 ---
 
-## Spécificité du vertical cliniche : les rendez-vous
+## Le calendrier de la Riviera (décisif pour la prospection)
 
-En plus de l'admin, les cliniques vivent au rythme des rendez-vous, d'où trois douleurs propres :
-
-1. **No-shows** : environ 10 % des rendez-vous manqués dans le secteur, autant de revenu perdu.
-2. **Demandes hors horaires** : ~40 % des prises de rendez-vous se font quand la clinique est fermée ; sans réservation en ligne, elles sont perdues.
-3. **Clientèle multilingue** (zones touristiques comme Rimini) : besoin d'un accueil IT/EN.
-
-Réponse AutomaIA : réservation en ligne 24/7, rappels automatiques SMS/email, assistant multilingue. Même socle d'offre que les studi, appliqué aux rendez-vous.
+- **Février à avril : fenêtre de vente idéale.** Les titulaires préparent la saison, ont du temps et veulent arriver en mai avec une fiche solide.
+- **Mai à septembre : la saison.** Ils n'ont plus le temps de parler, mais c'est là que les résultats se voient (avis, note, visibilité). Moment des études de cas.
+- **Octobre à janvier : bilan.** Analyse de la saison, renouvellements, abonnements annuels. Beaucoup d'hôtels saisonniers sont fermés : privilégier les établissements ouverts à l'année et les restaurants.
 
 ---
 
 ## Ce que je leur apporte (mes résultats)
 
-- **Récupérer des heures facturables** en automatisant l'administratif (RDV, relances, rappels, tri de documents)
-- **Un CRM léger sur mesure** pour organiser clients, dossiers et support au même endroit
-- **Une présence en ligne qui tourne toute seule** : site vitrine pro + publication automatisée sur les réseaux
-- **Un assistant de réponses automatiques** pour les questions récurrentes (FAQ intelligente, pré-qualification)
+- **Plus d'avis à 5 étoiles, chaque semaine** : QR code et stand NFC au comptoir, message WhatsApp ou email après le séjour ou le repas.
+- **Une réponse soignée à chaque avis**, publiée pour eux, avec les mots que les clients cherchent sur Google.
+- **Être trouvé** sur Google Maps et dans les réponses des assistants comme ChatGPT, grâce à des contenus locaux réguliers.
+- **Ne plus perdre de demandes de réservation** : réponse rapide 24/7, en italien, anglais et allemand (offre d'automatisation AutomaIA).
+- **Un tableau de bord clair** : note, nombre d'avis, position sur Maps, ce que les clients aiment et ce qu'il faut améliorer.
 
-**Promesse chiffrée :** récupérer jusqu'à 10 heures par semaine de tâches administratives.
-
----
-
-## Argument central : la confidentialité
-
-Ces métiers manipulent des données sensibles (secret professionnel pour les avocats, données financières pour les comptables, données de santé pour les médecins). La confidentialité et la conformité (RGPD) ne sont pas un détail, c'est un argument de vente majeur. Mes solutions doivent être pensées "données protégées" dès le départ.
-
-**Nuance importante :** dans le vertical cliniche, les cabinets médicaux humains ont les contraintes légales les plus lourdes (données de santé). Commencer par les vétérinaires (données moins sensibles, vente plus rapide), puis dentistes et kinés, et n'aborder les médecins qu'une fois l'offre rodée.
+**Promesse :** plus d'avis, une réponse à chacun, et une fiche qui travaille pour eux, sans qu'ils aient à s'en occuper. Pas de pourcentage inventé : on montre les chiffres de leur propre tableau de bord.
 
 ---
 
-## Cibles secondaires (expansion, plus tard)
+## Argument central : les avis, ce sont des réservations
 
-À garder en vision mais hors focus tant que le premier client libéral n'est pas signé :
+Pour un hôtel ou un restaurant, la réputation en ligne n'est pas de l'image, c'est du chiffre d'affaires. On vend la **constance** (des avis chaque semaine, une réponse à chacun) et la **visibilité** (Google Maps et assistants comme ChatGPT), mesurées dans un tableau de bord.
 
-- **Instituts de beauté** : accessibles, problème clair (RDV, no-show, réseaux), mais petits budgets
-- **Agences de com / événementiel** : budgets plus hauts, mais à approcher en partenaire technique (back-office, automatisation) plutôt qu'en concurrent
-- **Startups** : adoptent l'IA vite, mais petits budgets et tendance au "fait maison"
+**Conformité :** jamais de faux avis ni de filtrage des clients mécontents. Tout le monde reçoit la même invitation, conformément aux règles de Google. C'est aussi un argument de confiance face au titulaire.
+
+---
+
+## Cibles secondaires (après les premiers cas clients)
+
+Les autres commerces locaux dont l'activité dépend des avis et des rendez-vous :
+
+- **Beauté** (centres esthétiques, coiffeurs, barbiers) : avis + rendez-vous + no-show.
+- **Fitness** (salles de sport) : avis + conversion des essais gratuits.
+- **Agences immobilières** : avis + rapidité de réponse aux demandes.
+- **Commerces de détail et artisans de bouche** (boulangeries, glaciers, caves) : avis + visibilité locale.
+
+Les anciennes cibles (avocats, comptables, cliniques) sortent du focus.
+
+---
+
+## Vigilance
+
+- **Employeur :** je travaille dans un hôtel de Rimini. Ne jamais utiliser d'informations, de contacts ou de données de mon employeur, rester discret, et vérifier mon contrat (obligation de fidélité, art. 2105 du Code civil italien). Un pilote dans mon hôtel uniquement avec l'accord de la direction.
+- **Fiscal :** pas de client payant avant l'ouverture de la P.IVA, le 4 janvier 2027.
 
 ---
 
 ## Langues
 
-- **Maintenant :** italien (cible italienne)
-- **Pour scaler :** site et contenus multilingues (italien, français, anglais)
+- **Communication avec mes clients :** italien.
+- **Pour leurs clients à eux :** italien, anglais, allemand (clientèle touristique de la Riviera).

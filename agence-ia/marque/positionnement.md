@@ -1,95 +1,88 @@
 # positionnement.md — Mon positionnement et mes bios
 
-> Mon ICP en une synthèse, mon offre phare en une phrase, et mes 4 bios prêtes à coller.
-> Produit au Jour 1 du plan, à partir de audience.md et offers_cta.md.
-> Voix : vouvoiement chaleureux, zéro jargon (voir brand_voice.md).
-> Dernière mise à jour : 2026-07-27
+> Mon ICP en une synthèse, mon offre phare en une phrase, et mes bios prêtes à coller.
+> À partir de audience.md et offers_cta.md. Voix : vouvoiement chaleureux, zéro jargon (voir brand_voice.md).
+> Dernière mise à jour : 2026-11-16 (pivot de niche : hôtels et restaurants)
 
 ---
 
 ## Mon ICP (client idéal) en une synthèse
 
-Les petits cabinets de professionnels libéraux (avocats et comptables en priorité, plus le vertical cliniche/santé en ouverture, entrée par les vétérinaires), 1 à 5 personnes, qui perdent un temps précieux dans l'administratif répétitif et tiennent à la confidentialité de leurs données. Mon entrée se fait par l'automatisation de leur quotidien.
+Les hôtels indépendants et familiaux et les restaurants de Rimini et de la Riviera, dont le chiffre d'affaires dépend de leur réputation en ligne, mais qui n'ont pas le temps de collecter des avis, d'y répondre ni de soigner leur visibilité sur Google. Mon entrée se fait par la réputation (plus d'avis, une réponse à chacun, une fiche qui remonte), puis par l'automatisation des demandes de réservation.
+
+Cibles secondaires, plus tard : beauté, fitness, immobilier, commerces de détail.
 
 ---
 
 ## Mon offre phare (en une phrase)
 
 **Italien (client) :**
-> "Aiuto avvocati e commercialisti a recuperare fino a 10 ore a settimana automatizzando le attività amministrative ripetitive, con i loro dati sempre protetti."
+> « Aiuto hotel e ristoranti della Riviera a ottenere più recensioni a 5 stelle, a rispondere a ognuna e a farsi trovare su Google e su ChatGPT, senza che il titolare debba occuparsene. »
 
 **Français (référence) :**
-> "J'aide avocats et comptables à récupérer jusqu'à 10 heures par semaine en automatisant les tâches administratives répétitives, avec leurs données toujours protégées."
+> « J'aide les hôtels et restaurants de la Riviera à obtenir plus d'avis 5 étoiles, à répondre à chacun et à être trouvés sur Google et sur ChatGPT, sans que le titulaire ait à s'en occuper. »
 
-Les 3 pièces : public précis (avocats et comptables) + problème précis (admin répétitif) + résultat chiffré (10h/semaine).
+Les 3 pièces : public précis (hôtels et restaurants de la Riviera) + problème précis (réputation et visibilité) + résultat concret (plus d'avis, une réponse à chacun, être trouvé).
 
 ---
 
-## Mes 4 bios (en italien, prêtes à coller)
+## Mes bios (en italien, prêtes à coller)
 
 ### LinkedIn
 
 **Titolo (headline) :**
-> Automazione e IA per studi legali e di commercialisti | Recupera fino a 10 ore a settimana | Dati protetti
+> Recensioni e visibilità per hotel e ristoranti | Rimini e Riviera | Report di visibilità gratuito
 
 **Informazioni (about) :**
-> Aiuto avvocati e commercialisti a liberarsi dalle attività amministrative ripetitive che rubano tempo prezioso.
+> Aiuto hotel e ristoranti della Riviera a trasformare la reputazione online in prenotazioni.
 >
-> Appuntamenti, promemoria, solleciti e richieste dei clienti: automatizzo lo studio così Lei recupera fino a 10 ore a settimana, da dedicare al suo vero lavoro.
+> Più recensioni a 5 stelle ogni settimana, una risposta curata a ognuna, e una scheda Google che sale su Maps e compare nelle risposte di assistenti come ChatGPT. Il tutto senza che il titolare debba occuparsene.
 >
-> I suoi dati restano protetti e sotto il suo controllo, sempre.
+> Conosco il settore alberghiero dall'interno e lavoro qui, a Rimini: posso passare da Lei.
 >
-> 📩 Prenoti un audit gratuito di 20 minuti: individuiamo insieme dove sta perdendo più tempo.
+> Richieda il Suo report di visibilità gratuito: Le mostro in pochi minuti come La vedono oggi i Suoi clienti.
 
 ### Instagram
 
-> ⚙️ Automazione & IA per studi legali e di commercialisti
-> ⏱️ Recupera fino a 10 ore a settimana
-> 🔒 I tuoi dati sempre protetti
-> 👇 Audit gratuito di 20 min
+> Recensioni e visibilità per hotel e ristoranti
+> Più recensioni a 5 stelle, una risposta a ognuna
+> Rimini · Riviera romagnola
+> ↓ Report di visibilità gratuito
 
-### Facebook
+### Facebook (Page)
 
-> Automatizzo gli studi di avvocati e commercialisti per far recuperare fino a 10 ore a settimana.
+> Aiuto hotel e ristoranti della Riviera a ottenere più recensioni a 5 stelle e a farsi trovare su Google.
 >
-> Meno burocrazia ripetitiva, più tempo per i clienti e per il lavoro che conta. Dati sempre protetti.
+> Raccolta di recensioni, risposte curate per ogni recensione, visibilità su Google Maps e su ChatGPT. Lei si occupa dei Suoi ospiti, noi della Sua reputazione.
 >
-> 📩 Scrivimi per un audit gratuito di 20 minuti.
+> Scriva per ricevere il Suo report di visibilità gratuito.
 
----
+### TikTok
 
-## Variante cliniche (vertical santé)
-
-**LinkedIn — Titolo :**
-> Automazione e IA per cliniche e studi veterinari | Meno appuntamenti persi | Dati protetti
-
-**About (estratto) :**
-> Aiuto cliniche e ambulatori (veterinari, dentisti, fisioterapisti) a non perdere più richieste e appuntamenti.
->
-> Prenotazione online sempre attiva, promemoria automatici, accoglienza anche in inglese: meno telefono, agenda sempre piena. I dati dei pazienti restano protetti.
->
-> 📩 Prenoti un audit gratuito di 20 minuti.
+> Hotel e ristoranti: più recensioni, più prenotazioni
+> Rimini · Riviera
+> Report di visibilità gratuito ↓
 
 ---
 
 ## Stratégie de comptes par plateforme
 
-**Principe :** le contenu reste humain et personnel partout (les clients achètent la personne, pas une marque anonyme), mais le type de compte est choisi pour la crédibilité et surtout pour permettre l'automatisation de publication (Jours 12 et 17).
+**Principe :** le contenu reste humain et personnel (on achète la personne avant la marque). Pour des titulaires d'hôtels et de restaurants, la présence se joue d'abord sur les réseaux visuels et dans le réseau local.
 
-| Plateforme | Type de compte | Pourquoi |
-|---|---|---|
-| LinkedIn | **Profil personnel** (priorité) | En B2B, le profil perso génère reach et confiance. Page entreprise possible plus tard, mais le perso vend. |
-| Facebook | **Page Business** | Une partie de la cible (souvent 40+) y est active. Requise pour l'API, les pubs et la programmation. |
-| Instagram | **Compte Professionnel (Business)** | Présence secondaire / vitrine visuelle. Débloque stats et accès API (lié à une Page Facebook). |
+| Plateforme | Type de compte | Part de l'effort | Pourquoi |
+|---|---|---|---|
+| Instagram | Compte professionnel | ~35 % | Les titulaires gèrent souvent eux-mêmes l'Instagram de leur établissement. Visuel, avant/après, coulisses. |
+| Facebook | Page + groupes locaux | ~30 % | Titulaires souvent 40+, très présents dans les groupes locaux d'hôteliers et de commerçants de Rimini. |
+| LinkedIn | Profil personnel | ~20 % | Directeurs d'hôtels, associations professionnelles, crédibilité B2B. |
+| TikTok | Compte professionnel | ~15 % | **Réintégré** : restaurateurs et jeunes gérants y sont. Démos courtes, avant/après d'une fiche Google. |
 
-**TikTok : retiré de la stratégie marketing.** La cible (avocats, comptables) n'y est pas en posture professionnelle ; les codes de la plateforme ne collent pas à des libéraux sérieux. Un compte peut rester ouvert uniquement pour s'entraîner techniquement à l'automatisation (API), sans y investir de contenu.
-
-**Priorité d'effort :** ~80% sur LinkedIn (c'est là que les avocats/comptables sont réceptifs en mode pro). Facebook et Instagram servent à entretenir la présence et à entraîner les automatisations, pas à closer cette cible.
+**Hors ligne (souvent le plus efficace dans l'hôtellerie) :** visites sur place avec le rapport de visibilité imprimé, associations locales d'hôteliers et de restaurateurs (type Federalberghi/AIA Rimini, Confcommercio/FIPE, à vérifier), salons et événements de pré-saison.
 
 ---
 
 ## Note
 
-- Vertical cliniche (santé) ajouté : entrée par les vétérinaires, puis dentistes/kinés, médecins en dernier. Une variante de bios « cliniche » est disponible ci-dessus.
-- Versions français/anglais à produire pour l'expansion multilingue.
-- Un seul CTA par bio (l'audit gratuit), conformément à offers_cta.md.
+- Pivot du 16 nov 2026 : les anciennes bios (avocats, comptables, cliniques) sont abandonnées.
+- Ne jamais citer mon employeur ni un client sans son accord. « Conosco il settore alberghiero dall'interno » suffit.
+- Un seul CTA par bio : le report di visibilità gratuito.
+- Versions anglais/allemand utiles plus tard pour l'Assistente Prenotazioni (clientèle touristique).

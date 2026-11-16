@@ -1,9 +1,8 @@
 # offers_cta.md — Mes offres et appels à l'action
 
-> Ce que je vends, à quel problème ça répond, et comment j'invite le client à passer à l'action.
-> Structure en 3 offres pour créer un effet d'ancrage (entrée / coeur / premium).
-> Prix à définir au Jour 24 du plan. Rédigé selon brand_voice.md (clair, concret, rassurant).
-> Dernière mise à jour : 2026-06-16
+> Ce que je vends aux hôtels et restaurants, à quel problème ça répond, et comment j'invite le client à passer à l'action.
+> Rédigé selon brand_voice.md (clair, concret, rassurant, zéro jargon).
+> Dernière mise à jour : 2026-11-16 (pivot de niche : hôtels et restaurants)
 
 ---
 
@@ -11,84 +10,75 @@
 
 | Offre | Problème résolu | Positionnement | Prix |
 |---|---|---|---|
-| 1. Cabinet automatisé | Admin répétitif chronophage (douleur immédiate) | **Porte d'entrée / fer de lance** | À définir |
-| 2. Cabinet 360 | Tout + organisation client | Offre premium | À définir |
-| Option. Présence en ligne | Visibilité (besoin secondaire pour cette cible) | Complément à la carte | À définir |
+| 1. Reputazione & Visibilità | Peu d'avis, pas de réponses, invisibilité sur Maps et ChatGPT | **Porte d'entrée / fer de lance** | 99 / 149 / 199 € par établissement et par mois |
+| 2. Assistente Prenotazioni 24/7 | Demandes de réservation perdues, hors horaires, multilingues | Offre complémentaire (automatisation AutomaIA) | Mise en place + abonnement (à réaligner depuis la grille tarifaire) |
+| Option. Stand NFC + QR | Collecte d'avis au comptoir, effet premium | Upsell physique | Inclus dans Completo, sinon en option |
 
-**Logique :** pour des libéraux, la douleur immédiate est le temps perdu en administratif, pas la vitrine. On mène donc avec l'automatisation. La présence en ligne devient un complément optionnel, pas une porte d'entrée.
+**Logique :** pour un hôtel ou un restaurant, la douleur immédiate est la réputation en ligne (elle fait ou défait les réservations). On entre par l'offre Reputazione & Visibilità (plateforme Climbo en marque blanche AutomaIA), puis on étend avec l'automatisation des réservations.
 
-**Modèle économique :** un **forfait de mise en place** (one-time) + un **abonnement mensuel** de maintenance, suivi et optimisation (récurrent). Le récurrent est la priorité : il crée un revenu prévisible. Prix à affiner au Jour 24.
+**Modèle économique :** abonnement mensuel par établissement (le récurrent est la priorité). Option annuelle à 10 × le mensuel (2 mois offerts). Essai gratuit de 14 jours. Mise en place offerte pendant la phase de lancement.
 
----
-
-## Offre 1 — Cabinet automatisé (PORTE D'ENTRÉE / FER DE LANCE)
-
-**Pour qui :** le cabinet qui perd ses journées dans l'administratif répétitif. C'est l'offre par laquelle on entre, car elle répond à la douleur la plus immédiate.
-
-**Le problème :** prise de rendez-vous manuelle, relances clients, rappels, réponses aux mêmes questions en boucle. Du temps non facturable qui s'accumule.
-
-**Ce que je livre :**
-- Automatisation de la prise de rendez-vous et des rappels
-- Relances clients automatiques
-- Un assistant de réponses automatiques pour les questions récurrentes (FAQ intelligente, pré-qualification)
-- Données protégées et sous contrôle du cabinet
-
-**Résultat pour le client :** récupérer jusqu'à 10 heures par semaine, soit autant d'heures facturables rendues.
-
-**CTA :** "Réservez un audit gratuit de 20 minutes : on identifie ensemble votre plus gros gisement de temps perdu."
+⚠️ **Pas d'encaissement avant l'ouverture de la P.IVA, le 4 janvier 2027.**
 
 ---
 
-## Offre 2 — Cabinet 360 (PREMIUM)
+## Offre 1 — Reputazione & Visibilità (PORTE D'ENTRÉE / FER DE LANCE)
 
-**Pour qui :** le cabinet qui veut tout structurer, de l'automatisation à l'organisation client.
+**Pour qui :** l'hôtel ou le restaurant dont la note stagne, qui reçoit peu d'avis récents, ou qui ne répond pas aux avis faute de temps.
 
-**Le problème :** infos clients éparpillées, aucune vue d'ensemble, support désordonné, en plus du temps perdu en administratif.
+**Le problème :** les clients satisfaits ne laissent pas d'avis, les avis restent sans réponse, et l'établissement est mal classé sur Google Maps et absent des assistants comme ChatGPT.
 
-**Ce que je livre :**
-- Tout ce que contient l'offre Cabinet automatisé
-- Un CRM léger sur mesure : clients, dossiers et support au même endroit
-- La présence en ligne automatisée incluse (site + publication réseaux)
-- Un suivi et une optimisation continue des automatisations
+**Ce que je livre (3 formules) :**
 
-**Résultat pour le client :** un cabinet entièrement organisé et automatisé, de la première prise de contact au suivi client.
+- **Essenziale, 99 €** : collecte d'avis (QR, lien, email, SMS), réponse soignée à chaque avis, feedback privé, widget d'avis pour le site.
+- **Crescita, 149 €** (la plus conseillée) : tout l'Essenziale + WhatsApp, campagnes, QR par employé avec classement, partage des meilleurs avis sur Instagram et Facebook, gestion de la fiche Google, suivi du classement sur Maps, analyse mensuelle de ce que disent les clients.
+- **Completo, 199 €** : tout le Crescita + un article local par semaine sur le site, suivi de la position sur ChatGPT, Gemini et Perplexity, TikTok et LinkedIn, analyse des concurrents, stand NFC inclus.
 
-**CTA :** "Parlons de votre cabinet : un appel pour construire votre plan sur mesure."
+**Résultat pour le client :** plus d'avis chaque semaine, une réponse à chacun, une fiche qui remonte sur Google, et un tableau de bord qui le prouve.
+
+**CTA :** « Richieda il Suo report di visibilità gratuito. »
 
 ---
 
-## Option — Présence en ligne automatisée (complément à la carte)
+## Offre 2 — Assistente Prenotazioni 24/7 (COMPLÉMENT)
 
-**Pour qui :** le cabinet qui veut aussi soigner sa visibilité. Besoin secondaire pour cette cible, donc proposé en complément, pas en porte d'entrée.
+**Pour qui :** l'hôtel ou le restaurant qui reçoit des demandes de réservation par email, WhatsApp ou formulaire, souvent le soir et en plusieurs langues.
 
-**Le problème :** site vieux ou absent, réseaux abandonnés, aucune publication faute de temps.
+**Le problème :** les demandes arrivent quand personne n'est disponible, restent sans réponse plusieurs heures et partent chez un concurrent ou sur Booking.
 
 **Ce que je livre :**
-- Un site vitrine professionnel (clair, rassurant, mobile)
-- La publication automatique sur leurs réseaux sociaux
-- Un formulaire de contact qui alimente directement leur système
+- une réponse rapide à chaque demande, 24/7, en italien, anglais et allemand ;
+- une notification au gérant pour chaque demande importante ;
+- des rappels et relances automatiques (confirmation de séjour, de table).
 
-**Résultat pour le client :** une présence en ligne crédible qui tourne toute seule.
+S'appuie sur l'assistant email déjà construit (n8n, brouillon de réponse, notification Telegram).
 
-**CTA :** "Ajoutez votre vitrine en ligne à votre cabinet automatisé."
+**Résultat pour le client :** plus aucune demande de réservation sans réponse, et plus de réservations directes.
+
+**CTA :** « Richieda una demo di 15 minuti. »
+
+---
+
+## Option — Stand NFC + QR
+
+Chevalet de comptoir aux couleurs de l'établissement : le client approche son téléphone ou scanne le QR pour laisser un avis. Inclus dans Completo, en option sinon. Supports prêts dans `agence-ia/nfc/`.
 
 ---
 
 ## Mes appels à l'action (CTA) réutilisables
 
-Un seul CTA par page/message (ne jamais en proposer deux, ça dilue la décision).
+Un seul CTA par page ou par message.
 
-- **Audit gratuit :** "Réservez un audit gratuit de 20 minutes." (le principal, faible engagement)
-- **Démo :** "Demandez une démo en 15 minutes."
-- **Contact direct :** "Parlons de votre cabinet."
-
-> Note : ces CTA sont à traduire en italien pour le marché cible (et français/anglais pour l'expansion), en gardant le vouvoiement chaleureux.
+- **Report di visibilità (principal) :** « Richieda il Suo report di visibilità gratuito. » Le rapport Climbo montre la position sur Maps, l'absence sur les assistants IA et la réputation face aux concurrents. Faible engagement, très concret.
+- **Audit gratuit :** « Prenoti un audit gratuito di 20 minuti. »
+- **Démo :** « Richieda una demo di 15 minuti. »
+- **Contact direct :** « Parliamo della Sua attività. »
 
 ---
 
 ## Règles
 
-- Toujours partir du **problème du client**, jamais de la technologie.
-- Un bénéfice chiffré quand c'est possible (heures gagnées).
-- L'audit gratuit est la porte d'entrée principale : faible engagement, forte valeur perçue.
-- La confidentialité est mentionnée dans chaque offre (argument central pour cette cible).
+- Toujours partir du **problème du client** (avis, note, réservations), jamais de la technologie.
+- Pas de pourcentage inventé : les preuves viennent du tableau de bord du client et des études de cas réelles.
+- Jamais de faux avis, jamais de filtrage des clients mécontents : c'est la règle Google et un argument de confiance.
+- Le report di visibilità est la porte d'entrée principale.

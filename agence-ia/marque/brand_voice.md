@@ -2,20 +2,20 @@
 
 > Comment ma marque parle à ses clients : ton, style, vocabulaire, ce qu'on dit et ce qu'on évite.
 > Sert de référence pour tout : site, posts, emails, propositions, messages de prospection.
-> Dernière mise à jour : 2026-06-16
+> Dernière mise à jour : 2026-11-16 (pivot de niche : hôtels et restaurants)
 
 ---
 
 ## En une phrase
 
-Une voix **professionnelle mais accessible** : je parle à des experts (avocats, comptables, médecins) qui n'ont pas le temps et qui détestent le jargon technique. Je suis clair, rassurant, et je parle résultats concrets, pas technologie.
+Une voix **professionnelle mais accessible** : je parle à des titulaires d'hôtels et de restaurants qui n'ont pas le temps et qui détestent le jargon technique. Je suis clair, rassurant, et je parle résultats concrets, pas technologie.
 
 ---
 
 ## Les 4 piliers de ma voix
 
 1. **Claire avant tout**
-   Pas de jargon IA ("LLM", "API", "workflow", "pipeline"). Je parle bénéfices, pas outils. Un cabinet ne veut pas "un workflow n8n", il veut "ne plus perdre 2h par jour à gérer ses rendez-vous".
+   Pas de jargon IA ("LLM", "API", "workflow", "pipeline"). Je parle bénéfices, pas outils. Un hôtelier ne veut pas "un workflow n8n", il veut "plus d'avis 5 étoiles et ne plus perdre de réservations".
 
 2. **Rassurante**
    Mes clients manipulent des données sensibles. Je rassure sur la confidentialité, la simplicité, le fait qu'ils gardent le contrôle. Jamais de promesse magique qui sonne faux.
@@ -30,7 +30,7 @@ Une voix **professionnelle mais accessible** : je parle à des experts (avocats,
 
 ## Niveau de langage
 
-- **Vouvoiement, mais ton chaleureux et humain.** En italien le "Lei", en français/anglais le vouvoiement. Je garde le sérieux et le respect dû à des professionnels libéraux, mais sans la froideur corporate. Je m'adresse à une personne, pas à une entreprise anonyme.
+- **Vouvoiement, mais ton chaleureux et humain.** En italien le "Lei", en français/anglais le vouvoiement. Je garde le sérieux et le respect dû à des chefs d'entreprise, mais sans la froideur corporate. Je m'adresse à une personne, pas à une entreprise anonyme.
 - Concrètement : vouvoiement + phrases proches, bienveillantes, qui montrent que je comprends leur quotidien. Sérieux sur le fond, chaleureux sur la forme.
 
 ---
@@ -56,7 +56,7 @@ Une voix **professionnelle mais accessible** : je parle à des experts (avocats,
 ## Exemples avant / après
 
 **Mauvais (trop technique, survente) :**
-> "Grâce à nos workflows IA automatisés et notre intégration API, révolutionnez votre cabinet et explosez votre productivité !"
+> "Grâce à nos workflows IA automatisés et notre intégration API, révolutionnez votre hôtel et explosez votre productivité !"
 
 **Bon (clair, concret, rassurant) :**
 > "Vos rendez-vous se gèrent tout seuls, vos clients reçoivent leurs rappels automatiquement, et vous récupérez plusieurs heures chaque semaine. Vos données restent chez vous, protégées."
