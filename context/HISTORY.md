@@ -7,6 +7,19 @@
 
 ---
 
+## 2026-11-16
+
+### Climbo : compte agence activé à 497 €, MCP connecté, kit d'identité prêt
+- **Achat finalisé** : offre **Black Friday à 497 € one-time** (au lieu des 997 € annoncés à l'appel du 12 nov), **0 % de commission à vie**. Paiement via **Klarna**, 1re tranche de **165 €** versée. Le scénario « acompte 150 € + solde 847 € » ne s'applique plus. Les tâches S0 (acompte, signature) sont de fait réalisées
+- **MCP Climbo branché** comme connecteur personnalisé claude.ai (URL + en-tête `x-api-key`, méthode officielle Climbo ; la clé n'est jamais passée par le chat). C'est un MCP « explorateur d'API » : deux specs (« Agency Mode » et « Client's Mode »), base `https://api.climbo.com`
+- **Ce que l'API permet** : prospection complète (recherche de commerces par catégorie et zone, pipeline, rapports de visibilité, recherche d'emails, cold emails, statuts), gestion des clients (création, plan, statut, email groupé), et côté client (avis, réponses, partage social, feedback privé, fiche Google : description, photos, horaires, services, posts ; sites d'avis, contacts, campagnes, invitations, employés, statistiques, rankings Maps et IA, sentiment)
+- **Limite importante** : le **thème/branding agence et les plans sont en lecture seule** via l'API (`GET /theme`, `GET /plans`). L'identité se règle donc à la main dans le dashboard. Connexion des réseaux, domaine et Stripe : dashboard aussi
+- **Audit lu via l'API** : nom « AutomaIA » et lien powered-by `www.automa-ia.net` déjà en place ; logo, favicon, logo powered-by = Climbo par défaut ; couleur `#000000` ; police Inter ; arrondi 0 ; assistants sans nom (« AI Agent »). **Un seul plan** : « Demo Plan » gratuit (3 sedi, toutes fonctions). **Un client** : **Manuvo**, actif sur le Demo Plan depuis le 12 nov → il sert de compte de démo réel (Manuvo a une vraie fiche Google)
+- **Clarification « marque vs client »** : AutomaIA est la marque au niveau agence (back-office) et peut aussi avoir ses propres comptes clients ; les démos se font avec le compte Sunny Cafe (interface), Manuvo (données réelles) et idéalement un pilote gratuit chez un commerçant de Rimini. Jamais de fausse entreprise ni de faux avis
+- **Kit d'identité créé** : `agence-ia/climbo/kit-identite-climbo.md`. Branding : bleu nuit `#0F2A4A`, Inter, arrondi 8, logos de `agence-ia/marque/`. Assistants renommés **« Assistente Recensioni / Social / Visibilità »** (et non « Agente », car la voix AutomaIA interdit le jargon agent/IA face au client), couleurs teal/bleu nuit/ardoise. **3 plans** par établissement : Essenziale 99 €, Crescita 149 € (mis en avant), Completo 199 €, annuel = 10 × mensuel, essai 14 jours, quotas SMS/email/WhatsApp/tokens et règle « dépense max < ~15 % du prix ». Textes italiens du site d'agence avec un seul CTA : « Richieda il Suo report di visibilità gratuito »
+- ⚠️ **Rappel fiscal** : tout peut être configuré maintenant, mais **aucun client payant ni lien de paiement public avant l'ouverture de la P.IVA le 4 janvier 2027**
+- **Suite** : Hatem applique le kit (15 min), puis Claude vérifie via le MCP ; Stripe, domaine, connexion de la fiche Google et des réseaux de Manuvo ; prompts italiens par secteur ; prospection S2 via le MCP (rapports payants seulement avec son accord)
+
 ## 2026-11-12
 
 ### Climbo : playground testé en profondeur, italien validé, FEU VERT FRANC
