@@ -41,6 +41,9 @@
   border: 1px solid var(--border);
 }
 
+/* Les 2 boutons CTA du menu, un peu plus compacts. */
+.nav .ctaSmall { padding: 11px 18px; font-size: 0.9rem; }
+
 /* Le bouton CTA reste toujours sur une seule ligne. */
 .nav :global(.btn) { white-space: nowrap; }
 

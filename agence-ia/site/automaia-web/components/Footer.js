@@ -26,6 +26,7 @@ const socials = [
 export default async function Footer() {
   const t = await getTranslations("nav");
   const tb = await getTranslations("brand");
+  const tc = await getTranslations("common");
 
   return (
     <footer className={styles.footer}>
@@ -39,6 +40,8 @@ export default async function Footer() {
           {navItems.map((item) => (
             <Link key={item.href} href={item.href}>{t(item.key)}</Link>
           ))}
+          <Link href="/report">{tc("auditCta")}</Link>
+          <Link href="/audit">{tc("auditGratuito")}</Link>
           <a href="https://portal.automa-ia.net">{t("areaClienti")}</a>
         </nav>
 

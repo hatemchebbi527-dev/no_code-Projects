@@ -10,8 +10,8 @@ import styles from "./Header.module.css";
 // Espace client de la plateforme (marque blanche, domaine AutomaIA).
 const PORTAL_URL = "https://portal.automa-ia.net";
 
+// Pas de lien « Home » : le logo ramène déjà à l'accueil (place pour 2 CTA).
 const navItems = [
-  { key: "home", href: "/" },
   { key: "servizi", href: "/servizi" },
   { key: "hotel", href: "/hotel-ristoranti" },
   { key: "chiSono", href: "/chi-sono" },
@@ -60,7 +60,10 @@ export default function Header() {
             </svg>
             {t("areaClienti")}
           </a>
-          <Link href="/report" className="btn" onClick={() => setOpen(false)}>
+          <Link href="/audit" className={`btn btn--ghost ${styles.ctaSmall}`} onClick={() => setOpen(false)}>
+            {tc("auditGratuito")}
+          </Link>
+          <Link href="/report" className={`btn ${styles.ctaSmall}`} onClick={() => setOpen(false)}>
             {tc("auditCta")}
           </Link>
           <LanguageSwitcher onNavigate={() => setOpen(false)} />
