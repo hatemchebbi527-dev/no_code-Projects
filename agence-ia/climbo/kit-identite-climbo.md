@@ -159,3 +159,24 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 - Option feedback : `Feedback privato`
 
 **Langue affichée** (testé le 17/11/2026) : la page suit la **langue du téléphone du visiteur**. Téléphone en italien → textes italiens personnalisés ; autres langues → textes anglais par défaut de Climbo. Pratique pour les hôtels : les touristes étrangers voient l'anglais. Pour tester une page en italien, utiliser un appareil réglé en italien (ou une fenêtre privée sur un ordinateur en italien).
+
+---
+
+## Réglages types des assistants (côté client)
+
+Chaque assistant se règle dans **sa propre section** de l'espace client :
+- **Automa Risposte** : section Avis (étoile) ;
+- **Automa Social** : section Engagement (icône partage) ;
+- **Automa Ricerca** : section Visibilité (œil).
+
+### Automa Social (Configurazione)
+- Langue : `Italiano` (champ vide par défaut, à remplir obligatoirement) ; ton chaleureux et professionnel ; longueur courte ; 1 fois par semaine ; seuil 4 étoiles et plus ; « Sovrascrivi impostazioni manuali » activé.
+- Plateformes : Facebook, Instagram, Google (TikTok à retirer si les partages échouent : il exige vidéo ou carrousel).
+- Istruzioni aggiuntive :
+  > Scrivi in italiano, dando del Lei al lettore. Tono caldo e professionale. Ringrazia il cliente usando solo il suo nome di battesimo. Non inventare dettagli che non sono nella recensione. Massimo 2 emoji. Chiudi con un invito semplice a contattarci o a lasciare anche Lei una recensione.
+
+### Automa Risposte (Configurazione)
+- Langue : celle de l'avis si possible (argument fort pour les hôtels) ; ton chaleureux et professionnel ; publication auto pour 4-5 étoiles, validation manuelle pour 1-3 étoiles ; « Sovrascrivi impostazioni manuali » activé.
+- Istruzioni aggiuntive :
+  > Rispondi nella lingua della recensione. Se in italiano, dai del Lei. Ringrazia il cliente per nome (solo nome di battesimo). Riprendi un dettaglio concreto citato nella recensione. Non inventare informazioni, offerte o promesse. Se la recensione è negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a contattarci in privato. Niente emoji nelle risposte negative. Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
+- Parole chiave : 3 à 5, toujours ville + service. Manuvo : `artigiani a Rimini, idraulico Rimini, elettricista Rimini, artigiani Riviera romagnola`. Hôtel : `hotel a Rimini, hotel vicino al mare Rimini, hotel per famiglie Rimini`. Restaurant : `ristorante a Rimini, ristorante di pesce Rimini, dove mangiare a Rimini`.
