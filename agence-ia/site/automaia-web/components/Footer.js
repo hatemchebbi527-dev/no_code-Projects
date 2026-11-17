@@ -6,7 +6,7 @@ import styles from "./Footer.module.css";
 const navItems = [
   { key: "home", href: "/" },
   { key: "servizi", href: "/servizi" },
-  { key: "cliniche", href: "/cliniche" },
+  { key: "hotel", href: "/hotel-ristoranti" },
   { key: "chiSono", href: "/chi-sono" },
   { key: "contatti", href: "/contatti" },
 ];
@@ -39,6 +39,7 @@ export default async function Footer() {
           {navItems.map((item) => (
             <Link key={item.href} href={item.href}>{t(item.key)}</Link>
           ))}
+          <a href="https://portal.automa-ia.net">{t("areaClienti")}</a>
         </nav>
 
         <div className={styles.contact}>

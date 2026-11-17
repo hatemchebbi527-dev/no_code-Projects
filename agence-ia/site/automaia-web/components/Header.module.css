@@ -19,19 +19,27 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
 }
 
 .link {
   font-weight: 600;
   font-size: 0.92rem;
   color: var(--ink);
-  padding: 10px 12px;
+  padding: 10px 9px;
   border-radius: 8px;
   white-space: nowrap;
   transition: color .15s ease, background .15s ease;
 }
 .link:hover { color: var(--teal-dark); background: rgba(22,184,166,0.08); }
+
+/* Lien vers l'espace client (portal.automa-ia.net) */
+.areaClienti {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+}
 
 /* Le bouton CTA reste toujours sur une seule ligne. */
 .nav :global(.btn) { white-space: nowrap; }
@@ -52,7 +60,8 @@
   border-radius: 2px;
 }
 
-@media (max-width: 900px) {
+/* Menu burger jusqu'à 1200px : 5 liens + Area clienti + CTA + langues ne tiennent pas en dessous. */
+@media (max-width: 1200px) {
   .burger { display: flex; }
   .nav {
     position: absolute;

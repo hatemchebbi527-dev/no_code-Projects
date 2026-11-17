@@ -1,0 +1,142 @@
+/* HERO scuro con visuale prodotto */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 90px;
+  background:
+    radial-gradient(900px 500px at 15% 0%, rgba(22, 184, 166, 0.22), transparent 55%),
+    linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color: #fff;
+}
+.hero h1 { color: #fff; max-width: 580px; }
+.hero .lead { color: #B9C6D9; max-width: 540px; }
+
+.heroInner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.prezzoHint {
+  color: #B9C6D9;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Visuel : un avis Google + la réponse de l'assistant */
+.mock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mockReview,
+.mockReply {
+  background: #fff;
+  color: var(--ink);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+.mockReply {
+  margin-left: 40px;
+  border-left: 4px solid var(--teal);
+}
+.mockHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.mockAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.mockName { font-weight: 700; color: var(--navy); }
+.stars { color: #F5B301; letter-spacing: 2px; font-size: 0.95rem; }
+.mockSource {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+.mockReplyHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+.mockDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.mockText {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Numéro d'étape */
+.step {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+/* PREZZO — bloc avec bordure teal */
+.prezzo {
+  background: #fff;
+  border-left: 4px solid var(--teal);
+  border-radius: 16px;
+  padding: 38px 40px;
+  box-shadow: 0 4px 24px rgba(15, 42, 74, 0.05);
+}
+.prezzoValore {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 6px 0 10px;
+}
+.prezzoText {
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+}
+.prezzoClienti {
+  margin: 18px 0 0;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.prezzoClienti a {
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .heroInner { grid-template-columns: 1fr; }
+  .mockReply { margin-left: 20px; }
+}
