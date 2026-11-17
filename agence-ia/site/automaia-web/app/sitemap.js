@@ -6,7 +6,7 @@ import { routing } from "@/i18n/routing";
 import { localizedUrl } from "@/lib/seo";
 
 export default function sitemap() {
-  const routes = ["", "/servizi", "/hotel-ristoranti", "/chi-sono", "/contatti"];
+  const routes = ["", "/servizi", "/hotel-ristoranti", "/report", "/audit", "/chi-sono", "/contatti"];
 
   return routes.map((route) => {
     const languages = {};
