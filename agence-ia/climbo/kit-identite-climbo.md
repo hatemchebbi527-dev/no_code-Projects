@@ -77,7 +77,7 @@ Prix **par établissement (per sede), par mois**. Option annuelle conseillée : 
 - limites mensuelles et d'essai : 20 SMS, 300 emails, 10 WhatsApp, 300 000 tokens, soit **3,60 $ max par mois et par établissement** ;
 - 1 établissement (champ non réglable dans le dashboard).
 
-⚠️ Écart constaté : le dashboard montre Google actif, mais l'API renvoie `google` dans `disabled`. À vérifier côté client (page de demande d'avis de Manuvo).
+Écart API : l'API renvoie `google` dans `disabled`, mais **Google s'affiche bien** sur la page d'avis de Manuvo (vérifié le 17/11/2026). Bug d'affichage de l'API, à ignorer. Manuvo est passé sur ce plan le 17/11/2026 (via le MCP).
 
 **Coûts unitaires constatés** : 1 SMS = 0,01 $, 1 WhatsApp = 0,04 $, 1M tokens = 10 $ (tarif SMS vers l'Italie à confirmer dans Saldo).
 
