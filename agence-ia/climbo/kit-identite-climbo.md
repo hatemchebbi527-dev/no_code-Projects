@@ -47,6 +47,8 @@ Limites constatées :
 
 ## 3. Les 3 plans clients (à créer dans le dashboard)
 
+> ⏸️ **En attente (constat du 17/11/2026)** : un « Piano a pagamento » exige de connecter Stripe. Décision : Stripe et les 3 plans payants seront créés **après l'ouverture de la P.IVA (4 janvier 2027)**, pour ouvrir le compte Stripe directement avec la bonne identité fiscale. D'ici là, seuls des plans gratuits (« Piano gratuito ») pour les démos.
+
 Prix **par établissement (per sede), par mois**. Option annuelle conseillée : **10 × le mensuel** (2 mois offerts). Essai gratuit : **14 jours** sur les trois plans.
 
 | | **Essenziale** | **Crescita** (à mettre en avant) | **Completo** |
