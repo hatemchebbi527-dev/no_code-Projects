@@ -138,7 +138,9 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 - ✅ Page d'avis de Manuvo : Google bien présent, 2 liens « Manuvo » (vers manuvo.automa-ia.net) supprimés via Requests > Link.
 - ⏸️ Plans payants et Stripe : après la P.IVA (4 janvier 2027).
 - ✅ Page d'avis en italien : **pas de réglage de langue**, il faut traduire les textes à la main dans **Requests > Link** (chaque page de la liste déroulante). À refaire pour **chaque nouveau client** (textes types ci-dessous).
-- **Prochaine tâche (8)** : connecter les réseaux sociaux de Manuvo (Settings > Integrations > Social Media) pour faire apparaître Automa Social.
+- ✅ Réseaux sociaux de Manuvo connectés (Facebook, Instagram, TikTok) ; les 3 assistants configurés (voir « Réglages types »).
+- ✅ **Domaine personnalisé** (17/11/2026) : `portal.automa-ia.net` (client), `/admin` (agence), `/guides` (base de connaissances). DNS chez **Cloudflare** : CNAME `portal` → `app.mylocalbusiness.io`, **DNS only** (nuage gris, jamais proxied). Ne pas toucher `app` et `manuvo` (Vercel) ni les enregistrements Resend.
+- ⚠️ Solde d'agence à 1,20 $ : à recharger avant le premier vrai client (à 0, les assistants s'arrêtent).
 - Ensuite : Automa Social et Automa Ricerca absents du menu client de Manuvo (seul Automa Risposte visible), Custom URL du lien d'avis (ex. `manuvo`), placeholder anglais à signaler au support.
 
 ---
