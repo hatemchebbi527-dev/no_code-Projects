@@ -128,3 +128,14 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 - **Manuvo comme client démo** : connecter sa fiche Google et ses réseaux (autorisations à faire toi-même).
 - **Prompts italiens par secteur** (café/resto, hôtel) : à construire ensemble.
 - **Prospection S2** via le MCP : recherche hôtels/restos Rimini, pipeline, rapports (0,35 € pièce, toujours avec ton accord).
+
+---
+
+## Suivi de la mise en place (17/11/2026)
+
+- ✅ Branding, assistants (Automa Risposte, Automa Social, Automa Ricerca), phrase d'invite.
+- ✅ Plan gratuit « Demo AutomaIA » créé, Manuvo basculé dessus.
+- ✅ Page d'avis de Manuvo : Google bien présent, 2 liens « Manuvo » (vers manuvo.automa-ia.net) supprimés via Requests > Link.
+- ⏸️ Plans payants et Stripe : après la P.IVA (4 janvier 2027).
+- **Prochaine tâche (7)** : passer la page d'avis en italien (pistes : Locations > Language, Account, ou textes éditables dans Requests > Link).
+- Ensuite : Automa Social et Automa Ricerca absents du menu client de Manuvo (seul Automa Risposte visible), Custom URL du lien d'avis (ex. `manuvo`), placeholder anglais à signaler au support.
