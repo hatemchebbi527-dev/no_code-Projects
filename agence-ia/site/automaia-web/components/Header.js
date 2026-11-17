@@ -60,7 +60,7 @@ export default function Header() {
             </svg>
             {t("areaClienti")}
           </a>
-          <Link href="/audit" className="btn" onClick={() => setOpen(false)}>
+          <Link href="/report" className="btn" onClick={() => setOpen(false)}>
             {tc("auditCta")}
           </Link>
           <LanguageSwitcher onNavigate={() => setOpen(false)} />

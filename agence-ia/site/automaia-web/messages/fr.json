@@ -31,7 +31,7 @@
       "subtitle": "J'aide les hôtels et restaurants de la Riviera à obtenir plus d'avis, à répondre à chacun et à être trouvés sur Google et sur ChatGPT. Sans que le gérant ait à s'en occuper.",
       "cta": {
         "label": "Demandez votre rapport gratuit",
-        "href": "/audit"
+        "href": "/report"
       }
     },
     "stats": [
@@ -95,7 +95,7 @@
       "text": "En 20 minutes, gratuitement, je vous présente le rapport de visibilité de votre établissement et les premières améliorations possibles.",
       "cta": {
         "label": "Demandez votre rapport gratuit",
-        "href": "/audit"
+        "href": "/report"
       }
     }
   },
@@ -138,7 +138,7 @@
         "prezzo": "Sur mesure",
         "nota": "Mise en place + abonnement mensuel",
         "cta": {
-          "label": "Demander une démo",
+          "label": "Réservez un audit gratuit",
           "href": "/audit"
         }
       },
@@ -190,12 +190,12 @@
     ],
     "cta": {
       "label": "Demandez votre rapport gratuit",
-      "href": "/audit"
+      "href": "/report"
     }
   },
   "contatti": {
     "title": "Une question ?",
-    "text": "Remplissez le formulaire ou écrivez directement à info@automa-ia.net. Je réponds sous 24 heures. Pour recevoir votre rapport de visibilité gratuit, utilisez plutôt la page dédiée.",
+    "text": "Remplissez le formulaire ou écrivez directement à info@automa-ia.net. Je réponds sous 24 heures. Pour le rapport de visibilité ou un audit gratuit, utilisez plutôt les pages dédiées.",
     "successo": "Merci ! J'ai bien reçu votre message, je vous réponds rapidement.",
     "errore": "Une erreur est survenue. Réessayez ou écrivez directement à info@automa-ia.net."
   },
@@ -214,7 +214,7 @@
       "subtitle": "Trois assistants s'occupent de la réputation en ligne de votre établissement : ils collectent les avis, répondent à chaque client dans sa langue et vous font trouver sur Google et sur ChatGPT. Vous, vous vous occupez de vos clients.",
       "cta": {
         "label": "Demandez votre rapport gratuit",
-        "href": "/audit"
+        "href": "/report"
       },
       "prezzo": "À partir de 99 € par mois"
     },
@@ -293,33 +293,9 @@
       "text": "En 20 minutes, gratuitement et sans engagement, je vous présente le rapport de visibilité de votre établissement.",
       "cta": {
         "label": "Demandez votre rapport gratuit",
-        "href": "/audit"
+        "href": "/report"
       }
     }
-  },
-  "audit": {
-    "eyebrow": "Rapport de visibilité · 20 minutes, gratuit",
-    "title": "Découvrez comment vos clients vous voient aujourd'hui",
-    "lead": "En 20 minutes, je vous présente le rapport de visibilité de votre établissement : position sur Google Maps, présence sur ChatGPT, avis face aux concurrents du quartier. Sans engagement, sans vente forcée.",
-    "trust": "Données protégées · Sans engagement · RGPD",
-    "steps": [
-      {
-        "step": "01",
-        "title": "Réservation",
-        "desc": "Choisissez ci-dessous l'horaire qui vous convient."
-      },
-      {
-        "step": "02",
-        "title": "Analyse",
-        "desc": "Je prépare le rapport de votre établissement avant l'appel."
-      },
-      {
-        "step": "03",
-        "title": "Résultats",
-        "desc": "Je vous montre où progresser, chiffres en main."
-      }
-    ],
-    "iframeTitle": "Réservez votre rapport de visibilité gratuit AutomaIA"
   },
   "metadata": {
     "home": {
@@ -347,9 +323,61 @@
       "title": "Contact — AutomaIA",
       "description": "Une question sur AutomaIA ? Écrivez directement ou demandez le rapport de visibilité gratuit pour votre hôtel ou restaurant."
     },
-    "audit": {
+    "report": {
       "title": "Rapport de visibilité gratuit · AutomaIA",
       "description": "Réservez 20 minutes gratuites : je vous montre comment les clients vous voient aujourd'hui sur Google Maps et ChatGPT, face aux concurrents du quartier."
+    },
+    "audit": {
+      "title": "Audit gratuit · AutomaIA",
+      "description": "Réservez un audit gratuit de 20 minutes pour découvrir quelles tâches répétitives de votre hôtel ou restaurant vous pouvez automatiser : réservations, questions fréquentes, rappels."
     }
+  },
+  "report": {
+    "eyebrow": "Rapport de visibilité · 20 minutes, gratuit",
+    "title": "Découvrez comment vos clients vous voient aujourd'hui",
+    "lead": "En 20 minutes, je vous présente le rapport de visibilité de votre établissement : position sur Google Maps, présence sur ChatGPT, avis face aux concurrents du quartier. Sans engagement, sans vente forcée.",
+    "trust": "Données protégées · Sans engagement · RGPD",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Réservation",
+        "desc": "Choisissez ci-dessous l'horaire qui vous convient."
+      },
+      {
+        "step": "02",
+        "title": "Analyse",
+        "desc": "Je prépare le rapport de votre établissement avant l'appel."
+      },
+      {
+        "step": "03",
+        "title": "Résultats",
+        "desc": "Je vous montre où progresser, chiffres en main."
+      }
+    ],
+    "iframeTitle": "Réservez votre rapport de visibilité gratuit AutomaIA"
+  },
+  "audit": {
+    "eyebrow": "Audit gratuit · 20 minutes",
+    "title": "Découvrez ce que vous pouvez automatiser",
+    "lead": "En 20 minutes, nous passons en revue les tâches répétitives de votre établissement : demandes de réservation, questions fréquentes, confirmations et rappels. Sans engagement, sans vente forcée. Juste une analyse concrète du premier temps que vous pouvez récupérer.",
+    "trust": "Données protégées · Sans engagement · RGPD",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Récit",
+        "desc": "Vous me racontez une journée type de votre établissement."
+      },
+      {
+        "step": "02",
+        "title": "Analyse",
+        "desc": "Nous repérons ensemble les tâches qui vous prennent le plus de temps."
+      },
+      {
+        "step": "03",
+        "title": "Plan",
+        "desc": "Je vous présente la première automatisation utile, avec des coûts clairs."
+      }
+    ],
+    "iframeTitle": "Réservez un audit gratuit AutomaIA"
   }
 }
