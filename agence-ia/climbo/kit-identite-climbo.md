@@ -70,7 +70,16 @@ Prix **par établissement (per sede), par mois**. Option annuelle conseillée : 
 
 **Contrôle du coût** : en créant chaque plan, Climbo affiche la « limite maximale de dépense ». Elle doit rester **sous ~15 % du prix** du plan. Les SMS et WhatsApp vers des numéros italiens coûtent plus cher que les tarifs américains montrés dans la vidéo : vérifie le coût réel dans la section Saldo et ajuste les quotas si nécessaire.
 
-**Demo Plan** : garde-le pour les comptes internes (Manuvo, démos), sans lien de paiement public.
+**Demo Plan** (Climbo) : verrouillé, non modifiable. Remplacé par notre plan gratuit **« Demo AutomaIA »** (créé le 17/11/2026, id `6afbd51f13c11035a50f18ea`) :
+- sites d'avis : Google, Booking, TripAdvisor, Airbnb, Facebook, Expedia, OpenTable, Treatwell ;
+- réseaux : Facebook, Instagram, TikTok (LinkedIn « coming soon » chez Climbo) ;
+- toutes les fonctionnalités + Chat AI, « Filtro link recensione » coché (flux neutre, pas de gating), plan masqué ;
+- limites mensuelles et d'essai : 20 SMS, 300 emails, 10 WhatsApp, 300 000 tokens, soit **3,60 $ max par mois et par établissement** ;
+- 1 établissement (champ non réglable dans le dashboard).
+
+⚠️ Écart constaté : le dashboard montre Google actif, mais l'API renvoie `google` dans `disabled`. À vérifier côté client (page de demande d'avis de Manuvo).
+
+**Coûts unitaires constatés** : 1 SMS = 0,01 $, 1 WhatsApp = 0,04 $, 1M tokens = 10 $ (tarif SMS vers l'Italie à confirmer dans Saldo).
 
 ---
 
