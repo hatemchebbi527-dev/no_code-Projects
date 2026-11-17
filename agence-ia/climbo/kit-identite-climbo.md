@@ -140,7 +140,7 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 - ✅ Page d'avis en italien : **pas de réglage de langue**, il faut traduire les textes à la main dans **Requests > Link** (chaque page de la liste déroulante). À refaire pour **chaque nouveau client** (textes types ci-dessous).
 - ✅ Réseaux sociaux de Manuvo connectés (Facebook, Instagram, TikTok) ; les 3 assistants configurés (voir « Réglages types »).
 - ✅ **Domaine personnalisé** (17/11/2026) : `portal.automa-ia.net` (client), `/admin` (agence), `/guides` (base de connaissances). DNS chez **Cloudflare** : CNAME `portal` → `app.mylocalbusiness.io`, **DNS only** (nuage gris, jamais proxied). Ne pas toucher `app` et `manuvo` (Vercel) ni les enregistrements Resend.
-- ⚠️ Solde d'agence à 1,20 $ : à recharger avant le premier vrai client (à 0, les assistants s'arrêtent).
+- ⚠️ **Solde d'agence : 1,20 $**, recharge minimale 100 $. Décision (17/11/2026) : pas de recharge avant le premier client (son abonnement la financera). Mode économie : **Automa Ricerca en pause** (réactiver le temps d'un article avant une démo), Risposte et Social actifs. Prospection : audits manuels ou via n8n plutôt que rapports à 0,35 €. À 0, les assistants s'arrêtent.
 - Ensuite : Automa Social et Automa Ricerca absents du menu client de Manuvo (seul Automa Risposte visible), Custom URL du lien d'avis (ex. `manuvo`), placeholder anglais à signaler au support.
 
 ---
