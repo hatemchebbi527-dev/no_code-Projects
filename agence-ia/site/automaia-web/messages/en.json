@@ -1,18 +1,19 @@
 {
   "brand": {
-    "tagline": "Automation and AI for real estate agencies, beauty salons and gyms",
+    "tagline": "Reviews, visibility and automation for hotels and restaurants",
     "rightsReserved": "All rights reserved."
   },
   "nav": {
     "home": "Home",
     "servizi": "Services",
-    "cliniche": "Salons & Gyms",
+    "hotel": "Hotels & Restaurants",
     "chiSono": "About",
-    "contatti": "Contact"
+    "contatti": "Contact",
+    "areaClienti": "Client area"
   },
   "common": {
-    "auditCta": "Free audit",
-    "scopriServizi": "Explore the services",
+    "auditCta": "Free report",
+    "scopriServizi": "Explore services",
     "eyebrowServizi": "Services",
     "eyebrowMetodo": "The method",
     "oppureScriva": "Or write to"
@@ -24,222 +25,331 @@
   },
   "home": {
     "hero": {
-      "titlePrefix": "Your business gets back up to",
-      "titleHighlight": "10 hours",
-      "titleSuffix": "a week",
-      "subtitle": "I automate the repetitive tasks of real estate agencies, beauty salons and gyms. Less manual work, more time for your clients and for the work that truly matters. Your data always stays protected.",
-      "cta": { "label": "Book a free audit", "href": "/audit" }
+      "titlePrefix": "More 5-star reviews,",
+      "titleHighlight": "more bookings",
+      "titleSuffix": "for your property",
+      "subtitle": "I help hotels and restaurants on the Riviera get more reviews, reply to every single one and get found on Google and ChatGPT. Without the owner having to deal with it.",
+      "cta": {
+        "label": "Get your free report",
+        "href": "/audit"
+      }
     },
     "stats": [
-      { "value": 10, "suffix": "", "label": "hours a week you can get back" },
-      { "value": 24, "suffix": "/7", "label": "assistant always on" },
-      { "value": 20, "suffix": " min", "label": "free audit, no commitment" },
-      { "value": 100, "suffix": "%", "label": "data protected and under your control" }
+      {
+        "value": 24,
+        "suffix": "/7",
+        "label": "replies to reviews, even at night"
+      },
+      {
+        "value": 3,
+        "suffix": "",
+        "label": "assistants working for your property"
+      },
+      {
+        "value": 20,
+        "suffix": " min",
+        "label": "to see your visibility report"
+      },
+      {
+        "value": 0,
+        "suffix": " €",
+        "label": "free report, no commitment"
+      }
     ],
     "problema": {
-      "title": "How many hours do you lose each week on tasks that don't require your expertise?",
-      "text": "Requests for information. Appointments to confirm by hand. The same client questions, every day. Reminders no one sends. These are necessary tasks, but repetitive. And together they add up to precious hours every week, time taken away from what matters: your clients and your business."
+      "title": "How many guests pick a competitor before they even contact you?",
+      "text": "Before booking a room or a table, guests read the reviews on Google, TripAdvisor and Booking. If there are few, they are old or nobody replied, they go elsewhere. Meanwhile, you are busy with your guests, not in front of a screen."
     },
     "offerteTeaser": {
-      "title": "Your business handles the repetitive tasks on its own",
-      "intro": "I build automations tailored to you. You touch nothing technical: you only use the result.",
+      "title": "Three assistants working on your reputation",
+      "intro": "I set everything up. You don't touch anything technical: you just see the results in your client area.",
       "items": [
         {
-          "title": "Automatic appointments and reminders",
-          "text": "Bookings, reminders and follow-ups run on their own. No more forgotten tasks."
+          "title": "More reviews, a reply to each one",
+          "text": "Collected via QR code, link, email and SMS. Every review gets a thoughtful reply, in the guest's language."
         },
         {
-          "title": "Automatic answers to recurring questions",
-          "text": "An assistant answers the usual requests 24/7, with the information you decide."
+          "title": "Your best reviews on social media",
+          "text": "Every week your best reviews become posts for Instagram and Facebook."
         },
         {
-          "title": "Organization and data kept safe",
-          "text": "Everything gathered in one place. Your data stays protected and under your control."
+          "title": "Found on Google and ChatGPT",
+          "text": "Local articles and a well-kept Google profile, so you show up when guests look for where to stay or eat."
         }
       ],
-      "cta": { "label": "Explore the services", "href": "/servizi" }
+      "cta": {
+        "label": "See the offer for hotels and restaurants",
+        "href": "/hotel-ristoranti"
+      }
     },
     "metodoTeaser": {
-      "title": "A simple method, with no risk",
-      "text": "We always start with a free 20-minute audit: together we spot where you lose the most time, before any commitment. Then I set up the automation, test it, and show you how it works. You always stay in control.",
-      "cta": { "label": "How I work", "href": "/chi-sono" }
+      "title": "A simple, risk-free method",
+      "text": "We always start with a free visibility report: I show you how guests see you today on Google and on assistants like ChatGPT, compared with local competitors. Then I set everything up. You stay in control.",
+      "cta": {
+        "label": "How I work",
+        "href": "/chi-sono"
+      }
     },
     "ctaFinale": {
-      "title": "Find out how many hours you can get back",
-      "text": "In 20 minutes, free of charge, we identify the first useful automation for your business.",
-      "cta": { "label": "Book your free audit", "href": "/audit" }
+      "title": "See how your guests see you today",
+      "text": "In 20 minutes, free of charge, I present your property's visibility report and the first improvements you can make.",
+      "cta": {
+        "label": "Get your free report",
+        "href": "/audit"
+      }
     }
   },
   "servizi": {
     "intro": {
-      "title": "AutomaIA's services",
-      "text": "Tailored solutions for real estate agencies, beauty salons and gyms. We start with the task that steals the most of your time, in complete safety."
+      "title": "AutomaIA services",
+      "text": "For hotels and restaurants in Rimini and on the Riviera. We start with your online reputation, then automate the rest."
     },
     "offerte": [
       {
-        "nome": "Automated Business",
+        "nome": "Reputation & Visibility",
         "evidenza": true,
-        "badge": "Most requested",
-        "perche": "For the business buried under manual work and repetitive requests.",
+        "badge": "Most popular",
+        "perche": "For properties that get few reviews, have no time to reply or don't show up on Google Maps.",
         "include": [
-          "Automatic appointments and reminders",
-          "Automatic client follow-ups",
-          "FAQ assistant active 24/7",
-          "Data always protected"
+          "Review collection via QR code, link, email and SMS",
+          "A thoughtful reply to every review, in the guest's language",
+          "Your best reviews shared on social media",
+          "Visibility on Google Maps and ChatGPT",
+          "Client area with all your results"
         ],
-        "prezzo": "Custom",
-        "nota": "Initial setup + monthly subscription",
-        "cta": { "label": "Book a free audit", "href": "/audit" }
+        "prezzo": "From €99/month",
+        "nota": "Per property · 3 plans",
+        "cta": {
+          "label": "See the offer",
+          "href": "/hotel-ristoranti"
+        }
       },
       {
-        "nome": "Business 360",
+        "nome": "24/7 Booking Assistant",
         "evidenza": false,
         "badge": "",
-        "perche": "For those who want to organize everything, from client management to online presence.",
+        "perche": "For properties receiving booking requests in the evening, at weekends and in several languages.",
         "include": [
-          "Everything in Automated Business",
-          "Custom CRM for your clients",
-          "Online presence included",
-          "Continuous optimization"
+          "A quick reply to every request, 24/7",
+          "In Italian, English and German",
+          "Owner alert for important requests",
+          "Automatic confirmations and reminders"
         ],
-        "prezzo": "Custom",
-        "nota": "Initial setup + monthly subscription",
-        "cta": { "label": "Let's talk about your business", "href": "/audit" }
+        "prezzo": "Tailored",
+        "nota": "Setup fee + monthly subscription",
+        "cta": {
+          "label": "Request a demo",
+          "href": "/audit"
+        }
       },
       {
-        "nome": "Online Presence",
+        "nome": "NFC + QR stand",
         "evidenza": false,
         "badge": "",
-        "perche": "For those who also want to look after their visibility.",
+        "perche": "To collect reviews right at the reception desk or at the table.",
         "include": [
-          "Professional showcase website",
-          "Automatic posting on social media",
-          "Connected contact form"
+          "Counter stand in your property's colours",
+          "Guests tap their phone or scan the QR code",
+          "Included in the Complete plan"
         ],
-        "prezzo": "Custom",
-        "nota": "À la carte add-on",
-        "cta": { "label": "Add it to your business", "href": "/audit" }
+        "prezzo": "Optional",
+        "nota": "Included in the Complete plan",
+        "cta": {
+          "label": "Let's talk",
+          "href": "/contatti"
+        }
       }
     ]
   },
   "chiSono": {
     "title": "About me and how I work",
-    "intro": "I'm the founder of AutomaIA. I help real estate agencies, beauty salons and gyms free themselves from the repetitive tasks that steal time, so they can focus on their real work. No technical jargon, no magic promises: concrete, tailored solutions.",
+    "intro": "I'm the founder of AutomaIA and I live in Rimini. I know the hotel industry from the inside: I know how much reviews matter and how little time is left to deal with them. I help hotels and restaurants on the Riviera look after their online reputation and automate repetitive tasks. No jargon, no magic promises.",
     "metodoTitle": "The method, in 3 steps",
     "metodo": [
       {
         "step": "1",
-        "title": "Free audit (20 minutes)",
-        "text": "Together we spot where you lose the most time. No commitment."
+        "title": "Free visibility report",
+        "text": "I show you how guests see you today, compared with local competitors. No commitment."
       },
       {
         "step": "2",
-        "title": "Tailored automation",
-        "text": "I set up the solution, test it and show you how it works."
+        "title": "I set everything up",
+        "text": "I connect your Google profile and your channels and set up the assistants in your property's tone."
       },
       {
         "step": "3",
         "title": "You stay in control",
-        "text": "You only use the result. Your data stays protected and under your control."
+        "text": "You see every result in your client area. Negative reviews always go through you before a reply is posted."
       }
     ],
     "fiduciaTitle": "Why trust me",
     "fiducia": [
-      "Confidentiality first: your data stays yours.",
-      "Solutions tailored to your business, not generic packages.",
-      "No commitment until you see the value with your own eyes."
+      "Never fake reviews, never filtering unhappy guests: we follow Google's rules.",
+      "I work here, in Rimini: I can come and see you.",
+      "No commitment until you see the value for yourself."
     ],
-    "cta": { "label": "Book a free audit", "href": "/contatti" }
+    "cta": {
+      "label": "Get your free report",
+      "href": "/audit"
+    }
   },
   "contatti": {
     "title": "Have a question?",
-    "text": "Fill in the form or write directly to info@automa-ia.net. I reply within 24 hours. To book a free audit, use the dedicated page instead.",
-    "successo": "Thank you! I've received your message, I'll get back to you shortly.",
+    "text": "Fill in the form or write directly to info@automa-ia.net. I reply within 24 hours. To get your free visibility report, please use the dedicated page.",
+    "successo": "Thank you! I've received your message and will reply shortly.",
     "errore": "Something went wrong. Please try again or write directly to info@automa-ia.net."
   },
   "contactForm": {
     "nome": "Full name",
     "email": "Email",
-    "studio": "Business name",
+    "studio": "Property name",
     "messaggio": "Message",
     "invia": "Send message",
     "invioInCorso": "Sending..."
   },
-  "cliniche": {
+  "hotel": {
     "hero": {
-      "eyebrow": "Beauty salons and gyms",
-      "title": "Your business works even after hours",
-      "subtitle": "Bookings, reminders and first replies to clients, automatically. You focus on treatments and training, not on the phone. Your data always stays protected.",
-      "cta": { "label": "Book a free audit", "href": "/audit" }
+      "eyebrow": "Hotels and restaurants · Rimini and the Riviera",
+      "title": "More 5-star reviews. A reply to every one. More guests who find you.",
+      "subtitle": "Three assistants look after your property's online reputation: they collect reviews, reply to every guest in their own language and get you found on Google and ChatGPT. You look after your guests.",
+      "cta": {
+        "label": "Get your free report",
+        "href": "/audit"
+      },
+      "prezzo": "From €99 per month"
+    },
+    "mock": {
+      "iniziale": "G",
+      "nome": "Giulia R.",
+      "fonte": "Example · Google",
+      "recensione": "Spotless room, great breakfast and friendly staff. Just steps from the sea, we'll be back!",
+      "assistente": "Reply prepared by Automa Risposte",
+      "risposta": "Thank you so much, Giulia! We're delighted you enjoyed the breakfast and being so close to the sea. We look forward to welcoming you back to Rimini!"
     },
     "problema": {
-      "title": "Every day your salon loses requests and appointments without realizing it",
+      "title": "Every unanswered review is a guest choosing a competitor",
       "items": [
-        { "title": "After-hours requests", "text": "Many requests come in during the evening or on weekends, when the salon is closed. Without an automatic reply, the client books elsewhere." },
-        { "title": "Missed appointments", "text": "In this industry around 15% of appointments fall through without notice. Every no-show is lost time and lost revenue." },
-        { "title": "The same questions every day", "text": "Prices, availability, treatment duration: the same questions repeated, stealing hours from the front desk." }
+        {
+          "title": "Few recent reviews",
+          "text": "Happy guests rarely leave a review on their own. Readers see old ratings and pick the place with more recent ones."
+        },
+        {
+          "title": "Reviews with no reply",
+          "text": "Between check-ins, service and suppliers, replying to every review on Google, TripAdvisor and Booking is impossible. But future guests read the replies too."
+        },
+        {
+          "title": "Invisible on Google and ChatGPT",
+          "text": "More and more guests ask Google Maps or ChatGPT where to stay or eat in Rimini. If your property doesn't show up, it doesn't exist for them."
+        }
       ]
     },
     "soluzione": {
-      "title": "AutomaIA takes care of it for you",
-      "intro": "I build automations tailored to your salon. You touch nothing technical: you only use the result.",
+      "title": "Three assistants working on your reputation",
+      "intro": "I set everything up, in your property's tone. You don't touch anything technical.",
       "items": [
-        { "title": "Booking always open", "text": "Clients book their own appointment, at any hour. You find your calendar already filled in." },
-        { "title": "Automatic reminders", "text": "A reminder by SMS and email before every appointment. No-shows drop almost to zero." },
-        { "title": "FAQ assistant 24/7", "text": "An assistant answers recurring questions about prices, availability and services, around the clock." }
+        {
+          "title": "Automa Risposte",
+          "text": "Collects new reviews (QR, NFC, link, email, SMS) and prepares a thoughtful reply to each one, in the guest's language. Negative reviews always go through you."
+        },
+        {
+          "title": "Automa Social",
+          "text": "Every week it turns your best reviews into posts for Instagram and Facebook. Your reputation becomes content."
+        },
+        {
+          "title": "Automa Ricerca",
+          "text": "Writes local articles for your website, based on real reviews, to climb on Google and appear in ChatGPT's answers."
+        }
       ]
     },
-    "esempio": {
-      "title": "A concrete example",
-      "text": "A beauty salon with a front desk staffed only in the morning was losing every request in the afternoon and on weekends. With online booking and automatic reminders, no-shows dropped by 60% and the front desk now handles twice as many clients."
+    "passi": {
+      "title": "How it works",
+      "items": [
+        {
+          "step": "01",
+          "title": "Free report",
+          "text": "In 20 minutes I show you how guests see you today, compared with local competitors."
+        },
+        {
+          "step": "02",
+          "title": "Setup",
+          "text": "I connect your Google profile and social accounts, set up the assistants and hand you your review QR code."
+        },
+        {
+          "step": "03",
+          "title": "Results",
+          "text": "Follow everything in your client area: new reviews, replies, Google Maps ranking."
+        }
+      ]
+    },
+    "prezzo": {
+      "eyebrow": "Pricing",
+      "valore": "From €99 per month per property",
+      "text": "Three plans, depending on the channels and services you want. I present the details together with your free report, so you choose with the data in hand.",
+      "giaCliente": "Already a client?",
+      "areaClienti": "Go to your client area →"
     },
     "ctaFinale": {
-      "title": "Find out how many appointments you can get back",
-      "text": "In 20 minutes, free of charge, we identify the first useful automation for your salon.",
-      "cta": { "label": "Book your free audit", "href": "/audit" }
+      "title": "See how your guests see you today",
+      "text": "In 20 minutes, free and with no commitment, I present your property's visibility report.",
+      "cta": {
+        "label": "Get your free report",
+        "href": "/audit"
+      }
     }
   },
   "audit": {
-    "eyebrow": "Free audit · 20 minutes",
-    "title": "Find out where to start",
-    "lead": "In 20 minutes, we analyze together the tasks of your agency, beauty salon or gym that take the most time. No commitment, no sales pitch. Just a concrete analysis of your first time saving.",
+    "eyebrow": "Visibility report · 20 minutes, free",
+    "title": "See how your guests see you today",
+    "lead": "In 20 minutes I present your property's visibility report: Google Maps ranking, presence on ChatGPT, reviews compared with local competitors. No commitment, no hard sell.",
     "trust": "Data protected · No commitment · GDPR",
     "steps": [
-      { "step": "01", "title": "Story", "desc": "You tell me about a typical day in your business." },
-      { "step": "02", "title": "Analysis", "desc": "Together we identify the tasks that take the most time." },
-      { "step": "03", "title": "Plan", "desc": "I present your first concrete time saving." }
+      {
+        "step": "01",
+        "title": "Booking",
+        "desc": "Pick the time that suits you below."
+      },
+      {
+        "step": "02",
+        "title": "Analysis",
+        "desc": "I prepare your property's report before the call."
+      },
+      {
+        "step": "03",
+        "title": "Results",
+        "desc": "I show you where to improve, with the data in hand."
+      }
     ],
-    "iframeTitle": "Book a free AutomaIA audit"
+    "iframeTitle": "Book your free AutomaIA visibility report"
   },
   "metadata": {
     "home": {
-      "title": "AutomaIA — Automation and AI for real estate agencies, beauty salons and gyms",
-      "description": "I automate the repetitive tasks of real estate agencies, beauty salons and gyms: appointments, reminders and automatic replies. Up to 10 hours saved a week. Free audit.",
-      "ogTitle": "AutomaIA — Automation and AI for real estate agencies, beauty salons and gyms",
-      "ogDescription": "Get back up to 10 hours a week by automating your business's repetitive tasks. Free 20-minute audit."
+      "title": "AutomaIA — Reviews and visibility for hotels and restaurants in Rimini",
+      "description": "More 5-star reviews, a reply to every review and more visibility on Google and ChatGPT for hotels and restaurants in Rimini and on the Riviera. Free visibility report.",
+      "ogTitle": "AutomaIA — Reviews and visibility for hotels and restaurants",
+      "ogDescription": "Three assistants look after your property's online reputation. Free visibility report in 20 minutes."
     },
     "servizi": {
-      "title": "Automation services for real estate agencies, beauty salons and gyms",
-      "description": "Tailored automations for real estate agencies, beauty salons and gyms: automatic appointments, follow-ups, FAQ assistant 24/7, CRM and online presence.",
-      "ogDescription": "Automatic appointments, follow-ups, FAQ assistant 24/7 and online presence — tailored to your business."
+      "title": "Services for hotels and restaurants: reviews, visibility, bookings",
+      "description": "Reputation & Visibility from €99/month, 24/7 Booking Assistant and NFC stand for hotels and restaurants on the Romagna Riviera.",
+      "ogDescription": "Reviews, visibility on Google and ChatGPT and automated bookings for hotels and restaurants."
     },
-    "cliniche": {
-      "title": "Automation for beauty salons and gyms",
-      "description": "Online bookings, automatic reminders and a FAQ assistant 24/7 for your beauty salon or gym. Cut no-shows and stop losing after-hours requests.",
-      "ogDescription": "Online bookings, automatic reminders and a FAQ assistant 24/7 for your beauty salon or gym."
+    "hotel": {
+      "title": "Reviews and visibility for hotels and restaurants in Rimini",
+      "description": "Review collection, a reply to each one in the guest's language, social posts and visibility on Google and ChatGPT. From €99 per month per property. Free report.",
+      "ogDescription": "Three assistants look after your hotel or restaurant's online reputation. From €99 per month."
     },
     "chiSono": {
       "title": "About me and how I work",
-      "description": "The AutomaIA method in 3 steps: free audit, tailored automation, control always in your hands. No technical jargon, concrete solutions.",
-      "ogDescription": "The AutomaIA method in 3 steps: free audit, tailored automation, you stay in control."
+      "description": "The AutomaIA method in 3 steps: free visibility report, full setup, you stay in control. Based in Rimini.",
+      "ogDescription": "The AutomaIA method in 3 steps: free report, setup, you stay in control."
     },
     "contatti": {
       "title": "Contact — AutomaIA",
-      "description": "Have a question about AutomaIA? Write to us directly or book a free 20-minute audit for your business."
+      "description": "Have a question about AutomaIA? Write directly or request the free visibility report for your hotel or restaurant."
     },
     "audit": {
-      "title": "Free audit · AutomaIA",
-      "description": "Book a free 20-minute audit to discover how to automate your business. No commitment, just a concrete analysis."
+      "title": "Free visibility report · AutomaIA",
+      "description": "Book 20 free minutes: I show you how guests see you today on Google Maps and ChatGPT, compared with local competitors."
     }
   }
 }

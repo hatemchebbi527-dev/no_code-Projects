@@ -7,10 +7,13 @@ import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import styles from "./Header.module.css";
 
+// Espace client de la plateforme (marque blanche, domaine AutomaIA).
+const PORTAL_URL = "https://portal.automa-ia.net";
+
 const navItems = [
   { key: "home", href: "/" },
   { key: "servizi", href: "/servizi" },
-  { key: "cliniche", href: "/cliniche" },
+  { key: "hotel", href: "/hotel-ristoranti" },
   { key: "chiSono", href: "/chi-sono" },
   { key: "contatti", href: "/contatti" },
 ];
@@ -46,6 +49,17 @@ export default function Header() {
               {t(item.key)}
             </Link>
           ))}
+          <a
+            href={PORTAL_URL}
+            className={`${styles.link} ${styles.areaClienti}`}
+            onClick={() => setOpen(false)}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
+              <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+            {t("areaClienti")}
+          </a>
           <Link href="/audit" className="btn" onClick={() => setOpen(false)}>
             {tc("auditCta")}
           </Link>

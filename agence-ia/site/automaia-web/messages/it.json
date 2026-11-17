@@ -1,17 +1,18 @@
 {
   "brand": {
-    "tagline": "Automazione e IA per agenzie immobiliari, centri estetici e palestre",
+    "tagline": "Recensioni, visibilità e automazione per hotel e ristoranti",
     "rightsReserved": "Tutti i diritti riservati."
   },
   "nav": {
     "home": "Home",
     "servizi": "Servizi",
-    "cliniche": "Centri & Palestre",
+    "hotel": "Hotel & Ristoranti",
     "chiSono": "Chi sono",
-    "contatti": "Contatti"
+    "contatti": "Contatti",
+    "areaClienti": "Area clienti"
   },
   "common": {
-    "auditCta": "Audit gratuito",
+    "auditCta": "Report gratuito",
     "scopriServizi": "Scopri i servizi",
     "eyebrowServizi": "Servizi",
     "eyebrowMetodo": "Il metodo",
@@ -24,222 +25,331 @@
   },
   "home": {
     "hero": {
-      "titlePrefix": "La Sua attività recupera fino a",
-      "titleHighlight": "10 ore",
-      "titleSuffix": "a settimana",
-      "subtitle": "Automatizzo le attività ripetitive di agenzie immobiliari, centri estetici e palestre. Meno gestione manuale, più tempo per i Suoi clienti e per il lavoro che conta davvero. I Suoi dati restano sempre protetti.",
-      "cta": { "label": "Prenoti un audit gratuito", "href": "/audit" }
+      "titlePrefix": "Più recensioni a 5 stelle,",
+      "titleHighlight": "più prenotazioni",
+      "titleSuffix": "per la Sua struttura",
+      "subtitle": "Aiuto hotel e ristoranti della Riviera a ottenere più recensioni, a rispondere a ognuna e a farsi trovare su Google e su ChatGPT. Senza che il titolare debba occuparsene.",
+      "cta": {
+        "label": "Richieda il Suo report gratuito",
+        "href": "/audit"
+      }
     },
     "stats": [
-      { "value": 10, "suffix": "", "label": "ore a settimana che può recuperare" },
-      { "value": 24, "suffix": "/7", "label": "assistente sempre attivo" },
-      { "value": 20, "suffix": " min", "label": "audit gratuito, senza impegno" },
-      { "value": 100, "suffix": "%", "label": "dati protetti e sotto il Suo controllo" }
+      {
+        "value": 24,
+        "suffix": "/7",
+        "label": "risposte alle recensioni, anche di notte"
+      },
+      {
+        "value": 3,
+        "suffix": "",
+        "label": "assistenti al lavoro per la Sua struttura"
+      },
+      {
+        "value": 20,
+        "suffix": " min",
+        "label": "per scoprire il Suo report di visibilità"
+      },
+      {
+        "value": 0,
+        "suffix": " €",
+        "label": "report gratuito, senza impegno"
+      }
     ],
     "problema": {
-      "title": "Quante ore perde ogni settimana in attività che non richiedono la Sua competenza?",
-      "text": "Richieste di informazioni. Appuntamenti da confermare a mano. Le stesse domande dei clienti, ogni giorno. Promemoria che nessuno invia. Sono attività necessarie, ma ripetitive. E sommate, valgono ore preziose ogni settimana, che tolgono tempo a ciò che conta: i Suoi clienti e la Sua attività."
+      "title": "Quanti clienti scelgono un concorrente prima ancora di contattarLa?",
+      "text": "Prima di prenotare una camera o un tavolo, i clienti leggono le recensioni su Google, TripAdvisor e Booking. Se sono poche, datate o senza risposta, scelgono un altro. E Lei, nel frattempo, è occupato con i Suoi ospiti, non davanti a uno schermo."
     },
     "offerteTeaser": {
-      "title": "La Sua attività si occupa da sola delle attività ripetitive",
-      "intro": "Creo automazioni su misura. Lei non tocca nulla di tecnico: usa solo il risultato.",
+      "title": "Tre assistenti lavorano per la Sua reputazione",
+      "intro": "Configuro tutto io. Lei non tocca nulla di tecnico: vede solo i risultati nella Sua Area clienti.",
       "items": [
         {
-          "title": "Appuntamenti e promemoria automatici",
-          "text": "Prenotazioni, promemoria e solleciti partono da soli. Niente più dimenticanze."
+          "title": "Più recensioni, una risposta a ognuna",
+          "text": "Raccolta con QR, link, email e SMS. Ogni recensione riceve una risposta curata, nella lingua del cliente."
         },
         {
-          "title": "Risposte automatiche alle domande ricorrenti",
-          "text": "Un assistente risponde 24/7 alle solite richieste, con le informazioni che Lei decide."
+          "title": "Le migliori recensioni sui social",
+          "text": "Ogni settimana le recensioni più belle diventano post per Instagram e Facebook."
         },
         {
-          "title": "Organizzazione e dati al sicuro",
-          "text": "Tutto raccolto in un unico posto. I Suoi dati restano protetti e sotto il Suo controllo."
+          "title": "Visibili su Google e ChatGPT",
+          "text": "Articoli locali e una scheda Google curata, per comparire quando i clienti cercano dove dormire o mangiare."
         }
       ],
-      "cta": { "label": "Scopri i servizi", "href": "/servizi" }
+      "cta": {
+        "label": "Scopri l'offerta per hotel e ristoranti",
+        "href": "/hotel-ristoranti"
+      }
     },
     "metodoTeaser": {
       "title": "Un metodo semplice, senza rischi",
-      "text": "Si parte sempre da un audit gratuito di 20 minuti: insieme individuiamo dove perde più tempo, prima di qualsiasi impegno. Poi metto in piedi l'automazione, la testo, e Le mostro come funziona. Lei resta sempre al comando.",
-      "cta": { "label": "Come lavoro", "href": "/chi-sono" }
+      "text": "Si parte sempre da un report di visibilità gratuito: Le mostro come La vedono oggi i clienti su Google e sugli assistenti come ChatGPT, rispetto ai concorrenti della zona. Poi configuro tutto io. Lei resta sempre al comando.",
+      "cta": {
+        "label": "Come lavoro",
+        "href": "/chi-sono"
+      }
     },
     "ctaFinale": {
-      "title": "Scopra quante ore può recuperare",
-      "text": "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per la Sua attività.",
-      "cta": { "label": "Prenoti il Suo audit gratuito", "href": "/audit" }
+      "title": "Scopra come La vedono oggi i Suoi clienti",
+      "text": "In 20 minuti, gratuitamente, Le presento il report di visibilità della Sua struttura e i primi miglioramenti possibili.",
+      "cta": {
+        "label": "Richieda il Suo report gratuito",
+        "href": "/audit"
+      }
     }
   },
   "servizi": {
     "intro": {
       "title": "I servizi di AutomaIA",
-      "text": "Soluzioni su misura per agenzie immobiliari, centri estetici e palestre. Si parte dall'attività che Le ruba più tempo, in totale sicurezza."
+      "text": "Per hotel e ristoranti di Rimini e della Riviera. Si parte dalla reputazione online, poi si automatizza il resto."
     },
     "offerte": [
       {
-        "nome": "Attività Automatizzata",
+        "nome": "Reputazione & Visibilità",
         "evidenza": true,
         "badge": "Più richiesto",
-        "perche": "Per l'attività sommersa dalla gestione manuale e dalle richieste ripetitive.",
+        "perche": "Per la struttura che riceve poche recensioni, non ha tempo di rispondere o non compare su Google Maps.",
         "include": [
-          "Appuntamenti e promemoria automatici",
-          "Solleciti automatici ai clienti",
-          "Assistente FAQ attivo 24/7",
-          "Dati sempre protetti"
+          "Raccolta di recensioni con QR, link, email e SMS",
+          "Una risposta curata a ogni recensione, nella lingua del cliente",
+          "Le migliori recensioni condivise sui social",
+          "Visibilità su Google Maps e su ChatGPT",
+          "Area clienti con tutti i risultati"
+        ],
+        "prezzo": "A partire da 99 €/mese",
+        "nota": "Per struttura · 3 formule",
+        "cta": {
+          "label": "Scopri l'offerta",
+          "href": "/hotel-ristoranti"
+        }
+      },
+      {
+        "nome": "Assistente Prenotazioni 24/7",
+        "evidenza": false,
+        "badge": "",
+        "perche": "Per chi riceve richieste di prenotazione la sera, nel weekend e in più lingue.",
+        "include": [
+          "Una risposta rapida a ogni richiesta, 24/7",
+          "In italiano, inglese e tedesco",
+          "Notifica al titolare per le richieste importanti",
+          "Conferme e promemoria automatici"
         ],
         "prezzo": "Su misura",
         "nota": "Setup iniziale + abbonamento mensile",
-        "cta": { "label": "Prenoti un audit gratuito", "href": "/audit" }
+        "cta": {
+          "label": "Richieda una demo",
+          "href": "/audit"
+        }
       },
       {
-        "nome": "Attività 360",
+        "nome": "Supporto NFC + QR",
         "evidenza": false,
         "badge": "",
-        "perche": "Per chi vuole organizzare tutto, dalla gestione clienti alla presenza online.",
+        "perche": "Per raccogliere recensioni direttamente alla reception o al tavolo.",
         "include": [
-          "Tutto di Attività Automatizzata",
-          "CRM su misura per i Suoi clienti",
-          "Presenza online inclusa",
-          "Ottimizzazione continua"
+          "Supporto da banco con i colori della struttura",
+          "Il cliente avvicina il telefono o scansiona il QR",
+          "Incluso nella formula Completo"
         ],
-        "prezzo": "Su misura",
-        "nota": "Setup iniziale + abbonamento mensile",
-        "cta": { "label": "Parliamo del Suo studio", "href": "/audit" }
-      },
-      {
-        "nome": "Presenza Online",
-        "evidenza": false,
-        "badge": "",
-        "perche": "Per chi vuole curare anche la propria visibilità.",
-        "include": [
-          "Sito vetrina professionale",
-          "Pubblicazione automatica sui social",
-          "Modulo di contatto collegato"
-        ],
-        "prezzo": "Su misura",
-        "nota": "Complemento a la carte",
-        "cta": { "label": "Lo aggiunga al Suo studio", "href": "/audit" }
+        "prezzo": "In opzione",
+        "nota": "Incluso nella formula Completo",
+        "cta": {
+          "label": "Ne parliamo",
+          "href": "/contatti"
+        }
       }
     ]
   },
   "chiSono": {
     "title": "Chi sono e come lavoro",
-    "intro": "Sono il fondatore di AutomaIA. Aiuto agenzie immobiliari, centri estetici e palestre a liberarsi dalle attività ripetitive che rubano tempo, così possono concentrarsi sul loro vero lavoro. Niente gergo tecnico, niente promesse magiche: soluzioni concrete e su misura.",
+    "intro": "Sono il fondatore di AutomaIA e vivo a Rimini. Conosco il settore alberghiero dall'interno: so quanto contano le recensioni e quanto poco tempo resta per occuparsene. Aiuto hotel e ristoranti della Riviera a curare la loro reputazione online e ad automatizzare le attività ripetitive. Niente gergo tecnico, niente promesse magiche.",
     "metodoTitle": "Il metodo, in 3 passi",
     "metodo": [
       {
         "step": "1",
-        "title": "Audit gratuito (20 minuti)",
-        "text": "Individuiamo insieme dove perde più tempo. Nessun impegno."
+        "title": "Report di visibilità gratuito",
+        "text": "Le mostro come La vedono oggi i clienti, rispetto ai concorrenti della zona. Nessun impegno."
       },
       {
         "step": "2",
-        "title": "Automazione su misura",
-        "text": "Metto in piedi la soluzione, la testo e Le mostro come funziona."
+        "title": "Configuro tutto io",
+        "text": "Collego la Sua scheda Google e i Suoi canali e imposto gli assistenti nel tono della Sua struttura."
       },
       {
         "step": "3",
         "title": "Lei resta al comando",
-        "text": "Usa solo il risultato. I Suoi dati restano protetti e sotto il Suo controllo."
+        "text": "Vede ogni risultato nella Sua Area clienti. Le recensioni negative passano sempre da Lei prima della risposta."
       }
     ],
     "fiduciaTitle": "Perché fidarsi",
     "fiducia": [
-      "Riservatezza al primo posto: i Suoi dati restano Suoi.",
-      "Soluzioni su misura per la Sua attività, non pacchetti generici.",
+      "Mai recensioni false, mai filtri sui clienti scontenti: rispettiamo le regole di Google.",
+      "Lavoro qui, a Rimini: posso passare da Lei.",
       "Nessun impegno fino a quando non vede il valore con i Suoi occhi."
     ],
-    "cta": { "label": "Prenoti un audit gratuito", "href": "/contatti" }
+    "cta": {
+      "label": "Richieda il Suo report gratuito",
+      "href": "/audit"
+    }
   },
   "contatti": {
     "title": "Ha una domanda?",
-    "text": "Compili il modulo oppure scriva direttamente a info@automa-ia.net. La rispondo entro 24 ore. Per prenotare un audit gratuito usi invece la pagina dedicata.",
-    "successo": "Grazie! Ho ricevuto il Suo messaggio, La rispondo a breve.",
+    "text": "Compili il modulo oppure scriva direttamente a info@automa-ia.net. Le rispondo entro 24 ore. Per ricevere il report di visibilità gratuito usi invece la pagina dedicata.",
+    "successo": "Grazie! Ho ricevuto il Suo messaggio, Le rispondo a breve.",
     "errore": "Qualcosa è andato storto. Riprovi o scriva direttamente a info@automa-ia.net."
   },
   "contactForm": {
     "nome": "Nome e cognome",
     "email": "Email",
-    "studio": "Nome dell'attività",
+    "studio": "Nome della struttura",
     "messaggio": "Messaggio",
     "invia": "Invia messaggio",
     "invioInCorso": "Invio in corso..."
   },
-  "cliniche": {
+  "hotel": {
     "hero": {
-      "eyebrow": "Centri estetici e palestre",
-      "title": "La Sua attività lavora anche fuori orario",
-      "subtitle": "Prenotazioni, promemoria e prime risposte ai clienti, in automatico. Lei si concentra sui trattamenti e sugli allenamenti, non sul telefono. I Suoi dati restano sempre protetti.",
-      "cta": { "label": "Prenoti un audit gratuito", "href": "/audit" }
+      "eyebrow": "Hotel e ristoranti · Rimini e Riviera",
+      "title": "Più recensioni a 5 stelle. Una risposta a ognuna. Più clienti che La trovano.",
+      "subtitle": "Tre assistenti si occupano della reputazione online della Sua struttura: raccolgono recensioni, rispondono a ogni cliente nella sua lingua e La fanno trovare su Google e su ChatGPT. Lei si occupa dei Suoi ospiti.",
+      "cta": {
+        "label": "Richieda il Suo report gratuito",
+        "href": "/audit"
+      },
+      "prezzo": "A partire da 99 € al mese"
+    },
+    "mock": {
+      "iniziale": "G",
+      "nome": "Giulia R.",
+      "fonte": "Esempio · Google",
+      "recensione": "Camera pulitissima, colazione ottima e staff gentile. A due passi dal mare, torneremo!",
+      "assistente": "Risposta preparata da Automa Risposte",
+      "risposta": "Grazie di cuore, Giulia! Siamo felici che la colazione e la vicinanza al mare Le siano piaciute. La aspettiamo di nuovo a Rimini!"
     },
     "problema": {
-      "title": "Ogni giorno il Suo centro perde richieste e appuntamenti, senza accorgersene",
+      "title": "Ogni recensione senza risposta è un cliente che sceglie un concorrente",
       "items": [
-        { "title": "Richieste fuori orario", "text": "Molte richieste arrivano la sera o nel weekend, quando il centro è chiuso. Senza risposta automatica, il cliente prenota altrove." },
-        { "title": "Appuntamenti mancati", "text": "Nel settore circa il 15% degli appuntamenti salta senza preavviso. Ogni assenza è tempo e incasso persi." },
-        { "title": "Le stesse domande ogni giorno", "text": "Prezzi, disponibilità, durata dei trattamenti: le stesse domande ripetute che rubano ore alla reception." }
+        {
+          "title": "Poche recensioni recenti",
+          "text": "Gli ospiti soddisfatti raramente lasciano una recensione da soli. Chi legge vede valutazioni datate e sceglie chi ne ha di più recenti."
+        },
+        {
+          "title": "Recensioni senza risposta",
+          "text": "Tra check-in, servizio e fornitori, rispondere a ogni recensione su Google, TripAdvisor e Booking è impossibile. Ma i futuri clienti leggono anche le risposte."
+        },
+        {
+          "title": "Invisibili su Google e ChatGPT",
+          "text": "Sempre più clienti chiedono a Google Maps o a ChatGPT dove dormire o dove mangiare a Rimini. Se la Sua struttura non compare, per loro non esiste."
+        }
       ]
     },
     "soluzione": {
-      "title": "AutomaIA se ne occupa al posto Suo",
-      "intro": "Creo automazioni su misura per il Suo centro. Lei non tocca nulla di tecnico: usa solo il risultato.",
+      "title": "Tre assistenti lavorano per la Sua reputazione",
+      "intro": "Configuro tutto io, nel tono della Sua struttura. Lei non tocca nulla di tecnico.",
       "items": [
-        { "title": "Prenotazione sempre attiva", "text": "I clienti fissano l'appuntamento da soli, a qualsiasi ora. Lei ritrova l'agenda già compilata." },
-        { "title": "Promemoria automatici", "text": "Un promemoria via SMS ed email prima di ogni appuntamento. Le assenze scendono quasi a zero." },
-        { "title": "Assistente FAQ 24/7", "text": "Un assistente risponde alle domande ricorrenti su prezzi, disponibilità e servizi, 24 ore su 24." }
+        {
+          "title": "Automa Risposte",
+          "text": "Raccoglie nuove recensioni (QR, NFC, link, email, SMS) e prepara una risposta curata a ognuna, nella lingua del cliente. Le recensioni negative passano sempre da Lei."
+        },
+        {
+          "title": "Automa Social",
+          "text": "Ogni settimana trasforma le recensioni migliori in post per Instagram e Facebook. La Sua reputazione diventa contenuto."
+        },
+        {
+          "title": "Automa Ricerca",
+          "text": "Scrive articoli locali per il Suo sito, basati sulle recensioni reali, per salire su Google e comparire nelle risposte di ChatGPT."
+        }
       ]
     },
-    "esempio": {
-      "title": "Un esempio concreto",
-      "text": "Un centro estetico con reception attiva solo di mattina perdeva tutte le richieste del pomeriggio e del weekend. Con la prenotazione online e i promemoria automatici, le assenze sono scese del 60% e la reception gestisce il doppio dei clienti."
+    "passi": {
+      "title": "Come funziona",
+      "items": [
+        {
+          "step": "01",
+          "title": "Report gratuito",
+          "text": "In 20 minuti Le mostro come La vedono oggi i clienti, rispetto ai concorrenti della zona."
+        },
+        {
+          "step": "02",
+          "title": "Configurazione",
+          "text": "Collego la Sua scheda Google e i Suoi social, imposto gli assistenti e Le consegno il Suo QR code per le recensioni."
+        },
+        {
+          "step": "03",
+          "title": "Risultati",
+          "text": "Segue tutto nella Sua Area clienti: nuove recensioni, risposte, posizione su Google Maps."
+        }
+      ]
+    },
+    "prezzo": {
+      "eyebrow": "Prezzo",
+      "valore": "A partire da 99 € al mese per struttura",
+      "text": "Tre formule, in base ai canali e ai servizi che desidera. Il dettaglio Le viene presentato insieme al report gratuito, così sceglie con i dati alla mano.",
+      "giaCliente": "È già cliente?",
+      "areaClienti": "Acceda alla Sua Area clienti →"
     },
     "ctaFinale": {
-      "title": "Scopra quanti appuntamenti può recuperare",
-      "text": "In 20 minuti, gratuitamente, individuiamo la prima automazione utile per il Suo centro.",
-      "cta": { "label": "Prenoti il Suo audit gratuito", "href": "/audit" }
+      "title": "Scopra come La vedono oggi i Suoi clienti",
+      "text": "In 20 minuti, gratuitamente e senza impegno, Le presento il report di visibilità della Sua struttura.",
+      "cta": {
+        "label": "Richieda il Suo report gratuito",
+        "href": "/audit"
+      }
     }
   },
   "audit": {
-    "eyebrow": "Audit gratuito · 20 minuti",
-    "title": "Scopra da dove iniziare",
-    "lead": "In 20 minuti analizziamo insieme le attività della Sua agenzia, centro estetico o palestra che rubano più tempo. Nessun impegno, nessuna vendita. Solo un'analisi concreta del Suo primo guadagno di tempo.",
-    "trust": "Dati protetti · Nessun impegno · RGPD",
+    "eyebrow": "Report di visibilità · 20 minuti, gratuito",
+    "title": "Scopra come La vedono oggi i Suoi clienti",
+    "lead": "In 20 minuti Le presento il report di visibilità della Sua struttura: posizione su Google Maps, presenza su ChatGPT, recensioni rispetto ai concorrenti della zona. Nessun impegno, nessuna vendita forzata.",
+    "trust": "Dati protetti · Nessun impegno · GDPR",
     "steps": [
-      { "step": "01", "title": "Racconto", "desc": "Mi racconta una giornata tipo della Sua attività." },
-      { "step": "02", "title": "Analisi", "desc": "Identifichiamo insieme le attività che rubano più tempo." },
-      { "step": "03", "title": "Piano", "desc": "Le presento il Suo primo guadagno di tempo concreto." }
+      {
+        "step": "01",
+        "title": "Prenotazione",
+        "desc": "Sceglie qui sotto l'orario che preferisce."
+      },
+      {
+        "step": "02",
+        "title": "Analisi",
+        "desc": "Preparo il report della Sua struttura prima della chiamata."
+      },
+      {
+        "step": "03",
+        "title": "Risultati",
+        "desc": "Le mostro dove migliorare, con i dati alla mano."
+      }
     ],
-    "iframeTitle": "Prenota un audit gratuito AutomaIA"
+    "iframeTitle": "Prenoti il report di visibilità gratuito AutomaIA"
   },
   "metadata": {
     "home": {
-      "title": "AutomaIA — Automazione e IA per agenzie immobiliari, centri estetici e palestre",
-      "description": "Automatizzo le attività ripetitive di agenzie immobiliari, centri estetici e palestre in Italia: appuntamenti, promemoria e risposte automatiche. Fino a 10 ore recuperate a settimana. Audit gratuito.",
-      "ogTitle": "AutomaIA — Automazione e IA per agenzie immobiliari, centri estetici e palestre",
-      "ogDescription": "Recupera fino a 10 ore a settimana automatizzando le attività ripetitive della tua attività. Audit gratuito di 20 minuti."
+      "title": "AutomaIA — Recensioni e visibilità per hotel e ristoranti a Rimini",
+      "description": "Più recensioni a 5 stelle, una risposta a ogni recensione e più visibilità su Google e ChatGPT per hotel e ristoranti di Rimini e della Riviera. Report di visibilità gratuito.",
+      "ogTitle": "AutomaIA — Recensioni e visibilità per hotel e ristoranti",
+      "ogDescription": "Tre assistenti curano la reputazione online della Sua struttura. Report di visibilità gratuito in 20 minuti."
     },
     "servizi": {
-      "title": "Servizi di automazione per agenzie immobiliari, centri estetici e palestre",
-      "description": "Automazioni su misura per agenzie immobiliari, centri estetici e palestre: appuntamenti automatici, solleciti, assistente FAQ 24/7, CRM e presenza online.",
-      "ogDescription": "Appuntamenti automatici, solleciti, assistente FAQ 24/7 e presenza online — su misura per la Sua attività."
+      "title": "Servizi per hotel e ristoranti: recensioni, visibilità, prenotazioni",
+      "description": "Reputazione & Visibilità da 99 €/mese, Assistente Prenotazioni 24/7 e supporto NFC per hotel e ristoranti della Riviera romagnola.",
+      "ogDescription": "Recensioni, visibilità su Google e ChatGPT e prenotazioni automatiche per hotel e ristoranti."
     },
-    "cliniche": {
-      "title": "Automazione per centri estetici e palestre",
-      "description": "Prenotazioni online, promemoria automatici e assistente FAQ 24/7 per il Suo centro estetico o palestra. Riduca le assenze e non perda più richieste fuori orario.",
-      "ogDescription": "Prenotazioni online, promemoria automatici e assistente FAQ 24/7 per il Suo centro estetico o palestra."
+    "hotel": {
+      "title": "Recensioni e visibilità per hotel e ristoranti a Rimini",
+      "description": "Raccolta di recensioni, una risposta a ognuna nella lingua del cliente, post social e visibilità su Google e ChatGPT. Da 99 € al mese per struttura. Report gratuito.",
+      "ogDescription": "Tre assistenti curano la reputazione online del Suo hotel o ristorante. Da 99 € al mese."
     },
     "chiSono": {
       "title": "Chi sono e come lavoro",
-      "description": "Il metodo AutomaIA in 3 passi: audit gratuito, automazione su misura, controllo sempre nelle Sue mani. Nessun gergo tecnico, soluzioni concrete.",
-      "ogDescription": "Il metodo AutomaIA in 3 passi: audit gratuito, automazione su misura, Lei resta al comando."
+      "description": "Il metodo AutomaIA in 3 passi: report di visibilità gratuito, configurazione completa, controllo sempre nelle Sue mani. Basato a Rimini.",
+      "ogDescription": "Il metodo AutomaIA in 3 passi: report gratuito, configurazione, Lei resta al comando."
     },
     "contatti": {
       "title": "Contatti — AutomaIA",
-      "description": "Hai una domanda su AutomaIA? Scrivici direttamente o prenota un audit gratuito di 20 minuti per la Sua attività."
+      "description": "Ha una domanda su AutomaIA? Scriva direttamente o richieda il report di visibilità gratuito per il Suo hotel o ristorante."
     },
     "audit": {
-      "title": "Audit gratuito · AutomaIA",
-      "description": "Prenoti un audit gratuito di 20 minuti per scoprire come automatizzare la Sua attività. Nessun impegno, solo un'analisi concreta."
+      "title": "Report di visibilità gratuito · AutomaIA",
+      "description": "Prenoti 20 minuti gratuiti: Le presento come La vedono oggi i clienti su Google Maps e ChatGPT, rispetto ai concorrenti della zona."
     }
   }
 }
