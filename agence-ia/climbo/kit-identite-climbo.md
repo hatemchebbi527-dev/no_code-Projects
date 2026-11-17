@@ -180,3 +180,13 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 - Istruzioni aggiuntive :
   > Rispondi nella lingua della recensione. Se in italiano, dai del Lei. Ringrazia il cliente per nome (solo nome di battesimo). Riprendi un dettaglio concreto citato nella recensione. Non inventare informazioni, offerte o promesse. Se la recensione è negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a contattarci in privato. Niente emoji nelle risposte negative. Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
 - Parole chiave : 3 à 5, toujours ville + service. Manuvo : `artigiani a Rimini, idraulico Rimini, elettricista Rimini, artigiani Riviera romagnola`. Hôtel : `hotel a Rimini, hotel vicino al mare Rimini, hotel per famiglie Rimini`. Restaurant : `ristorante a Rimini, ristorante di pesce Rimini, dove mangiare a Rimini`.
+
+### Automa Ricerca (Configurazione)
+- Langue : `Italiano` (anglais par défaut, à changer) ; ton chaleureux et professionnel ; longueur normale ; 1 fois par semaine ; police Inter.
+- Image de couverture : **« Dalla libreria »** (vraies photos de l'établissement, à charger dans sa bibliothèque). Jamais « Fotorealistico » (fausses photos trompeuses pour un hôtel ou un restaurant).
+- Approbation automatique : **désactivée** le premier mois (relire chaque article). Partage social : désactivé (Automa Social publie déjà).
+- Note aggiuntive :
+  > Scrivi in italiano, dando del Lei al lettore. Basati solo su quanto emerge dalle recensioni reali: non inventare prezzi, servizi, numeri o promesse. Cita la città e la zona (Rimini, Riviera romagnola). Struttura chiara con sottotitoli e una breve sezione finale di domande frequenti (FAQ) con risposte concise. Chiudi con un invito semplice a contattarci.
+
+### Adapter par client (environ 10 min)
+Copier les réglages ci-dessus, puis ajuster : mots-clés (service + quartier), ville/zone dans les instructions, textes de la page d'avis, et la langue de Social/Ricerca selon la clientèle majoritaire (italien en général, anglais pour un hôtel très international). Risposte et la page d'avis gèrent déjà le multilingue.
