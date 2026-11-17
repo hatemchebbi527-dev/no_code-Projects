@@ -137,5 +137,25 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 - ✅ Plan gratuit « Demo AutomaIA » créé, Manuvo basculé dessus.
 - ✅ Page d'avis de Manuvo : Google bien présent, 2 liens « Manuvo » (vers manuvo.automa-ia.net) supprimés via Requests > Link.
 - ⏸️ Plans payants et Stripe : après la P.IVA (4 janvier 2027).
-- **Prochaine tâche (7)** : passer la page d'avis en italien (pistes : Locations > Language, Account, ou textes éditables dans Requests > Link).
+- ✅ Page d'avis en italien : **pas de réglage de langue**, il faut traduire les textes à la main dans **Requests > Link** (chaque page de la liste déroulante). À refaire pour **chaque nouveau client** (textes types ci-dessous).
+- **Prochaine tâche (8)** : connecter les réseaux sociaux de Manuvo (Settings > Integrations > Social Media) pour faire apparaître Automa Social.
 - Ensuite : Automa Social et Automa Ricerca absents du menu client de Manuvo (seul Automa Risposte visible), Custom URL du lien d'avis (ex. `manuvo`), placeholder anglais à signaler au support.
+
+---
+
+## Textes types de la page d'avis (italien, vouvoiement Lei)
+
+À coller dans **Requests > Link** pour chaque nouveau client.
+
+**Page Filter (1re page)**
+- Titre : `Come valuta la Sua esperienza con noi?`
+- Sous-titre : `Scelga un'opzione qui sotto.`
+- Bouton 1 : `LASCI UNA RECENSIONE` / `Condivida la Sua esperienza`
+- Bouton 2 : `CI SCRIVA` / `Contatti direttamente il nostro team`
+
+**Page des sites d'avis**
+- Titre : `Grazie, la Sua opinione conta!`
+- Sous-titre : `Lasci una recensione sulla piattaforma che preferisce.`
+- Option feedback : `Feedback privato`
+
+**Version anglaise** (hôtels à clientèle internationale), si Climbo permet une seconde langue : garder les textes d'origine.
