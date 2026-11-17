@@ -30,15 +30,18 @@ Les fichiers se téléchargent depuis GitHub (dossier `agence-ia/marque/`) ou de
 
 Pas de « Agente » ni de « IA » face au client (voix de marque : zéro jargon). On parle d'**assistants**.
 
-| Champ Climbo | Valeur | Couleur | Logo |
-|---|---|---|---|
-| Nom de l'assistant (`ai_name`) | `Assistente AutomaIA` | | `logo-automaia-avatar.png` |
-| Phrase d'invite (`prompt_sentence`) | `Ha una domanda? Mi chieda pure.` | | |
-| Assistant réponses (`reply_agent`) | `Assistente Recensioni` | `#16B8A6` (teal) | `logo-automaia-icon.png` |
-| Assistant partage (`share_agent`) | `Assistente Social` | `#0F2A4A` (bleu nuit) | `logo-automaia-icon.png` |
-| Assistant visibilité (`geo_agent`) | `Assistente Visibilità` | `#2D3748` (ardoise) | `logo-automaia-icon.png` |
+| Champ Climbo | Valeur appliquée (vérifiée via MCP le 17/11/2026) | Logo |
+|---|---|---|
+| Nom de l'assistant (`ai_name`) | `Automa IA` | non réglable dans le dashboard |
+| Phrase d'invite (`prompt_sentence`) | `Ha una domanda? Mi chieda pure.` | |
+| Assistant réponses aux avis (`reply_agent`) | `Automa Risposte` | `logo-automaia-avatar.png` |
+| Assistant partage (`share_agent`) | `Automa Social` | `logo-automaia-avatar.png` |
+| Assistant visibilité (`geo_agent`) | `Automa Ricerca` | `logo-automaia-avatar.png` |
 
-Note : je ne sais pas exactement où Climbo affiche la phrase d'invite. Vérifie le rendu après l'avoir saisie et adapte si besoin.
+Limites constatées :
+- Noms limités à environ 15 caractères (« Assistente Recensioni » refusé).
+- Pas de champ couleur par assistant ni de logo pour le nom principal dans le dashboard (champs présents dans l'API, en lecture seule).
+- Le placeholder du chat (« Ask anything to Automa IA... ») reste en anglais même avec l'interface en italien. Généré par Climbo, non modifiable : à signaler au support.
 
 ---
 
