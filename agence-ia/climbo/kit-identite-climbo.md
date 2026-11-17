@@ -158,4 +158,4 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 - Sous-titre : `Lasci una recensione sulla piattaforma che preferisce.`
 - Option feedback : `Feedback privato`
 
-**Version anglaise** (hôtels à clientèle internationale), si Climbo permet une seconde langue : garder les textes d'origine.
+**Langue affichée** (testé le 17/11/2026) : la page suit la **langue du téléphone du visiteur**. Téléphone en italien → textes italiens personnalisés ; autres langues → textes anglais par défaut de Climbo. Pratique pour les hôtels : les touristes étrangers voient l'anglais. Pour tester une page en italien, utiliser un appareil réglé en italien (ou une fenêtre privée sur un ordinateur en italien).
