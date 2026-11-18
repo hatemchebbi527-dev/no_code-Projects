@@ -4,6 +4,10 @@
 // blanche). Le script du widget s'affiche là où il est inséré : on l'injecte
 // donc dans ce conteneur au montage, plutôt qu'avec next/script (qui le
 // placerait en fin de <body>).
+//
+// Retiré des pages le 18/11/2026 (badge non cliquable par défaut) : composant
+// gardé pour plus tard. Le badge est un onglet flottant au bord droit et ne
+// s'affiche que si la fiche Google a au moins un avis.
 import { useEffect, useRef } from "react";
 
 const WIDGET_SRC = "https://embed.mylocalbusiness.io/widgets/production/latest/widgets.js";
