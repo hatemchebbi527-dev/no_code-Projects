@@ -14,7 +14,6 @@ import { HOW_PHOTO } from "@/lib/how-photos";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 import { COMING_SOON } from "@/lib/waitlist";
 import { ComingSoon } from "./ComingSoon";
-import { ReviewBadge } from "@/components/ReviewBadge";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 
@@ -456,8 +455,6 @@ export default async function Home() {
             {t("login_link")}
           </Link>
         </div>
-        {/* Badge d'avis Google (plateforme AutomaIA). */}
-        <ReviewBadge className="mt-6 flex justify-center" />
         <nav className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-neutral-500">
           {LEGAL_LINKS.map((s) => (
             <Link key={s} href={`/legal/${s}`} className="hover:text-red-700 hover:underline">
