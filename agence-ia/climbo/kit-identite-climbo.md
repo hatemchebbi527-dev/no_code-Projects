@@ -271,3 +271,17 @@ Ordre imposé par Climbo pour changer un domaine : **supprimer d'abord le CNAME 
 ⚠️ Leçon Manuvo : `blog.manuvo.automa-ia.net` (2 niveaux sous `automa-ia.net`) donnait une erreur HTTPS (`ERR_SSL_VERSION_OR_CIPHER_MISMATCH`). Passé sur **`blog-manuvo.automa-ia.net`** (1 niveau) : fonctionne. Toujours un seul niveau de sous-domaine.
 
 **Domaine d'agence > Sito Web** (dashboard d'agence) : sert au site d'agence construit par Climbo. Non utilisé (on garde `automa-ia.net`), à laisser vide.
+
+---
+
+## Page d'avis : « Ci scriva » et « Feedback privato » (testé le 18/11/2026)
+
+Les deux créent un **feedback privé** dans la section **Avis**, avec le même email d'alerte. Seul le moment change : « Ci scriva » sur la page 1 (filtre neutre), « Feedback privato » sur la page 2 (à côté de Google, Booking…). Recommandation pour hôtels et restaurants : **garder la page 1** (ne pas cocher « Disable Experience Filter »), car le mécontent est orienté vers le privé dès le départ. Les boutons d'envoi sont désactivés dans l'**aperçu** du dashboard : toujours tester sur le vrai lien.
+
+## Rapport de visibilité (démo et prospection)
+
+Dashboard d'agence > **Pipeline** : chercher l'établissement (catégorie + zone) → l'ajouter comme cible → générer le rapport (rayon 5 km pour un hôtel ou un restaurant en ville) → environ 30 s → lien web + PDF. Contenu : position Google Maps sur une grille, concurrents, note et avis, position sur les assistants IA (peut arriver après la partie Maps, statut « partial »).
+- Coût : **0,35 € par rapport**, prélevé sur le solde d'agence.
+- Langue : celle des réglages de la Pipeline → **italien**.
+- **Le préparer avant le rendez-vous**, pas pendant la démo. Montrer sur tablette, laisser une copie imprimée.
+- Possible aussi via le MCP Climbo (`POST /prospecting/target/{id}/report`, puis lecture de `/prospecting/report/{id}`), toujours avec accord puisque payant.
