@@ -190,6 +190,48 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 - Note aggiuntive :
   > Scrivi in italiano, dando del Lei al lettore. Basati solo su quanto emerge dalle recensioni reali: non inventare prezzi, servizi, numeri o promesse. Cita la città e la zona (Rimini, Riviera romagnola). Struttura chiara con sottotitoli e una breve sezione finale di domande frequenti (FAQ) con risposte concise. Chiudi con un invito semplice a contattarci.
 
+### Prompts complets avec faits client (version du 18/11/2026, appliquée à Manuvo)
+
+Les 3 assistants reçoivent le **même bloc de faits** sur le client. Ton : Lei pour tout le contenu automatique (cohérence du blog). Avant le lancement d'un client : appel à l'action « scopri [nome] ».
+
+**Automa Risposte** :
+> Rispondi nella lingua della recensione. Se in italiano, dai del Lei. Ringrazia il cliente per nome (solo nome di battesimo) e riprendi un dettaglio concreto citato nella recensione.
+> Come funziona Manuvo (usa solo questi fatti): il privato pubblica gratuitamente la sua richiesta (tipo di intervento, zona, urgenza); fino a 3 artigiani della zona di Rimini possono contattarlo con un preventivo; il privato sceglie liberamente. Manuvo mette in contatto privati e artigiani, non esegue i lavori: non scrivere mai "il nostro tecnico", "il nostro intervento" o "abbiamo riparato".
+> Non inventare informazioni, offerte, sconti, garanzie, tempi o promesse. Non scrivere mai frasi come "dal contesto fornito".
+> Se la recensione è negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a scriverci in privato a info@automa-ia.net. Niente emoji nelle risposte negative.
+> Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
+
+**Automa Social** :
+> Scrivi in italiano, dando del Lei al lettore. Tono caldo e professionale. Ringrazia il cliente usando solo il suo nome di battesimo e riporta solo ciò che c'è nella recensione, senza aggiungere dettagli.
+> Come funziona Manuvo (usa solo questi fatti): [même bloc]. Manuvo mette in contatto privati e artigiani, non esegue i lavori.
+> Non inventare prezzi, numeri, sconti, garanzie, tempi o date. Non scrivere mai frasi come "dal contesto fornito".
+> Massimo 2 emoji e massimo 3 hashtag (ad esempio #Rimini #RivieraRomagnola #Manuvo). Chiudi con un invito semplice a scoprire Manuvo.
+
+**Automa Ricerca** : même structure (Lei, bloc de faits, interdits), avec sous-titres, FAQ finale et « Chiudi con un invito semplice a scoprire Manuvo. »
+
+Pour un hôtel, remplacer le bloc par ses faits réels (services, langues parlées, ce qui n'existe pas) et, pour Risposte, ne jamais promettre de geste commercial ni de remboursement.
+
+### Automa Ricerca : leçons des 2 premiers articles (Manuvo, 18/11/2026)
+
+Sans description précise du client, Ricerca **invente son fonctionnement** (ex. « cercare per categoria », « sfogliare i profili », « vi aiutiamo noi a trovare… ») et laisse des traces de robot (« dal contesto fornito… »). Deux règles :
+
+1. **Ajouter un bloc « fatti » propre à chaque client** dans les Note aggiuntive : comment il fonctionne réellement, ce qu'il ne fait pas, ce qu'il ne faut jamais promettre. Exemple Manuvo :
+   > Come funziona Manuvo (usa solo questi fatti): il privato pubblica gratuitamente la sua richiesta (tipo di intervento, zona, urgenza); fino a 3 artigiani della zona di Rimini possono contattarlo con un preventivo; il privato sceglie liberamente. Non esistono profili da sfogliare, ricerche per categoria o foto dei lavori: non citarli mai. Non inventare prezzi, numeri, garanzie, certificazioni o date. Non scrivere mai frasi come "dal contesto fornito".
+   Pour un hôtel : services réels, langues parlées, ce qui n'existe pas (pas de spa, pas de parking…), jamais de prix.
+2. **Relire chaque article avant publication** (crayon), avec cette grille :
+   - fonctionnement du client décrit correctement ;
+   - aucune promesse de rapidité, d'assistance personnelle ou de garantie ;
+   - aucun prix, chiffre, certification ou date inventés ;
+   - aucune phrase « robot » ;
+   - titres de section cohérents avec le texte (ex. pas de « invito a contattarci » si on a retiré l'invitation) ;
+   - un seul ton sur tout le blog (Lei pour Manuvo, gardé pour la cohérence des articles).
+
+⚠️ **« Approva automaticamente » désactivé ne bloque pas la publication.** Les articles passent en « Pianificato » et sont publiés automatiquement peu après (4 articles en environ 24 h au démarrage sur Manuvo). C'est un système d'opposition : bouton « Non pubblicare questo articolo ». La relecture doit donc se faire **dès la génération** (notification « generazione articolo » activée), et un article déjà publié se corrige avec le crayon. Au démarrage, Ricerca génère un premier lot d'articles : prévoir le coût sur le solde, puis remettre en pause si besoin.
+
+Avant le lancement d'un client (cas Manuvo, en « coming soon » jusqu'au 22/01/2027) : pas d'appel à l'action impossible (« pubblica ora la tua richiesta »), utiliser « scopri [nome] ». Zone de service : celle déclarée par le client (« Rimini e dintorni »), ne pas l'élargir (« Riviera romagnola »).
+
+Les images générées portent la mention « Immagine generata con AI » : acceptable pour un service (Manuvo), à éviter pour un hôtel ou un restaurant (vraies photos de la bibliothèque).
+
 ### Adapter par client (environ 10 min)
 Copier les réglages ci-dessus, puis ajuster : mots-clés (service + quartier), ville/zone dans les instructions, textes de la page d'avis, et la langue de Social/Ricerca selon la clientèle majoritaire (italien en général, anglais pour un hôtel très international). Risposte et la page d'avis gèrent déjà le multilingue.
 
