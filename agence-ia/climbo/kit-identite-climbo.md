@@ -205,6 +205,10 @@ Sans description précise du client, Ricerca **invente son fonctionnement** (ex.
    - titres de section cohérents avec le texte (ex. pas de « invito a contattarci » si on a retiré l'invitation) ;
    - un seul ton sur tout le blog (Lei pour Manuvo, gardé pour la cohérence des articles).
 
+⚠️ **« Approva automaticamente » désactivé ne bloque pas la publication.** Les articles passent en « Pianificato » et sont publiés automatiquement peu après (4 articles en environ 24 h au démarrage sur Manuvo). C'est un système d'opposition : bouton « Non pubblicare questo articolo ». La relecture doit donc se faire **dès la génération** (notification « generazione articolo » activée), et un article déjà publié se corrige avec le crayon. Au démarrage, Ricerca génère un premier lot d'articles : prévoir le coût sur le solde, puis remettre en pause si besoin.
+
+Avant le lancement d'un client (cas Manuvo, en « coming soon » jusqu'au 22/01/2027) : pas d'appel à l'action impossible (« pubblica ora la tua richiesta »), utiliser « scopri [nome] ». Zone de service : celle déclarée par le client (« Rimini e dintorni »), ne pas l'élargir (« Riviera romagnola »).
+
 Les images générées portent la mention « Immagine generata con AI » : acceptable pour un service (Manuvo), à éviter pour un hôtel ou un restaurant (vraies photos de la bibliothèque).
 
 ### Adapter par client (environ 10 min)
