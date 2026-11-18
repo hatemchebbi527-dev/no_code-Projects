@@ -192,3 +192,20 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 
 ### Adapter par client (environ 10 min)
 Copier les réglages ci-dessus, puis ajuster : mots-clés (service + quartier), ville/zone dans les instructions, textes de la page d'avis, et la langue de Social/Ricerca selon la clientèle majoritaire (italien en général, anglais pour un hôtel très international). Risposte et la page d'avis gèrent déjà le multilingue.
+
+---
+
+## Feedback privé et notifications (testé le 18/11/2026)
+
+**Circuit du feedback privé** : bouton « Feedback » de la page d'avis → formulaire privé (rien n'est publié) → email d'alerte au titulaire → message visible dans la section **Avis** de l'espace client → réponse possible depuis l'espace client, envoyée par email au client. Testé de bout en bout sur Manuvo : tout fonctionne.
+
+**Objet de l'email de réponse** : par défaut « Rispondi al tuo feedback » (tutoiement, mal formulé). D'après le support Climbo, il se **modifie à la main à chaque réponse**. Toujours le remplacer par : `Risposta al Suo feedback`.
+
+Modèle de réponse à un feedback négatif (à adapter) :
+> Gentile [Nome], grazie per averci scritto e per il tempo che ci ha dedicato. Ci dispiace sinceramente per [problema]. Abbiamo già [azione concreta]. Se lo desidera, saremo felici di parlarne direttamente: può contattarci al [telefono]. Speriamo di poterLa accogliere di nuovo. [Firma]
+
+**Notifications types** (Impostazioni sede > Notifiche) :
+- Emails : celle du titulaire **+ info@automa-ia.net** (jusqu'à 5 adresses) pour suivre tous les clients.
+- Activées : nouvel avis, récap quotidien, nouveau contact du site, **nouveau feedback privé**, partage social automatique, **connexion d'intégration expirée** (la plus importante), **génération d'article** (Ricerca en validation manuelle), **analyse mensuelle du sentiment**, **limite mensuelle presque atteinte**.
+
+**Modèles de demande d'avis** (Requests > Templates) : vides par défaut. À créer en italien (et en anglais pour les touristes) avant le premier vrai client.
