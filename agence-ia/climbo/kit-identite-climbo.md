@@ -209,3 +209,19 @@ Modèle de réponse à un feedback négatif (à adapter) :
 - Activées : nouvel avis, récap quotidien, nouveau contact du site, **nouveau feedback privé**, partage social automatique, **connexion d'intégration expirée** (la plus importante), **génération d'article** (Ricerca en validation manuelle), **analyse mensuelle du sentiment**, **limite mensuelle presque atteinte**.
 
 **Modèles de demande d'avis** (Requests > Templates) : vides par défaut. À créer en italien (et en anglais pour les touristes) avant le premier vrai client.
+
+---
+
+## Blog du client (option B, mise en place le 18/11/2026 sur Manuvo)
+
+Principe : le client **garde son vrai site**. Le mini-site Climbo (espace client > Visibilité > **Sito web**) sert uniquement de **blog** pour les articles d'Automa Ricerca, publié sur un sous-domaine du client, avec un lien « Blog » sur le vrai site.
+
+1. **Editor** : garder seulement Barra in alto, Copertina, Recensioni, **Blog**, Call to action (bouton vers le vrai site, ex. « Scopri [nome] »). Tout le reste désactivé, pour ne pas concurrencer le vrai site.
+2. **Pubblica > Il tuo dominio** : sous-domaine **sur un seul niveau** (`blog` + `hotelrossi.it` → `blog.hotelrossi.it`). Climbo donne un CNAME vers `site.mylocal.business` (différent de `portal` → `app.mylocalbusiness.io`).
+3. DNS du client : CNAME, **DNS only** si Cloudflare.
+4. **Pubblica > Su Google** : titre (60 car.) et description (160 car.) propres au blog.
+5. Ajouter un lien « Blog » sur le vrai site du client (menu ou pied de page).
+
+⚠️ Leçon Manuvo : `blog.manuvo.automa-ia.net` (2 niveaux sous `automa-ia.net`) donnait une erreur HTTPS (`ERR_SSL_VERSION_OR_CIPHER_MISMATCH`). Passé sur **`blog-manuvo.automa-ia.net`** (1 niveau) : fonctionne. Toujours un seul niveau de sous-domaine.
+
+**Domaine d'agence > Sito Web** (dashboard d'agence) : sert au site d'agence construit par Climbo. Non utilisé (on garde `automa-ia.net`), à laisser vide.
