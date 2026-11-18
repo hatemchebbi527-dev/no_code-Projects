@@ -190,6 +190,23 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 - Note aggiuntive :
   > Scrivi in italiano, dando del Lei al lettore. Basati solo su quanto emerge dalle recensioni reali: non inventare prezzi, servizi, numeri o promesse. Cita la città e la zona (Rimini, Riviera romagnola). Struttura chiara con sottotitoli e una breve sezione finale di domande frequenti (FAQ) con risposte concise. Chiudi con un invito semplice a contattarci.
 
+### Automa Ricerca : leçons des 2 premiers articles (Manuvo, 18/11/2026)
+
+Sans description précise du client, Ricerca **invente son fonctionnement** (ex. « cercare per categoria », « sfogliare i profili », « vi aiutiamo noi a trovare… ») et laisse des traces de robot (« dal contesto fornito… »). Deux règles :
+
+1. **Ajouter un bloc « fatti » propre à chaque client** dans les Note aggiuntive : comment il fonctionne réellement, ce qu'il ne fait pas, ce qu'il ne faut jamais promettre. Exemple Manuvo :
+   > Come funziona Manuvo (usa solo questi fatti): il privato pubblica gratuitamente la sua richiesta (tipo di intervento, zona, urgenza); fino a 3 artigiani della zona di Rimini possono contattarlo con un preventivo; il privato sceglie liberamente. Non esistono profili da sfogliare, ricerche per categoria o foto dei lavori: non citarli mai. Non inventare prezzi, numeri, garanzie, certificazioni o date. Non scrivere mai frasi come "dal contesto fornito".
+   Pour un hôtel : services réels, langues parlées, ce qui n'existe pas (pas de spa, pas de parking…), jamais de prix.
+2. **Relire chaque article avant publication** (crayon), avec cette grille :
+   - fonctionnement du client décrit correctement ;
+   - aucune promesse de rapidité, d'assistance personnelle ou de garantie ;
+   - aucun prix, chiffre, certification ou date inventés ;
+   - aucune phrase « robot » ;
+   - titres de section cohérents avec le texte (ex. pas de « invito a contattarci » si on a retiré l'invitation) ;
+   - un seul ton sur tout le blog (Lei pour Manuvo, gardé pour la cohérence des articles).
+
+Les images générées portent la mention « Immagine generata con AI » : acceptable pour un service (Manuvo), à éviter pour un hôtel ou un restaurant (vraies photos de la bibliothèque).
+
 ### Adapter par client (environ 10 min)
 Copier les réglages ci-dessus, puis ajuster : mots-clés (service + quartier), ville/zone dans les instructions, textes de la page d'avis, et la langue de Social/Ricerca selon la clientèle majoritaire (italien en général, anglais pour un hôtel très international). Risposte et la page d'avis gèrent déjà le multilingue.
 
