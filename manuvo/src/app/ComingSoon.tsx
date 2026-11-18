@@ -3,6 +3,7 @@
 // Manuvo - page « coming soon » (pre-lancement) : hero + capture d'email (waitlist).
 import { useActionState } from "react";
 import Link from "next/link";
+import { ReviewBadge } from "@/components/ReviewBadge";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type { Locale } from "@/lib/constants";
 import { joinWaitlist } from "./waitlist-actions";
@@ -240,6 +241,9 @@ export function ComingSoon({ locale }: { locale: Locale }) {
             </svg>
           </a>
         </div>
+        {/* Badge d'avis Google (plateforme AutomaIA). */}
+        <ReviewBadge className="mt-8" />
+
         {/* Acces discret a la connexion (app installee : pas de barre d'adresse). */}
         <Link
           href="/login"
