@@ -3,6 +3,7 @@
 // Manuvo - page « coming soon » (pre-lancement) : hero + capture d'email (waitlist).
 import { useActionState } from "react";
 import Link from "next/link";
+import { BLOG_URL, BLOG_LABEL } from "@/lib/blog";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type { Locale } from "@/lib/constants";
 import { joinWaitlist } from "./waitlist-actions";
@@ -241,12 +242,20 @@ export function ComingSoon({ locale }: { locale: Locale }) {
           </a>
         </div>
         {/* Acces discret a la connexion (app installee : pas de barre d'adresse). */}
-        <Link
-          href="/login"
-          className="mt-10 inline-block text-xs font-medium text-white/60 underline-offset-4 hover:text-white hover:underline"
-        >
-          {LOGIN_LABEL[locale] ?? LOGIN_LABEL.it}
-        </Link>
+        <div className="mt-10 flex items-center gap-5">
+          <Link
+            href="/login"
+            className="inline-block text-xs font-medium text-white/60 underline-offset-4 hover:text-white hover:underline"
+          >
+            {LOGIN_LABEL[locale] ?? LOGIN_LABEL.it}
+          </Link>
+          <a
+            href={BLOG_URL}
+            className="inline-block text-xs font-medium text-white/60 underline-offset-4 hover:text-white hover:underline"
+          >
+            {BLOG_LABEL[locale] ?? BLOG_LABEL.it}
+          </a>
+        </div>
       </main>
     </div>
   );

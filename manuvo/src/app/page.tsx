@@ -14,6 +14,7 @@ import { HOW_PHOTO } from "@/lib/how-photos";
 import { LEGAL, type LegalSlug } from "@/lib/legal";
 import { COMING_SOON } from "@/lib/waitlist";
 import { ComingSoon } from "./ComingSoon";
+import { BLOG_URL, BLOG_LABEL } from "@/lib/blog";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 
@@ -456,6 +457,9 @@ export default async function Home() {
           </Link>
         </div>
         <nav className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-neutral-500">
+          <a href={BLOG_URL} className="hover:text-red-700 hover:underline">
+            {BLOG_LABEL[locale] ?? BLOG_LABEL.it}
+          </a>
           {LEGAL_LINKS.map((s) => (
             <Link key={s} href={`/legal/${s}`} className="hover:text-red-700 hover:underline">
               {LEGAL[s][locale].title}
