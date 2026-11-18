@@ -214,13 +214,17 @@ Modèle de réponse à un feedback négatif (à adapter) :
 
 ## Blog du client (option B, mise en place le 18/11/2026 sur Manuvo)
 
-Principe : le client **garde son vrai site**. Le mini-site Climbo (espace client > Visibilité > **Sito web**) sert uniquement de **blog** pour les articles d'Automa Ricerca, publié sur un sous-domaine du client, avec un lien « Blog » sur le vrai site.
+Principe : le client **garde son vrai site**. Les articles d'Automa Ricerca sont publiés sur **le blog d'Automa Ricerca** (page liste + une vraie page par article, indexables), sur un sous-domaine du client, avec un lien « Blog » sur le vrai site.
 
-1. **Editor** : garder seulement Barra in alto, Copertina, Recensioni, **Blog**, Call to action (bouton vers le vrai site, ex. « Scopri [nome] »). Tout le reste désactivé, pour ne pas concurrencer le vrai site.
-2. **Pubblica > Il tuo dominio** : sous-domaine **sur un seul niveau** (`blog` + `hotelrossi.it` → `blog.hotelrossi.it`). Climbo donne un CNAME vers `site.mylocal.business` (différent de `portal` → `app.mylocalbusiness.io`).
-3. DNS du client : CNAME, **DNS only** si Cloudflare.
-4. **Pubblica > Su Google** : titre (60 car.) et description (160 car.) propres au blog.
-5. Ajouter un lien « Blog » sur le vrai site du client (menu ou pied de page).
+1. **Automa Ricerca > onglet Pubblica > Dominio Personalizzato** : sous-domaine **sur un seul niveau** (`blog` + `hotelrossi.it` → `blog.hotelrossi.it`). Climbo donne un CNAME vers **`blog.myblog.business`**.
+2. DNS du client : CNAME `blog` → `blog.myblog.business`, **DNS only** si Cloudflare.
+3. Ajouter un lien « Blog » sur le vrai site du client (menu ou pied de page).
+4. Publication : **pas de bouton « publier maintenant »**. Les articles « Pianificato » partent automatiquement selon la fréquence choisie. Bouton « Non pubblicare questo articolo » pour en annuler un. Toujours relire avant (crayon pour corriger).
+5. Option secondaire : widget « blog » (onglet Pubblica > Incorpora articoli) à coller dans le vrai site. Moins bon pour le SEO (contenu chargé en JavaScript).
+
+⚠️ **Ne pas utiliser le mini-site « Sito web »** (Visibilité > Sito web) comme blog : testé sur Manuvo, il affichait des sections vides avec des titres en anglais (« What People Say », « From Our Blog : No articles found ») et pas les articles de Ricerca. Domaine retiré du mini-site.
+
+Ordre imposé par Climbo pour changer un domaine : **supprimer d'abord le CNAME dans Cloudflare**, puis déconnecter dans Climbo, puis reconnecter ailleurs.
 
 ⚠️ Leçon Manuvo : `blog.manuvo.automa-ia.net` (2 niveaux sous `automa-ia.net`) donnait une erreur HTTPS (`ERR_SSL_VERSION_OR_CIPHER_MISMATCH`). Passé sur **`blog-manuvo.automa-ia.net`** (1 niveau) : fonctionne. Toujours un seul niveau de sous-domaine.
 
