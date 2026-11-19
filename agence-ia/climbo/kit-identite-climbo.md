@@ -291,7 +291,7 @@ Dashboard d'agence > **Pipeline** : chercher l'établissement (catégorie + zone
 Le visiteur tape le nom de son établissement, laisse son email et reçoit son rapport de visibilité ; il arrive dans la Pipeline avec le rapport déjà généré. **0,35 $ par formulaire rempli**, sur le même solde que les assistants des clients : ne l'activer qu'avec un solde rechargé.
 
 - **Site** : intégré sur `/report` (au-dessus du calendrier), interrupteur `OPTIN_ENABLED` dans `agence-ia/site/automaia-web/lib/optin.js` (désactivé par défaut). Messages de redimensionnement acceptés uniquement depuis `portal.automa-ia.net`.
-- **Textes du formulaire** (dashboard, Pipeline > widget Opt-in, non modifiables via l'API) : `Nome della Sua struttura` · `Es. Hotel Bellavista, Rimini` · `La Sua email` · bouton `Ricevi il report gratuito` · redirection vide.
+- **Textes du formulaire** (dashboard, Pipeline > widget Opt-in, non modifiables via l'API) : `Nome della Sua struttura` · `Es. Hotel Bellavista, Rimini` · `La Sua email` · bouton `Riceva il report gratuito` (forme Lei, pas « Ricevi ») · redirection vide.
 - **Email « Report da opt-in »** (Impostazioni > Email) : variables Climbo au format `{{businessName}}` et `{{reportLink}}`, à insérer avec le bouton de variables (jamais tapées à la main). Dans un email de test, elles restent affichées telles quelles (pas de données réelles).
   - Objet : `Il Suo report di visibilità locale è pronto`
   - Texte :

@@ -43,6 +43,7 @@ export default async function Footer() {
           <Link href="/report">{tc("auditCta")}</Link>
           <Link href="/audit">{tc("auditGratuito")}</Link>
           <a href="https://portal.automa-ia.net">{t("areaClienti")}</a>
+          <a href="https://portal.automa-ia.net/guides">{t("guide")}</a>
         </nav>
 
         <div className={styles.contact}>
