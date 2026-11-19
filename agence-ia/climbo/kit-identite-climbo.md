@@ -304,3 +304,16 @@ Le visiteur tape le nom de son établissement, laisse son email et reçoit son r
     > Se lo desidera, possiamo commentarlo insieme in 20 minuti, gratuitamente e senza impegno. Prenoti qui l'orario che preferisce: https://automa-ia.net/report
     >
     > Cordiali saluti, Hatem · AutomaIA · Rimini · info@automa-ia.net
+
+## Guides clients (Brand > Guide)
+
+- Publiées sur `https://portal.automa-ia.net/guides`, à la marque AutomaIA (logo, favicon, aucune mention de Climbo). Lien « Guide » dans le pied de page d'automa-ia.net (nouvel onglet).
+- Textes écrits et mis à jour par Climbo : **non modifiables**, pas de réglage du lien du logo. Sélecteur de langue intégré (italien disponible).
+- Les guides gardent les noms génériques : **SEO Agent = Automa Risposte, GEO Agent = Automa Ricerca, Social Agent = Automa Social**. À expliquer au client pendant l'onboarding.
+- ⚠️ Ne jamais connecter **Brand > Dominio > Sito Web** sur `portal` : ce sous-domaine sert déjà la plateforme (onglet Software). Le site d'agence Climbo n'est pas utilisé.
+
+## Coûts réels constatés (Manuvo, novembre 2026)
+
+- 4 articles Automa Ricerca : environ **0,37 $ au total**, soit environ **0,09 $ par article** (image comprise). Un article par semaine coûte donc environ 0,40 $ par mois et par client.
+- Rapport de visibilité : 0,35 $ (opt-in ou Pipeline).
+- Mode économie tant que le solde n'est pas rechargé : Ricerca et Social en pause, seul Risposte actif sur Manuvo.
