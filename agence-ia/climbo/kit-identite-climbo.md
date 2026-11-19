@@ -285,3 +285,22 @@ Dashboard d'agence > **Pipeline** : chercher l'établissement (catégorie + zone
 - Langue : celle des réglages de la Pipeline → **italien**.
 - **Le préparer avant le rendez-vous**, pas pendant la démo. Montrer sur tablette, laisser une copie imprimée.
 - Possible aussi via le MCP Climbo (`POST /prospecting/target/{id}/report`, puis lecture de `/prospecting/report/{id}`), toujours avec accord puisque payant.
+
+## Widget opt-in (rapport automatique depuis automa-ia.net)
+
+Le visiteur tape le nom de son établissement, laisse son email et reçoit son rapport de visibilité ; il arrive dans la Pipeline avec le rapport déjà généré. **0,35 $ par formulaire rempli**, sur le même solde que les assistants des clients : ne l'activer qu'avec un solde rechargé.
+
+- **Site** : intégré sur `/report` (au-dessus du calendrier), interrupteur `OPTIN_ENABLED` dans `agence-ia/site/automaia-web/lib/optin.js` (désactivé par défaut). Messages de redimensionnement acceptés uniquement depuis `portal.automa-ia.net`.
+- **Textes du formulaire** (dashboard, Pipeline > widget Opt-in, non modifiables via l'API) : `Nome della Sua struttura` · `Es. Hotel Bellavista, Rimini` · `La Sua email` · bouton `Ricevi il report gratuito` · redirection vide.
+- **Email « Report da opt-in »** (Impostazioni > Email) : variables Climbo au format `{{businessName}}` et `{{reportLink}}`, à insérer avec le bouton de variables (jamais tapées à la main). Dans un email de test, elles restent affichées telles quelles (pas de données réelles).
+  - Objet : `Il Suo report di visibilità locale è pronto`
+  - Texte :
+    > Gentile titolare,
+    >
+    > ecco il report di visibilità locale di {{businessName}}: dove compare su Google Maps nella Sua zona e se gli assistenti AI, come ChatGPT, La consigliano quando qualcuno cerca un'attività come la Sua.
+    >
+    > {{reportLink}}
+    >
+    > Se lo desidera, possiamo commentarlo insieme in 20 minuti, gratuitamente e senza impegno. Prenoti qui l'orario che preferisce: https://automa-ia.net/report
+    >
+    > Cordiali saluti, Hatem · AutomaIA · Rimini · info@automa-ia.net
