@@ -355,7 +355,12 @@
         "desc": "I show you where to improve, with the data in hand."
       }
     ],
-    "iframeTitle": "Book your free AutomaIA visibility report"
+    "iframeTitle": "Book your free AutomaIA visibility report",
+    "optin": {
+      "title": "Get your report by email right away",
+      "text": "Enter your property's name and your email: we'll send you the visibility report within minutes, free and with no commitment.",
+      "oppure": "Or, if you'd rather go through it together, book 20 minutes below."
+    }
   },
   "audit": {
     "eyebrow": "Free audit · 20 minutes",
