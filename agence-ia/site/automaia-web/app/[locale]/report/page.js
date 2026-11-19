@@ -15,5 +15,5 @@ export async function generateMetadata({ params }) {
 export default async function ReportPage({ params }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <BookingPage locale={locale} namespace="report" campaign="report" />;
+  return <BookingPage locale={locale} namespace="report" campaign="report" optin />;
 }

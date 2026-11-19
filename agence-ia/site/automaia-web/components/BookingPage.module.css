@@ -69,3 +69,22 @@
     min-height: 900px;
   }
 }
+
+/* Bloc opt-in (rapport automatique par email) */
+.optin {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  padding: 32px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--teal);
+  border-radius: 16px;
+}
+.optinTitle { font-size: 1.4rem; margin: 0 0 8px; color: var(--navy); }
+.optinText { margin: 0 0 16px; color: var(--ink); }
+.optinOr {
+  margin: 24px 0 0;
+  text-align: center;
+  font-weight: 600;
+  color: var(--muted);
+}

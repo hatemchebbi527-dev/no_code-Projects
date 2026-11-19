@@ -9,7 +9,8 @@
     "hotel": "Hôtels & Restaurants",
     "chiSono": "Qui suis-je",
     "contatti": "Contact",
-    "areaClienti": "Espace client"
+    "areaClienti": "Espace client",
+    "guide": "Guides"
   },
   "common": {
     "auditCta": "Rapport gratuit",
@@ -355,7 +356,12 @@
         "desc": "Je vous montre où progresser, chiffres en main."
       }
     ],
-    "iframeTitle": "Réservez votre rapport de visibilité gratuit AutomaIA"
+    "iframeTitle": "Réservez votre rapport de visibilité gratuit AutomaIA",
+    "optin": {
+      "title": "Recevez tout de suite votre rapport par email",
+      "text": "Indiquez le nom de votre établissement et votre email : nous vous envoyons le rapport de visibilité en quelques minutes, gratuitement et sans engagement.",
+      "oppure": "Ou, si vous préférez le commenter ensemble, réservez 20 minutes ci-dessous."
+    }
   },
   "audit": {
     "eyebrow": "Audit gratuit · 20 minutes",

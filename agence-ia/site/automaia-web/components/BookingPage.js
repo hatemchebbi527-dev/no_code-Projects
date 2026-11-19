@@ -1,5 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import styles from "./BookingPage.module.css";
+import OptInWidget from "./OptInWidget";
+import { OPTIN_ENABLED } from "@/lib/optin";
 
 // Calendly (plan gratuit) : un seul type d'événement sert pour l'audit
 // (automatisations) et pour le report de visibilité (avis). Le paramètre
@@ -7,9 +9,10 @@ import styles from "./BookingPage.module.css";
 // Si un jour tu as un événement par langue ou par offre, remplace l'URL ici.
 const CALENDLY_URL = "https://calendly.com/hatemchebbi527/audit-gratuito-automaia";
 
-export default async function BookingPage({ locale, namespace, campaign }) {
+export default async function BookingPage({ locale, namespace, campaign, optin = false }) {
   const t = await getTranslations(namespace);
   const steps = t.raw("steps");
+  const showOptin = optin && OPTIN_ENABLED;
   const params = new URLSearchParams({
     hide_gdpr_banner: "1",
     primary_color: "16B8A6",
@@ -29,6 +32,16 @@ export default async function BookingPage({ locale, namespace, campaign }) {
           <p className="lead mt-24">{t("lead")}</p>
           <p className={styles.trust}>{t("trust")}</p>
         </div>
+
+        {/* Opt-in : rapport reçu automatiquement par email (voir lib/optin.js) */}
+        {showOptin && (
+          <div className={styles.optin}>
+            <h2 className={styles.optinTitle}>{t("optin.title")}</h2>
+            <p className={styles.optinText}>{t("optin.text")}</p>
+            <OptInWidget locale={locale} title={t("optin.title")} />
+            <p className={styles.optinOr}>{t("optin.oppure")}</p>
+          </div>
+        )}
 
         {/* Steps */}
         <div className={styles.steps}>

@@ -9,7 +9,8 @@
     "hotel": "Hotel & Ristoranti",
     "chiSono": "Chi sono",
     "contatti": "Contatti",
-    "areaClienti": "Area clienti"
+    "areaClienti": "Area clienti",
+    "guide": "Guide"
   },
   "common": {
     "auditCta": "Report gratuito",
@@ -355,7 +356,12 @@
         "desc": "Le mostro dove migliorare, con i dati alla mano."
       }
     ],
-    "iframeTitle": "Prenoti il report di visibilità gratuito AutomaIA"
+    "iframeTitle": "Prenoti il report di visibilità gratuito AutomaIA",
+    "optin": {
+      "title": "Riceva subito il Suo report via email",
+      "text": "Scriva il nome della Sua struttura e la Sua email: Le inviamo il report di visibilità in pochi minuti, gratis e senza impegno.",
+      "oppure": "Oppure, se preferisce commentarlo insieme, prenoti 20 minuti qui sotto."
+    }
   },
   "audit": {
     "eyebrow": "Audit gratuito · 20 minuti",
