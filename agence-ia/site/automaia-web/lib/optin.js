@@ -5,7 +5,7 @@
 //
 // DÉSACTIVÉ tant que le solde n'est pas rechargé (100 $ minimum). Pour le mettre
 // en ligne : passer à true, puis merger.
-export const OPTIN_ENABLED = false;
+export const OPTIN_ENABLED = true;
 
 export const OPTIN_ORIGIN = "https://portal.automa-ia.net";
 export const OPTIN_AGENCY_ID = "6af59a7f3003467fda6ec0b5";
