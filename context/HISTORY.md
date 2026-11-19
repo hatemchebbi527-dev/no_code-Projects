@@ -7,6 +7,21 @@
 
 ---
 
+## 2026-11-19
+
+### Sortie de Wix : domaine chez Cloudflare, messagerie en cours de bascule vers Google direct
+- **Question de départ** : le transfert du domaine `automa-ia.net` vers Cloudflare étant fait, peut-on résilier Wix ? **Réponse : non, pas en l'état.**
+- **Audit des 23 enregistrements DNS Cloudflare** : tout est correctement recopié (Vercel pour le site, `app` et `manuvo` ; Climbo pour `portal`, `blog-manuvo`, `rsend`, `send` ; Resend ; Mailgun ; SPF, DMARC et vérifications Google/Facebook). Plus aucune dépendance DNS à Wix. **Manque repéré : le DKIM Google (`google._domainkey`)**
+- **Le blocage** : les MX pointent vers Google Workspace, mais l'abonnement est **revendu par Wix** (`admin.google.com` inaccessible, Wix reste super-admin). Résilier Wix aurait supprimé `info@automa-ia.net`, c'est-à-dire le compte admin Manuvo, le contact légal RGPD des pages publiques et l'adresse des prospects
+- **Seul abonnement Wix restant** : « Email aziendale », **19,76 €/mois**, cycle mensuel, prochain prélèvement le **3 décembre 2026**. Soit 237 €/an pour une boîte mail
+- **Coût caché identifié** : le workflow n8n d'assistant email repose sur le Gmail Trigger et les brouillons threadés Gmail. Quitter l'écosystème Google obligerait à le reconstruire en IMAP/SMTP, avec perte du threading. Ce workflow est le premier actif démontrable en prospection, donc ce point a pesé dans la décision
+- **Décision d'Hatem** : migrer maintenant plutôt qu'après le lancement Manuvo, la boîte étant encore sans trafic. Argument retenu contre ma recommandation initiale d'attendre février, et il avait raison sur les deux points (le coût réel, 19,76 € et non 7 €, et la fenêtre de faible trafic)
+- **Voie choisie** : demander à Wix le **détachement de la facturation vers Google en direct**, qui conserve tout (boîte, emails, MX, Gmail, workflow n8n) et fait passer le coût à environ 7 €/mois. Confirmé possible par Wix, mais irréversible et exécutable seulement par leur équipe interne
+- **Actions réalisées** : sauvegarde complète de la boîte via Google Takeout (zip téléchargé), puis ouverture du **ticket Wix n° 3000445741**, catégorisé « Accesso account - Google Workspace - Rivenditore ». Réponse attendue sur `hatemchebbi527@gmail.com`
+- **Suite** : relancer le 28 novembre si pas de réponse (rappel automatique programmé), vigilance sur le vocabulaire (exiger « scollegare la fatturazione », refuser toute « cancellazione »), puis après détachement : moyen de paiement chez Google, réduction des utilisateurs facturés, passage en Business Starter et activation du DKIM Google
+
+---
+
 ## 2026-11-16
 
 ### Pivot de niche : hôtels et restaurants en fer de lance
