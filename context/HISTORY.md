@@ -7,6 +7,16 @@
 
 ---
 
+## 2026-11-20
+
+### Wix : renouvellement désactivé, migration de la messagerie vers Google enclenchée
+- **Confirmation écrite obtenue** de Nicoletta (Wix Customer Care) : cliquer sur « cancella servizio » désactive le renouvellement automatique et permet à Wix de lancer la migration de la boîte. C'est la garantie que j'avais demandé d'attendre avant d'agir, l'écran Wix annonçant sinon la perte des 2 boîtes
+- **Action effectuée** : abonnement « Email aziendale » annulé côté Wix. Statut désormais « Rinnovo automatico disattivato », service **actif jusqu'au 3 décembre 2026**. Le prélèvement de 19,76 € du 3 décembre n'aura pas lieu
+- **Reste à faire côté Wix** : exécuter la migration vers la facturation directe Google. Point de vigilance : **si rien n'est fait au 1er décembre, réactiver l'abonnement** pour ne pas perdre les boîtes, puis relancer le support
+- **Ensuite** : email de Google, puis 7 jours pour enregistrer un moyen de paiement (sinon suspension), réduction de 2 à 1 utilisateur et passage en Business Starter (~7 €/mois au lieu de 19,76 €)
+
+---
+
 ## 2026-11-19
 
 ### Sortie de Wix : domaine chez Cloudflare, messagerie en cours de bascule vers Google direct
