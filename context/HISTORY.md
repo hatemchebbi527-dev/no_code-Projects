@@ -9,6 +9,16 @@
 
 ## 2026-11-20
 
+### Google Workspace impayable sans P.IVA : décision de migrer vers Infomaniak
+- **Migration Wix exécutée le jour même**, puis email de Google : période de grâce jusqu'au **27 novembre 2026** (et non le 3 décembre), Customer ID C03zprwvs, Business Starter, 2 utilisateurs
+- **Blocage** : le profil de paiement est figé sur « Account type: Organization », champs Account type et Tax status désactivés, Partita IVA obligatoire. Hatem n'ouvre sa P.IVA que le 4 janvier 2027. Le support Google a répondu : conversion impossible, pas de prorogation, et le menu de création d'un autre profil qu'il décrivait n'existe pas dans l'interface (page Payment accounts : « You don't have any billing account »)
+- **Vérification dans la documentation officielle Google** (à jour au 10 nov. 2026) : « Most existing accounts and all new accounts have the Business account type (...) The Individual account type isn't available if you set up a new billing account. » Les seuls statuts fiscaux d'un compte Business sont Business et Individual Entrepreneur, qui exigent tous deux un numéro de TVA en Italie. **Le blocage est structurel, pas contournable.** Un profil de paiement Individual existe bien sur son compte (ID 6655-1994-7860) mais ne peut pas être rattaché à l'abonnement
+- **Décision d'Hatem : migrer la messagerie vers Infomaniak** (environ 1,80 €/mois au lieu de 19,76 €), qui facture un particulier sans TVA. Options écartées : Zoho, et l'attente jusqu'au 4 janvier avec une suspension assumée puis réactivation
+- **Argument qui a débloqué l'arbitrage** : quitter Gmail ne coûte presque rien, car le workflow n8n d'assistant email s'installe chez les clients, sur leur propre Gmail, et le Gmail personnel reste disponible pour les démos
+- **Fait dans la foulée** : Service Mail rattaché au domaine en externe (le domaine reste chez Cloudflare), boîte `info@automa-ia.net` créée, et les 3 enregistrements sans risque posés dans Cloudflare (CNAME autoconfig et autodiscover, DKIM Infomaniak 20261120._domainkey). MX et SPF volontairement non touchés
+- **Piège SPF identifié** : Infomaniak demande d'ajouter `v=spf1 include:spf.infomaniak.ch -all`, mais un domaine ne peut avoir qu'un seul SPF. Il faudra **modifier** l'existant, pas en créer un second, sous peine de casser l'authentification de tous les emails
+- **Session mise en pause à la demande d'Hatem**, avant l'import IMAP. Échéance réelle : le 27 novembre, après quoi Google coupe l'accès IMAP et l'import devient impossible
+
 ### Wix : renouvellement désactivé, migration de la messagerie vers Google enclenchée
 - **Confirmation écrite obtenue** de Nicoletta (Wix Customer Care) : cliquer sur « cancella servizio » désactive le renouvellement automatique et permet à Wix de lancer la migration de la boîte. C'est la garantie que j'avais demandé d'attendre avant d'agir, l'écran Wix annonçant sinon la perte des 2 boîtes
 - **Action effectuée** : abonnement « Email aziendale » annulé côté Wix. Statut désormais « Rinnovo automatico disattivato », service **actif jusqu'au 3 décembre 2026**. Le prélèvement de 19,76 € du 3 décembre n'aura pas lieu
