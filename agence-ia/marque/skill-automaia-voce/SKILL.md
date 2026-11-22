@@ -40,7 +40,7 @@ Vouvoiement (Lei en italien) + ton chaleureux et humain. Le respect dû à un ch
 
 ## Interdits stricts
 
-- **Jargon technique** : IA, API, automation, workflow, machine learning, LLM, pipeline, agent, n8n, etc. ("automazione" reste acceptable car il parle de bénéfice.) Les noms des assistants sont « Assistente Recensioni / Social / Visibilità », jamais « Agente ».
+- **Jargon technique** : IA, API, automation, workflow, machine learning, LLM, pipeline, agent, n8n, etc. ("automazione" reste acceptable car il parle de bénéfice.) Les noms des assistants sont « Automa Risposte » (réponses aux avis), « Automa Social » et « Automa Ricerca » (articles et visibilité), jamais « Agente ».
 - **Survente** : "révolutionnaire", "magique", "100% garanti", "rivoluzionario", "magico", "esplodere le prenotazioni".
 - **Chiffres inventés** : jamais de pourcentage ou de résultat non sourcé. Jamais de promesse de note ou de nombre d'avis garanti.
 - **Faux avis ou filtrage** : ne jamais suggérer d'acheter, d'écrire ou de filtrer des avis. Tout le monde reçoit la même invitation, conformément aux règles de Google.
