@@ -49,26 +49,32 @@ Limites constatées :
 
 > ⏸️ **En attente (constat du 17/11/2026)** : un « Piano a pagamento » exige de connecter Stripe. Décision : Stripe et les 3 plans payants seront créés **après l'ouverture de la P.IVA (4 janvier 2027)**, pour ouvrir le compte Stripe directement avec la bonne identité fiscale. D'ici là, seuls des plans gratuits (« Piano gratuito ») pour les démos.
 
-Prix **par établissement (per sede), par mois**. Option annuelle conseillée : **10 × le mensuel** (2 mois offerts). Essai gratuit : **14 jours** sur les trois plans.
+**Offre V1 du 22/11/2026** (référence complète : `AutomaIA-V1.pdf`, Google Drive > dossier Climbo). Prix **par établissement (Price per Location), par mois**. Essai gratuit et option annuelle : **non prévus dans la V1** (à décider).
 
-| | **Essenziale** | **Crescita** (à mettre en avant) | **Completo** |
+| | **Bronze** | **Silver** | **Gold** |
 |---|---|---|---|
-| Prix mensuel | **99 €** | **149 €** | **199 €** |
-| Prix annuel | 990 € | 1 490 € | 1 990 € |
-| Collecte d'avis (lien, QR, email, SMS) | ✅ | ✅ | ✅ |
-| Réponses automatiques aux avis | ✅ | ✅ | ✅ |
-| Feedback privé + widget avis pour le site | ✅ | ✅ | ✅ |
-| WhatsApp, campagnes, QR par employé + classement | | ✅ | ✅ |
-| Partage des meilleurs avis (Instagram, Facebook) | | ✅ | ✅ |
-| Gestion fiche Google, ranking Maps, analyse du sentiment | | ✅ | ✅ |
-| Articles de blog hebdo + site (GEO) | | | ✅ |
-| Ranking ChatGPT / Gemini / Perplexity / Grok | | | ✅ |
-| TikTok + LinkedIn, analyse des concurrents | | | ✅ |
-| **Limites mensuelles** | 50 SMS, 500 emails, 0 WhatsApp, 150 000 tokens | 100 SMS, 1 000 emails, 50 WhatsApp, 400 000 tokens | 200 SMS, 2 000 emails, 100 WhatsApp, 1 000 000 tokens |
+| Prix mensuel | **149 €** | **299 €** | **499 €** |
+| Avis Google, Booking.com, Expedia, TripAdvisor | ✅ | ✅ | ✅ |
+| Créateur de site, widget, demandes d'avis, suggestions, profil, Classifica AI | ✅ | ✅ | ✅ |
+| Percezione IA (6 indicateurs de visibilité et de perception sur les IA) | | ✅ | ✅ |
+| Rappels, gestion d'équipe, performances Google, partage social, automatisations | | ✅ | ✅ |
+| Sentimento, SEO (Automa Risposte), Social (Automa Social), GEO (Automa Ricerca), Chat AI | | ✅ | ✅ |
+| Témoignages vidéo, SMTP et Twilio du client | | | ✅ |
+| **SMS (segments)** | 50 | 150 | 400 |
+| **WhatsApp** | 25 | 100 | 300 |
+| **E-mails** | 500 | 1 500 | 3 000 |
+| **Tokens IA** | 250 000 | 1 000 000 | 3 000 000 |
+| **Plafond de coût mensuel** (100 % des quotas) | 9 $ | 32 $ | 92 $ |
+
+Quota atteint : seul ce canal se bloque, renouvellement au début du mois suivant, passage à un forfait supérieur possible, **aucune recharge ponctuelle**.
+
+Réglages retenus pour les 3 plans : Price per Location, facturation activée, **branding désactivé** (« Disabilita Branding » coché), plans visibles (« Nascondi piano » décoché).
+
+⚠️ **Les 3 assistants IA ne sont inclus qu'à partir de Silver.** Ne jamais présenter Bronze comme « avec les 3 assistants » (site, démo, devis).
 
 **Sites d'avis à activer** (hôtellerie/restauration à Rimini) : Google, TripAdvisor, Booking, Facebook, Expedia, TheFork/OpenTable si disponible. Désactive ceux qui ne servent pas à ta cible (Zillow, Glassdoor, Indeed, App Store…) pour garder une interface simple.
 
-**Contrôle du coût** : en créant chaque plan, Climbo affiche la « limite maximale de dépense ». Elle doit rester **sous ~15 % du prix** du plan. Les SMS et WhatsApp vers des numéros italiens coûtent plus cher que les tarifs américains montrés dans la vidéo : vérifie le coût réel dans la section Saldo et ajuste les quotas si nécessaire.
+**Contrôle du coût** : tarifs de référence de la V1 : SMS 0,08 $ par segment, WhatsApp 0,10 $ par message, e-mails 0 $, IA 1 $ pour 100 000 tokens (SMS et WhatsApp varient selon le pays destinataire). En créant chaque plan, vérifier que la « limite maximale de dépense » affichée par Climbo correspond au plafond du tableau.
 
 **Demo Plan** (Climbo) : verrouillé, non modifiable. Remplacé par notre plan gratuit **« Demo AutomaIA »** (créé le 17/11/2026, id `6afbd51f13c11035a50f18ea`) :
 - sites d'avis : Google, Booking, TripAdvisor, Airbnb, Facebook, Expedia, OpenTable, Treatwell ;
@@ -79,7 +85,7 @@ Prix **par établissement (per sede), par mois**. Option annuelle conseillée : 
 
 Écart API : l'API renvoie `google` dans `disabled`, mais **Google s'affiche bien** sur la page d'avis de Manuvo (vérifié le 17/11/2026). Bug d'affichage de l'API, à ignorer. Manuvo est passé sur ce plan le 17/11/2026 (via le MCP).
 
-**Coûts unitaires constatés** : 1 SMS = 0,01 $, 1 WhatsApp = 0,04 $, 1M tokens = 10 $ (tarif SMS vers l'Italie à confirmer dans Saldo).
+**Coûts unitaires affichés dans le dashboard** (17/11/2026) : 1 SMS = 0,01 $, 1 WhatsApp = 0,04 $, 1M tokens = 10 $. La V1 retient des tarifs plus prudents (voir ci-dessus).
 
 ---
 
@@ -87,11 +93,11 @@ Prix **par établissement (per sede), par mois**. Option annuelle conseillée : 
 
 ### Descriptions des plans (page de paiement)
 
-- **Essenziale** : Più recensioni a 5 stelle e una risposta curata per ognuna, senza che Lei debba occuparsene.
-- **Crescita** : Tutto l'Essenziale, più WhatsApp, le recensioni migliori pubblicate sui Suoi social e la Sua scheda Google sempre aggiornata.
-- **Completo** : Tutto il Crescita, più un articolo a settimana sul Suo sito e il monitoraggio della Sua posizione su Google e su ChatGPT.
+- **Bronze** : Più recensioni da Google, Booking.com, Expedia e TripAdvisor, il widget delle recensioni per il Suo sito e la Sua posizione sugli assistenti AI, tutto in un'unica area clienti.
+- **Silver** : Tutto il Bronze, più i tre assistenti AI: una risposta curata a ogni recensione, le recensioni migliori sui Suoi social e articoli per farsi trovare su Google e su ChatGPT.
+- **Gold** : Tutto il Silver, con quote più ampie, testimonianze video e invio dei messaggi dal Suo numero e dalla Sua email.
 
-### Site d'agence (site clé-en-main Climbo)
+### Site d'agence (site clé-en-main Climbo, non utilisé : on garde automa-ia.net)
 
 **Titre :** Più recensioni a 5 stelle. Più clienti che La trovano.
 
@@ -117,7 +123,7 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 
 1. Branding (section 1) : nom, logo, favicon, couleur, arrondi, lien « powered by ».
 2. Assistants (section 2) : nom, phrase d'invite, 3 assistants avec couleurs et logos.
-3. Plans (section 3) : créer Essenziale, Crescita, Completo. Ne pas diffuser les liens de paiement avant le 4 janvier 2027.
+3. Plans (section 3) : créer Bronze, Silver, Gold (après Stripe, à partir du 4 janvier 2027). Ne pas diffuser les liens de paiement avant.
 4. Site d'agence (section 4) : coller les textes italiens et brancher le CTA sur le formulaire de rapport.
 5. Me prévenir : je relis le thème via le MCP pour vérifier que tout est bien appliqué.
 

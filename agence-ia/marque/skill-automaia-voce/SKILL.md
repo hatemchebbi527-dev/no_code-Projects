@@ -82,7 +82,7 @@ Le titulaire doit ressentir : **« Enfin quelqu'un qui connaît mon métier, qui
 
 ## Offres et CTA
 
-- **Reputazione & Visibilità (porte d'entrée).** Plateforme en marque blanche AutomaIA, par établissement et par mois : **Essenziale 99 €** (collecte d'avis, réponse à chaque avis, feedback privé, widget), **Crescita 149 €** (+ WhatsApp, partage des meilleurs avis sur Instagram et Facebook, fiche Google, classement Maps, analyse de ce que disent les clients), **Completo 199 €** (+ article local chaque semaine, position sur ChatGPT et Gemini, analyse des concurrents, stand NFC). Essai 14 jours.
+- **Reputazione & Visibilità (porte d'entrée).** Plateforme en marque blanche AutomaIA, par établissement et par mois : **Bronze 149 €** (avis Google, Booking.com, Expedia, TripAdvisor ; collecte d'avis ; widget et créateur de site ; position sur les assistants IA), **Silver 299 €** (+ les 3 assistants IA : réponse à chaque avis, partage social, articles pour Google et ChatGPT ; analyse de ce que disent les clients), **Gold 499 €** (+ témoignages vidéo, envoi depuis le numéro et l'email de l'établissement, quotas plus larges). Ne jamais dire que Bronze inclut les assistants IA. Pas d'essai gratuit annoncé.
 - **Assistente Prenotazioni 24/7 (complément).** Réponse rapide à chaque demande de réservation, en italien, anglais et allemand, avec notification au titulaire.
 - **Option : Stand NFC + QR** au comptoir ou sur la table, aux couleurs de l'établissement.
 

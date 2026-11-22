@@ -2,7 +2,7 @@
 
 > Ce que je vends aux hôtels et restaurants, à quel problème ça répond, et comment j'invite le client à passer à l'action.
 > Rédigé selon brand_voice.md (clair, concret, rassurant, zéro jargon).
-> Dernière mise à jour : 2026-11-16 (pivot de niche : hôtels et restaurants)
+> Dernière mise à jour : 2026-11-22 (offre V1 : Bronze, Silver, Gold)
 
 ---
 
@@ -10,9 +10,9 @@
 
 | Offre | Problème résolu | Positionnement | Prix |
 |---|---|---|---|
-| 1. Reputazione & Visibilità | Peu d'avis, pas de réponses, invisibilité sur Maps et ChatGPT | **Porte d'entrée / fer de lance** | 99 / 149 / 199 € par établissement et par mois |
+| 1. Reputazione & Visibilità | Peu d'avis, pas de réponses, invisibilité sur Maps et ChatGPT | **Porte d'entrée / fer de lance** | Bronze 149 € / Silver 299 € / Gold 499 € par établissement et par mois |
 | 2. Assistente Prenotazioni 24/7 | Demandes de réservation perdues, hors horaires, multilingues | Offre complémentaire (automatisation AutomaIA) | Mise en place + abonnement (à réaligner depuis la grille tarifaire) |
-| Option. Stand NFC + QR | Collecte d'avis au comptoir, effet premium | Upsell physique | Inclus dans Completo, sinon en option |
+| Option. Stand NFC + QR | Collecte d'avis au comptoir, effet premium | Upsell physique | Sur demande, avec toutes les formules |
 
 **Logique :** pour un hôtel ou un restaurant, la douleur immédiate est la réputation en ligne (elle fait ou défait les réservations). On entre par l'offre Reputazione & Visibilità (plateforme Climbo en marque blanche AutomaIA), puis on étend avec l'automatisation des réservations.
 
@@ -30,9 +30,11 @@
 
 **Ce que je livre (3 formules) :**
 
-- **Essenziale, 99 €** : collecte d'avis (QR, lien, email, SMS), réponse soignée à chaque avis, feedback privé, widget d'avis pour le site.
-- **Crescita, 149 €** (la plus conseillée) : tout l'Essenziale + WhatsApp, campagnes, QR par employé avec classement, partage des meilleurs avis sur Instagram et Facebook, gestion de la fiche Google, suivi du classement sur Maps, analyse mensuelle de ce que disent les clients.
-- **Completo, 199 €** : tout le Crescita + un article local par semaine sur le site, suivi de la position sur ChatGPT, Gemini et Perplexity, TikTok et LinkedIn, analyse des concurrents, stand NFC inclus.
+- **Bronze, 149 €** : avis Google, Booking.com, Expedia et TripAdvisor ; collecte d'avis (demandes, suggestions) ; créateur de site et widget d'avis ; profil ; position sur les assistants IA (Classifica AI). Quotas : 50 SMS, 25 WhatsApp, 500 e-mails, 250 000 tokens.
+- **Silver, 299 €** (la plus conseillée) : tout le Bronze + **les 3 assistants IA** (réponse à chaque avis, partage social, articles GEO), Percezione IA, Sentimento, Chat AI, rappels, gestion d'équipe, performances Google, automatisations. Quotas : 150 SMS, 100 WhatsApp, 1 500 e-mails, 1 000 000 tokens.
+- **Gold, 499 €** : tout le Silver + témoignages vidéo, SMTP et Twilio du client (envoi depuis son numéro et son email). Quotas : 400 SMS, 300 WhatsApp, 3 000 e-mails, 3 000 000 tokens.
+
+Référence complète : `AutomaIA-V1.pdf` (Google Drive > Climbo), version du 22/11/2026.
 
 **Résultat pour le client :** plus d'avis chaque semaine, une réponse à chacun, une fiche qui remonte sur Google, et un tableau de bord qui le prouve.
 
@@ -61,7 +63,7 @@ S'appuie sur l'assistant email déjà construit (n8n, brouillon de réponse, not
 
 ## Option — Stand NFC + QR
 
-Chevalet de comptoir aux couleurs de l'établissement : le client approche son téléphone ou scanne le QR pour laisser un avis. Inclus dans Completo, en option sinon. Supports prêts dans `agence-ia/nfc/`.
+Chevalet de comptoir aux couleurs de l'établissement : le client approche son téléphone ou scanne le QR pour laisser un avis. Sur demande, avec toutes les formules. Supports prêts dans `agence-ia/nfc/`.
 
 ---
 

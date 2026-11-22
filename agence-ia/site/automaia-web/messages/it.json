@@ -114,13 +114,13 @@
         "perche": "Per la struttura che riceve poche recensioni, non ha tempo di rispondere o non compare su Google Maps.",
         "include": [
           "Raccolta di recensioni con QR, link, email e SMS",
-          "Una risposta curata a ogni recensione, nella lingua del cliente",
-          "Le migliori recensioni condivise sui social",
-          "Visibilità su Google Maps e su ChatGPT",
+          "Widget delle recensioni e creazione del sito",
+          "Posizione sugli assistenti AI (ChatGPT, Gemini…)",
+          "Dalla formula Silver: risposta automatica a ogni recensione, condivisione sui social e articoli per Google e ChatGPT",
           "Area clienti con tutti i risultati"
         ],
-        "prezzo": "A partire da 99 €/mese",
-        "nota": "Per struttura · 3 formule",
+        "prezzo": "A partire da 149 €/mese",
+        "nota": "Per struttura · formule Bronze, Silver e Gold",
         "cta": {
           "label": "Scopri l'offerta",
           "href": "/hotel-ristoranti"
@@ -152,10 +152,10 @@
         "include": [
           "Supporto da banco con i colori della struttura",
           "Il cliente avvicina il telefono o scansiona il QR",
-          "Incluso nella formula Completo"
+          "Disponibile per tutte le formule"
         ],
         "prezzo": "In opzione",
-        "nota": "Incluso nella formula Completo",
+        "nota": "Su richiesta",
         "cta": {
           "label": "Ne parliamo",
           "href": "/contatti"
@@ -218,7 +218,7 @@
         "label": "Richieda il Suo report gratuito",
         "href": "/report"
       },
-      "prezzo": "A partire da 99 € al mese"
+      "prezzo": "Da 149 € al mese · assistenti AI inclusi da 299 €"
     },
     "mock": {
       "iniziale": "G",
@@ -247,7 +247,7 @@
     },
     "soluzione": {
       "title": "Tre assistenti lavorano per la Sua reputazione",
-      "intro": "Configuro tutto io, nel tono della Sua struttura. Lei non tocca nulla di tecnico.",
+      "intro": "Configuro tutto io, nel tono della Sua struttura. Lei non tocca nulla di tecnico. I tre assistenti sono inclusi dalla formula Silver.",
       "items": [
         {
           "title": "Automa Risposte",
@@ -285,8 +285,8 @@
     },
     "prezzo": {
       "eyebrow": "Prezzo",
-      "valore": "A partire da 99 € al mese per struttura",
-      "text": "Tre formule, in base ai canali e ai servizi che desidera. Il dettaglio Le viene presentato insieme al report gratuito, così sceglie con i dati alla mano.",
+      "valore": "A partire da 149 € al mese per struttura",
+      "text": "Tre formule: Bronze (149 €), Silver (299 €) e Gold (499 €) al mese per struttura. I tre assistenti AI sono inclusi dalla formula Silver. Il dettaglio Le viene presentato insieme al report gratuito, così sceglie con i dati alla mano.",
       "giaCliente": "È già cliente?",
       "areaClienti": "Acceda alla Sua Area clienti →"
     },
@@ -308,13 +308,13 @@
     },
     "servizi": {
       "title": "Servizi per hotel e ristoranti: recensioni, visibilità, prenotazioni",
-      "description": "Reputazione & Visibilità da 99 €/mese, Assistente Prenotazioni 24/7 e supporto NFC per hotel e ristoranti della Riviera romagnola.",
+      "description": "Reputazione & Visibilità da 149 €/mese, Assistente Prenotazioni 24/7 e supporto NFC per hotel e ristoranti della Riviera romagnola.",
       "ogDescription": "Recensioni, visibilità su Google e ChatGPT e prenotazioni automatiche per hotel e ristoranti."
     },
     "hotel": {
       "title": "Recensioni e visibilità per hotel e ristoranti a Rimini",
-      "description": "Raccolta di recensioni, una risposta a ognuna nella lingua del cliente, post social e visibilità su Google e ChatGPT. Da 99 € al mese per struttura. Report gratuito.",
-      "ogDescription": "Tre assistenti curano la reputazione online del Suo hotel o ristorante. Da 99 € al mese."
+      "description": "Raccolta di recensioni, risposte nella lingua del cliente, post social e visibilità su Google e ChatGPT. Da 149 € al mese per struttura. Report gratuito.",
+      "ogDescription": "Tre assistenti curano la reputazione online del Suo hotel o ristorante. Formule da 149 € al mese."
     },
     "chiSono": {
       "title": "Chi sono e come lavoro",

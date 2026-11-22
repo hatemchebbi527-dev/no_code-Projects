@@ -114,13 +114,13 @@
         "perche": "For properties that get few reviews, have no time to reply or don't show up on Google Maps.",
         "include": [
           "Review collection via QR code, link, email and SMS",
-          "A thoughtful reply to every review, in the guest's language",
-          "Your best reviews shared on social media",
-          "Visibility on Google Maps and ChatGPT",
+          "Review widget and website builder",
+          "Position on AI assistants (ChatGPT, Gemini…)",
+          "From the Silver plan: an automatic reply to every review, social sharing and articles for Google and ChatGPT",
           "Client area with all your results"
         ],
-        "prezzo": "From €99/month",
-        "nota": "Per property · 3 plans",
+        "prezzo": "From €149/month",
+        "nota": "Per property · Bronze, Silver and Gold plans",
         "cta": {
           "label": "See the offer",
           "href": "/hotel-ristoranti"
@@ -152,10 +152,10 @@
         "include": [
           "Counter stand in your property's colours",
           "Guests tap their phone or scan the QR code",
-          "Included in the Complete plan"
+          "Available with every plan"
         ],
         "prezzo": "Optional",
-        "nota": "Included in the Complete plan",
+        "nota": "On request",
         "cta": {
           "label": "Let's talk",
           "href": "/contatti"
@@ -218,7 +218,7 @@
         "label": "Get your free report",
         "href": "/report"
       },
-      "prezzo": "From €99 per month"
+      "prezzo": "From €149 per month · AI assistants included from €299"
     },
     "mock": {
       "iniziale": "G",
@@ -247,7 +247,7 @@
     },
     "soluzione": {
       "title": "Three assistants working on your reputation",
-      "intro": "I set everything up, in your property's tone. You don't touch anything technical.",
+      "intro": "I set everything up, in your property's tone. You don't touch anything technical. The three assistants are included from the Silver plan.",
       "items": [
         {
           "title": "Automa Risposte",
@@ -285,8 +285,8 @@
     },
     "prezzo": {
       "eyebrow": "Pricing",
-      "valore": "From €99 per month per property",
-      "text": "Three plans, depending on the channels and services you want. I present the details together with your free report, so you choose with the data in hand.",
+      "valore": "From €149 per month per property",
+      "text": "Three plans: Bronze (€149), Silver (€299) and Gold (€499) per month per property. The three AI assistants are included from the Silver plan. I present the details together with your free report, so you choose with the data in hand.",
       "giaCliente": "Already a client?",
       "areaClienti": "Go to your client area →"
     },
@@ -308,13 +308,13 @@
     },
     "servizi": {
       "title": "Services for hotels and restaurants: reviews, visibility, bookings",
-      "description": "Reputation & Visibility from €99/month, 24/7 Booking Assistant and NFC stand for hotels and restaurants on the Romagna Riviera.",
+      "description": "Reputation & Visibility from €149/month, 24/7 Booking Assistant and NFC stand for hotels and restaurants on the Romagna Riviera.",
       "ogDescription": "Reviews, visibility on Google and ChatGPT and automated bookings for hotels and restaurants."
     },
     "hotel": {
       "title": "Reviews and visibility for hotels and restaurants in Rimini",
-      "description": "Review collection, a reply to each one in the guest's language, social posts and visibility on Google and ChatGPT. From €99 per month per property. Free report.",
-      "ogDescription": "Three assistants look after your hotel or restaurant's online reputation. From €99 per month."
+      "description": "Review collection, replies in the guest's language, social posts and visibility on Google and ChatGPT. From €149 per month per property. Free report.",
+      "ogDescription": "Three assistants look after your hotel or restaurant's online reputation. Plans from €149 per month."
     },
     "chiSono": {
       "title": "About me and how I work",
