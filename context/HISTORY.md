@@ -7,6 +7,28 @@
 
 ---
 
+## 2026-11-22
+
+### Climbo : plateforme configurée de bout en bout (17 au 22 nov)
+- **Identité appliquée** : branding AutomaIA, « Disabilita Branding » activé, assistants renommés **Automa Risposte / Automa Social / Automa Ricerca**, prompts italiens complets avec un bloc de faits client et le CTA « scopri Manuvo », page d'avis en italien, notifications. Tout est consigné dans `agence-ia/climbo/kit-identite-climbo.md`
+- **Domaine** : `portal.automa-ia.net` (CNAME Cloudflare → `app.mylocalbusiness.io`) pour l'espace client et les guides. Leçon : ne jamais connecter « Sito Web » sur `portal`, et pas de sous-domaine à deux niveaux (SSL cassé)
+- **Manuvo en client de démo complet** sur le plan « Demo AutomaIA » : réseaux connectés, blog Ricerca sur `blog-manuvo.automa-ia.net` (plan B après l'échec du mini-site), 4 articles relus et corrigés, lien Blog dans l'app. Badge d'avis retiré (non cliquable)
+- **Coûts** : solde agence ≈ 0,57 $, recharge minimum 100 $. Ricerca et Social mis en pause, seul Risposte reste actif
+- **Opt-in** préparé (widget + email italien avec `{{businessName}}` / `{{reportLink}}`) mais **désactivé** sur le site en attendant le support Climbo (case de consentement non obligatoire, texte du bouton « Ricevi » à corriger en « Riceva »)
+
+### Offre V1 adoptée (21 nov)
+- **Décision d'Hatem** (PDF `AutomaIA-V1.pdf`, Drive > Climbo) : **Bronze 149 € / Silver 299 € / Gold 499 €** par établissement et par mois, assistants inclus à partir de Silver. Remplace Essenziale 99 / Crescita 149 / Completo 199 et l'essai de 14 jours
+- **Alignés sur la V1** : kit Climbo (tableau des quotas et coûts max 9 / 32 / 92 $), site automa-ia.net (it/fr/en), `agence-ia/marque/offers_cta.md`, skill `automaia-voce` (zip reconstruit, version claude.ai vérifiée identique)
+- **Trésorerie de janvier 2027** ajoutée au kit : ~266 € (100 $ de recharge + tranche Klarna 166 €), ordre P.IVA → Stripe → plans → recharge à la 1re signature → activation
+
+### Site automa-ia.net réaligné sur la niche
+- Landing `/hotel-ristoranti` (photo hero, exemple d'avis + réponse, prix V1), pages `/report` et `/audit` (Calendly), Area clienti et Guide vers `portal`, menu burger, redirection des anciennes pages cliniques, sitemap à jour. Plusieurs PR mergées, la dernière étant la #155
+
+### Suite
+- Tâche 17 : workflow n8n « prospezione hotel-ristoranti Rimini V1 » (copie du V4 artisans) avec « Available in MCP »
+- Réponse du support Climbo sur l'opt-in, puis modèles italiens de demande d'avis
+- Après la P.IVA : Stripe, plans Bronze/Silver/Gold, recharge du solde
+
 ## 2026-11-16
 
 ### Pivot de niche : hôtels et restaurants en fer de lance

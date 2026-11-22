@@ -63,7 +63,7 @@ S'appuie sur l'assistant email déjà construit (n8n, brouillon de réponse, not
 
 ## Option — Stand NFC + QR
 
-Chevalet de comptoir aux couleurs de l'établissement : le client approche son téléphone ou scanne le QR pour laisser un avis. Sur demande, avec toutes les formules. Supports prêts dans `agence-ia/nfc/`.
+Chevalet de comptoir avec le logo Google : le client approche son téléphone ou scanne le QR pour laisser un avis. Sur demande, avec toutes les formules. Supports prêts dans `agence-ia/nfc/`.
 
 ---
 
