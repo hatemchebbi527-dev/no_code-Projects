@@ -301,6 +301,8 @@ To stop receiving these emails: [Link di disiscrizione]
 
 « positiva o negativa » / « positive or negative » : même invitation pour tous, pas de filtrage. Toujours saisir le prénom des contacts (sinon « Buongiorno , »). Dans l'aperçu, Climbo affiche « Nome Posizione » pour le nom de l'établissement. Le canal se choisit à l'étape 2 (SMS et WhatsApp grisés tant qu'ils ne sont pas actifs sur le compte). Restent à créer : SMS / WhatsApp quand le client les a dans son plan.
 
+*Test du 22/11/2026* : envoi réel vers Hatem, rendu parfait, **coût 0 €**. À faire plus tard : retirer « positiva o negativa » / « positive or negative » des deux modèles (phrase neutre conservée, jamais de formule qui oriente comme « se è rimasto soddisfatto »).
+
 ---
 
 ## Blog du client (option B, mise en place le 18/11/2026 sur Manuvo)
