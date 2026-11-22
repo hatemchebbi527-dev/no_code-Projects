@@ -279,7 +279,27 @@ il team di [Nome della località]
 Per non ricevere più queste email: [Link di disiscrizione]
 ```
 
-« positiva o negativa » : même invitation pour tous, pas de filtrage. Toujours saisir le prénom des contacts (sinon « Buongiorno , »). Restent à créer : version anglaise (touristes), et SMS / WhatsApp quand le client les a dans son plan.
+*Email anglais (créé sur Manuvo le 22/11/2026) :*
+- Nome : `Review request - Email (EN)` · Mittente : établissement · Oggetto : `How was your experience with [Établissement]?`
+- Testo Pulsante : `Leave your review` · Link brevi : coché
+
+```
+Hello [Nome],
+
+Thank you for choosing [Nome della località].
+We would love to hear how it went. Your opinion, positive or negative, helps other people choose with confidence and helps us improve.
+
+It only takes two minutes:
+
+[Pulsante Link Recensione]
+
+Many thanks,
+The [Nome della località] team
+
+To stop receiving these emails: [Link di disiscrizione]
+```
+
+« positiva o negativa » / « positive or negative » : même invitation pour tous, pas de filtrage. Toujours saisir le prénom des contacts (sinon « Buongiorno , »). Dans l'aperçu, Climbo affiche « Nome Posizione » pour le nom de l'établissement. Le canal se choisit à l'étape 2 (SMS et WhatsApp grisés tant qu'ils ne sont pas actifs sur le compte). Restent à créer : SMS / WhatsApp quand le client les a dans son plan.
 
 ---
 
