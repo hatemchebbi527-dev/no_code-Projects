@@ -323,3 +323,20 @@ Le visiteur tape le nom de son établissement, laisse son email et reçoit son r
 - 4 articles Automa Ricerca : environ **0,37 $ au total**, soit environ **0,09 $ par article** (image comprise). Un article par semaine coûte donc environ 0,40 $ par mois et par client.
 - Rapport de visibilité : 0,35 $ (opt-in ou Pipeline).
 - Mode économie tant que le solde n'est pas rechargé : Ricerca et Social en pause, seul Risposte actif sur Manuvo.
+
+## Trésorerie de janvier 2027 (complément à la V1)
+
+La simulation de la V1 compte la consommation réelle, mais pas l'**avance de trésorerie** nécessaire avant d'encaisser le premier client.
+
+**Sorties prévues en janvier**
+- **Recharge du solde d'agence : 100 $ minimum**, payés d'avance. Elle doit être faite **avant** d'activer le premier client (à 0, les assistants s'arrêtent). Ce n'est pas une dépense en plus de la consommation : la consommation est ensuite prélevée sur ce solde. Avec 3 clients à 100 % des quotas (V1 : 27 $ à 133 $ par mois), une recharge couvre environ 1 à 3 mois.
+- **Échéance Climbo du 18 janvier : 166 €** (dernière des trois).
+
+**Entrées**
+- Les abonnements des clients, encaissés par Stripe, **seulement après** l'ouverture de la P.IVA (4 janvier), l'activation de Stripe et la création des plans. Le premier paiement d'un client arrive le jour de sa souscription.
+
+**Besoin de trésorerie avant le premier encaissement : environ 266 €** (100 $ de recharge, au taux 1 $ = 1 €, plus 166 € d'échéance), si la recharge et l'échéance tombent avant la première souscription.
+
+**Non compté dans la V1** : frais Stripe (environ 1,5 % + 0,25 € par paiement en carte européenne, à vérifier), impôts et cotisations du régime forfettario, chevalets NFC, frais d'outils (domaine, n8n…).
+
+**Ordre conseillé** : 1) P.IVA (4 janvier) ; 2) activation de Stripe ; 3) création des plans Bronze, Silver et Gold ; 4) recharge de 100 $ **le jour de la première signature**, pas avant ; 5) activation du client.
