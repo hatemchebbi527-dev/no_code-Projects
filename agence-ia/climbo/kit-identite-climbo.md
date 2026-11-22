@@ -256,7 +256,30 @@ Modèle de réponse à un feedback négatif (à adapter) :
 - Emails : celle du titulaire **+ info@automa-ia.net** (jusqu'à 5 adresses) pour suivre tous les clients.
 - Activées : nouvel avis, récap quotidien, nouveau contact du site, **nouveau feedback privé**, partage social automatique, **connexion d'intégration expirée** (la plus importante), **génération d'article** (Ricerca en validation manuelle), **analyse mensuelle du sentiment**, **limite mensuelle presque atteinte**.
 
-**Modèles de demande d'avis** (Requests > Templates) : vides par défaut. À créer en italien (et en anglais pour les touristes) avant le premier vrai client.
+**Modèles de demande d'avis** (Richieste > Modelli) : vides par défaut. Assistant en étapes (nom, puis contenu). Les variables s'insèrent en cliquant sur les pastilles sous le champ (Nome, Nome della località, Link di disiscrizione, Pulsante Link Recensione), jamais en les tapant. Vérifier qu'il n'y a pas d'espace entre une pastille et la ponctuation.
+
+*Email italien (créé sur Manuvo le 22/11/2026, à dupliquer par client) :*
+- Nome : `Richiesta recensione - Email`
+- Mittente : nom de l'établissement · Oggetto : `Com'è andata con [Établissement]?`
+- Testo Pulsante : `Lasci la Sua recensione` · Link brevi : coché · Immagine : vide
+
+```
+Buongiorno [Nome],
+
+grazie per aver scelto [Nome della località].
+Ci farebbe piacere sapere com'è andata. La Sua opinione, positiva o negativa, aiuta altre persone a scegliere con fiducia e aiuta noi a migliorare.
+
+Le bastano due minuti:
+
+[Pulsante Link Recensione]
+
+Grazie di cuore,
+il team di [Nome della località]
+
+Per non ricevere più queste email: [Link di disiscrizione]
+```
+
+« positiva o negativa » : même invitation pour tous, pas de filtrage. Toujours saisir le prénom des contacts (sinon « Buongiorno , »). Restent à créer : version anglaise (touristes), et SMS / WhatsApp quand le client les a dans son plan.
 
 ---
 
