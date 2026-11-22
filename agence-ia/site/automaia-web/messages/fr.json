@@ -114,13 +114,13 @@
         "perche": "Pour l'établissement qui reçoit peu d'avis, n'a pas le temps d'y répondre ou n'apparaît pas sur Google Maps.",
         "include": [
           "Collecte d'avis par QR code, lien, email et SMS",
-          "Une réponse soignée à chaque avis, dans la langue du client",
-          "Vos meilleurs avis partagés sur les réseaux",
-          "Visibilité sur Google Maps et sur ChatGPT",
+          "Widget d'avis et création du site",
+          "Position sur les assistants IA (ChatGPT, Gemini…)",
+          "Dès la formule Silver : réponse automatique à chaque avis, partage sur les réseaux et articles pour Google et ChatGPT",
           "Espace client avec tous vos résultats"
         ],
-        "prezzo": "À partir de 99 €/mois",
-        "nota": "Par établissement · 3 formules",
+        "prezzo": "À partir de 149 €/mois",
+        "nota": "Par établissement · formules Bronze, Silver et Gold",
         "cta": {
           "label": "Voir l'offre",
           "href": "/hotel-ristoranti"
@@ -152,10 +152,10 @@
         "include": [
           "Présentoir de comptoir aux couleurs de l'établissement",
           "Le client approche son téléphone ou scanne le QR code",
-          "Inclus dans la formule Completo"
+          "Disponible avec toutes les formules"
         ],
         "prezzo": "En option",
-        "nota": "Inclus dans la formule Completo",
+        "nota": "Sur demande",
         "cta": {
           "label": "Parlons-en",
           "href": "/contatti"
@@ -218,7 +218,7 @@
         "label": "Demandez votre rapport gratuit",
         "href": "/report"
       },
-      "prezzo": "À partir de 99 € par mois"
+      "prezzo": "À partir de 149 € par mois"
     },
     "mock": {
       "iniziale": "G",
@@ -247,7 +247,7 @@
     },
     "soluzione": {
       "title": "Trois assistants travaillent pour votre réputation",
-      "intro": "Je configure tout, dans le ton de votre établissement. Vous ne touchez à rien de technique.",
+      "intro": "Je configure tout, dans le ton de votre établissement. Vous ne touchez à rien de technique. Les trois assistants sont inclus dès la formule Silver.",
       "items": [
         {
           "title": "Automa Risposte",
@@ -285,8 +285,8 @@
     },
     "prezzo": {
       "eyebrow": "Tarif",
-      "valore": "À partir de 99 € par mois et par établissement",
-      "text": "Trois formules, selon les canaux et services souhaités. Je vous présente le détail avec votre rapport gratuit, pour que vous choisissiez chiffres en main.",
+      "valore": "À partir de 149 € par mois et par établissement",
+      "text": "Trois formules : Bronze (149 €), Silver (299 €) et Gold (499 €) par mois et par établissement. Les trois assistants IA sont inclus dès la formule Silver. Je vous présente le détail avec votre rapport gratuit, pour que vous choisissiez chiffres en main.",
       "giaCliente": "Déjà client ?",
       "areaClienti": "Accédez à votre espace client →"
     },
@@ -308,13 +308,13 @@
     },
     "servizi": {
       "title": "Services pour hôtels et restaurants : avis, visibilité, réservations",
-      "description": "Réputation & Visibilité dès 99 €/mois, Assistant Réservations 24/7 et présentoir NFC pour les hôtels et restaurants de la Riviera romagnole.",
+      "description": "Réputation & Visibilité dès 149 €/mois, Assistant Réservations 24/7 et présentoir NFC pour les hôtels et restaurants de la Riviera romagnole.",
       "ogDescription": "Avis, visibilité sur Google et ChatGPT et réservations automatisées pour hôtels et restaurants."
     },
     "hotel": {
       "title": "Avis et visibilité pour hôtels et restaurants à Rimini",
-      "description": "Collecte d'avis, une réponse à chacun dans la langue du client, posts sur les réseaux et visibilité sur Google et ChatGPT. Dès 99 € par mois et par établissement. Rapport gratuit.",
-      "ogDescription": "Trois assistants s'occupent de la réputation en ligne de votre hôtel ou restaurant. Dès 99 € par mois."
+      "description": "Collecte d'avis, réponses dans la langue du client, posts sur les réseaux et visibilité sur Google et ChatGPT. Dès 149 € par mois et par établissement. Rapport gratuit.",
+      "ogDescription": "Trois assistants s'occupent de la réputation en ligne de votre hôtel ou restaurant. Formules dès 149 € par mois."
     },
     "chiSono": {
       "title": "Qui suis-je et comment je travaille",
