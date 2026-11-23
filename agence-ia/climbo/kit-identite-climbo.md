@@ -267,7 +267,7 @@ Modèle de réponse à un feedback négatif (à adapter) :
 Buongiorno [Nome],
 
 grazie per aver scelto [Nome della località].
-Ci farebbe piacere sapere com'è andata. La Sua opinione, positiva o negativa, aiuta altre persone a scegliere con fiducia e aiuta noi a migliorare.
+Ci farebbe piacere sapere com'è andata. La Sua opinione aiuta altre persone a scegliere con fiducia e aiuta noi a migliorare.
 
 Le bastano due minuti:
 
@@ -287,7 +287,7 @@ Per non ricevere più queste email: [Link di disiscrizione]
 Hello [Nome],
 
 Thank you for choosing [Nome della località].
-We would love to hear how it went. Your opinion, positive or negative, helps other people choose with confidence and helps us improve.
+We would love to hear how it went. Your opinion helps other people choose with confidence and helps us improve.
 
 It only takes two minutes:
 
@@ -299,9 +299,9 @@ The [Nome della località] team
 To stop receiving these emails: [Link di disiscrizione]
 ```
 
-« positiva o negativa » / « positive or negative » : même invitation pour tous, pas de filtrage. Toujours saisir le prénom des contacts (sinon « Buongiorno , »). Dans l'aperçu, Climbo affiche « Nome Posizione » pour le nom de l'établissement. Le canal se choisit à l'étape 2 (SMS et WhatsApp grisés tant qu'ils ne sont pas actifs sur le compte). Restent à créer : SMS / WhatsApp quand le client les a dans son plan.
+Formulation neutre : même invitation pour tous, pas de filtrage. Ne jamais ajouter une formule qui oriente (« se è rimasto soddisfatto », « if you enjoyed your stay »). Toujours saisir le prénom des contacts (sinon « Buongiorno , »). Dans l'aperçu, Climbo affiche « Nome Posizione » pour le nom de l'établissement. Le canal se choisit à l'étape 2 (SMS et WhatsApp grisés tant qu'ils ne sont pas actifs sur le compte). Restent à créer : SMS / WhatsApp quand le client les a dans son plan.
 
-*Test du 22/11/2026* : envoi réel vers Hatem, rendu parfait, **coût 0 €**. À faire plus tard : retirer « positiva o negativa » / « positive or negative » des deux modèles (phrase neutre conservée, jamais de formule qui oriente comme « se è rimasto soddisfatto »).
+*Test du 22/11/2026* : envoi réel vers Hatem, rendu parfait, **coût 0 €**. Le 23/11/2026, « positiva o negativa » / « positive or negative » retiré des deux modèles (phrase plus courte, toujours neutre).
 
 ---
 
