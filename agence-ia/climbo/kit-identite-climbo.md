@@ -184,7 +184,7 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
   > Scrivi in italiano, dando del Lei al lettore. Tono caldo e professionale. Ringrazia il cliente usando solo il suo nome di battesimo. Non inventare dettagli che non sono nella recensione. Massimo 2 emoji. Chiudi con un invito semplice a contattarci o a lasciare anche Lei una recensione.
 
 ### Automa Risposte (Configurazione)
-- Langue : celle de l'avis si possible (argument fort pour les hôtels) ; ton chaleureux et professionnel ; publication auto pour 4-5 étoiles, validation manuelle pour 1-3 étoiles ; « Sovrascrivi impostazioni manuali » activé.
+- Langue : celle de l'avis si possible (argument fort pour les hôtels) ; **ton : `Formale`** (obligatoire : avec le ton chaleureux, les réponses sortent au tutoiement malgré le prompt, constaté le 23/11/2026) ; publication auto pour 4-5 étoiles, validation manuelle pour 1-3 étoiles ; « Sovrascrivi impostazioni manuali » activé.
 - Istruzioni aggiuntive :
   > Rispondi nella lingua della recensione o del feedback. REGOLA OBBLIGATORIA: in italiano usa SEMPRE la forma di cortesia (Lei), mai il "tu". Scrivi "La ringraziamo", "la Sua esperienza", "è rimasto soddisfatto", "La aspettiamo", "possiamo aiutarLa". Non usare mai "ti", "tuo", "tua", "sei", "puoi", "ricorda", "aiutarti". Ringrazia il cliente per nome (solo nome di battesimo). Riprendi un dettaglio concreto citato nella recensione. Non inventare informazioni, offerte o promesse. Se la recensione è negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a contattarci in privato. Niente emoji nelle risposte negative. Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
 - Parole chiave : 3 à 5, toujours ville + service. Manuvo : `artigiani a Rimini, idraulico Rimini, elettricista Rimini, artigiani Riviera romagnola`. Hôtel : `hotel a Rimini, hotel vicino al mare Rimini, hotel per famiglie Rimini`. Restaurant : `ristorante a Rimini, ristorante di pesce Rimini, dove mangiare a Rimini`.
@@ -210,7 +210,7 @@ Les 3 assistants reçoivent le **même bloc de faits** sur le client. Ton : Lei 
 > Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
 > Prima di consegnare la risposta, rileggila e correggi ogni forma con il "tu".
 
-*Correction du 23/11/2026* : avec « Se in italiano, dai del Lei », une réponse à un feedback privé est sortie au tutoiement. La règle est désormais inconditionnelle, avec des exemples et une relecture finale.
+*Correction du 23/11/2026* : avec « Se in italiano, dai del Lei », une réponse à un feedback privé est sortie au tutoiement. La règle est désormais inconditionnelle, avec des exemples et une relecture finale. **Le prompt seul ne suffit pas : le vouvoiement n'est sorti qu'après avoir mis le ton sur `Formale`.** Le réglage du ton prime sur les instructions. Si Automa Social ou Automa Ricerca tutoient un jour, passer aussi leur ton en `Formale`.
 
 **Automa Social** :
 > Scrivi in italiano, dando del Lei al lettore. Tono caldo e professionale. Ringrazia il cliente usando solo il suo nome di battesimo e riporta solo ciò che c'è nella recensione, senza aggiungere dettagli.
