@@ -186,7 +186,7 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 ### Automa Risposte (Configurazione)
 - Langue : celle de l'avis si possible (argument fort pour les hôtels) ; ton chaleureux et professionnel ; publication auto pour 4-5 étoiles, validation manuelle pour 1-3 étoiles ; « Sovrascrivi impostazioni manuali » activé.
 - Istruzioni aggiuntive :
-  > Rispondi nella lingua della recensione. Se in italiano, dai del Lei. Ringrazia il cliente per nome (solo nome di battesimo). Riprendi un dettaglio concreto citato nella recensione. Non inventare informazioni, offerte o promesse. Se la recensione è negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a contattarci in privato. Niente emoji nelle risposte negative. Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
+  > Rispondi nella lingua della recensione o del feedback. REGOLA OBBLIGATORIA: in italiano usa SEMPRE la forma di cortesia (Lei), mai il "tu". Scrivi "La ringraziamo", "la Sua esperienza", "è rimasto soddisfatto", "La aspettiamo", "possiamo aiutarLa". Non usare mai "ti", "tuo", "tua", "sei", "puoi", "ricorda", "aiutarti". Ringrazia il cliente per nome (solo nome di battesimo). Riprendi un dettaglio concreto citato nella recensione. Non inventare informazioni, offerte o promesse. Se la recensione è negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a contattarci in privato. Niente emoji nelle risposte negative. Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
 - Parole chiave : 3 à 5, toujours ville + service. Manuvo : `artigiani a Rimini, idraulico Rimini, elettricista Rimini, artigiani Riviera romagnola`. Hôtel : `hotel a Rimini, hotel vicino al mare Rimini, hotel per famiglie Rimini`. Restaurant : `ristorante a Rimini, ristorante di pesce Rimini, dove mangiare a Rimini`.
 
 ### Automa Ricerca (Configurazione)
@@ -201,11 +201,16 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 Les 3 assistants reçoivent le **même bloc de faits** sur le client. Ton : Lei pour tout le contenu automatique (cohérence du blog). Avant le lancement d'un client : appel à l'action « scopri [nome] ».
 
 **Automa Risposte** :
-> Rispondi nella lingua della recensione. Se in italiano, dai del Lei. Ringrazia il cliente per nome (solo nome di battesimo) e riprendi un dettaglio concreto citato nella recensione.
+> Rispondi nella lingua della recensione o del feedback.
+> REGOLA OBBLIGATORIA: in italiano usa SEMPRE la forma di cortesia (Lei), mai il "tu". Scrivi "La ringraziamo", "la Sua esperienza", "è rimasto soddisfatto", "La aspettiamo", "possiamo aiutarLa". Non usare mai "ti", "tuo", "tua", "sei", "puoi", "ricorda", "aiutarti".
+> Ringrazia il cliente per nome (solo nome di battesimo) e riprendi un dettaglio concreto citato nella recensione.
 > Come funziona Manuvo (usa solo questi fatti): il privato pubblica gratuitamente la sua richiesta (tipo di intervento, zona, urgenza); fino a 3 artigiani della zona di Rimini possono contattarlo con un preventivo; il privato sceglie liberamente. Manuvo mette in contatto privati e artigiani, non esegue i lavori: non scrivere mai "il nostro tecnico", "il nostro intervento" o "abbiamo riparato".
 > Non inventare informazioni, offerte, sconti, garanzie, tempi o promesse. Non scrivere mai frasi come "dal contesto fornito".
 > Se la recensione è negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a scriverci in privato a info@automa-ia.net. Niente emoji nelle risposte negative.
 > Massimo 4 frasi. Usa al massimo una parola chiave per risposta, solo se suona naturale.
+> Prima di consegnare la risposta, rileggila e correggi ogni forma con il "tu".
+
+*Correction du 23/11/2026* : avec « Se in italiano, dai del Lei », une réponse à un feedback privé est sortie au tutoiement. La règle est désormais inconditionnelle, avec des exemples et une relecture finale.
 
 **Automa Social** :
 > Scrivi in italiano, dando del Lei al lettore. Tono caldo e professionale. Ringrazia il cliente usando solo il suo nome di battesimo e riporta solo ciò che c'è nella recensione, senza aggiungere dettagli.
@@ -247,7 +252,7 @@ Copier les réglages ci-dessus, puis ajuster : mots-clés (service + quartier), 
 
 **Circuit du feedback privé** : bouton « Feedback » de la page d'avis → formulaire privé (rien n'est publié) → email d'alerte au titulaire → message visible dans la section **Avis** de l'espace client → réponse possible depuis l'espace client, envoyée par email au client. Testé de bout en bout sur Manuvo : tout fonctionne.
 
-**Objet de l'email de réponse** : par défaut « Rispondi al tuo feedback » (tutoiement, mal formulé). D'après le support Climbo, il se **modifie à la main à chaque réponse**. Toujours le remplacer par : `Risposta al Suo feedback`.
+**Objet de l'email de réponse** : par défaut « Rispondi al tuo feedback » (tutoiement, mal formulé). D'après le support Climbo, il se **modifie à la main à chaque réponse**. Toujours le remplacer par : `Grazie per il Suo feedback` (ou `Risposta al Suo feedback`).
 
 Modèle de réponse à un feedback négatif (à adapter) :
 > Gentile [Nome], grazie per averci scritto e per il tempo che ci ha dedicato. Ci dispiace sinceramente per [problema]. Abbiamo già [azione concreta]. Se lo desidera, saremo felici di parlarne direttamente: può contattarci al [telefono]. Speriamo di poterLa accogliere di nuovo. [Firma]
