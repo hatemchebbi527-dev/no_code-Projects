@@ -52,6 +52,38 @@ info@automa-ia.net
 |---|---|---|
 | Photo de profil | 400 × 400 px | **Votre photo**, pas le logo (profil personnel) |
 | Bannière | 1584 × 396 px | `agence-ia/marque/linkedin-banner.png` |
+| Vignette du lien « In primo piano » | 1200 × 627 px | `agence-ia/marque/linkedin-featured-sito.png` |
+
+### Section Servizi
+
+LinkedIn impose une liste fermée de catégories, 10 au maximum, et il n'existe pas de catégorie « automazione ». Les automatisations passent donc par *Consulenza IT* et *Sviluppo software*, et c'est la description qui porte l'offre réelle.
+
+Les 7 essentielles : Marketing digitale · Ottimizzazione per i motori di ricerca (SEO) · Marketing sui social media · Consulenza di marketing · Consulenza IT · Sviluppo software · Strategia dei contenuti
+Optionnelles : Sviluppo web · Copywriting · Pubbliche relazioni
+
+Localisation : Rimini, avec *Lavoro da remoto* coché.
+
+**Description — 499 caractères**
+```
+Aiuto hotel e ristoranti di Rimini e della Riviera a trasformare la reputazione online in prenotazioni.
+
+• Reputazione & Visibilità: raccolta recensioni (QR, NFC, link, email, SMS), una risposta curata a ognuna, visibilità su Google Maps e su ChatGPT. Da 149 €/mese per struttura.
+• Assistente Prenotazioni 24/7: risposta rapida a ogni richiesta, in italiano, inglese e tedesco.
+• Automazioni su misura: conferme, promemoria, email e attività ripetitive.
+
+Report di visibilità gratuito in 20 minuti.
+```
+
+**Version courte — 362 caractères**, si le champ refuse la précédente
+```
+Aiuto hotel e ristoranti di Rimini e della Riviera a trasformare la reputazione online in prenotazioni.
+
+• Reputazione & Visibilità: più recensioni, una risposta a ognuna, visibilità su Google e ChatGPT. Da 149 €/mese.
+• Assistente Prenotazioni 24/7, in 3 lingue.
+• Automazioni su misura: conferme, promemoria, email.
+
+Report di visibilità gratuito in 20 minuti.
+```
 
 ---
 
