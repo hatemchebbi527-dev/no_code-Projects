@@ -4,6 +4,12 @@
 > Voix : vouvoiement de politesse italien (**Lei**), chaleureux, zéro jargon. Voir `brand_voice.md`.
 > Dernière mise à jour : 2026-11-24
 
+**État au 24 novembre 2026**
+- LinkedIn : titolo, informazioni, bannière, section Servizi et vignette du lien ✅ · Esperienza et Page entreprise à faire
+- Site : og:image remplacée et balises corrigées sur toutes les pages ✅ (déployé)
+- Facebook, Instagram, TikTok : à faire
+- Caches de partage à vider après coup : Post Inspector LinkedIn, Sharing Debugger Facebook
+
 ---
 
 ## Le message unique (la même phrase partout)
@@ -84,6 +90,53 @@ Aiuto hotel e ristoranti di Rimini e della Riviera a trasformare la reputazione 
 
 Report di visibilità gratuito in 20 minuti.
 ```
+
+### Esperienza
+
+**Titolo**
+```
+Fondatore · Recensioni e visibilità per hotel e ristoranti
+```
+
+**Nome dell'azienda** : AutomaIA (à sélectionner dans la liste une fois la Page créée, pas en texte libre, sinon pas de logo)
+**Tipo di impiego** : Autonomo · **Inizio** : gennaio 2025 · **Località** : Rimini, ibrida
+**Competenze à associer** : Intelligenza artificiale (IA), Automazione dei processi aziendali, Search Engine Optimization (SEO), Marketing digitale
+
+**Descrizione — 1216 caractères sur 2000**
+```
+Aiuto hotel e ristoranti di Rimini e della Riviera a trasformare la reputazione online in prenotazioni.
+
+Metto in funzione tre assistenti AI per ogni struttura: il primo raccoglie le recensioni (QR, NFC, link, email, SMS) e prepara una risposta curata a ognuna, nella lingua del cliente; il secondo trasforma ogni settimana le recensioni migliori in post per Instagram e Facebook; il terzo scrive articoli locali che fanno salire la struttura su Google Maps e comparire nelle risposte di ChatGPT. Le recensioni negative passano sempre dal titolare.
+
+Progetto anche automazioni su misura per l'ospitalità: risposta alle richieste di prenotazione 24/7 in italiano, inglese e tedesco, conferme e promemoria automatici, gestione delle email ripetitive.
+
+Ogni progetto parte da un problema concreto della struttura: poche recensioni recenti, nessuna risposta ai clienti, una scheda Google che non compare quando si cerca dove dormire o dove mangiare a Rimini. Si comincia sempre con un report di visibilità gratuito di 20 minuti, che mostra come i clienti vedono la struttura oggi rispetto ai concorrenti della zona.
+
+Realizzo inoltre siti web professionali, veloci e curati, pensati per farsi trovare dai clienti giusti.
+```
+
+### Page entreprise LinkedIn — à créer plus tard
+
+Le logo à côté du titre dans Esperienza vient de la Page entreprise. Sans Page, LinkedIn affiche une icône grise, et il n'y a aucun moyen de téléverser une image à cet endroit.
+
+Création : `https://www.linkedin.com/company/setup/new/`
+
+| Champ | Valeur |
+|---|---|
+| Nome | AutomaIA |
+| URL | linkedin.com/company/automaia |
+| Sito web | https://automa-ia.net |
+| Settore | Servizi di marketing |
+| Dimensioni | 0-1 dipendenti · Ditta individuale |
+| Logo | `logo-automaia-avatar.png` |
+| Bannière | `linkedin-page-cover.png` (1128 × 191) |
+
+**Slogan — 73 caractères sur 120**
+```
+Recensioni e visibilità per hotel e ristoranti di Rimini e della Riviera.
+```
+
+Prérequis : LinkedIn peut demander de vérifier une adresse au domaine de l'entreprise, donc `info@automa-ia.net` doit recevoir du courrier (boîte Infomaniak).
 
 ---
 
