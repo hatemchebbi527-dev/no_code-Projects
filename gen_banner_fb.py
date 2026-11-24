@@ -1,28 +1,26 @@
 #!/usr/bin/env python3
-"""Bannière de couverture Facebook (Page) - AutomaIA, contenu centré dans la zone sûre."""
+"""Couverture Facebook (Page) - AutomaIA, niche hotels & restaurants.
+Format 1640x624 = ratio exact de l'affichage desktop (820x312).
+Tout le texte reste dans la zone centrale de 1100 px, visible aussi sur mobile.
+"""
 import math
 import random
 from PIL import Image, ImageDraw, ImageFont
 
-W, H = 1640, 924  # taille recommandée pour une couverture de Page Facebook
+W, H = 1640, 624
 NAVY = (15, 42, 74)
 NAVY2 = (22, 58, 99)
 TEAL = (22, 184, 166)
 WHITE = (255, 255, 255)
 GREY = (197, 211, 226)
 
-MONT = "/tmp/fonts/Montserrat.ttf"
-INTER = "/tmp/fonts/Inter.ttf"
+MONT_B = "/tmp/fonts/Montserrat-700.ttf"
+MONT_SB = "/tmp/fonts/Montserrat-600.ttf"
+INTER_M = "/usr/share/fonts/opentype/inter/Inter-Medium.otf"
 
 
-def font(path, size, variation=None):
-    f = ImageFont.truetype(path, size)
-    if variation:
-        try:
-            f.set_variation_by_name(variation)
-        except Exception:
-            pass
-    return f
+def font(path, size):
+    return ImageFont.truetype(path, size)
 
 
 def draw_mark(draw, cx, cy, R, ring_color, hands_color):
@@ -35,28 +33,17 @@ def draw_mark(draw, cx, cy, R, ring_color, hands_color):
     a = math.radians(end_deg)
     at = a + L / R
 
-    def oc(ang, rad):
-        return (cx + rad * math.cos(ang), cy + rad * math.sin(ang))
+    def oc(angle, radius):
+        return (cx + radius * math.cos(angle), cy + radius * math.sin(angle))
 
     draw.polygon([oc(at, R), oc(a, R - hw), oc(a, R + hw)], fill=ring_color)
-    hwid = max(4, R // 9)
+    hwid = max(3, R // 9)
     draw.line([(cx, cy), (cx, cy - R * 0.55)], fill=hands_color, width=hwid)
     draw.line([(cx, cy), (cx + R * 0.42, cy + R * 0.18)], fill=hands_color, width=hwid)
-    d = R // 7
+    d = max(2, R // 7)
     draw.ellipse([cx - d, cy - d, cx + d, cy + d], fill=hands_color)
 
 
-def centered(draw, segments, y, gap=0):
-    """segments: list of (text, font, color). Draws them centered on one line at y."""
-    widths = [draw.textlength(t, font=f) for t, f, _ in segments]
-    total = sum(widths)
-    x = (W - total) / 2
-    for (t, f, c), w in zip(segments, widths, strict=False):
-        draw.text((x, y), t, font=f, fill=c)
-        x += w
-
-
-# --- background: diagonal gradient navy ---
 grad = Image.new("RGB", (W, H))
 gd = grad.load()
 for y in range(H):
@@ -71,43 +58,63 @@ for y in range(H):
 base = grad
 draw = ImageDraw.Draw(base, "RGBA")
 
-# subtle teal dots in the corners
-random.seed(7)
-for cxr, cyr in [(0, 0), (W, H)]:
-    for _ in range(22):
-        dx = random.randint(20, 240) * (1 if cxr == 0 else -1)
-        dy = random.randint(20, 200) * (1 if cyr == 0 else -1)
-        rad = random.choice([2, 3, 3, 4])
-        draw.ellipse([cxr + dx - rad, cyr + dy - rad, cxr + dx + rad, cyr + dy + rad],
-                     fill=(22, 184, 166, random.randint(25, 90)))
+random.seed(11)
+for _ in range(22):
+    cx = random.randint(40, 260)
+    cy = random.randint(30, 170)
+    rad = random.choice([2, 3, 3])
+    draw.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=(22, 184, 166, random.randint(25, 80)))
+for _ in range(18):
+    cx = random.randint(1390, 1600)
+    cy = random.randint(440, 590)
+    rad = random.choice([2, 3, 3])
+    draw.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=(22, 184, 166, random.randint(20, 65)))
 
-# --- centered emblem: icon + wordmark + tagline (compact, shifted up) ---
-draw_mark(draw, W // 2, 248, 78, ring_color=TEAL, hands_color=WHITE)
+CX = W // 2
 
-f_word = font(MONT, 70, "Bold")
-centered(draw, [("Automa", f_word, WHITE), ("IA", f_word, TEAL)], 322)
+# 1) logo lockup : icone + wordmark sur une ligne
+f_word = font(MONT_B, 46)
+wa, wb = "Automa", "IA"
+wwa = draw.textlength(wa, font=f_word)
+wwb = draw.textlength(wb, font=f_word)
+icon_r = 27
+gap = 20
+block = icon_r * 2 + gap + wwa + wwb
+sx = CX - block / 2
+draw_mark(draw, sx + icon_r, 120, icon_r, ring_color=TEAL, hands_color=WHITE)
+draw.text((sx + icon_r * 2 + gap, 94), wa, font=f_word, fill=WHITE)
+draw.text((sx + icon_r * 2 + gap + wwa, 94), wb, font=f_word, fill=TEAL)
 
-f_tag = font(MONT, 22, "SemiBold")
-tag = "AUTOMAZIONE & IA"
-# letter-spaced, centered
-widths = [draw.textlength(c, font=f_tag) + 5 for c in tag]
-total = sum(widths) - 5
-x = (W - total) / 2
-for c, w in zip(tag, widths, strict=False):
-    draw.text((x, 408), c, font=f_tag, fill=TEAL)
-    x += w
+# 2) claim sur 2 lignes
+f_h = font(MONT_B, 58)
+l1a, l1b = "Più recensioni a ", "5 stelle"
+w1a = draw.textlength(l1a, font=f_h)
+w1b = draw.textlength(l1b, font=f_h)
+lx = CX - (w1a + w1b) / 2
+draw.text((lx, 220), l1a, font=f_h, fill=WHITE)
+draw.text((lx + w1a, 220), l1b, font=f_h, fill=TEAL)
 
-# divider accent
-draw.line([(W // 2 - 80, 458), (W // 2 + 80, 458)], fill=TEAL, width=3)
+l2 = "per hotel e ristoranti"
+w2 = draw.textlength(l2, font=f_h)
+draw.text((CX - w2 / 2, 296), l2, font=f_h, fill=WHITE)
 
-# --- value proposition (centered, smaller) ---
-f_h = font(MONT, 52, "Bold")
-centered(draw, [("Recupera fino a ", f_h, WHITE), ("10 ore", f_h, TEAL)], 496)
-centered(draw, [("a settimana", f_h, WHITE)], 560)
+# 3) subline
+f_sub = font(INTER_M, 28)
+sub = "Rimini e Riviera · una risposta a ogni recensione · visibilità su Google"
+ws = draw.textlength(sub, font=f_sub)
+draw.text((CX - ws / 2, 396), sub, font=f_sub, fill=GREY)
 
-f_sub = font(INTER, 26, "Medium")
-centered(draw, [("Automazione per studi legali e di commercialisti  ·  Dati protetti", f_sub, GREY)], 632)
+# 4) CTA pill
+f_cta = font(MONT_SB, 24)
+cta = "Report di visibilità gratuito · automa-ia.net"
+wc = draw.textlength(cta, font=f_cta)
+pad_x, pad_y = 30, 15
+bx0 = CX - (wc + pad_x * 2) / 2
+by0 = 458
+draw.rounded_rectangle([bx0, by0, bx0 + wc + pad_x * 2, by0 + 24 + pad_y * 2],
+                       radius=9, fill=(22, 184, 166, 38), outline=TEAL, width=2)
+draw.text((bx0 + pad_x, by0 + pad_y - 2), cta, font=f_cta, fill=TEAL)
 
-out = "agence-ia/marque/facebook-banner.png"
+out = "/home/user/no_code-Projects/agence-ia/marque/facebook-banner.png"
 base.save(out, "PNG")
-print("saved", out)
+print("saved", out, base.size)
