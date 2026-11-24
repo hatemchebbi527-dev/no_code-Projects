@@ -2,7 +2,7 @@
 
 > Mon ICP en une synthèse, mon offre phare en une phrase, et mes bios prêtes à coller.
 > À partir de audience.md et offers_cta.md. Voix : vouvoiement chaleureux, zéro jargon (voir brand_voice.md).
-> Dernière mise à jour : 2026-11-16 (pivot de niche : hôtels et restaurants)
+> Dernière mise à jour : 2026-11-24 (bios et visuels réseaux réalignés sur automa-ia.net)
 
 ---
 
@@ -28,40 +28,39 @@ Les 3 pièces : public précis (hôtels et restaurants de la Riviera) + problèm
 
 ## Mes bios (en italien, prêtes à coller)
 
-### LinkedIn
+> **Version de référence, à jour et avec les limites de caractères : `bios-social.md`.**
+> Résumé ci-dessous. Les deux fichiers doivent rester alignés sur automa-ia.net.
+
+### LinkedIn (profil personnel)
 
 **Titolo (headline) :**
 > Recensioni e visibilità per hotel e ristoranti | Rimini e Riviera | Report di visibilità gratuito
 
-**Informazioni (about) :**
-> Aiuto hotel e ristoranti della Riviera a trasformare la reputazione online in prenotazioni.
->
-> Più recensioni a 5 stelle ogni settimana, una risposta curata a ognuna, e una scheda Google che sale su Maps e compare nelle risposte di assistenti come ChatGPT. Il tutto senza che il titolare debba occuparsene.
->
-> Conosco il settore alberghiero dall'interno e lavoro qui, a Rimini: posso passare da Lei.
->
-> Richieda il Suo report di visibilità gratuito: Le mostro in pochi minuti come La vedono oggi i Suoi clienti.
+**Informazioni (about) :** version longue dans `bios-social.md` (les 3 assistenti, le report gratuito en 20 minutes, à partir de 149 € par structure).
 
 ### Instagram
 
-> Recensioni e visibilità per hotel e ristoranti
-> Più recensioni a 5 stelle, una risposta a ognuna
+**Nome :** AutomaIA · Hotel e Ristoranti
+
+> Più recensioni a 5 stelle per hotel e ristoranti
 > Rimini · Riviera romagnola
-> ↓ Report di visibilità gratuito
+> Una risposta a ogni recensione, visibilità su Google
+> Report gratuito ↓
 
 ### Facebook (Page)
 
-> Aiuto hotel e ristoranti della Riviera a ottenere più recensioni a 5 stelle e a farsi trovare su Google.
->
-> Raccolta di recensioni, risposte curate per ogni recensione, visibilità su Google Maps e su ChatGPT. Lei si occupa dei Suoi ospiti, noi della Sua reputazione.
->
-> Scriva per ricevere il Suo report di visibilità gratuito.
+**Bio courte :**
+> Più recensioni a 5 stelle e più visibilità per hotel e ristoranti di Rimini e della Riviera.
+
+**Descrizione :**
+> Tre assistenti AI curano la reputazione online della Sua struttura: raccolgono recensioni, rispondono a ogni cliente nella sua lingua e La fanno trovare su Google e su ChatGPT. Report di visibilità gratuito in 20 minuti. Da 149 € al mese per struttura.
 
 ### TikTok
 
-> Hotel e ristoranti: più recensioni, più prenotazioni
-> Rimini · Riviera
-> Report di visibilità gratuito ↓
+**Nome :** AutomaIA · Hotel e Ristoranti
+
+> Più recensioni per hotel e ristoranti
+> Rimini e Riviera · Report gratuito ↓
 
 ---
 
