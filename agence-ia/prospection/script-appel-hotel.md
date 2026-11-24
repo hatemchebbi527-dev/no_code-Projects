@@ -110,7 +110,7 @@ Puis l'**accroche de la fiche Notion**, dite naturellement (pas lue mot à mot).
 
 Cocher **Contattato** dès qu'une personne a répondu.
 
-**Le report** : se génère dans le dashboard Climbo (Pipeline), 0,35 € par report, prélevés sur le solde d'agence. **Solde actuel ≈ 0,57 $ : un seul report possible.** Ne générer un report que pour un « oui », et prévoir une recharge avant d'en promettre plusieurs. Détails dans `agence-ia/climbo/kit-identite-climbo.md`, section « Rapport de visibilité ».
+**Le report** : se génère dans le dashboard Climbo (Pipeline), 0,35 € par report, prélevés sur le solde d'agence. **Solde au 24/11/2026 : environ 10 € (cadeau de bienvenue Climbo), soit environ 28 reports.** Ne générer un report que pour un « oui » : les 72 hôtels ne seront pas tous intéressés, et le solde sert aussi à Automa Risposte sur Manuvo. Détails dans `agence-ia/climbo/kit-identite-climbo.md`, section « Rapport de visibilité ».
 
 **Relance à J+4** après l'envoi du report :
 
