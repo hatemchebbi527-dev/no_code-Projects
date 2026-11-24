@@ -3,7 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Reveal from "@/components/Reveal";
 import styles from "./chi-sono.module.css";
-import { buildAlternates, localizedUrl } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -13,11 +13,12 @@ export async function generateMetadata({ params }) {
     title: t("title"),
     description: t("description"),
     alternates: buildAlternates(path, locale),
-    openGraph: {
+    openGraph: buildOpenGraph({
+      path,
+      locale,
       title: t("title"),
       description: t("ogDescription"),
-      url: localizedUrl(path, locale),
-    },
+    }),
   };
 }
 
