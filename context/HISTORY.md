@@ -7,6 +7,21 @@
 
 ---
 
+## 2026-11-24
+
+### Prospection hôtels et restaurants : workflow n8n et CRM Notion opérationnels (tâche 17)
+- Workflow « prospezione hotel-ristoranti Rimini V1 » dupliqué depuis le V4 artisans et adapté nœud par nœud : zones (Rimini en 9 quartiers à cause du plafond de 60 résultats Google, Riccione, Bellaria, Cattolica), catégories hôtels/restaurants (stabilimenti balneari retirés), établissements « fermés temporairement » conservés (saisonniers), exclusions chaînes/portails/associations et employeur, priorité selon la marge sur les avis (note < 4,5 ou < 150 avis), nouveau prompt Claude orienté réputation avec accroche en Lei, rotation par zone et compteur `SALTA` pour avancer d'une exécution à l'autre
+- Accès MCP : n8n n'ouvre au MCP que les workflows publiés avec déclencheur Schedule/Webhook/Form/Chat. Publié le temps de la lecture, puis dépublié pour éviter l'exécution automatique du lundi 08:30
+- **Nouvelle base Notion « CRM Hotel e Ristoranti — AutomaIA (Rimini) »** créée par Claude (mêmes colonnes que le CRM Artigiani + Chiuso in inverno, Prossimo follow-up, statuts adaptés à la vente AutomaIA), partagée avec l'intégration Notion de n8n
+- Test (3 fiches) puis première exécution « Hotel » : **36 hôtels qualifiés** (24 Alto, 12 Medio), 34 avec téléphone, 27 avec email. Aucun marqué fermé pour l'hiver (Google ne signale presque jamais les fermetures saisonnières)
+- Défauts d'accroche repérés (voi au lieu de Lei, ton alarmiste, note basse citée, « 4.6 » au lieu de « 4,6 ») : prompt corrigé préparé, à coller à la reprise
+- Décision : prospection par téléphone ou sur place avec le report gratuit, pas d'emails en masse (règles du Garante)
+
+### Climbo (23 nov)
+- Modèles de demande d'avis email IT + EN créés sur Manuvo (Lei, formulation neutre sans « positiva o negativa »), test d'envoi réel à 0 €
+- Automa Risposte : prompt avec vouvoiement obligatoire, mais seul le ton `Formale` a réellement produit le Lei. Objet des réponses aux feedbacks : « Grazie per il Suo feedback »
+- Traductions italiennes des textes de la page d'avis (feedback privé, consentement, témoignage vidéo, avis prêt à copier)
+
 ## 2026-11-22
 
 ### Climbo : plateforme configurée de bout en bout (17 au 22 nov)
