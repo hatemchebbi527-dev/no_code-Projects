@@ -47,7 +47,7 @@ export function buildAlternates(path, locale) {
 // pas. Une page qui définit son propre bloc sans `images` perd l'og:image, et
 // LinkedIn ou Facebook vont alors piocher une image au hasard dans la page.
 // Passer par ce helper évite de réintroduire le problème.
-export function buildOpenGraph({ path, locale, title, description, imageAlt }) {
+export function buildOpenGraph({ path, locale, title, description, imageAlt, image }) {
   return {
     type: "website",
     locale: ogLocale(locale),
@@ -56,7 +56,7 @@ export function buildOpenGraph({ path, locale, title, description, imageAlt }) {
     title,
     description,
     images: [
-      { url: "/og-image.jpg", width: 1200, height: 630, alt: imageAlt || title },
+      { url: image || "/og-image.jpg", width: 1200, height: 630, alt: imageAlt || title },
     ],
   };
 }
