@@ -7,8 +7,11 @@
 **État au 25 novembre 2026**
 - LinkedIn ✅ : titolo, informazioni, bannière, Servizi, vignette du lien, Esperienza et Page entreprise
 - Site ✅ : og:image remplacée et balises corrigées sur toutes les pages (déployé)
-- Facebook : Page confirmée de type Entreprise, bio en ligne. Reste : nom, nom d'utilisateur, visuels, Détails, publication épinglée, Services, bouton
-- Instagram et TikTok : à faire
+- Instagram ✅ : nom, bio, lien vers /report, photo, catégorie. Handle gardé tel quel : `@automa_ia.it`
+- Facebook : Page de type Entreprise, bio en ligne. **Nom bloqué jusqu'au ~24 janvier 2027** : il est enregistré « Automaia », à repasser en `AutomaIA — Recensioni e visibilità per hotel e ristoranti` dès que Facebook le permettra. Reste aussi : nom d'utilisateur, visuels, Détails, publication épinglée, Services, bouton
+- TikTok : à faire (passer en compte Business pour débloquer le champ lien)
+- Avatar : vérifier qu'il est le même aux trois endroits (Facebook, Page LinkedIn, Instagram). Instagram affiche aujourd'hui une version sur fond blanc, les autres le fond bleu nuit
+- Grille Instagram : 43 publications d'avant le pivot, à recouvrir par des visuels hôtels plutôt qu'à supprimer
 - Caches de partage à vider après coup : Post Inspector LinkedIn, Sharing Debugger Facebook
 - Expériences passées à compléter sur LinkedIn : UDC Qatar (dates manquantes), chiffres de Dubaï et d'Azadea
 
