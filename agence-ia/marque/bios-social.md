@@ -5,13 +5,17 @@
 > Dernière mise à jour : 2026-11-24
 
 **État au 25 novembre 2026**
-- LinkedIn ✅ : titolo, informazioni, bannière, Servizi, vignette du lien, Esperienza et Page entreprise
-- Site ✅ : og:image remplacée et balises corrigées sur toutes les pages (déployé)
-- Instagram ✅ : nom, bio, lien vers /report, photo, catégorie. Handle gardé tel quel : `@automa_ia.it`
-- Facebook : bio, nom d'utilisateur `automa.ia.it`, spécialités et publication en ligne. **Nom bloqué jusqu'au ~24 janvier 2027** : il est enregistré « Automaia », à repasser en `AutomaIA — Recensioni e visibilità per hotel e ristoranti` dès que Facebook le permettra. Reste aussi : nom d'utilisateur, visuels, Détails, publication épinglée, Services, bouton
-- TikTok : à faire (passer en compte Business pour débloquer le champ lien)
-- Avatar : vérifier qu'il est le même aux trois endroits (Facebook, Page LinkedIn, Instagram). Instagram affiche aujourd'hui une version sur fond blanc, les autres le fond bleu nuit
-- Grille Instagram : 43 publications d'avant le pivot, à recouvrir par des visuels hôtels plutôt qu'à supprimer
+- **LinkedIn ✅** profil, Servizi, Esperienza, Page entreprise, bannières, vignette du lien
+- **Site ✅** og:image remplacée, balises corrigées sur les 6 pages, image dédiée pour /report, caches de partage vidés
+- **Instagram ✅** nom, bio, lien vers /report, photo, catégorie. Handle conservé : `@automa_ia.it`
+- **Facebook ✅** bio, `facebook.com/automa.ia.it`, couverture, Détails, 8 spécialités, publication épinglée, bouton *Appeler*
+- **TikTok** : reste à faire (passer en compte Business pour débloquer le champ lien)
+
+**À reprendre plus tard**
+- **Début décembre** : réessayer le bouton site web de la Page Facebook, quand le quota de liens se réinitialise. Si le choix se pose, garder *Appeler*, qui convertit mieux pour cette cible.
+- **~24 janvier 2027** : repasser le nom de la Page Facebook de « Automaia » à `AutomaIA — Recensioni e visibilità per hotel e ristoranti`, le changement est bloqué 60 jours.
+- **Quand le temps le permet** : publier des visuels hôtels sur Instagram pour recouvrir les 43 publications d'avant le pivot. On ne supprime rien, le service d'automatisation reste au catalogue.
+- Avatar identique partout, version sur fond blanc, choisie le 25 nov.
 - Caches de partage à vider après coup : Post Inspector LinkedIn, Sharing Debugger Facebook
 - Expériences passées à compléter sur LinkedIn : UDC Qatar (dates manquantes), chiffres de Dubaï et d'Azadea
 
