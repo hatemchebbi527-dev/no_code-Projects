@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import BookingPage from "@/components/BookingPage";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -9,6 +9,12 @@ export async function generateMetadata({ params }) {
     title: t("title"),
     description: t("description"),
     alternates: buildAlternates("/audit", locale),
+    openGraph: buildOpenGraph({
+      path: "/audit",
+      locale,
+      title: t("title"),
+      description: t("description"),
+    }),
   };
 }
 

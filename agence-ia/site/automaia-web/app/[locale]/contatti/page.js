@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import ContactForm from "./ContactForm";
 import styles from "./contatti.module.css";
 import { brand } from "@/lib/brand";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -11,6 +11,12 @@ export async function generateMetadata({ params }) {
     title: t("title"),
     description: t("description"),
     alternates: buildAlternates("/contatti", locale),
+    openGraph: buildOpenGraph({
+      path: "/contatti",
+      locale,
+      title: t("title"),
+      description: t("description"),
+    }),
   };
 }
 
