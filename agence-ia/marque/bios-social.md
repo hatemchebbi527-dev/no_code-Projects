@@ -8,7 +8,7 @@
 - LinkedIn ✅ : titolo, informazioni, bannière, Servizi, vignette du lien, Esperienza et Page entreprise
 - Site ✅ : og:image remplacée et balises corrigées sur toutes les pages (déployé)
 - Instagram ✅ : nom, bio, lien vers /report, photo, catégorie. Handle gardé tel quel : `@automa_ia.it`
-- Facebook : Page de type Entreprise, bio en ligne. **Nom bloqué jusqu'au ~24 janvier 2027** : il est enregistré « Automaia », à repasser en `AutomaIA — Recensioni e visibilità per hotel e ristoranti` dès que Facebook le permettra. Reste aussi : nom d'utilisateur, visuels, Détails, publication épinglée, Services, bouton
+- Facebook : bio, nom d'utilisateur `automa.ia.it`, spécialités et publication en ligne. **Nom bloqué jusqu'au ~24 janvier 2027** : il est enregistré « Automaia », à repasser en `AutomaIA — Recensioni e visibilità per hotel e ristoranti` dès que Facebook le permettra. Reste aussi : nom d'utilisateur, visuels, Détails, publication épinglée, Services, bouton
 - TikTok : à faire (passer en compte Business pour débloquer le champ lien)
 - Avatar : vérifier qu'il est le même aux trois endroits (Facebook, Page LinkedIn, Instagram). Instagram affiche aujourd'hui une version sur fond blanc, les autres le fond bleu nuit
 - Grille Instagram : 43 publications d'avant le pivot, à recouvrir par des visuels hôtels plutôt qu'à supprimer
@@ -218,6 +218,11 @@ Tre assistenti AI curano la reputazione online della Sua struttura: raccolgono r
 
 > ⚠️ **La nouvelle expérience Pages n'a plus de champ Descrizione.** La Bio est le seul texte de présentation. Le texte de 252 caractères ci-dessus sert ailleurs : site, LinkedIn, dossiers. Sur la Page, son rôle est tenu par la publication épinglée.
 
+**Limites Facebook rencontrées le 25 nov 2026**
+- Les champs Spécialités refusent les marques tierces et les marques Meta. La spécialité « Social media marketing » a été abandonnée, huit sur neuf sont passées.
+- Les publications organiques contenant un lien sont limitées à deux par mois et par profil, sauf abonnement Meta One. La publication épinglée a donc été faite sans adresse, le bouton « Scopri di più » prenant le relais.
+- Bien basculer sur le profil Automa IA avant de publier, sinon la publication part sous le nom personnel.
+
 ### Détails de la Page (onglet À propos > Détails)
 
 | Champ | Valeur |
@@ -253,7 +258,7 @@ Si parte sempre dal report di visibilità gratuito: in 20 minuti Le mostro come 
 **Nom de la Page** : il est écrit « Automa IA » avec une espace. La marque s'écrit **AutomaIA** partout ailleurs. À corriger, Facebook examine et limite les changements de nom.
 
 **Catégorie :** Servizio di marketing · **Bouton :** *Scopri di più* → `https://automa-ia.net/report`
-**Nom d'utilisateur à réserver :** `@automaia.rimini` (la Page n'a aujourd'hui qu'une URL en `profile.php?id=…`)
+**Nom d'utilisateur :** `automa.ia.it` → `facebook.com/automa.ia.it` (enregistré le 25 nov 2026). Facebook n'accepte pas les underscores, d'où la différence avec Instagram `@automa_ia.it`.
 
 **Visuels**
 | Élément | Taille | Fichier |
