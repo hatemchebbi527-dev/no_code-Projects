@@ -4,11 +4,12 @@
 > Voix : vouvoiement de politesse italien (**Lei**), chaleureux, zéro jargon. Voir `brand_voice.md`.
 > Dernière mise à jour : 2026-11-24
 
-**État au 24 novembre 2026**
-- LinkedIn : titolo, informazioni, bannière, section Servizi et vignette du lien ✅ · Esperienza et Page entreprise à faire
-- Site : og:image remplacée et balises corrigées sur toutes les pages ✅ (déployé)
-- Facebook, Instagram, TikTok : à faire
+**État au 25 novembre 2026**
+- LinkedIn ✅ : titolo, informazioni, bannière, Servizi, vignette du lien, Esperienza et Page entreprise
+- Site ✅ : og:image remplacée et balises corrigées sur toutes les pages (déployé)
+- Facebook : en cours · Instagram et TikTok : à faire
 - Caches de partage à vider après coup : Post Inspector LinkedIn, Sharing Debugger Facebook
+- Expériences passées à compléter sur LinkedIn : UDC Qatar (dates manquantes), chiffres de Dubaï et d'Azadea
 
 ---
 
