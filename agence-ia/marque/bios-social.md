@@ -136,6 +136,32 @@ Création : `https://www.linkedin.com/company/setup/new/`
 Recensioni e visibilità per hotel e ristoranti di Rimini e della Riviera.
 ```
 
+**Descrizione de la Page — 1225 caractères sur 2000**
+```
+AutomaIA aiuta hotel e ristoranti di Rimini e della Riviera romagnola a trasformare la reputazione online in prenotazioni.
+
+Tre assistenti AI curano la reputazione di ogni struttura:
+
+• Automa Risposte raccoglie le nuove recensioni (QR, NFC, link, email, SMS) e prepara una risposta curata a ognuna, nella lingua del cliente. Le recensioni negative passano sempre dal titolare.
+
+• Automa Social trasforma ogni settimana le recensioni migliori in post per Instagram e Facebook.
+
+• Automa Ricerca scrive articoli locali per il sito della struttura, per salire su Google Maps e comparire nelle risposte di ChatGPT.
+
+Completano l'offerta l'Assistente Prenotazioni 24/7, che risponde alle richieste in italiano, inglese e tedesco, e il supporto NFC + QR da banco per raccogliere recensioni alla reception o al tavolo.
+
+La configurazione è inclusa: il titolare non tocca nulla di tecnico e segue i risultati nella sua Area clienti.
+
+Si parte sempre dal report di visibilità gratuito: in 20 minuti mostriamo come i clienti vedono la struttura oggi su Google e sugli assistenti AI, rispetto ai concorrenti della zona.
+
+Formule a partire da 149 € al mese per struttura.
+
+automa-ia.net · info@automa-ia.net · Rimini e Riviera romagnola
+```
+
+**Hashtag de la Page** (3 maximum) : #recensioni #hotel #ristoranti
+**Bouton personnalisé** : *Visita il sito web* → `https://automa-ia.net/report`
+
 Prérequis : LinkedIn peut demander de vérifier une adresse au domaine de l'entreprise, donc `info@automa-ia.net` doit recevoir du courrier (boîte Infomaniak).
 
 ---
