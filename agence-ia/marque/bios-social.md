@@ -7,7 +7,8 @@
 **État au 25 novembre 2026**
 - LinkedIn ✅ : titolo, informazioni, bannière, Servizi, vignette du lien, Esperienza et Page entreprise
 - Site ✅ : og:image remplacée et balises corrigées sur toutes les pages (déployé)
-- Facebook : en cours · Instagram et TikTok : à faire
+- Facebook : Page confirmée de type Entreprise, bio en ligne. Reste : nom, nom d'utilisateur, visuels, Détails, publication épinglée, Services, bouton
+- Instagram et TikTok : à faire
 - Caches de partage à vider après coup : Post Inspector LinkedIn, Sharing Debugger Facebook
 - Expériences passées à compléter sur LinkedIn : UDC Qatar (dates manquantes), chiffres de Dubaï et d'Azadea
 
@@ -211,6 +212,42 @@ Più recensioni a 5 stelle e più visibilità per hotel e ristoranti di Rimini e
 ```
 Tre assistenti AI curano la reputazione online della Sua struttura: raccolgono recensioni, rispondono a ogni cliente nella sua lingua e La fanno trovare su Google e su ChatGPT. Report di visibilità gratuito in 20 minuti. Da 149 € al mese per struttura.
 ```
+
+> ⚠️ **La nouvelle expérience Pages n'a plus de champ Descrizione.** La Bio est le seul texte de présentation. Le texte de 252 caractères ci-dessus sert ailleurs : site, LinkedIn, dossiers. Sur la Page, son rôle est tenu par la publication épinglée.
+
+### Détails de la Page (onglet À propos > Détails)
+
+| Champ | Valeur |
+|---|---|
+| Zone de service | Rimini, Riccione, Bellaria-Igea Marina, Cattolica |
+| Adresse et Heures | laisser vide, pas de local commercial |
+| Date de fondation | 2025 |
+| Note et avis | activé |
+| Gamme de prix | laisser vide |
+
+### Publication épinglée
+
+À publier en tant que la Page, puis épingler via le menu … de la publication. Visuel : `facebook-banner.png`.
+
+```
+Aiuto hotel e ristoranti di Rimini e della Riviera a trasformare la reputazione online in prenotazioni.
+
+Tre assistenti AI curano la reputazione della Sua struttura:
+
+⭐ raccolgono le recensioni e rispondono a ognuna, nella lingua del cliente
+📱 trasformano le recensioni migliori in post per Instagram e Facebook
+🔍 scrivono articoli locali per farLa trovare su Google e su ChatGPT
+
+Lei si occupa dei Suoi ospiti. Della reputazione mi occupo io.
+
+Si parte sempre dal report di visibilità gratuito: in 20 minuti Le mostro come La vedono oggi i clienti, rispetto ai concorrenti della zona.
+
+👉 automa-ia.net/report
+```
+
+**Où se trouve quoi** : Descrizione → n'existe pas · Catégorie → À propos > Catégorie · Site web → À propos > Liens · Email et ville → À propos > Coordonnées · Nom d'utilisateur → Paramètres > Comment les autres peuvent vous trouver et vous contacter · Nom → Paramètres > Configuration de la Page > Nom.
+
+**Nom de la Page** : il est écrit « Automa IA » avec une espace. La marque s'écrit **AutomaIA** partout ailleurs. À corriger, Facebook examine et limite les changements de nom.
 
 **Catégorie :** Servizio di marketing · **Bouton :** *Scopri di più* → `https://automa-ia.net/report`
 **Nom d'utilisateur à réserver :** `@automaia.rimini` (la Page n'a aujourd'hui qu'une URL en `profile.php?id=…`)
