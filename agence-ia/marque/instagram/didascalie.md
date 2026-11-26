@@ -1,7 +1,40 @@
-# Légendes des 6 visuels Instagram
+# Instagram : le carrousel
 
-> Italien, vouvoiement **Lei**. À publier **dans l'ordre inverse** (06 d'abord, 01 en dernier) pour que la grille se lise de haut en bas.
-> Visuels : `01-promessa.jpg` à `06-report.jpg`, 1080 × 1080.
+> **Décision du 26 nov 2026 : un seul carrousel de 6 slides**, pas six publications séparées.
+> Raison : les anciennes publications relèvent toujours du catalogue (automatisation), il n'y a donc pas de grille à recouvrir.
+> Visuels : `01-promessa.jpg` à `06-report.jpg`, 1080 × 1080, **dans cet ordre**. La slide 01 sert de couverture, c'est elle qui apparaît dans la grille et dans le fil.
+
+---
+
+## Légende du carrousel
+
+```
+Gli ospiti soddisfatti raramente lasciano una recensione da soli. Chi legge vede valutazioni datate e sceglie chi ne ha di più recenti.
+
+Scorra le slide 👉
+
+Tre assistenti AI si occupano della reputazione della Sua struttura:
+
+⭐ raccolgono le recensioni e preparano una risposta curata a ognuna, nella lingua del cliente
+📱 trasformano le migliori in post per i Suoi canali social
+🔍 scrivono articoli locali, perché sempre più ospiti chiedono a ChatGPT dove dormire a Rimini
+
+Lei non tocca nulla di tecnico, e le recensioni negative passano sempre da Lei.
+
+Si parte da un report di visibilità gratuito: 20 minuti per vedere come La vedono oggi i Suoi clienti, rispetto ai concorrenti della zona.
+
+Link in bio.
+
+#rimini #riviera #romagna #hotelrimini #ristorantirimini #recensioni #reputazioneonline #googlemaps
+```
+
+Publier en tant que compte professionnel, carrousel classique (pas Reel). Instagram re-sert les carrousels aux personnes qui n'ont pas fait défiler, c'est leur avantage sur une image seule.
+
+---
+
+## Légendes individuelles, si vous publiez les slides séparément plus tard
+
+Conservées ci-dessous. Dans ce cas, publier **dans l'ordre inverse** (06 d'abord, 01 en dernier) pour que la grille se lise de haut en bas.
 
 ---
 
