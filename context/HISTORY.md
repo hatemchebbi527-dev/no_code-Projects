@@ -9,6 +9,15 @@
 
 ## 2026-11-26
 
+### Fiche Google Business Profile d'AutomaIA
+- Fiche créée et soumise à validation. Catégorie Agenzia di marketing, zones Rimini, Riccione, Bellaria-Igea Marina, Cattolica, adresse masquée.
+- Dix services courts (le champ nom est plafonné à 120 caractères, pas la description), description d'activité de 743 caractères écrite sans lien ni mention de gratuité, les deux étant refusés par Google dans ce champ.
+- Couverture 1200 × 675 produite, logo repris de la charte, et captures des tableaux de bord Climbo en marque blanche depuis le compte de démo Manuvo, avec consigne de masquer toute trace du fournisseur.
+- Photo du fondateur écartée par prudence vis-à-vis de l'employeur, alors qu'elle figure déjà sur le site et sur LinkedIn.
+- Statut : en attente de validation, jusqu'à cinq jours. Ne rien modifier entre-temps.
+
+## 2026-11-26
+
 ### Les quatre réseaux sociaux alignés sur la niche hôtels et restaurants
 - Point de départ : les bios étaient déjà sur la bonne niche depuis le pivot du 16 nov, mais les **bannières LinkedIn et Facebook annonçaient encore « Recupera fino a 10 ore a settimana · Automazione per studi legali e di commercialisti »**. Visuels régénérés aux bons formats (LinkedIn 1584×396, couverture Facebook passée de 1640×924 à 1640×624 pour épouser l'affichage réel).
 - **Fiche de référence créée** : `agence-ia/marque/bios-social.md`, tous les textes prêts à coller avec les limites de caractères vérifiées, les tailles de chaque visuel, l'emplacement de chaque réglage et les limites de chaque plateforme.
