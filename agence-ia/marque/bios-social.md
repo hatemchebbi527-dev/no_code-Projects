@@ -9,7 +9,7 @@
 - **Site ✅** og:image remplacée, balises corrigées sur les 6 pages, image dédiée pour /report, caches de partage vidés
 - **Instagram ✅** nom, bio, lien vers /report, photo, catégorie. Handle conservé : `@automa_ia.it`
 - **Facebook ✅** bio, `facebook.com/automa.ia.it`, couverture, Détails, 8 spécialités, publication épinglée, bouton *Appeler*
-- **TikTok ✅** nom, bio, avatar, nom d'utilisateur `automa.ia.it`. Pas de lien cliquable : TikTok a supprimé la bascule simple en compte professionnel, le seul chemin passe par « Become a Verified Business Account », qui exige des documents d'entreprise. L'adresse est donc écrite en texte dans la bio.
+- **TikTok ✅** nom, bio, avatar, nom d'utilisateur `@automaia.it`. Pas de lien cliquable : TikTok a supprimé la bascule simple en compte professionnel, le seul chemin passe par « Become a Verified Business Account », qui exige des documents d'entreprise. L'adresse est donc écrite en texte dans la bio.
 
 **À reprendre plus tard**
 - **Début décembre** : réessayer le bouton site web de la Page Facebook, quand le quota de liens se réinitialise. Si le choix se pose, garder *Appeler*, qui convertit mieux pour cette cible.
@@ -23,6 +23,22 @@
 - Sans lien cliquable, version actuelle (77 car.) : `Più recensioni per hotel e ristoranti` / `Rimini e Riviera · automa-ia.net/report`
 - Caches de partage à vider après coup : Post Inspector LinkedIn, Sharing Debugger Facebook
 - Expériences passées à compléter sur LinkedIn : UDC Qatar (dates manquantes), chiffres de Dubaï et d'Azadea
+
+---
+
+## Les comptes, à jour au 26 novembre 2026
+
+| Réseau | Adresse |
+|---|---|
+| Site | automa-ia.net |
+| LinkedIn, profil | linkedin.com/in/hatem-chebbi-a28301294 |
+| LinkedIn, Page | linkedin.com/company/automa-ia |
+| Facebook | facebook.com/automa.ia.it |
+| Instagram | @automa_ia.it |
+| TikTok | @automaia.it |
+| Email | info@automa-ia.net |
+
+Les identifiants diffèrent d'un réseau à l'autre parce que chaque plateforme a ses règles : Instagram accepte les underscores, Facebook non, LinkedIn impose un tiret. Ce n'est pas une incohérence à corriger, c'est une contrainte technique. Le nom affiché, lui, est AutomaIA partout.
 
 ---
 
@@ -138,11 +154,11 @@ Création : `https://www.linkedin.com/company/setup/new/`
 | Champ | Valeur |
 |---|---|
 | Nome | AutomaIA |
-| URL | linkedin.com/company/automaia |
+| URL | linkedin.com/company/automa-ia |
 | Sito web | https://automa-ia.net |
 | Settore | Servizi di marketing |
 | Dimensioni | 0-1 dipendenti · Ditta individuale |
-| Logo | `logo-automaia-avatar.png` |
+| Logo | `logo-automaia-avatar-white.png` |
 | Bannière | `linkedin-page-cover.png` (1128 × 191) |
 
 **Slogan — 73 caractères sur 120**
@@ -201,7 +217,7 @@ Report gratuito ↓
 **Visuels**
 | Élément | Taille | Fichier |
 |---|---|---|
-| Photo de profil | 320 × 320 px | `agence-ia/marque/logo-automaia-avatar.png` |
+| Photo de profil | 320 × 320 px | `agence-ia/marque/logo-automaia-avatar-white.png` |
 | Couvertures de stories à la une | 1080 × 1920 px | À créer : fond `#0F2A4A`, icône blanche. 4 : *Recensioni · Risultati · Come funziona · Chi sono* |
 
 Pas de bannière sur Instagram : les 9 premières vignettes du profil **sont** la bannière. Gardez-y au moins 3 visuels aux couleurs de la marque.
@@ -272,7 +288,7 @@ Si parte sempre dal report di visibilità gratuito: in 20 minuti Le mostro come 
 **Visuels**
 | Élément | Taille | Fichier |
 |---|---|---|
-| Photo de profil | 320 × 320 px | `agence-ia/marque/logo-automaia-avatar.png` |
+| Photo de profil | 320 × 320 px | `agence-ia/marque/logo-automaia-avatar-white.png` |
 | Couverture | 1640 × 624 px | `agence-ia/marque/facebook-banner.png` |
 
 ---
@@ -291,12 +307,12 @@ Rimini e Riviera · Report gratuito ↓
 ```
 
 **Lien :** `https://automa-ia.net/report`
-**Nom d'utilisateur :** `@automaia.rimini`
+**Nom d'utilisateur :** `@automaia.it`
 
 **Visuels**
 | Élément | Taille | Fichier |
 |---|---|---|
-| Photo de profil | 200 × 200 px (carré, affichée en rond) | `agence-ia/marque/logo-automaia-avatar.png` |
+| Photo de profil | 200 × 200 px (carré, affichée en rond) | `agence-ia/marque/logo-automaia-avatar-white.png` |
 
 Pas de bannière sur TikTok. Le premier écran du profil, c'est la grille des vidéos : gardez une couverture de vidéo au format vertical avec un titre lisible en gros.
 
@@ -307,8 +323,8 @@ Pas de bannière sur TikTok. Le premier écran du profil, c'est la grille des vi
 | Point | Valeur unique |
 |---|---|
 | Nom affiché | AutomaIA (+ « Hotel e Ristoranti » là où le champ le permet) |
-| Identifiant | `automaia.rimini` partout (Instagram est aujourd'hui `@automa_ia.it`) |
-| Photo de profil | Même avatar navy + horloge teal (sauf LinkedIn : votre photo) |
+| Identifiant | Variantes imposées par les règles de chaque plateforme, voir le tableau des liens ci-dessous |
+| Photo de profil | `logo-automaia-avatar-white.png` partout (sauf profil LinkedIn personnel : votre photo) |
 | Couleurs | `#0F2A4A` navy · `#16B8A6` teal · blanc |
 | Lien | `automa-ia.net/report` (pas la page d'accueil : on envoie vers le rapport gratuit) |
 | Email | info@automa-ia.net |
