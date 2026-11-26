@@ -9,13 +9,18 @@
 - **Site ✅** og:image remplacée, balises corrigées sur les 6 pages, image dédiée pour /report, caches de partage vidés
 - **Instagram ✅** nom, bio, lien vers /report, photo, catégorie. Handle conservé : `@automa_ia.it`
 - **Facebook ✅** bio, `facebook.com/automa.ia.it`, couverture, Détails, 8 spécialités, publication épinglée, bouton *Appeler*
-- **TikTok** : reste à faire (passer en compte Business pour débloquer le champ lien)
+- **TikTok ✅** nom, bio, avatar, nom d'utilisateur `automa.ia.it`. Pas de lien cliquable : TikTok a supprimé la bascule simple en compte professionnel, le seul chemin passe par « Become a Verified Business Account », qui exige des documents d'entreprise. L'adresse est donc écrite en texte dans la bio.
 
 **À reprendre plus tard**
 - **Début décembre** : réessayer le bouton site web de la Page Facebook, quand le quota de liens se réinitialise. Si le choix se pose, garder *Appeler*, qui convertit mieux pour cette cible.
+- **Après le 4 janvier 2027**, une fois la P.IVA ouverte : passer TikTok en compte Business vérifié pour débloquer le champ Sito web, et remplacer l'adresse en texte par le lien cliquable vers /report.
 - **~24 janvier 2027** : repasser le nom de la Page Facebook de « Automaia » à `AutomaIA — Recensioni e visibilità per hotel e ristoranti`, le changement est bloqué 60 jours.
 - **Quand le temps le permet** : publier des visuels hôtels sur Instagram pour recouvrir les 43 publications d'avant le pivot. On ne supprime rien, le service d'automatisation reste au catalogue.
-- Avatar identique partout, version sur fond blanc, choisie le 25 nov.
+- Avatar : `logo-automaia-avatar-white.png` (1080 × 1080), version sur fond blanc retenue. Régénéré le 26 nov, à remettre sur les quatre réseaux si un écart de cadrage se voit.
+
+**Bios TikTok : deux variantes**
+- Avec lien cliquable, une fois le compte Business actif (74 car.) : `Più recensioni per hotel e ristoranti` / `Rimini e Riviera · Report gratuito ↓`
+- Sans lien cliquable, version actuelle (77 car.) : `Più recensioni per hotel e ristoranti` / `Rimini e Riviera · automa-ia.net/report`
 - Caches de partage à vider après coup : Post Inspector LinkedIn, Sharing Debugger Facebook
 - Expériences passées à compléter sur LinkedIn : UDC Qatar (dates manquantes), chiffres de Dubaï et d'Azadea
 
