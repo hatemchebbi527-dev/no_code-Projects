@@ -14,9 +14,9 @@
 **Contenus produits le 26 novembre** (dans `marque/instagram/` et `marque/tiktok/`)
 - 6 visuels carrés 1080 × 1080 + 6 verticaux 1080 × 1920, mêmes messages
 - **Instagram : carrousel publié le 26 nov** ✅
+- **TikTok : carrousel photo publié le 26 nov** ✅ (titre « Ogni recensione senza risposta è un cliente in meno », posé dans le champ titolo du post photo)
 - Facebook : légendes prêtes (`didascalie-facebook.md`), à publier
 - LinkedIn : carrousel PDF `AutomaIA-carosello-linkedin.pdf` + légende + commentaire avec le lien, à publier
-- TikTok : carrousel photo prêt (`didascalia-tiktok.md`), à publier
 - 3 scripts vidéo TikTok rédigés : ChatGPT, turno di notte, « non ho tempo ». Ordre conseillé : ChatGPT en premier, une par semaine
 - 4 couvertures de stories à la une (`instagram/highlights/`), en attente de contenu à y mettre
 
