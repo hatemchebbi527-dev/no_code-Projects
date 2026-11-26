@@ -7,6 +7,29 @@
 
 ---
 
+## 2026-11-26
+
+### Les quatre réseaux sociaux alignés sur la niche hôtels et restaurants
+- Point de départ : les bios étaient déjà sur la bonne niche depuis le pivot du 16 nov, mais les **bannières LinkedIn et Facebook annonçaient encore « Recupera fino a 10 ore a settimana · Automazione per studi legali e di commercialisti »**. Visuels régénérés aux bons formats (LinkedIn 1584×396, couverture Facebook passée de 1640×924 à 1640×624 pour épouser l'affichage réel).
+- **Fiche de référence créée** : `agence-ia/marque/bios-social.md`, tous les textes prêts à coller avec les limites de caractères vérifiées, les tailles de chaque visuel, l'emplacement de chaque réglage et les limites de chaque plateforme.
+- **LinkedIn** : titolo, Informazioni, bannière, 8 catégories dans Servizi, vignette du lien du site, Esperienza réécrite plus deux expériences passées ajoutées, Page entreprise créée (linkedin.com/company/automa-ia). Piège constaté : ajouter une expérience écrase le titre du profil si la case de mise à jour reste cochée.
+- **Facebook** : Page confirmée de type Entreprise, nom d'utilisateur `automa.ia.it`, couverture, Détails, 8 spécialités, publication épinglée, bouton *Appeler*. La nouvelle expérience Pages n'a plus de champ Descrizione, la Bio et la publication épinglée en tiennent lieu.
+- **Instagram** : nom, bio, lien vers /report, avatar. Handle `@automa_ia.it` conservé. Les 43 publications d'avant le pivot sont gardées, le service d'automatisation restant au catalogue ; elles seront recouvertes par des visuels hôtels.
+- **TikTok** : @automaia.it, nom, bio, avatar. Lien cliquable impossible pour l'instant, reporté après l'ouverture de la P.IVA.
+- **Avatar unifié** sur fond blanc, `logo-automaia-avatar-white.png`, 1080×1080.
+
+### Correctif du site : les aperçus de liens
+- L'image affichée au partage de automa-ia.net montrait encore « Lo studio che recupera fino a 10 ore a settimana · Avvocati · Commercialisti · Cliniche ». Fichier `public/og-image.jpg` remplacé.
+- **Bug de fond découvert** : Next.js remplace le bloc `openGraph` du gabarit au lieu de le fusionner. Les pages `/hotel-ristoranti`, `/servizi` et `/chi-sono` définissaient leur propre bloc sans image, et perdaient `og:image`, `og:type`, `og:locale` et `og:site_name` ; LinkedIn affichait alors une image prise au hasard. `/audit` et `/contatti` héritaient du titre générique. Helper `buildOpenGraph` dans `lib/seo.js`, adopté par les six pages, pour que le cas ne se reproduise pas.
+- Image de partage dédiée pour `/report`, la page de conversion.
+- Caches de partage vidés : Post Inspector LinkedIn et Sharing Debugger Meta.
+
+### Contraintes de plateformes relevées, utiles pour la suite
+- Facebook refuse les marques tierces **et ses propres marques** dans le champ Spécialités d'une Page.
+- Les publications organiques contenant un lien sont limitées à **deux par mois**, sauf abonnement Meta One. Décision : ne pas s'abonner, le bouton de Page suffit.
+- Un changement de nom de Page Facebook bloque le champ **60 jours**. La Page est enregistrée « Automaia » au lieu de « AutomaIA », à corriger vers le 24 janvier 2027.
+- TikTok a supprimé la bascule simple en compte professionnel : le lien en bio passe désormais par un compte Business vérifié par documents d'entreprise, donc après la P.IVA du 4 janvier 2027.
+
 ## 2026-11-24
 
 ### Prospection hôtels et restaurants : workflow n8n et CRM Notion opérationnels (tâche 17)
