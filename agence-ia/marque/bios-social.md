@@ -11,6 +11,15 @@
 - **Facebook ✅** bio, `facebook.com/automa.ia.it`, couverture, Détails, 8 spécialités, publication épinglée, bouton *Appeler*
 - **TikTok ✅** nom, bio, avatar, nom d'utilisateur `@automaia.it`. Pas de lien cliquable : TikTok a supprimé la bascule simple en compte professionnel, le seul chemin passe par « Become a Verified Business Account », qui exige des documents d'entreprise. L'adresse est donc écrite en texte dans la bio.
 
+**Contenus produits le 26 novembre** (dans `marque/instagram/` et `marque/tiktok/`)
+- 6 visuels carrés 1080 × 1080 + 6 verticaux 1080 × 1920, mêmes messages
+- **Instagram : carrousel publié le 26 nov** ✅
+- Facebook : légendes prêtes (`didascalie-facebook.md`), à publier
+- LinkedIn : carrousel PDF `AutomaIA-carosello-linkedin.pdf` + légende + commentaire avec le lien, à publier
+- TikTok : carrousel photo prêt (`didascalia-tiktok.md`), à publier
+- 3 scripts vidéo TikTok rédigés : ChatGPT, turno di notte, « non ho tempo ». Ordre conseillé : ChatGPT en premier, une par semaine
+- 4 couvertures de stories à la une (`instagram/highlights/`), en attente de contenu à y mettre
+
 **À reprendre plus tard**
 - **Début décembre** : réessayer le bouton site web de la Page Facebook, quand le quota de liens se réinitialise. Si le choix se pose, garder *Appeler*, qui convertit mieux pour cette cible.
 - **Après le 4 janvier 2027**, une fois la P.IVA ouverte : passer TikTok en compte Business vérifié pour débloquer le champ Sito web, et remplacer l'adresse en texte par le lien cliquable vers /report.
