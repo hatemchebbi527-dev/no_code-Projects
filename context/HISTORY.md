@@ -7,6 +7,17 @@
 
 ---
 
+## 2026-11-27
+
+### Nettoyage DNS final : sortie de Google Workspace achevée
+- Google a confirmé la déconnexion du compte le **24 novembre**. Nettoyage effectué le 27 : SPF ramené à `v=spf1 include:spf.infomaniak.ch ~all` (Google retiré, `~all` conservé sans durcir en `-all`) et enregistrement TXT `google._domainkey` supprimé de Cloudflare
+- **Test de contrôle concluant** : message arrivé **en boîte de réception** et non plus en spam, avec **SPF PASS, DKIM PASS, DMARC PASS**. La réputation de la nouvelle infrastructure se construit comme prévu
+- Les enregistrements des autres services ont été laissés intacts : DKIM Infomaniak (`20261120._domainkey`), Resend (`resend._domainkey`, CNAME `send`), Mailgun (`in.automa-ia.net`), Climbo (`rsend`, `portal`, `blog-manuvo`)
+- **Dossier clos.** Bilan de l'opération : domaine et DNS chez Cloudflare, messagerie chez Infomaniak à environ 1,80 €/mois au lieu de 19,76 € chez Wix, soit environ 215 € d'économie annuelle, authentification complète sur les trois piliers, contrôle total de l'administration et plus aucun intermédiaire revendeur
+- **À surveiller** : que Manuvo, Resend, Mailgun et Climbo écrivent toujours correctement vers `info@`. **En janvier, avec la P.IVA** : mettre à jour la facturation Infomaniak et les pages légales de Manuvo
+
+---
+
 ## 2026-11-20
 
 ### Google Workspace impayable sans P.IVA : décision de migrer vers Infomaniak
