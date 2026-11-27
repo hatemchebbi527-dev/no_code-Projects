@@ -14,7 +14,7 @@
 - **Test de contrôle concluant** : message arrivé **en boîte de réception** et non plus en spam, avec **SPF PASS, DKIM PASS, DMARC PASS**. La réputation de la nouvelle infrastructure se construit comme prévu
 - Les enregistrements des autres services ont été laissés intacts : DKIM Infomaniak (`20261120._domainkey`), Resend (`resend._domainkey`, CNAME `send`), Mailgun (`in.automa-ia.net`), Climbo (`rsend`, `portal`, `blog-manuvo`)
 - **Dossier clos.** Bilan de l'opération : domaine et DNS chez Cloudflare, messagerie chez Infomaniak à environ 1,80 €/mois au lieu de 19,76 € chez Wix, soit environ 215 € d'économie annuelle, authentification complète sur les trois piliers, contrôle total de l'administration et plus aucun intermédiaire revendeur
-- **À surveiller** : que Manuvo, Resend, Mailgun et Climbo écrivent toujours correctement vers `info@`. **En janvier, avec la P.IVA** : mettre à jour la facturation Infomaniak et les pages légales de Manuvo
+- **Vérification Manuvo + Resend concluante** le même jour : la réinitialisation de mot de passe de Manuvo part via Resend et arrive sur `info@automa-ia.net`. La chaîne d'envoi et de réception est donc validée de bout en bout. **Restent à vérifier au fil de l'eau** : Mailgun et Climbo. **En janvier, avec la P.IVA** : mettre à jour la facturation Infomaniak et les pages légales de Manuvo
 
 ---
 
