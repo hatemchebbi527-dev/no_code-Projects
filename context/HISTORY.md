@@ -7,6 +7,14 @@
 
 ---
 
+## 2026-11-27
+
+### Fiche Google : une fiche validée existait déjà
+- Découverte d'une fiche AutomaIA déjà validée, avec nom, catégorie, adresse, zones, téléphone et site corrects, et aucun avis. Décision : la conserver plutôt que la fiche créée la veille, pour garder la validation et l'ancienneté.
+- Ordre suivi : compléter d'abord l'ancienne (catégories secondaires, horaires, description, dix services, logo, couverture, captures), vérifier le rendu, puis supprimer les doublons.
+- **Doublons supprimés, fiche validée et complète.**
+- Contenu de référence regroupé dans `agence-ia/marque/google-business-profile.md`.
+
 ## 2026-11-26
 
 ### Fiche Google Business Profile d'AutomaIA
