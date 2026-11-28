@@ -198,7 +198,11 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 
 ### Prompts complets avec faits client (version du 18/11/2026, appliquée à Manuvo)
 
-> ⚠️ **Limite de 500 caractères par champ** (Additional instructions / Additional notes), confirmée par l'assistant de la documentation Climbo le 28/11/2026. Les versions ci-dessous sont plus longues : vérifier sur Manuvo que le texte enregistré n'est pas coupé. Pour un nouveau client, utiliser les versions courtes de `agence-ia/climbo/prompts-settori.md`.
+> ⚠️ **Limite de longueur** : le champ d'Automa Risposte de Manuvo a été **coupé à 1 000 caractères** (constaté le 28/11/2026), la consigne sur les avis négatifs était perdue. Version compacte à utiliser (919 caractères) :
+>
+> Rispondi nella lingua della recensione o del feedback. Usa SEMPRE il Lei, mai il tu: "La ringraziamo", "la Sua esperienza", "La aspettiamo"; mai "ti", "tuo", "sei", "puoi". Ringrazia il cliente per nome (solo nome di battesimo) e riprendi un dettaglio concreto della recensione. Fatti su Manuvo: il privato pubblica gratis la sua richiesta (intervento, zona, urgenza); fino a 3 artigiani della zona di Rimini lo contattano con un preventivo; il privato sceglie liberamente. Manuvo mette in contatto, non esegue i lavori: mai "il nostro tecnico", "il nostro intervento" o "abbiamo riparato". Non inventare offerte, sconti, garanzie, tempi o promesse. Mai "dal contesto fornito". Se negativa: scusati senza giustificarti, mostra che hai capito il problema e invita a scriverci a info@automa-ia.net, niente emoji. Massimo 4 frasi e al massimo una parola chiave. Prima di rispondere rileggi e correggi ogni forma con il tu.
+>
+> Pour un nouveau client, utiliser les versions courtes de `agence-ia/climbo/prompts-settori.md`.
 
 Les 3 assistants reçoivent le **même bloc de faits** sur le client. Ton : Lei pour tout le contenu automatique (cohérence du blog). Avant le lancement d'un client : appel à l'action « scopri [nome] ».
 

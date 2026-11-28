@@ -1,7 +1,7 @@
 # Prompts des assistants par secteur : Hotel et Ristorante
 
 > Modèles à copier dans l'espace de chaque client Climbo.
-> **Limite Climbo : 500 caractères par champ** (« Additional instructions » de Risposte et Social, « Additional notes » de Ricerca), d'après l'assistant de la documentation Climbo (28/11/2026). Ces consignes **s'ajoutent** aux instructions de base de l'assistant, elles ne les remplacent pas. D'où des prompts courts.
+> **Limite Climbo** : l'assistant de la documentation annonce 500 caractères par champ, mais le champ d'Automa Risposte de Manuvo a **réellement gardé 1 000 caractères** (le reste a été coupé, constaté le 28/11/2026). Par prudence, les modèles ci-dessous restent sous 500. Ces consignes **s'ajoutent** aux instructions de base de l'assistant, elles ne les remplacent pas. **Toujours vérifier après collage que la fin du texte est présente.**
 > Tous les prompts ci-dessous font **moins de 500 caractères une fois remplis**, à condition que la ligne de faits fasse **au plus 120 caractères**.
 > Réglage indispensable : **ton `Formal`** sur Automa Risposte (le ton chaleureux produit du tutoiement malgré le prompt).
 
