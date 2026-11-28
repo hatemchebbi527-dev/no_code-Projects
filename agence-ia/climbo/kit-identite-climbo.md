@@ -132,7 +132,7 @@ Un articolo locale ogni settimana e il monitoraggio della Sua posizione su Googl
 - **Stripe** : connecter ton compte Stripe à Climbo (toi, dans le dashboard).
 - **Domaine personnalisé** : enregistrements DNS chez ton registrar (je te les prépare quand Climbo les affiche).
 - **Manuvo comme client démo** : connecter sa fiche Google et ses réseaux (autorisations à faire toi-même).
-- **Prompts italiens par secteur** (café/resto, hôtel) : à construire ensemble.
+- **Prompts italiens par secteur** (hôtel, restaurant) : ✅ rédigés le 28/11/2026 dans `agence-ia/climbo/prompts-settori.md` (bloc de faits client, Risposte, Social, Ricerca, vérification avant activation).
 - **Prospection S2** via le MCP : recherche hôtels/restos Rimini, pipeline, rapports (0,35 € pièce, toujours avec ton accord).
 
 ---
@@ -220,7 +220,7 @@ Les 3 assistants reçoivent le **même bloc de faits** sur le client. Ton : Lei 
 
 **Automa Ricerca** : même structure (Lei, bloc de faits, interdits), avec sous-titres, FAQ finale et « Chiudi con un invito semplice a scoprire Manuvo. »
 
-Pour un hôtel, remplacer le bloc par ses faits réels (services, langues parlées, ce qui n'existe pas) et, pour Risposte, ne jamais promettre de geste commercial ni de remboursement.
+Pour un hôtel ou un restaurant : utiliser les modèles de `agence-ia/climbo/prompts-settori.md`. Pour un hôtel, remplacer le bloc par ses faits réels (services, langues parlées, ce qui n'existe pas) et, pour Risposte, ne jamais promettre de geste commercial ni de remboursement.
 
 ### Automa Ricerca : leçons des 2 premiers articles (Manuvo, 18/11/2026)
 
