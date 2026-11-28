@@ -198,6 +198,8 @@ Chaque assistant se règle dans **sa propre section** de l'espace client :
 
 ### Prompts complets avec faits client (version du 18/11/2026, appliquée à Manuvo)
 
+> ⚠️ **Limite de 500 caractères par champ** (Additional instructions / Additional notes), confirmée par l'assistant de la documentation Climbo le 28/11/2026. Les versions ci-dessous sont plus longues : vérifier sur Manuvo que le texte enregistré n'est pas coupé. Pour un nouveau client, utiliser les versions courtes de `agence-ia/climbo/prompts-settori.md`.
+
 Les 3 assistants reçoivent le **même bloc de faits** sur le client. Ton : Lei pour tout le contenu automatique (cohérence du blog). Avant le lancement d'un client : appel à l'action « scopri [nome] ».
 
 **Automa Risposte** :
