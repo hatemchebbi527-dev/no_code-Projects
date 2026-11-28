@@ -226,6 +226,8 @@ Les 3 assistants reçoivent le **même bloc de faits** sur le client. Ton : Lei 
 
 **Automa Ricerca** : même structure (Lei, bloc de faits, interdits), avec sous-titres, FAQ finale et « Chiudi con un invito semplice a scoprire Manuvo. »
 
+*Vérification du 28/11/2026 sur Manuvo* : Risposte remplacé par la version compacte (919 caractères, retenue en entier) ; Social complet ; Ricerca était au **tutoiement** (« dando del tu al lettore »), corrigé en **Lei** avec le ton `Formale`, décision confirmée : vouvoiement sur tout le contenu de Manuvo. Ricerca reste en pause.
+
 Pour un hôtel ou un restaurant : utiliser les modèles de `agence-ia/climbo/prompts-settori.md`. Pour un hôtel, remplacer le bloc par ses faits réels (services, langues parlées, ce qui n'existe pas) et, pour Risposte, ne jamais promettre de geste commercial ni de remboursement.
 
 ### Automa Ricerca : leçons des 2 premiers articles (Manuvo, 18/11/2026)
